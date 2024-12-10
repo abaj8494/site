@@ -1,0 +1,102 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+  "basics": {
+    "name": "Aayush Bajaj",
+    "label": "Machine Learning Engineer",
+    "image": "http://localhost:1313/parkrun-prof1.png",
+    "email": "j@abaj.ai",
+    "summary": "I used to be passionate about Education, but then I discovered Deep Learning. What's the point in teaching humans when I can just teach my Computer to reason?",
+    "location": {
+      "city": "Sydney",
+      "region": "Australia"
+    },
+    "profiles": [
+      {
+        "network": "GitHub",
+        "url": "https://github.com/abaj8494"
+      },
+      {
+        "network": "LinkedIn",
+        "url": "https://au.linkedin.com/in/aayush-bajaj-b655231a6"
+      },
+      {
+        "network": "RSS",
+        "url": "https://abaj.ai/index.xml"
+      }
+    ]
+  },
+  "work": [
+  ],
+  "interests": [],
+  "references": [],
+  "education": [
+    {
+      "institution": "University of New South Wales",
+      "url": "https://www.unsw.edu.au/",
+      "area": "Computer Science",
+      "studyType": "Bachelor",
+      "startDate": "2021-02-19",
+      "endDate": "2025-12-12",
+      "score": "65.0",
+	"courses": ["MT1131 - Mathematics 1A", "CS1151 - Programming Fundamentals", "CS1131 - Software Fundamentals"]
+    },
+    {
+      "institution": "University of New South Wales",
+      "url": "https://www.unsw.edu.au/",
+      "area": "Statistics",
+      "studyType": "Master",
+      "startDate": "2026-02-19",
+      "endDate": "2028-12-12",
+      "score": "85.0",
+	"courses": ["MT1131 - Mathematics 1A", "CS1151 - Programming Fundamentals", "CS1131 - Software Fundamentals"]
+    }
+  ],
+  "skills": [
+    {
+      "name": "Deep Learning",
+      "level": "Novice",
+	"keywords": ["Python", "Numpy", "Pytorch", "Matplotlib"]
+    },
+      {
+	  "name": "Linux",
+	  "level": "Pro",
+	  "keywords": ["shell", "git", "regex", "emacs", "vim"]
+      }
+  ],
+  "languages": [
+    {
+      "language": "English",
+      "fluency": "Fluent"
+    },
+    {
+      "language": "Hindi",
+      "fluency": "Proficient"
+    },
+    {
+      "language": "Japanese",
+      "fluency": "Learning"
+    }
+  ],
+  "projects": [
+    {
+     "name": "KiTS19 - Grand Challenge",
+     "description": "Kidney and Kidney Tumour Segmentation from 3D Volumetric CT (Computed Tomography) scans",
+      "startDate": "2024-10-01",
+      "highlights": [
+          "Experienced the full Deep Learning Pipeline: lit review, preprocessing, training, reporting results. Successfully trained task with mean dice score of 87."
+      ],
+	"roles": ["SCRUM Master", "Developer"],
+	"keywords": ["nnUNet", "HPC"]
+    },
+    {
+     "name": "Medical Software WebApp",
+     "description": "Contract work to rebuild Best Practice Software Desktop program as a remotely deployed webapp",
+     "startDate": "2024-09-15",
+     "endDate": "2024-11-17",
+     "roles": "Backend Developer",
+     "entity": "Alpha-Cure Medical Centre"
+    }
+  ],
+  "awards": [],
+  "publications": []
+}

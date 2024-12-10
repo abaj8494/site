@@ -1,0 +1,19 @@
+For now this file will serve to me as a reminder of what to put in this subdirectory.
+
+I find it pertinent that I do not publish too many articles, but those
+that I do publish are very thought out and well developed.
+
+For now, for example I am thinking of producing the following
+articles:
+
+
+If you can do it for free, you can do it forever - Charles Bukowski
+
+The blog posts here range from technical to non-technical; pick your poison.
+
+- the bayesian cat
+- solving peg solitaire
+- running barefoot
+- the story of socrates
+- falling in love
+- the music of kanye west
