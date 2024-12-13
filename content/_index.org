@@ -1,0 +1,40 @@
+---
+title: "(*A*)ayush (*Baj*)aj's (*A*)rchived (*I*)​ntellect."
+---
+
+The AI could equally as well have stood for Artificial Intelligence.
+
+But that would be a little less /personal/. This site is a way for me to
+consolidate my learnings on topics and share wisdom with my
+future-self.[fn:1]
+
+* Scope
+Psychology, Biology, Machine Learning and Mathematics; this site is a
+virtual acreage. Much in the same way that many things happen on a
+farm, many things are happening here.
+
+The top right menubar will serve as your main interface to the site. Within are links to other pages, but at the highest level, every webpage can be discovered through these root nodes.
+
+The breadth of scope does not imply you have entered a circus, but rather that _knowledge is
+nonlinear_ and forms a network[fn:2] [fn:3].
+
+* Portfolio
+If you are visiting in a professional capacity then
+[[https://github.com/abaj8494][_my github_]] will give you a better indication of the production-quality
+code I write.
+
+This site humanises me and allows me to practise [[{{<ref "blog/literate-programming.org">}}][Literate Programming]]
+
+To whet an appetite however; you may be interested in the [[{{< ref "about" >}}][_about_]]
+section of this site which details the technical construction of the
+land upon which you are standing.
+
+
+
+* Footnotes
+[fn:3] See [[https://roamresearch.com][Roam Research]]
+
+[fn:2] In Mung Chiang's sense of the word; see [[][Networked Life:
+Money, Friends and Bytes]]
+
+[fn:1] See the blog post on [[{{<ref "blog/anki-explained.org" >}}][_Anki and Active Recall, Spaced Repetition and Interleaving_]]    
