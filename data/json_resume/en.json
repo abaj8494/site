@@ -2,7 +2,7 @@
   "basics": {
     "name": "Aayush Bajaj",
     "label": "Machine Learning Engineer",
-    "image": "http://localhost:1313/parkrun-prof1.png",
+    "image": "../../parkrun-prof1.png",
     "email": "j@abaj.ai",
     "summary": "I used to be passionate about Education, but then I discovered Deep Learning. What's the point in teaching humans when I can just teach my Computer to reason?",
     "location": {
