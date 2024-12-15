@@ -1,27 +1,82 @@
 * Hello
 These are the projects that I am on working / have worked on in the past.
 
-These projects are those that have had a lifecycle.
-
-They include (a few) assignments from my undergraduate degree as well as personal projects and solutions to textbook exercises and additional courses I have worked through.
+These projects are all those that have had a lifecycle.
 
 * Project list
 
+** N-Bday Problems
+- 21st
+- 22nd
+- 23rd
+
+** LaTeX
+[[{{< ref "/projects/latex#headline-7" >}}][Poems]]
+- Poems
+- Treatises
+- Frisbee Rules
+- Year 7 Math Booklets
+
+** Literature
+- Library
+- Textbook Solutions
+  - Networked Life, Mung Chiang
+  - Hands on Machine Learning
+  - Mathematics for Machine Learning
+- Research Paper Notes
+    
+** MOOC (Massive Open Online Courses)
+- CS229 Stanford
+- CS230 Stanford
+- STAT110 Harvard
+
 ** Classical Computer Science
-- Connect 4 #MIPS Assembly
-- LAN Messenger #cli #socket-programming
+- Leetcode
+- Sorting (bubble, bogo, bucket, merge) + time complexity
+- Searching (DFS, BFS, A*search, MCMT)
+  - solving peg solitaire
+- Graph
+
+** Computer Science Projects
+- Connect 4 #MIPS #Assembly
+- File Encrypter (Bytelocker) #C
+- LAN Messenger #cli #socket-programming #C
+- Messenger Web App (full-stack) #python #typescript
+- Banagrams Solver #tries #python
 - 
   
 ** Artificial Intelligence
-- Ultimate Tic Tac Toe Bot
-- Hashiwokakero CSP Solver
-- solving peg solitaire
 
+*** Adversarial Searching
+- minimax (Ultimate Tic Tac Toe Bot)
+
+*** CSP
+- Hashiwokakero CSP Solver
+- Sudoku (?)
+
+?? NLP, Reinforcement Learning ??
   
 ** Machine Learning
-- Sentiment Analysis #word2vec #nlp
+*** Supervised Learning
+- MNIST #random-forests #knn
+- FMNIST (Fashion) #random-forests
+- KMNIST #cnn #2-layer
+- CIFAR #cnn
+- IRIS #svm
+- ImageNet #resnet-50
 
+- Boston Housing #linear-regression
+- Wine Quality #gradient-boosting
+- Pima Indians Diabetes #decision-tree
+- IMDB Reviews #BERT
+- Titanic Deaths #logistic-regression
 
+*** Unsupervised Learning
+- KDD Cup 1999 #k-means-clustering
+- Digits #gaussian-mixture-model
+
+*** Reinforcement Learning
+- CartPole #Deep Q-Network
 
 ** Deep Learning
 - KiTS19 Kidney and Kidney Tumour Segmentation
@@ -30,8 +85,7 @@ They include (a few) assignments from my undergraduate degree as well as persona
 - CNN from scratch. No pytorch or tensorflow #scratch
 - imlpementing llm. follow attention is all you need.
 - rnn music of kanye west
-
-
-
+- Sentiment Analysis #word2vec #nlp
 
 TODO: create html to pull the previews from their respective pages 
+  - i think this is already done

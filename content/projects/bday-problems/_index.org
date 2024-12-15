@@ -1,0 +1,11 @@
+---
+title: "Bday Problems"
+date: 2024-12-15T11:19:55+11:00
+draft: false
+---
+
+Each year I release a set of problems to celebrate yet another year of life and study.
+
+23rd link
+22nd link
+etc

@@ -1,0 +1,90 @@
+---
+title: "LaTeX"
+date: 2024-12-15T11:21:47+11:00
+draft: false
+---
+
+I have always loved \LaTeX, but thought it too difficult to learn. As such, I began with Markdown files, and then whilst mastering those, I found myself incorporating more and more \LaTeX snippets. This coupled with my university professors' aptitude for TeX, led me to eventually open up a couple documents and begin experimentation myself.
+
+Since then, my passion for TeX has matured and I have written many documents both professionally and non-professionally with Leslie Lamport's fork of Donald Knuth's magical τϵχ engine.
+
+To begin practise I obviously consulted the standard "A concise introduction to TeX" and then later a "not-so concise introduction to tex".
+
+From there I invested a couple dozen dollars into Steven Kottwitz' "A beginner's guide to LaTeX" and worked through many of the examples in there.
+
+Soon after came my phase of typesetting poems to experiment with the things I had learned:
+
+
+* Poems TODO: Make collapseable
+
+(The hyperlinks will take you to the compiled PDF's)
+
+Canberra morning - Rosemary Dobson
+
+The Story of J. Alfred Prufrock - T.S. Eliot
+
+A birthday present - Sylvia Plath
+
+Anthem for Doomed Youth - Wilfred Owen
+
+The Hollow Men - T.S. Eliot
+
+* Treatises
+
+From here came my Treatises; I grew tired of numbingly copying out the verse of other authors and began to create things of my own. I only produced 2 treatises, one on Gastropods (snails), and another on the Catus Felis (Domestic[fn:1] Cat).
+
+I learned about =maketitle=, References, Glossaries, Figures, Images and page numbering.
+
+Gastropods (2 pages)
+TODO: code
+
+Catus Felis (9 pages)
+TODO: code
+
+* Frisbee Rules
+
+This was my first voyeur into splitting my source code up into multiple files, much in the way we do for any good computer program.
+
+I produced a pocket version of the easy-to-forget rules in Ultimate Frisbee
+
+Here is the directory structure
+TODO: tree command
+
+Pocket Rules TODO: hyperlink + code
+
+* Junior High Mathematics Booklets
+
+In an attempt to continue producing increasingly sophisticated TeX I produced some Mathematics booklets for Year 7's and 8's that mimicked the Cambridge ICE-EM NSW Mathematics series.
+
+I was basically fleshing out that entire textbook into an interactive booklet with space to write. As a result I learned to effectively produce figures and leverage the =exam= class. I also learned how to produce far larger documents, with some booklets nearing 50 pages in length to satisfy 3 hours of tuition.
+
+Booklet
+
+Booklet
+
+Booklet
+
+* An Assignment
+
+Save actually programming TeX, I believe I have reached a point in my typesetting capabilities where I am happy with the quality of the content that I produce. Here is an assignment for my deep learning course that netted me full marks.
+
+You will notice the introduction of captions within figure environments along with defines and redefines to suit my own needs.
+Ass.
+
+*IMPORTANT: I forgot to mention, but Leslie Lamport's original TeX manual is fantastically readable and will give you the most fine understanding of the mechanics of /LaTeX/*
+
+* The importance of Miscellaneous Tasks
+
+The above were all larger projects that took time to work through. To supplement your skill you must cook up small documents in the interim, such as letters, invoices and birthday cards.
+
+Stefan Kottwitz' Cookbook was of good help for these tasks, and in doing these things you will keep touching up your knife's blade.
+
+* Conclusion
+
+At this point, I constantly refer to these stack of books and am pleased with my TeX journey. I did find it difficult to get my hands on source code when I was learning, hence the existence of this page. But know that there truly is plenty of TeX floating around, just take your favourite manual for any LaTeX package and click on the option to download it's TeX file on CTAN.
+
+Finally, as of 15/12/24 this page is being archived, and any subsequent TeX sophistication can be gleaned from my work on [[{{< ref "/projects/bday-problems" >}}][N Birthday Problems]] which I have been releasing each year in TeX.
+
+* Footnotes
+
+[fn:1] they domesticated us. like wheat TODO: link 
