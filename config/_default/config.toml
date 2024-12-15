@@ -1,6 +1,6 @@
-baseURL = "http://localhost"
+baseURL = "https://abaj.ai"
 copyright = "© 2024 Aayush Bajaj"
-title = "ABAJ AI"
+title = "(aj)^{ai}"
 paginate = 10
 enableRobotsTXT = true
 enableGitInfo = true
@@ -16,12 +16,16 @@ enableGitInfo = true
     enable = true
 
 [markup]
+  #defaultMarkdownHandler = 'org'
   [markup.goldmark]
     [markup.goldmark.renderer]
       # This setting allows inlining <script> and <style> tags in markdown,
       # which is useful and required to use Prism plugins, but may be dangerous
       # if the content isn't trustworthy.
       unsafe = true
+    [markup.goldmark.parser]
+      autoHeadingID = true
+      autoHeadingIDType = 'blackfriday'
 
 [imaging]
   # JPEG and WebP quality
@@ -45,7 +49,7 @@ enableGitInfo = true
   # soft medium hard, defaults to medium
   themeContrast = "hard"
   author = "Aayush Bajaj"
-  subtitle = "MLE"
+  subtitle = ""
   description = "A full-time tinkerer"
 
   [params.logo]

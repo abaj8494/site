@@ -1,23 +1,43 @@
+#+OPTIONS: auto-id:t
+
+
+
+
 * Hello
+:PROPERTIES:
+:CUSTOM_ID: hello
+:END:
+
 These are the projects that I am on working / have worked on in the past.
 
 These projects are all those that have had a lifecycle.
 
 * Project list
+:PROPERTIES:
+:CUSTOM_ID: project-list
+:END:
 
 ** N-Bday Problems
-- 21st
+:PROPERTIES:
+:CUSTOM_ID: n-bday-problems
+:END:
+- [[{{< ref "/projects/bday-problems#21st" >}}][21st]]
 - 22nd
 - 23rd
 
 ** LaTeX
-[[{{< ref "/projects/latex#headline-7" >}}][Poems]]
-- Poems
-- Treatises
-- Frisbee Rules
-- Year 7 Math Booklets
+:PROPERTIES:
+:CUSTOM_ID: latex
+:END:
+- [[{{< ref "/projects/latex#poems" >}}][Poems]]
+- [[{{< ref "/projects/latex#treatises" >}}][Treatises]]
+- [[{{< ref "/projects/latex#pocket-rules" >}}][Pocket Frisbee Rules]]
+- [[{{< ref "/projects/latex#booklets" >}}][Junior High Math Booklets]]
 
 ** Literature
+:PROPERTIES:
+:CUSTOM_ID: literature
+:END:
 - Library
 - Textbook Solutions
   - Networked Life, Mung Chiang
@@ -25,12 +45,18 @@ These projects are all those that have had a lifecycle.
   - Mathematics for Machine Learning
 - Research Paper Notes
     
-** MOOC (Massive Open Online Courses)
+** MOOCs (Massive Open Online Courses)
+:PROPERTIES:
+:CUSTOM_ID: moocs-massive-open-online-courses
+:END:
 - CS229 Stanford
 - CS230 Stanford
 - STAT110 Harvard
 
 ** Classical Computer Science
+:PROPERTIES:
+:CUSTOM_ID: classical-computer-science
+:END:
 - Leetcode
 - Sorting (bubble, bogo, bucket, merge) + time complexity
 - Searching (DFS, BFS, A*search, MCMT)
@@ -38,6 +64,9 @@ These projects are all those that have had a lifecycle.
 - Graph
 
 ** Computer Science Projects
+:PROPERTIES:
+:CUSTOM_ID: computer-science-projects
+:END:
 - Connect 4 #MIPS #Assembly
 - File Encrypter (Bytelocker) #C
 - LAN Messenger #cli #socket-programming #C
@@ -46,18 +75,33 @@ These projects are all those that have had a lifecycle.
 - 
   
 ** Artificial Intelligence
+:PROPERTIES:
+:CUSTOM_ID: artificial-intelligence
+:END:
 
 *** Adversarial Searching
+:PROPERTIES:
+:CUSTOM_ID: adversarial-searching
+:END:
 - minimax (Ultimate Tic Tac Toe Bot)
 
 *** CSP
+:PROPERTIES:
+:CUSTOM_ID: csp
+:END:
 - Hashiwokakero CSP Solver
 - Sudoku (?)
 
 ?? NLP, Reinforcement Learning ??
   
 ** Machine Learning
+:PROPERTIES:
+:CUSTOM_ID: machine-learning
+:END:
 *** Supervised Learning
+:PROPERTIES:
+:CUSTOM_ID: supervised-learning
+:END:
 - MNIST #random-forests #knn
 - FMNIST (Fashion) #random-forests
 - KMNIST #cnn #2-layer
@@ -72,13 +116,22 @@ These projects are all those that have had a lifecycle.
 - Titanic Deaths #logistic-regression
 
 *** Unsupervised Learning
+:PROPERTIES:
+:CUSTOM_ID: unsupervised-learning
+:END:
 - KDD Cup 1999 #k-means-clustering
 - Digits #gaussian-mixture-model
 
 *** Reinforcement Learning
+:PROPERTIES:
+:CUSTOM_ID: reinforcement-learning
+:END:
 - CartPole #Deep Q-Network
 
 ** Deep Learning
+:PROPERTIES:
+:CUSTOM_ID: deep-learning
+:END:
 - KiTS19 Kidney and Kidney Tumour Segmentation
 - Fine Tuning LLM
 - RAG
@@ -89,3 +142,4 @@ These projects are all those that have had a lifecycle.
 
 TODO: create html to pull the previews from their respective pages 
   - i think this is already done
+
