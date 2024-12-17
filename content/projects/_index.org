@@ -1,8 +1,4 @@
 #+OPTIONS: auto-id:t
-
-
-
-
 * Hello
 :PROPERTIES:
 :CUSTOM_ID: hello
@@ -16,8 +12,9 @@ These projects are all those that have had a lifecycle.
 :PROPERTIES:
 :CUSTOM_ID: project-list
 :END:
+{{< collapse >}}
 
-** N-Bday Problems
+** [[/projects/bday-problems][N-Bday Problems]]
 :PROPERTIES:
 :CUSTOM_ID: n-bday-problems
 :END:
@@ -25,7 +22,7 @@ These projects are all those that have had a lifecycle.
 - 22nd
 - 23rd
 
-** LaTeX
+** [[/projects/latex][LaTeX]]
 :PROPERTIES:
 :CUSTOM_ID: latex
 :END:
@@ -34,7 +31,7 @@ These projects are all those that have had a lifecycle.
 - [[{{< ref "/projects/latex#pocket-rules" >}}][Pocket Frisbee Rules]]
 - [[{{< ref "/projects/latex#booklets" >}}][Junior High Math Booklets]]
 
-** Literature
+** [[/projects/literature][Literature]]
 :PROPERTIES:
 :CUSTOM_ID: literature
 :END:
@@ -45,7 +42,7 @@ These projects are all those that have had a lifecycle.
   - Mathematics for Machine Learning
 - Research Paper Notes
     
-** MOOCs (Massive Open Online Courses)
+** [[/projects/mooc][MOOCs (Massive Open Online Courses)]]
 :PROPERTIES:
 :CUSTOM_ID: moocs-massive-open-online-courses
 :END:
@@ -53,7 +50,7 @@ These projects are all those that have had a lifecycle.
 - CS230 Stanford
 - STAT110 Harvard
 
-** Classical Computer Science
+** [[/projects/ccs][Classical Computer Science]]
 :PROPERTIES:
 :CUSTOM_ID: classical-computer-science
 :END:
@@ -63,7 +60,7 @@ These projects are all those that have had a lifecycle.
   - solving peg solitaire
 - Graph
 
-** Computer Science Projects
+** [[/projects/csp][Computer Science Projects]]
 :PROPERTIES:
 :CUSTOM_ID: computer-science-projects
 :END:
@@ -74,31 +71,31 @@ These projects are all those that have had a lifecycle.
 - Banagrams Solver #tries #python
 - 
   
-** Artificial Intelligence
+** [[/projects/ai][Artificial Intelligence]]
 :PROPERTIES:
 :CUSTOM_ID: artificial-intelligence
 :END:
 
-*** Adversarial Searching
+*** [[/projects/ai/adv-search][Adversarial Searching]]
 :PROPERTIES:
 :CUSTOM_ID: adversarial-searching
 :END:
 - minimax (Ultimate Tic Tac Toe Bot)
-
-*** CSP
+- chess bot (mc search?)
+  
+*** [[/projects/ai/csp][Constraint Satisfaction Problems]]
 :PROPERTIES:
 :CUSTOM_ID: csp
 :END:
 - Hashiwokakero CSP Solver
 - Sudoku (?)
 
-?? NLP, Reinforcement Learning ??
-  
-** Machine Learning
+** [[/projects/ml][Machine Learning]]
 :PROPERTIES:
 :CUSTOM_ID: machine-learning
 :END:
-*** Supervised Learning
+
+*** [[/projects/ml/supervised][Supervised Learning]]
 :PROPERTIES:
 :CUSTOM_ID: supervised-learning
 :END:
@@ -115,20 +112,20 @@ These projects are all those that have had a lifecycle.
 - IMDB Reviews #BERT
 - Titanic Deaths #logistic-regression
 
-*** Unsupervised Learning
+*** [[/projects/ai/unsupervised][Unsupervised Learning]]
 :PROPERTIES:
 :CUSTOM_ID: unsupervised-learning
 :END:
 - KDD Cup 1999 #k-means-clustering
 - Digits #gaussian-mixture-model
 
-*** Reinforcement Learning
+*** [[/projects/ai/rl][Reinforcement Learning]]
 :PROPERTIES:
 :CUSTOM_ID: reinforcement-learning
 :END:
 - CartPole #Deep Q-Network
 
-** Deep Learning
+** [[/projects/dl][Deep Learning]]
 :PROPERTIES:
 :CUSTOM_ID: deep-learning
 :END:
@@ -143,3 +140,5 @@ These projects are all those that have had a lifecycle.
 TODO: create html to pull the previews from their respective pages 
   - i think this is already done
 
+
+  ?? NLP, Reinforcement Learning ??

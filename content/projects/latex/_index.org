@@ -5,7 +5,25 @@ draft: false
 ---
 #+OPTIONS: H:6
 #+HTML_HEADLINE_ANCHORS: t
-I have always loved \LaTeX, but thought it too difficult to learn. As such, I began with Markdown files, and then whilst mastering those, I found myself incorporating more and more \LaTeX snippets. This coupled with my university professors' aptitude for TeX, led me to eventually open up a couple documents and begin experimentation myself.
+#+OPTIONS: tex:t
+
+#+BEGIN_SRC latex
+$e^{i\pi}$
+#+END_SRC
+
+#+RESULTS:
+#+begin_export latex
+$e^{i\pi}$
+#+end_export
+
+\begin{equation}                        % arbitrary environments,
+x=\sqrt{b}                              % even tables, figures, etc
+\end{equation}
+
+If $a^2=b$ and \( b=2 \), then the solution must be
+either $$ a=+\sqrt{2} $$ or \[ a=-\sqrt{2} \].
+
+I have always loved $\LaTeX$, but thought it too difficult to learn. As such, I began with Markdown files, and then whilst mastering those, I found myself incorporating more and more \LaTeX snippets. This coupled with my university professors' aptitude for TeX, led me to eventually open up a couple documents and begin experimentation myself.
 
 Since then, my passion for TeX has matured and I have written many documents both professionally and non-professionally with Leslie Lamport's fork of Donald Knuth's magical τϵχ engine.
 

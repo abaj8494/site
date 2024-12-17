@@ -1,7 +1,6 @@
 ---
-title: "Enfield"
-date: 2024-12-13T12:58:58+11:00
-draft: false
+title: "2018 Royald Enfield Classic 500"
+date: 2024-12-13T20:42:32+11:00
 ---
 
 This is my first bike, I bought it second hand:
@@ -17,7 +16,11 @@ I paid 5.5k AUD for it, and recently had to spend another 2k because the previou
 
 I had also tried to do some work on it and ended up snapping the bolt securing the oil filter cap on the underside of the engine.
 
-[[/blog/500-screw.jpg]]
+#+BEGIN_CENTER
+#+CAPTION: Oil filter cap bolt
+#+ATTR_HTML: :width 400px
+[[/blog/500-screw.png]]
+#+END_CENTER
 
 This was my first lesson: from the perspective of the underside of the bike, "lefty loosey" is actually "righty-tighty".
 

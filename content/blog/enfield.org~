@@ -22,7 +22,7 @@ This was my first lesson: from the perspective of the underside of the bike, "le
 
 *Lesson 2* purchase a torque wrench.
 
-* Raison d'etre
+* Raison d'être
 
 This page exists mainly for myself, but I do hope it is control-f-able. the above table of contents should help orient you, and if you have this same bike, this whole page is a document of my experience with it.
 Below here I shall have a lessons section with individual aspects of riding as well as the motorcycle that I have been trying to master. Finally, I have attached the User's manual, Service manual, and my own paid copy of Haynes' Service Manual for the 2018 Class 500 in [[/resources][the resources section]].
@@ -100,6 +100,11 @@ I have been at it now for perhaps a week and I am finding that it can be done sm
 
 I also believe upshifting into a higher gear is easier when the revs of the motorcycle are high. See my lesson below for taking the revs of the motorcycle /too/ high.
 
+Log 13/12/2024:
+I am realising it is quite possible to get stuck in *neutral* when upshifting from first to second. Be careful of this.
+I am also learning new grips which is propagating into relearning quick-shifting.
+
+
 *** Downshifting
 
 I have not yet experimented with this, mainly because I do not feel it to be that useful.
@@ -121,22 +126,50 @@ Anyways, that's exactly what happened. I wonder if this can happen to all manual
 This is where we are at now.
 
 
+** Breaking the mirror
+
+I tried to wash the motorcycle on grass and ended up tipping it onto the exhaust side. Inevitably the mirror broke and now I have purchased these demon horns:
+
+TODO: image
+
+These touring mirrors though are inappropriate for this bike. The dealer warned me they weren't listed as suitable and after a single ride I understand why.
+
+The Bullet 500cc is a very rumbly bike, and looking in the mirrors beyond 70kph is equivalent to me trying to see something without my glasses -- very blurry.
+Furthermore, I cannot see behind myself. As a rider who likes seeing directly behind them, this is a major problem.
+
+I shall be returning these mirrors and asking Motomachines to order the part from their Victoria warehouse.
+
+** Relearning grips
+
+I am relearning both the clutch handle grip, and the front brake grip. On the clutch side, two fingers is sufficient, but this means I am relearning my friction zone with these new set of muscles.
+
+As for the front brake grip, there are often times where I want to be downshifting whilst slowing down (using the front brake), as a result I need to blip the throttle to rev match and smoothly drop a gear.
+
+My right hand grip looks like this when blipping the throttle with the front brake pulled in:
+
+TODO: image
+
+And here is my clutch grip:
+
+TODO: image
+
 * Work done on the 500
 
-Item | Price item | Price labour |
-Bolt extraction and repair | 440 | 
-Throttle cables | 30 | 53
-Exhaust pipe | 286 | 106
-Gasket Rocker Cover Intake | 31 | 60
-Gasket Rocker Cover Exhaust | 31 | 60
-Front tyre - 100/90V19 (57V) BT46 F | 184.95 | 50
-Back tyre - 110/80H18 (58H) BT46 R | 194.95 | 50
-Fuel tank cap | 130
-Front sprocket | 56.39 | 40
-Rear sprocket | 102.34 | 40
-Chain | 67.52 | 80
-Oil level window + clip | 11 | 
+|Item | Price item | Price labour |
+|Bolt extraction and repair | 440 | 
+|Throttle cables | 30 | 53
+|Exhaust pipe | 286 | 106
+|Gasket Rocker Cover Intake | 31 | 60
+|Gasket Rocker Cover Exhaust | 31 | 60
+|Front tyre - 100/90V19 (57V) BT46 F | 184.95 | 50
+|Back tyre - 110/80H18 (58H) BT46 R | 194.95 | 50
+|Fuel tank cap | 130
+|Front sprocket | 56.39 | 40
+|Rear sprocket | 102.34 | 40
+|Chain | 67.52 | 80
+|Oil level window + clip | 11 | 
 
 * Footnotes
 
 [fn:1] And then I drove him back, thus restoring equilibrium to our universe. 
+ 
