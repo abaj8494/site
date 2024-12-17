@@ -1,0 +1,51 @@
+<script src="{{ "js/collapsible-global.js" | relURL }}" defer></script>
+
+<style>
+  /* Wrapper for heading and toggle button */
+  .collapsible-wrapper {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+  }
+
+  /* Toggle button */
+  .toggle-button {
+      cursor: pointer;
+      border: none;
+      background: none;
+      color: black;
+      font-size: 1rem;
+      width: 1.5rem; /* Ensure consistent alignment */
+      height: 1.5rem;
+      text-align: center;
+      line-height: 1.5rem;
+      margin-right: 8px;
+      padding: 0;
+  }
+
+
+  [data-theme="dark"] .toggle-button {
+      color: white; /* Override to white when theme is dark */
+  }
+
+
+  /* Remove outline when focused */
+  .toggle-button:focus {
+      outline: none;
+  }
+
+  /* Collapsible content (hidden by default) */
+  .collapsible-content {
+      display: none;
+      margin-left: 24px; /* Indent to align with heading */
+      padding: 5px 0;
+      border-left: 0px solid #ccc;
+      transition: all 0.3s ease-out;
+  }
+
+  /* Content visible when toggled */
+  .collapsible-content.show {
+      display: block;
+  }
+
+</style>
