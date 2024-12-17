@@ -1,0 +1,179 @@
+---
+title: "2018 Royald Enfield Classic 500"
+date: 2024-12-13T20:42:32+11:00
+---
+
+This is my first bike, I bought it second hand:
+
+[[/blog/500-listing.jpg]]
+
+I got it because it fit my needs:
+- comfortable 2 seater
+- royal enfield
+- affordable
+
+I paid 5.5k AUD for it, and recently had to spend another 2k because the previous owner had let it rust from the rain of the Northern Beaches.
+
+I had also tried to do some work on it and ended up snapping the bolt securing the oil filter cap on the underside of the engine.
+
+#+BEGIN_CENTER
+#+CAPTION: Oil filter cap bolt
+#+ATTR_HTML: :width 400px
+[[/blog/500-screw.png]]
+#+END_CENTER
+
+This was my first lesson: from the perspective of the underside of the bike, "lefty loosey" is actually "righty-tighty".
+
+*Lesson 2* purchase a torque wrench.
+
+* Raison d'être
+
+This page exists mainly for myself, but I do hope it is control-f-able. the above table of contents should help orient you, and if you have this same bike, this whole page is a document of my experience with it.
+Below here I shall have a lessons section with individual aspects of riding as well as the motorcycle that I have been trying to master. Finally, I have attached the User's manual, Service manual, and my own paid copy of Haynes' Service Manual for the 2018 Class 500 in [[/resources][the resources section]].
+
+* Lessons
+
+** Stalling the bike
+
+I purchased this motorcycle from a Mr. Reynes House, the first owner and Royal Enfield (RE) fanatic. A 39 year-old gentleman who regrettingly parted with this Bullet. Whilst there is much to say about Mr. House, he is not the topic for this section; the topic is the many times I stalled this bike on the way away from Mr. Houses house!
+
+I completed my learner's course in Silverwater under the most strange but thorough instructor: Neil Singh. I - to this day - have mixed opinions about Neil Singh. He taught me not to look down at my dashboard, but also insisted upon not explaining the neutral gear to me. He went on to fail 2 of 5 from my class that course. I, luckily passed.
+My reason for introducing Mr. Singh was to mention the bikes he taught us on: Honda 125cc (model to be researched).
+
+Pulling away from the dirt patch upon which Reynes sold me his bike, I could not do better than pedal on the footpath in Neutral; climb into first gear in an alleyway; and then proceed to stall and almost drop the bike as soon as I hit the first left turn to merge into traffic.
+Eventually, admitting defeat I called Reynes and he dropped me (and the new bike) to /my/ house.[fn:1]
+
+-----
+
+Once the bike was in my driveway things became slightly easier. I would later stress about snapping a bolt on the bike, but at this timestep, my primary concern was not dropping the bike.
+
+I took it out as often as I could at the start, keeping the trips short. I went from getting into 2nd and 3rd gear, to getting into those gears faster.
+Touching fourth and bringing it back down.
+
+These days I basically hang out in 3rd and 4th exclusively, relying on engine braking to hold speed and letting my clutch breathe. I am overworking the clutch on my slow-speed maneouvres however.
+
+I stalled the bike twice today; once upon hitting a speed-bump -- I'm not entirely certain what happened there, and once again in the frontyard trying to get it off the grass.
+Before then though, it's been about a week. As I am becoming more comfortable with the friction zone and correct clutch habits, my frequency of stalling the bike has dropped quickly.
+
+** Overusing the Clutch
+
+The previous lesson brings me to a very surreal image that triggered the realisation that I was *coasting with the clutch in* almost all of the time.
+
+You see, because I was so afraid of letting go of the clutch - and thus perhaps stalling the bike - I always pulled my clutch in. Around corners, down hills, etc.
+
+This only lasted about a week until a shorter, skinnier, but equally as cool Jason Mamoa gapped me on Victoria Road.
+He goes around the bend ahead of me in a thin white sporty dirt bike perhaps 250cc or so and flicks his visor up whilst at speed.
+
+He gestures to his eyes and then to his clutch arm, which was dangling by his side, and that's how he took the turn.
+
+Bewildered at the time it would only click about 10 days later what that dread-haired dude was trying to teach me.
+
+** Not wearing protective equipment
+
+I still don't think you have to. There is an artful video by [[https://www.youtube.com/watch?v=nINIJ1cAbYM][fortnine/]] on YouTube explaining the statistical futility on relying on protective equipment to save you in the event of a crash. At that point, a road rash /seems/ trivial.
+
+Anyways, my point being, it gets cold -- up to 20° degrees colder!
+
+** My helmet was too big
+
+I thought it wasn't when the folks at MCA first told me, but after about a month of riding I began to understand how much room I really had in my helmet --- room with which I could whiplash my brain.
+
+** Engine Braking
+
+As soon as I took my hands off the clutch I began to experience the pitfalls and advantages of engine breaking.
+
+Suddenly, the emphasis became throttle control and letting the engine do the work, as opposed to clutching the clutch for life support and sanding down my disc brakes.
+
+Overall, incorporating this technique has been an immense success, especially from a safety stand-point, though at times I still get it wrong and jerk forward at a lesser 10kph.
+
+** 
+
+** Quick shifting
+This is one of the things I saw on YouTube early onwards but only came to realise its relevance when trying to pull away from traffic on a green light with a 200kg bike.
+
+I had to wait a while before being able to learn this skill due to the bike being in the shop, and then additionally there being an accidental breakage of the fuel pump. Luckily this breakage was covered by the workshop warranty and the folks at Motomachine Clyde.
+
+*** Upshifting
+I have been at it now for perhaps a week and I am finding that it can be done smoothly - if I preload the upshift lever and then drop the revs, I have an easier time moving up a gear. In addition to this, I am finding the transition between 1st and 2nd gear most challenging. I believe this is due it being the highest magnitude gear ratio:
+
+1st 3.06:1
+2nd 2.01:1
+3rd 1.52:1
+4th 1.21:1
+5th 1:1
+
+I also believe upshifting into a higher gear is easier when the revs of the motorcycle are high. See my lesson below for taking the revs of the motorcycle /too/ high.
+
+Log 13/12/2024:
+I am realising it is quite possible to get stuck in *neutral* when upshifting from first to second. Be careful of this.
+I am also learning new grips which is propagating into relearning quick-shifting.
+
+
+*** Downshifting
+
+I have not yet experimented with this, mainly because I do not feel it to be that useful.
+
+One thing to keep in mind is quick shifting will almost always be less smooth than the control that you have when clutch shifting.
+
+It is faster, and can be more fun, but it is also more harmful for the gearbox, and at times jerky.
+
+** Killing the engine with revs
+
+After getting the bike back from the shop I was out on a nice windy road one day and just yanked back the throttle all the way as a small means to vent emotionally. Suffice to say it did not go my way. I was in third and suddenly the bike had died. Was it my throttle cable that snapped? No, I just got that replaced. Am I out of fuel? No, I should have plenty.
+
+OMG, it's that thing that Reynes, almost fleetingly mentioned; "if the revs go too high the engine will cut out; it's a safety thing".
+
+Anyways, that's exactly what happened. I wonder if this can happen to all manual transmission vehicles.
+
+** U-turns
+
+This is where we are at now.
+
+
+** Breaking the mirror
+
+I tried to wash the motorcycle on grass and ended up tipping it onto the exhaust side. Inevitably the mirror broke and now I have purchased these demon horns:
+
+TODO: image
+
+These touring mirrors though are inappropriate for this bike. The dealer warned me they weren't listed as suitable and after a single ride I understand why.
+
+The Bullet 500cc is a very rumbly bike, and looking in the mirrors beyond 70kph is equivalent to me trying to see something without my glasses -- very blurry.
+Furthermore, I cannot see behind myself. As a rider who likes seeing directly behind them, this is a major problem.
+
+I shall be returning these mirrors and asking Motomachines to order the part from their Victoria warehouse.
+
+** Relearning grips
+
+I am relearning both the clutch handle grip, and the front brake grip. On the clutch side, two fingers is sufficient, but this means I am relearning my friction zone with these new set of muscles.
+
+As for the front brake grip, there are often times where I want to be downshifting whilst slowing down (using the front brake), as a result I need to blip the throttle to rev match and smoothly drop a gear.
+
+My right hand grip looks like this when blipping the throttle with the front brake pulled in:
+
+TODO: image
+
+And here is my clutch grip:
+
+TODO: image
+
+* Work done on the 500
+
+|Item | Price item | Price labour |
+|Bolt extraction and repair | 440 | 
+|Throttle cables | 30 | 53
+|Exhaust pipe | 286 | 106
+|Gasket Rocker Cover Intake | 31 | 60
+|Gasket Rocker Cover Exhaust | 31 | 60
+|Front tyre - 100/90V19 (57V) BT46 F | 184.95 | 50
+|Back tyre - 110/80H18 (58H) BT46 R | 194.95 | 50
+|Fuel tank cap | 130
+|Front sprocket | 56.39 | 40
+|Rear sprocket | 102.34 | 40
+|Chain | 67.52 | 80
+|Oil level window + clip | 11 | 
+
+* Footnotes
+
+[fn:1] And then I drove him back, thus restoring equilibrium to our universe. 
+ 

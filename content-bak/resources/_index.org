@@ -1,0 +1,17 @@
+#+title: Resources
+#+TOC: headlines 2
+
+* Greetings,
+I shall try to be as helpful as possible here. 
+
+* Anki decks
+- Machine Learning
+- Japanese
+- PAO, see blog post explaining these too.
+- Mathematics
+
+* Course Slides
+I don't know if I should be uploading these.
+
+* Books
+I also do not know if I should be uploading these.

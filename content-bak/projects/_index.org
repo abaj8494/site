@@ -1,0 +1,144 @@
+#+OPTIONS: auto-id:t
+* Hello
+:PROPERTIES:
+:CUSTOM_ID: hello
+:END:
+
+These are the projects that I am on working / have worked on in the past.
+
+These projects are all those that have had a lifecycle.
+
+* Project list
+:PROPERTIES:
+:CUSTOM_ID: project-list
+:END:
+{{< collapse >}}
+
+** [[/projects/bday-problems][N-Bday Problems]]
+:PROPERTIES:
+:CUSTOM_ID: n-bday-problems
+:END:
+- [[{{< ref "/projects/bday-problems#21st" >}}][21st]]
+- 22nd
+- 23rd
+
+** [[/projects/latex][LaTeX]]
+:PROPERTIES:
+:CUSTOM_ID: latex
+:END:
+- [[{{< ref "/projects/latex#poems" >}}][Poems]]
+- [[{{< ref "/projects/latex#treatises" >}}][Treatises]]
+- [[{{< ref "/projects/latex#pocket-rules" >}}][Pocket Frisbee Rules]]
+- [[{{< ref "/projects/latex#booklets" >}}][Junior High Math Booklets]]
+
+** [[/projects/literature][Literature]]
+:PROPERTIES:
+:CUSTOM_ID: literature
+:END:
+- Library
+- Textbook Solutions
+  - Networked Life, Mung Chiang
+  - Hands on Machine Learning
+  - Mathematics for Machine Learning
+- Research Paper Notes
+    
+** [[/projects/mooc][MOOCs (Massive Open Online Courses)]]
+:PROPERTIES:
+:CUSTOM_ID: moocs-massive-open-online-courses
+:END:
+- CS229 Stanford
+- CS230 Stanford
+- STAT110 Harvard
+
+** [[/projects/ccs][Classical Computer Science]]
+:PROPERTIES:
+:CUSTOM_ID: classical-computer-science
+:END:
+- Leetcode
+- Sorting (bubble, bogo, bucket, merge) + time complexity
+- Searching (DFS, BFS, A*search, MCMT)
+  - solving peg solitaire
+- Graph
+
+** [[/projects/csp][Computer Science Projects]]
+:PROPERTIES:
+:CUSTOM_ID: computer-science-projects
+:END:
+- Connect 4 #MIPS #Assembly
+- File Encrypter (Bytelocker) #C
+- LAN Messenger #cli #socket-programming #C
+- Messenger Web App (full-stack) #python #typescript
+- Banagrams Solver #tries #python
+- 
+  
+** [[/projects/ai][Artificial Intelligence]]
+:PROPERTIES:
+:CUSTOM_ID: artificial-intelligence
+:END:
+
+*** [[/projects/ai/adv-search][Adversarial Searching]]
+:PROPERTIES:
+:CUSTOM_ID: adversarial-searching
+:END:
+- minimax (Ultimate Tic Tac Toe Bot)
+- chess bot (mc search?)
+  
+*** [[/projects/ai/csp][Constraint Satisfaction Problems]]
+:PROPERTIES:
+:CUSTOM_ID: csp
+:END:
+- Hashiwokakero CSP Solver
+- Sudoku (?)
+
+** [[/projects/ml][Machine Learning]]
+:PROPERTIES:
+:CUSTOM_ID: machine-learning
+:END:
+
+*** [[/projects/ml/supervised][Supervised Learning]]
+:PROPERTIES:
+:CUSTOM_ID: supervised-learning
+:END:
+- MNIST #random-forests #knn
+- FMNIST (Fashion) #random-forests
+- KMNIST #cnn #2-layer
+- CIFAR #cnn
+- IRIS #svm
+- ImageNet #resnet-50
+
+- Boston Housing #linear-regression
+- Wine Quality #gradient-boosting
+- Pima Indians Diabetes #decision-tree
+- IMDB Reviews #BERT
+- Titanic Deaths #logistic-regression
+
+*** [[/projects/ai/unsupervised][Unsupervised Learning]]
+:PROPERTIES:
+:CUSTOM_ID: unsupervised-learning
+:END:
+- KDD Cup 1999 #k-means-clustering
+- Digits #gaussian-mixture-model
+
+*** [[/projects/ai/rl][Reinforcement Learning]]
+:PROPERTIES:
+:CUSTOM_ID: reinforcement-learning
+:END:
+- CartPole #Deep Q-Network
+
+** [[/projects/dl][Deep Learning]]
+:PROPERTIES:
+:CUSTOM_ID: deep-learning
+:END:
+- KiTS19 Kidney and Kidney Tumour Segmentation
+- Fine Tuning LLM
+- RAG
+- CNN from scratch. No pytorch or tensorflow #scratch
+- imlpementing llm. follow attention is all you need.
+- rnn music of kanye west
+- Sentiment Analysis #word2vec #nlp
+
+TODO: create html to pull the previews from their respective pages 
+  - i think this is already done
+
+
+  ?? NLP, Reinforcement Learning ??

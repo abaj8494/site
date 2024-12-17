@@ -23,23 +23,18 @@ Soon after came my phase of typesetting poems to experiment with the things I ha
 
 ** Canberra Morning - Rosemary Dobson
 
-#+NAME: foo
-#+INCLUDE: "/code/latex/poems/canberra-morning.tex" src latex
+#+BEGIN_SRC latex
+#+INSERT "~/abaj.ai/code/latex/poems/canberra-morning.tex" src latex
+#+END_SRC
 
 
 ** The Story of J. Alfred Prufrock - T.S. Eliot
 
-#+INCLUDE: "/code/latex/poems/the-love-song-of-j-alfred-prufrock.tex" src latex
-
 ** A Birthday Present - Sylvia Plath
-#+INCLUDE: "/code/latex/poems/a-birthday-present.tex" src latex
 
 ** Anthem for Doomed Youth - Wilfred Owen
 
-#+INCLUDE: "/code/latex/poems/anthem-for-doomed-youth.tex" src latex
-
 ** The Hollow Men - T.S. Eliot
-#+INCLUDE: "/code/latex/poems/the-hollow-men.tex" src latex
 
 * Treatises
   :PROPERTIES:
@@ -51,10 +46,10 @@ From here came my Treatises; I grew tired of numbingly copying out the verse of 
 I learned about =maketitle=, References, Glossaries, Figures, Images and page numbering.
 
 ** Gastropods (2 pages)
-#+INCLUDE: "/code/latex/treatises/snails/gastropods.tex" src latex
+TODO: code
 
 ** Catus Felis (9 pages)
-#+INCLUDE: "/code/latex/treatises/cats/felis.tex" src latex
+TODO: code
 
 * Frisbee Rules
   :PROPERTIES:
@@ -65,33 +60,9 @@ This was my first voyeur into splitting my source code up into multiple files, m
 I produced a pocket version of the easy-to-forget rules in Ultimate Frisbee
 
 Here is the directory structure
-
-#+BEGIN_SRC shell
-[rpi@rpi treatises]$ tree frisbee
-frisbee
-├── 0-field.tex
-├── 1-summary.tex
-├── 2-definitions.tex
-├── 3a-pull.tex
-├── 3b-stall.tex
-├── 3c-stoppages.tex
-├── 3d-misc.tex
-├── 4-fouls.tex
-├── 4-turnovers.tex
-├── 5-fouls.tex
-├── 5-infractions.tex
-├── 6-infractions.tex
-├── 6-violations.tex
-├── 7-violations.tex
-├── 8-handsignals.tex
-├── rules.aux
-├── rules.log
-├── rules.pdf
-└── rules.tex
-#+END_SRC
+TODO: tree command
 
 ** Pocket Rules
-#+INCLUDE: "/code/latex/frisbee/rules.tex" src latex
 
 * Junior High Mathematics Booklets
   :PROPERTIES:
@@ -105,7 +76,7 @@ Since the source code basically forms a repository for this project HERE is the 
 
 And one courtesy booklet for show:
 
-TODO EMBED BOOKLET
+EMBED PDF
 
 * An Assignment
 Save actually programming the \(LaTeX\), I believe I have reached a point in my typesetting capabilities where I am happy with the quality of the content that I produce. Here is an assignment for my deep learning course that netted me full marks.

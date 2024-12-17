@@ -1,0 +1,28 @@
+#+date: 2024-12-12
+#+title: the rabbit hole:
+
+* welcome
+
+this page is for my non[fn:1]-technical ramblings.
+
+below is a table of contents so you may preview all of my spoutings at once.
+
+below that are small previews of each of the blog posts. 🤮
+
+* table of contents
+- the bayesian cat
+- running barefoot
+- 2018 royal enfield classic 500 bullet
+- the story of socrates
+- *falling* in love
+
+TODO: gan image of myself as the Mad Hatter
+
+
+#+BEGIN_QUOTE
+Are you not entertained? ---The Gladiator
+#+END_QUOTE
+
+* footnotes
+
+[fn:1] this is relative to the [[/projects][projects]] directory. 

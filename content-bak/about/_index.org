@@ -1,0 +1,64 @@
+---
+title: "About"
+draft: false
+---
+
+* Site
+
+This website was created using the static-site generator [[https://gohugo.io][_Hugo_]]. The base theme is [[https://schnerring.net][_Michael Schnerring's_]] [[https://github.com/schnerring/hugo-theme-gruvbox][_Gruvbox_]], and I have written the content using org-mode in Emacs. The git repository for this site can be found [[https://github.com/abaj8494/abaj.ai][here]].
+
+The icon for the site is the real component contour plot of the 4D complex exponential function. A slightly higher fidelity figure can be seen below and Wolfram's article on the function from where I have taken this figure can be found [[https://functions.wolfram.com/ElementaryFunctions/Exp/visualizations/5/][here]].
+
+#+BEGIN_CENTER
+[[/android-chrome-512x512.png]]
+#+END_CENTER
+
+* Me
+
+I'm not stone-cold. Here's me:
+
+#+BEGIN_SRC python
+def factorial(n):
+    if n == 0:
+        return(1)
+    else:
+        return(n*factorial(n-1))
+
+return(factorial(5))
+#+END_SRC
+
+#+RESULTS:
+: 120
+
+#+BEGIN_SRC bash
+echo "test"
+#+END_SRC
+
+#+RESULTS:
+: test
+
+(org-babel-do-load-languages
+   'org-babel-load-languages '((shell   . t)
+                               (latex       . t)))
+
+  
+todo: add ultimate 24 unigames
+
+I play Ultimate Frisbee and have 2 cats. I ride an Enfield Bullet and built most of this site on an =aarch64= RaspberryPi 4. I study Japanese out of adoration for the language, and own hundreds of books. I really like TeX[fn:1] and black rap. I'm also musically retarded.
+
+TODO: add rpi4 setup
+TODO: tex stack of books
+TODO: add spotify wrapped 2023?
+
+** Contact
+
+My contact details are on the home page but my email again is: aayushbajaj7@gmail.com
+
+* Footnotes
+
+[fn:1] I even have =\infty= tattooed on my left elbow! 
+
+
+* Bookshelf
+
+TODO: insert pdf
