@@ -1196,10 +1196,14 @@
   --secondaryToolbarButton-documentProperties-icon: url(images/secondaryToolbarButton-documentProperties.svg);
 }
 
+
 [dir="rtl"]:root {
   --dir-factor: -1;
   --inline-start: right;
   --inline-end: left;
+}
+[data-theme="dark"]:root {
+    --toolbarButton-download-icon: url(images/toolbarButton-print.svg);
 }
 
 @media (prefers-color-scheme: dark) {

@@ -48,6 +48,11 @@
   }
 </style>
 
-<script type="text/javascript">
-	var folded='{{ .Get "folded"}}';
-</script>
+<div class="collapsible-wrapper">
+  <button class="toggle-button" aria-expanded="{{ if .Get "folded" }}false{{ else }}true{{ end }}">
+    {{ if .Get "folded" }}➖{{ else }}➕{{ end }}
+  </button>
+  <div class="collapsible-content {{ if .Get "folded" }}{{ "folded" }}{{ end }}">
+    {{ .Inner }}
+  </div>
+</div>

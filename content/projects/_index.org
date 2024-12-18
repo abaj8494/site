@@ -9,10 +9,11 @@ These are the projects that I am on working / have worked on in the past.
 These projects are all those that have had a lifecycle.
 
 * Project list
+
 :PROPERTIES:
 :CUSTOM_ID: project-list
 :END:
-{{< collapse >}}
+{{< collapse folded="true">}}
 
 ** [[/projects/bday-problems][N-Bday Problems]]
 :PROPERTIES:

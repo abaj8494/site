@@ -23,9 +23,11 @@
       padding: 0;
   }
 
+
   [data-theme="dark"] .toggle-button {
       color: white; /* Override to white when theme is dark */
   }
+
 
   /* Remove outline when focused */
   .toggle-button:focus {
@@ -36,7 +38,7 @@
   .collapsible-content {
       display: none;
       margin-left: 15px; /* Indent to align with heading */
-      margin-bottom: 0px;
+      margin-bottm: 0px;
       padding: 1px 0;
       border-left: 0px solid #ccc;
       transition: all 0.3s ease-out;
@@ -46,8 +48,5 @@
   .collapsible-content.show {
       display: block;
   }
-</style>
 
-<script type="text/javascript">
-	var folded='{{ .Get "folded"}}';
-</script>
+</style>

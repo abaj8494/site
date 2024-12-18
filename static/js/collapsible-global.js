@@ -10,8 +10,11 @@ document.addEventListener("DOMContentLoaded", function () {
     // Create a toggle button
     const button = document.createElement("button");
     button.classList.add("toggle-button");
-    button.setAttribute("aria-expanded", "true"); // Default to expanded
+    button.setAttribute("aria-expanded", folded); // Default to expanded
     button.textContent = "▼"; // Default expanded triangle
+    if (folded) {
+	    button.textContent = "▶"; // Default expanded triangle
+    }
 
     // Wrap the heading and insert the button
     heading.parentNode.insertBefore(wrapper, heading);
@@ -20,7 +23,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Collect all sibling elements below the heading until the next heading
     const content = document.createElement("div");
-    content.classList.add("collapsible-content", "show"); // Start as visible
+    if (!folded) {
+	    content.classList.add("collapsible-content", "show"); // Start as visible
+    } else {
+	    content.classList.add("collapsible-content", "hide"); // Start as visible
+    }
 
     let sibling = wrapper.nextElementSibling;
     while (sibling && !["H2", "H3", "H4", "H5", "H6"].includes(sibling.tagName)) {
@@ -34,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Add click event to the toggle button
     button.addEventListener("click", () => {
-      const isExpanded = button.getAttribute("aria-expanded") === "true";
+      const isExpanded = button.getAttribute("aria-expanded") === folded;
       button.setAttribute("aria-expanded", !isExpanded);
       button.textContent = isExpanded ? "▶" : "▼"; // Toggle triangle direction
       content.classList.toggle("show");

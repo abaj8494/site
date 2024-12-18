@@ -4,7 +4,7 @@ date: 2024-12-15T11:21:47+11:00
 draft: false
 math: true
 ---
-{{< collapse >}}
+{{< collapse folded="true">}}
 I have always loved \(\LaTeX\), but thought it too difficult to learn. As such, I began with Markdown files, and then whilst mastering those, I found myself incorporating more and more \(\LaTeX\) snippets. This coupled with my university professors' aptitude for \(\TeX\), led me to eventually open up a couple documents and begin experimentation myself.
 
 Since then, my passion for \(\TeX\) has matured and I have written many documents both professionally and non-professionally with Leslie Lamport's fork of Donald Knuth's magical τϵχ engine.
@@ -133,3 +133,4 @@ Finally, as of 15/12/24 this page is being archived, and any subsequent TeX soph
 * Footnotes
 
 [fn:1] they domesticated us. like wheat TODO: link 
+
