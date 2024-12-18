@@ -1,3 +1,4 @@
+
 ---
 title: "(*A*)ayush (*Baj*)aj's (*A*)rchived (*I*)​ntellect."
 ---
@@ -18,7 +19,7 @@ The top right menubar will serve as your main interface to the site. Within are 
 The breadth of scope does not imply you have entered a circus, but rather that _knowledge is
 nonlinear_ and forms a network[fn:2] [fn:3].
 
-TODO: image of roam research
+[[/images/roam-research.png]]
 
 * Portfolio
 If you are visiting in a professional capacity then

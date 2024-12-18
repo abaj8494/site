@@ -10,6 +10,7 @@ This website was created using the static-site generator [[https://gohugo.io][_H
 The icon for the site is the real component contour plot of the 4D complex exponential function. A slightly higher fidelity figure can be seen below and Wolfram's article on the function from where I have taken this figure can be found [[https://functions.wolfram.com/ElementaryFunctions/Exp/visualizations/5/][here]].
 
 #+BEGIN_CENTER
+#+ATTR_HTML: :width 200px
 [[/android-chrome-512x512.png]]
 #+END_CENTER
 
@@ -17,38 +18,21 @@ The icon for the site is the real component contour plot of the 4D complex expon
 
 I'm not stone-cold. Here's me:
 
-#+BEGIN_SRC python
-def factorial(n):
-    if n == 0:
-        return(1)
-    else:
-        return(n*factorial(n-1))
-
-return(factorial(5))
-#+END_SRC
-
-#+RESULTS:
-: 120
-
-#+BEGIN_SRC bash
-echo "test"
-#+END_SRC
-
-#+RESULTS:
-: test
-
-(org-babel-do-load-languages
-   'org-babel-load-languages '((shell   . t)
-                               (latex       . t)))
-
+#+ATTR_HTML: :width 300px
+[[/images/happy-j.jpg]]
   
-todo: add ultimate 24 unigames
 
 I play Ultimate Frisbee and have 2 cats. I ride an Enfield Bullet and built most of this site on an =aarch64= RaspberryPi 4. I study Japanese out of adoration for the language, and own hundreds of books. I really like TeX[fn:1] and black rap. I'm also musically retarded.
+[[/images/23-unigames.jpeg]]
+#+ATTR_HTML: :width 400px
+[[/images/rpi-dev.jpg]]
+#+ATTR_HTML: :width 300px
+[[/images/tex-stack.jpg]]
 
-TODO: add rpi4 setup
-TODO: tex stack of books
-TODO: add spotify wrapped 2023?
+#+ATTR_HTML: :width 200px
+[[/images/spotify-21.jpg]]
+#+ATTR_HTML: :width 200px
+[[/images/spotify-23.jpg]]
 
 ** Contact
 
@@ -58,7 +42,3 @@ My contact details are on the home page but my email again is: aayushbajaj7@gmai
 
 [fn:1] I even have =\infty= tattooed on my left elbow! 
 
-
-* Bookshelf
-
-TODO: insert pdf
