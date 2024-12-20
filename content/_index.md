@@ -1,5 +1,5 @@
 +++
-title = "(A)ayush (Baj)aj's (A)rchived (I)​ntellect."
+title = "(**A**)ayush (**Baj**)aj's (**A**)rchived (**I**)ntellect."
 author = ["raspberrypi3"]
 draft = false
 math = true
