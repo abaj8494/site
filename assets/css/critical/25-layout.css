@@ -34,6 +34,16 @@ footer {
   grid-area: content;
 }
 
+.content-section {
+  & a {
+      color: var(--primary-alt);
+  }
+
+  & a:hover {
+    color: var(--primary);
+  }
+}
+
 .sidebar {
   display: none;
   flex-direction: column;
