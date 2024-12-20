@@ -1,6 +1,10 @@
 ---
 title: "(*A*)ayush (*Baj*)aj's (*A*)rchived (*I*)​ntellect."
 layout: single
+date: "2024-12-20T14:23:50+11:00"
+draft: false
+comments: false
+toc: false
 ---
 
 The AI could equally as well have stood for Artificial Intelligence.
@@ -48,4 +52,7 @@ section of this site which outlines every[fn:4] major project I have undertaken.
 [fn:2] In Mung Chiang's sense of the word; see [[][Networked Life:
 Money, Friends and Bytes]]
 
-[fn:1] See the blog post on [[{{<ref "blog/anki-explained.org" >}}][Anki and Active Recall, Spaced Repetition and Interleaving]]    
+[fn:1] See the blog post on [[{{<ref "blog/anki-explained.org" >}}][Anki and Active Recall, Spaced Repetition and Interleaving]]
+
+
+here is a link [[https://www.google.com]]

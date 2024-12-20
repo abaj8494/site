@@ -32,7 +32,7 @@ The top right menubar will serve as your main interface to the site. Within it a
 * Portfolio
 
 If you are visiting in a professional capacity then
-[[https://github.com/abaj8494][my github]] will give you a better indication of the production-quality
+[my github](https://www.google.com) will give you a better indication of the production-quality
 code I write.
 
 This site humanises me and allows me to practise [[{{<ref "blog/literate-programming.org">}}][Literate Programming]]

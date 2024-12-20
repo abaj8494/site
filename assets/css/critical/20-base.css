@@ -31,6 +31,7 @@ a.link--external::after {
   content: "\2009↗";
 }
 
+
 img,
 video {
   border: 2px solid var(--bg1);

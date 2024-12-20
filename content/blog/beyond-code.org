@@ -1,0 +1,51 @@
+---
+title: "Beyond Code"
+date: 2024-12-13T19:34:15+11:00
+---
+
+I work in Emacs and lived in Vim for 2 years. My youth though was spent creating *hidden folders*[fn:1] on my primary school student drive to hide games from my teachers.
+
+Even earlier than that, though, I had a penchant for doing the wrong thing.
+
+Beyond my relationship with the computer I got into trouble a lot, still do occasionally; but my non-binary life is not what you are here for.
+
+I would later discover Kali Linux and the wonderful world of *doing-the-wrong-thing* in an environment that made it convenient to do so. Of course, here is not the place to divulge the details of my leprosy, but rather a place to express gratitude for never being prosecuted for these script-kiddy adventures.
+
+TODO: image of kali linux and my back tattoo
+
+As the years passed and I crawled out of my hospital bed[fn:2], I lost touch with Linux. My family used Windows, and so I spent time learning the run-box, manipulating the registry, running rocketdock and deleting System32 every few weeks.
+
+TODO: image runbox, rocketdock, registry
+
+At this point I must be 16 and beyond smashing away at the keyboard I had no technical knowledge of what I was doing. I spent time rooting and jailbreaking my devices; manipulating memory addresses as specified by some dodgy YouTube video, but even then I did not know what I was doing.
+High school comes to an end, and at this point I have no coding experience; I am determined to get into Medical School.
+
+Anyways, I fail the UCAT, tank the Medical Science degree at USYD and eventually crawl into a double degree of Computer Science and Commerce at UNSW.
+
+TODO: image usyd
+
+My principle reasoning for choosing the Computer Science portion of the degree was: /to finally obtain a formal education in computer science from the bit level of abstraction/.
+
+Of course, at the time I only had the first half of the previous clause: /to obtain a formal education in computers/, but to those of us who have taken a few CS courses, the PC is nothing but a masterful machine of subsequent abstractions.
+
+Real reflections on the content of my course and the insulation wiring that surrounded the degree can be found in the corresponding [[/blog/ugrad-unsw][blog post]].
+
+But, to summarise the degree, my tendency to push against the grain only resulted with me having my teeth kicked in. Time after time after time.
+
+Specifically, I failed courses for attempting them exclusively in Vim, I failed courses for not learning and using the methods that they taught me[fn:3]. I didn't get picked on the teams I wanted to play for[fn:4], and professionally usually ended my employment on bad terms.
+
+#+BEGIN_QUOTE
+Mens conscia recti ---A mind conscious of integrity
+#+END_QUOTE
+
+Anyways, I think as a consequence of running uphill all these years I've become a more resilient intellectual and powerful programmer. These days I happily use VSCode, or PyCharm or whatever proprietary software I must use to get the job done.
+
+Perhaps, because I live quietly these days with a special someone and 2 little special somethings, that I can diversify my portfolio and remain myself within a society.
+
+* Footnotes
+[fn:4] in Ultimate Frisbee 
+
+[fn:3] In my Algorithms course I attempted to prove a large portion of questions using pure mathematics; i.e. graph theory, proof by induction, etc. 
+[fn:2] I had Leukaemia during my time exploring Kali 
+
+[fn:1] and invisible ones... 
