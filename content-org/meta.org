@@ -3,7 +3,7 @@
 
 * home
 :PROPERTIES:
-:EXPORT_TITLE: (*A*)ayush (*Baj*)aj's (*A*)rchived (*I*)​ntellect.
+:EXPORT_TITLE: (*A*)ayush (*Baj*)aj's (*A*)rchived (*I*)ntellect.
 :EXPORT_FILE_NAME: _index
 :EXPORT_HUGO_SECTION: /
 :END:
