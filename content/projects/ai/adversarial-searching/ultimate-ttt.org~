@@ -1,0 +1,4 @@
++++
+title = "Ultimate Tic Tac Toe"
+categories = ["ai"]
+tags = ["java", "minimax"]

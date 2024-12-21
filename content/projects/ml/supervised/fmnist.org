@@ -1,0 +1,7 @@
++++
+title = "Fashion MNIST"
+categories = ["ai", "ml", "supervised"]
+tags = ["random-forest", "mnist"]
++++
+
+link to mnist

@@ -1,0 +1,5 @@
++++
+title = "Deep Learning"
+categories = ["mooc"]
+tags = ["cs230", "stanford"]
++++

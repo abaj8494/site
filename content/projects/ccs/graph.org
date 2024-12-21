@@ -1,0 +1,14 @@
++++
+title = "Graph Algos"
+categories = ["classical cs"]
+tags = ["algorithms", "data-structures"]
++++
+
+* MST
+
+* Dijkstra
+
+* Greedy
+
+* Floyd-Warshall
+

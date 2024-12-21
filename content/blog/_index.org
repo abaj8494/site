@@ -1,5 +1,6 @@
-#+date: 2024-12-12
-#+title: the rabbit hole:
+---
+title: "the rabbit hole:"
+---
 
 * welcome
 

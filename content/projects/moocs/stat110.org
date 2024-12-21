@@ -1,0 +1,5 @@
++++
+title = "Probability"
+categories = ["mooc"]
+tags = ["stat110", "harvard"]
++++

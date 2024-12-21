@@ -1,0 +1,6 @@
++++
+title = "GAN: Generative Adversarial Networks"
+categories = ["ai", "ml", "dl", "adversarial"]
++++
+
+vs. stable diffusion. EXPERIMENTS

@@ -1,0 +1,17 @@
++++
+title = "Searching Algos"
+categories = ["classical cs"]
+tags = ["algorithms", "data-structures", "big-oh"]
++++
+
+* Naive Search
+
+* DFS
+
+* BFS
+
+* Heuristic Search
+
+* A star search
+
+* Monte Carlo (MCMT)

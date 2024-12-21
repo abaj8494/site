@@ -4,7 +4,7 @@
       <h1>{{ .Title | markdownify }}</h1>
       {{ partial "post-meta.html" (dict "page" . "pageIndex" 0) }}
     </div>
-
+    {{ partial "toc.html" . }}	  
     <div class="post-content">
       {{ .Content }}
     </div>

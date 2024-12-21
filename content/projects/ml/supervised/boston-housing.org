@@ -1,0 +1,6 @@
++++
+title = "Boston Housing"
+categories = ["ai", "ml", "supervised"]
+tags = ["linear-regression"]
++++
+

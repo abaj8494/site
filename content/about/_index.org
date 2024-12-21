@@ -5,7 +5,7 @@ draft: false
 
 * Site
 
-This website was created using the static-site generator [[https://gohugo.io][_Hugo_]]. The base theme is [[https://schnerring.net][_Michael Schnerring's_]] [[https://github.com/schnerring/hugo-theme-gruvbox][_Gruvbox_]], and I have written the content using org-mode in Emacs. The git repository for this site can be found [[https://github.com/abaj8494/abaj.ai][here]].
+This website was created using the static-site generator [[https://gohugo.io][Hugo]]. The base theme is [[https://schnerring.net][Michael Schnerring's]] [[https://github.com/schnerring/hugo-theme-gruvbox][Gruvbox]], and I have written the content using org-mode in Emacs. The git repository for this site can be found [[https://github.com/abaj8494/abaj.ai][here]].
 
 The icon for the site is the real component contour plot of the 4D complex exponential function. A slightly higher fidelity figure can be seen below and Wolfram's article on the function from where I have taken this figure can be found [[https://functions.wolfram.com/ElementaryFunctions/Exp/visualizations/5/][here]].
 

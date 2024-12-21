@@ -1,0 +1,5 @@
++++
+title = "Hashiwokakero (Bridges) Solver"
+categories = ["ai"]
+tags = ["python", "dfs", "solver"]
++++

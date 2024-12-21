@@ -1,6 +1,7 @@
 {{ define "main" }}
   <div class="content-section">
     <h1>{{ .Title | markdownify }}</h1>
+    {{ partial "toc.html" . }}	  
     {{ with .Content }}
       <div>{{ . }}</div>
     {{ end }}

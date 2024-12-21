@@ -1,0 +1,5 @@
++++
+title = "Machine Learning"
+categories = ["mooc"]
+tags = ["cs229", "stanford"]
++++
