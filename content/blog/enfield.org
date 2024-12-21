@@ -1,7 +1,10 @@
----
-title: "2018 Royald Enfield Classic 500"
-date: 2024-12-13T20:42:32+11:00
----
++++
+title = "2018 Royald Enfield Classic 500"
+date = 2024-12-13T20:42:32+11:00
+toc = "true"
+categories = ["blog"]
+tags = ["enfield", "learner", "500cc", "motorcycle"]
++++
 
 This is my first bike, I bought it second hand:
 

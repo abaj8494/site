@@ -1,0 +1,5 @@
++++
+title = "Digits"
+categories = ["ai", "ml", "dl", "supervised"]
+tags = ["gaussian-mixture-model"]
++++

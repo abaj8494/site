@@ -1,0 +1,7 @@
++++
+title = "Connect 4"
+categories = ["projects", "cs"]
+tags = ["assembly", "mips"]
++++
+
+* TODO

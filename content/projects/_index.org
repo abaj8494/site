@@ -1,26 +1,28 @@
 ---
 title: Hello
+toc: false
 ---
 
 These are the projects that I am on working / have worked on in the past.
 
 These projects are all those that have had a lifecycle.
 
-* Project list
+* Project List
+{{< collapse folded="true" >}}
 
 :PROPERTIES:
 :CUSTOM_ID: project-list
 :END:
-{{< collapse folded="true">}}
 
 ** [[/projects/bday-problems][N-Bday Problems]]
 :PROPERTIES:
 :CUSTOM_ID: n-bday-problems
 :END:
-- [[{{< ref "/projects/bday-problems#21st" >}}][21st]]
-- 22nd
-- 23rd
 
+- [[{{< ref "/projects/bday-problems#21st" >}}][21st]]
+- [[{{< ref "/projects/bday-problems#22nd" >}}][22nd]]
+- [[{{< ref "/projects/bday-problems#23rd" >}}][23rd]]
+  
 ** [[/projects/latex][LaTeX]]
 :PROPERTIES:
 :CUSTOM_ID: latex
@@ -34,41 +36,40 @@ These projects are all those that have had a lifecycle.
 :PROPERTIES:
 :CUSTOM_ID: literature
 :END:
-- Library
-- Textbook Solutions
-  - Networked Life, Mung Chiang
-  - Hands on Machine Learning
-  - Mathematics for Machine Learning
-- Research Paper Notes
+- [[/projects/literature/library][Library]]
+- [[/projects/literature/textbook-slns][Textbook Solutions]]
+  - [[/projects/literature/textbook-slns/networked-life][Networked Life - Mung Chiang]]
+  - [[/projects/literature/textbook-slns/homl][Hands on Machine Learning]]
+  - [[/projects/literature/textbook-slns/m4ml][Mathematics for Machine Learning]]
+- [[/projects/literature/research-papers][Research Paper Notes]]
     
-** [[/projects/mooc][MOOCs (Massive Open Online Courses)]]
+** [[/projects/moocs][MOOCs (Massive Open Online Courses)]]
 :PROPERTIES:
 :CUSTOM_ID: moocs-massive-open-online-courses
 :END:
-- CS229 Stanford
-- CS230 Stanford
-- STAT110 Harvard
+- [[/projects/moocs/cs229][CS229 Stanford]]
+- [[/projects/moocs/cs230][CS230 Stanford]]
+- [[/projects/moocs/stat110][STAT110 Harvard]]
 
 ** [[/projects/ccs][Classical Computer Science]]
 :PROPERTIES:
 :CUSTOM_ID: classical-computer-science
 :END:
-- Leetcode
-- Sorting (bubble, bogo, bucket, merge) + time complexity
-- Searching (DFS, BFS, A*search, MCMT)
-  - solving peg solitaire
-- Graph
+- [[/projects/ccs/leetcode][Leetcode]]
+- [[/projects/ccs/sorting][Sorting]]
+- [[/projects/ccs/searching][Searching]]
+- [[/projects/ccs/graph][Graph]]
 
 ** [[/projects/csp][Computer Science Projects]]
 :PROPERTIES:
 :CUSTOM_ID: computer-science-projects
 :END:
-- Connect 4 #MIPS #Assembly
-- File Encrypter (Bytelocker) #C
-- LAN Messenger #cli #socket-programming #C
-- Messenger Web App (full-stack) #python #typescript
-- Banagrams Solver #tries #python
-- 
+- [[/projects/ccs/connect-4][Connect 4]]
+- [[/projects/ccs/file-encrypter][File Encrypter (Bytelocker)]]
+- [[/projects/ccs/lan-messenger][LAN Messenger]]
+- [[/projects/ccs/messenger-web-app][Messenger Web App (full-stack)]]
+- [[/projects/ccs/banagrams-solver][Banagrams Solver]]
+- [[/projects/ccs/peg-solitaire][Peg Solitaire]]
   
 ** [[/projects/ai][Artificial Intelligence]]
 :PROPERTIES:
@@ -79,15 +80,15 @@ These projects are all those that have had a lifecycle.
 :PROPERTIES:
 :CUSTOM_ID: adversarial-searching
 :END:
-- minimax (Ultimate Tic Tac Toe Bot)
-- chess bot (mc search?)
+- [[/projects/ai/adversarial-searching/ultimate-ttt][Ultimate Tic Tac Toe Bot]]
+- [[/projects/ai/adversarial-searching/chess-bot][Chess Bot]]
   
 *** [[/projects/ai/csp][Constraint Satisfaction Problems]]
 :PROPERTIES:
 :CUSTOM_ID: csp
 :END:
-- Hashiwokakero CSP Solver
-- Sudoku (?)
+- [[/projects/ai/csp/hashiwokakero][Hashiwokakero (Bridges) Solver]]
+- [[/projects/ai/csp/sudoku][Sudoku]]
 
 ** [[/projects/ml][Machine Learning]]
 :PROPERTIES:
@@ -98,46 +99,34 @@ These projects are all those that have had a lifecycle.
 :PROPERTIES:
 :CUSTOM_ID: supervised-learning
 :END:
-- MNIST #random-forests #knn
-- FMNIST (Fashion) #random-forests
-- KMNIST #cnn #2-layer
-- CIFAR #cnn
-- IRIS #svm
-- ImageNet #resnet-50
-
-- Boston Housing #linear-regression
-- Wine Quality #gradient-boosting
-- Pima Indians Diabetes #decision-tree
-- IMDB Reviews #BERT
-- Titanic Deaths #logistic-regression
+- [[/projects/ai/ml/supervised/mnist][MNIST]]
+- [[/projects/ai/ml/supervised/fmnist][FMNIST (Fashion)]]
+- [[/projects/ai/ml/supervised/kmnist][KMNIST (Kuzushiji)]] 
+- [[/projects/ai/ml/supervised/cifar][CIFAR]]
+- [[/projects/ai/ml/supervised/iris][IRIS]]
+- [[/projects/ai/ml/supervised/imagenet][ImageNet]]
+- [[/projects/ai/ml/supervised/boston-housing][Boston Housing]] 
+- [[/projects/ai/ml/supervised/wine-quality][Wine Quality]]
+- [[/projects/ai/ml/supervised/pima-indians][Pima Indians Diabetes]]
+- [[/projects/ai/ml/supervised/imdb-reviews][IMDB Reviews]]
+- [[/projects/ai/ml/supervised/titanic][Titanic Deaths]]
 
 *** [[/projects/ai/unsupervised][Unsupervised Learning]]
 :PROPERTIES:
 :CUSTOM_ID: unsupervised-learning
 :END:
-- KDD Cup 1999 #k-means-clustering
-- Digits #gaussian-mixture-model
-
-*** [[/projects/ai/rl][Reinforcement Learning]]
-:PROPERTIES:
-:CUSTOM_ID: reinforcement-learning
-:END:
-- CartPole #Deep Q-Network
+- [[/projects/ai/ml/unsupervised/kdd-cup][KDD Cup 1999]]
+- [[/projects/ai/ml/unsupervised/digits][Digits]]
 
 ** [[/projects/dl][Deep Learning]]
 :PROPERTIES:
 :CUSTOM_ID: deep-learning
 :END:
-- KiTS19 Kidney and Kidney Tumour Segmentation
-- Fine Tuning LLM
-- RAG
-- CNN from scratch. No pytorch or tensorflow #scratch
-- imlpementing llm. follow attention is all you need.
-- rnn music of kanye west
-- Sentiment Analysis #word2vec #nlp
-
-TODO: create html to pull the previews from their respective pages 
-  - i think this is already done
-
-
-  ?? NLP, Reinforcement Learning ??
+- [[/projects/ai/dl/KiTS19][KiTS19 Kidney and Kidney Tumour Segmentation]]
+- [[/projects/ai/dl/llm-tune][Fine Tuning LLM]]
+- [[/projects/ai/dl/rag][RAG]]
+- [[/projects/ai/dl/cnn-scratch][CNN from scratch]]
+- [[/projects/ai/dl/llm-scratch][LLM from scratch]]
+- [[/projects/ai/dl/Kanye-West-RNN][RNN on the Music of Kanye West]]
+- [[/projects/ai/dl/sentiment-analysis][Sentiment Analysis]]
+- [[/projects/ai/dl/cartpole][CartPole]]

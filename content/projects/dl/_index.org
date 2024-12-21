@@ -1,6 +1,4 @@
 ---
-title: "Dl"
-date: 2024-12-15T11:23:11+11:00
-draft: true
+title: "Deep Learning"
 ---
 

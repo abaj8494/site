@@ -1,0 +1,7 @@
++++
+title = "Banagrams Solver"
+categories = ["cs", "projects"]
+tags = ["solver", "python", "tries"]
++++
+
+* Check kyler
