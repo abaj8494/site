@@ -1,5 +1,5 @@
 +++
 title = "Kanye West RNN"
-categories = ["ai", "ml", "music" "supervised"]
+categories = ["ai", "ml", "music", "supervised"]
 tags = ["rnn"]
 +++
