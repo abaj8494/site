@@ -1,5 +1,0 @@
-There is much to say about Don Knuth, but we shall begin with literate programming, which is why you clicked here in the first place.
-
-A divergence in attention is a motif of Don's so he won't mind either.
-
-
