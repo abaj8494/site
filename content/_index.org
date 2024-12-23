@@ -37,10 +37,12 @@ code I write.
 
 This site humanises me and allows me to practise [[{{<ref "blog/literate-programming.org">}}][Literate Programming]]
 
-To whet an appetite however; you may be interested in the [[{{< ref "projects" >}}][projects]]
-section of this site which outlines every[fn:4] major project I have undertaken.
+You may be interested in the [[{{< ref "projects" >}}][projects]] section of this site which outlines every[fn:4] major project I have undertaken.
+
+Furthermore, here is my [[/about/cv][CV]].[fn:5]
 
 * Footnotes
+[fn:5] you may also navigate there serendipitously via the [[about]] page.
 
 [fn:4] academically interesting 
 [fn:3] See [[https://roamresearch.com][Roam Research]]

@@ -26,13 +26,13 @@
   },
   "projects": [
     {
-     "name": "KiTS19 - Grand Challenge",
+     "name": "KiTS19 Grand Challenge",
      "description": "Kidney and Kidney Tumour Segmentation from 3D Volumetric CT (Computed Tomography) scans",
       "startDate": "2024-10-01",
       "highlights": [
           "Experienced the full Deep Learning Pipeline: lit review, preprocessing, training, reporting results. Successfully trained task with mean dice score of 87."
       ],
-	"roles": ["SCRUM Master", "Developer"],
+	"roles": ["Deep Learning Scientist", "SCRUM Master"],
 	"keywords": ["nnUNet", "HPC"]
     },
     {
@@ -48,12 +48,40 @@
     {
       "institution": "University of New South Wales",
       "url": "https://www.unsw.edu.au/",
-      "area": "Computer Science",
+      "area": "Computer Science Major AI, Minor Mathematics",
       "studyType": "Bachelor",
       "startDate": "2021-02-19",
       "endDate": "2025-12-12",
       "score": "65.0",
-	"courses": ["MT1131 - Mathematics 1A", "CS1151 - Programming Fundamentals", "CS1131 - Software Fundamentals"]
+      "courses": ["MT1131 - Mathematics 1A",
+		  "MT1141 - Mathematics 1B",
+		  "MT1081 - Discrete Mathematics",
+		  "MT2501 - Linear Algebra",
+		  "MT2011 - Several Variable Calculus",
+		  "MT2521 - Complex Analysis",
+		  "MT2121 - Differential Equations",
+		  "MT3161 - Optimisation",
+		  "MT2901 - Higher Theory of Statistics",
+		  "MT3611 - Higher Algebra",
+		  "CS1151 - Programming Fundamentals",
+		  "CS1531 - Software Fundamentals",
+		  "CS2521 - Data Structures and Algorithms",
+		  "CS1521 - Computer Systems Fundamentals",
+		  "CS2511 - O-O Design & Programming",
+		  "CS3121 - Algorithm Design",
+		  "CS3231 - Operating Systems",
+		  "CS3311 - Database Systems",
+		  "CS3331 - Computer Networks & Applications",
+		  "CS3411 - Artificial Intelligence",
+		  "CS9417 - Machine Learning & Data Mining",
+		  "CS9444 - Deep Learning & Neural Networks",
+		  "CS3900 - Computer Science Project",
+		  "CS4920 - Professional Issues and Ethics",
+		  "CS9517 - Computer Vision",
+		  "AR1630 - Japanese 1A",
+		  "AR1631 - Japanese 1B",
+		  "AR2630 - Japanese 2A"
+		 ]
     },
     {
       "institution": "University of New South Wales",
@@ -63,7 +91,18 @@
       "startDate": "2026-02-19",
       "endDate": "2028-12-12",
       "score": "85.0",
-	"courses": ["MT1131 - Mathematics 1A", "CS1151 - Programming Fundamentals", "CS1131 - Software Fundamentals"]
+      "courses": ["AR2631 - Japanese 2B",
+		  "CS2041 - Shell Construction: Techniques and Tools",
+		  "CS9418 - Advanced Statistical Methods for Machine Learning",
+		  "MT5960 - Bayesian Inference and Computation",
+		  "MT5905 - Statistical Inference",
+		  "MT5835 - Advanced Stochastic Processes",
+		  "MT5825 - Measure, Integration and Probability",
+		  "FI5513 - Investments & Portfolio Selection",
+		  "MT5171 - Linear and Discrete Optimisation Modelling",
+		  "MT5806 - Applied Regression Analysis",
+		  "MT5845 - Time Series"
+		 ]
     }
   ],
   "work": [
@@ -80,7 +119,33 @@
 	  "keywords": ["shell", "git", "regex", "emacs", "vim"]
       }
   ],
-  "interests": [],
+  "interests": [
+    {
+      "name": "Operating Systems",
+      "keywords": ["design", "memory", "gpu"]
+    },
+    {
+      "name": "Rap",
+      "keywords": ["eminem", "ye", "kendrick", "jcole"]
+    },
+    {
+      "name": "Other",
+      "keywords": ["Ultimate Frisbee", "motorcycles"]
+    }
+  ],
+
+  "volunteer": [
+    {
+      "organization": "Vinnies",
+      "position": "Retail Assistant",
+      "url": "https://wwww.vinnies.org.au/",
+      "startDate": "2021-11-01",
+      "endDate": "2022-12-18",
+      "summary": "An op-shop that assists people experiencing poverty and inequality to shape a more just and compassionate society",
+      "highlights": ["stacking / drowning in lots non-academic books!"]
+    }
+  ],
+  
   "references": [],
   "languages": [
     {

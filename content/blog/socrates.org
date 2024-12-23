@@ -1,0 +1,4 @@
++++
+title = "The Story of Socrates"
+tags = ["greek", "philosophy", "history"]
++++

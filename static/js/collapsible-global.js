@@ -1,8 +1,13 @@
 document.addEventListener("DOMContentLoaded", function () {
+  const storageKey = "toggleStates";
+
+  // Retrieve stored toggle states (or initialize to an empty object)
+  let toggleStates = JSON.parse(localStorage.getItem(storageKey)) || {};
+
   // Select all headings globally (e.g., h1 to h6)
   const headings = document.querySelectorAll("h2, h3, h4, h5, h6");
 
-  headings.forEach((heading) => {
+  headings.forEach((heading, index) => {
     // Create a wrapper for the heading and button
     const wrapper = document.createElement("div");
     wrapper.classList.add("collapsible-wrapper");
@@ -10,11 +15,17 @@ document.addEventListener("DOMContentLoaded", function () {
     // Create a toggle button
     const button = document.createElement("button");
     button.classList.add("toggle-button");
-    button.setAttribute("aria-expanded", folded); // Default to expanded
-    button.textContent = "▼"; // Default expanded triangle
-    if (folded) {
-	    button.textContent = "▶"; // Default expanded triangle
-    }
+
+    // Generate a unique ID for the heading
+    const toggleId = `toggle-${index}`;
+    heading.setAttribute("data-toggle-id", toggleId);
+
+    // Determine initial state from localStorage or default to `folded`
+    const isFolded = toggleStates[toggleId] === undefined ? folded === "true" : toggleStates[toggleId] === false;
+
+    // Set initial button state
+    button.setAttribute("aria-expanded", !isFolded);
+    button.textContent = isFolded ? "▶" : "▼";
 
     // Wrap the heading and insert the button
     heading.parentNode.insertBefore(wrapper, heading);
@@ -23,10 +34,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Collect all sibling elements below the heading until the next heading
     const content = document.createElement("div");
-    if (!folded) {
-	    content.classList.add("collapsible-content", "show"); // Start as visible
+    content.classList.add("collapsible-content");
+    if (!isFolded) {
+      content.classList.add("show"); // Start as visible
     } else {
-	    content.classList.add("collapsible-content", "hide"); // Start as visible
+      content.classList.add("hide"); // Start as hidden
     }
 
     let sibling = wrapper.nextElementSibling;
@@ -41,10 +53,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Add click event to the toggle button
     button.addEventListener("click", () => {
-      const isExpanded = button.getAttribute("aria-expanded") === folded;
+      const isExpanded = button.getAttribute("aria-expanded") === "true";
       button.setAttribute("aria-expanded", !isExpanded);
       button.textContent = isExpanded ? "▶" : "▼"; // Toggle triangle direction
       content.classList.toggle("show");
+      content.classList.toggle("hide");
+
+      // Save state to localStorage
+      toggleStates[toggleId] = !isExpanded;
+      localStorage.setItem(storageKey, JSON.stringify(toggleStates));
     });
   });
 });

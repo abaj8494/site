@@ -3,30 +3,19 @@ title: "CV"
 draft: false
 type: "cv"
 ---
+{{< collapse >}}
 
-** Experience
+** Projects
 
-{{< json-resume "work" >}}
+{{< json-resume "projects" >}}
 
 ** Education
 
 {{< json-resume "education" >}}
 
-** Volunteering
+** Experience
 
-{{< json-resume "volunteer" >}}
-
-** Awards
-
-{{< json-resume "awards" >}}
-
-** Certificates
-
-{{< json-resume "certificates" >}}
-
-** Publications
-
-{{< json-resume "publications" >}}
+{{< json-resume "work" >}}
 
 ** Skills
 
@@ -44,6 +33,18 @@ type: "cv"
 
 {{< json-resume "references" >}}
 
-** Projects
+** Volunteering
 
-{{< json-resume "projects" >}}
+{{< json-resume "volunteer" >}}
+
+** Awards
+
+{{< json-resume "awards" >}}
+
+** Certificates
+
+{{< json-resume "certificates" >}}
+
+** Publications
+
+{{< json-resume "publications" >}}

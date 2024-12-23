@@ -1,48 +1,71 @@
 ---
 title: "Beyond Code"
 date: 2024-12-13T19:34:15+11:00
+tags: ["biography", "hacking"]
 ---
 
-I work in Emacs and lived in Vim for 2 years. My youth though was spent creating *hidden folders*[fn:1] on my primary school student drive to hide games from my teachers.
+These days I work in Emacs, but before then I lived in Vim/Tmux for 2 years. My youth though was never this technical nor was it officially programmatic.
 
-Even earlier than that, though, I had a penchant for doing the wrong thing.
+I instead spent my time *hacking*, *tinkering* and /breaking/ things.
 
-Beyond my relationship with the computer I got into trouble a lot, still do occasionally; but my non-binary life is not what you are here for.
+I spent my time in primary school creating *hidden folders*[fn:1] on my student drive to hide games from my teachers. But even earlier than that, I had a penchant for doing the wrong thing.
 
-I would later discover Kali Linux and the wonderful world of *doing-the-wrong-thing* in an environment that made it convenient to do so. Of course, here is not the place to divulge the details of my leprosy, but rather a place to express gratitude for never being prosecuted for these script-kiddy adventures.
+Beyond my relationship with the computer I got into trouble a lot, still do occasionally. I would eventually discover Kali Linux and the wonderful world of *doing-the-wrong-thing* in an environment that made it convenient to do so. Of course, this is not a place to preach my leprosy, but rather an opportunity to express gratitude for never being prosecuted for being a malicious script-kiddy.
 
-TODO: image of kali linux and my back tattoo
+#+ATTR_HTML: :width 400px
+#+CAPTION: Kali Linux 2.0 2015
+[[/images/kali-desktop.png]]
 
-As the years passed and I crawled out of my hospital bed[fn:2], I lost touch with Linux. My family used Windows, and so I spent time learning the run-box, manipulating the registry, running rocketdock and deleting System32 every few weeks.
 
-TODO: image runbox, rocketdock, registry
+#+ATTR_HTML: :width 222px
+#+CAPTION: My back tattoo
+[[/images/kali-back.jpg]]
 
-At this point I must be 16 and beyond smashing away at the keyboard I had no technical knowledge of what I was doing. I spent time rooting and jailbreaking my devices; manipulating memory addresses as specified by some dodgy YouTube video, but even then I did not know what I was doing.
-High school comes to an end, and at this point I have no coding experience; I am determined to get into Medical School.
+As the years passed and I crawled out of my hospital bed[fn:2], I lost touch with Linux. My family used Windows, and so I spent time learning the run-box, manipulating the registry, running rocketdock and deleting System32 every few weeks. I also experimented briefly with the Arduino and Microboard programming[fn:5].
 
-Anyways, I fail the UCAT, tank the Medical Science degree at USYD and eventually crawl into a double degree of Computer Science and Commerce at UNSW.
+#+CAPTION: Memorising arbitrary windows runbox commands
+[[/images/windows-run-ncpacpl.png]]
+#+CAPTION: Rainmeter + Rocketdock = Poor man's Alienware :D
+#+ATTR_HTML: :width 600px
+[[/images/alienware.png]]
 
-TODO: image usyd
+By the age of 16, I had no technical knowledge of what I was doing. I spent time rooting and jailbreaking my devices; manipulating memory addresses as instructed to in some forum or YouTube video.
 
-My principle reasoning for choosing the Computer Science portion of the degree was: /to finally obtain a formal education in computer science from the bit level of abstraction/.
+Eventually the cocoon of High School is shed, and at this point with no coding experience; I become determined to get into Medical School.
+
+I eventually fail the UCAT and fool around in the Medical Science degree at USYD. I then crawl away from the wreckage enrol into a double degree of Computer Science and Commerce at UNSW.
+
+#+ATTR_HTML: :width 500px
+#+CAPTION: University of Sydney
+[[/images/usyd.jpg]]
+
+My principle reasoning for choosing the Computer Science portion of the degree was:
+
+#+BEGIN_QUOTE
+to finally obtain a formal education in computer science from the bit level of abstraction
+#+END_QUOTE
 
 Of course, at the time I only had the first half of the previous clause: /to obtain a formal education in computers/, but to those of us who have taken a few CS courses, the PC is nothing but a masterful machine of subsequent abstractions.
 
 Real reflections on the content of my course and the insulation wiring that surrounded the degree can be found in the corresponding [[/blog/ugrad-unsw][blog post]].
 
-But, to summarise the degree, my tendency to push against the grain only resulted with me having my teeth kicked in. Time after time after time.
-
-Specifically, I failed courses for attempting them exclusively in Vim, I failed courses for not learning and using the methods that they taught me[fn:3]. I didn't get picked on the teams I wanted to play for[fn:4], and professionally usually ended my employment on bad terms.
+But, to summarise the degree, my tendency to push against the grain only resulted with me having my teeth kicked in. Specifically, I failed courses for attempting them exclusively in Vim, I failed courses for not learning and using the methods that they taught me[fn:3]. My unsuccesses extend beyond academic life; I didn't get picked on the Frisbee teams I wanted to play for; I lost demerit points; and professionally often ended my employment on bad terms.
 
 #+BEGIN_QUOTE
 Mens conscia recti ---A mind conscious of integrity
 #+END_QUOTE
 
-Anyways, I think as a consequence of running uphill all these years I've become a more resilient intellectual and powerful programmer. These days I happily use VSCode, or PyCharm or whatever proprietary software I must use to get the job done.
+Despite all of this, a consequence of running uphill all these years is a transformation into a more resilient intellectual and powerful programmer. These days I'll happily use VSCode, or PyCharm or whatever proprietary software I must use to get the job done.
 
-Perhaps, because I live quietly these days with a special someone and 2 little special somethings, that I can diversify my portfolio and remain myself within a society.
+Perhaps, because I live quietly these days with a special someone and 2 little special somethings, that I can diversify my portfolio and keep the all-too-many stakeholders in society content.
+
+#+BEGIN_QUOTE
+The quieter you become, the more you can hear ---Backtrack5
+#+END_QUOTE
 
 * Footnotes
+
+[fn:5] see [[https://youtube.com/@seytonic?si=PaUxf9cYv3Y7rY2P][Seytonic's]] videos on YouTube 
 [fn:4] in Ultimate Frisbee 
 
 [fn:3] In my Algorithms course I attempted to prove a large portion of questions using pure mathematics; i.e. graph theory, proof by induction, etc. 

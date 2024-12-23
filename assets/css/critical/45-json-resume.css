@@ -20,6 +20,10 @@
     text-align: right;
   }
 
+  .jr__item.jr-education__item {
+      font-family: var(--font-monospace);
+  }
+  
   .jr-awards__awarder,
   .jr-publications__publisher,
   .jr-education__institution,
