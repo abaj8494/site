@@ -9,4 +9,7 @@ title = "22 Birthday Problems"
 
 * Solution Set
 
+The prize money for this year was $100 AUD and $50 aud respectively.
+Mr. Rajan nobly refused the charity.
+
 TODO

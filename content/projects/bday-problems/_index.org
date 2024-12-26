@@ -5,7 +5,7 @@ draft: false
 layout: single
 ---
 {{< collapse folded="true">}}
-Each year I release a set of problems to celebrate yet another year of life and study. You will find the embedded Problem Sets and the [[/projects/bday-problems#winners][List of Winners]] on this page.
+Each year I release a set of problems to celebrate yet another year of life and study. On this page you will find the embedded Problem Sets, a submission [[/projects/bday-problems#link][link]] and the [[/projects/bday-problems#winners][List of Past Winners]].
 
 * [[/projects/bday-problems/23rd][23rd]]
 :PROPERTIES:
@@ -23,9 +23,6 @@ Here is the problem set:
 :CUSTOM_ID: 22nd
 :END:
 
-The prize money for this year was $100 AUD and $50 aud respectively.
-Mr. Rajan nobly refused the charity.
-
 {{< embed-pdf url="/bday-problems/22q.pdf" hidePaginator="true">}}
 
 * [[/projects/bday-problems/21st][21st]]
@@ -35,11 +32,12 @@ Mr. Rajan nobly refused the charity.
 
 {{< embed-pdf url="/bday-problems/21q.pdf" hidePaginator="true">}}
 
-The winner was *Aarav Bajaj*, by a narrow margin of a single mark.
 
-In second place was an ex-student of mine, *Jisu Song*.
-
-The prize money was $50 and $20 respectively.
+* [[/projects/bday-problems/upload][Submission Link]]
+:PROPERTIES:
+:CUSTOM_ID: link
+:END:
+The heading /is/ the link :p
 
 * List of Winners
 :PROPERTIES:
