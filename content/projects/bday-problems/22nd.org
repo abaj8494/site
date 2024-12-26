@@ -1,0 +1,12 @@
++++
+title = "22 Birthday Problems"
++++
+{{< collapse folded="true" >}}
+
+* Source Code
+
+#+INCLUDE: "/code/latex/bday-problems/22/main.tex" src latex
+
+* Solution Set
+
+TODO

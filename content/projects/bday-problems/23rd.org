@@ -1,0 +1,11 @@
++++
+title = "23 Birthday Problems"
+tags = ["bday-problems"]
++++
+{{< collapse folded="true" >}}
+
+* Source Code
+#+INCLUDE: "/code/latex/bday-problems/23/main.tex" src latex
+
+* Solutions
+published after the 31st of January, 2025!

@@ -1,0 +1,12 @@
++++
+title = "21 Birthday Problems"
++++
+{{< collapse folded="true" >}}
+
+* Source Code
+This is was the first and most green Problem Set. It teetered on the edge of Higher Secondary and Recreational mathematics:
+#+INCLUDE: "/code/latex/bday-problems/21/main.tex" src latex
+
+* Solution Set
+
+TODO

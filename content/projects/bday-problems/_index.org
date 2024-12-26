@@ -2,11 +2,12 @@
 title: "Bday Problems"
 date: 2024-12-15T11:19:55+11:00
 draft: false
+layout: single
 ---
 {{< collapse folded="true">}}
-Each year I release a set of problems to celebrate yet another year of life and study.
+Each year I release a set of problems to celebrate yet another year of life and study. You will find the embedded Problem Sets and the [[/projects/bday-problems#winners][List of Winners]] on this page.
 
-* 23rd
+* [[/projects/bday-problems/23rd][23rd]]
 :PROPERTIES:
 :CUSTOM_ID: 23rd
 :END:
@@ -17,39 +18,20 @@ Here is the problem set:
 {{< embed-pdf url="/bday-problems/23q.pdf" hidePaginator="true">}}
 
 
-* 22nd
+* [[/projects/bday-problems/22nd][22nd]]
 :PROPERTIES:
 :CUSTOM_ID: 22nd
 :END:
 
-The winner of the second annual birthday games was *Sarro Aghrel*.
-
-In second place was Mr. Eric Rajan.
-
 The prize money for this year was $100 AUD and $50 aud respectively.
 Mr. Rajan nobly refused the charity.
 
-** The Problem Set
-:PROPERTIES:
-:CUSTOM_ID: problem-set
-:END:
-
 {{< embed-pdf url="/bday-problems/22q.pdf" hidePaginator="true">}}
 
-** A Solution Set
-:PROPERTIES:
-:CUSTOM_ID: solution-set
-:END:
-
-** teh s0rce c0de
-TODO: do the problem set first!
-
-* 21st
+* [[/projects/bday-problems/21st][21st]]
 :PROPERTIES:
 :CUSTOM_ID: 21st
 :END:
-
-This is was the first and most green Problem Set. It teetered on the edge of Higher Secondary and Recreational mathematics:
 
 {{< embed-pdf url="/bday-problems/21q.pdf" hidePaginator="true">}}
 
@@ -59,10 +41,12 @@ In second place was an ex-student of mine, *Jisu Song*.
 
 The prize money was $50 and $20 respectively.
 
-** Source Code
-TODO
+* List of Winners
+:PROPERTIES:
+:CUSTOM_ID: winners
+:END:
 
-** Answers
-TODO
-
-
+- Aarav Bajaj
+- Jisu Song
+- Sarro Aghrel
+- Erick Rajan
