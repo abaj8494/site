@@ -1,0 +1,2 @@
+#+PROPERTY: HEADER-ARGS:python+ :python ~/.python/venv/bin/python
+

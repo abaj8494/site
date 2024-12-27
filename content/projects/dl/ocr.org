@@ -1,0 +1,24 @@
++++
+title = "Optical Character Recognition"
+categories = ["dl", "transformer", "NLP"]
+tags = ["c", "transformer", "PDF"]
++++
+
+
+** OCR
+
+This was one of the first times I fell in love with Machine Learning, without knowing that the magic came from Machine Learning methods.
+
+I simply had a `pdf` file with handwritten or scanned text, and desperately wanted to find something within the document without having to do it manually.
+
+I google online for an OCR; upload my file; download it back again, and hey presto --- such magical, accurate results!
+
+*** LeNet
+
+Truthfully, implementing the LeNet paper that accomplishes this is just an excuse to feel the magic of OCR once more, but this time of my own doing.
+Reading the LeNet paper and a _PDF Parser in C_ video uploaded on [YouTube](https://www.youtube.com/watch?v=9NAsrWp9Wto) is inspiring to make a tool for my own learning and terminal utility.
+
+*** PDF
+
+Finally, I am a massive `PDF` (Portable Document Format) fanboy; I write everything passionately in \(\TeX{}\) for absolutely no reason whatsoever. I have some of my favourite typeset poems [here](https://github.com/abaj8494/poems) and some lovely high-school math [handouts](https://github.com/abaj8494/handouts) that are the culmination of my \(\TeX{}\) wizardry in the `exam` documentclass.
+

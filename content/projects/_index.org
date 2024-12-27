@@ -99,34 +99,38 @@ These projects are all those that have had a lifecycle.
 :PROPERTIES:
 :CUSTOM_ID: supervised-learning
 :END:
-- [[/projects/ai/ml/supervised/mnist][MNIST]]
-- [[/projects/ai/ml/supervised/fmnist][FMNIST (Fashion)]]
-- [[/projects/ai/ml/supervised/kmnist][KMNIST (Kuzushiji)]] 
-- [[/projects/ai/ml/supervised/cifar][CIFAR]]
-- [[/projects/ai/ml/supervised/iris][IRIS]]
-- [[/projects/ai/ml/supervised/imagenet][ImageNet]]
-- [[/projects/ai/ml/supervised/boston-housing][Boston Housing]] 
-- [[/projects/ai/ml/supervised/wine-quality][Wine Quality]]
-- [[/projects/ai/ml/supervised/pima-indians][Pima Indians Diabetes]]
-- [[/projects/ai/ml/supervised/imdb-reviews][IMDB Reviews]]
-- [[/projects/ai/ml/supervised/titanic][Titanic Deaths]]
+- [[/projects/ml/supervised/mnist][MNIST]]
+- [[/projects/ml/supervised/fmnist][FMNIST (Fashion)]]
+- [[/projects/ml/supervised/kmnist][KMNIST (Kuzushiji)]] 
+- [[/projects/ml/supervised/cifar][CIFAR]]
+- [[/projects/ml/supervised/iris][IRIS]]
+- [[/projects/ml/supervised/imagenet][ImageNet]]
+- [[/projects/ml/supervised/boston-housing][Boston Housing]] 
+- [[/projects/ml/supervised/wine-quality][Wine Quality]]
+- [[/projects/ml/supervised/pima-indians][Pima Indians Diabetes]]
+- [[/projects/ml/supervised/imdb-reviews][IMDB Reviews]]
+- [[/projects/ml/supervised/titanic][Titanic Deaths]]
 
 *** [[/projects/ai/unsupervised][Unsupervised Learning]]
 :PROPERTIES:
 :CUSTOM_ID: unsupervised-learning
 :END:
-- [[/projects/ai/ml/unsupervised/kdd-cup][KDD Cup 1999]]
-- [[/projects/ai/ml/unsupervised/digits][Digits]]
+- [[/projects/ml/unsupervised/kdd-cup][KDD Cup 1999]]
+- [[/projects/ml/unsupervised/digits][Digits]]
 
 ** [[/projects/dl][Deep Learning]]
 :PROPERTIES:
 :CUSTOM_ID: deep-learning
 :END:
-- [[/projects/ai/dl/KiTS19][KiTS19 Kidney and Kidney Tumour Segmentation]]
-- [[/projects/ai/dl/llm-tune][Fine Tuning LLM]]
-- [[/projects/ai/dl/rag][RAG]]
-- [[/projects/ai/dl/cnn-scratch][CNN from scratch]]
-- [[/projects/ai/dl/llm-scratch][LLM from scratch]]
-- [[/projects/ai/dl/Kanye-West-RNN][RNN on the Music of Kanye West]]
-- [[/projects/ai/dl/sentiment-analysis][Sentiment Analysis]]
-- [[/projects/ai/dl/cartpole][CartPole]]
+- [[/projects/dl/KiTS19][KiTS19 Kidney and Kidney Tumour Segmentation]]
+- [[/projects/dl/llm-tune][Fine Tuning LLM]]
+- [[/projects/dl/rag][RAG]]
+- [[/projects/dl/cnn-scratch][CNN from scratch]]
+- [[/projects/dl/llm-scratch][LLM from scratch]]
+- [[/projects/dl/Kanye-West-RNN][RNN on the Music of Kanye West]]
+- [[/projects/ai/sentiment-analysis][Sentiment Analysis]]
+- [[/projects/dl/cartpole][CartPole]]
+- Neetcode.io
+- [[/projects/dl/micrograd.org][Micrograd - Andrej Karpathy]]
+- minGPT - Karpathy
+- nanoGPT - Karpathy

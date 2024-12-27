@@ -4,4 +4,47 @@ categories = ["cs", "projects"]
 tags = ["bfs", "dfs", "memory", "puzzle", "combinatorics"]
 +++
 
-* TODO Import code
+* Personal Motivations
+
+I grew up as a child with this puzzle in my house. My mother could solve it, and maybe a couple of members on her side of the family.
+
+Mum never knew the algorithm, or any techniques beyond "My hand just knows"; as a result I spent 4 days on it in my youth until solving it.
+I learned that the trick is to consider the L shape `___|` and realise that for every set of this 4, you can perform legal operations until you are left with 1 marble.
+
+Then, since there are 32 marbles, you do this 8 times until you have 4 left, and then finally you do it once more to go a single peg in the middle of the board.
+
+#+BEGIN_SRC
+    O O O      
+    O O O      
+O O O O O O O  
+O O O . O O O  
+O O O O O O O  
+    O O O      
+    O O O   
+#+END_SRC
+to
+#+BEGIN_SRC
+    · · ·      
+    · · ·      
+· · · . · · ·  
+· · · O · · ·  
+· · · · · · ·  
+    · · ·      
+    · · ·
+#+END_SRC
+
+After battling hard for this solution, I find the wikipedia page and associated [[https://en.wikipedia.org/wiki/Peg_solitaire][article]] only to learn that there are upward of 18,000 distinct solutions.
+
+Anyways, fast-forward slightly, and now I can code so the above directory contains a *DFS* implementation that searches every possible move until it finds a winning configuration:
+
+`s s w w s w w w w s a a s d d a d d d d a`
+
+Here, the letters are the basic `wasd` movements, and the spaces are the execution of that move.
+
+Ultimately the game logic looks something like this: 
+`[[3, 3, 's', 10], [2, 3, 'd', 9], [2, 2, 's', 4], [0, 2, 'a', 2], [2, 1, 'a', 1], [2, 2, 'd', 8], [0, 4, 'w', 6], [2, 4, 'a', 12], [1, 2, 'w', 7], [2, 2, 's', 16], [3, 2, 'd', 15], [1, 2, 'w', 3], [1, 4, 'w', 13], [2, 4, 's', 17], [3, 4, 'a', 18], [1, 4, 'w', 11], [3, 2, 'w', 22], [4, 2, 'd', 21], [2, 2, 'w', 27], [3, 2, 's', 20], [3, 4, 'd', 5], [2, 4, 'w', 14], [3, 4, 's', 24], [4, 4, 'a', 25], [4, 5, 'd', 26], [4, 4, 'w', 29], [5, 4, 's', 32], [6, 4, 'd', 31], [4, 4, 'w', 19], [4, 3, 'a', 30], [3, 3, 'w', 23]]`
+
+where the first 2 moves are the coordinates of the peg being moved, the letter is the move and the corresponding number is the 'id' of the marble being _killed_.
+
+** Prospectives
+Looking forwards, I want to train a learner to solve this puzzle via reinforcement learning.
