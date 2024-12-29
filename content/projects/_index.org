@@ -122,6 +122,7 @@ These projects are all those that have had a lifecycle.
 :PROPERTIES:
 :CUSTOM_ID: deep-learning
 :END:
+- [[/projects/dl/benchmarking][Hardware Benchmarking]]
 - [[/projects/dl/KiTS19][KiTS19 Kidney and Kidney Tumour Segmentation]]
 - [[/projects/dl/llm-tune][Fine Tuning LLM]]
 - [[/projects/dl/rag][RAG]]
@@ -130,7 +131,7 @@ These projects are all those that have had a lifecycle.
 - [[/projects/dl/Kanye-West-RNN][RNN on the Music of Kanye West]]
 - [[/projects/ai/sentiment-analysis][Sentiment Analysis]]
 - [[/projects/dl/cartpole][CartPole]]
-- Neetcode.io
+- [[/projects/dl/neetcode][Neetcode.io]]
 - [[/projects/dl/micrograd.org][Micrograd - Andrej Karpathy]]
-- minGPT - Karpathy
-- nanoGPT - Karpathy
+- [[/projects/dl/mingpt][minGPT - Karpathy]]
+- [[/projects/dl/nanogpt][nanoGPT - Karpathy]]

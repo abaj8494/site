@@ -1,0 +1,47 @@
++++
+title = "Running LLM's locally"
+tags = ["llm", "mac", "ram"]
++++
+
+* Context:
+Running LLM's (large-language-models) locally is now possible [fn:1] due to the abundance of highly parallelised compute (GPU's) at affordable prices and also the advances of Deep Learning in the past decade.
+
+As such, even slightly powerful consumer devices such as my M1 Macbook Pro with 8GB of RAM can run a small LLM. The purpose of this post is to investigate the token speed and accuracy of a variety of LLM's on my Machines.
+
+
+* Instructions
+
+Courtesy of Alex Ziskind's [[https://www.youtube.com/watch?v=bp2eev21Qfo][tutorial]]:
+1. clone the frontend https://github.com/open-webui/open-webui.git
+2. install ollama from https://ollama.com
+3. in the command line pull whichever model you like: =ollama pull llama3=
+
+* Results
+
+#+BEGIN_SOURCE
+>>> write me a 500 word summary on Dante's divine comedy
+**The Divine Comedy: A Journey Through Hell, Purgatory, and
+Paradise**
+
+Dante Alighieri's masterpiece, The Divine Comedy, is an epic poem
+#+END_SOURCE
+
+The above output arises from asking the prompt: =write me a 500 word...=, it was trivially easy to configure.
+
+The 7 Billion parameter model (llama3), utilised ~90% of my available RAM.
+
+* Opinion
+
+I did not even create a new =conda= environment and =pip install -r requirements.txt= for the /open-webui/ framework.
+It just feels as if everything has already been done for me.
+   
+* Conclusion
+
+I shall come back and rework this document once I receive my NVIDIA Orin Nano Super. I think this page will have some utility in the sense of benchmarking my hardware, but cloning and running pre-implemented LLM's is an intellectually trivial task not worth doing.
+
+I am now implementing Andrej Karpathy's [[https://github.com/karpathy/minGPT][MinGPT]] [[/projects/dl/mingpt.org][here]].
+
+
+* Footnotes
+
+[fn:1]as of 2024 
