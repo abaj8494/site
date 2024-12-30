@@ -2,6 +2,10 @@
   Bootstrap 5 breakpoints
   See: https://getbootstrap.com/docs/5.0/layout/breakpoints/#available-breakpoints
 */
+.language-jupyter-python {
+    @apply .language-python;
+}
+
 @custom-media --sm (min-width: 576px);
 @custom-media --md (min-width: 768px);
 @custom-media --lg (min-width: 992px);

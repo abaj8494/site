@@ -27,6 +27,7 @@ enableGitInfo = true
       autoHeadingID = true
       autoHeadingIDType = 'blackfriday'
 
+
 [imaging]
   # JPEG and WebP quality
   quality = 90

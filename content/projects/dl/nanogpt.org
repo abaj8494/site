@@ -1,3 +1,340 @@
 +++
 title = "NanoGPT - Min with Teeth"
 +++
+
+* Andrej Karpathy
+
+{{< youtube kCc8FmEb1nY >}}
+
+* Code
+
+Pulling the dataset we will be working on:
+#+BEGIN_SRC sh
+  curl https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt -o input.txt
+#+END_SRC
+
+#+RESULTS:
+
+Reading it into python
+#+BEGIN_SRC jupyter-python :session py
+  with open('input.txt', 'r', encoding='utf-8') as f:
+    text = f.read()
+#+END_SRC
+
+#+RESULTS:
+
+** Data inspection
+
+#+BEGIN_SRC jupyter-python :session py
+  print("length of dataset in characters: ", len(text))
+#+END_SRC
+
+#+RESULTS:
+: length of dataset in characters:  1115394
+
+#+begin_src jupyter-python :session py
+  print(text[:1000])
+#+end_src
+
+#+RESULTS:
+#+begin_example
+  First Citizen:
+  Before we proceed any further, hear me speak.
+
+  All:
+  Speak, speak.
+
+  First Citizen:
+  You are all resolved rather to die than to famish?
+
+  All:
+  Resolved. resolved.
+
+  First Citizen:
+  First, you know Caius Marcius is chief enemy to the people.
+
+  All:
+  We know't, we know't.
+
+  First Citizen:
+  Let us kill him, and we'll have corn at our own price.
+  Is't a verdict?
+
+  All:
+  No more talking on't; let it be done: away, away!
+
+  Second Citizen:
+  One word, good citizens.
+
+  First Citizen:
+  We are accounted poor citizens, the patricians good.
+  What authority surfeits on would relieve us: if they
+  would yield us but the superfluity, while it were
+  wholesome, we might guess they relieved us humanely;
+  but they think we are too dear: the leanness that
+  afflicts us, the object of our misery, is as an
+  inventory to particularise their abundance; our
+  sufferance is a gain to them Let us revenge this with
+  our pikes, ere we become rakes: for the gods know I
+  speak this in hunger for bread, not in thirst for revenge.
+#+end_example
+
+#+BEGIN_SRC jupyter-python :session py
+  chars = sorted(list(set(text)))
+  vocab_size = len(chars)
+  print(''.join(chars))
+  print(vocab_size)
+#+END_SRC
+
+#+RESULTS:
+: \n
+: SPC!$&',-.3:;?ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
+: 65
+
+** Tokeniser
+#+BEGIN_SRC jupyter-python :session py
+  stoi = { ch:i for i,ch in enumerate(chars) }
+  itos = { i:ch for i,ch in enumerate(chars) }
+  encode = lambda s: [stoi[c] for c in s]
+  # defines function taking in string, outputs list of ints
+  decode = lambda l: ''.join([itos[i] for i in l])
+  # input: list of integers, outputs string
+
+  print(encode("hello world"))
+  print(decode(encode("hello world")))
+
+#+END_SRC
+
+#+RESULTS:
+: [46, 43, 50, 50, 53, 1, 61, 53, 56, 50, 42]
+: hello world
+
+#+BEGIN_SRC jupyter-python :session py
+  import torch
+  data = torch.tensor(encode(text), dtype=torch.long)
+  print(data.shape, data.dtype)
+  print(data[:1000])
+#+END_SRC
+
+#+begin_src jupyter-python :session py
+  n = int(0.9*len(data))
+  train_data = data[:n]
+  val_data = data[n:]
+#+end_src
+
+#+RESULTS:
+
+** Understanding the context influence of n+1th token
+
+#+begin_src jupyter-python :session py
+  block_size = 8
+  print(train_data[:block_size])
+  x = train_data[:block_size]
+  y = train_data[1:block_size+1]
+  for t in range(block_size):
+      context = x[:t+1]
+      target = y[t]
+      print(f"at input {context}\n" +
+	    f"target {target}")
+#+end_src
+
+Note that within the block_size of 8, there are 8 total examples.
+
+#+RESULTS:
+#+begin_example
+  tensor([18, 47, 56, 57, 58,  1, 15, 47])
+  at input tensor([18])
+  target 47
+  at input tensor([18, 47])
+  target 56
+  at input tensor([18, 47, 56])
+  target 57
+  at input tensor([18, 47, 56, 57])
+  target 58
+  at input tensor([18, 47, 56, 57, 58])
+  target 1
+  at input tensor([18, 47, 56, 57, 58,  1])
+  target 15
+  at input tensor([18, 47, 56, 57, 58,  1, 15])
+  target 47
+  at input tensor([18, 47, 56, 57, 58,  1, 15, 47])
+  target 58
+#+end_example
+
+Now we pack all these examples vertically to create a 4 by 8 tensor:
+#+begin_src jupyter-python :session py
+  torch.manual_seed(1337)
+  batch_size = 4
+  block_size = 8 # as above
+
+  def get_batch(split):
+      data = train_data if split == 'train' else val_data
+      ix = torch.randint(len(data) - block_size, (batch_size,))
+      x = torch.stack([data[i:i+block_size] for i in ix])
+      y = torch.stack([data[i+1:i+block_size+1] for i in ix])
+      return x,y
+
+  xb, yb = get_batch('train')
+  print('inputs:')
+  print(xb.shape)
+  print(xb)
+  print('targets')
+  print(yb.shape)
+  print(yb)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+  inputs:
+  torch.Size([4, 8])
+  tensor([[24, 43, 58,  5, 57,  1, 46, 43],
+          [44, 53, 56,  1, 58, 46, 39, 58],
+          [52, 58,  1, 58, 46, 39, 58,  1],
+          [25, 17, 27, 10,  0, 21,  1, 54]])
+  targets
+  torch.Size([4, 8])
+  tensor([[43, 58,  5, 57,  1, 46, 43, 39],
+          [53, 56,  1, 58, 46, 39, 58,  1],
+          [58,  1, 58, 46, 39, 58,  1, 46],
+          [17, 27, 10,  0, 21,  1, 54, 39]])
+#+end_example
+
+To make the relationship above between the input and expected output labels, we can unroll the loops:
+#+begin_src jupyter-python :session py
+for b in range(batch_size):
+	for t in range(block_size):
+		context = xb[b, :t+1]
+		target = yb[b,t]
+		print(f"at input {context}\n" +
+		      f"target {target}")
+#+end_src
+
+#+RESULTS:
+#+begin_example
+  at input tensor([24])
+  target 43
+  at input tensor([24, 43])
+  target 58
+  at input tensor([24, 43, 58])
+  target 5
+  at input tensor([24, 43, 58,  5])
+  target 57
+  at input tensor([24, 43, 58,  5, 57])
+  target 1
+  at input tensor([24, 43, 58,  5, 57,  1])
+  target 46
+  at input tensor([24, 43, 58,  5, 57,  1, 46])
+  target 43
+  at input tensor([24, 43, 58,  5, 57,  1, 46, 43])
+  target 39
+  at input tensor([44])
+  target 53
+  at input tensor([44, 53])
+  target 56
+  at input tensor([44, 53, 56])
+  target 1
+  at input tensor([44, 53, 56,  1])
+  target 58
+  at input tensor([44, 53, 56,  1, 58])
+  target 46
+  at input tensor([44, 53, 56,  1, 58, 46])
+  target 39
+  at input tensor([44, 53, 56,  1, 58, 46, 39])
+  target 58
+  at input tensor([44, 53, 56,  1, 58, 46, 39, 58])
+  target 1
+  at input tensor([52])
+  target 58
+  at input tensor([52, 58])
+  target 1
+  at input tensor([52, 58,  1])
+  target 58
+  at input tensor([52, 58,  1, 58])
+  target 46
+  at input tensor([52, 58,  1, 58, 46])
+  target 39
+  at input tensor([52, 58,  1, 58, 46, 39])
+  target 58
+  at input tensor([52, 58,  1, 58, 46, 39, 58])
+  target 1
+  at input tensor([52, 58,  1, 58, 46, 39, 58,  1])
+  target 46
+  at input tensor([25])
+  target 17
+  at input tensor([25, 17])
+  target 27
+  at input tensor([25, 17, 27])
+  target 10
+  at input tensor([25, 17, 27, 10])
+  target 0
+  at input tensor([25, 17, 27, 10,  0])
+  target 21
+  at input tensor([25, 17, 27, 10,  0, 21])
+  target 1
+  at input tensor([25, 17, 27, 10,  0, 21,  1])
+  target 54
+  at input tensor([25, 17, 27, 10,  0, 21,  1, 54])
+  target 39
+#+end_example
+
+(jupyter-locate-python)
+
+
+
+
+
+
+  
+
+
+
+#+BEGIN_SRC jupyter-python :session py
+
+#+END_SRC
+#+BEGIN_SRC jupyter-python :session py
+
+#+END_SRC
+#+BEGIN_SRC jupyter-python :session py
+
+#+END_SRC
+#+BEGIN_SRC jupyter-python :session py
+
+#+END_SRC
+#+BEGIN_SRC jupyter-python :session py
+
+#+END_SRC
+#+BEGIN_SRC jupyter-python :session py
+
+#+END_SRC
+
+
+#+RESULTS:
+[[../9de08d0435181dc1a28145fc963ab012e756f3b4.png]]
+
+And now I continue coating with prose until I need to produce another diagram:
+
+
+#+begin_src jupyter-python :session repl :file ../output.png
+y1 = x**2
+y2 = x**3
+
+plt.plot(x, y1)
+plt.plot(x, y2)
+plt.xlabel('x axis')
+plt.ylabel('y axis')
+plt.title('introduction to matplotlib')
+plt.legend(['x^2', 'x^3'])
+plt.show()
+#+end_src
+
+#+RESULTS:
+[[../output.png]]
+
+** 
+* 
+
+* 
+
+
+
+* 

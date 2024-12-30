@@ -1,0 +1,5 @@
+{{ $lang := .Language | default "plaintext" }}
+{{ if eq $lang "jupyter-python" }}
+  {{ $lang = "css" }}
+{{ end }}
+<pre><code class="language-{{ $lang }}">{{ .Inner | safeHTML }}</code></pre>
