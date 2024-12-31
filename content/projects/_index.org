@@ -1,3 +1,4 @@
+
 ---
 title: Hello
 toc: false
@@ -8,6 +9,7 @@ These are the projects that I am on working / have worked on in the past.
 These projects are all those that have had a lifecycle.
 
 * Project List
+
 {{< collapse folded="true" >}}
 
 :PROPERTIES:
@@ -22,7 +24,7 @@ These projects are all those that have had a lifecycle.
 - [[{{< ref "/projects/bday-problems#21st" >}}][21st]]
 - [[{{< ref "/projects/bday-problems#22nd" >}}][22nd]]
 - [[{{< ref "/projects/bday-problems#23rd" >}}][23rd]]
-  
+
 ** [[/projects/latex][LaTeX]]
 :PROPERTIES:
 :CUSTOM_ID: latex
@@ -99,18 +101,19 @@ These projects are all those that have had a lifecycle.
 :PROPERTIES:
 :CUSTOM_ID: supervised-learning
 :END:
-- [[/projects/ml/supervised/mnist][MNIST]]
-- [[/projects/ml/supervised/fmnist][FMNIST (Fashion)]]
-- [[/projects/ml/supervised/kmnist][KMNIST (Kuzushiji)]] 
-- [[/projects/ml/supervised/cifar][CIFAR]]
-- [[/projects/ml/supervised/iris][IRIS]]
+- [[/projects/ml/supervised/mnist][MNIST]] #drosophilia #lecun #supervised #classification
+- [[/projects/ml/supervised/fmnist][FMNIST (Fashion)]] #supervised #classification
+- [[/projects/ml/supervised/kmnist][KMNIST (Kuzushiji)]] #supervised #classification #cnn
+- [[/projects/ml/supervised/cifar][CIFAR]] #cnn #multiclass
+- [[/projects/ml/supervised/iris][IRIS]] #
 - [[/projects/ml/supervised/imagenet][ImageNet]]
-- [[/projects/ml/supervised/boston-housing][Boston Housing]] 
-- [[/projects/ml/supervised/wine-quality][Wine Quality]]
+- [[/projects/ml/supervised/boston-housing][Boston Housing]] #regression
+- [[/projects/ml/supervised/wine-quality][Wine Quality]] 
 - [[/projects/ml/supervised/pima-indians][Pima Indians Diabetes]]
 - [[/projects/ml/supervised/imdb-reviews][IMDB Reviews]]
-- [[/projects/ml/supervised/titanic][Titanic Deaths]]
-
+- [[/projects/ml/supervised/titanic][Titanic Deaths]] #classification
+- [[/projects/ml/supervised/spam][Email SPAM]] #naive-bayes #classification
+  
 *** [[/projects/ai/unsupervised][Unsupervised Learning]]
 :PROPERTIES:
 :CUSTOM_ID: unsupervised-learning
@@ -123,6 +126,8 @@ These projects are all those that have had a lifecycle.
 :CUSTOM_ID: deep-learning
 :END:
 - [[/projects/dl/benchmarking][Hardware Benchmarking]]
+- Perceptron #classification
+- Multilayer Perceptron
 - [[/projects/dl/KiTS19][KiTS19 Kidney and Kidney Tumour Segmentation]]
 - [[/projects/dl/llm-tune][Fine Tuning LLM]]
 - [[/projects/dl/rag][RAG]]

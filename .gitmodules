@@ -1,0 +1,3 @@
+[submodule "static/code/10k-hrs-ml"]
+	path = static/code/10k-hrs-ml
+	url = https://github.com/abaj8494/10k-hrs-ml

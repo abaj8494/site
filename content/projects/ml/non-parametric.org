@@ -1,0 +1,10 @@
++++
+title = "Non-parametric Models"
++++
+
+We also have models that walk around with the dataset in their carry-on. These are models such as:
+
+1. Decision Trees
+2. SVM
+3. Nonparametric Regressions: K-nearest neighbours, Locally Weighted
+4. Random Forests

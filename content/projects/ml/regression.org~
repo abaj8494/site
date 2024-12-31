@@ -1,0 +1,164 @@
++++
+title = "Regression"
++++
+
+many models can be used to do regression:
+- linear model: $\hat{\beta} = \arg \min_{\beta} \frac{1}{n}\|y-X \beta\|^2_2$
+- LASSO model: $\hat{\beta}_{\text{LASSO}} = \arg \min_{\beta} \frac{1}{n}\|y-X \beta\|^2_2 + \lambda \| \beta \|_1$
+- Ridge model: $\hat{\beta}_{\text{Ridge}} = \arg \min_{\beta} \frac{1}{n}\|y-X \beta\|^2_2 + \alpha \| \beta \|_2^2$ 
+- logistic regression
+
+#+BEGIN_SRC jupyter-python :session py
+from sklearn.linear_model import LinearRegression, Lasso, Ridge, LassoCV
+from sklearn.datasets import make_regression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, mean_absolute_error
+
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+from torch.nn.functional import mse_loss
+#+END_SRC
+
+#+RESULTS:
+
+#+begin_src jupyter-python :session py
+rs = np.random.RandomState(123)
+n = 1000 # samples
+p = 10   # features
+noise = 0.4
+features = p // 2
+X, y = make_regression(n, p, noise=noise, n_informative=features, random_state=rs)
+X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=rs)
+
+# fitting these models to the training data:
+m_linear_reg = LinearRegression().fit(X_train, y_train)
+m_lasso_reg = Lasso().fit(X_train, y_train)
+m_ridge_reg = Ridge().fit(X_train, y_train)
+
+# predictions on training:
+ypred_train_linear_reg = m_linear_reg.predict(X_train)
+ypred_train_lasso_reg = m_lasso_reg.predict(X_train)
+ypred_train_ridge_reg = m_ridge_reg.predict(X_train)
+
+# then test data:
+ypred_test_linear_reg = m_linear_reg.predict(X_test)
+ypred_test_lasso_reg = m_lasso_reg.predict(X_test)
+ypred_test_ridge_reg = m_ridge_reg.predict(X_test)
+#+end_src
+
+* Results
+#+RESULTS:
+
+#+BEGIN_SRC jupyter-python :session py
+loss_data = [
+    ['linear regression',
+     mean_squared_error(y_train, ypred_train_linear_reg),
+     mean_squared_error(y_test, ypred_test_linear_reg),
+     mean_absolute_error(y_train, ypred_train_linear_reg),
+     mean_absolute_error(y_test, ypred_test_linear_reg)
+     ],
+    ['lasso regression',
+     mean_squared_error(y_train, ypred_train_lasso_reg),
+     mean_squared_error(y_test, ypred_test_lasso_reg),
+     mean_absolute_error(y_train, ypred_train_lasso_reg),
+     mean_squared_error(y_test, ypred_test_lasso_reg)
+     ],
+    ['ridge regression',
+     mean_squared_error(y_train, ypred_train_ridge_reg),
+     mean_squared_error(y_test, ypred_test_ridge_reg),
+     mean_absolute_error(y_train, ypred_train_ridge_reg),
+     mean_absolute_error(y_test, ypred_test_ridge_reg)
+     ]
+] 
+loss_df = pd.DataFrame(loss_data, columns=['name', 'train mse', 'test mse', 'train mae', 'test mae'])
+print(loss_df)
+#+END_SRC
+
+#+RESULTS:
+:                 name  train mse  test mse  train mae  test mae
+: 0  linear regression   0.151018  0.176519   0.312670  0.334087
+: 1   lasso regression   4.907329  4.128131   1.795599  4.128131
+: 2   ridge regression   0.189097  0.193945   0.353909  0.351923
+
+
+** Analysis
+`lasso regression` performs poorly. this is because it depends on a parameter $\lambda$
+
+#+begin_src jupyter-python :session py
+from sklearn.linear_model import LassoCV
+m_lassoCV = LassoCV().fit(X_train, y_train) # you must never FIT the model to test
+ypred_train_lassoCV = m_lassoCV.predict(X_train)
+ypred_test_lassoCV = m_lassoCV.predict(X_test) # it is fine to predict though
+
+lassoCV_row = {'name': 'lasso cv',
+               'train mse': mean_squared_error(y_train, ypred_train_lassoCV), 
+               'test mse': mean_squared_error(y_test, ypred_test_lassoCV), 
+               'train mae': mean_absolute_error(y_train, ypred_train_lassoCV), 
+               'test mae': mean_absolute_error(y_test, ypred_test_lassoCV)}
+loss_df.loc[len(loss_df)] = lassoCV_row
+print(loss_df)
+#+end_src
+
+#+RESULTS:
+:                 name  train mse  test mse  train mae  test mae
+: 0  linear regression   0.151018  0.176519   0.312670  0.334087
+: 1   lasso regression   4.907329  4.128131   1.795599  4.128131
+: 2   ridge regression   0.189097  0.193945   0.353909  0.351923
+: 3           lasso cv   0.203116  0.208579   0.365991  0.362380
+
+* Closed form of OLE
+Taking the derivative of
+$$\hat{\beta} = \arg \min_{\beta} \frac{1}{n}\|y-X \beta\|^2_2$$
+and equating to 0:
+$$\begin{align*}\hat{\beta} &= \arg \min_{\beta} \frac{1}{n}\|y-X \beta\|^2_2\\
+ &= (X^TX)^{-1}X^T y\end{align*}
+ $$
+
+** Example Pred
+
+#+begin_src jupyter-python :session py
+  import numpy as np
+  # synthetic data for the rest of the linear models:
+  np.random.seed(5)
+  n = 100 # samples
+  p = 5 # features
+  sigma = 0.2 # std
+  X = np.random.normal(0, 1, size=(n,p))
+  beta_true = np.random.randint(-4, 2, p)
+  noise = np.random.normal(0, sigma, size=(n))
+  y = X @ beta_true + noise
+
+  betahat = np.linalg.inv(X.T @ X) @ X.T @ y
+  print("betahat: ", betahat)
+  print("beta true:", beta_true)
+#+end_src
+
+#+RESULTS:
+: betahat:  [-2.94946726  0.01589149 -2.004408   -3.97428268 -3.99637663]
+: beta true: [-3  0 -2 -4 -4]
+
+* Iterative Approach
+
+An idea that permeates throughout all of Machine Learning is that
+
+#+BEGIN_QUOTE
+sometimes, you cannot explicitly solve the `argmin` formulation of the parameters in closed form
+#+END_QUOTE
+
+and other times, it may be possible, but just computationally infeasible
+
+** Gradient Descent
+
+*** Stochastic Gradient Descent:
+$$\hat{\beta}^{(k+1)} = \hat{\beta}^{(k)} - \eta\nabla_\beta L (\hat{\beta}^{(k)})$$
+
+in which we iterate only over 1 sample at a time, and,
+
+*** Batch Gradient Descent:
+$$TODO$$
+
+in which we iterate over the entire dataset.
+
+Note, in practice you will choose **mini-batch Gradient Descent**, which is a mediation of both these approaches:
+$$TODO$$ 

@@ -1,6 +1,6 @@
 ---
-title: "Ml"
+title: "Machine Learning"
 date: 2024-12-15T11:23:05+11:00
-draft: true
+layout: "post"
 ---
 
