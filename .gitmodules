@@ -1,3 +1,8 @@
 [submodule "static/code/10k-hrs-ml"]
 	path = static/code/10k-hrs-ml
 	url = https://github.com/abaj8494/10k-hrs-ml
+[submodule "hugo-mod-json-resume"]
+	path = hugo-mod-json-resume
+	url = https://github.com/schnerring/hugo-mod-json-resume
+
+
