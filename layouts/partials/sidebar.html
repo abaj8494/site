@@ -12,7 +12,7 @@
   {{ end }}
 
   {{ $cv := index $.Site.Data.json_resume $.Site.Language.Lang }}
-  {{ if $cv.basics }}
+  {{ if and $cv.basics .IsHome }}
     <aside class="bio">
       {{ partial "json-resume/basics.html" . }}
 

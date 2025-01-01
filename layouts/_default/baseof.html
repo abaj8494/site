@@ -11,10 +11,9 @@
 	<div class="content">
 	  {{ block "main" . }}{{ end }}
 	</div>
-	{{ if .IsHome }}
-		{{ partial "sidebar.html" . }}
-	{{ end }}
-        {{ if or .Params.math .Site.Params.math }}
+	{{ partial "sidebar.html" . }}
+	
+	{{ if or .Params.math .Site.Params.math }}
                 {{ partial "math.html" . }}
         {{ end }}
       </main>
