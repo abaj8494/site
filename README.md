@@ -11,3 +11,4 @@ I write all the content for the site using org files in Emacs, but the theme lev
 ![My site: abaj.ai](static/readme-home.png)
 
 I have modified the `css` and `/partials` folder from the original [repository](https://github.com/schnerring/hugo-theme-gruvbox), so I highly suggest `git clone`ing that one to begin with and then referencing this repo should you feel inclined to.
+
