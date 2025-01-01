@@ -62,24 +62,29 @@ enableGitInfo = true
       "markup",
       "css",
       "clike",
+      "c",
       "javascript",
       "latex",
       "python",
       "bash",
       "csharp",
-      "hcl",
-      "ignore",
       "json",
       "markdown",
       "powershell",
       "toml",
-      "yaml"
+      "yaml",
+      "docker",
+      "git"
     ]
     plugins = [
       "normalize-whitespace",
       "toolbar",
       "copy-to-clipboard",
-      "command-line"
+      "command-line",
+      "line-highlight",
+      "line-numbers",
+      "show-language",
+      "treeview"
     ]
 
   # Social share links for posts:

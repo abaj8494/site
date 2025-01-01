@@ -126,8 +126,8 @@ These projects are all those that have had a lifecycle.
 :CUSTOM_ID: deep-learning
 :END:
 - [[/projects/dl/benchmarking][Hardware Benchmarking]]
-- Perceptron #classification
-- Multilayer Perceptron
+- [[/projects/dl/perceptron][Perceptron]] #classification
+- [[/projects/dl/mlp][Multilayer Perceptron]]
 - [[/projects/dl/KiTS19][KiTS19 Kidney and Kidney Tumour Segmentation]]
 - [[/projects/dl/llm-tune][Fine Tuning LLM]]
 - [[/projects/dl/rag][RAG]]
