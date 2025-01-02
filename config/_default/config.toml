@@ -52,7 +52,7 @@ enableGitInfo = true
   author = "Aayush Bajaj"
   subtitle = ""
   description = "A full-time tinkerer"
-
+  mainSections = ['projects', 'blog']
   [params.logo]
     text = "ai"
     url = "/"
@@ -117,7 +117,7 @@ enableGitInfo = true
     iconSuite = "tabler-icon"
     iconName = "mail"
     formatString = "mailto:?subject={title}&body={url}"
-
+  
 [menu]
   #[[menu.main]]
   #  identifier = "code"

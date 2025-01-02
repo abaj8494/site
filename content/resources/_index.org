@@ -5,13 +5,25 @@
 I shall try to be as helpful as possible here. 
 
 * Anki decks
-- Machine Learning
-- Japanese
-- PAO, see blog post explaining these too.
-- Mathematics
+- [[/resources/anki/ml.apkg][Machine Learning]]
+- [[/resources/anki/japanese.apkg][Japanese]]
+- [[/resources/anki/pao.apkg][PAO]], recommended [[/blog/pao][blog post]]
+- [[/resources/anki/mathematics.apkg][Mathematics]]
 
-* Course Slides
-I don't know if I should be uploading these.
+* Datasets
+[[/code/10k-hrs-ml/PRACTISE/Andrej-Karpathy/decode-transformer/input.txt][Shakespeare (1115394 characters)]]
 
-* Books
-I also do not know if I should be uploading these.
+* MOOCs
+See the projects section for my solutions
+** Stanford CS229, Summer 2020
+Ass0 | Sols
+Ass1 | Sols
+Ass2 | Sols
+Ass3 | Sols
+
+* Annotated Papers
+TODO links
+
+* Trump Card
+And if you wish to dig deeper, [[.][here]] is a link to the static nginx directory so you may discover your own diamonds.
+

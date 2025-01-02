@@ -19,22 +19,22 @@ The icon for the site is the real component contour plot of the 4D complex expon
 I'm not stone-cold. Here's me:
 
 #+ATTR_HTML: :width 300px
-[[/images/happy-j.jpg]]
+[[happy-j.jpg]]
   
 
 I play Ultimate Frisbee and have 2 cats. I ride an Enfield Bullet and built most of this site on an =aarch64= RaspberryPi 4. I study Japanese out of adoration for the language, and own hundreds of books. I really like TeX[fn:1] and black rap. I'm also musically retarded.
 
 #+ATTR_HTML: :width 800px
-[[/images/23-unigames.jpeg]]
+[[23-unigames.jpeg]]
 #+ATTR_HTML: :width 400px
-[[/images/rpi-dev.jpg]]
+[[rpi-dev.jpg]]
 #+ATTR_HTML: :width 300px
-[[/images/tex-stack.jpg]]
+[[tex-stack.jpg]]
 
 #+ATTR_HTML: :width 200px
-[[/images/spotify-21.jpg]]
+[[spotify-21.jpg]]
 #+ATTR_HTML: :width 200px
-[[/images/spotify-23.jpg]]
+[[spotify-23.jpg]]
 
 ** Contact
 

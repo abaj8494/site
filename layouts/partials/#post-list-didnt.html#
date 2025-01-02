@@ -1,0 +1,27 @@
+{{ range $pageIndex, $page := .Site.Pages }}
+  {{ if or (eq $page.Type "section") (not $page.IsSection) }}
+    <article class="post">
+      <div class="post-header">
+        <h2>
+          <a href="{{ $page.RelPermalink }}">{{ $page.Title | markdownify }}</a>
+        </h2>
+        {{ partial "post-meta.html" (dict "page" $page "pageIndex" $pageIndex) }}
+      </div>
+
+      <div class="post-content">
+        {{ with $page.Description }}
+          {{ . }}
+        {{ else }}
+          {{ $page.Summary }}
+          {{ if $page.Truncated }}
+            <div class="post-content__read-more">
+              <a href="{{ $page.RelPermalink }}">Read more &gt;</a>
+            </div>
+          {{ end }}
+        {{ end }}
+      </div>
+    </article>
+  {{ end }}
+{{ end }}
+
+{{ partial "pagination.html" . }}

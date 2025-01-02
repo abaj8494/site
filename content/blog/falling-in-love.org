@@ -1,4 +1,0 @@
-+++
-title = "Falling in Love"
-tags = ["love", "tattoo"]
-+++

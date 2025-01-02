@@ -1,0 +1,74 @@
++++
+title = "Benchmarking hardware for ML/DL"
+tags = ["benchmark", "ml", "dl", "macos", "m1"]
+toc = "true"
++++
+
+{{< collapse >}}
+
+This page contains results and explanations of benchmarking metrics for my hardware:
+
+* 2020 M1 Macbook Pro 8GB
+
+#+ATTR_HTML: :width 300px
+[[m1-about.png]]
+
+** Stream
+
+#+BEGIN_SRC sh
+gcc -O stream.c -o stream
+./stream
+#+END_SRC
+
+#+CAPTION: [[https://github.com/jeffhammond/STREAM][STREAM]] output
+#+BEGIN_SRC
+-------------------------------------------------------------
+STREAM version $Revision: 5.10 $
+-------------------------------------------------------------
+This system uses 8 bytes per array element.
+-------------------------------------------------------------
+Array size = 10000000 (elements), Offset = 0 (elements)
+Memory per array = 76.3 MiB (= 0.1 GiB).
+Total memory required = 228.9 MiB (= 0.2 GiB).
+Each kernel will be executed 10 times.
+ The *best* time for each kernel (excluding the first iteration)
+ will be used to compute the reported bandwidth.
+-------------------------------------------------------------
+Your clock granularity/precision appears to be 1 microseconds.
+Each test below will take on the order of 15047 microseconds.
+   (= 15047 clock ticks)
+Increase the size of the arrays if this shows that
+you are not getting at least 20 clock ticks per test.
+-------------------------------------------------------------
+WARNING -- The above is only a rough guideline.
+For best results, please be sure you know the
+precision of your system timer.
+-------------------------------------------------------------
+Function    Best Rate MB/s  Avg time     Min time     Max time
+Copy:           60496.6     0.002718     0.002645     0.002956
+Scale:          49323.0     0.003346     0.003244     0.003575
+Add:            56036.1     0.004534     0.004283     0.005507
+Triad:          55933.4     0.004587     0.004291     0.006148
+-------------------------------------------------------------
+Solution Validates: avg error less than 1.000000e-13 on all three arrays
+-------------------------------------------------------------
+#+END_SRC
+
+** GPU Info
+
+#+CAPTION: [[https://github.com/philipturner/applegpuinfo.git][GPUInfo]] output
+#+BEGIN_SRC
+Build of product 'gpuinfo' complete! (38.30s)
+GPU name: Apple M1
+GPU vendor: Apple
+GPU core count: 8
+GPU clock frequency: 1.278 GHz
+GPU bandwidth: 68.3 GB/s
+GPU FLOPS: 2.617 TFLOPS
+GPU IPS: 1.309 TIPS
+GPU system level cache: 8 MB
+GPU memory: 8 GB
+GPU family: Apple 7
+#+END_SRC
+
+* NVIDIA Orin Nano Super 8GB

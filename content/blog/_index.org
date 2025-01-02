@@ -1,6 +1,6 @@
----
-title: "the rabbit hole:"
----
++++
+title = "the rabbit hole:"
++++
 
 * welcome
 
