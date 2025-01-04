@@ -1,47 +1,22 @@
+\documentclass{standalone}
+\usepackage{tikz}
 
+\usepackage{graphicx}
+% Package longtable omitted
+% Package wrapfig omitted
+% Package rotating omitted
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+% Package capt-of omitted
+% Package hyperref omitted
+\usepackage{algorithm2e}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{tikzmark}
+\pagenumbering{gobble}
 
-+++
-title = "Perceptron"
-categories = ["supervised-learning"]
-toc = "true"
-math = "true"
-+++
-
-The perceptron learning algorithm is the most simple algorithm we have for *Binary Classification*.
-
-* Algorithm
-
-#+CAPTION: Perceptron Learning Algorithm
-#+ATTR_HTML: :class lateximage :width 900px
-[[alg.svg]]
-
-
-** Explanation
-
-** Visual
-
-
-#+CAPTION: Neuron Activations
-#+BEGIN_CENTER
-#+ATTR_HTML: :width 600px :class lateximage
-[[perceptron.svg]]
-#+END_CENTER
-
-* Figures                                                          :noexport:
-
-#+LATEX_HEADER: \usepackage{algorithm2e}
-#+LATEX_HEADER: \usepackage{tikz}
-#+LATEX_HEADER: \usetikzlibrary{positioning}
-#+LATEX_HEADER: \usetikzlibrary{tikzmark}
-#+LATEX_HEADER: \pagenumbering{gobble}
-
-(setq org-latex-default-process (eval (car (get 'org-latex-default-process 'standard-value))))
-
-(setq org-preview-latex-default-process 'ajlua1)
-(message "%s" org-latex-classes)
-
-** Neuron
-
+\begin{document}
       \begin{tikzpicture}[basic/.style={draw,fill=blue!20,text width=1em,text badly centered},
                           input/.style={basic,circle},
                           weights/.style={basic,rectangle},
@@ -71,20 +46,6 @@ The perceptron learning algorithm is the most simple algorithm we have for *Bina
 	  \node[below of=ln,font=\scriptsize] {inputs};
 	  \node[below of=n,font=\scriptsize] {weights};
       \end{tikzpicture}
+%
 
-
-** Perceptron Algorithm (working with c-c c-x c-l, org-preview-latex. the variables have been configured to output svg)
-\begin{algorithm}[H]
-$i\gets 10$\;
-\eIf{$i\geq 5$}
-{
-    $i\gets i-1$\;
-}{
-    \If{$i\leq 3$}
-    {
-        $i\gets i+2$\;
-    }
-}
-\end{algorithm}
-
-
+\end{document}

@@ -85,3 +85,4 @@
   --primary: var(--{{ $themeColor }}1);
   --primary-alt: var(--{{ $themeColor }}2);
 }
+

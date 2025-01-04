@@ -1,0 +1,10 @@
+---
+title: "Literate Programming and Donald Knuth"
+date: 2024-12-08T18:39:13+11:00
+---
+
+There is much to say about Don Knuth, but we shall begin with literate programming, which is why you clicked here in the first place.
+
+A divergence in attention is a motif of Don's so he won't mind either.
+
+

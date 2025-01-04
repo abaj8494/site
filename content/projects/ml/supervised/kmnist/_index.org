@@ -1,0 +1,7 @@
++++
+title = "Kuzushiji MNIST"
+categories = ["ai", "ml", "supervised"]
+tags = ["cnn", "2-layer"]
++++
+
+link to mnist

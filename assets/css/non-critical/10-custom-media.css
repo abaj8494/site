@@ -6,6 +6,44 @@
     @apply .language-python;
 }
 
+[data-theme="dark"] .lateximage {
+    filter: invert(1) brightness(1); 
+}
+
+.lateximage {
+    background: transparent; /* Ensure no background */
+    border: none;           /* Remove borders if any */
+    margin: none;              /* Reset margins */
+    padding: none;             /* Reset padding */
+}
+
+/* Used for algorithm2e: */
+div.alg2evline{
+    margin-left: 1em ;
+    padding-left: 1em ;
+    border-left: 1px solid black ;
+    border-radius: 0px 0px 0px 1ex ;
+}
+
+div.alg2evsline{
+    margin-left: 1em ;
+    padding-left: 1em ;
+    border-left: 1px solid black ;
+}
+
+div.alg2enoline{
+    margin-left: 1em ;
+    padding-left: 1em ;
+}
+
+span.alg2elinenumber{
+    margin-right: .5em ;
+    font-size: 60% ;
+    color: red ;
+}
+
+
+
 @custom-media --sm (min-width: 576px);
 @custom-media --md (min-width: 768px);
 @custom-media --lg (min-width: 992px);

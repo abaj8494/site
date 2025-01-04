@@ -13,8 +13,37 @@ pwd
 pwd
 #+end_src
 
-#+begin_src bash
-  tree -F
+#+begin_src treeview
+.
+├── LICENSE
+├── README.md
+├── archetypes
+├── assets
+├── backup
+├── config
+├── content
+├── data
+├── eslint.config.mjs
+├── go.mod
+├── go.sum
+├── hugo-mod-json-resume
+├── hugo-theme-gruvbox-inkscape.svg
+├── hugo-theme-gruvbox.svg
+├── hugo_stats.json
+├── i18n
+├── layouts
+├── node_modules
+├── package-lock.json
+├── package.hugo.json
+├── package.json
+├── postcss.config.js
+├── public
+├── resources
+├── static
+└── theme.toml
+
+14 directories, 13 files
+
 #+end_src
 
 #+RESULTS:

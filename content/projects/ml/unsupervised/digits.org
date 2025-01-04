@@ -1,5 +1,5 @@
 +++
-title = "Retrieval Augmented Generation"
+title = "Digits"
 categories = ["ai", "ml", "dl", "supervised"]
+tags = ["gaussian-mixture-model"]
 +++
-

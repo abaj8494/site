@@ -1,0 +1,5 @@
++++
+title = "Wine Quality"
+categories = ["ai", "ml", "supervised"]
+tags = ["ensembles", "gradient-boosting"]
++++
