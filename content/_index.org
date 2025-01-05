@@ -16,12 +16,12 @@ farm, many things are happening here.
 
 The breadth of scope does not imply you have entered a circus, but rather alludes to the nonlinearity of knowledge and its structure as a network[fn:2] [fn:3].
 
-[[/images/roam-research.png]]
+[[roam-research.png]]
 
 -----
 My last site was far simpler and served as basic I/O (input output) for myself and my students:
 
-[[/images/abajio.png]]
+[[abajio.png]]
 
 The content of this current site is more rigorous and deliberate.
 

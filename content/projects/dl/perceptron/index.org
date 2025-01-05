@@ -1,5 +1,3 @@
-
-
 +++
 title = "Perceptron"
 categories = ["supervised-learning"]
@@ -7,19 +5,7 @@ toc = "true"
 math = "true"
 +++
 
-The perceptron learning algorithm is the most simple algorithm we have for *Binary Classification*.
-
-* Algorithm
-
-#+CAPTION: Perceptron Learning Algorithm
-#+ATTR_HTML: :class lateximage :width 900px
-[[alg.svg]]
-
-
-** Explanation
-
-** Visual
-
+* Origins
 
 #+CAPTION: Neuron Activations
 #+BEGIN_CENTER
@@ -27,64 +13,415 @@ The perceptron learning algorithm is the most simple algorithm we have for *Bina
 [[perceptron.svg]]
 #+END_CENTER
 
+The perceptron learning algorithm is the most simple algorithm we have for *Binary Classification*.
+
+* The Algorithm
+
+#+CAPTION: Perceptron Learning Algorithm
+#+ATTR_HTML: :class lateximage :width 900px
+[[alg.svg]]
+
+** Explanation
+This algorithm is just a tersely condensed version of the prose:
+#+BEGIN_QUOTE
+Keep updating your weights[fn:1] according to the following rule until all your examples are correctly classified:
+
+\(w_{t} = w_{t-1} + \eta y_{t-1} \mathbf{x_{t-1}}\),
+where \(t\) is time, \(\eta\) is your learning hyperparameter, \(y_{t-1}\) is the (incorrect) outcome of the last time step, and the data vector \(\mathbf{x_{t-1}}\) is the corresponding inputs of that same previous time step.
+#+END_QUOTE
+
+** Visual
+We can step through a small example manually too:
+
+Given the following data, we wish to create a classifier that successfully separates the data. We can then do our own inferences when given a new point such as \((5,2)\) for example.
+
+|---------+----+----+-------|
+| example | x1 | x2 | class |
+|---------+----+----+-------|
+| a.      |  0 |  1 |    -1 |
+| b.      |  2 |  0 |    -1 |
+| c.      |  1 |  1 |    +1 |
+|---------+----+----+-------|
+
+Now of course a purely geometric solution can be constructed for this, and we can spin one up in a moment to match our arithmetic to, but first let us update the weights manually and see how many iterations of this algorithm are required to find such a solution.
+
+#+BEGIN_SRC jupyter-python :session py :tangle yes
+  import numpy as np
+
+  #data; note the 1's forming the bias component of our model
+  a = np.array([1,0,1,-1])
+  b = np.array([1,2,0,-1])
+  c = np.array([1,1,1,+1])
+  X = np.array([a,b,c]) # design matrix
+  eta = 1.0
+
+  w = np.array([0, 0, 0])
+
+  errors = len(w)
+  while errors > 0:
+    errors = len(w)
+    for x in X:
+      # calculate s
+      s = x[0] * w[0] + x[1] * w[1] + x[2] * w[2]
+      if (s * x[3] > 0): # checks that sign is the same.
+	errors -= 1
+      else: # updates weight vector.
+	if s > 0: #subtract
+	  w = np.array([j-eta*x[i] for i,j in enumerate(w)])
+	else: # add
+	  w = np.array([j+eta*x[i] for i,j in enumerate(w)])
+      print(w)
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+[1. 0. 1.]
+[ 0. -2.  1.]
+[ 1. -1.  2.]
+[ 0. -1.  1.]
+[ 0. -1.  1.]
+[1. 0. 2.]
+[0. 0. 1.]
+[1. 2. 1.]
+[1. 2. 1.]
+[0. 2. 0.]
+[-1.  0.  0.]
+[0. 1. 1.]
+[-1.  1.  0.]
+[-2. -1.  0.]
+[-1.  0.  1.]
+[0. 0. 2.]
+[1. 2. 2.]
+[1. 2. 2.]
+[0. 2. 1.]
+[-1.  0.  1.]
+[0. 1. 2.]
+[-1.  1.  1.]
+[-2. -1.  1.]
+[-1.  0.  2.]
+[-2.  0.  1.]
+[-2.  0.  1.]
+[-1.  1.  2.]
+[-2.  1.  1.]
+[-1.  3.  1.]
+[-1.  3.  1.]
+[0. 3. 2.]
+[-1.  1.  2.]
+[-1.  1.  2.]
+[-2.  1.  1.]
+[-1.  3.  1.]
+[-1.  3.  1.]
+[0. 3. 2.]
+[-1.  1.  2.]
+[-1.  1.  2.]
+[-2.  1.  1.]
+[-1.  3.  1.]
+[-1.  3.  1.]
+[0. 3. 2.]
+...
+#+end_example
+
+The above results are very informative, and rather unexpected. We learn a couple of things:
+1. The Perceptron Algorithm does not always converge to the optimal solution.
+   - I already knew it would not find a solution to a non-linear problem, that makes sense of course considering that you are fitting a linear decision boundary to the data.
+   - But in fact, the reason why it does not converge in this case is because *we chose bad initialisation weights*!
+2. My code above differs from the dot product code you saw in the first figure;
+   - I calculate \(s\), a useful auxillary value and then do comparisons on that variable.
+   - This was the code I wrote during my semester to solve the above problem. The only difference was that I was given different initialisation weights as such:
+
+#+BEGIN_SRC jupyter-python :session new
+  w = np.array([-1.5, 0, 2])
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+  [-2.5  0.   1. ]
+  [-2.5  0.   1. ]
+  [-1.5  1.   2. ]
+  [-2.5  1.   1. ]
+  [-2.5  1.   1. ]
+  [-1.5  2.   2. ]
+  [-2.5  2.   1. ]
+  [-3.5  0.   1. ]
+  [-2.5  1.   2. ]
+  [-2.5  1.   2. ]
+  [-2.5  1.   2. ]
+  [-2.5  1.   2. ]
+#+end_example
+
+It appears that the more asymmetric starting vector facilitates converges in just 12 steps!
+
+** Euclidean Intuition                                             :noexport:
+
+Now let us chalk up the plot and see if our algorithm's final weights produce the same decision boundary as a human would.
+
+#+BEGIN_SRC jupyter-python :session new
+  import matplotlib.pyplot as plt
+  %matplotlib inline
+
+  x1_neg = X[X[:,3] == -1][:,1]
+  x2_neg = X[X[:,3] == -1][:,2]
+  x1_pos = X[X[:,3] == +1][:,1]
+  x2_pos = X[X[:,3] == +1][:,2]
+
+  x_vals = np.linspace(-1,3,100)
+  x2 = -(w[0]+w[1]*x_vals) / w[2]
+  # ^derived from rearranging w0 + w1x1 + w2x2 = 0 in terms of x2
+
+  plt.figure(figsize=(8,6))
+  plt.scatter(x1_neg, x2_neg, color='red', label='negative class')
+  plt.scatter(x1_pos, x2_pos, color='blue', label='positive class')
+
+  plt.plot(x_vals, x2, color='green', label='decision boundary')
+  plt.plot(x_vals, -1/2*x_vals+1.5, color='grey', linestyle='--', label='upper')
+  plt.plot(x_vals, -1/2*x_vals+1.0, color='grey', linestyle='--', label='lower')
+  plt.axvline(0, color='black')
+  plt.axhline(0, color='black')
+  plt.xlabel('x1')
+  plt.ylabel('x2')
+  plt.legend()
+  plt.title("Perceptron on Euclidean Plane")
+  plt.grid()
+  plt.show()
+#+END_SRC
+
+#+RESULTS:
+[[file:./.ob-jupyter/3dcd1212605cd9a31aad8f52803555396db5c7e0.png]]
+#+ATTR_HTML: :width 400px :class jupimage
+[[euclid1.png]]
+
+Interpretting this, we see that indeed if we were draw two slopes ourselves (upper and lower), and then slice that in half we would get exactly the decision boundary that the perceptron found.
+We will now run the same code on a slightly more complicated example to see that this is not always true:
+
+** A (slightly) harder example; still 2D
+
+|---------+----+----+-------|
+| example | x1 | x2 | class |
+|---------+----+----+-------|
+| a.      | -2 | -1 |    -1 |
+| b.      |  2 | -1 |    +1 |
+| c.      |  1 |  1 |    +1 |
+| d.      | -1 | -1 |    -1 |
+| e.      |  3 |  2 |     1 |
+|---------+----+----+-------|
+
+*** Method Extraction:
+At this point, we keep reusing the same code and so let us refactor the rogue code into a more disciplined class:
+
+#+BEGIN_SRC jupyter-python :session new
+  class Perceptron:
+    def __init__(self, eta=1.0, max_iter=100):
+      self.eta = eta
+      self.max_iter = max_iter
+      self.weights = None
+
+    def fit(self, X):
+      #self.weights = np.zeros(X.shape[1]-1) #initialise weight to 0's
+      #self.weights = np.array([-1.5,0,2])
+      self.weights = np.array([5.0,1.0,1.0])
+      num_samples = X.shape[0]
+      iteration = 0
+
+      while iteration < self.max_iter:
+	errors = 0
+	for sample in X:
+          bias, x1, x2, y = sample
+          s = np.dot(self.weights, [bias, x1, x2])
+
+          if s * y <= 0:
+            errors += 1
+            update = self.eta * y * np.array([bias, x1, x2])
+            self.weights += update
+
+	print(f"Epoch {iteration}: Weights={self.weights}")
+	if errors == 0:
+          break #converged!
+	iteration += 1
+      if iteration == self.max_iter:
+	print("Reached maximum iterations without convergence.")
+
+
+    def predict(self, X):
+      if self.weights is None:
+	raise ValueError("Model not trained yet. Call fit method first!")
+      X_with_bias = np.hstack((np.ones((X.shape[0],1)),X))
+      return np.sign(X_with_bias @ self.weights)
+#+END_SRC
+
+#+RESULTS:
+
+We can quickly sanity test on our inputs from our last perceptron:
+#+BEGIN_SRC jupyter-python :session new
+  p = Perceptron()
+  p.fit(X)
+  print(f"weights: {p.weights}")
+#+END_SRC
+
+#+RESULTS:
+: Epoch 0: Weights=[-0.5  2.   1. ]
+: Epoch 1: Weights=[-0.5  2.   1. ]
+: weights: [-0.5  2.   1. ]
+
+*** IMPORTANT NOTE TO FUTURE SELF:
+there is a bug in your non-class code. this class code manages to converge on the 0 vector. you must investigate!
+
+*** Changes
+In refactoring our code we have also made some upgrades:
+1. switched to using a dot product
+2. error checking
+3. inverted the logic to increment errors and update weights only on that =if= branch
+4. migrated to measuring by epochs: 1 iteration over /all/ of the examples
+5. made our code more reusable.
+
+*** Solving Table 2:
+#+BEGIN_SRC jupyter-python :session new
+  a = np.array([1, -2, -1, -1])
+  b = np.array([1,  2, -1, +1])
+  c = np.array([1,  1,  1, +1])
+  d = np.array([1, -1, -1, -1])
+  e = np.array([1,  3,  2, +1])
+  big_X = np.array([a,b,c,d,e])
+  big_p = Perceptron()
+  big_p.fit(big_X)
+  print(f"weights: {big_p.weights}")
+#+END_SRC
+
+#+RESULTS:
+: Epoch 0: Weights=[4. 3. 2.]
+: Epoch 1: Weights=[4. 3. 2.]
+: weights: [4. 3. 2.]
+
+**** Discrepancies:
+Observe now that a different learning rate \(\eta\) yields us a different line:
+#+BEGIN_SRC jupyter-python :session new
+  big_p_new_eta = Perceptron(eta=0.4)
+  big_p_new_eta.fit(big_X)
+  print(f"weights: {big_p_new_eta.weights}")
+#+END_SRC
+
+#+RESULTS:
+: Epoch 0: Weights=[4.2 2.2 1.8]
+: Epoch 1: Weights=[3.8 2.6 2.2]
+: Epoch 2: Weights=[3.8 2.6 2.2]
+: weights: [3.8 2.6 2.2]
+
+*** Plots
+Ultimately we have multiple, imperfect solutions to the same problem.[fn:2]
+
+Let us add another method to our existing =Perceptron= class by leveraging some OOP:
+#+BEGIN_SRC jupyter-python :session new
+  class PerceptronWithPlot(Perceptron):
+    def plot_decision_boundary(self, X):
+      if self.weights is None:
+	raise ValueError("Model has not been trained. Call the fit method first!")
+
+      # extracting range for plot.
+      x_min, x_max = np.min(X[:, 1]), np.max(X[:, 1])
+      y_min, y_max = np.min(X[:, 2]), np.max(X[:, 2])
+
+      x_vals = np.linspace(x_min, x_max, 100)
+      y_vals = -(self.weights[0] + self.weights[1] * x_vals) / self.weights[2]
+
+      plt.figure(figsize=(8,6))
+      for sample in X:
+	bias, x1, x2, y = sample
+	plt.scatter(x1,x2,c='red' if y == -1 else 'blue', s = 100)
+
+      plt.plot(x_vals, y_vals, 'k--', label="Decision Boundary")
+      plt.xlabel("x1")
+      plt.ylabel("x2")
+      plt.grid()
+      plt.legend()
+      plt.show()
+
+#+END_SRC
+
+#+RESULTS:
+
+#+BEGIN_SRC jupyter-python :session new
+  model_eta10 = PerceptronWithPlot(eta=1.0)
+  model_eta01 = PerceptronWithPlot(eta=0.1)
+  model_eta10.fit(big_X)
+  model_eta01.fit(big_X)
+  model_eta10.plot_decision_boundary(X)
+  model_eta01.plot_decision_boundary(X)
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+[[eta10.png]]
+[[eta01.png]]
+:END:
+
+Clearly we can see the difference between the different choices of hyperparameters for this algorithm: the initial weight vector, as well as the eta learning rate.
+
+
+
+
 * Figures                                                          :noexport:
 
-#+LATEX_HEADER: \usepackage{algorithm2e}
+#+LATEX_HEADER: \usepackage[linesnumbered,ruled,vlined]{algorithm2e}
 #+LATEX_HEADER: \usepackage{tikz}
 #+LATEX_HEADER: \usetikzlibrary{positioning}
 #+LATEX_HEADER: \usetikzlibrary{tikzmark}
 #+LATEX_HEADER: \pagenumbering{gobble}
 
-(setq org-latex-default-process (eval (car (get 'org-latex-default-process 'standard-value))))
-
 (setq org-preview-latex-default-process 'ajlua1)
 (message "%s" org-latex-classes)
 
 ** Neuron
+\begin{tikzpicture}[basic/.style={draw,fill=blue!20,text width=1em,text badly centered},
+		    input/.style={basic,circle},
+		    weights/.style={basic,rectangle},
+		    functions/.style={basic,circle,fill=blue!10}]
+    \node[functions] (center) {};
+    \node[below of=center,font=\scriptsize,text width=4em] {Activation function};
+    \draw[thick] (0.5em,0.5em) -- (0,0.5em) -- (0,-0.5em) -- (-0.5em,-0.5em);
+    \draw (0em,0.75em) -- (0em,-0.75em);
+    \draw (0.75em,0em) -- (-0.75em,0em);
+    \node[right of=center] (right) {};
+	\path[draw,->] (center) -- (right);
+    \node[functions,left=3em of center] (left) {$\sum$};
+	\path[draw,->] (left) -- (center);
+    \node[weights,left=3em of left] (2) {$w_2$} -- (2) node[input,left of=2] (l2) {$x_2$};
+	\path[draw,->] (l2) -- (2);
+	\path[draw,->] (2) -- (left);
+    \node[below of=2] (dots) {$\vdots$} -- (dots) node[left of=dots] (ldots) {$\vdots$};
+    \node[weights,below of=dots] (n) {$w_n$} -- (n) node[input,left of=n] (ln) {$x_n$};
+	\path[draw,->] (ln) -- (n);
+	\path[draw,->] (n) -- (left);
+    \node[weights,above of=2] (1) {$w_1$} -- (1) node[input,left of=1] (l1) {$x_1$};
+	\path[draw,->] (l1) -- (1);
+	\path[draw,->] (1) -- (left);
+    \node[weights,above of=1] (0) {$w_0$} -- (0) node[input,left of=0] (l0) {$1$};
+	\path[draw,->] (l0) -- (0);
+	\path[draw,->] (0) -- (left);
+    \node[below of=ln,font=\scriptsize] {inputs};
+    \node[below of=n,font=\scriptsize] {weights};
+\end{tikzpicture}
 
-      \begin{tikzpicture}[basic/.style={draw,fill=blue!20,text width=1em,text badly centered},
-                          input/.style={basic,circle},
-                          weights/.style={basic,rectangle},
-                          functions/.style={basic,circle,fill=blue!10}]
-	  \node[functions] (center) {};
-	  \node[below of=center,font=\scriptsize,text width=4em] {Activation function};
-	  \draw[thick] (0.5em,0.5em) -- (0,0.5em) -- (0,-0.5em) -- (-0.5em,-0.5em);
-	  \draw (0em,0.75em) -- (0em,-0.75em);
-	  \draw (0.75em,0em) -- (-0.75em,0em);
-	  \node[right of=center] (right) {};
-	      \path[draw,->] (center) -- (right);
-	  \node[functions,left=3em of center] (left) {$\sum$};
-	      \path[draw,->] (left) -- (center);
-	  \node[weights,left=3em of left] (2) {$w_2$} -- (2) node[input,left of=2] (l2) {$x_2$};
-	      \path[draw,->] (l2) -- (2);
-	      \path[draw,->] (2) -- (left);
-	  \node[below of=2] (dots) {$\vdots$} -- (dots) node[left of=dots] (ldots) {$\vdots$};
-	  \node[weights,below of=dots] (n) {$w_n$} -- (n) node[input,left of=n] (ln) {$x_n$};
-	      \path[draw,->] (ln) -- (n);
-	      \path[draw,->] (n) -- (left);
-	  \node[weights,above of=2] (1) {$w_1$} -- (1) node[input,left of=1] (l1) {$x_1$};
-	      \path[draw,->] (l1) -- (1);
-	      \path[draw,->] (1) -- (left);
-	  \node[weights,above of=1] (0) {$w_0$} -- (0) node[input,left of=0] (l0) {$1$};
-	      \path[draw,->] (l0) -- (0);
-	      \path[draw,->] (0) -- (left);
-	  \node[below of=ln,font=\scriptsize] {inputs};
-	  \node[below of=n,font=\scriptsize] {weights};
-      \end{tikzpicture}
 
-
-** Perceptron Algorithm (working with c-c c-x c-l, org-preview-latex. the variables have been configured to output svg)
+** Perceptron Algorithm
 \begin{algorithm}[H]
-$i\gets 10$\;
-\eIf{$i\geq 5$}
-{
-    $i\gets i-1$\;
-}{
-    \If{$i\leq 3$}
-    {
-        $i\gets i+2$\;
+\let\vec\mathbf
+\SetAlgoLined
+\KwData{Training data $D = \{(\vec{x_i}, y_i)\}_{i=1}^{|D|}$ where $\vec{x_i} \in \mathbb{R}^n$ and $y_i \in \{-1, 1\}$}
+\KwResult{Weight vector $\vec{w}$}
+$\vec{w} \leftarrow 0$ \tcp*[h]{Other initialisations of the weight vector are possible}\;
+$converged \leftarrow \text{false}$\;
+\While{$converged = \text{false}$}{
+    $converged \leftarrow \text{true}$\;
+    \For{$i \leftarrow 1$ \KwTo $|D|$}{
+        \If{$y_i (\vec{w} \cdot \vec{x_i}) \leq 0$ \tcp*[h]{i.e., $\hat{y}_i \neq y_i$}}{
+            $\vec{w} \leftarrow \vec{w} + \eta y_i \vec{x_i}$\;
+            $converged \leftarrow \text{false}$ \tcp*[h]{We changed $\vec{w}$, so haven’t converged yet}\;
+        }
     }
 }
+\caption{Perceptron Learning Algorithm}
 \end{algorithm}
 
+* Footnotes
+[fn:2] an inevitable future post on the optimum and kernelisable SVM (support vector machine) is imminent - stay tuned. 
 
+[fn:1] or adjusting your hyperplane 
