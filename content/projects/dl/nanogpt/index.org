@@ -580,7 +580,6 @@ xbow3 = wei @ x
 torch.allclose(xbow, xbow3)
 #+END_SRC
 
-
 #+RESULTS:
 : True
 
@@ -589,7 +588,101 @@ to finish the =.py= file and obtain a val_loss less than 2.
 
 #+INCLUDE: "/code/10k-hrs-ml/PRACTISE/Andrej-Karpathy/decode-transformer/shakespeare.py" src python
 
+* Results
+After training on UNSW HPC Katana with 1GPU and 120GB of RAM for 12hours we got through 2000 training iterations of the above code and produced the following output:
+#+BEGIN_SRC SHAKESPEARE!
+MERDIA:
+At visage a tritors:
+Reignation comes it Juliet,
+For Edward alived Menta's those percisicious
+That laid go my kings what not:
+If not be heads with say the horst house lothes,
+As if no land paints her.
+Let in there come such
+From Keep'd, I am must be, and neath
+For my shurseix'd exatrent's a base or a ride,
+As I am gnown?
 
+GLOUCESTER:
+Stir, whetchet will death I hal,
+Heaven no.
+
+KING EDWARD IV:
+What spenity these friends,
+Henry to speak shall be my breast
+Wherein so rody to life thyself are were glorn
+Leys not vengeant with end gommends, and Marcius
+Upon rice his cold, and his hand; and a boind
+I hoping rof in perrow nothings
+Of if honest on our sovereign, prot commonhes,
+Be the of less of wills, I this dirt by the oten,
+Which art I seeps a land connice;
+I thout our pales will obert
+Cause intreward's pastiencey's call.
+He hateful vantage,
+Corsal affect'd Richard's light: he is fourness,
+So trad out is come to delive,
+For a burse light's to diely panion.
+
+AUTICARES:
+He shall, thirs, my lord?
+
+KING RICHARD III:
+Why, thou, darest that I say
+Here before thee, sirs, this lays at hoPt me.
+Post, like his lass'd find hard;
+And him eye goes must grown am I came.
+
+NORTHUrsman:
+Can we thou, I was not leave him befort the lame?
+
+KING RICHARD II:
+Wespert it he hath sheep-death'd!
+
+ISABELLA:
+Ah, my lord, I swarrant mind.
+
+GREY:
+Sir, I halft to laid time on upen
+A lift his troal brawl'd more with lives:
+This is tove to which to worstham in two;
+And ther no more comes in Ladne opast
+To eve, givew us gold, ere must of what made juguefy
+All out of a company as Right!
+Captain! God, I lose good near go;
+Cold mising dies and unto my slay,
+In hop now I see grows but a kiss,
+Not, sir, I see hitheld; On, best your
+Not no craft the base of Lord Sorrances. You are your
+Come own and hor hand!
+
+Third Servent:
+Sure her! how despects, the good wof the again,
+The encounter of blood atter long of,
+The paint put of ciusin; an you see, and satisted,
+I propants notting, blling on C?
+
+HENRY BOLINNE:
+O leave to back to Bencam and too.
+
+NORTANL:
+My royal,
+Shether English beson, thou cry to thee,
+When 'twicing as Plasant a purtian?'
+
+MAGSONUS:
+I have we with every them tore,
+Pale, my earthing be't it lively to pail a land,
+Where not destrove that one a minds,
+Being partue, and then exenement
+My noble that, sir.
+
+BENVOLIO:
+I will be provedent not.
+
+WARWICK:
+Ay, sick, my sover's daughter away.
+#+END_SRC
 
 
 

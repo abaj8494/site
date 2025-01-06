@@ -7,7 +7,7 @@ c = np.array([1,1,1,+1])
 X = np.array([a,b,c]) # design matrix
 eta = 1.0
 
-w = np.array([0, 0, 0])
+w = np.array([-1.5, 0, 2])
 
 errors = len(w)
 while errors > 0:

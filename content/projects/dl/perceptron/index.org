@@ -7,13 +7,31 @@ math = "true"
 
 * Origins
 
+The perceptron learning algorithm is the most simple algorithm we have for *Binary Classification*.
+
+It was introduced by Frank Rosenblatt in his seminal paper: "_The Perceptron: A Probabilistic Model for Information Storage and Organization in the Brain_" in 1958.
+The history however dates back further to the theoretical foundations of Warren McCulloch and Walter Pitts in 1943 and their paper "_A Logical Calculus of the Ideas Immanent in Nervous Activity_". The interested reader will find my annotated copies of these documents, along with links to the originals on the [[/resources][resources]] page.
+
+The proposed algorithm guarantees us a binary separation of the data provided that it is /linearly separable/. This is a big assumption, but if it the nature of our data obeys this rule then this model will fit.
+
+Marvin Minsky and Seymour Papert also reaffirmed the author's original convergence proofs in their book "_Perceptrons_", but snuffed out the method's momentum by demonstrating its inability to solve the XOR and thus potentially even more difficult problems. We would later learn that XOR could be solved with a [[/projects/dl/mlp][multi-layered perceptron]].
+
+We can see in the diagram below what Rosenblatt's theoretical perceptron looked like, how it behaved and how it resembled our own human biological neurons:
+
 #+CAPTION: Neuron Activations
 #+BEGIN_CENTER
 #+ATTR_HTML: :width 600px :class lateximage
 [[perceptron.svg]]
 #+END_CENTER
 
-The perceptron learning algorithm is the most simple algorithm we have for *Binary Classification*.
+Basically, a number of neurons would connect into our neuron, and if the summationed value was greater than some threshold, that neuron in question would fire. Mathematically we can see that above with the equation \(w_1x_1 + w_2x_2 + ... + w_nx_n > w_0\). If this is true then the step-function returns 1, otherwise -1.
+
+Here is a diagram showing how the synapses of one neuron connect to the dendrites of another. Then if enough dendrites send charges through the synaptic terminals of another neuron, then that neuron will fire!
+#+CAPTION: Synapse Diagram
+#+BEGIN_CENTER
+#+ATTR_HTML: :width 600px :class lateximage
+[[synapse.jpg]]
+#+END_CENTER
 
 * The Algorithm
 
@@ -30,7 +48,7 @@ Keep updating your weights[fn:1] according to the following rule until all your 
 where \(t\) is time, \(\eta\) is your learning hyperparameter, \(y_{t-1}\) is the (incorrect) outcome of the last time step, and the data vector \(\mathbf{x_{t-1}}\) is the corresponding inputs of that same previous time step.
 #+END_QUOTE
 
-** Visual
+** Example 1
 We can step through a small example manually too:
 
 Given the following data, we wish to create a classifier that successfully separates the data. We can then do our own inferences when given a new point such as \((5,2)\) for example.
@@ -43,9 +61,9 @@ Given the following data, we wish to create a classifier that successfully separ
 | c.      |  1 |  1 |    +1 |
 |---------+----+----+-------|
 
-Now of course a purely geometric solution can be constructed for this, and we can spin one up in a moment to match our arithmetic to, but first let us update the weights manually and see how many iterations of this algorithm are required to find such a solution.
+Now of course a purely geometric solution can be constructed for this, and we can spin one up in a moment to match our arithmetic with; but first let us update the weights manually and see how many iterations of this algorithm are required to find such a solution.
 
-#+BEGIN_SRC jupyter-python :session py :tangle yes
+#+BEGIN_SRC jupyter-python :session weird :tangle yes
   import numpy as np
 
   #data; note the 1's forming the bias component of our model
@@ -55,7 +73,8 @@ Now of course a purely geometric solution can be constructed for this, and we ca
   X = np.array([a,b,c]) # design matrix
   eta = 1.0
 
-  w = np.array([0, 0, 0])
+  #w = np.array([-1.5, 0, 2])
+  w = np.zeros(3)
 
   errors = len(w)
   while errors > 0:
@@ -73,7 +92,6 @@ Now of course a purely geometric solution can be constructed for this, and we ca
       print(w)
 #+END_SRC
 
-#+RESULTS:
 #+begin_example
 [1. 0. 1.]
 [ 0. -2.  1.]
@@ -85,26 +103,6 @@ Now of course a purely geometric solution can be constructed for this, and we ca
 [1. 2. 1.]
 [1. 2. 1.]
 [0. 2. 0.]
-[-1.  0.  0.]
-[0. 1. 1.]
-[-1.  1.  0.]
-[-2. -1.  0.]
-[-1.  0.  1.]
-[0. 0. 2.]
-[1. 2. 2.]
-[1. 2. 2.]
-[0. 2. 1.]
-[-1.  0.  1.]
-[0. 1. 2.]
-[-1.  1.  1.]
-[-2. -1.  1.]
-[-1.  0.  2.]
-[-2.  0.  1.]
-[-2.  0.  1.]
-[-1.  1.  2.]
-[-2.  1.  1.]
-[-1.  3.  1.]
-[-1.  3.  1.]
 [0. 3. 2.]
 [-1.  1.  2.]
 [-1.  1.  2.]
@@ -117,17 +115,17 @@ Now of course a purely geometric solution can be constructed for this, and we ca
 [-2.  1.  1.]
 [-1.  3.  1.]
 [-1.  3.  1.]
-[0. 3. 2.]
 ...
+another [0. 3. 2.] block ...
 #+end_example
 
 The above results are very informative, and rather unexpected. We learn a couple of things:
 1. The Perceptron Algorithm does not always converge to the optimal solution.
-   - I already knew it would not find a solution to a non-linear problem, that makes sense of course considering that you are fitting a linear decision boundary to the data.
-   - But in fact, the reason why it does not converge in this case is because *we chose bad initialisation weights*!
-2. My code above differs from the dot product code you saw in the first figure;
+   - We already knew it would not find a solution to a non-linear problem, but this problem /is/ linear; what gives?
+   - In fact, the reason why it does not converge in this case is because *we chose bad initialisation weights*!
+2. My code above differs from the algorithm figure you saw above:
    - I calculate \(s\), a useful auxillary value and then do comparisons on that variable.
-   - This was the code I wrote during my semester to solve the above problem. The only difference was that I was given different initialisation weights as such:
+   - This was the code I wrote during my semester to solve a tutorial problem. The only difference was that I was given different initialisation weights as such:
 
 #+BEGIN_SRC jupyter-python :session new
   w = np.array([-1.5, 0, 2])
@@ -151,11 +149,11 @@ The above results are very informative, and rather unexpected. We learn a couple
 
 It appears that the more asymmetric starting vector facilitates converges in just 12 steps!
 
-** Euclidean Intuition                                             :noexport:
+** Visuals: Matching our Euclidean Intuition
 
 Now let us chalk up the plot and see if our algorithm's final weights produce the same decision boundary as a human would.
 
-#+BEGIN_SRC jupyter-python :session new
+#+BEGIN_SRC jupyter-python :session weird
   import matplotlib.pyplot as plt
   %matplotlib inline
 
@@ -185,15 +183,13 @@ Now let us chalk up the plot and see if our algorithm's final weights produce th
   plt.show()
 #+END_SRC
 
-#+RESULTS:
-[[file:./.ob-jupyter/3dcd1212605cd9a31aad8f52803555396db5c7e0.png]]
 #+ATTR_HTML: :width 400px :class jupimage
 [[euclid1.png]]
 
 Interpretting this, we see that indeed if we were draw two slopes ourselves (upper and lower), and then slice that in half we would get exactly the decision boundary that the perceptron found.
-We will now run the same code on a slightly more complicated example to see that this is not always true:
+We will now run the same code on a slightly more complicated example to see that this is not always true.
 
-** A (slightly) harder example; still 2D
+** Example 2: More \(X_i\)'s; still 2D
 
 |---------+----+----+-------|
 | example | x1 | x2 | class |
@@ -206,7 +202,7 @@ We will now run the same code on a slightly more complicated example to see that
 |---------+----+----+-------|
 
 *** Method Extraction:
-At this point, we keep reusing the same code and so let us refactor the rogue code into a more disciplined class:
+At this point, we keep reusing the same code and so let us refactor the rogue perceptron code into a more disciplined class:
 
 #+BEGIN_SRC jupyter-python :session new
   class Perceptron:
@@ -261,9 +257,6 @@ We can quickly sanity test on our inputs from our last perceptron:
 : Epoch 0: Weights=[-0.5  2.   1. ]
 : Epoch 1: Weights=[-0.5  2.   1. ]
 : weights: [-0.5  2.   1. ]
-
-*** IMPORTANT NOTE TO FUTURE SELF:
-there is a bug in your non-class code. this class code manages to converge on the 0 vector. you must investigate!
 
 *** Changes
 In refactoring our code we have also made some upgrades:
@@ -355,7 +348,9 @@ Let us add another method to our existing =Perceptron= class by leveraging some 
 
 Clearly we can see the difference between the different choices of hyperparameters for this algorithm: the initial weight vector, as well as the eta learning rate.
 
+* Conclusion
 
+Clearly this is an entertaining and simple binary classifier that just works. But beyond historical homage this technique does not really flourish in our present-day world of Transformers, CNN's and Stable Diffusion models. As such this was merely a starting point for our adventure. Next in the series we will see what surrenders to the MLP ([[/projects/dl/mlp][multi-layered perceptron]]); we will then learn how to consistently find /the best/ linear decision boundary with SVM's ([[/projects/ml/svm][Support Vector Machines]]) and then extend this by kernelising applying the /linear/ SVM algorithm to even /non-linear/ data!
 
 
 * Figures                                                          :noexport:
