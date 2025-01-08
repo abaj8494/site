@@ -5,6 +5,7 @@ tags = ["knn", "random-forests"]
 toc = "true"
 math = "true"
 +++
+#+PROPERTY: header-args :tangle "~/Documents/site/static/code/10k-hrs-ml/PORTFOLIO/1-supervised-learning/classification/mnist.py"
 
 * History
 

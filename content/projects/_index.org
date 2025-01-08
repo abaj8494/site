@@ -1,12 +1,19 @@
-
 ---
 title: Hello
 toc: false
+math: true
 ---
 
 These are the projects that I am on working / have worked on in the past.
 
 These projects are all those that have had a lifecycle.
+
+The legend is as follows:
+- @@html:<input type="checkbox" checked class="archived"/>@@ *Archived.*
+- @@html:<input type="checkbox" checked class="done"/>@@ *Done*; でも \(\exists\) room for extension / improvement.
+- @@html:<input type="checkbox" class="edit"/>@@ *Editing;* code written, ideas fleshed out - prose needs to be reworked.
+- @@html:<input type="checkbox" class="refactor"/>@@ *Refactor;* initial code included, but contains bugs, is incorrect or needs better Design Patterns.
+- @@html:<input type="checkbox" class="nothing"/>@@ *Nothing*. All I have is the seedling of an idea.
 
 * Project List
 
@@ -20,58 +27,57 @@ These projects are all those that have had a lifecycle.
 :PROPERTIES:
 :CUSTOM_ID: n-bday-problems
 :END:
-
-- [[{{< ref "/projects/bday-problems#21st" >}}][21st]]
-- [[{{< ref "/projects/bday-problems#22nd" >}}][22nd]]
-- [[{{< ref "/projects/bday-problems#23rd" >}}][23rd]]
-
+- @@html:<input type="checkbox" checked class="done"/>@@ [[{{< ref "/projects/bday-problems#21st" >}}][21st]]
+- @@html:<input type="checkbox" checked class="done"/>@@ [[{{< ref "/projects/bday-problems#22nd" >}}][22nd]]
+- @@html:<input type="checkbox" checked class="done"/>@@ [[{{< ref "/projects/bday-problems#23rd" >}}][23rd]] 
+  
 ** [[/projects/latex][LaTeX]]
 :PROPERTIES:
 :CUSTOM_ID: latex
 :END:
-- [[{{< ref "/projects/latex#poems" >}}][Poems]]
-- [[{{< ref "/projects/latex#treatises" >}}][Treatises]]
-- [[{{< ref "/projects/latex#pocket-rules" >}}][Pocket Frisbee Rules]]
-- [[{{< ref "/projects/latex#booklets" >}}][Junior High Math Booklets]]
+- @@html:<input type="checkbox" checked class="archived"/>@@ [[{{< ref "/projects/latex#poems" >}}][Poems]]
+- @@html:<input type="checkbox" checked class="archived"/>@@ [[{{< ref "/projects/latex#treatises" >}}][Treatises]]
+- @@html:<input type="checkbox" checked class="archived"/>@@ [[{{< ref "/projects/latex#pocket-rules" >}}][Pocket Frisbee Rules]]
+- @@html:<input type="checkbox" class="edit"/>@@ [[{{< ref "/projects/latex#booklets" >}}][Junior High Math Booklets]]
 
 ** [[/projects/literature][Literature]]
 :PROPERTIES:
 :CUSTOM_ID: literature
 :END:
-- [[/projects/literature/library][Library]]
-- [[/projects/literature/textbook-slns][Textbook Solutions]]
-  - [[/projects/literature/textbook-slns/networked-life][Networked Life - Mung Chiang]]
-  - [[/projects/literature/textbook-slns/homl][Hands on Machine Learning]]
-  - [[/projects/literature/textbook-slns/m4ml][Mathematics for Machine Learning]]
-- [[/projects/literature/research-papers][Research Paper Notes]]
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/literature/library][Library]]
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/literature/textbook-slns][Textbook Solutions]]
+  - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/literature/textbook-slns/networked-life][Networked Life - Mung Chiang]]
+  - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/literature/textbook-slns/homl][Hands on Machine Learning]]
+  - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/literature/textbook-slns/m4ml][Mathematics for Machine Learning]]
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/literature/research-papers][Research Paper Notes]]
     
 ** [[/projects/moocs][MOOCs (Massive Open Online Courses)]]
 :PROPERTIES:
 :CUSTOM_ID: moocs-massive-open-online-courses
 :END:
-- [[/projects/moocs/cs229][CS229 Stanford]]
-- [[/projects/moocs/cs230][CS230 Stanford]]
-- [[/projects/moocs/stat110][STAT110 Harvard]]
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/moocs/cs229][CS229 Stanford]]
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/moocs/cs230][CS230 Stanford]]
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/moocs/stat110][STAT110 Harvard]]
 
 ** [[/projects/ccs][Classical Computer Science]]
 :PROPERTIES:
 :CUSTOM_ID: classical-computer-science
 :END:
-- [[/projects/ccs/leetcode][Leetcode]]
-- [[/projects/ccs/sorting][Sorting]]
-- [[/projects/ccs/searching][Searching]]
-- [[/projects/ccs/graph][Graph]]
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/leetcode][Leetcode]]
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/sorting][Sorting]]
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/searching][Searching]]
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/graph][Graph]]
 
 ** [[/projects/csp][Computer Science Projects]]
 :PROPERTIES:
 :CUSTOM_ID: computer-science-projects
 :END:
-- [[/projects/ccs/connect-4][Connect 4]]
-- [[/projects/ccs/file-encrypter][File Encrypter (Bytelocker)]]
-- [[/projects/ccs/lan-messenger][LAN Messenger]]
-- [[/projects/ccs/messenger-web-app][Messenger Web App (full-stack)]]
-- [[/projects/ccs/banagrams-solver][Banagrams Solver]]
-- [[/projects/ccs/peg-solitaire][Peg Solitaire]]
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/connect-4][Connect 4]]
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/file-encrypter][File Encrypter (Bytelocker)]]
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/lan-messenger][LAN Messenger]]
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/messenger-web-app][Messenger Web App (full-stack)]]
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/banagrams-solver][Banagrams Solver]]
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/peg-solitaire][Peg Solitaire]]
   
 ** [[/projects/ai][Artificial Intelligence]]
 :PROPERTIES:
@@ -82,15 +88,15 @@ These projects are all those that have had a lifecycle.
 :PROPERTIES:
 :CUSTOM_ID: adversarial-searching
 :END:
-- [[/projects/ai/adversarial-searching/ultimate-ttt][Ultimate Tic Tac Toe Bot]]
-- [[/projects/ai/adversarial-searching/chess-bot][Chess Bot]]
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ai/adversarial-searching/ultimate-ttt][Ultimate Tic Tac Toe Bot]]
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ai/adversarial-searching/chess-bot][Chess Bot]]
   
 *** [[/projects/ai/csp][Constraint Satisfaction Problems]]
 :PROPERTIES:
 :CUSTOM_ID: csp
 :END:
-- [[/projects/ai/csp/hashiwokakero][Hashiwokakero (Bridges) Solver]]
-- [[/projects/ai/csp/sudoku][Sudoku]]
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ai/csp/hashiwokakero][Hashiwokakero (Bridges) Solver]]
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ai/csp/sudoku][Sudoku]]
 
 ** [[/projects/ml][Machine Learning]]
 :PROPERTIES:
@@ -101,42 +107,43 @@ These projects are all those that have had a lifecycle.
 :PROPERTIES:
 :CUSTOM_ID: supervised-learning
 :END:
-- [[/projects/ml/supervised/mnist][MNIST]] #drosophilia #lecun #supervised #classification
-- [[/projects/ml/supervised/fmnist][FMNIST (Fashion)]] #supervised #classification
-- [[/projects/ml/supervised/kmnist][KMNIST (Kuzushiji)]] #supervised #classification #cnn
-- [[/projects/ml/supervised/cifar][CIFAR]] #cnn #multiclass
-- [[/projects/ml/supervised/iris][IRIS]] #
-- [[/projects/ml/supervised/imagenet][ImageNet]]
-- [[/projects/ml/supervised/boston-housing][Boston Housing]] #regression
-- [[/projects/ml/supervised/wine-quality][Wine Quality]] 
-- [[/projects/ml/supervised/pima-indians][Pima Indians Diabetes]]
-- [[/projects/ml/supervised/imdb-reviews][IMDB Reviews]]
-- [[/projects/ml/supervised/titanic][Titanic Deaths]] #classification
-- [[/projects/ml/supervised/spam][Email SPAM]] #naive-bayes #classification
+- @@html:<input type="checkbox" checked class="done"/>@@ [[/projects/ml/supervised/mnist][MNIST]] #drosophilia #lecun #supervised #classification
+- @@html:<input type="checkbox" class="refactor"/>@@ [[/projects/ml/supervised/life-expectancy][Life Expectancy]]
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ml/supervised/fmnist][FMNIST (Fashion)]] #supervised #classification
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ml/supervised/kmnist][KMNIST (Kuzushiji)]] #supervised #classification #cnn
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ml/supervised/cifar][CIFAR]] #cnn #multiclass
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ml/supervised/iris][IRIS]] #
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ml/supervised/imagenet][ImageNet]]
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ml/supervised/california-housing][California Housing]] #regression
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ml/supervised/wine-quality][Wine Quality]] 
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ml/supervised/pima-indians][Pima Indians Diabetes]]
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ml/supervised/imdb-reviews][IMDB Reviews]]
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ml/supervised/titanic][Titanic Deaths]] #classification
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ml/supervised/spam][Email SPAM]] #naive-bayes #classification
   
 *** [[/projects/ai/unsupervised][Unsupervised Learning]]
 :PROPERTIES:
 :CUSTOM_ID: unsupervised-learning
 :END:
-- [[/projects/ml/unsupervised/kdd-cup][KDD Cup 1999]]
-- [[/projects/ml/unsupervised/digits][Digits]]
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ml/unsupervised/kdd-cup][KDD Cup 1999]]
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ml/unsupervised/digits][Digits]]
 
 ** [[/projects/dl][Deep Learning]]
 :PROPERTIES:
 :CUSTOM_ID: deep-learning
 :END:
-- [[/projects/dl/benchmarking][Hardware Benchmarking]]
-- [[/projects/dl/perceptron][Perceptron]] #classification
-- [[/projects/dl/mlp][Multilayer Perceptron]]
-- [[/projects/dl/KiTS19][KiTS19 Kidney and Kidney Tumour Segmentation]]
-- [[/projects/dl/llm-tune][Fine Tuning LLM]]
-- [[/projects/dl/rag][RAG]]
-- [[/projects/dl/cnn-scratch][CNN from scratch]]
-- [[/projects/dl/llm-scratch][LLM from scratch]]
-- [[/projects/dl/Kanye-West-RNN][RNN on the Music of Kanye West]]
-- [[/projects/ai/sentiment-analysis][Sentiment Analysis]]
-- [[/projects/dl/cartpole][CartPole]]
-- [[/projects/dl/neetcode][Neetcode.io]]
-- [[/projects/dl/micrograd.org][Micrograd - Andrej Karpathy]]
-- [[/projects/dl/mingpt][minGPT - Karpathy]]
-- [[/projects/dl/nanogpt][nanoGPT - Karpathy]]
+- @@html:<input type="checkbox" checked class="done"/>@@ [[/projects/dl/benchmarking][Hardware Benchmarking]]
+- @@html:<input type="checkbox" checked class="archived"/>@@ [[/projects/dl/perceptron][Perceptron]] #classification
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/dl/mlp][Multilayer Perceptron]]
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/dl/KiTS19][KiTS19 Kidney and Kidney Tumour Segmentation]]
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/dl/llm-tune][Fine Tuning LLM]]
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/dl/rag][RAG]]
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/dl/cnn-scratch][CNN from scratch]]
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/dl/llm-scratch][LLM from scratch]]
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/dl/Kanye-West-RNN][RNN on the Music of Kanye West]]
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ai/sentiment-analysis][Sentiment Analysis]]
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/dl/cartpole][CartPole]]
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/dl/neetcode][Neetcode.io]]
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/dl/micrograd.org][Micrograd - Andrej Karpathy]]
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/dl/mingpt][minGPT - Karpathy]]
+- @@html:<input type="checkbox" checked class="done"/>@@ [[/projects/dl/nanogpt][nanoGPT - Karpathy]]

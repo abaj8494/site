@@ -3,46 +3,117 @@
   See: https://getbootstrap.com/docs/5.0/layout/breakpoints/#available-breakpoints
 */
 .language-jupyter-python {
-    @apply .language-python;
+  @apply .language-python;
 }
 
 [data-theme="dark"] .lateximage {
-    filter: invert(1) brightness(1); 
+  filter: invert(1) brightness(1);
 }
 
 .lateximage {
-    background: transparent; /* Ensure no background */
-    border: none;           /* Remove borders if any */
-    margin: none;              /* Reset margins */
-    padding: none;             /* Reset padding */
+  background: transparent; /* Ensure no background */
+  border: none; /* Remove borders if any */
+  margin: none; /* Reset margins */
+  padding: none; /* Reset padding */
 }
 
 /* Used for algorithm2e: */
-div.alg2evline{
-    margin-left: 1em ;
-    padding-left: 1em ;
-    border-left: 1px solid black ;
-    border-radius: 0px 0px 0px 1ex ;
+div.alg2evline {
+  margin-left: 1em;
+  padding-left: 1em;
+  border-left: 1px solid black;
+  border-radius: 0px 0px 0px 1ex;
 }
 
-div.alg2evsline{
-    margin-left: 1em ;
-    padding-left: 1em ;
-    border-left: 1px solid black ;
+div.alg2evsline {
+  margin-left: 1em;
+  padding-left: 1em;
+  border-left: 1px solid black;
 }
 
-div.alg2enoline{
-    margin-left: 1em ;
-    padding-left: 1em ;
+div.alg2enoline {
+  margin-left: 1em;
+  padding-left: 1em;
 }
 
-span.alg2elinenumber{
-    margin-right: .5em ;
-    font-size: 60% ;
-    color: red ;
+span.alg2elinenumber {
+  margin-right: 0.5em;
+  font-size: 60%;
+  color: red;
 }
 
+input[type="checkbox"].archived {
+  appearance: none;
+  width: 13px;
+  height: 13px;
+  border: 1px solid black;
+  border-radius: 3px;
+  background-color: #aec6cf;
+  position: relative;
+  cursor: none;
+  /*filter: sepia(100%) brightness(80%) hue-rotate(170deg) saturate(70%) contrast(300%);*/
+}
 
+input[type="checkbox"].done {
+  appearance: none;
+  width: 13px;
+  height: 13px;
+  border: 1px solid black;
+  border-radius: 3px;
+  background-color: #77dd77;
+  position: relative;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+input[type="checkbox"]:checked::before {
+  content: "✓"; /* Unicode checkmark */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 10px;
+  color: black;
+}
+
+input[type="checkbox"].edit {
+  appearance: none; /* Remove default checkbox styling */
+  width: 13px; /* Set width */
+  height: 13px; /* Set height */
+  position: relative;
+  border: 1px solid black;
+  border-radius: 3px;
+  background-color: #fffaa0;
+  cursor: none;
+}
+input[type="checkbox"].refactor {
+  appearance: none; /* Remove default checkbox styling */
+  width: 13px; /* Set width */
+  height: 13px; /* Set height */
+  position: relative;
+  border: 1px solid black;
+  border-radius: 3px;
+  background-color: #ffb347;
+  cursor: none;
+}
+input[type="checkbox"].nothing {
+  appearance: none; /* Remove default checkbox styling */
+  width: 13px; /* Set width */
+  height: 13px; /* Set height */
+  position: relative;
+  border: 1px solid black;
+  border-radius: 3px;
+  background-color: #ff6961;
+  cursor: none;
+}
+
+input[type="checkbox"] {
+  pointer-events: none;
+}
+
+[data-theme="dark"] input[type="checkbox"] {
+  border-width: 0px;
+}
 
 @custom-media --sm (min-width: 576px);
 @custom-media --md (min-width: 768px);
