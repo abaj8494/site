@@ -1,6 +1,7 @@
 +++
 title = "Perceptron"
 categories = ["supervised-learning"]
+tags = ["classification", "neurons", "linear", "binary"]
 toc = "true"
 math = "true"
 +++

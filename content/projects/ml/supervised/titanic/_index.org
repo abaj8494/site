@@ -1,5 +1,0 @@
-+++
-title = "Titanic Deaths"
-categories = ["ai", "ml", "supervised"]
-tags = ["logistic-regression", "binary-classification", "classification"]
-+++

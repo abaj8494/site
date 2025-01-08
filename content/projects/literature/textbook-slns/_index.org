@@ -1,5 +1,6 @@
----
-title: Textbook Solutions
----
++++
+title = "Textbook Solutions"
+tags = ["python", "mathjax"]
++++
 
 

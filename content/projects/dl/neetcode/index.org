@@ -1,3 +1,4 @@
 +++
 title = "Neetcode Solutions"
+tags = ["litmus-test", "problem-solving", "employment"]
 +++

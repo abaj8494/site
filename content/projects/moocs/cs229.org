@@ -1,5 +1,19 @@
 +++
-title = "Machine Learning"
+title = "Stanford CS229: Machine Learning"
 categories = ["mooc"]
-tags = ["cs229", "stanford"]
+tags = ["supervised-learning", "unsupervised-learning", "learning-theory"]
 +++
+
+supervised learning
+(generative/discriminative learning,
+parametric/non-parametric learning,
+neural networks,
+support vector machines);
+unsupervised learning
+(clustering,
+dimensionality reduction,
+kernel methods);
+learning theory
+(bias/variance tradeoffs,
+practical advice);
+reinforcement learning and adaptive

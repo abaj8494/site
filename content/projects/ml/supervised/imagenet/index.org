@@ -1,6 +1,6 @@
 +++
 title = "Image NET"
 categories = ["ai", "ml", "supervised", "images"]
-tags = ["resnet-50"]
+tags = ["classification", "resnet-50"]
 +++
 

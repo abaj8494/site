@@ -1,4 +1,6 @@
 +++
 title = "Mathematics for Machine Learning"
-author = "Deng"
+author = "Marc Peter Deisenroth, A. Aldo Faisal and Cheng Soon Ong"
+categories = ["machine-learning", "mathematics"]
+tags = ["linear-algebra", "calculus", "probability", "matrix-calculus"]
 +++

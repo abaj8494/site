@@ -1,1 +1,7 @@
++++
+title = "Research Papers"
+categories = ["research"]
+tags = ["perceptron", "cnn", "rnn", "attention", "gpt"]
++++
+
 Here is a table of all the research papers I have read.

@@ -1,6 +1,6 @@
 +++
 title = "Predicting Life Expectancy"
-tags = ["regression", "pandas", "loocv", "lasso", "ridge", "eda", "hyperparameter-tuning"]
+tags = ["linear-regression", "pandas", "loocv", "lasso", "ridge", "eda", "hyperparameter-tuning"]
 categories = ["supervised-learning", "regression"]
 toc = "true"
 math = "true"

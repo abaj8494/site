@@ -1,0 +1,5 @@
++++
+title = "Multilayer Perceptron"
+categories = ["non-linear"]
+tags = ["xor", "feedforward-networks", "backpropagation"]
++++

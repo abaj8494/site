@@ -1,0 +1,17 @@
++++
+title = "Searching Algos"
+categories = ["computer-science"]
+tags = ["naive", "heuristic"]
++++
+
+* Naive Search
+
+* DFS
+
+* BFS
+
+* Heuristic Search
+
+* A star search
+
+* Monte Carlo (MCMT)

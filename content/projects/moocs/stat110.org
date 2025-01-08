@@ -1,5 +1,5 @@
 +++
-title = "Probability"
+title = "Harvard STAT110: Probability"
 categories = ["mooc"]
-tags = ["stat110", "harvard"]
+tags = ["random-variables", "expectation", "markov-chains"]
 +++

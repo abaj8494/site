@@ -1,4 +1,6 @@
----
-title: Hands on Machine Learning
-author: au
----
++++
+title = "Hands on Machine Learning"
+author = "Aurélien-Géron"
+categories = ["machine-learning"]
+tags = ["scikit-learn", "keras", "tensorflow"]
++++

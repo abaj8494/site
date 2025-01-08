@@ -1,5 +1,7 @@
 +++
 title = "Library"
+categories = ["fiction", "non-fiction"]
+tags = ["ai", "computer-science", "mathematics", "japanese", "self-help", "literary-canon", "anthropology", "psychology", "comics"]
 +++
 
 These are all the books that I own / have owned in the past. I have not read them all, neither will I ever be able to. My favourites are listed first.

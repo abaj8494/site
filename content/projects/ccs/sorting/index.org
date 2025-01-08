@@ -1,0 +1,30 @@
++++
+title = "Sorting"
+categories = ["computer-science"]
+tags = ["big-oh", "stable", "online", "parallel"]
++++
+
+* Time Complexity Explainer
+
+* O(n^2) Searches
+
+** Insertion Sort
+
+** Selection Sort
+
+** etc
+
+* O(n log(n)) Searches
+
+** Merge Sort
+
+* O(n) Searches
+
+** Bucket Sort
+
+
+* To classify
+
+** Bubblesort
+
+** Bogosort

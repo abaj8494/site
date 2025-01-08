@@ -1,0 +1,7 @@
++++
+title = "Linux"
+categories = ["notes"]
+tags = ["emacs", "sed", "awk", "gdb"]
++++
+
+Here are my notes on Linux:

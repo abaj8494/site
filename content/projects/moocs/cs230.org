@@ -1,5 +1,5 @@
 +++
-title = "Deep Learning"
+title = "Stanford CS230: Deep Learning"
 categories = ["mooc"]
-tags = ["cs230", "stanford"]
+tags = ["cnn", "rnn", "neural-networks"]
 +++

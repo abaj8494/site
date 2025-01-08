@@ -1,4 +1,7 @@
----
-title: Networked Life by Mung Chiang
-author: Mung Chiang
----
++++
+title = "Networked Life"
+author = "Mung Chiang"
+categories = ["networks"]
+tags = ["advanced-algorithms", "game-theory", "internet"]
++++
+
