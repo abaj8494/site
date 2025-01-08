@@ -1,0 +1,8 @@
+{{- $page := site.GetPage (.Get 0) -}}
+{{- if $page -}}
+  {{- range $page.Params.tags -}}
+    <a href="{{ "/tags/" | relURL }}{{ . | urlize }}" class="tag-button">#{{ . }}</a>
+  {{- end -}}
+{{- else -}}
+  <p>Page not found.</p>
+{{- end -}}

@@ -1,5 +1,7 @@
 +++
 title = "21 Birthday Problems"
+categories = ["bday-problems"]
+tags = ["mathematics", "undergraduate", "high-school"]
 +++
 {{< collapse folded="true" >}}
 

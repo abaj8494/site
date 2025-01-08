@@ -1,6 +1,7 @@
 +++
 title = "23 Birthday Problems"
-tags = ["bday-problems"]
+categories = ["bday-problems"]
+tags = ["matrix-calculus", "power-series", "probability", "mle", "least-squares", "regression"]
 +++
 {{< collapse folded="true" >}}
 

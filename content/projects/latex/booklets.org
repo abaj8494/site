@@ -1,0 +1,15 @@
++++
+title = "Typeset High School Math Booklets"
+categories = ["latex", "cambridge-ice-em"]
+tags = ["yr7", "yr8", "yr9"]
++++
+
+In an attempt to continue producing increasingly sophisticated TeX I produced some Mathematics booklets for Year 7's and 8's that mimicked the Cambridge ICE-EM NSW Mathematics series.
+
+I was basically fleshing out that entire textbook into an interactive booklet with space to write. As a result I learned to effectively produce figures and leverage the =exam= class. I also learned how to produce far larger documents, with some booklets nearing 50 pages in length to satisfy 3 hours of tuition.
+
+Since the source code basically forms a repository for this project HERE is the link to the nginx indexed directory.
+
+And one courtesy booklet for show:
+
+TODO EMBED BOOKLET

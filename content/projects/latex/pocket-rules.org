@@ -1,0 +1,41 @@
++++
+title = "Typeset Frisbee Rules"
+categories = ["latex"]
+tags = ["ultimate-frisbee"]
++++
+
+This was my first voyeur into splitting my source code up into multiple files, much in the way we do for any good computer program.
+
+I produced a pocket version of the easy-to-forget rules in Ultimate Frisbee
+
+Here is the directory structure
+
+#+BEGIN_SRC shell
+  [rpi@rpi treatises]$ tree frisbee
+  frisbee
+  ├── 0-field.tex
+  ├── 1-summary.tex
+  ├── 2-definitions.tex
+  ├── 3a-pull.tex
+  ├── 3b-stall.tex
+  ├── 3c-stoppages.tex
+  ├── 3d-misc.tex
+  ├── 4-fouls.tex
+  ├── 4-turnovers.tex
+  ├── 5-fouls.tex
+  ├── 5-infractions.tex
+  ├── 6-infractions.tex
+  ├── 6-violations.tex
+  ├── 7-violations.tex
+  ├── 8-handsignals.tex
+  ├── rules.aux
+  ├── rules.log
+  ├── rules.pdf
+  └── rules.tex
+#+END_SRC
+
+** Pocket Rules
+*** PDF
+
+*** Source
+#+INCLUDE: "/code/latex/frisbee/rules.tex" src latex

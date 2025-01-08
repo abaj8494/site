@@ -17,29 +17,24 @@
   padding: none; /* Reset padding */
 }
 
-/* Used for algorithm2e: */
-div.alg2evline {
-  margin-left: 1em;
-  padding-left: 1em;
-  border-left: 1px solid black;
-  border-radius: 0px 0px 0px 1ex;
+.tag-button {
+  display: inline-block;
+  padding: 1px 2px;
+  margin: 0.2em;
+  border: 1px solid var(--bg2);
+  border-radius: 3px;
+  background-color: var(--bg1);
+  color: var(--fg1);
+  text-decoration: none;
+  font-size: 0.9em;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
 }
 
-div.alg2evsline {
-  margin-left: 1em;
-  padding-left: 1em;
-  border-left: 1px solid black;
-}
-
-div.alg2enoline {
-  margin-left: 1em;
-  padding-left: 1em;
-}
-
-span.alg2elinenumber {
-  margin-right: 0.5em;
-  font-size: 60%;
-  color: red;
+.tag-button:hover {
+  background-color: var(--bg1);
+  color: var(--fg1);
 }
 
 input[type="checkbox"].archived {

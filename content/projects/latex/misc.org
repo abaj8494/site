@@ -1,0 +1,12 @@
++++
+title = "Typeset Everything!"
+categories = ["latex"]
+tags = ["misc"]
++++
+
+To supplement your skill you must also cook up small documents in the interim, such as letters, invoices, birthday cards, one-off proofs and satirical pieces.
+
+Stefan Kottwitz' Cookbook was of good help for these tasks, and in doing these things you will keep touching up your knife's blade.
+
+
+TODO: insert unigames + pythagoras

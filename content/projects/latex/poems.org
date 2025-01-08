@@ -1,0 +1,42 @@
++++
+title = "Typeset Poems"
+categories = ["latex"]
+tags = ["rosemary-dobson", "ts-eliot", "sylvia-plath", "wilfred-owens"]
++++
+{{< collapse folded="true" >}}
+This is my first experience practising what I had learned from the tutorials[fn:1] and Kottwitz's Beginner's Guide
+
+
+** Canberra Morning - Rosemary Dobson
+*** PDF
+
+*** Source
+#+INCLUDE: "/code/latex/poems/canberra-morning.tex" src latex
+
+** The Story of J. Alfred Prufrock - T.S. Eliot
+*** PDF
+
+*** Source
+#+INCLUDE: "/code/latex/poems/the-love-song-of-j-alfred-prufrock.tex" src latex
+
+** A Birthday Present - Sylvia Plath
+*** PDF
+
+*** Source
+#+INCLUDE: "/code/latex/poems/a-birthday-present.tex" src latex
+
+** Anthem for Doomed Youth - Wilfred Owen
+*** PDF
+
+*** Source
+#+INCLUDE: "/code/latex/poems/anthem-for-doomed-youth.tex" src latex
+
+** The Hollow Men - T.S. Eliot
+*** PDF
+
+*** Source
+#+INCLUDE: "/code/latex/poems/the-hollow-men.tex" src latex
+
+* Footnotes
+
+[fn:1] _"[[https://dl.icdst.org/pdfs/files/4bef65c49001dba38e07a049fde3a4c8.pdf][A Short Introduction to Latex]]"_ and then later the _[[https://richardson.byu.edu/624/fall_2023/latex-introduction.pdf]["Not So Short Introduction to Latex]]"_
