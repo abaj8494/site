@@ -46,6 +46,7 @@ input[type="checkbox"].archived {
   background-color: #aec6cf;
   position: relative;
   cursor: none;
+  pointer-events: none;
   /*filter: sepia(100%) brightness(80%) hue-rotate(170deg) saturate(70%) contrast(300%);*/
 }
 
@@ -69,6 +70,7 @@ input[type="checkbox"]:checked::before {
   transform: translate(-50%, -50%);
   font-size: 10px;
   color: black;
+  pointer-events: none;
 }
 
 input[type="checkbox"].edit {
@@ -80,6 +82,7 @@ input[type="checkbox"].edit {
   border-radius: 3px;
   background-color: #fffaa0;
   cursor: none;
+  pointer-events: none;
 }
 input[type="checkbox"].refactor {
   appearance: none; /* Remove default checkbox styling */
@@ -90,6 +93,7 @@ input[type="checkbox"].refactor {
   border-radius: 3px;
   background-color: #ffb347;
   cursor: none;
+  pointer-events: none;
 }
 input[type="checkbox"].nothing {
   appearance: none; /* Remove default checkbox styling */
@@ -100,14 +104,19 @@ input[type="checkbox"].nothing {
   border-radius: 3px;
   background-color: #ff6961;
   cursor: none;
-}
-
-input[type="checkbox"] {
   pointer-events: none;
 }
 
 [data-theme="dark"] input[type="checkbox"] {
   border-width: 0px;
+}
+
+a:visited {
+  color: #9b59b6; /* Choose your desired color for visited links */
+}
+
+.site-header a:visited {
+  color: inherit; /* Keep the color same as unvisited */
 }
 
 @custom-media --sm (min-width: 576px);

@@ -12,7 +12,7 @@ The legend is as follows:
 - @@html:<input type="checkbox" class="edit"/>@@ *Editing;* code written, ideas fleshed out - prose needs to be reworked.
 - @@html:<input type="checkbox" class="refactor"/>@@ *Refactor;* initial code included, but contains bugs, is incorrect or needs better Design Patterns.
 - @@html:<input type="checkbox" class="nothing"/>@@ *Nothing*. All I have is the seedling of an idea.
-*Note:* The unticked projects _do not_ come with /any/ warranty. You may be mislead; @@html:<font color="blue">\(\mathfrak{hic\,\,sunt\,\,dracones}\)</font>@@.
+*Note:* The unticked projects _do not_ come with /any/ warranty. You may be mislead; @@html:<font color="#0071c5">\(\mathfrak{hic\,\,sunt\,\,dracones}\)</font>@@.
   
 You may also view the entire =tag= taxonomy [[/tags][here]].
 * Project List

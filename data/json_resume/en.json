@@ -26,9 +26,20 @@
   },
   "projects": [
     {
+     "name": "This Site",
+	"description": "Aayush Bajaj's Archived Intellect. Contains a CS degree, Masters in Statistics and the intellectual spinoffs in between.",
+      "startDate": "2024-12-21",
+      "highlights": [
+          "Revisited all of the labs of all my AI courses at uni, and worked through many Deep Learning textbooks. Organised my CS notes and trampolined off all this knowledge to solve my own novel problems with the power of ML."
+      ],
+	"roles": ["Scientist", "Tinkerer"],
+	"keywords": ["emacs", "orgmode", "zettelkasten", "jupyter", "anaconda"]
+    },
+      {
      "name": "KiTS19 Grand Challenge",
      "description": "Kidney and Kidney Tumour Segmentation from 3D Volumetric CT (Computed Tomography) scans",
-      "startDate": "2024-10-01",
+	  "startDate": "2024-10-01",
+	  "endDate": "2024-11-19",
       "highlights": [
           "Experienced the full Deep Learning Pipeline: lit review, preprocessing, training, reporting results. Successfully trained task with mean dice score of 87."
       ],
