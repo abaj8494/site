@@ -13,7 +13,7 @@ main {
   display: grid;
   grid-area: main;
   grid-template-areas: "empty content sidebar";
-  grid-template-columns: 1fr minmax(0, 900px) 4fr;
+  grid-template-columns: 1fr minmax(0, 1000px) 4fr;
 }
 
 header {
@@ -36,17 +36,18 @@ footer {
 
 .content {
   & a {
-      color: var(--primary-alt);
+    color: var(--primary-alt);
   }
 
   & a:hover {
     color: var(--primary);
   }
   & a[href^="http://"]:not([href*="localhost"]):not([href*="192.168.1.113"]):not([href^="http://abaj.ai"])::after,
-  a[href^="https://"]:not([href*="localhost"]):not([href*="192.168.1.113"]):not([href^="https://abaj.ai"])::after {
-  content: "\2009↗";
-  font-size: 0.9em;
-  color: inherit;
+  a[href^="https://"]:not([href*="localhost"]):not([href*="192.168.1.113"]):not([href^="https://abaj.ai"])::after
+  {
+    content: "\2009↗";
+    font-size: 0.9em;
+    color: inherit;
   }
 }
 
