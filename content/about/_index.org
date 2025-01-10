@@ -30,6 +30,8 @@ I play Ultimate Frisbee and have 2 cats. I ride an Enfield Bullet and built most
 [[rpi-dev.jpg]]
 #+ATTR_HTML: :width 300px
 [[tex-stack.jpg]]
+#+ATTR_HTML: :width 300px
+[[a-on-500.jpg]]
 
 #+ATTR_HTML: :width 200px
 [[spotify-21.jpg]]

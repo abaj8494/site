@@ -1,8 +1,11 @@
-#+title: Resources
-#+TOC: headlines 2
++++
+title = "| Resources!    |\n| Hello,   |"
+toc = "true"
++++
 
-* Greetings,
 I shall try to be as helpful as possible here. 
+
+{{< collapse folded="false">}}
 
 * Anki decks
 - [[/resources/anki/ml.apkg][Machine Learning]]
@@ -16,14 +19,131 @@ I shall try to be as helpful as possible here.
 * MOOCs
 See the projects section for my solutions
 ** Stanford CS229, Summer 2020
-Ass0 | Sols
-Ass1 | Sols
-Ass2 | Sols
-Ass3 | Sols
 
-* Annotated Papers
-TODO links
+/these are the official solutions and problem sets!/
+- Ass0 | Sols
+- Ass1 | Sols
+- Ass2 | Sols
+- Ass3 | Sols
+
+* AI Links (papers, blogs, vids, etc)
+
+** Training Deep Neural Networks
+- [[https://www.ruder.io/optimizing-gradient-descent/][An Overview of Gradient Descent Optimisation Algorithms]]
+- [[https://www.deeplearning.ai/ai-notes/optimization/index.html][Parameter Optimisation in Neural Networks]]
+
+** Understanding CNNs
+- [[https://www.youtube.com/watch?v=JboZfxUjLSk][Visualising Convolutional Neural Networks - Layer by Layer]]
+- [[https://machinelearningmastery.com/how-to-visualize-filters-and-feature-maps-in-convolutional-neural-networks/][How to Visualise Filters and Feature Maps in Convolutional Neural Networks]]
+- [[https://adeshpande3.github.io/A-Beginner's-Guide-To-Understanding-Convolutional-Neural-Networks/][A Beginner's Guide to Understanding Convolutional Neural Networks]]
+- [[https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets/][An Intuitive Explanation of Convolutional Neural Networks]]
+
+** CNN papers
+- [[http://vision.stanford.edu/cs598_spring07/papers/Lecun98.pdf][LeNet]]
+- [[https://proceedings.neurips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf][AlexNet]]
+- [[https://arxiv.org/abs/1409.1556][VGG-Net]]
+- [[https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf][ResNet]]
+- [[https://openaccess.thecvf.com/content_cvpr_2017/papers/Huang_Densely_Connected_Convolutional_CVPR_2017_paper.pdf][DenseNet]]
+- [[https://arxiv.org/pdf/1704.04861][MobileNet]]
+
+** Understanding Word Embeddings and RNN's
+- [[https://adeshpande3.github.io/Deep-Learning-Research-Review-Week-3-Natural-Language-Processing][Understanding Natural Language Processing]]
+- [[https://colah.github.io/posts/2015-08-Understanding-LSTMs/][Understanding Long Short-Term Memory (LSTM)]]
+- [[https://towardsdatascience.com/illustrated-guide-to-lstms-and-gru-s-a-step-by-step-explanation-44e9eb85bf21][Illustrated Guide to LSTM's and GRU's]]
+- [[https://distill.pub/2019/memorization-in-rnns/][Visualising memorisation in RNNs]]
+- [[https://mi-pages.informatik.uni-ulm.de/explornn/][exploRNN: teaching RNNs through visual exploration]]
+- [[https://colah.github.io/posts/2014-07-NLP-RNNs-Representations/][Word Vectors]]
+- [[http://jalammar.github.io/illustrated-word2vec/][The Illustrated Word2Vec]]
+- [[http://karpathy.github.io/2015/05/21/rnn-effectiveness/][The Unreasonable Effectiveness of Recurrent Neural Networks]]
+- [[https://nlp.stanford.edu/projects/glove/][GloVe: Global Vectors for Word Representation]]
+- [[https://proceedings.neurips.cc/paper_files/paper/2018/file/e2eabaf96372e20a9e3d4b5f83723a61-Paper.pdf][Relational Recurrent Neural Networks]]
+- [[https://lilianweng.github.io/posts/2018-06-24-attention/][Blog - Attention? Attention!]]
+- [[http://jalammar.github.io/illustrated-transformer/][Blog - The Illustrated Transformer by Jay Alammar]]
+- [[http://veredshwartz.blogspot.com/2015/09/language-models.html][Blog - Language Models]]
+- [[https://iclr.cc/archive/www/lib/exe/fetch.php%3Fmedia=iclr2015:bahdanau-iclr2015.pdf][Neural Machine Translation by Jointly Learning to Align and Translate]]
+- [[https://pytorch.org/tutorials/beginner/text_sentiment_ngrams_tutorial.html][PyTorch - Text classification with the torch text library]]
+- [[https://pytorch.org/tutorials/intermediate/seq2seq_translation_tutorial.html][PyTorch - NLP from scratch: Translation with a Sequence to Sequence Network and Attention]]
+
+
+** LLM's
+- [[https://proceedings.neurips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf][Transformer Paper - Attention is All You Need]]
+- [[https://aclanthology.org/N18-1202.pdf][ELMO]]
+- [[https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf][GPT]]
+- [[https://aclanthology.org/N19-1423/][BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding]]
+- [[https://aclanthology.org/2020.acl-main.747/][XLM]]
+- [[https://proceedings.neurips.cc/paper_files/paper/2019/file/dc6a7e655d7e5840e66733e9ee67cc69-Paper.pdf][XLNet]]
+- [[https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf][GPT-2]]
+- [[https://openreview.net/forum?id=SyxS0T4tvS][RoBERTa]]
+- [[https://parsa.epfl.ch/course-info/cs723/papers/Megatron.pdf][Megatron-LM]]
+- [[https://jmlr.org/papers/volume21/20-074/20-074.pdf][T5]]
+- [[https://www.microsoft.com/en-us/research/blog/turing-nlg-a-17-billion-parameter-language-model-by-microsoft/][Turing-NLG]]
+- [[https://arxiv.org/abs/2005.14165][GPT-3]]
+- [[https://ai.meta.com/blog/meta-llama-3/][Llama 3]]
+- [[https://deepmind.google/technologies/gemini/][Gemini]]
+- [[https://ai.google.dev/gemma][Gemma]]
+- [[https://docs.mistral.ai/getting-started/models/][Mistral]]
+- [[https://arxiv.org/abs/2401.04088][Mixtral]]
+- [[https://ollama.com/library][Ollama]]
+- [[https://unbabel.com/announcing-tower-an-open-multilingual-llm-for-translation-related-tasks/][Tower]]
+
+** RL
+- [[http://karpathy.github.io/2016/05/31/rl/][Deep Reinforcement Learning: Pong to Pixels]]
+- [[https://github.com/carla-simulator/carla][CARLA - Open source simulator for autonomous driving research]]
+- [[https://github.com/yenchenlin/DeepLearningFlappyBird][Using Deep Q-Learning to learn how to play Flappy Bird]]
+- [[https://github.com/ntasfi/PyGame-Learning-Environment/][PyGame - Learning Environment]]
+- [[https://github.com/Farama-Foundation/Arcade-Learning-Environment][The Arcade Learning Environment]]
+- [[http://osim-rl.kidzinski.com/][Opensim]]
+- [[https://github.com/aleju/mario-ai][Mario-AI]]
+- [[https://github.com/samre12/deep-trading-agent][Deep reinforcement learning based trading agent]]
+- [[https://lilianweng.github.io/posts/2018-02-19-rl-overview/][A (Long) Peek into Reinforcement Learning]]
+- [[https://blog.paperspace.com/introduction-to-reinforcement-learning/][A thorough introduction to reinforcement learning]]
+- [[https://blog.insightdatascience.com/reinforcement-learning-from-scratch-819b65f074d8][Reinforcement Learning from Scratch]]
+- [[https://huggingface.co/blog/rlhf][Illustrating Reinforcement Learning from Human Feedback]]
+- [[https://github.com/tensorforce/tensorforce][Tensorforce: A TensorfFlow library for applied reinforcement learning]]
+
+** Unsupervised Learning
+- [[https://www.tensorflow.org/tutorials/generative/autoencoder][Intro to Autoencoders - TensorFlow Tutorial]]
+- [[https://www.borealisai.com/research-blogs/tutorial-5-variational-auto-encoders/][Variational Autoencoders]]
+- [[https://www.tensorflow.org/tutorials/generative/cvae][Convolutional Variational Autoencoder - TensorFlow Tutorial]]
+- [[https://www.tensorflow.org/tutorials/generative/dcgan][Deep Convolutional Generative Adversarial Network (DCGAN) - TensorFlow Tutorial]]
+- [[https://pytorch.org/tutorials/beginner/dcgan_faces_tutorial.html][Unsupervised Representation Learning with Deep Convolutional Generative Adversarial Networks (DCGAN)]]
+- [[https://www.tensorflow.org/tutorials/generative/style_transfer][Neural Style Transfer - TensorFlow Tutorial]]
+- [[https://pytorch.org/hub/nvidia_deeplearningexamples_hifigan/][HiFi-GAN: Generative Adversarial Networks for Efficient and High Fidelity Speech Synthesis]]
+- [[https://www.tensorflow.org/tutorials/generative/pix2pix][pix2pix: Image-to-image translation with a conditional GAN]]
+- [[https://www.tensorflow.org/tutorials/generative/cyclegan][CycleGAN]]
+- [[https://github.com/NVlabs/stylegan][StyleGAN]]
+ 
+** Multimodal Learning
+- [[https://www.microsoft.com/en-us/research/blog/frontiers-of-multimodal-learning-a-responsible-ai-approach/][Frontiers of Multimodal Learning: A Responsible AI Approach]]
+- [[https://cloud.google.com/use-cases/multimodal-ai][Multimodal AI - Google]]
+- [[https://portal.vision.cognitive.azure.com/demo/image-captioning][Demo - Azure AI Image Captioning]]
+- [[https://milhidaka.github.io/chainer-image-caption/][Demo - Generating Image Captions]]
+- [[https://www.tensorflow.org/text/tutorials/image_captioning][TensorFlow Tutorial - Image Captioning with Attention]]
+- [[https://huggingface.co/tasks/visual-question-answering][HuggingFace Demo - Visual Question Answering]]
+- [[http://visualqa.csail.mit.edu/][Demo - Visual Question Answering]]
+- [[https://cloud.google.com/vertex-ai/generative-ai/docs/embeddings/get-multimodal-embeddings][Multimodal Embeddings]]
+- [[https://ehai.ai.vub.ac.be/demos/visual-question-answering/][Hybrid Procedural Semantics For Visual Question Answering]]
+- [[https://visualdialog.org/][Visual Dialog]]
+- [[https://github.com/gicheonkang/gst-visdial][The Dialogue must go on: Improving Visual Dialogue via Generative Pre-Training]]
+
+** GenAI Tools
+- [[https://openai.com/index/gpt-4/][OpenAI GPT-4]]
+- [[https://openai.com/index/dall-e-3/][OpenAI DALL-E 3]]
+- [[https://openai.com/index/sora/][OpenAI Sora - Creating Videos from Text]]
+- [[https://openai.com/index/whisper/][OpenAI Whisper - Automatic Speech Recognition]]
+- [[https://ai.google/discover/palm2/][Google PaLM 2]]
+- [[https://deepmind.google/technologies/gemini/][Google Gemini]]
+- [[https://llama.meta.com/llama3/][Meta Llama 3]]
+- [[https://miramuseai.net/][Midjourney: Text to Image Generator]]
+- [[https://stability.ai/][Stable Diffusion]]
+- [[https://google-research.github.io/seanet/musiclm/examples/][MusicLM: Generating Music from Text]]
+- [[https://alphacode.deepmind.com/][Alphacode]]
+- [[https://www.synthesia.io/][Synthesia: Text to Videos]]
+- [[https://www.adobe.com/products/firefly.html][Adobe Firefly]]
+- [[https://cohere.com/][Cohere: Build conversational agent with RAG]]
+
+My own notes on many of these research papers can be found on the [[/projects/literature/research-papers][research papers]] page.
 
 * Trump Card
-And if you wish to dig deeper, [[.][here]] is a link to the static nginx directory so you may discover your own diamonds.
+Finally, if you wish to dig deeper through the resources in this site, [[/files][here]] is a static link to all the content.
 
