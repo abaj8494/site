@@ -9,30 +9,35 @@ This is my first experience practising what I had learned from the tutorials[fn:
 
 ** Canberra Morning - Rosemary Dobson
 *** PDF
+{{< embed-pdf url="/code/latex/poems/canberra-morning.pdf" >}}
 
 *** Source
 #+INCLUDE: "/code/latex/poems/canberra-morning.tex" src latex
 
 ** The Story of J. Alfred Prufrock - T.S. Eliot
 *** PDF
+{{< embed-pdf url="/code/latex/poems/the-love-song-of-j-alfred-prufrock.pdf" >}}
 
 *** Source
 #+INCLUDE: "/code/latex/poems/the-love-song-of-j-alfred-prufrock.tex" src latex
 
 ** A Birthday Present - Sylvia Plath
 *** PDF
+{{< embed-pdf url="/code/latex/poems/a-birthday-present.pdf" >}}
 
 *** Source
 #+INCLUDE: "/code/latex/poems/a-birthday-present.tex" src latex
 
 ** Anthem for Doomed Youth - Wilfred Owen
 *** PDF
+{{< embed-pdf url="/code/latex/poems/anthem-for-doomed-youth.pdf" >}}
 
 *** Source
 #+INCLUDE: "/code/latex/poems/anthem-for-doomed-youth.tex" src latex
 
 ** The Hollow Men - T.S. Eliot
 *** PDF
+{{< embed-pdf url="/code/latex/poems/the-hollow-men.pdf" >}}
 
 *** Source
 #+INCLUDE: "/code/latex/poems/the-hollow-men.tex" src latex
