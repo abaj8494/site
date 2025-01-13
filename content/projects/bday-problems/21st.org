@@ -2,8 +2,9 @@
 title = "21 Birthday Problems"
 categories = ["bday-problems"]
 tags = ["mathematics", "undergraduate", "high-school"]
+math = "true"
 +++
-{{< collapse folded="true" >}}
+{{< collapse folded="false" >}}
 
 * Source Code
 This is was the first and most green Problem Set. It teetered on the edge of Higher Secondary and Recreational mathematics:
@@ -17,4 +18,96 @@ In second place was an ex-student of mine, *Jisu Song*.
 
 The prize money was $50 and $20 respectively.
 
-TODO
+** Question 1
+Prove that \(\frac{1}{0}\) is undefined.
+
+Assume the negation of the statement: \(\frac{1}{0}\) is defined, s.t. \(\frac{1}{0} = x\). Algebraically swapping the \(x\) and \(0\), we can plot the graph for \(y=\frac{1}{x}\) at \(y=0\):
+
+#+BEGIN_SRC jupyter-python :session bday21 :exports none
+  import matplotlib.pyplot as plt
+  import numpy as np
+
+  X = np.linspace(-10, 10, 101) # the extra value allows plt to land a nan at x=0
+  Y = np.reciprocal(X)
+
+  plt.axhline(0, linestyle="--", color="green")
+  plt.plot(X, Y, label="Y = 1/X")
+  plt.legend()
+
+  plt.grid()
+  plt.show()
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp :results none :exports none
+#+RESULTS:
+:RESULTS:
+: /var/folders/3w/pdbw3r_1639_hxq_5qyc79zr0000gn/T/ipykernel_24581/1230655069.py:5: RuntimeWarning: divide by zero encountered in reciprocal
+:   Y = np.reciprocal(X)
+[[file:./.ob-jupyter/80d37c9e3ab01c36ed054749c2c917f81042c05e.png]]
+:END:
+#+END_SRC
+
+#+ATTR_HTML: :width 400px
+[[../q1.png]]
+
+Now clearly the dotted line never touches the blue curve, and thus at no point does \(0 = \frac{1}{x} \implies \) that our initial assumption was /false/.
+
+In conclusion, \(\frac{1}{0}\) is undefined.
+
+** Q2
+
+RTP: \[\sin^2(\theta) + \cos^2(\theta) = 1\]
+
+Proof:
+
+By definition, \(\sin(\theta) = \frac{\text{opposite}}{\text{hypotenuse}}\) and  \(\cos(\theta) = \frac{\text{adjacent}}{\text{hypotenuse}}\).
+
+And \[\sin^2(\theta) + \cos^2(\theta) = \frac{\text{opposite}^2 + \text{adjacent}^2}{\text{hypotenuse}^2}\]
+
+Furthermore, by the Pythagorean Theorem on the following figure, we have \(\text{opposite}^2 + \text{adjacent}^2 = \text{hypotenuse}^2\)
+
+#+CAPTION: Labelled Right Angle Triangle
+#+BEGIN_CENTER
+#+ATTR_HTML: :width 400px :class lateximage
+[[../q2.svg]]
+#+END_CENTER
+
+
+And thus \(\frac{\text{hypotenuse}^2}{\text{hypotenuse}^2} = 1\), which was that to be proved. \(\square\)
+
+*** Q2.1
+
+
+Dividing this equation through \(\sin^2(\theta)\):
+
+\[\begin{align*}
+\frac{\sin^2(\theta)}{\sin^2(\theta)} +\frac{\cos^2(\theta)}{\sin^2(\theta)} &= \frac{1}{\sin^2(\theta)}\\
+\implies 1 + \cot^2(\theta) &= \csc^2(\theta)\text{, as required}
+\end{align*}\]
+
+
+* Figures                                                          :noexport:
+
+** q2
+
+\begin{tikzpicture}
+  % Define the triangle vertices
+  \coordinate (A) at (0, 0);
+  \coordinate (B) at (4, 0);
+  \coordinate (C) at (4, 3);
+
+  % Draw the triangle
+  \draw[thick] (A) -- (B) -- (C) -- cycle;
+
+  % Label the sides
+  \node[below] at (2, 0) {adjacent};
+  \node[right] at (4, 1.5) {opposite};
+  \node[above left] at (2, 1.5) {hypotenuse};
+
+  % Draw a small arc to indicate the angle theta
+  \draw[thick] (0.5, 0) arc[start angle=0, end angle=36.87, radius=0.5];
+  \node[anchor=south west] at (0.6, 0.1) {$\theta$};
+
+  % Right angle mark
+  \draw[thick] (3.8, 0) -- (3.8, 0.2) -- (4, 0.2);
+\end{tikzpicture}
