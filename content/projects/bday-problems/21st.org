@@ -119,7 +119,40 @@ We then multiply this by 2 to get the total length: \(\frac{\sqrt{17}}{2} \appro
 Hexagonal Packing. TODO :/
 
 ** Q6
-Dimension of Sierpinski's triangle. TODO.
+Given that we redefine our notion of dimensionality for fractals to be
+\[\text{number of copies} = (\text{magnification factor})^d\]
+
+Then clearly from
+
+#+BEGIN_EXPORT html
+<div class="row, lateximage">
+  <div class="column">
+    <img src="../q6a.svg" style="width:100%">
+  </div>
+  <div class="column">
+    <img src="../q6b.svg" style="width:100%">
+  </div>
+  <div class="column">
+    <img src="../q6c.svg" style="width:100%">
+  </div>
+  <div class="column">
+    <img src="../q6d.svg" style="width:100%">
+  </div>
+  <div class="column">
+    <img src="../q6e.svg" style="width:100%">
+  </div>
+</div>
+#+END_EXPORT
+
+We clearly see that each subsequent fractal contains 3 of the previous and thus the "number of copies" = 3. Then by considering the side lengths we see that upon each subsequent iteration it is doubling in length, implying that the "magnification factor" is 2.
+Now our equation becomes
+\[\begin{align*}
+3 &= 2^d\\
+\implies d &= \log_2{3}\\
+&\approx 1.585
+\end{align*}\]
+
+An interesting result no?
 
 ** Q7
 Assume the negation; that \(\sqrt{2}\) is rational.
@@ -380,7 +413,7 @@ Solving this quadratic in \(t\) yields \(t\approx 0.359 \text{seconds}\)
 
 
 
-* Source Code                                                      :noexport:
+* Source Code
 ** Problem Set
 #+INCLUDE: "/code/latex/bday-problems/21/main.tex" src latex
 
@@ -436,6 +469,91 @@ Solving this quadratic in \(t\) yields \(t\approx 0.359 \text{seconds}\)
   \draw[thick] (A) -- (B) -- (C);
   \node[above left] at (1, 2.5) {$x$};
   \draw[thick] (2.8,0) -- (2.8,0.2) -- (3,0.2);
+\end{tikzpicture}
+** q6
+
+#+LATEX_HEADER: \usetikzlibrary{shapes.geometric}
+\begin{tikzpicture}[
+    main tri/.style={isosceles triangle,fill,isosceles triangle apex angle=60,
+		     rotate=90,inner sep=0,outer sep=0},
+    filler tri/.style={isosceles triangle,fill=white,rotate=-90,isosceles triangle apex angle=60,
+		     inner sep=0,outer sep=0}]
+    \node[minimum height=2cm,main tri] (a) {};
+    %==================
+    \node[minimum height=1cm,filler tri] (b) at (a.center){};
+    %==================
+    \node[minimum height=0.5cm,filler tri,anchor=right corner] (c1) at (b.left side){};
+    \node[minimum height=0.5cm,filler tri,anchor=left corner] (c2) at (b.right side){};
+    \node[minimum height=0.5cm,filler tri,anchor=apex] (c3) at (b.west){};
+    % ===================
+    \foreach \x in {1,2,3}{
+    \node[minimum height=0.25cm,filler tri,anchor=right corner] (d1\x) at (c\x.left side){};
+    \node[minimum height=0.25cm,filler tri,anchor=left corner] (d2\x) at (c\x.right side){};
+    \node[minimum height=0.25cm,filler tri,anchor=apex] (d3\x) at (c\x.west){};
+    }
+    % ===================
+    \foreach \x in {1,2,3}{
+	\foreach \y in {1,2,3}{
+	\node[minimum height=0.125cm,filler tri,anchor=right corner] (e1\x\y) at (d\x\y.left side){};
+	\node[minimum height=0.125cm,filler tri,anchor=left corner] (e2\x\y) at (d\x\y.right side){};
+	\node[minimum height=0.125cm,filler tri,anchor=apex] (e3\x\y) at (d\x\y.west){};
+	}
+    }
+\end{tikzpicture}
+
+\begin{tikzpicture}[
+    main tri/.style={isosceles triangle,fill,isosceles triangle apex angle=60,
+		     rotate=90,inner sep=0,outer sep=0},
+    filler tri/.style={isosceles triangle,fill=white,rotate=-90,isosceles triangle apex angle=60,
+		     inner sep=0,outer sep=0}]
+    \node[minimum height=2cm,main tri] (a) {};
+    %==================
+    \node[minimum height=1cm,filler tri] (b) at (a.center){};
+    %==================
+    \node[minimum height=0.5cm,filler tri,anchor=right corner] (c1) at (b.left side){};
+    \node[minimum height=0.5cm,filler tri,anchor=left corner] (c2) at (b.right side){};
+    \node[minimum height=0.5cm,filler tri,anchor=apex] (c3) at (b.west){};
+    % ===================
+    \foreach \x in {1,2,3}{
+    \node[minimum height=0.25cm,filler tri,anchor=right corner] (d1\x) at (c\x.left side){};
+    \node[minimum height=0.25cm,filler tri,anchor=left corner] (d2\x) at (c\x.right side){};
+    \node[minimum height=0.25cm,filler tri,anchor=apex] (d3\x) at (c\x.west){};
+    }
+    % ===================
+\end{tikzpicture}
+
+\begin{tikzpicture}[
+    main tri/.style={isosceles triangle,fill,isosceles triangle apex angle=60,
+		     rotate=90,inner sep=0,outer sep=0},
+    filler tri/.style={isosceles triangle,fill=white,rotate=-90,isosceles triangle apex angle=60,
+		     inner sep=0,outer sep=0}]
+    \node[minimum height=2cm,main tri] (a) {};
+    %==================
+    \node[minimum height=1cm,filler tri] (b) at (a.center){};
+    %==================
+    \node[minimum height=0.5cm,filler tri,anchor=right corner] (c1) at (b.left side){};
+    \node[minimum height=0.5cm,filler tri,anchor=left corner] (c2) at (b.right side){};
+    \node[minimum height=0.5cm,filler tri,anchor=apex] (c3) at (b.west){};
+    % ===================
+\end{tikzpicture}
+
+\begin{tikzpicture}[
+    main tri/.style={isosceles triangle,fill,isosceles triangle apex angle=60,
+		     rotate=90,inner sep=0,outer sep=0},
+    filler tri/.style={isosceles triangle,fill=white,rotate=-90,isosceles triangle apex angle=60,
+		     inner sep=0,outer sep=0}]
+    \node[minimum height=2cm,main tri] (a) {};
+    %==================
+    \node[minimum height=1cm,filler tri] (b) at (a.center){};
+\end{tikzpicture}
+
+\begin{tikzpicture}[
+    main tri/.style={isosceles triangle,fill,isosceles triangle apex angle=60,
+		     rotate=90,inner sep=0,outer sep=0},
+    filler tri/.style={isosceles triangle,fill=white,rotate=-90,isosceles triangle apex angle=60,
+		     inner sep=0,outer sep=0}]
+    \node[minimum height=2cm,main tri] (a) {};
+    %==================
 \end{tikzpicture}
 ** q15
 \begin{tikzpicture}[scale=0.8]

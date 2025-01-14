@@ -124,3 +124,16 @@ a:visited {
 @custom-media --lg (min-width: 992px);
 @custom-media --xl (min-width: 1200px);
 @custom-media --xxl (min-width: 1400px);
+
+.column {
+  float: left;
+  width: 20%;
+  padding: 0px;
+}
+
+/* Clear floats after image containers */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
