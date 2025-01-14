@@ -12,10 +12,6 @@
 	  {{ block "main" . }}{{ end }}
 	</div>
 	{{ partial "sidebar.html" . }}
-	
-	{{ if or .Params.math .Site.Params.math }}
-                {{ partial "math.html" . }}
-        {{ end }}
       </main>
       {{ partial "footer.html" . }}
     </div>

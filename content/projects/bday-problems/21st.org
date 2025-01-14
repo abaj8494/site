@@ -2,15 +2,12 @@
 title = "21 Birthday Problems"
 categories = ["bday-problems"]
 tags = ["mathematics", "undergraduate", "high-school"]
-math = "true"
+chem = "true"
 +++
 {{< collapse folded="false" >}}
 
-* Source Code
-This is was the first and most green Problem Set. It teetered on the edge of Higher Secondary and Recreational mathematics:
-#+INCLUDE: "/code/latex/bday-problems/21/main.tex" src latex
-
 * Solution Set
+This is was the first and most green Problem Set. It teetered on the edge of Higher Secondary and Recreational mathematics:
 
 The winner was *Aarav Bajaj*, by a narrow margin of a single mark.
 
@@ -206,24 +203,188 @@ To sketch \(\frac{1}{(x-3)(x-4)}\) we can first sketch the quadratic on the deno
 [[../q13.png]]
 #+END_CENTER
 
-
 ** Q14
+
+*IMPORTANT: there are 2 mistakes in the original problem set!*
+1. In the combustion of propane (14.1), I have forgotten to add \(O_2\) onto the reactants side.
+2. In the reaction of photosynthesis I have forgotten to add the \(O_2\) product.
+
+*** 14.1
+The (corrected) equation \(\ce{C3H8 + O2-> CO2 + H2O}\) can be balanced with 4 unknown constants \(x_1, x_2, x_3, x_4\):
+\[x_1(\ce{C3 H8}) + x_2(\ce{O2}) \longrightarrow x_3(\ce{CO2}) + x_4(\ce{H2O})\]
+And then we can construct the table:
+|          | left     | right          |
+| carbon   | \(3x_1\) | \(x_3\)        |
+| hydrogen | \(8x_1\) | \(2x_4\)       |
+| oxygen   | \(2x_2\) | \(2x_3 + x_4\) |
+From which we construct the equations:
+\begin{align}
+3x_1-x_3 &= 0 \\
+8x_1 - 2x_4 &= 0\\
+2x_2 - 2x_3 - x_4 &= 0
+\end{align}
+
+And consequently the augmented matrix:
+
+\[\left [
+\begin{array}{cccc|c}
+3&0&-1&0&0\\
+8&0&0&-2&0\\
+0&2&-2&-1&0\\
+\end{array}\right ]
+\leadsto
+\left [
+\begin{array}{cccc|c}
+1 & 0 & 0 & -\frac{1}{4} & 0 \\
+0 & 1 & 0 & -\frac{5}{4} & 0 \\
+0 & 0 & 1 & -\frac{3}{4} & 0 \\
+\end{array}\right ]
+\]
+
+Thus the balanced equation becomes:
+\[\ce{C3H8 + 5O2 -> 3CO2 + 4H2O}\]
+
+** 14.2
+
+Similarly we apply the same method to \(\ce{CO2 + H2O -> C6H12O6 + O2}\). Creating the table:
+| carbon   | \(1x_1\)     | \(6x_3\)        |
+| oxygen   | \(2x_1+x_2\) | \(6x_3 + 2x_4\) |
+| hydrogen | \(2x_2\)     | \(12x_3\)       |
+
+And thus the augmented matrix:
+\[\left [
+\begin{array}{cccc|c}
+1&0&-6&0&0\\
+2&1&-6&-2&0\\
+0&2&-12&0&0\\
+\end{array}\right ]\]
+Which after applying Gaussian elimination, leads to:
+\[\left [
+\begin{array}{cccc|c}
+1&0&0&-1&0\\
+0&1&0&-1&0\\
+0&0&1&-\frac{1}{6}&0\\
+\end{array}\right ]\]
+
+Ultimately, the balanced equation becomes:
+\[\ce{6CO2 + 6H2O -> 1C6H12O6 + 6O2}\]
+
+** 14.3
+
+We apply the same method to \(\ce{HCl + Na3 -> H3PO4 + NaCl}\).
+
+#+CAPTION: TABLE!
+| H  | \(1x_1\) | \(3x_3\) |
+| Cl | \(1x_1\) | \(1x_4\) |
+| Na | \(3x_2\) | \(1x_4\) |
+| P  | \(1x_2\) | \(1x_3\) |
+| O  | \(4x_2\) | \(4x_3\) |
+
+#+CAPTION: Augmented Matrix
+\[\left [
+\begin{array}{cccc|c}
+1&0&-3&0&0\\
+1&0&0&-1&0\\
+0&3&0&-1&0\\
+0&1&-1&0&0\\
+0&4&-4&0&0
+\end{array}\right ]\]
+
+But then because rows 4 and 5 are only separated by a constant multiple, we can just ignore one of them.
+#+CAPTION: RREF
+\[\left [
+\begin{array}{cccc|c}
+1&0&0&-1&0\\
+0&1&0&-\frac{1}{3}&0\\
+0&0&1&-\frac{1}{3}&0\\
+0&0&0&0&0\\
+\end{array}\right ]\]
+
+Parametrising \(x_4\) as \(t\) and setting it to 3 for integer solutions to all \(x_i\), we get \(x_1 = 3, x_2 = 1, x_3 = 1, x_4 = 3\), and thus
+\[\ce{3HCl + 1Na3PO4 -> 1H3PO4 + 3NaCl}.\]
+
+#+BEGIN_SRC jupyter-python :session bday21 :results raw :exports none
+from sympy import *
+m = Matrix([
+        [1, 0, -6, 0, 0],
+        [2, 1, -6, -2, 0],
+        [0, 2, -12, 0, 0]])
+M_rref = m.rref()
+print("The Row echelon form of matrix M and the pivot columns : {}".format(M_rref))
+#+END_SRC
+
+#+RESULTS:
+: The Row echelon form of matrix M and the pivot columns : (Matrix([
+: [1, 0, 0,   -1, 0],
+: [0, 1, 0,   -1, 0],
+: [0, 0, 1, -1/6, 0]]), (0, 1, 2))
+
 ** Q15
+There \(\frac{6!}{3!\times 2!} = 60\) distinct arrangements in the word *BANANA*.
+
+
 ** Q16
+We let \(a=4, b=6, c=7\) on the triangle:
+
+#+BEGIN_CENTER
+#+ATTR_HTML: :width 200px :class lateximage
+[[../q16.svg]]
+#+END_CENTER
+
+And use Heron's formula:
+\[A = \sqrt{s(s-a)(s-b)(s-c)},\qquad\text{ where }s=\frac{a+b+c}{2}\]
+
+such that \(A = \sqrt{\frac{2295}{16}}\) which simplifies to \(\frac{3\sqrt{255}}{4} \approx 11.97\).
+
 ** Q17
+\begin{align}
+I &= \int^1_{-1} \cos{2x} + x^2 + 2^x + \frac{2}{x} \mathrm{d}x\\
+&= \frac{\sin{2x}}{2} + \frac{x^3}{3} + \frac{2^x}{\ln{2}} + 2\ln{x} \bigg\rvert^1_{-1}\\
+&= \sin{2} + \frac{2}{3} + \frac{3}{2\ln{2}}\\
+\end{align}
+
 ** Q18
+
+#+BEGIN_CENTER
+#+ATTR_HTML: :width 900px :class lateximage
+[[../q18.svg]]
+#+END_CENTER
+
 ** Q19
+We leverage the basic projectile motion equation: \[S_y = u_y t + \frac{1}{2}a_y t^2, \] where
+\[\begin{align*}
+S_y &= \text{the vertical displacement} = 2.4\mathrm{m}\\
+u_y &= \text{the initial velocity} = 40\sin{7}\\
+t &= \text{time} = ?\\
+a_y &= \text{vertical acceleration} = 10\mathrm{ms}^{-2}\\
+\implies S_y &= 40\sin{7}t + \frac{1}{2}(10)t^2
+\end{align*}\]
+
+Solving this quadratic in \(t\) yields \(t\approx 0.359 \text{seconds}\)
+
 ** Q20
+
+*** 20.1
+\[\vec{u} + \vec{w} = \begin{bmatrix}1\\-4\end{bmatrix}\]
+
+*** 20.2
+\[|\vec{u}+\vec{w}| = \sqrt{17} \]
+
+*** 20.3
+\[3\vec{v}-2\vec{u}+\vec{v} = \begin{bmatrix}-8\\22\end{bmatrix}\]
+
 ** Q21
 
+\[x \equiv 7 + 30\,k, \qquad k\in\mathbb{Z}^+\]
 
 
 
 
+* Source Code                                                      :noexport:
+** Problem Set
+#+INCLUDE: "/code/latex/bday-problems/21/main.tex" src latex
 
-
-
-* Figures                                                          :noexport:
+** Solution Set Figures
 
 ** q2
 
@@ -275,4 +436,48 @@ To sketch \(\frac{1}{(x-3)(x-4)}\) we can first sketch the quadratic on the deno
   \draw[thick] (A) -- (B) -- (C);
   \node[above left] at (1, 2.5) {$x$};
   \draw[thick] (2.8,0) -- (2.8,0.2) -- (3,0.2);
+\end{tikzpicture}
+** q15
+\begin{tikzpicture}[scale=0.8]
+    \draw (0,0) -- (4,0) node[midway,below] {$7$}
+       -- (1,2) node[midway, above right] {$6$}
+       -- (0,0) node[midway, above left] {$4$};
+\end{tikzpicture}
+
+** q18
+\begin{tikzpicture}
+    \begin{axis}[
+        axis lines=middle,
+        xlabel={$x$},
+        ylabel={$y$},
+        xmin=-5, xmax=10,
+        ymin=-4, ymax=10,
+        grid=major,
+        legend pos=north west,
+        width=12cm,
+        height=12cm
+    ]
+
+
+    \addplot[blue, samples=20000, domain=-1000:1000, variable=t]
+        ({(4.5 * t)/(1+t^3)}, {(4.5 * t^2)/(1+t^3)});
+    \addlegendentry{$2x^3 + 2y^3 = 9xy$}
+    
+    % First line
+    \addplot[red, samples=200, domain=-5:10]
+        {((-3*x-3)*sqrt(6)+10*x+6)/(-4+4*sqrt(6))};
+    \addlegendentry{$y=\frac{(-3x-3)\sqrt{6}+10x+6}{-4+4\sqrt{6}}$}
+    
+    % Second line
+    \addplot[green, samples=200, domain=-5:10]
+        {((-3*x-3)*sqrt(6)-10*x-6)/(4+4*sqrt(6))};
+    \addlegendentry{$y=\frac{(-3x-3)\sqrt{6}-10x-6}{4+4\sqrt{6}}$}
+    
+    % Third line
+    \addplot[orange, samples=200, domain=-5:10]
+        {4*x/5 + 6/5};
+    \addlegendentry{$y=\frac{4}{5}x+\frac{6}{5}$}
+    \addplot[thick, samples=50, smooth,domain=0:6,grey, dashed] coordinates {(1,-4)(1,10)};    
+
+\end{axis}
 \end{tikzpicture}

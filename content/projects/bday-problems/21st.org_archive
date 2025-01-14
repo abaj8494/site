@@ -1,0 +1,52 @@
+#    -*- mode: org -*-
+
+
+Archived entries from file /Users/aayushbajaj/Documents/site/content/projects/bday-problems/21st.org
+
+
+* Q18
+:PROPERTIES:
+:ARCHIVE_TIME: 2025-01-14 Tue 15:51
+:ARCHIVE_FILE: ~/Documents/site/content/projects/bday-problems/21st.org
+:ARCHIVE_OLPATH: Solution Set
+:ARCHIVE_CATEGORY: 21st
+:END:
+
+
+\begin{tikzpicture}
+    \begin{axis}[
+        axis lines=middle,
+        xlabel={$x$},
+        ylabel={$y$},
+        xmin=-2, xmax=10,
+        ymin=-4, ymax=10,
+        grid=major,
+        legend pos=north west,
+        width=12cm,
+        height=12cm
+    ]
+    % Parametric plot of the curve
+    \addplot[blue, samples=500, domain=0:\pi, variable=t]
+        ({cos(deg(t)))^(3)}, {sin(deg(t)))^(3)});
+    \addlegendentry{$2x^3 + 2y^3 = 9xy$}
+    
+    % First line
+    \addplot[red, samples=200, domain=-2:10]
+        {((-3*x-3)*sqrt(6)+10*x+6)/(-4+4*sqrt(6))};
+    \addlegendentry{$y=\frac{(-3x-3)\sqrt{6}+10x+6}{-4+4\sqrt{6}}$}
+    
+    % Second line
+    \addplot[green, samples=200, domain=-2:10]
+        {((-3*x-3)*sqrt(6)-10*x-6)/(4+4*sqrt(6))};
+    \addlegendentry{$y=\frac{(-3x-3)\sqrt{6}-10x-6}{4+4\sqrt{6}}$}
+    
+    % Third line
+    \addplot[orange, samples=200, domain=-2:10]
+        {4*x/5 + 6/5};
+    \addlegendentry{$y=\frac{4}{5}x+\frac{6}{5}$}
+    
+    \end{axis}
+\end{tikzpicture}
+
+
+

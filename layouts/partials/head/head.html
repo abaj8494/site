@@ -5,7 +5,12 @@
   {{ partial "head/resource-hints.html" . }}
   {{ partial "head/seo.html" . }}
 
-
+  {{ if or .Params.math .Site.Params.math }}
+  {{ partial "math.html" . }}
+  {{ end }}
+  {{ if or .Params.chem .Site.Params.chem }}
+  {{ partial "chem.html" . }}
+  {{ end }}
   <!-- Extensibility -->
   {{ partial "head/head_start.html" . }}
 
