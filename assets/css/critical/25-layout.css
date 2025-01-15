@@ -5,7 +5,8 @@
     "main"
     "footer";
   grid-template-rows: auto 1fr auto;
-  height: 100vh;
+  height: 100%;
+  /* height was once 100vh; */
 }
 
 main {

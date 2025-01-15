@@ -10,6 +10,19 @@
   filter: invert(1) brightness(1);
 }
 
+.column {
+  float: left;
+  width: 20%;
+  padding: 0px;
+}
+
+/* Clear floats after image containers */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
 .lateximage {
   background: transparent; /* Ensure no background */
   border: none; /* Remove borders if any */
@@ -119,21 +132,12 @@ a:visited {
   color: inherit; /* Keep the color same as unvisited */
 }
 
+.sticky-header a:visited {
+  color: inherit; /* Keep the color same as unvisited */
+}
+
 @custom-media --sm (min-width: 576px);
 @custom-media --md (min-width: 768px);
 @custom-media --lg (min-width: 992px);
 @custom-media --xl (min-width: 1200px);
 @custom-media --xxl (min-width: 1400px);
-
-.column {
-  float: left;
-  width: 20%;
-  padding: 0px;
-}
-
-/* Clear floats after image containers */
-.row::after {
-  content: "";
-  clear: both;
-  display: table;
-}

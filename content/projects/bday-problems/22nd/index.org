@@ -1,0 +1,142 @@
++++
+title = "22 Birthday Problems"
+categories = ["bday-problems"]
+tags = ["math-minor", "love-mathematics", "latex-exam-class", "analysis"]
+chem = "true"
+toc = "true"
++++
+{{< collapse folded="false" >}}
+
+
+* Solution Set
+
+The prize money for this year was $100 AUD and $50 aud respectively.
+Mr. Rajan nobly refused the charity.
+
+** Question 1
+
+\[I = \int^3_0 \sqrt{9-x^2}\,\, \mathrm{d}x\]
+
+#+BEGIN_CENTER
+#+ATTR_HTML: :width 300px :class lateximage
+#+CAPTION: Semicircle
+[[q1.svg]]
+#+END_CENTER
+
+Thus the mathematics simplifies from using trigonometric substitution to simply
+\[\begin{align*}
+A_{\text{circle}} &= \pi r^2\\
+&=9\pi\\
+\implies I &= \frac{9\pi}{4}\end{align*}\]
+
+** Question 2
+
+We continue with the theme of visualising integrals in the multivariate case.
+
+\[2\iiint\limits_{V} \,\mathrm{d}V, V : \{(r, \theta, \phi) \,|\, 0 \leq r \leq 1,\, 0 \leq \theta \leq 2\pi,\, 0\leq \phi \leq \pi\}\]
+
+Here we realise that we are being asked to find the volume of 2 hemispheres using /polar/ coordinates.
+
+The radius \(r\) varies from 0 to 1, whilst the \(\theta\) value traces out a flat disk in the \(x-y\) plane. Then the \(\phi\) varies up to \(\pi\), tracing out the volume of a hemisphere. Then this value is multiplied by 2 (as per the integral) and can be visualised as such:
+
+#+BEGIN_CENTER
+#+ATTR_HTML: :width 300px :class lateximage
+#+CAPTION: Semicircle
+[[q2.svg]]
+#+END_CENTER
+
+Thus our mathematics then again simplifies significantly to just
+\[\begin{align*}
+V_{\text{sphere}} &= \frac{4}{3}\pi r^3\\
+&=\frac{4}{3}\pi\end{align*}\]
+
+** Q3
+
+Regrettably a mistake in this question steered the crowd in the wrong direction[fn:1]. The question asked was regarding an /indefinite/ integral which was correctly solved by using the Weierstrass \(t\) substitution of \[\cos{t} = \frac{1-t^2}{1+t^2}\quad .\]
+
+Churning out the algebra from the substitution, performing a partial fraction decomposition, back-substituting in terms of the original variable and rationalising yields:
+
+\[\begin{align*}
+I &= \int \frac{\cos{x}}{3+2\cos{x}} \, \mathrm{d}x\\
+&= \int \frac{2-2t^2}{(5+t^2)(1+t^2)} \mathrm{d}t\\
+&= \int -\frac{3}{5+t^2} + \frac{1}{1+t^2} \mathrm{d}t\\
+&= \frac{x}{2} - \frac{3\sqrt{5}\arctan{\frac{\sqrt{5}\tan{\frac{x}{2}}}{5}}}{5} + C
+\end{align*}\]
+
+*However*, this was not my intention. My intention was to ask for a value of the *definite* integral:
+\[J = \int_0^{2\pi} \frac{\cos{x}}{3+2\cos{x}} \, \mathrm{d}x\]
+Which I wanted solved using the theory of residues and complex analysis --- oops!
+
+Letting
+\[\begin{align*}
+\cos{x} &= \frac{z+z^{-1}}{2},\qquad \text{ where }z=e^{ix};\\
+J &= \oint_\mathcal{C} \frac{z+z^{-1}}{2(3+z+z^{-1})} \\
+&= -\frac{i}{2} \oint_\mathcal{C} \frac{z^2+1}{z^2(3+z+z^{-1}}\mathrm{d}z\\
+&= -\frac{i}{2} \oint_\mathcal{C} \frac{z^2+1}{z(3z+z^2+1}\mathrm{d}z\\
+&= -\frac{i}{2} \,2\,\pi\, i\, (B_0 + B_2),\qquad\text{note the exclusion of }B_1
+\end{align*}\]
+
+At this point we now take off our brain-dead algebra hats, and put on some more careful complex analysis hats:
+Our function \(\large f(z) = \frac{z^2+1}{z(3z+z^2+1}\) has poles at \(z=0, \frac{1}{2}(-3\pm\sqrt{5})\) with corresponding residues of \(B_0 = 1, B_1 = \frac{3}{\sqrt{5}}, B_2 = -\frac{3}{\sqrt{5}}\).
+
+However, because the pole at \(\frac{1}{2}(-3-\sqrt{5})\) falls outside of the unit disk (the region of integration), we find that the total contribution to the integral is found by
+
+\[\begin{align*}
+J &= \frac{\rlap{\(-i\)}\textcolor{red}{\cancel{\phantom{-i}}}}{\rlap{\(2\)}\textcolor{red}{\cancel{\phantom{2}}}}\rlap{\(2\)}\textcolor{red}{\cancel{\phantom{2}}} \pi \rlap{\(i\)}\textcolor{red}{\cancel{\phantom{i}}} (B_0 + B_2)\\
+&= \pi(1 - \frac{3}{\sqrt{5}})\\
+&= \pi - \frac{3\sqrt{5}\pi}{5}
+\end{align*}\]
+
+** Q4
+
+
+* Figures                                                          :noexport:
+
+** q1
+
+#+LATEX_HEADER: \usetikzlibrary{patterns}
+\begin{tikzpicture}
+  \draw [<->] (0,4) -- (0,0) -- (4,0);
+  \draw [<-] (-4,0) -- (0,0);
+  \draw[very thick] (3,0) to [out=90,in=0] (0,3) to [out=180,in=90] (-3,0);
+  \path[pattern=north west lines, pattern color=blue] (3,0) to [out=90,in=0] (0,3) -- (0,0);
+\end{tikzpicture}
+
+
+** q2
+
+
+#+LATEX_HEADER: \usetikzlibrary{angles, quotes}
+
+\begin{tikzpicture}
+
+  % Define radius
+  \def\r{3}
+
+  % Bloch vector
+  \draw (0, 0) node[circle, fill, inner sep=1] (orig) {} -- (\r/1.4, \r/1.4) node[circle, fill, inner sep=1] (a) {};
+  \draw (\r/2.8,\r/2.8) node[above] {$r$};
+  \draw[dashed] (orig) -- (\r/1.4, -\r/5) node (phi) {} -- (a);
+
+  % Sphere
+  \draw (orig) circle (\r);
+  \draw[dashed] (orig) ellipse (\r{} and \r/3);
+
+  % Axes
+  \draw[->] (orig) -- ++(-1-\r/5, -1-\r/3) node[below] (y) {$y$};
+  \draw[->] (orig) -- ++(\r+1, 0) node[right] (x) {$x$};
+  \draw[->] (orig) -- ++(0, \r+1) node[above] (z) {$z$};
+
+  % Angles
+  \pic [draw=gray, text=black, ->, "$\theta$"] {angle = y--orig--phi};
+  \pic [draw=gray, text=black, <-, "$\phi$", angle eccentricity=1.4] {angle = a--orig--z};
+
+\end{tikzpicture}
+
+* Source Code                                                      :noexport:
+
+#+INCLUDE: "/code/latex/bday-problems/22/main.tex" src latex
+
+* Footnotes
+
+[fn:1] This is what happens when you do not do the entire problem set by hand before releasing it! An err which has now been fixed |:-| 
