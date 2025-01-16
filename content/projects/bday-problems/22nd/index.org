@@ -89,6 +89,132 @@ J &= \frac{\rlap{\(-i\)}\textcolor{red}{\cancel{\phantom{-i}}}}{\rlap{\(2\)}\tex
 
 ** Q4
 
+We think out of the box for this one:
+
+#+BEGIN_CENTER
+#+ATTR_HTML: :width 400px :class lateximage
+[[q4.svg]]
+#+END_CENTER
+
+** Q5
+
+\[\begin{align*}
+\left ( \frac{3}{2} \right ){\large !} &= \Gamma\left(\frac{3}{2}+1\right)\\
+&= \Gamma\left(\frac{5}{2}\right)
+\end{align*}\]
+
+Recall the fact that \[\Gamma(x) = \int^\infty_0 t^{x-1}e^{-t}\mathrm{d}t\]
+and the property that \[\Gamma(x+1) = x\,\Gamma(x)\]
+Thus
+\[\begin{align*}
+\Gamma\left(\frac{5}{2}\right) &= \frac{3}{2}\Gamma\left(\frac{3}{2}\right)\\
+&= \frac{3}{2}\frac{1}{2}\Gamma\left(\frac{1}{2}\right)
+\end{align*}\]
+
+and \(\Gamma\left(\frac{1}{2}\right) = \sqrt{\pi}\), either by doing it manually yourself via IBP (integration by parts), or by having done it previously and now remembering it.
+
+\[\therefore \Gamma\left (\frac{5}{2}\right ) =\left( \frac{3\pi}{4}\right )\]
+
+** Q6
+
+*** Theorem
+For a right-angled triangle, the square of the length of the hypotenuse (\(c\)) is equal to the sum of the squares of the lengths of the other two sides (\(a\) and \(b\)). This can be represented as:
+\[ c^2 = a^2 + b^2 \]
+
+*** Proof
+
+Consider two squares, each of side length \(a + b\). We can place four congruent right-angled triangles inside each square, with side lengths \(a\), \(b\), and \(c\).
+
+#+BEGIN_CENTER
+#+ATTR_HTML: :width 600px :class lateximage
+[[q6.svg]]
+#+END_CENTER
+
+In the first square, the total area covered by the triangles and the smaller square is \(4 \times \frac{1}{2}ab + c^2 = 2ab + c^2\).
+
+In the second square, after rearranging the triangles, two smaller squares appear: one of side length \(a\) and the other of side length \(b\). Their combined area is \(a^2 + b^2\).
+
+From the two squares, it is clear that the area represented by \(c^2\) in the first square is equal to the combined areas of \(a^2\) and \(b^2\) in the second square, thus proving the theorem.
+
+** Q7
+
+Recall that
+\[f'(x) = \lim_{h\to 0} \frac{f(x+h)-f(x)}{h}\]
+
+Our task is to find the derivative of the sine function, so \(f(x) = \sin(x)\).
+
+We begin with
+\[\begin{align*}
+f'(x) &= \lim_{h\to 0} \frac{\sin(x+h)-\sin(x)}{h}\\
+&= \lim_{h\to 0} \frac{\sin(x)\cos(h)+\cos(x)\sin(h)-\sin(x)}{h}\\
+&= \lim_{h\to 0} \sin(x)\frac{\cos(h)}{h} + \cos(x)\frac{\sin(h)}{h} - \frac{\sin(x)}{h}\\
+\end{align*}\]
+
+At this point we get stuck because it is not immediately obvious what the limit of \(\frac{\sin(h)}{h}\) is.
+
+*** Lemma
+
+**** Theorem
+\[\lim_{h\to 0} \frac{\sin(h)}{h} = 1\]
+
+**** Proof
+Consider the figure
+
+#+BEGIN_CENTER
+#+ATTR_HTML: :width 300px :class lateximage
+[[q7.svg]]
+#+END_CENTER
+
+then
+\[\begin{align*}
+A_{\text{ABC}} &= \frac{1}{2}\sin(h)\cos(h)\\
+A_{\text{ADC}} &= \frac{h}{2\pi}\pi\\
+&= \frac{h}{2}\\
+A_{\text{ADE}}&=\frac{1}{2}\tan(h)
+\end{align*}\]
+
+clearly
+\[\begin{align*}
+\frac{1}{2}\sin(h)\cos(h) &\leq \frac{h}{2} \leq \frac{1}{2}\tan(h)\\
+\cos(h) &\leq \frac{h}{\sin(h)} \leq \frac{1}{\cos(h)}\\
+\implies \frac{1}{\cos(h)} &\geq \frac{\sin(h)}{h} \geq \cos(h)\\
+\end{align*}\]
+
+Now since the middle limit - the one that we are interested in - is being pinched by 2 limits that equal to 1, our limit must also equal to 1 \(\square\).
+
+** Q7 - ctd.
+Resuming our initial proof:
+\[\lim_{h\to 0} \sin(x)\frac{\cos(h)}{h} + \cos(x)\frac{\sin(h)}{h} - \frac{\sin(x)}{h} = 0 = \cos(x)\times 1 - 0\]
+
+** Q8
+
+*** 8.1
+\[[\begin{array}{cccccccccc}
+1&1&2&3&5&8&13&21&34&55
+\end{array}]\]
+
+*** 8.2
+
+The Fibonacci Sequence dictates the number of tendrils that emerge from the main cardioid of the Mandelbrot set:
+
+#+BEGIN_CENTER
+#+ATTR_HTML: :width 900px :class lateximage
+[[q8ba.svg]]
+#+END_CENTER
+
+If we split the unit circle into fractional rays, then these are mapped to a (usually) curved ray on the main cardioid.
+
+#+BEGIN_CENTER
+#+ATTR_HTML: :width 900px :class lateximage
+[[q8bb.svg]]
+#+END_CENTER
+
+Digging deeper to see the relation between this and the Fibonacci sequence, we see that each time we take a pair of bulbs on this cardioid and attempt to determine the subsequent bulb's position we are answering the following question:
+\[\frac{1}{3} \geq ~?~ \geq \frac{1}{2} \]
+The minimal answer to this will always be the mediant of the two fractions:
+\[\frac{1}{3} \oplus \frac{1}{2} = \frac{1+1}{3+2} = \frac{2}{5}\]
+which is entirely equivalent to finding \[F_n = F_{n-1} = F_{n-2}\quad .\]
+
 
 * Figures                                                          :noexport:
 
@@ -132,6 +258,180 @@ J &= \frac{\rlap{\(-i\)}\textcolor{red}{\cancel{\phantom{-i}}}}{\rlap{\(2\)}\tex
   \pic [draw=gray, text=black, <-, "$\phi$", angle eccentricity=1.4] {angle = a--orig--z};
 
 \end{tikzpicture}
+
+** q4
+
+\begin{tikzpicture}
+  \draw [<->] (-1,0) -- (2,0);
+  \node [right] at (2.1,0) {$\mathbb{R}$};
+  \coordinate (A) at (1,1);
+  \draw (0,0) -- node[label=above:$\sqrt{2}$] {} (1,1);
+  \draw (A) arc [radius=1.41, start angle=45, end angle= 0];
+  \node [below] at (0,0) {$0$};
+  \node [above,midway]
+  \draw [grey, dashed] (1,0) -- (1,1);
+  \node [below] at (1,0) {$1$};
+  \node [below] at (1.41,0) {$\sqrt{2}$};
+\end{tikzpicture}
+
+** q6
+
+
+\begin{tikzpicture}
+    % First Square
+    \draw (0,0) -- (5,0) -- (5,5) -- (0,5) -- cycle;
+    
+    % Triangles for first square
+    \draw (0,3.5) -- (1.5,0);
+    \draw (1.5,0) -- (5,1.5);
+    \draw (5,1.5) -- (3.5,5);
+    \draw (3.5,5) -- (0,3.5);
+    
+    % Labels for first square
+    \node at (2.5,2.5) {$c^2$};
+    \node at (0,3.5/2) [left] {$a$};
+    \node at (0,3.5+1.5/2) [left] {$b$};
+    \node at (3.5/2,5) [above] {$a$};
+    \node at (3.5+1.5/2,5) [above] {$b$};
+    \node at (5,3.5+1.5/2) [right] {$a$};
+    \node at (5,1.5/2) [right] {$b$};
+    \node at (3.5+1.5/2,0) [below] {$a$};
+    \node at (1.5/2,0) [below] {$b$};
+
+    % Second Square
+    \draw (7,0) rectangle (12,5);
+    \draw (7,0) rectangle (7+3.5,3.5);
+    \draw (7+3.5,3.5) rectangle (12,5);
+    
+    \draw (7,3.5) -- (7+3.5,5);
+    \draw (7+3.5,0) -- (12,3.5);
+
+    \node at (7+3.5/2, 3.5/2) {$a^2$};
+    \node at (7+3.5+1.5/2,3.5+1.5/2) {$b^2$};
+    \node at (7+3.5/2,5) [above] {$a$};
+    \node at (7,3.5+1.5/2) [left] {$b$};
+    \node at (7+3.5+1.5/2,0) [below] {$b$};
+    \node at (12,3.5/2) [right] {$a$};
+    
+    
+\end{tikzpicture}
+
+** q7
+
+\begin{tikzpicture}[scale=8.0]
+  \coordinate (A) at (0,0);
+  \coordinate (B) at (0.71,0);
+  \coordinate (C) at (0.71,0.71);
+  \coordinate (D) at (1,0);
+  \coordinate (E) at (1,1);
+  \draw[fill=yellow] (A) -- (D) -- (E) -- cycle;
+  \draw (A) -- (B) -- (C) -- cycle;
+  \draw [fill=green,opacity=0.2] (C) arc [radius=1, start angle=45, end angle=-1];
+  \path [fill=green,opacity=0.2] (A) -- (C) -- (D);
+  \node [below] at (A) {A};
+  \node [below] at (B) {B};
+  \node [above,left] at (C) {C};
+  \node [below,right] at (D) {D};
+  \node [above] at (E) {E};
+  \draw[fill=black,opacity=0.8] (0.95, 0) -- (0.95, 0.05) -- (1,0.05) -- (1,0);
+  \path[fill=blue,opacity=0.6] (A) -- (B) -- (C);
+\end{tikzpicture}
+
+** q8.2a
+
+#+LATEX_HEADER: \usetikzlibrary{calc, intersections}	       %allows coordinate calculations.
+
+
+\begin{tikzpicture}[scale=2]
+\begin{luacode}
+  function mandelbrot(cx,cy, max_iter, max)
+    local x,y,xtemp,ytemp,squaresum,iter
+    squaresum = 0
+    x = 0
+    y = 0
+    iter = 0
+    while (squaresum <= max) and (iter < max_iter)  do
+      xtemp = x * x - y * y + cx
+      ytemp = 2 * x * y + cy
+      x = xtemp
+      y = ytemp
+      iter = iter + 1
+      squaresum = x * x + y * y
+    end
+    local result = 0
+    if (iter < max_iter) then
+        result = iter
+    end
+    -- result = squaresum
+    -- io.write("" .. cx .. ", " .. cy .. " = " .. result .. " (iter " .. iter .. " squaresum " .. squaresum .. ") \string\n")
+    tex.print(result);
+  end
+\end{luacode}
+  \begin{axis}[
+    colorbar,
+    point meta max=30,
+    tick label style={font=\tiny},
+    view={0}{90}]
+    \addplot3 [surf,domain=-1.5:0.5,shader=interp,domain y=-1:1,samples=300] {
+        \directlua{mandelbrot(\pgfmathfloatvalueof\x,
+        \pgfmathfloatvalueof\y,10000,4)}
+    };
+  \end{axis}
+\end{tikzpicture}
+
+** q8.2b
+
+
+\documentclass[tikz, border=0.5cm]{standalone}
+\usepgfmodule{nonlineartransformations} 
+\usetikzlibrary{fpu}
+\makeatletter
+\newcommand{\PgfmathsetmacroFPU}[2]{\begingroup% https://tex.stackexchange.com/a/503835
+\pgfkeys{/pgf/fpu,/pgf/fpu/output format=fixed}%
+\pgfmathsetmacro{#1}{#2}%
+\pgfmathsmuggle#1\endgroup}%
+\def\conformaltransformation{% similar to the pgfmanual section 103.4.2
+\PgfmathsetmacroFPU{\myphase}{atan2(\the\pgf@y,\the\pgf@x)}
+\PgfmathsetmacroFPU{\myradius}{veclen(\pgf@y,\pgf@x)/1cm}
+\PgfmathsetmacroFPU{\myx}{\myradius*\myradius*cos(2*\myphase)*0.2cm}%
+\PgfmathsetmacroFPU{\myy}{\myradius*\myradius*sin(2*\myphase)*0.2cm}%
+\pgf@x=\myx pt%
+\pgf@y=\myy pt%
+} 
+\makeatother
+\begin{document}
+
+\begin{tikzpicture}
+\begin{scope}[xshift=-8cm]
+    \draw[thick, black] (1,0) circle(2);
+    \draw[red] (-2,-2) grid (4,2);
+    \foreach \n in {1.0,0.5,0.33,0.2,0.4,0.1,0.6,0.8,0.9} {
+        \pgfmathsetmacro{\angle}{360 * \n}
+        \draw[blue, dashed] (1,0) -- ({1+2*cos(\angle)}, {2*sin(\angle)});
+        \node[blue] at ({1+2.3*cos(\angle)}, {2.3*sin(\angle)}) {\tiny $\pgfmathprintnumber[fixed]{\n}$};
+    }
+    \node[above] at (5.5,0) {$z~\mapsto~z^2$};)
+\end{scope} 
+\begin{scope}
+    \pgftransformnonlinear{\conformaltransformation}
+    \draw[thick, black] (1,0) circle(2);
+    \draw[red] (-2,-2) grid (4,2);
+
+    \foreach \n in {1.0,0.5,0.33,0.2,0.4,0.1,0.6,0.8,0.9} {
+        \pgfmathsetmacro{\angle}{360 * \n}
+        \draw[blue, dashed] (1,0) -- ({1+2*cos(\angle)}, {2*sin(\angle)});
+        \node[blue] at ({1+2.3*cos(\angle)}, {2.3*sin(\angle)}) {\tiny $\pgfmathprintnumber[fixed]{\n}$};
+    }
+\end{scope} 
+\end{tikzpicture}
+\end{document}
+
+
+
+
+
+
+
 
 * Source Code                                                      :noexport:
 
