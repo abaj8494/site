@@ -4,7 +4,9 @@
 
   {{ partial "head/resource-hints.html" . }}
   {{ partial "head/seo.html" . }}
-
+  {{ if or .Params.mathjax .Site.Params.mathjax }}
+    {{ partial "mathjax.html" . }}
+  {{ end }}
   {{ if or .Params.math .Site.Params.math }}
   {{ partial "math.html" . }}
   {{ end }}

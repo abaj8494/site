@@ -2,7 +2,7 @@
 title = "22 Birthday Problems"
 categories = ["bday-problems"]
 tags = ["math-minor", "love-mathematics", "latex-exam-class", "analysis"]
-chem = "true"
+mathjax = "true"
 toc = "true"
 +++
 {{< collapse folded="false" >}}
@@ -82,7 +82,7 @@ Our function \(\large f(z) = \frac{z^2+1}{z(3z+z^2+1}\) has poles at \(z=0, \fra
 However, because the pole at \(\frac{1}{2}(-3-\sqrt{5})\) falls outside of the unit disk (the region of integration), we find that the total contribution to the integral is found by
 
 \[\begin{align*}
-J &= \frac{\rlap{\(-i\)}\textcolor{red}{\cancel{\phantom{-i}}}}{\rlap{\(2\)}\textcolor{red}{\cancel{\phantom{2}}}}\rlap{\(2\)}\textcolor{red}{\cancel{\phantom{2}}} \pi \rlap{\(i\)}\textcolor{red}{\cancel{\phantom{i}}} (B_0 + B_2)\\
+J &= \frac{\rlap{-i}\textcolor{red}{\cancel{\phantom{-i}}}}{\rlap{\,2}\textcolor{red}{\cancel{\phantom{2}}}}\rlap{\,2}\textcolor{red}{\cancel{\phantom{2}}} \pi \rlap{\,i}\textcolor{red}{\cancel{\phantom{i}}} (B_0 + B_2)\\
 &= \pi(1 - \frac{3}{\sqrt{5}})\\
 &= \pi - \frac{3\sqrt{5}\pi}{5}
 \end{align*}\]
@@ -214,6 +214,183 @@ Digging deeper to see the relation between this and the Fibonacci sequence, we s
 The minimal answer to this will always be the mediant of the two fractions:
 \[\frac{1}{3} \oplus \frac{1}{2} = \frac{1+1}{3+2} = \frac{2}{5}\]
 which is entirely equivalent to finding \[F_n = F_{n-1} = F_{n-2}\quad .\]
+
+** Q9
+Again I make a mistake and ask the wrong question[fn:1].
+\[\rlap{\int^\infty_\infty e^{-x^2}\mathrm{d}x}\textcolor{red}{\xcancel{\phantom{\int^\infty_\infty e^{-x^2}\mathrm{d}x}}} = 0\]
+but obviously what I intended to ask was \[I =\int^\infty_{-\infty} e^{-x^2}\mathrm{d}x.\]
+
+We solve this by squaring the integral, changing variables and square rooting the multivariate answer:
+\[\begin{align*}
+I^2 &= \left( \int_{-\infty}^\infty e^{-x^2}~ \mathrm{d}x   \right )^2\\
+&= \int^\infty_{-\infty} e^{-x^2}\mathrm{d}x \times \int^\infty_{-\infty} e^{-y^2}~\mathrm{d}y \\
+&= \int^\infty_{-\infty}\int^\infty_{-\infty} e^{-x^2} e^{-y^2}~\mathrm{d}x~\mathrm{d}y\\
+&= \int^\infty_{-\infty}\int^\infty_{-\infty} e^{-x^2-y^2}~\mathrm{d}x~\mathrm{d}y\\
+&= \int^{2\pi}_{0}\int^\infty_{0} e^{-r^2}r~\mathrm{d}r~\mathrm{d}\theta\qquad\text{by converting to polar coordinates}\\
+&= -\frac{1}{2} \int^{2\pi}_0 e^{-r^2} ~\mathrm{d}\theta ~ \bigg\rvert^\infty_0 \\
+&= -\frac{1}{2} \bigg[ -\theta ~\bigg\rvert^{2\pi}_0 \bigg] \\
+&= \pi\\
+\therefore I^2&=\pi \\
+\implies I &= \sqrt{\pi}
+\end{align*}\]
+
+For reference the curve we are integrating looks like:
+
+#+BEGIN_CENTER
+#+ATTR_HTML: :width 300px :class lateximage
+[[q9.svg]]
+#+END_CENTER
+
+** Q10
+
+Recall that \[\frac{1}{1+x^2} = 1 - x^2 + x^4 - \dots + \dots \]
+
+Then upon integration we obtain:
+\[\begin{align*}
+\int^1_0 \frac{1}{1+x^2} &= 1 - \frac{x^3}{3} + \frac{x^5}{5} - \dots \bigg\rvert^1_0 \\
+&= 1 - \frac{1}{3} + \frac{1}{5} -\frac{1}{7}\dots \end{align*}\]
+
+Also, we can directly integrate:
+\[\begin{align*}
+\int^1_0 \frac{1}{1+x^2} &= \arctan(x) \bigg\rvert^1_0\\
+&= \frac{\pi}{4}
+\end{align*}\]
+
+Thus the infinite series \(1 - \frac{1}{3} + \frac{1}{5} -\frac{1}{7}+\dots \) indeed converges to \(\frac{\pi}{4}\).
+
+** Q11
+Calculus is for *children* whilst analysis is for *adults*.
+
+** Q12
+Given that \(f(x) = x^4 -5x^3\) and \(g(x) = 8x-40\) we can find their points of intersection by equating the functions and factoring the polynomial:
+
+\[x^4-5x^3-8x+40 = 0 \\
+\implies (x-5)(x^3-8) = 0\]
+
+Taking derivatives and substituting the x-intercept of 5 to find the gradients of \(f\) and \(g\) at those points, we find that the angle difference between the two lines is \[6.67^\circ.\]
+
+#+BEGIN_CENTER
+#+ATTR_HTML: :width 500px :class lateximage
+[[q12.svg]]
+#+END_CENTER
+
+** Q13
+\[S\rightarrow V_2 \rightarrow V_4 \rightarrow t \implies \text{path cost of }31\]
+
+** Q14
+
+To solve 
+\begin{equation}
+\label{eq:1}
+\sin(z) = 2
+\end{equation}
+
+we use the substitution \(z=e^{i\theta}\) such that \( \sin(z) = {\large\frac{z-z^{-1}}{2i}}\) and \ref{eq:1} becomes:
+
+\[\begin{align*}
+\frac{z-z^{-1}}{2i} &= 2\\
+z^2 - 1 &= 4i\\
+z^2-4iz-1&=0\\
+z &= i(2\pm\sqrt{3}) \qquad\text{(by the quadratic formula)}
+\end{align*}\]
+
+
+
+** Q15
+
+We begin by considering \(X^2-X-1=0\label{eq:2}\) and letting its solution be \(\phi\).
+
+Thus \(\phi^2 - \phi - 1 = 0 \implies \phi^2 = \phi + 1\).
+\[\begin{align*}
+\text{Multiplying by this by }\quad\phi: \phi^3 &= \phi^2 +\phi =2~\phi +1\\
+\text{similarly, }\quad \phi^4 &= \phi^3 +\phi^2 = 3~\phi+2\\
+\text{continuing in this fashion }\quad \phi^5 &= 5~\phi + 3\\
+\phi^6 &= 8\phi + 5
+\end{align*}\]
+
+Clearly a pattern is emerging; the coefficient of \(\phi^1\) is \(F_n\) (where \(F_n\) is the \(n^\text{th}\) value in the Fibonacci series) and that of \(\phi^0\) is \(F_{n-1}\).
+
+Thus we can write \[\phi^n = F_n \phi + F_{n-1}\]
+
+Then we note that our original equation \(X^2-X-1=0\) was quadratic and so would admit 2 such solutions:
+
+\begin{align}
+\phi_1^n &= F_n \phi_1 + F_{n-1}\\
+\phi_2^n &= F_n \phi_2 + F_{n-1}
+\end{align}
+
+Then subtracting (3) from (2):
+\begin{align}
+\label{eq:3}
+\phi_1^n - \phi_2^n &= F_n(\phi_1 - \phi_2)\nonumber \\
+\implies F_n &= \frac{\phi_1^n-\phi_2^n}{\phi_1-\phi_2}
+\end{align}
+
+Stepping back and solving the quadratic \(X^2-X-1=0\) we get the following results. 
+\[\phi_1 = \frac{1+\sqrt{5}}{2}, \qquad\phi_2 = \frac{1-\sqrt{5}}{2}, \qquad \phi_1 - \phi_2 = \sqrt{5}\]
+Substituting these \(\phi_1\) and \(\phi_2\) in \ref{eq:3} yields
+\[F_n = \frac{1}{\sqrt{5}}\left[ \bigg(\frac{1+\sqrt{5}}{2}\bigg)^n - \bigg(\frac{1-\sqrt{5}}{2}\bigg)^n\right].\]
+
+** Q16
+
+We solve ODE by combining solutions to the homogenous case
+\[y_h = Ae^{-x} + Bxe^{-x}\]
+With the solutions to the particular case
+\[y_p = ? \]
+To form their linear combination
+\[y = e\]
+
+** Q17
+\[\begin{align*}
+<\sin(x),\cos(x)> &= \int^{2\pi}_0\sin(x)\cos(x)\mathrm{d}x\\
+&= \frac{1}{2}\int^{2\pi}_0 \sin(2x)~\mathrm{d}x\\
+&= 0\quad\text{by the oddness of the sine function}
+\end{align*}\]
+
+** Q18
+
+\[\frac{1}{2}\times 8! \times 3^7 \times 12! \times 2^11 \]
+
+** Q19
+
+#+BEGIN_QUOTE
+Rome was not built in a day
+#+END_QUOTE
+
+** Q20
+
+We take an infinitesimal summation (an integral) of all the length components of the curve with:
+\[\int\sqrt{1+[f'(x)]^2} \mathrm{d}x\]
+In this case \(f(x) = x^2\), so \(f'(x) = 2x\).
+We solve the following integral by way of a trigonometric substitution \(x = \frac{\tan(u)}{2} \implies \frac{\mathrm{d}x}{\mathrm{d}u} = \frac{\sec^2(u)}{2} \).
+
+After the algebraic dust settles we are left with:
+\[\frac{x\sqrt{1+4x^2}}{2} + \frac{\ln(\sqrt{1+4x^2}+2x)}{4} \bigg\rvert^4_0 \approx 16.82\]
+
+** Q21
+
+Someone who is majoring in mathematics, has a friend who needs help with his or her homework.
+
+** Q22
+\[D(x) = \begin{cases}
+1 & \text{if } x \text{ is rational}, \\
+0 & \text{if } x \text{ is irrational}
+\end{cases}\\I = \int_0^1 D(x)\, \mathrm{d}x\]
+
+To solve this we usually need measure theory, but we can intepret the integral probabilistically as:
+
+What is the probability that you pick a rational number number? Which is equivalent to 1 - "what is the probability you pick an irrational number".
+Clearly the probability of picking an irrational number is low, considering \(0.12345\ldots\) ad infinitum. At first you would need to pick 1, then next 2, then 3, etc. each with a probability of 1/10th:
+
+\[P(irrational) = \frac{1}{10}^\infty = 0 \]
+
+This can be visualised as
+#+BEGIN_CENTER
+#+ATTR_HTML: :class lateximage :width 400px
+[[q22.svg]]
+#+END_CENTER
+
+Thus \(I = \int_0^1 D(x)\, \mathrm{d} = 0\). 
 
 
 * Figures                                                          :noexport:
@@ -427,8 +604,30 @@ which is entirely equivalent to finding \[F_n = F_{n-1} = F_{n-2}\quad .\]
 \end{document}
 
 
+** q9
+\begin{tikzpicture}
+  \begin{axis}[samples = 1000,title={$y = e^{-x^2}$}]
+    \addplot[blue,thick] {exp(-x^2)};
+  \end{axis}
+\end{tikzpicture}
+
+** q11
+
+\begin{tikzpicture}
+\begin{axis}[samples=200, axis lines=middle, domain=-5:7,enlargelimits]
+  \addplot [thick,blue] {x^4-5*x^3};
+  \addplot [thick,red] {8*x-40};
+\end{axis}
+\end{tikzpicture}
 
 
+** q22
+
+\begin{tikzpicture}
+  \begin{axis}[samples=100, title={$y=0.1^n$},axis lines=middle, domain=-2:10]
+    \addplot[thick, blue] {0.1^x};
+  \end{axis}
+\end{tikzpicture}
 
 
 
