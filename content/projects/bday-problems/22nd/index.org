@@ -23,7 +23,7 @@ Mr. Rajan nobly refused the charity.
 [[q1.svg]]
 #+END_CENTER
 
-Thus the mathematics simplifies from using trigonometric substitution to simply
+Thus the mathematics simplifies from using a trigonometric substitution to simply
 \[\begin{align*}
 A_{\text{circle}} &= \pi r^2\\
 &=9\pi\\
@@ -37,7 +37,7 @@ We continue with the theme of visualising integrals in the multivariate case.
 
 Here we realise that we are being asked to find the volume of 2 hemispheres using /polar/ coordinates.
 
-The radius \(r\) varies from 0 to 1, whilst the \(\theta\) value traces out a flat disk in the \(x-y\) plane. Then the \(\phi\) varies up to \(\pi\), tracing out the volume of a hemisphere. Then this value is multiplied by 2 (as per the integral) and can be visualised as such:
+The radius \(r\) varies from 0 to 1, whilst the \(\theta\) value traces out a flat disk in the \(x-y\) plane. Then the \(\phi\) varies up to \(\pi\), tracing out the volume of a hemisphere. Then this value is multiplied by 2, forming a sphere:
 
 #+BEGIN_CENTER
 #+ATTR_HTML: :width 300px :class lateximage
@@ -45,14 +45,14 @@ The radius \(r\) varies from 0 to 1, whilst the \(\theta\) value traces out a fl
 [[q2.svg]]
 #+END_CENTER
 
-Thus our mathematics then again simplifies significantly to just
+Our mathematics then again simplifies significantly to just
 \[\begin{align*}
 V_{\text{sphere}} &= \frac{4}{3}\pi r^3\\
 &=\frac{4}{3}\pi\end{align*}\]
 
 ** Q3
 
-Regrettably a mistake in this question steered the crowd in the wrong direction[fn:1]. The question asked was regarding an /indefinite/ integral which was correctly solved by using the Weierstrass \(t\) substitution of \[\cos{t} = \frac{1-t^2}{1+t^2}\quad .\]
+Regrettably a mistake in this question steered the crowd in the wrong direction[fn:1]. The question asked was regarding an /indefinite/ integral which can be correctly solved by using the Weierstrass \(t\) substitution of \[\cos{t} = \frac{1-t^2}{1+t^2}\quad .\]
 
 Churning out the algebra from the substitution, performing a partial fraction decomposition, back-substituting in terms of the original variable and rationalising yields:
 
@@ -84,12 +84,12 @@ However, because the pole at \(\frac{1}{2}(-3-\sqrt{5})\) falls outside of the u
 \[\begin{align*}
 J &= \frac{\rlap{-i}\textcolor{red}{\cancel{\phantom{-i}}}}{\rlap{\,2}\textcolor{red}{\cancel{\phantom{2}}}}\rlap{\,2}\textcolor{red}{\cancel{\phantom{2}}} \pi \rlap{\,i}\textcolor{red}{\cancel{\phantom{i}}} (B_0 + B_2)\\
 &= \pi(1 - \frac{3}{\sqrt{5}})\\
-&= \pi - \frac{3\sqrt{5}\pi}{5}
+&= \pi - \frac{3\sqrt{5}\pi}{5}\quad\square
 \end{align*}\]
 
 ** Q4
 
-We think out of the box for this one:
+We must think outside of the proverbial box for this one:
 
 #+BEGIN_CENTER
 #+ATTR_HTML: :width 400px :class lateximage
@@ -111,7 +111,7 @@ Thus
 &= \frac{3}{2}\frac{1}{2}\Gamma\left(\frac{1}{2}\right)
 \end{align*}\]
 
-and \(\Gamma\left(\frac{1}{2}\right) = \sqrt{\pi}\), either by doing it manually yourself via IBP (integration by parts), or by having done it previously and now remembering it.
+and \(\Gamma\left(\frac{1}{2}\right) = \sqrt{\pi}\), either by doing it manually yourself via IBP (integration by parts), or by having done it previously and remembering it.
 
 \[\therefore \Gamma\left (\frac{5}{2}\right ) =\left( \frac{3\pi}{4}\right )\]
 
@@ -184,7 +184,7 @@ Now since the middle limit - the one that we are interested in - is being pinche
 
 ** Q7 - ctd.
 Resuming our initial proof:
-\[\lim_{h\to 0} \sin(x)\frac{\cos(h)}{h} + \cos(x)\frac{\sin(h)}{h} - \frac{\sin(x)}{h} = 0 = \cos(x)\times 1 - 0\]
+\[\lim_{h\to 0}\,\, \sin(x)\frac{\cos(h)}{h} + \cos(x)\frac{\sin(h)}{h} - \frac{\sin(x)}{h}  = 0 + \cos(x)\times 1 - 0\\ = \cos(x)\,\,\square .\]
 
 ** Q8
 
@@ -213,7 +213,7 @@ Digging deeper to see the relation between this and the Fibonacci sequence, we s
 \[\frac{1}{3} \geq ~?~ \geq \frac{1}{2} \]
 The minimal answer to this will always be the mediant of the two fractions:
 \[\frac{1}{3} \oplus \frac{1}{2} = \frac{1+1}{3+2} = \frac{2}{5}\]
-which is entirely equivalent to finding \[F_n = F_{n-1} = F_{n-2}\quad .\]
+which is entirely equivalent to finding \[F_n = F_{n-1} = F_{n-2}.\]
 
 ** Q9
 Again I make a mistake and ask the wrong question[fn:1].
@@ -302,9 +302,9 @@ We begin by considering \(X^2-X-1=0\label{eq:2}\) and letting its solution be \(
 
 Thus \(\phi^2 - \phi - 1 = 0 \implies \phi^2 = \phi + 1\).
 \[\begin{align*}
-\text{Multiplying by this by }\quad\phi: \phi^3 &= \phi^2 +\phi =2~\phi +1\\
-\text{similarly, }\quad \phi^4 &= \phi^3 +\phi^2 = 3~\phi+2\\
-\text{continuing in this fashion }\quad \phi^5 &= 5~\phi + 3\\
+\text{Multiplying by this by }\quad\phi: \phi^3 = \phi^2 +\phi &=2\phi +1\\
+\text{similarly, }\quad \phi^4 = \phi^3 +\phi^2 &= 3\phi+2\\
+\text{continuing in this fashion }\quad \phi^5 &= 5\phi + 3\\
 \phi^6 &= 8\phi + 5
 \end{align*}\]
 
@@ -321,35 +321,52 @@ Then we note that our original equation \(X^2-X-1=0\) was quadratic and so would
 
 Then subtracting (3) from (2):
 \begin{align}
-\label{eq:3}
+\label{eq:4}
 \phi_1^n - \phi_2^n &= F_n(\phi_1 - \phi_2)\nonumber \\
 \implies F_n &= \frac{\phi_1^n-\phi_2^n}{\phi_1-\phi_2}
 \end{align}
 
-Stepping back and solving the quadratic \(X^2-X-1=0\) we get the following results. 
+Zooming out and solving the quadratic \(X^2-X-1=0\) we get the following results. 
 \[\phi_1 = \frac{1+\sqrt{5}}{2}, \qquad\phi_2 = \frac{1-\sqrt{5}}{2}, \qquad \phi_1 - \phi_2 = \sqrt{5}\]
-Substituting these \(\phi_1\) and \(\phi_2\) in \ref{eq:3} yields
+Substituting these \(\phi_1\) and \(\phi_2\) into \ref{eq:4} yields
 \[F_n = \frac{1}{\sqrt{5}}\left[ \bigg(\frac{1+\sqrt{5}}{2}\bigg)^n - \bigg(\frac{1-\sqrt{5}}{2}\bigg)^n\right].\]
 
 ** Q16
 
-We solve ODE by combining solutions to the homogenous case
+We solve the ODE by combining solutions to the homogenous case
 \[y_h = Ae^{-x} + Bxe^{-x}\]
-With the solutions to the particular case
-\[y_p = ? \]
-To form their linear combination
-\[y = e\]
+with the solutions to the particular case
+\[y_p = e^{-x}-e^{-x}\cos(x) \]
+And solving the initial conditions to find our constants and ultimately produce:
+\[y = e^{-x}-e^{-x}\cos(x)\]
 
 ** Q17
 \[\begin{align*}
-<\sin(x),\cos(x)> &= \int^{2\pi}_0\sin(x)\cos(x)\mathrm{d}x\\
+\langle\sin(x),\cos(x)\rangle &= \int^{2\pi}_0\sin(x)\cos(x)\mathrm{d}x\\
 &= \frac{1}{2}\int^{2\pi}_0 \sin(2x)~\mathrm{d}x\\
-&= 0\quad\text{by the oddness of the sine function}
+&= 0\text{, by the oddness of the sine function}
 \end{align*}\]
 
 ** Q18
 
-\[\frac{1}{2}\times 8! \times 3^7 \times 12! \times 2^11 \]
+There are 8 corners with 3 permutations each: \(3^8\). They can all be arranged in \(8!\) ways.
+Then similarly, we have 12 edges with 2 permutations each: \(2^{12}\); these can be arranged in \(12!\) ways.
+
+However, because we are not simply calculating /permutations/ of an abstract 3 by 3 object with corner and edges pieces, but are rather trying to find how many /possible permutations of the Rubik's cube there are/, we have another 3 restrictions:
+1. You cannot turn a corner piece in place
+2. You cannot turn an edge piece in place
+3. You cannot swap 2 pieces at will
+
+As a consequence of these physical restrictions on the puzzle, we have the corresponding combinatoric limitations:
+1. The permutation of the last corner will be predetermined by all other corners
+2. The permutation of the last edge will be predetermined by all other edges
+3. The corner positions of the last 2 corners will be predetermined by all the previous edges and corners
+
+Thus
+\[3^8\times 8! \times 3^{12}\times 12!\]
+Reduces to
+\[3^7\times 8! \times 3^{11}\times 11! \times \frac{1}{2} = 43,252,003,274,489,856,000\]
+
 
 ** Q19
 
@@ -390,7 +407,7 @@ This can be visualised as
 [[q22.svg]]
 #+END_CENTER
 
-Thus \(I = \int_0^1 D(x)\, \mathrm{d} = 0\). 
+Thus \(I = \int_0^1 D(x)\, \mathrm{d} = 1 - 0 = 1\). 
 
 
 * Figures                                                          :noexport:
