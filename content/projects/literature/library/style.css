@@ -1,0 +1,23 @@
+/* Ensure the table takes full width */
+.bibtex2html table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Style the first column (e.g., for numbers like [6]) */
+.bibtex2html td:first-child {
+  width: 10%; /* Adjust as needed */
+  text-align: right; /* Align numbers to the right */
+}
+
+/* Style the second column (e.g., for entry content) */
+.bibtex2html td:nth-child(2) {
+  width: 90%; /* The rest of the space */
+  text-align: left;
+}
+
+/* Optional: Add borders or padding */
+.bibtex2html td {
+  padding: 5px;
+  border: 1px solid #ddd;
+}

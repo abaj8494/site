@@ -2,6 +2,18 @@
 title = "Library"
 categories = ["fiction", "non-fiction"]
 tags = ["ai", "computer-science", "mathematics", "japanese", "self-help", "literary-canon", "anthropology", "psychology", "comics"]
+layout = "single"
 +++
 
 These are all the books that I own / have owned in the past. I have not read them all, neither will I ever be able to. My favourites are listed first.
+
+#+BEGIN_CENTER
+#+ATTR_HTML: :class lateximage :width 1000px
+[[bookshelf.svg]]
+#+END_CENTER
+
+#+INCLUDE: "./books-partials.html" export html
+
+* TODO add more books                                              :noexport:
+* TODO integrate hyperlinks to pages that collect backlinks        :noexport:
+

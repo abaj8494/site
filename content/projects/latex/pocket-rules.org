@@ -37,5 +37,6 @@ Here is the directory structure
 ** Pocket Rules
 *** PDF
 
+{{< embed-pdf url="/code/latex/frisbee/rules.pdf" >}}
 *** Source
 #+INCLUDE: "/code/latex/frisbee/rules.tex" src latex

@@ -6,3 +6,6 @@
 	url = https://github.com/schnerring/hugo-mod-json-resume
 
 
+[submodule "static/code/bookshelf"]
+	path = static/code/bookshelf
+	url = git@github.com:abaj8494/bookshelf.git

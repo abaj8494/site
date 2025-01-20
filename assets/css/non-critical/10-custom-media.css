@@ -141,3 +141,28 @@ a:visited {
 @custom-media --lg (min-width: 992px);
 @custom-media --xl (min-width: 1200px);
 @custom-media --xxl (min-width: 1400px);
+
+/* Style the table to ensure proper layout */
+table {
+  width: 100%;
+}
+
+/* Style the first column containing citation numbers */
+.bibtexnumber {
+  width: 10%; /* Adjust this percentage as needed */
+  text-align: right; /* Align the numbers to the right */
+  padding-right: 10px; /* Add some spacing */
+  vertical-align: top; /* Keep alignment consistent */
+}
+
+/* Style the second column containing the citation details */
+.bibtexitem {
+  width: 90%; /* Take up the remaining space */
+  text-align: left; /* Left-align the content */
+}
+
+/* Optional: Add some padding and borders for better readability */
+table td {
+  padding: 10px; /* Add padding for spacing */
+  border-bottom: 1px solid #ddd; /* Optional row separator */
+}

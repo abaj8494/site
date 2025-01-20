@@ -1,5 +1,0 @@
-+++
-title = "Chess Bot"
-categories = ["ai"]
-tags = ["c", "minimax", "mcmt"]
-+++
