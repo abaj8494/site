@@ -1,0 +1,312 @@
++++
+title = "Kuzushiji MNIST"
+categories = ["ai", "ml", "supervised"]
+tags = ["classification", "multiclass", "cnn", "2-layer"]
+toc = "true"
+math = "true"
++++
+
+This page is for finding a classifier on the KMNIST dataset. This dataset is more challenging than the original [[/projects/ml/supervised/mnist][MNIST]] dataset that I have previously solved.
+
+The details of the dataset can be found in the associated [[https://arxiv.org/pdf/1812.01718][paper]].
+
+In short, since the reformation of the Japanese education in 1868, there became a standardisation of the kanji characters, and in the present day, most Japanese people cannot read the texts from 150 years ago.
+
+The dataset additionally contains 10 Hiragana characters with 7000 samples per class, we will begin our classification task by fitting increasingly sophisticated architectures to this simpler task.
+
+#+begin_src jupyter-python :session kuzu :exports none
+import matplotlib.pyplot as plt
+from torchvision import datasets, transforms
+
+# Define the transform (if not already defined)
+transform = transforms.ToTensor()
+
+# Load the dataset
+trainset = datasets.KMNIST(root='./data', train=True, download=True, transform=transform)
+
+# Dictionary to store one image for each label
+label_images = {}
+
+# Iterate through the dataset to find one image per label
+for image, label in trainset:
+    if label not in label_images:
+        label_images[label] = image.squeeze()  # Remove channel dimension
+    if len(label_images) == 10:  # Stop once we have one image for each label
+        break
+
+# Set grid dimensions (2 rows, 5 columns)
+rows, cols = 2, 5
+
+# Create a grid to display the images
+fig, axs = plt.subplots(rows, cols, figsize=(12, 5))
+axs = axs.flatten()  # Flatten the 2D array of axes to iterate easily
+
+for idx in range(10):
+    axs[idx].imshow(label_images[idx], cmap='gray')
+    axs[idx].set_title(f'Label: {idx}')
+    axs[idx].axis('off')  # Turn off axis for better visualization
+
+# Adjust layout to fit everything nicely
+plt.tight_layout()
+plt.show()
+
+#+end_src
+
+#+BEGIN_CENTER
+#+ATTR_HTML: :class lateximage :width 1000px
+[[hiragana.png]]
+#+END_CENTER
+
+* Imports
+#+BEGIN_SRC jupyter-python :session kuzu
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+import torch.optim as optim
+import sklearn.metrics as metrics
+import numpy as np
+from torchvision import datasets, transforms
+#+END_SRC
+
+#+RESULTS:
+: /opt/anaconda3/envs/metal/lib/python3.11/site-packages/torchvision/io/image.py:14: UserWarning: Failed to load image Python extension: 'dlopen(/opt/anaconda3/envs/metal/lib/python3.11/site-packages/torchvision/image.so, 0x0006): Library not loaded: @rpath/libjpeg.9.dylib
+:   Referenced from: <EB3FF92A-5EB1-3EE8-AF8B-5923C1265422> /opt/anaconda3/envs/metal/lib/python3.11/site-packages/torchvision/image.so
+:   Reason: tried: '/opt/anaconda3/envs/metal/lib/python3.11/site-packages/torchvision/../../../libjpeg.9.dylib' (no such file), '/opt/anaconda3/envs/metal/lib/python3.11/site-packages/torchvision/../../../libjpeg.9.dylib' (no such file), '/opt/anaconda3/envs/metal/lib/python3.11/lib-dynload/../../libjpeg.9.dylib' (no such file), '/opt/anaconda3/envs/metal/bin/../lib/libjpeg.9.dylib' (no such file)'If you don't plan on using image functionality from `torchvision.io`, you can ignore this warning. Otherwise, there might be something wrong with your environment. Did you have `libjpeg` or `libpng` installed before building `torchvision` from source?
+:   warn(
+
+* Testing and Training Loops
+#+begin_src jupyter-python :session kuzu
+def train(model, device, train_loader, optimizer, epoch):
+    model.train()
+    for batch_idx, (data, target) in enumerate(train_loader):
+        data, target = data.to(device), target.to(device)
+        optimizer.zero_grad()
+        output = model(data)
+        loss = F.nll_loss(output, target)
+        loss.backward()
+        optimizer.step()
+        if batch_idx % 100 == 0:
+            print('Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(
+                epoch, batch_idx * len(data), len(train_loader.dataset),
+                100. * batch_idx / len(train_loader), loss.item()))
+
+def test(model, device, test_loader):
+    model.eval()
+    test_loss = 0
+    correct = 0
+    conf_matrix = np.zeros((10,10)) # initialize confusion matrix
+    with torch.no_grad():
+        for data, target in test_loader:
+            data, target = data.to(device), target.to(device)
+            output = model(data)
+            # sum up batch loss
+            test_loss += F.nll_loss(output, target, reduction='sum').item()
+            # determine index with maximal log-probability
+            pred = output.argmax(dim=1, keepdim=True)
+            correct += pred.eq(target.view_as(pred)).sum().item()
+            # update confusion matrix
+            conf_matrix = conf_matrix + metrics.confusion_matrix(
+                          target.cpu(),pred.cpu(),labels=[0,1,2,3,4,5,6,7,8,9])
+        # print confusion matrix
+        np.set_printoptions(precision=4, suppress=True)
+        print(type(conf_matrix))
+        print(conf_matrix)
+
+    test_loss /= len(test_loader.dataset)
+
+    print('\nTest set: Average loss: {:.4f}, Accuracy: {}/{} ({:.0f}%)\n'.format(
+        test_loss, correct, len(test_loader.dataset),
+        100. * correct / len(test_loader.dataset)))
+
+#+end_src
+
+#+RESULTS:
+
+
+* Create Architectures
+
+#+begin_src jupyter-python :session kuzu
+class NetLin(nn.Module):
+    # linear function followed by log_softmax
+    def __init__(self):
+        super(NetLin, self).__init__()
+        self.fc = nn.Linear(28 * 28, 10)
+        self.log_softmax = nn.LogSoftmax(dim=1)
+
+    def forward(self, x):
+        x = x.view(-1, 28 * 28)  # flatten the image into a vector
+        x = self.fc(x)  # apply the linear layer
+        x = self.log_softmax(x)  # apply log softmax
+        return x
+
+class NetFull(nn.Module):
+    # two fully connected tanh layers followed by log softmax
+    def __init__(self):
+        super(NetFull, self).__init__()
+        self.layer1 = nn.Linear(28 * 28, 100)
+        self.layer2 = nn.Linear(100, 10)
+        self.hid_act = nn.Tanh()
+        self.hid_out = nn.LogSoftmax(dim=1)
+
+    def forward(self, x):
+        x = x.view(-1, 28 * 28)
+        x = self.layer1(x)
+        x = self.hid_act(x)
+        x = self.layer2(x)
+        x = self.hid_out(x)
+        return x
+
+class NetConv(nn.Module):
+    # two convolutional layers and one fully connected layer,
+    # all using relu, followed by log_softmax
+    def __init__(self):
+        super(NetConv, self).__init__()
+        self.conv1 = nn.Conv2d(1, 128, kernel_size=3, stride=1, padding=1)
+        self.conv2 = nn.Conv2d(128, 256, kernel_size=5, stride=2, padding=1)
+        self.pool = nn.MaxPool2d(kernel_size=2, stride=2)
+        self.fc = nn.Linear(256 * 6 * 6, 10)
+        self.relu = nn.ReLU()
+        self.act = nn.LogSoftmax(dim=1)
+
+    def forward(self, x):
+        x = self.conv1(x)
+        x = self.relu(x)
+        x = self.conv2(x)
+        x = self.relu(x)
+        x = self.pool(x)
+
+        #x = x.flatten(1)
+        x = x.view(-1, 256 * 6 * 6)
+        x = self.fc(x)
+        x = self.act(x)
+
+        return x
+#+end_src
+
+#+RESULTS:
+
+
+* Training loop
+
+#+begin_src jupyter-python :session kuzu
+    def main(model, lr=0.01, mom=0.5, epochs=10):
+      use_mps = torch.backends.mps.is_available()
+      device = torch.device('mps' if use_mps else 'cpu')
+
+      kwargs = {'num_workers': 1, 'pin_memory': True} if use_mps else {}
+
+      # define a transform to normalize the data
+      transform = transforms.Compose([transforms.ToTensor(),
+				      transforms.Normalize((0.5,), (0.5,))])
+
+      # fetch and load training data
+      trainset = datasets.KMNIST(root='./data', train=True, download=True, transform=transform)
+      train_loader = torch.utils.data.DataLoader(trainset, batch_size=64, shuffle=False)
+
+      # fetch and load test data
+      testset = datasets.KMNIST(root='./data', train=False, download=True, transform=transform)
+      test_loader = torch.utils.data.DataLoader(testset, batch_size=64, shuffle=False)
+
+      # choose network architecture
+      if model == 'lin':
+	  net = NetLin().to(device)
+      elif model == 'full':
+	  net = NetFull().to(device)
+      else:
+	  net = NetConv().to(device)
+
+      if list(net.parameters()):
+	  # use SGD optimizer
+	  #optimizer = optim.SGD(net.parameters(), lr=lr, momentum=mom)
+
+	  # use Adam optimizer
+	  #optimizer = optim.Adam(net.parameters(),lr=lr,
+	  #                             weight_decay=0.00001)
+	  optimizer = optim.SGD(net.parameters(),lr=lr,momentum=0.9,
+				      weight_decay=0.00001)
+
+	  # training and testing loop
+	  for epoch in range(1, epochs + 1):
+	      train(net, device, train_loader, optimizer, epoch)
+	      test(net, device, test_loader)
+
+  main('lin')
+  #main('full')
+  #main('conv')
+#+end_src
+
+* Confusion Matrices
+
+In the =NetLin= method, we have the characters "na" misclassified as "o" (63 preds), "ki" (51 preds) and "su" (80 preds). The character "ma" is also misunderstood by the linear classifier as "su" (149 times) and "na" (26 times).
+
+The =NetFull= Matrix performs better with 84% accuracy, but continues to misclassify "ma" as "su" 62 times. "ha" is misclassified as "su" (85 times) and "na" as "o" 40 times.
+
+Finally, our =CNN= does the best, but continues to misclassify "na" as "o" and "tsu" 22 and 18 times respectively. An improvement though, no doubt.
+
+** Linear (Netlin)
+#+BEGIN_SRC
+[[768.   6.   9.  13.  29.  64.   2.  62.  29.  18.]
+ [  7. 667. 109.  18.  26.  22.  59.  14.  27.  51.]
+ [  7.  60. 694.  27.  25.  19.  46.  35.  47.  40.]
+ [  5.  36.  61. 763.  15.  53.  12.  18.  28.   9.]
+ [ 63.  51.  80.  19. 621.  20.  33.  37.  20.  56.]
+ [  7.  28. 123.  16.  19. 726.  28.   9.  34.  10.]
+ [  5.  22. 149.  10.  26.  26. 719.  21.   9.  13.]
+ [ 18.  29.  28.  12.  84.  14.  56. 622.  89.  48.]
+ [ 12.  37.  91.  43.   6.  30.  45.   7. 708.  21.]
+ [  8.  52.  84.   4.  53.  31.  17.  32.  41. 678.]]
+
+Test set: Average loss: 1.0087, Accuracy: 6966/10000 (70%)
+#+END_SRC
+
+** Fully Connected 2-layer (NetFull)
+
+#+BEGIN_SRC
+    [[842.   4.   3.   5.  30.  29.   4.  44.  33.   6.]
+ [  4. 796.  37.   6.  28.  12.  65.   5.  21.  26.]
+ [  8.  13. 845.  28.   9.  19.  24.  16.  24.  14.]
+ [  3.   9.  34. 910.   2.  13.   7.   6.   8.   8.]
+ [ 40.  26.  27.   8. 811.   7.  29.  17.  17.  18.]
+ [ 10.  13.  85.  15.  12. 824.  21.   2.  16.   2.]
+ [  3.   9.  62.   6.  20.   6. 878.   7.   2.   7.]
+ [ 19.  15.  23.   5.  19.  11.  36. 815.  28.  29.]
+ [ 12.  31.  34.  43.   4.  11.  27.   5. 827.   6.]
+ [  7.  19.  58.   3.  29.   6.  24.  17.  18. 819.]]
+
+Test set: Average loss: 0.5316, Accuracy: 8367/10000 (84%)
+#+END_SRC
+
+** Convolutional Network
+#+BEGIN_SRC
+    [[953.   1.   5.   0.  12.   8.   0.  14.   6.   1.]
+ [  2. 935.  12.   1.   6.   3.  27.   5.   2.   7.]
+ [  8.   2. 869.  60.   7.  18.  24.   6.   3.   3.]
+ [  0.   0.  29. 947.   2.  11.   4.   2.   1.   4.]
+ [ 22.   5.   9.  18. 899.   9.  13.   6.  15.   4.]
+ [  1.   5.  31.   8.   4. 931.  15.   1.   0.   4.]
+ [  0.   5.  21.   8.   4.   2. 951.   6.   1.   2.]
+ [ 11.   9.   4.   4.   6.  10.  10. 920.  10.  16.]
+ [  5.  10.   9.   7.   5.   4.   4.   0. 955.   1.]
+ [  7.  11.   4.   4.   8.   3.   0.   2.   5. 956.]]
+
+Test set: Average loss: 0.3835, Accuracy: 9316/10000 (93%)
+#+END_SRC
+
+* Calculations of Independent Parameters
+
+** Netlin
+The number of independent parameters is \[(784\times100 + 100) + 100\times10 + 10 = 79,510\]
+
+which is calculated by the weights of the first layer \(784\times 100\) added to the biases, \(100\). this is then added to the weights of the second layer \(100\times 10\) plus the biases for the outputs, \(10\); resulting in \(79,510\)
+
+** Convolution
+
+*Conv1 Layer*
+Each filter has \(1\times 3\times 3 = 9\) parameters; there are 128 filters \(\rightarrow 1152\). Then each filter has a bias so \(1,280\) for Conv1 layer.
+
+Then, in *Conv2 Layer* each of the 256 filters have \(128 \times 5 \times 5 = 3200\) parameters. This coupled with the biases gives 819456.
+
+Finally, we have the *Fully Connected Layer*: \(256\times6\times6\) multiplied by the output dimensionality, \(10 = 92160\). Plus biases = 92170
+
+Ultimately, \(1280 + 819456 + 92170 = 912906\) independent parameters.
+

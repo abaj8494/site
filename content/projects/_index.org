@@ -116,7 +116,6 @@ The following links contain the source code and solution sets:
 - @@html:<input type="checkbox" checked class="done"/>@@ [[/projects/ml/supervised/mnist][MNIST]] {{< tags-inline "projects/ml/supervised/mnist" >}}
 - @@html:<input type="checkbox" class="refactor"/>@@ [[/projects/ml/supervised/life-expectancy][Life Expectancy]] {{< tags-inline "projects/ml/supervised/life-expectancy" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ml/supervised/fmnist][FMNIST (Fashion)]] {{< tags-inline "projects/ml/supervised/fmnist" >}}
-- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ml/supervised/kmnist][KMNIST (Kuzushiji)]] {{< tags-inline "projects/ml/supervised/kmnist" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ml/supervised/cifar][CIFAR]] {{< tags-inline "projects/ml/supervised/cifar" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ml/supervised/iris][IRIS]] {{< tags-inline "projects/ml/supervised/iris" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ml/supervised/imagenet][ImageNet]] {{< tags-inline "projects/ml/supervised/imagenet" >}}
@@ -141,6 +140,7 @@ The following links contain the source code and solution sets:
 - @@html:<input type="checkbox" checked class="done"/>@@ [[/projects/dl/benchmarking][Hardware Benchmarking]] {{< tags-inline "projects/dl/benchmarking" >}}
 - @@html:<input type="checkbox" checked class="archived"/>@@ [[/projects/dl/perceptron][Perceptron]] {{< tags-inline "projects/dl/perceptron" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/dl/mlp][Multilayer Perceptron]] {{< tags-inline "projects/dl/mlp" >}}
+- @@html:<input type="checkbox" checked class="done"/>@@ [[/projects/dl/kmnist][KMNIST (Kuzushiji)]] {{< tags-inline "projects/dl/kmnist" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/dl/KiTS19][KiTS19 Kidney and Kidney Tumour Segmentation]] {{< tags-inline "projects/dl/kits19" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/dl/llm/run][Running LLM's (boring)]] {{< tags-inline "projects/dl/llm/run" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/dl/llm-scratch][LLM from scratch]] {{< tags-inline "projects/dl/llm/scratch" >}}

@@ -19,8 +19,8 @@ Marvin Minsky and Seymour Papert also reaffirmed the author's original convergen
 
 We can see in the diagram below what Rosenblatt's theoretical perceptron looked like, how it behaved and how it resembled our own human biological neurons:
 
-#+CAPTION: Neuron Activations
 #+BEGIN_CENTER
+#+CAPTION: Neuron Activations
 #+ATTR_HTML: :width 600px :class lateximage
 [[perceptron.svg]]
 #+END_CENTER
@@ -28,17 +28,20 @@ We can see in the diagram below what Rosenblatt's theoretical perceptron looked 
 Basically, a number of neurons would connect into our neuron, and if the summationed value was greater than some threshold, that neuron in question would fire. Mathematically we can see that above with the equation \(w_1x_1 + w_2x_2 + ... + w_nx_n > w_0\). If this is true then the step-function returns 1, otherwise -1.
 
 Here is a diagram showing how the synapses of one neuron connect to the dendrites of another. Then if enough dendrites send charges through the synaptic terminals of another neuron, then that neuron will fire!
-#+CAPTION: Synapse Diagram
+
 #+BEGIN_CENTER
+#+CAPTION: Synapse Diagram
 #+ATTR_HTML: :width 600px :class lateximage
 [[synapse.jpg]]
 #+END_CENTER
 
 * The Algorithm
 
+#+BEGIN_CENTER
 #+CAPTION: Perceptron Learning Algorithm
 #+ATTR_HTML: :class lateximage :width 900px
 [[alg.svg]]
+#+END_CENTER
 
 ** Explanation
 This algorithm is just a tersely condensed version of the prose:
@@ -184,8 +187,10 @@ Now let us chalk up the plot and see if our algorithm's final weights produce th
   plt.show()
 #+END_SRC
 
-#+ATTR_HTML: :width 400px :class jupimage
+#+BEGIN_CENTER
+#+ATTR_HTML: :width 600px :class lateximage
 [[euclid1.png]]
+#+END_CENTER
 
 Interpretting this, we see that indeed if we were draw two slopes ourselves (upper and lower), and then slice that in half we would get exactly the decision boundary that the perceptron found.
 We will now run the same code on a slightly more complicated example to see that this is not always true.
@@ -341,11 +346,12 @@ Let us add another method to our existing =Perceptron= class by leveraging some 
   model_eta01.plot_decision_boundary(X)
 #+END_SRC
 
-#+RESULTS:
-:RESULTS:
+#+BEGIN_CENTER
+#+ATTR_HTML: :class lateximage :width 490px
 [[eta10.png]]
+#+ATTR_HTML: :class lateximage :width 490px
 [[eta01.png]]
-:END:
+#+END_CENTER
 
 Clearly we can see the difference between the different choices of hyperparameters for this algorithm: the initial weight vector, as well as the eta learning rate.
 
