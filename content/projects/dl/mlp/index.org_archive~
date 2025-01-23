@@ -1,0 +1,73 @@
+#    -*- mode: org -*-
+
+
+Archived entries from file /Users/aayushbajaj/Documents/site/content/projects/dl/mlp/index.org
+
+
+* Figures
+:PROPERTIES:
+:ARCHIVE_TIME: 2025-01-21 Tue 22:00
+:ARCHIVE_FILE: ~/Documents/site/content/projects/dl/mlp/index.org
+:ARCHIVE_CATEGORY: index
+:END:
+
+\begin{tikzpicture}[basic/.style={draw,fill=blue!20,text width=1em,text badly centered},
+		    input/.style={basic,circle},
+		    weights/.style={basic,rectangle},
+		    functions/.style={basic,circle,fill=blue!10}]
+    % Input layer
+    \node[input] (x1) at (0, 2) {$x_1$};
+    \node[input] (x2) at (0, 0) {$x_2$};
+
+    % Hidden layer
+    \node[functions] (h1) at (3, 2) {h1};
+    \node[functions] (h2) at (3, 0) {h2};
+
+    % Output layer
+    \node[functions] (y) at (6, 1) {$y$};
+
+    % Input to hidden layer connections
+    \draw[->] (x1) -- (h1) node[midway, above] {$w_{11}$};
+    \draw[->] (x1) -- (h2);
+    \node[below of=cente] {$w_{12}$};
+    \draw[->] (x2) -- (h1) node[midway, right] {$w_{21}$};
+    \draw[->] (x2) -- (h2) node[midway, below] {$w_{22}$};
+
+    % Hidden to output layer connections
+    \draw[->] (h1) -- (y) node[midway, above] {$w_{h1}$};
+    \draw[->] (h2) -- (y) node[midway, below] {$w_{h2}$};
+
+    % Labels for layers
+    \node[below of=x2,font=\scriptsize] {Inputs};
+    \node[below of=h2,font=\scriptsize] {Hidden Layer};
+    \node[below of=y,font=\scriptsize] {Output};
+
+\end{tikzpicture}
+
+
+\begin{tikzpicture}
+    \tikzstyle{point}=[thick,draw=black,cross out,inner sep=0pt,minimum width=4pt,minimum height=4pt]
+    \begin{axis}[
+        legend pos=south west,
+        axis x line=middle,
+        axis y line=middle,
+        grid = major,
+        width=6cm,
+        height=6cm,
+        grid style={dashed, gray!30},
+        xmin=0,    % start the diagram at this x-coordinate
+        xmax=1,    % end   the diagram at this x-coordinate
+        ymin=0,    % start the diagram at this y-coordinate
+        ymax=1,    % end   the diagram at this y-coordinate
+        xlabel=$x$,
+        ylabel=$y$,
+        tick align=outside,
+        minor tick num=-3,
+        enlargelimits=true]
+      % \addplot[domain=0:2.5, red, thick,samples=20] {-x+2.5};
+      \node[point,label={[label distance=0cm,text=red]135:$0$},red] at (axis cs:1,0) {};
+      \node[point,label={[label distance=0cm,text=red]-45:$0$},red] at (axis cs:0,1) {};
+      \node[point,label={[label distance=0cm,text=blue]45:$1$},blue] at (axis cs:0,0) {};
+      \node[point,label={[label distance=0cm,text=blue]-135:$1$},blue] at (axis cs:1,1) {};
+    \end{axis}
+\end{tikzpicture}

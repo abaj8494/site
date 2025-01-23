@@ -1,0 +1,12 @@
++++
+title = "Logistic Regression"
+tags = ["classification","bernoulli","sigmoid","probability"]
++++
+
+Here we aim to understand how exactly "Logistic Regression", a method that seems only to be used for /classification/ problems, _is_ indeed a regression algorithm.
+
+We will as per the trend thus far, detail closed-form and approximate solutions to the loss function on this page.
+Furthermore, we will see how this type of regression is still a member of the GLM (generalised linear models) family, and we shall witness the derivation of the loss function by assuming our data is Bernoulli distributed.
+
+Finally we shall see how predicting probabilities over a continuous range can be interpretted as classification.
+

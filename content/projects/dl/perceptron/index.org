@@ -357,7 +357,7 @@ Clearly we can see the difference between the different choices of hyperparamete
 
 * Conclusion
 
-Clearly this is an entertaining and simple binary classifier that just works. But beyond historical homage this technique does not really flourish in our present-day world of Transformers, CNN's and Stable Diffusion models. As such this was merely a starting point for our adventure. Next in the series we will see what surrenders to the MLP ([[/projects/dl/mlp][multi-layered perceptron]]); we will then learn how to consistently find /the best/ linear decision boundary with SVM's ([[/projects/ml/svm][Support Vector Machines]]) and then extend this by kernelising applying the /linear/ SVM algorithm to even /non-linear/ data!
+Clearly this is an entertaining and simple binary classifier that just works. But beyond historical homage this technique does not really flourish in our present-day world of Transformers, CNN's and Stable Diffusion models. As such this was merely a starting point for our adventure. Next in the series we will see what surrenders to the MLP ([[/projects/dl/mlp][multi-layered perceptron]]); we will also learn how to consistently find /the best/ linear decision boundary with SVM's ([[/projects/ml/svm][Support Vector Machines]]) and then extend this by kernelising applying the /linear/ SVM algorithm to even /non-linear/ data!
 
 
 * Figures                                                          :noexport:

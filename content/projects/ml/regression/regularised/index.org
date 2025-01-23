@@ -1,0 +1,8 @@
++++
+title = "Regularised Regression"
+tags = ["bayesian","map","posterior","regularisation","overfitting","bias-variance"]
++++
+
+This page is for the closed form solutions (where they exist) and approximation solutions to Regularised Regressions.
+
+We will also understand that regularisation is sensible artifact once we consider its MAP (maximum a posteriori) derivation.

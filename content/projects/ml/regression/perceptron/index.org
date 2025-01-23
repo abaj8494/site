@@ -1,0 +1,7 @@
++++
+title = "Perceptron Regression"
++++
+
+This is just an academic exercise to use the perceptron algorithm to create a linear regressor.
+
+I am not sure about the details of this page yet, but do believe it is of learning benefit to try this later.
