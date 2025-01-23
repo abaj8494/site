@@ -957,7 +957,7 @@ plt.show()
 
 ** 3xor5mlp.svg
 
-\begin{tikzpicture}[basic/.style={draw,fill=blue!20,text width=2em,text badly centered},
+\begin{tikzpicture}[basic/.style={draw,fill=blue!20,text width=3em,text badly centered},
 		    input/.style={basic,circle},
 		    weights/.style={basic,rectangle},
 		    functions/.style={basic,circle,fill=blue!10},scale=3]

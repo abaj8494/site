@@ -11,7 +11,7 @@ math = "true"
 The perceptron learning algorithm is the most simple algorithm we have for *Binary Classification*.
 
 It was introduced by Frank Rosenblatt in his seminal paper: "_The Perceptron: A Probabilistic Model for Information Storage and Organization in the Brain_" in 1958.
-The history however dates back further to the theoretical foundations of Warren McCulloch and Walter Pitts in 1943 and their paper "_A Logical Calculus of the Ideas Immanent in Nervous Activity_". The interested reader will find my annotated copies of these documents, along with links to the originals on the [[/resources][resources]] page.
+The history however dates back further to the theoretical foundations of Warren McCulloch and Walter Pitts in 1943 and their paper "_A Logical Calculus of the Ideas Immanent in Nervous Activity_". The interested reader may visit these links for [[/projects/literature/research-papers][annotations]] and the [[/resources][original pdfs]].
 
 The proposed algorithm guarantees us a binary separation of the data provided that it is /linearly separable/. This is a big assumption, but if it the nature of our data obeys this rule then this model will fit.
 
@@ -80,56 +80,100 @@ Now of course a purely geometric solution can be constructed for this, and we ca
   #w = np.array([-1.5, 0, 2])
   w = np.zeros(3)
 
+  epoch = 0
   errors = len(w)
   while errors > 0:
+    print(f"Epoch: {epoch}")
     errors = len(w)
     for x in X:
       # calculate s
       s = x[0] * w[0] + x[1] * w[1] + x[2] * w[2]
       if (s * x[3] > 0): # checks that sign is the same.
-	errors -= 1
+        errors -= 1
       else: # updates weight vector.
-	if s > 0: #subtract
-	  w = np.array([j-eta*x[i] for i,j in enumerate(w)])
-	else: # add
-	  w = np.array([j+eta*x[i] for i,j in enumerate(w)])
-      print(w)
+        #w = w + eta * x[:3] * x[3]
+        if x[3] > 0:
+          w = np.array([j+eta*x[i] for i,j in enumerate(w)])
+        else:
+          w = np.array([j-eta*x[i] for i,j in enumerate(w)])
+        print(w)
+    epoch = epoch + 1; 
 #+END_SRC
 
+#+RESULTS:
 #+begin_example
-[1. 0. 1.]
-[ 0. -2.  1.]
-[ 1. -1.  2.]
-[ 0. -1.  1.]
-[ 0. -1.  1.]
-[1. 0. 2.]
-[0. 0. 1.]
-[1. 2. 1.]
-[1. 2. 1.]
-[0. 2. 0.]
-[0. 3. 2.]
-[-1.  1.  2.]
-[-1.  1.  2.]
-[-2.  1.  1.]
-[-1.  3.  1.]
-[-1.  3.  1.]
-[0. 3. 2.]
-[-1.  1.  2.]
-[-1.  1.  2.]
-[-2.  1.  1.]
-[-1.  3.  1.]
-[-1.  3.  1.]
-...
-another [0. 3. 2.] block ...
+  Epoch: 0
+  [-1.  0. -1.]
+  [0. 1. 0.]
+  Epoch: 1
+  [-1.  1. -1.]
+  [-2. -1. -1.]
+  [-1.  0.  0.]
+  Epoch: 2
+  [0. 1. 1.]
+  Epoch: 3
+  [-1.  1.  0.]
+  [-2. -1.  0.]
+  [-1.  0.  1.]
+  Epoch: 4
+  [-2.  0.  0.]
+  [-1.  1.  1.]
+  Epoch: 5
+  [-2.  1.  0.]
+  [-3. -1.  0.]
+  [-2.  0.  1.]
+  Epoch: 6
+  [-1.  1.  2.]
+  Epoch: 7
+  [-2.  1.  1.]
+  [-3. -1.  1.]
+  [-2.  0.  2.]
+  Epoch: 8
+  [-3.  0.  1.]
+  [-2.  1.  2.]
+  Epoch: 9
+  [-3.  1.  1.]
+  [-2.  2.  2.]
+  Epoch: 10
+  [-3.  2.  1.]
+  [-4.  0.  1.]
+  [-3.  1.  2.]
+  Epoch: 11
+  [-2.  2.  3.]
+  Epoch: 12
+  [-3.  2.  2.]
+  [-4.  0.  2.]
+  [-3.  1.  3.]
+  Epoch: 13
+  [-4.  1.  2.]
+  [-3.  2.  3.]
+  Epoch: 14
+  [-4.  2.  2.]
+  [-5.  0.  2.]
+  [-4.  1.  3.]
+  Epoch: 15
+  [-3.  2.  4.]
+  Epoch: 16
+  [-4.  2.  3.]
+  [-5.  0.  3.]
+  [-4.  1.  4.]
+  Epoch: 17
+  [-5.  1.  3.]
+  [-4.  2.  4.]
+  Epoch: 18
+  [-5.  2.  3.]
+  [-4.  3.  4.]
+  Epoch: 19
+  [-5.  3.  3.]
+  [-6.  1.  3.]
+  [-5.  2.  4.]
+  Epoch: 20
 #+end_example
 
-The above results are very informative, and rather unexpected. We learn a couple of things:
-1. The Perceptron Algorithm does not always converge to the optimal solution.
-   - We already knew it would not find a solution to a non-linear problem, but this problem /is/ linear; what gives?
-   - In fact, the reason why it does not converge in this case is because *we chose bad initialisation weights*!
-2. My code above differs from the algorithm figure you saw above:
-   - I calculate \(s\), a useful auxillary value and then do comparisons on that variable.
-   - This was the code I wrote during my semester to solve a tutorial problem. The only difference was that I was given different initialisation weights as such:
+
+We see that the algorithm took 20 epochs (loops through the whole dataset - arrays a, b and c) to converge to the correct[fn:3] solution weights. You will notice first that not every epoch has the same number of weight updates, and you will also notice that this algorithm differs from the one outlined in [[relref][pseudocode]]. I did this because this code is more verbose and clear to me. In a moment though we shall go and refactor the code with vectorised operations in favour of naïve =list comprehensions=.
+
+For now let us choose a better weight initialisation vector and see how that affects our epoch count:
 
 #+BEGIN_SRC jupyter-python :session new
   w = np.array([-1.5, 0, 2])
@@ -137,21 +181,21 @@ The above results are very informative, and rather unexpected. We learn a couple
 
 #+RESULTS:
 #+begin_example
-  [-2.5  0.   1. ]
+  Epoch: 0
   [-2.5  0.   1. ]
   [-1.5  1.   2. ]
-  [-2.5  1.   1. ]
+  Epoch: 1
   [-2.5  1.   1. ]
   [-1.5  2.   2. ]
+  Epoch: 2
   [-2.5  2.   1. ]
   [-3.5  0.   1. ]
   [-2.5  1.   2. ]
-  [-2.5  1.   2. ]
-  [-2.5  1.   2. ]
-  [-2.5  1.   2. ]
+  Epoch: 3
 #+end_example
 
-It appears that the more asymmetric starting vector facilitates converges in just 12 steps!
+How fascinating. A reduction by a factor of 6 as a reward for a small amount of /a priori/ information!
+
 
 ** Visuals: Matching our Euclidean Intuition
 
@@ -355,6 +399,112 @@ Let us add another method to our existing =Perceptron= class by leveraging some 
 
 Clearly we can see the difference between the different choices of hyperparameters for this algorithm: the initial weight vector, as well as the eta learning rate.
 
+* Iterative Eye Candy
+
+Let us put the nail in this page's coffin and do justice to the iterative nature of this algorithm:
+
+#+BEGIN_SRC jupyter-python :session weird
+  import matplotlib.pyplot as plt
+  def generate_data(n=5, means=[[3,3],[-1,1]], seed=1):
+    np.random.seed(seed)
+    m1=np.array(means[0])
+    m2=np.array(means[1])
+    S1 = np.random.rand(2,2)
+    S2 = np.random.rand(2,2)
+    dist_01 = np.random.multivariate_normal(m1, S1.T @ S1, n)
+    dist_02 = np.random.multivariate_normal(m2, S2.T @ S2, n)
+    X = np.concatenate((np.ones(2*n).reshape(-1,1),
+                        np.concatenate((dist_01,dist_02))),axis=1)
+    y = np.concatenate((np.ones(n), -1*np.ones(n))).reshape(-1,1)
+    shuffle_idx = np.random.choice(2*n,size=2*n,replace=False)
+    X = X[shuffle_idx]
+    y = y[shuffle_idx]
+    return X, y
+
+  def plot_perceptron(ax, X, y, w):
+    pos_points = X[np.where(y==1)[0]]
+    neg_points = X[np.where(y==-1)[0]]
+    ax.scatter(pos_points[:,1],pos_points[:,2],color='blue')
+    ax.scatter(neg_points[:,1],neg_points[:,2],color='red')
+    xx = np.linspace(-6,6)
+    yy = -w[0]/w[2] - w[1]/w[2] * xx
+    ax.plot(xx,yy,color='orange')
+
+    ratio = (w[2]/w[1] + w[1]/w[2])
+    xpt = (-1*w[0] / w[2]) * 1/ratio
+    ypt = (-1*w[0] / w[1]) * 1/ratio
+
+    ax.arrow(xpt,ypt,w[1],w[2],head_width=0.2, color='orange')
+    ax.axis('equal')
+
+  def train_perceptron_for_vis(X,y,max_iter=100):
+    np.random.seed(69)
+    w = np.random.random(3)
+    ctr = 0
+    for _ in range(max_iter):
+      yXw = (y*X)@w.T
+      mistake_idxs = np.where(yXw <= 0)[0]
+      if mistake_idxs.size > 0:
+        ctr += 1
+        i = np.random.choice(mistake_idxs)
+        w = w + y[i] * X[i]
+
+        fig,ax = plt.subplots()
+        plot_perceptron(ax,X,y,w)
+        plt.show()
+        print(f"Iteration {ctr}: w = {w}")
+
+    fig,ax = plt.subplots()
+    plot_perceptron(ax,X,y,w)
+    plt.show()
+    print(f"Iteration {ctr}: w = {w}")
+    return
+
+  X,y=generate_data(n=20,means=[[-1,-1],[1,2]],seed=204)
+  train_perceptron_for_vis(X,y)
+#+END_SRC
+#+CAPTION: Credit: Omar Al Ghattas.
+
+
+#+BEGIN_CENTER
+#+ATTR_HTML: :class lateximage :width 750px
+[[iter.gif]]
+#+END_CENTER
+
+
+#+RESULTS:
+:RESULTS:
+: Iteration 1: w = [-0.70375084  1.128485   -0.09833516]
+: Iteration 2: w = [ 0.29624916  1.49381456 -0.89032827]
+: Iteration 3: w = [ 1.29624916 -0.03485745 -1.90008542]
+: Iteration 4: w = [ 0.29624916  0.6849623  -2.38995155]
+: Iteration 5: w = [ 1.29624916  0.94561468 -1.81027165]
+: Iteration 6: w = [ 0.29624916  1.26503197 -2.25885934]
+: Iteration 7: w = [ 1.29624916 -1.14315819 -3.20003627]
+: Iteration 8: w = [ 2.29624916 -0.88250582 -2.62035637]
+: Iteration 9: w = [ 1.29624916 -0.16268606 -3.1102225 ]
+: Iteration 10: w = [ 2.29624916  0.09796632 -2.5305426 ]
+: Iteration 11: w = [ 1.29624916  0.81778608 -3.02040872]
+: Iteration 12: w = [ 2.29624916  1.07843845 -2.44072883]
+: Iteration 13: w = [ 1.29624916  1.79825821 -2.93059495]
+: Iteration 14: w = [ 2.29624916 -0.60993195 -3.87177188]
+: Iteration 15: w = [ 1.29624916 -0.01559403 -4.51976735]
+: Iteration 16: w = [ 2.29624916  0.24505834 -3.94008746]
+: Iteration 17: w = [ 1.29624916  0.9648781  -4.42995358]
+: Iteration 18: w = [ 2.29624916  1.22553048 -3.85027368]
+: Iteration 19: w = [ 1.29624916  1.54494777 -4.29886137]
+: Iteration 20: w = [ 2.29624916  1.80560014 -3.71918147]
+: Iteration 21: w = [ 1.29624916  2.12501743 -4.16776915]
+: Iteration 22: w = [ 2.29624916  2.38566981 -3.58808926]
+: Iteration 23: w = [ 3.29624916 -0.02252035 -4.52926619]
+: Iteration 24: w = [ 2.29624916  0.29689694 -4.97785387]
+: Iteration 25: w = [ 3.29624916  0.55754931 -4.39817398]
+: Iteration 26: w = [ 2.29624916  1.27736907 -4.8880401 ]
+: Iteration 27: w = [ 3.29624916  1.53802145 -4.30836021]
+: Iteration 28: w = [ 2.29624916  1.85743874 -4.75694789]
+: Iteration 28: w = [ 2.29624916  1.85743874 -4.75694789]
+:END:
+
 * Conclusion
 
 Clearly this is an entertaining and simple binary classifier that just works. But beyond historical homage this technique does not really flourish in our present-day world of Transformers, CNN's and Stable Diffusion models. As such this was merely a starting point for our adventure. Next in the series we will see what surrenders to the MLP ([[/projects/dl/mlp][multi-layered perceptron]]); we will also learn how to consistently find /the best/ linear decision boundary with SVM's ([[/projects/ml/svm][Support Vector Machines]]) and then extend this by kernelising applying the /linear/ SVM algorithm to even /non-linear/ data!
@@ -424,6 +574,8 @@ $converged \leftarrow \text{false}$\;
 \end{algorithm}
 
 * Footnotes
+
+[fn:3] we will check the correctness in the next section. 
 [fn:2] an inevitable future post on the optimum and kernelisable SVM (support vector machine) is imminent - stay tuned. 
 
 [fn:1] or adjusting your hyperplane 
