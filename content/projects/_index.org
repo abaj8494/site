@@ -145,7 +145,7 @@ The following links contain the source code and solution sets:
 :END:
 - @@html:<input type="checkbox" checked class="done"/>@@ [[/projects/dl/benchmarking][Hardware Benchmarking]] {{< tags-inline "projects/dl/benchmarking" >}}
 - @@html:<input type="checkbox" checked class="archived"/>@@ [[/projects/dl/perceptron][Perceptron]] {{< tags-inline "projects/dl/perceptron" >}}
-- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/dl/mlp][Multilayer Perceptron]] {{< tags-inline "projects/dl/mlp" >}}
+- @@html:<input type="checkbox" checked class="archived"/>@@ [[/projects/dl/mlp][Multilayer Perceptron]] {{< tags-inline "projects/dl/mlp" >}}
 - @@html:<input type="checkbox" checked class="done"/>@@ [[/projects/dl/kmnist][KMNIST (Kuzushiji)]] {{< tags-inline "projects/dl/kmnist" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/dl/KiTS19][KiTS19 Kidney and Kidney Tumour Segmentation]] {{< tags-inline "projects/dl/kits19" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/dl/llm/run][Running LLM's (boring)]] {{< tags-inline "projects/dl/llm/run" >}}
