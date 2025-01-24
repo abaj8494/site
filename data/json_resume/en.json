@@ -26,14 +26,14 @@
   },
   "projects": [
     {
-     "name": "This Site",
+     "name": "Abaj.ai Website",
 	"description": "Aayush Bajaj's Archived Intellect. Contains a CS degree, Masters in Statistics and the intellectual spinoffs in between.",
       "startDate": "2024-12-21",
       "highlights": [
-          "Revisited all of the labs of all my AI courses at uni, and worked through many Deep Learning textbooks. Organised my CS notes and trampolined off all this knowledge to solve my own novel problems with the power of ML."
+          "Revisited all of the labs of all my AI courses at uni, and worked through many Deep Learning textbooks. Organised my CS, Math notes and trampolined off all this knowledge to solve my own novel problems with the power of ML."
       ],
-	"roles": ["Scientist", "Tinkerer"],
-	"keywords": ["emacs", "orgmode", "zettelkasten", "jupyter", "anaconda"]
+	"roles": ["Programmer", "Tinkerer", "Mathematician"],
+	"keywords": ["#emacs", "#orgmode", "#zettelkasten", "#jupyter", "#anaconda"]
     },
       {
      "name": "KiTS19 Grand Challenge",
@@ -44,14 +44,18 @@
           "Experienced the full Deep Learning Pipeline: lit review, preprocessing, training, reporting results. Successfully trained task with mean dice score of 87."
       ],
 	"roles": ["Deep Learning Scientist", "SCRUM Master"],
-	"keywords": ["nnUNet", "HPC"]
+	  "keywords": ["#nnUNet", "#HPC","group-project"]
     },
     {
      "name": "Medical Software WebApp",
      "description": "Contract work to rebuild Best Practice Software Desktop program as a remotely deployed webapp",
      "startDate": "2024-09-15",
      "endDate": "2024-11-17",
-     "roles": ["Backend Developer"],
+     "highlights": [
+	    "Scored a High-Distinction in this term-long project"
+     ],
+	"roles": ["Backend Developer"],
+	"keywords": ["#full-stack","#group-project"],
      "entity": "Alpha-Cure Medical Centre"
     }
   ],

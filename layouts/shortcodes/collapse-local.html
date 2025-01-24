@@ -1,56 +1,49 @@
-{{ $id := .Get "id" }}
-<div id="{{ $id }}" class="collapsible-container">
-  <script src="{{ "js/collapsible-global.js" | relURL }}"></script>
+<div class="collapsible-container">
+  <script src="{{ "js/collapsible-local.js" | relURL }}"></script>
   <style id="collapsible-css">
-    /* Wrapper for heading and toggle button */
     .collapsible-wrapper {
       display: flex;
       align-items: center;
       margin-bottom: 0px;
     }
 
-    /* Toggle button */
+    
     .toggle-button {
       cursor: pointer;
       border: none;
       background: none;
       color: black;
       font-size: 1rem;
-      width: 1.5rem; /* Ensure consistent alignment */
+      width: 1.5rem;
       height: 1.5rem;
       text-align: center;
       line-height: 1.5rem;
-      margin-right: 8px;
+      margin-right: 8px; /* Adjust spacing between button and heading */
       padding: 0;
     }
 
     [data-theme="dark"] .toggle-button {
-      color: white; /* Override to white when theme is dark */
+      color: white;
     }
 
-    /* Remove outline when focused */
     .toggle-button:focus {
       outline: none;
     }
 
-    /* Collapsible content (hidden by default) */
     .collapsible-content {
       display: none;
-      margin-left: 15px; /* Indent to align with heading */
+      margin-left: 15px; /* Indent to align content with the heading */
       margin-bottom: 0px;
       padding: 1px 0;
       border-left: 0px solid #ccc;
       transition: all 0.3s ease-out;
     }
 
-    /* Content visible when toggled */
     .collapsible-content.show {
       display: block;
     }
   </style>
-
   <script type="text/javascript">
-    var folded='{{ .Get "folded"}}';
+    var folded = '{{ .Get "folded" }}';
   </script>
 </div>
-

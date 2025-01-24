@@ -1,0 +1,59 @@
+document.addEventListener("DOMContentLoaded", function () {
+  const containers = document.querySelectorAll(".collapsible-container");
+
+  containers.forEach((container, index) => {
+    const heading = container.previousElementSibling; // Target the heading directly above the shortcode
+    if (!heading) return;
+
+    // Create a wrapper for the heading and button
+    const wrapper = document.createElement("div");
+    wrapper.classList.add("collapsible-wrapper");
+
+    // Create a toggle button
+    const button = document.createElement("button");
+    button.classList.add("toggle-button");
+
+    // Generate a unique ID based on index and page context
+    const toggleId = `${window.location.pathname}-toggle-${index}`;
+    const toggleStates = JSON.parse(localStorage.getItem("toggleStates")) || {};
+    const isFolded = toggleStates[toggleId] === undefined ? folded === "true" : toggleStates[toggleId] === false;
+
+    // Set initial button state
+    button.setAttribute("aria-expanded", !isFolded);
+    button.textContent = isFolded ? "▶" : "▼";
+
+    // Wrap the heading and insert the button
+    heading.parentNode.insertBefore(wrapper, heading);
+    wrapper.appendChild(button);
+    wrapper.appendChild(heading);
+
+    // Collect all sibling elements below the heading until the next heading
+    const content = document.createElement("div");
+    content.classList.add("collapsible-content");
+    if (!isFolded) {
+      content.classList.add("show");
+    }
+
+    let sibling = container.nextElementSibling;
+    while (sibling && !["H2", "H3", "H4", "H5", "H6"].includes(sibling.tagName)) {
+      const nextSibling = sibling.nextElementSibling;
+      content.appendChild(sibling);
+      sibling = nextSibling;
+    }
+
+    // Insert the collapsible content container after the wrapper
+    wrapper.after(content);
+
+    // Add click event to the toggle button
+    button.addEventListener("click", () => {
+      const isExpanded = button.getAttribute("aria-expanded") === "true";
+      button.setAttribute("aria-expanded", !isExpanded);
+      button.textContent = isExpanded ? "▶" : "▼";
+      content.classList.toggle("show");
+
+      // Save state to localStorage
+      toggleStates[toggleId] = !isExpanded;
+      localStorage.setItem("toggleStates", JSON.stringify(toggleStates));
+    });
+  });
+});

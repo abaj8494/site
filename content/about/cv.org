@@ -3,7 +3,7 @@ title: "CV"
 draft: false
 type: "cv"
 ---
-{{< collapse >}}
+{{< collapse id="cv" folded="false">}}
 
 ** Projects
 
@@ -48,3 +48,5 @@ type: "cv"
 ** Publications
 
 {{< json-resume "publications" >}}
+
+

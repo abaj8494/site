@@ -1,16 +1,51 @@
----
-title: "About"
-draft: false
----
++++
+title = "About"
+toc = "true"
++++
+
+{{<uncollapse id="cv" >}}
 
 * Site
 
-This website was created using the static-site generator [[https://gohugo.io][Hugo]]. The base theme is [[https://schnerring.net][Michael Schnerring's]] [[https://github.com/schnerring/hugo-theme-gruvbox][Gruvbox]], and I have written the content using org-mode in Emacs. The git repository for this site can be found [[https://github.com/abaj8494/abaj.ai][here]].
+This website was created using the static-site generator [[https://gohugo.io][Hugo]]. The base theme is [[https://schnerring.net][Michael Schnerring's]] [[https://github.com/schnerring/hugo-theme-gruvbox][Gruvbox]], which I have customised significantly. 
 
-The icon for the site is the real component contour plot of the 4D complex exponential function. A slightly higher fidelity figure can be seen below and Wolfram's article on the function from where I have taken this figure can be found [[https://functions.wolfram.com/ElementaryFunctions/Exp/visualizations/5/][here]].
+The content has been written in [[https://www.gnu.org/software/emacs/][Emacs']] [[https://orgmode.org/][org-mode]], which enables a homogenous workflow with [[https://www.anaconda.com/][conda]], [[https://jupyter.org/][jupyter]] and [[https://github.com/abaj8494/abaj.ai][git]].
+
+My operating system was [[https://manjaro.org/][Manjaro]], and I interfaced with all of this through a [[https://www.zsa.io/moonlander][Moonlander ZSA]] [[https://configure.zsa.io/moonlander/layouts/yBYEx/latest/0][split keyboard]].
 
 #+BEGIN_CENTER
-#+ATTR_HTML: :width 200px
+#+ATTR_HTML: :width 160px :class lateximage
+#+CAPTION: HUGO
+[[hugo.svg]]
+#+ATTR_HTML: :width 160px :class lateximage
+#+CAPTION: Orgmode
+[[orgmode.svg]]
+#+ATTR_HTML: :width 160px :class lateximage
+#+CAPTION: Emacs
+[[emacs.svg]]
+#+ATTR_HTML: :width 160px :class lateximage
+#+CAPTION: Git
+[[git.svg]]
+#+END_CENTER
+#+BEGIN_CENTER
+#+ATTR_HTML: :width 160px :class lateximage
+#+CAPTION: Conda
+[[conda.svg]]
+#+ATTR_HTML: :width 160px :class lateximage
+#+CAPTION: Jupyter
+[[jupyter.svg]]
+#+ATTR_HTML: :width 160px :class lateximage
+#+CAPTION: Oryx Firmware
+[[oryx.png]]
+#+ATTR_HTML: :width 160px :class lateximage
+#+CAPTION: Manjaro OS
+[[manjaro.svg]]
+#+END_CENTER
+
+The icon for the site is the real component contour plot of the 4D complex exponential function. A slightly higher fidelity figure can be seen below and Wolfram's article on the function from where I have taken this figure can be found [[https://functions.wolfram.com/ElementaryFunctions/Exp/visualizations/5/][here]]. 
+#+BEGIN_CENTER
+#+ATTR_HTML: :width 400px :class lateximage
+#+CAPTION: 4D Complex Exponential Function
 [[/android-chrome-512x512.png]]
 #+END_CENTER
 
@@ -18,31 +53,35 @@ The icon for the site is the real component contour plot of the 4D complex expon
 
 I'm not stone-cold. Here's me:
 
+#+BEGIN_CENTER
 #+ATTR_HTML: :width 300px
 [[happy-j.jpg]]
-  
-
-I play Ultimate Frisbee and have 2 cats. I ride an Enfield Bullet and built most of this site on an =aarch64= RaspberryPi 4. I study Japanese out of adoration for the language, and own hundreds of books. I really like TeX[fn:1] and black rap. I'm also musically retarded.
-
-#+ATTR_HTML: :width 800px
+#+ATTR_HTML: :width 533px
 [[23-unigames.jpeg]]
+#+END_CENTER
+
+I play Ultimate Frisbee and have 2 cats. I ride an Enfield Bullet. I study Japanese out of adoration for the language, and own [[/projects/literature/library][hundreds of books]]. I really like TeX[fn:1] and black rap[fn:2].
+
+#+BEGIN_CENTER
 #+ATTR_HTML: :width 400px
 [[rpi-dev.jpg]]
-#+ATTR_HTML: :width 300px
+#+ATTR_HTML: :width 400px
 [[tex-stack.jpg]]
-#+ATTR_HTML: :width 300px
+#+ATTR_HTML: :width 330px
 [[a-on-500.jpg]]
 
-#+ATTR_HTML: :width 200px
+#+ATTR_HTML: :width 245px
 [[spotify-21.jpg]]
-#+ATTR_HTML: :width 200px
+#+ATTR_HTML: :width 240px
 [[spotify-23.jpg]]
+#+END_CENTER
 
 ** Contact
 
-My contact details are on the home page but my email again is: aayushbajaj7@gmail.com
+My contact details are on the home page but my personal email is: aayushbajaj7@gmail.com
 
 * Footnotes
+[fn:2] but cannot hold a beat to save my life! 
 
 [fn:1] I even have =\infty= tattooed on my left elbow! 
 

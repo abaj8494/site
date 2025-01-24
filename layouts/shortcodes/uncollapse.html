@@ -1,0 +1,63 @@
+{{ $id := .Get "id" }}
+<div id="{{ $id }}" class="uncollapsible-container">
+  <style id="uncollapsible-css">
+    /* Ensure all headings and content are visible */
+    .collapsible-wrapper {
+      display: flex;
+      align-items: center;
+    }
+
+    /* Remove toggle button */
+    .toggle-button {
+      display: none;
+    }
+
+    /* Ensure content is always visible */
+    .collapsible-content {
+      display: block !important;
+      margin-left: 15px;
+      border-left: none;
+    }
+  </style>
+
+  <script>
+    // Remove event listeners and restore original document structure
+    document.addEventListener("DOMContentLoaded", function () {
+      const headings = document.querySelectorAll("h2, h3, h4, h5, h6");
+      
+      headings.forEach((heading) => {
+        // Remove toggle ID
+        heading.removeAttribute("data-toggle-id");
+
+        // Find the wrapper and button
+        const wrapper = heading.closest(".collapsible-wrapper");
+        if (wrapper) {
+          const button = wrapper.querySelector(".toggle-button");
+          
+          // Remove button
+          if (button) {
+            button.remove();
+          }
+
+          // Move heading back to its original position
+          wrapper.parentNode.insertBefore(heading, wrapper);
+          wrapper.remove();
+        }
+
+        // Find and expand content
+        const content = heading.nextElementSibling;
+        if (content && content.classList.contains("collapsible-content")) {
+          // Move all children back to the main document flow
+          while (content.firstChild) {
+            heading.parentNode.insertBefore(content.firstChild, content);
+          }
+          // Remove the content container
+          content.remove();
+        }
+      });
+
+      // Remove localStorage states
+      localStorage.removeItem("toggleStates");
+    });
+  </script>
+</div>

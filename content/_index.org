@@ -9,7 +9,12 @@ But that would be a little less /personal/. This site is a way for me to
 consolidate my learnings on various topics and share wisdom with my
 future-self.[fn:1]
 
+
 * Scope
+
+{{< collapse-local folded="true" >}}
+
+
 Psychology, Biology, Machine Learning and Mathematics; this site is a
 virtual acreage. Much in the same way that many things happen on a
 farm, many things are happening here.
