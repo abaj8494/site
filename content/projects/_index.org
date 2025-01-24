@@ -1,8 +1,8 @@
----
-title: Greetings
-toc: false
-math: true
----
++++
+title = "Greetings"
+toc = "true"
+math = "true"
++++
 
 You have stepped onto the stickiest page of this site, here sit *all* of my completed projects.
 
