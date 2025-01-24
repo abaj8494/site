@@ -33,19 +33,21 @@
           "Revisited all of the labs of all my AI courses at uni, and worked through many Deep Learning textbooks. Organised my CS, Math notes and trampolined off all this knowledge to solve my own novel problems with the power of ML."
       ],
 	"roles": ["Programmer", "Tinkerer", "Mathematician"],
-	"keywords": ["#emacs", "#orgmode", "#zettelkasten", "#jupyter", "#anaconda"]
+	"keywords": ["emacs", "orgmode", "zettelkasten", "jupyter", "anaconda"],
+	"url": "https://abaj.ai/projects"
     },
       {
-     "name": "KiTS19 Grand Challenge",
-     "description": "Kidney and Kidney Tumour Segmentation from 3D Volumetric CT (Computed Tomography) scans",
+	  "name": "Biomedical Semantic Segmentation",
+     "description": "Successfully created Kidney and Kidney Tumour masks from 3D Volumetric CT scans",
 	  "startDate": "2024-10-01",
 	  "endDate": "2024-11-19",
       "highlights": [
-          "Experienced the full Deep Learning Pipeline: lit review, preprocessing, training, reporting results. Successfully trained task with mean dice score of 87."
+          "Implemented 2D, 3D state of the art semantic segmentation architectures, along with conducting a thorough literature review and experimentation with transfer learning models across the term-long project. Ultimately, obtained full-marks with a class-leading Mean Sorensen Dice score of 78."
       ],
-	"roles": ["Deep Learning Scientist", "SCRUM Master"],
-	  "keywords": ["#nnUNet", "#HPC","group-project"]
-    },
+	  "roles": ["Deep Learning Scientist", "SCRUM Master"],
+	  "keywords": ["nnUNet", "vnet", "unet", "samnet", "gpu", "python", "jupyter", "HPC", "group-project"],
+	  "url": "https://abaj.ai/projects/dl/kits19"
+      },
     {
      "name": "Medical Software WebApp",
      "description": "Contract work to rebuild Best Practice Software Desktop program as a remotely deployed webapp",
@@ -55,7 +57,7 @@
 	    "Scored a High-Distinction in this term-long project"
      ],
 	"roles": ["Backend Developer"],
-	"keywords": ["#full-stack","#group-project"],
+	"keywords": ["full-stack","group-project", "python", "typescript", "front-end", "testing", "CI/CD", "docker"],
      "entity": "Alpha-Cure Medical Centre"
     }
   ],

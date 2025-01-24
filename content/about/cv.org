@@ -1,8 +1,9 @@
----
-title: "CV"
-draft: false
-type: "cv"
----
++++
+title = "CV"
+type = "cv"
+toc = "true"
++++
+
 {{< collapse id="cv" folded="false">}}
 
 ** Projects
