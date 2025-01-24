@@ -1,0 +1,38 @@
+{{/* 
+   left-sidebar-recur.html
+   Called from left-sidebar.html or from itself.
+*/}}
+{{ $parts := .parts }}
+{{ $index := .index }}
+{{ $page  := .page }}
+
+{{ $lastIndex := sub (len $parts) 1 }}
+
+<ul>
+  <li>
+    {{/* Convert "machine-learning" => "Machine Learning" (optional). */}}
+    {{ index $parts $index | replace "-" " " | title }}
+
+    {{ if lt $index $lastIndex }}
+      {{/* Not at the last directory part => go deeper. */}}
+      {{ partial "left-sidebar-recur.html" (dict 
+          "parts" $parts 
+          "index" (add $index 1) 
+          "page"  $page
+      ) }}
+    {{ else }}
+      {{/* We *are* at the final directory => list all sibling .org pages. */}}
+      <ul>
+        {{ $siblings := where $page.Site.RegularPages ".File.Dir" "=" $page.File.Dir }}
+        {{ range $siblings }}
+          {{ if hasSuffix .File.LogicalName ".org" }}
+            {{- $title := .File.LogicalName | replace ".org" "" | title -}}
+            <li>
+              <a href="{{ .Permalink }}">{{ $title }}</a>
+            </li>
+          {{ end }}
+        {{ end }}
+      </ul>
+    {{ end }}
+  </li>
+</ul>

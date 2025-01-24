@@ -53,8 +53,7 @@ plt.show()
 #+end_src
 
 #+BEGIN_CENTER
-#+CAPTION: 0="o", 1="ki", 2="su", 3="tsu", 4="na", 5="ha", 6="ma",
-7="ya", 8="re", 9="wo"
+#+CAPTION: 0="o", 1="ki", 2="su", 3="tsu", 4="na", 5="ha", 6="ma",7="ya", 8="re", 9="wo"
 #+ATTR_HTML: :class lateximage :width 1000px
 [[hiragana.png]]
 #+END_CENTER

@@ -6,21 +6,15 @@
 >
   {{ partial "head/head.html" . }}
   <body>
-    <div class="layout">
+  <div class="layout">
       {{ partial "header.html" . }}
       <main>
-        <!-- Left Sidebar -->
-        {{ partial "left-sidebar.html" . }}
-
-        <!-- Main Content -->
-        <div class="content">
-          {{ block "main" . }}{{ end }}
-        </div>
-
-        <!-- Right Sidebar -->
-        {{ partial "sidebar.html" . }}
+	<div class="content">
+	  {{ block "main" . }}{{ end }}
+	</div>
+	{{ partial "sidebar.html" . }}
       </main>
       {{ partial "footer.html" . }}
-    </div>
+  </div>
   </body>
 </html>

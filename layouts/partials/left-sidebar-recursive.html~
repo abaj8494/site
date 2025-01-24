@@ -1,0 +1,98 @@
+{{/* 
+   layouts/partials/left-sidebar-recursive.html
+
+   Receives a dictionary with:
+     "parts"  []string of directory segments
+     "index"  int index into .parts
+     "page"   the current Page object
+     "prefix" string (ASCII indent)
+     "accum"  string (accumulated path so far)
+*/}}
+
+{{ $parts  := .parts }}
+{{ $index  := .index }}
+{{ $page   := .page }}
+{{ $prefix := .prefix }}
+{{ $accum  := .accum }}
+{{ $lastIndex := sub (len $parts) 1 }}
+{{ $dirName := index $parts $index }}
+{{ $thisPath := "" }}
+
+{{ if eq $accum "" }}
+  {{ $thisPath = $dirName }}
+{{ else }}
+  {{ $thisPath = print $accum "/" $dirName }}
+{{ end }}
+
+{{ $sectionPage := site.GetPage (print $thisPath "/index") }}
+{{ if not $sectionPage }}
+  {{ $sectionPage = site.GetPage (print $thisPath "/_index") }}
+{{ end }}
+
+{{ $line := "" }}
+{{ if $sectionPage }}
+  {{ $line = printf "%s|-- <a href=\"%s\">%s</a>" $prefix $sectionPage.Permalink $sectionPage.Title }}
+{{ else }}
+  {{ $line = printf "%s|-- %s" $prefix $dirName }}
+{{ end }}
+<span>{{ $line | safeHTML }}</span><br/>
+
+{{ if lt $index $lastIndex }}
+  {{ $nextPrefix := print $prefix "|   " }}
+  {{ partial "left-sidebar-recursive.html" (dict
+      "parts"  $parts
+      "index"  (add $index 1)
+      "page"   $page
+      "prefix" $nextPrefix
+      "accum"  $thisPath
+  ) }}
+{{ else }}
+  {{ $orgSibs := where $page.Site.RegularPages ".File.Dir" "=" $thisPath }}
+  {{ $orgCount := len $orgSibs }}
+  {{ $orgIdx := 0 }}
+  {{ $orgPrefix := print $prefix "|   " }}
+  {{ range $orgSibs }}
+    {{ if hasSuffix .File.LogicalName ".org" }}
+      {{ $orgIdx = add $orgIdx 1 }}
+      {{ $b := "|--" }}
+      {{ if eq $orgIdx $orgCount }}{{ $b = "`--" }}{{ end }}
+      <span>{{ printf "%s%s <a href=\"%s\">%s</a>" $orgPrefix $b .Permalink .Title | safeHTML }}</span><br/>
+    {{ end }}
+  {{ end }}
+
+  {{ $subfolders := slice }}
+  {{ range $page.Site.Pages }}
+    {{ if .File }}
+      {{ if eq (strings.HasPrefix .File.Dir (print $thisPath "/")) true }}
+        {{ if ne .File.Dir $thisPath }}
+          {{ $tail := strings.TrimPrefix .File.Dir (print $thisPath "/") }}
+          {{ $tailParts := split $tail "/" }}
+          {{ if eq (len $tailParts) 1 }}
+            {{ if eq .File.LogicalName "index.org" }}
+              {{ $subfolders = $subfolders | append . }}
+            {{ end }}
+          {{ end }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+
+  {{ $subCount := len $subfolders }}
+  {{ $subCtr := 0 }}
+  {{ range $subfolders }}
+    {{ $subCtr = add $subCtr 1 }}
+    {{ $b := "|--" }}
+    {{ if eq $subCtr $subCount }}{{ $b = "`--" }}{{ end }}
+    {{ $folderParts := split .File.Dir "/" }}
+    {{ $fname := index $folderParts (sub (len $folderParts) 1) }}
+    {{ $subPg := site.GetPage (print .File.Dir "/index") }}
+    {{ if not $subPg }}
+      {{ $subPg = site.GetPage (print .File.Dir "/_index") }}
+    {{ end }}
+    {{ if $subPg }}
+      <span>{{ printf "%s%s <a href=\"%s\">%s</a>" $orgPrefix $b $subPg.Permalink $subPg.Title | safeHTML }}</span><br/>
+    {{ else }}
+      <span>{{ printf "%s%s %s" $orgPrefix $b $fname }}</span><br/>
+    {{ end }}
+  {{ end }}
+{{ end }}

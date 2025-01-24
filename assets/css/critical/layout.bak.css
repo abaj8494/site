@@ -13,9 +13,8 @@ main {
   align-items: start;
   display: grid;
   grid-area: main;
-  grid-template-areas: "left-sidebar content sidebar";
-  grid-template-columns: 1fr minmax(0, 1000px) 1fr; /* Adjust the width of the left sidebar as needed */
-  gap: 1rem; /* Add some gap between columns */
+  grid-template-areas: "empty content sidebar";
+  grid-template-columns: 1fr minmax(0, 1000px) 4fr;
 }
 
 header {

@@ -1,0 +1,76 @@
+{{ $parts := .parts }}
+{{ $index := .index }}
+{{ $page  := .page }}
+{{ $prefix := .prefix }}
+{{ $accum := .accum }}
+{{ $lastIndex := sub (len $parts) 1 }}
+{{ $thisPart := index $parts $index }}
+{{ $thisPath := cond (eq $accum "") $thisPart (print $accum "/" $thisPart) }}
+{{ $sectionPage := site.GetPage (print $thisPath "/_index") }}
+{{ if not $sectionPage }}
+  {{ $sectionPage = site.GetPage (print $thisPath "/index") }}
+{{ end }}
+{{ $title := cond $sectionPage.Title $sectionPage.Title $thisPart }}
+{{ $line := cond $sectionPage (printf "%s|-- <a href=\"%s\">%s</a>" $prefix $sectionPage.Permalink $thisPart) (printf "%s|-- %s" $prefix $thisPart) }}
+<span>{{ $line | safeHTML }}</span><br/>
+
+{{ if lt $index $lastIndex }}
+  {{ $nextPrefix := print $prefix "|   " }}
+  {{ partial "left-sidebar-recursive.html" (dict
+      "parts"  $parts
+      "index"  (add $index 1)
+      "page"   $page
+      "prefix" $nextPrefix
+      "accum"  $thisPath
+  ) }}
+{{ else }}
+  {{ $orgFiles := slice }}
+  {{ $subfolders := slice }}
+  {{ range $page.Site.RegularPages }}
+    {{ if .File }}
+      {{ if eq .File.Dir $thisPath }}
+        {{ if hasSuffix .File.LogicalName ".org" }}
+          {{ $orgFiles = $orgFiles | append . }}
+        {{ end }}
+      {{ end }}
+      {{ if and (eq (strings.HasPrefix .File.Dir (print $thisPath "/")) true) (ne .File.Dir $thisPath) }}
+        {{ $tail := strings.TrimPrefix .File.Dir (print $thisPath "/") }}
+        {{ $tailParts := split $tail "/" }}
+        {{ if eq (len $tailParts) 1 }}
+          {{ if or (eq .File.LogicalName "index.org") (eq .File.LogicalName "_index.org") }}
+            {{ $subfolders = $subfolders | append . }}
+          {{ end }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+  {{ $items := slice }}
+  {{ range $orgFiles }}
+    {{ $items = $items | append (dict "type" "file" "page" . ) }}
+  {{ end }}
+  {{ range $subfolders }}
+    {{ $items = $items | append (dict "type" "dir" "page" . ) }}
+  {{ end }}
+  {{ $count := len $items }}
+  {{ $i := 0 }}
+  {{ $itemPrefix := print $prefix "|   " }}
+  {{ range $items }}
+    {{ $i = add $i 1 }}
+    {{ $bullet := "|--" }}
+    {{ if eq $i $count }}{{ $bullet = "`--" }}{{ end }}
+    {{ $p := .page }}
+    {{ if eq .type "file" }}
+    {{ else }}
+      {{ $folderParts := split $p.File.Dir "/" }}
+      {{ $fname := index $folderParts (sub (len $folderParts) 1) }}
+      {{ $subPg := site.GetPage (print $p.File.Dir "/_index") }}
+      {{ if not $subPg }}
+        {{ $subPg = site.GetPage (print $p.File.Dir "/index") }}
+      {{ end }}
+      {{ if $subPg }}
+        {{ $fTitle := cond $subPg.Title $subPg.Title $fname }}
+      {{ else }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
