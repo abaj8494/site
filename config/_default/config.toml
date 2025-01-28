@@ -1,7 +1,7 @@
 baseURL = "https://abaj.ai"
 copyright = "© 2024 Aayush Bajaj"
 title = "(aj)^{ai}"
-paginate = 10
+pagination.pagerSize = 10
 enableRobotsTXT = true
 enableGitInfo = true
 

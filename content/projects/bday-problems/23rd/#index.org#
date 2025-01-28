@@ -390,6 +390,10 @@ w_1 &= \frac{\overline{xy}-\bar{x}\bar{y}}{\overline{x^2}-\overline{x}^2} \\
 \text{Thus, }\nabla_{\vec{x}} \vec{x}^T\vec{A}\vec{x} = 2\vec{A}\vec{x}\square.
 \end{align*}\]
 
+*** c)
+
+\[\mathcal{L}(\vec{w}) = \frac{1}{n} \|\vec{y}-\vec{X}\vec{w}\|_2^2\]
+
 
 * Source Code
 #+INCLUDE: "/code/latex/bday-problems/23/main.tex" src latex

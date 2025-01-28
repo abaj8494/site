@@ -1,9 +1,6 @@
 <div class="sidebar">
   {{ if .Params.toc }}
-    {{ partial "toc.html" . }}
-  {{ end }}
-  {{ with .Content | findRE "(?s)<aside class=\"custom-toc\">.*?</aside>" }}
-    {{ index . 0 | safeHTML }}
+     {{ partial "toc.html" .}}
   {{ end }}
 
   {{ $cv := index $.Site.Data.json_resume $.Site.Language.Lang }}

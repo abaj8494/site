@@ -13,7 +13,7 @@ main {
   align-items: start;
   display: grid;
   grid-area: main;
-  grid-template-areas: "left-sidebar content sidebar";
+  grid-template-areas: "empty content sidebar";
   grid-template-columns: 1fr minmax(0, 1000px) 1fr; /* Adjust the width of the left sidebar as needed */
   gap: 1rem; /* Add some gap between columns */
 }
@@ -60,8 +60,36 @@ footer {
   margin-top: 3rem;
   position: sticky;
   top: 2rem;
+}
 
-  @media (--lg) {
-    display: flex;
+.sidebar-tree {
+  font-family: var(--font-monospace);
+  max-width: 400px;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-top: 10rem;
+  line-height: 1;
+  padding: 0;
+  margin: 0;
+  padding: 0;
+
+  & a {
+    color: var(--primary-alt);
+  }
+  & a:hover {
+    color: var(--primary);
+  }
+}
+@media (max-width: 768px) {
+  .sidebar-tree {
+    display: none; /* Hides sidebar-tree on smaller screens */
+  }
+}
+
+/* Optional: Hide at very small widths (e.g., zoomed out) */
+@media (max-width: 400px) {
+  .sidebar-tree {
+    display: none; /* Further hides sidebar-tree on extreme zoom-out */
   }
 }

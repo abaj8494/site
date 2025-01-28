@@ -1,6 +1,0 @@
-<div class="left-sidebar">
-  <nav>
-    <p class="left-sidebar__heading">Directory Tree</p>
-    {{ partial "sidebar-tree.html" . }}
-  </nav>
-</div>

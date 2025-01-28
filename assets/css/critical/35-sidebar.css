@@ -19,7 +19,8 @@
   font-size: 1.3rem;
 }
 
-aside.toc {
+aside.toc,
+aside.custom-toc {
   & a {
     color: var(--primary-alt);
   }

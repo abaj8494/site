@@ -1,0 +1,30 @@
+.content-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.post-content {
+  flex: 3;
+  padding-right: 20px;
+}
+
+.sidebar {
+  flex: 1;
+  padding-left: 20px;
+}
+
+.post-content .toc {
+  /* Ensure the TOC in post-content is not visible */
+  display: none;
+}
+
+.sidebar .toc {
+  /* Style and position the TOC in the sidebar */
+  display: block;
+  background-color: #f9f9f9;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  position: sticky;
+  top: 10px; /* Optional: Make it sticky */
+}
