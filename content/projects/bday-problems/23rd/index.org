@@ -29,6 +29,9 @@ We use the update rule \[x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}\]
 To produce \(x_1 = 1.5\) and \(x_2 = 1.416\). Note to 3 decimal places \(\sqrt{2} \approx 1.412\).
 
 *** b)
+:PROPERTIES:
+:CUSTOM_ID: 1b
+:END:
 
 We can adjust our update rule to predict the roots of the derivative function[fn:1], i.e. it's local optima:
 \[x_{n+1} = x_n - \frac{f'(x_n)}{f''(x_n)}\]
@@ -389,6 +392,50 @@ w_1 &= \frac{\overline{xy}-\bar{x}\bar{y}}{\overline{x^2}-\overline{x}^2} \\
 &= \sum_{j=1}^n 2 A_{j,i}x_i\quad\text{by the symmetry of A} \\
 \text{Thus, }\nabla_{\vec{x}} \vec{x}^T\vec{A}\vec{x} = 2\vec{A}\vec{x}\square.
 \end{align*}\]
+
+*** c)
+
+\[\large\begin{align*}
+\mathcal{L}(\vec{w}) &= \frac{1}{n} \|\vec{y}-\vec{X}\vec{w}\|_2^2 \\
+&= \frac{1}{n} (\vec{y}-\vec{X}\vec{w})^T(\vec{y}-\vec{X}\vec{w}) \\
+&= \frac{1}{n} \left( \vec{y}^T\vec{y} - \vec{y}^T\vec{X}\vec{w} - \vec{w}^T\vec{X}^T\vec{y} + \vec{w}^T\vec{X}^T\vec{X}\vec{w} \right) \\
+&= \frac{1}{n} \left( \vec{y}^T\vec{y} - 2\vec{y}^T\vec{X}\vec{w} + \vec{w}^T\vec{X}^T\vec{X}\vec{w} \right) \quad \text{because both } \vec{y}^T\vec{X}\vec{w} \text{ and } \vec{w}^T\vec{X}^T\vec{y} \text{ are scalars} \\
+\text{then } \nabla_{\vec{w}} \frac{1}{n} \left( \vec{y}^T\vec{y} - 2\vec{y}^T\vec{X}\vec{w} + \vec{w}^T\vec{X}^T\vec{X}\vec{w} \right) &= \nabla_{\vec{w}} \frac{1}{n} \left( \vec{y}^T\vec{y} - 2(\vec{X}^T\vec{y})^T\vec{w} + \vec{w}^T(\vec{X}^T\vec{X})\vec{w} \right) \\
+\text{and } 0 &\stackrel{\text{(set)}}{=} -2\vec{X}^T\vec{y} + 2\vec{X}^T\vec{X}\vec{w} \quad \text{(by applying the derivative rules of parts a, b)} \\
+\text{such that, } \vec{w} &= (\vec{X}^T\vec{X})^{-1}\vec{X}^T\vec{y}
+\end{align*}\]
+
+
+** Q16
+
+From the previous part we have \(\mathcal{L}(\vec{w}) = -2\vec{X}^T\vec{y} + 2\vec{X}^T\vec{X}\vec{w}\).
+
+\[\begin{align*}
+&= 2(\vec{X}^T\vec{X})^T\vec{w} - 2\vec{X}^T\vec{y} \\
+\nabla_w^2 &= 2\vec{X}^T\vec{X} \\
+&= 2(\vec{X}^T\vec{X})^T\quad\text{thus proving the first condition of a positive semidefinite matrix} \\
+\text{then for any arbitrary }z\in\mathbb{R}^n:\\
+\vec{z}^T2\vec{X}^T\vec{X}\vec{z} &= 2(\vec{X}\vec{z})^T\vec{X}\vec{z} \\
+&= 2 \|\vec{X}\vec{z}\|^2_2 \\
+&\geq 0.
+\end{align*}\]
+Thus proving the second condition for PSD-ness, and confirming that our critical point from 15c) was a minimum.
+
+** Q17
+
+Recall the update rule for our gradient function from [[{{< ref "projects/bday-problems/23rd#1b" >}}][Question 1b]]:
+\[x_{n+1} = x_n - \frac{f'(x_n)}{f''(x_n)}\]
+
+Thus
+\[\large\begin{align*}
+\vec{w}_1 &= \vec{w}_0 - \frac{f'(\vec{w}_0)}{f''(\vec{w}_0)} \\
+&= \vec{w} - \frac{\nabla_{\vec{w}}\mathcal{L}(\vec{w})}{\nabla^2_{\vec{w}}\mathcal{L}(\vec{w})} \\
+&= \vec{w} - \frac{-2\vec{X}^T\vec{y} + 2\vec{X}^T\vec{X}\vec{w}}{2\vec{X}^T\vec{X}} \\
+&= \rlap{\(\vec{w}\)}\textcolor{red}{\cancel{\phantom{\vec{w}}}} + \frac{\vec{X}^T\vec{y}}{\vec{X}^T\vec{X}}- \rlap{\(\vec{w}\)}\textcolor{red}{\cancel{\phantom{\vec{w}}}} \\
+&= (\vec{X}^T\vec{X})^{-1}\vec{X}^T\vec{y}\quad{\small\square}.
+\end{align*}\]
+
+Thus it only takes a single iteration of the Newton-Raphson method to converge to the optimal minima of the least squares loss function!
 
 
 * Source Code
