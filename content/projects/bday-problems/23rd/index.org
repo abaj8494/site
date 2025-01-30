@@ -437,9 +437,206 @@ Thus
 
 Thus it only takes a single iteration of the Newton-Raphson method to converge to the optimal minima of the least squares loss function!
 
+** Q18
 
-* Source Code
-#+INCLUDE: "/code/latex/bday-problems/23/main.tex" src latex
+*** a)
+:PROPERTIES:
+:CUSTOM_ID: 18a
+:END:
+
+In this particular case, the parameter we wish to predict is \(p = \theta\) where \(\Theta \in [0,1]\).
+Also,
+\[\begin{align*}
+\mathcal{L}(\theta) &= \text{prob all }X_i\text{ under probability distribution }p.\\
+&= \text{prob}(X_1)\times \text{prob}(X_2)\times \dots \times \text{prob}(X_n)\quad\text{under the assumption that all }X_i\text{ are i.i.d}\\
+&= \prod_{i=1}^n p_\theta(X_i)\end{align*}\]
+
+So we have
+\[\begin{align*}
+\operatorname*{arg\,max}_{p} \mathcal{L}(p) &=\operatorname*{arg\,max}_{p}\left[ \prod p^{X_i}(1-p)^{1-X_i}\right]\\
+&= \operatorname*{arg\,max}_{p} \left[\log\left(\prod p^{X_i}(1-p)^{1-X_i} \right)\right]\quad\text{by virtue of a monotonically function (log) affecting the max, but never the argmax of the orginal function}\\
+&= \operatorname*{arg\,max}_{p} \left[\sum \log(p^{X_i}(1-p)^{1-X_i} )\right] \\
+&= \operatorname*{arg\,max}_{p} \left[\sum X_i\log(p) + (1-X_i)\log(1-p)]\right]\\
+&= \operatorname*{arg\,max}_{p} \left[n\bar{X}\log(p) + n(1-\bar{X})\log(1-p)\right]\\
+0 &\stackrel{\text{(set)}}{=} \frac{\partial}{\partial{p}} \left[n\bar{X}\log(p) + n(1-\bar{X})\log(1-p)\right] \\
+&= \frac{n\bar{X}}{p}-\frac{n(1-\bar{X})}{1-p} \\
+&= \frac{(1-p)n\bar{X}n\bar{X} - n(1-\bar{X})p}{p(1-p)} \\
+0 &= n\bar{X} - \rlap{\(pn\bar{X}\)}\textcolor{red}{\cancel{\phantom{pn\bar{X}}}} -np + \rlap{\(n\bar{X}p\)}\textcolor{red}{\cancel{\phantom{n\bar{X}p}}} \\
+&= n(\bar{X}-p) \\
+\implies p &= \bar{X}
+\end{align*}\]
+
+*** b)
+Given that \[\mathcal{N}(\mu,\sigma^2) = \cfrac{1}{\sqrt{2\pi}\sigma}e^{-\cfrac{(x-\mu)^2}{2\sigma^2}}\]
+We can apply the same logic as in [[{{< ref "projects/bday-problems/23rd#18a" >}}][part a]] to construct our argmax formulation:
+\[\large\begin{align*}
+\mathcal{L}(\mu,\sigma^2) &= \prod_{i=0}^n \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(X_i-\mu)^2}{2\sigma^2}} \\
+\implies\operatorname*{arg\,max}_{\mu} \mathcal{L}(\mu,\sigma^2) &= \operatorname*{arg\,max}_{\mu} \left[\prod \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(X_i-\mu)^2}{2\sigma^2}} \right]\\
+&= \operatorname*{arg\,max}_{\mu} \left[\sum\log\left(\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(X_i-\mu)^2}{2\sigma^2}}\right) \right]\\
+&= \operatorname*{arg\,max}_{\mu} \left[\sum\log\left(\frac{1}{\sqrt{2\pi}\sigma}\right)+\log\left(e^{-\frac{(X_i-\mu)^2}{2\sigma^2}}\right) \right]\\
+&= \operatorname*{arg\,max}_{\mu} \left[\sum\log\left(\frac{1}{\sqrt{2\pi}\sigma}\right)-\frac{(X_i-\mu)^2}{2\sigma^2} \right]\quad(1)\\
+0 &\stackrel{\text{(set)}}{=} \frac{\partial}{\partial \mu} \left[ \sum \frac{\rlap{\(2\)}\textcolor{red}{\cancel{\phantom{2}}}(X_i - \mu)}{\rlap{\(2\)}\textcolor{red}{\cancel{\phantom{2}}}\sigma^2} \right] \\
+&= \sum \frac{X_i}{\sigma^2} - \frac{\mu}{\sigma^2} \\
+\implies 0 &= \frac{n\bar{X}-n\mu}{\sigma^2} \\
+\therefore \mu_{\mathrm{MLE}} = \bar{X}
+\end{align*}\]
+
+Then to solve for the \(\sigma^2_{\mathrm{MLE}}\) we can continue stretch out the expression in (1) and take a different derivative in the proceeding line (w.r.t \(\sigma^2\)).
+\[\large\begin{align*}
+\operatorname*{arg\,max}_{\sigma^2} \left[\sum\log\left(\frac{1}{\sqrt{2\pi}\sigma}\right)-\frac{(X_i-\mu)^2}{2\sigma^2} \right] &=\operatorname*{arg\,max}_{\sigma^2} \left[\sum \log(1) - \frac{1}{2}\log(2\pi\sigma^2) -\frac{(X_i-\mu)^2}{2\sigma^2}\right] \\
+&= \operatorname*{arg\,max}_{\sigma^2} \left[\sum -\frac{1}{2} \left( \log(2\pi) + \log(\sigma^2) \right) -\frac{(X_i-\mu)^2}{2\sigma^2}\right] \\
+0 &\stackrel{\text{(set)}}{=} \frac{\partial}{\partial \sigma^2} \sum -\frac{1}{2} \left( \log(2\pi) + \log(\sigma^2) \right) -\frac{(X_i-\mu)^2}{2\sigma^2} \\
+&= \sum -\frac{1}{2\sigma^2} + \frac{(X_i -\mu)^2}{2\sigma^4} \\
+&= -\frac{n}{\sigma^2} + \frac{\sum(X_i-\mu)^2}{2\sigma^4} \\
+&= \frac{-\sigma^2 n + \sum(X_i - \mu)^2}{2\sigma^4} \\
+\implies \sigma^2_\mathrm{MLE} &= \frac{\sum(X_i-\mu)^2}{n} \\
+&= \frac{1}{n} \sum(X_i -\bar{X})^2\quad(\mu_\mathrm{MLE} = \bar{X}, \text{ from part (a)})
+\end{align*}\]
+
+
+** Q19
+
+MLE for Linear Regression with Normally Distributed Errors:
+
+\[\large\begin{align*}
+y^{(i)} &= {\vec{x}^{(i)}}^T\vec{w} + \epsilon^{(i)}\quad,\epsilon\sim\mathcal{N}(0,\sigma^2) \\
+\implies & y^{(i)} | \vec{x}^{(i)}; \vec{w} \sim \mathcal{N}({\vec{x}_{(i)}}^T\vec{w}, \sigma^2) \\
+\iff & p(y^{(i)} | \vec{x}^{(i)}; \vec{w}) = \cfrac{1}{\sqrt{2\pi}\sigma}e^{-\cfrac{(y^{(i)}-{\vec{x}_{(i)}}^T\vec{w})^2}{2\sigma^2}} \\
+\mathcal{L}(w) &= \prod p(y^{(i)} | {\vec{x}_{(i)}}^T \vec{w}) \\
+\log\mathcal{L}(w) &= \log\left(\prod p(y^{(i)} | {\vec{x}_{(i)}}^T \vec{w})\right)\quad\text{(henceforth the log likelihood will be denoted \(\mathcal{L}\mathcal{L}\))} \\
+\text{Consquently }\vec{w}_\mathrm{MLE} &= \operatorname*{arg\,max}_{\vec{w}} \left[\mathcal{L}\mathcal{L}(\vec{w})\right] \\
+&= \operatorname*{arg\,max}_{\vec{w}} \left[\sum \log(1) - \frac{1}{2}\log(2\pi\sigma^2) -\frac{(y^{(i)}-{\vec{x}_{(i)}}^T\vec{w})^2}{2\sigma^2}\right] \\
+&= \operatorname*{arg\,max}_{\vec{w}} \left[\frac{n}{2}\log(2\pi\sigma^2) + \frac{\|y-\vec{X}\vec{w}\|^2_2}{2\sigma^2}\right] \\
+&= (\vec{X}^T\vec{X})^{-1}\vec{X}^Ty \\
+&= \vec{w}_\mathrm{MSE}\quad\text{coincidence?}
+\end{align*}\]
+
+** Q20
+
+*** a)
+A parametric model learns a series of turnable knobs from the data; these knobs are then carried around for inference. Dissimilarly, a non-parametric model performs inferences by way of direct comparison against the data. The benefit of this is that this type of modelling requires minimal training, however the caveat is that you must carry around all of the data for inference!
+
+*** b)
+
+We minimize the weighted least squares objective:
+\[\mathcal{L}(\vec{w}) = \sum_{i=1}^n w^{(i)}\left(y^{(i)} - \vec{x}^{(i)}\vec{w}\right)^2.\]
+
+Expand and differentiate w.r.t. \(\vec{w}\):
+\[\mathcal{L}(\vec{w}) = \vec{y}^T W \vec{y} - 2 \vec{y}^T W X \vec{w} + \vec{w}^T X^T W X \vec{w}.\]
+
+Set the gradient to 0:
+\[-2X^T W \vec{y} + 2X^T W X \vec{w} = 0 \implies \vec{w} = \left(X^T W X\right)^{-1} X^T W \vec{y}.\]
+
+*** c)
+Computing \(\hat{y}\) at \(x = 0.5\):
+
+Given data:
+\[\{(x^{(i)}, y^{(i)})\} = \{(-1, 1), (0, 0), (1, 1)\}, \quad \tau = 1, \quad \vec{x} = [1, x].\]
+
+1. *Weights:*
+  \[\begin{align*}
+    w^{(i)}&= \exp\left(-\frac{(x^{(i)} - 0.5)^2}{2(1)^2}\right)\\
+    \text{such that }w^{(1)} &= \exp\left(-\frac{(-1 - 0.5)^2}{2}\right) = \exp(-1.125) \\
+    w^{(2)} &= \exp\left(-\frac{(0 - 0.5)^2}{2}\right) = \exp(-0.125) \\
+    w^{(3)} &= \exp\left(-\frac{(1 - 0.5)^2}{2}\right) = \exp(-0.125) \\
+    \text{thus, }W &= \text{diag}([w^{(1)}, w^{(2)}, w^{(3)}])
+  \end{align*}\]
+2. *Matrices:*
+  \[X = \begin{bmatrix}1 & -1 \\1 & 0 \\1 & 1\end{bmatrix}
+  , \quad \vec{y} = \begin{bmatrix}1 \\0 \\1\end{bmatrix}.\]
+
+3. *Weighted least squares solution:*
+   \[\vec{w} = \left(X^T W X\right)^{-1} X^T W \vec{y} = \begin{bmatrix}0.518\\0.223\end{bmatrix} \]
+
+4. *Predicted value:*
+
+  \[\hat{y} = \vec{x} \cdot \vec{w} \approx 0.63{\scriptsize\square}\]
+
+
+#+BEGIN_SRC jupyter-python :session 23bp
+
+  import numpy as np
+  from numpy.linalg import inv
+  X = np.array([[1,-1],[1,0],[1,1]])
+  y = np.array([1,0,1])
+  W = np.diag(np.array([np.exp(-1.125),np.exp(-0.125),np.exp(-0.125)]))
+  w = inv(X.T @ W @ X)@X.T@W@y
+  print(w)
+  x_i = np.array([1,0.5])
+  y_i = w @ x_i
+  print(y_i)
+#+END_SRC
+
+#+RESULTS:
+: [0.51825006 0.22262491]
+: 0.6295625143296497
+
+** Q21
+
+A *hyper-plane*
+
+** Q22
+
+The points had initially been coloured at random, but clearly there is a circular pattern to the data. As a result of this, constructing some kind of linear-decision boundary in /Euclidean space/ would hardly be a good idea.
+
+As such, we can apply a [[https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html][second-degree polynomial kernel]] and then follow that up with a k-means clustering algorithm to produce:
+
+#+BEGIN_CENTER
+#+CAPTION: svm.SVC(kernel='poly',degree=2,coef0=2,gamma=1,C=1e8)
+#+ATTR_HTML: :width 700px :class lateximage
+[[q22.svg]]
+#+END_CENTER
+
+** Q23
+
+\[\begin{align*}
+\vec{w}_\mathrm{ridge} &= \operatorname*{arg\,max}_{\vec{w}} \left[\|\vec{y}-\vec{X}\vec{w}\|^2_2 + \lambda\|\vec{w}\|^2_2\right] \\
+&= \operatorname*{arg\,max}_{\vec{w}}\left[ (\vec{y}-\vec{X}\vec{w})^T(\vec{y}-\vec{X}\vec{w}) + \lambda\vec{w}^T\vec{w}\right] \\
+&= \frac{\partial}{\partial{\vec{w}}} \vec{y}^T\vec{y} -2(\vec{X}^T\vec{y})^T + \vec{w}^T\vec{X}^T\vec{X}\vec{w} + \lambda\vec{w}^T\vec{w} \\
+&= -2\vec{X}^T\vec{y} + 2\vec{X}^T\vec{X}\vec{w} + 2\lambda\vec{w} \\
+&\stackrel{\text{(set)}}{=} 0 \\
+\implies w_\mathrm{ridge} &= (\vec{X}^T\vec{X}+\lambda \vec{I})^{-1}(\vec{X}^T\vec{y})
+\end{align*}\]
+
+
+* Figures                                                          :noexport:
+
+** q22
+
+\begin{tikzpicture}
+    \begin{axis}[
+        width=8cm,
+        height=8cm,
+        axis equal,
+        tick style={draw=none},
+        xtick=\empty,
+        ytick=\empty
+    ]
+
+    % Outer circle
+    \foreach \angle in {0,5,...,360} {
+        \pgfmathsetmacro{\x}{cos(\angle) + 0.08*rand}
+        \pgfmathsetmacro{\y}{sin(\angle) + 0.08*rand}
+        \addplot[only marks, mark=*, mark size=1pt, blue] coordinates {(\x, \y)};
+        \pgfmathsetmacro{\x}{cos(\angle) + 0.08*rand}
+        \pgfmathsetmacro{\y}{sin(\angle) + 0.08*rand}
+        \addplot[only marks, mark=*, mark size=1pt, blue] coordinates {(\x, \y)};
+    }
+
+    % Inner circle
+    \foreach \angle in {0,5,...,360} {
+        \pgfmathsetmacro{\x}{0.4*cos(\angle) + 0.08*rand}
+        \pgfmathsetmacro{\y}{0.4*sin(\angle) + 0.08*rand}
+        \addplot[only marks, mark=*, mark size=1pt, orange] coordinates {(\x, \y)};
+        \pgfmathsetmacro{\x}{0.4*cos(\angle) + 0.08*rand}
+        \pgfmathsetmacro{\y}{0.4*sin(\angle) + 0.08*rand}
+        \addplot[only marks, mark=*, mark size=1pt, orange] coordinates {(\x, \y)};
+    }
+
+    \end{axis}
+\end{tikzpicture}
+
+
 
 * Footnotes
 [fn:2] note, this is mathematically equivalent to the Bernoulli case, just that the emphasis there would be on binary nature of the outcome, whilst the Uniform distribution focusses on just that --- the uniformity of the outcomes. 
