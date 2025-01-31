@@ -5,3 +5,9 @@
 [submodule "static/code/bookshelf"]
 	path = static/code/bookshelf
 	url = git@github.com:abaj8494/bookshelf.git
+[submodule "static/code/ccs"]
+	path = static/code/ccs
+	url = https://github.com/abaj8494/classical-cs.git
+[submodule "static/code/csp"]
+	path = static/code/csp
+	url = https://github.com/abaj8494/cs-projects.git
