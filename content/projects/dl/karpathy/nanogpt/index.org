@@ -363,11 +363,8 @@ at input tensor([25, 17, 27, 10,  0, 21,  1, 54])
 target 39
 #+end_example
 
-(jupyter-locate-python)
-
 * Bigram Language Model
-(setq python-indent-offset 0) ; so this doesn't change anything
-(setq org-edit-src-content-indentation 0)
+
 
 #+begin_src jupyter-python :session py
 import torch
@@ -512,7 +509,7 @@ xbow[0]
 :         [0.1433, 0.1783],
 :         [0.1595, 0.0065]])
 
-Our results are good, but the time complexity is not. $O(n^2)$ currently. We can optimise with triangular matrices:
+Our results are good, but the time complexity is not. \(O(n^2)\) currently. We can optimise with triangular matrices:
 #+BEGIN_SRC jupyter-python :session py
 a= torch.tril(torch.ones(3,3))
 a = a / torch.sum(a, 1, keepdim = True)

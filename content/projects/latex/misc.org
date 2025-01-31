@@ -2,11 +2,22 @@
 title = "Typeset Everything!"
 categories = ["latex"]
 tags = ["misc"]
+math = "true"
 +++
 
 To supplement your skill you must also cook up small documents in the interim, such as letters, invoices, birthday cards, one-off proofs and satirical pieces.
 
-Stefan Kottwitz' Cookbook was of good help for these tasks, and in doing these things you will keep touching up your knife's blade.
+[[https://www.amazon.com.au/LaTeX-Cookbook/dp/1784395145][Stefan Kottwitz' Cookbook]] was of good help for these tasks, and in doing these things you will keep touching up your knife's blade.
 
+Here are some silly rookie challenges I opted to do in \(\TeX\):
+#+BEGIN_CENTER
+#+ATTR_HTML: :width 450px
+[[/code/latex/2023-unigames/rookie-challenge1/alfresco.png]]
+#+ATTR_HTML: :width 450px
+[[/code/latex/2023-unigames/rookie-challenge2/best-cleats.png]]
+#+ATTR_HTML: :width 450px
+[[/code/latex/2023-unigames/rookie-challenge3/best-diet.png]]
+#+ATTR_HTML: :width 450px
+[[/code/latex/2023-unigames/rookie-challenge4/best-haircut.png]]
+#+END_CENTER
 
-TODO: insert unigames + pythagoras

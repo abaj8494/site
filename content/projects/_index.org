@@ -31,9 +31,9 @@ You may also view the entire =tag= taxonomy [[/tags][here]].
 The compiled PDFs can be found in the above linked heading.
 
 The following links contain the source code and solution sets:
-- @@html:<input type="checkbox" checked class="done"/>@@ [[{{< ref "/projects/bday-problems/21st" >}}][21st]] {{< tags-inline "projects/bday-problems/21st" >}}
-- @@html:<input type="checkbox" checked class="done"/>@@ [[{{< ref "/projects/bday-problems/22nd" >}}][22nd]] {{< tags-inline "projects/bday-problems/22nd" >}}
-- @@html:<input type="checkbox" checked class="done"/>@@ [[{{< ref "/projects/bday-problems/23rd" >}}][23rd]] {{< tags-inline "projects/bday-problems/23rd" >}}
+- @@html:<input type="checkbox" checked class="archived"/>@@ [[{{< ref "/projects/bday-problems/21st" >}}][21st]] {{< tags-inline "projects/bday-problems/21st" >}}
+- @@html:<input type="checkbox" checked class="archived"/>@@ [[{{< ref "/projects/bday-problems/22nd" >}}][22nd]] {{< tags-inline "projects/bday-problems/22nd" >}}
+- @@html:<input type="checkbox" checked class="archived"/>@@ [[{{< ref "/projects/bday-problems/23rd" >}}][23rd]] {{< tags-inline "projects/bday-problems/23rd" >}}
   
 ** [[/projects/latex][LaTeX]]
 :PROPERTIES:
@@ -42,9 +42,8 @@ The following links contain the source code and solution sets:
 - @@html:<input type="checkbox" checked class="archived"/>@@ [[{{< ref "/projects/latex/poems" >}}][Poems]] {{< tags-inline "projects/latex/poems" >}}
 - @@html:<input type="checkbox" checked class="archived"/>@@ [[{{< ref "/projects/latex/treatises" >}}][Treatises]] {{< tags-inline "projects/latex/treatises" >}}
 - @@html:<input type="checkbox" checked class="archived"/>@@ [[{{< ref "/projects/latex/pocket-rules" >}}][Pocket Frisbee Rules]] {{< tags-inline "projects/latex/pocket-rules" >}}
-- @@html:<input type="checkbox" class="edit"/>@@ [[{{< ref "/projects/latex/booklets" >}}][Junior High Math Booklets]] {{< tags-inline "projects/latex/booklets" >}}
-- @@html:<input type="checkbox" class="edit"/>@@ [[{{< ref "/projects/latex/assignment" >}}][An Assignment]] {{< tags-inline "projects/latex/assignment" >}}
-- @@html:<input type="checkbox" class="edit"/>@@ [[{{< ref "/projects/latex/misc" >}}][Miscellaneous Tasks!]] {{< tags-inline "projects/latex/misc" >}}
+- @@html:<input type="checkbox" checked class="refactor"/>@@ [[{{< ref "/projects/latex/booklets" >}}][Junior High Math Booklets]] {{< tags-inline "projects/latex/booklets" >}}
+- @@html:<input type="checkbox" checked class="archived"/>@@ [[{{< ref "/projects/latex/misc" >}}][Miscellaneous Tasks!]] {{< tags-inline "projects/latex/misc" >}}
 
 ** [[/projects/literature][Literature]]
 :PROPERTIES:

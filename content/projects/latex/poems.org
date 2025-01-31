@@ -2,6 +2,7 @@
 title = "Typeset Poems"
 categories = ["latex"]
 tags = ["rosemary-dobson", "ts-eliot", "sylvia-plath", "wilfred-owens"]
+toc = "true"
 +++
 {{< collapse folded="true" >}}
 This is my first experience practising what I had learned from the tutorials[fn:1] and Kottwitz's Beginner's Guide

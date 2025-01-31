@@ -117,7 +117,30 @@ We can calculate their lengths with Pythagoras:
 We then multiply this by 2 to get the total length: \(\frac{\sqrt{17}}{2} \approx 2.061\).
 
 ** Q5
-Hexagonal Packing. TODO :/
+Hexagonal Packing.
+
+#+BEGIN_CENTER
+#+ATTR_HTML: :class lateximage :width 300px
+[[q5.svg]]
+#+END_CENTER
+
+We can split the rhombus into two equilateral triangles.
+
+Then, by the Pythagorean Theorem, we find the height of one of these such triangles to be \(\sqrt{3}\).
+
+Thus
+\[A_\Delta = \frac{1}{2} \times \text{base} \times \text{height} = \frac{1}{\cancel{2}}\times \cancel{2} \times \sqrt{3} = \sqrt{3}\]
+
+and \(A_\mathrm{rhombus} = 2\sqrt{3}\).
+
+Now the area the rhombus takes up from each of the circles is for A, B, C, D: \(\left[\frac{1}{6} + \frac{2}{6} + \frac{2}{6} + \frac{1}{6} \right]\times \pi r^2 = 1\times \pi \times 1 = \pi\).
+
+This is by nature of the /hexagonal/ packing.
+
+Finally, the ratio of the circle coverage to the total shaded area is
+\[\frac{\pi}{2\sqrt{3}} \approx 90.7%\]
+
+
 
 ** Q6
 Given that we redefine our notion of dimensionality for fractals to be
@@ -476,6 +499,46 @@ Solving this quadratic in \(t\) yields \(t\approx 0.359 \text{seconds}\)
   \node[above left] at (1, 2.5) {$x$};
   \draw[thick] (2.8,0) -- (2.8,0.2) -- (3,0.2);
 \end{tikzpicture}
+
+** q5
+
+\begin{tikzpicture}[scale=1]
+
+    % Define the radius of the circles
+    \def \r{1}
+
+    % Define the coordinates of the four circle centers
+    \coordinate (A) at (0,0);
+    \coordinate (B) at (2*\r,0);
+    \coordinate (C) at (\r,1.8*\r);
+    \coordinate (D) at (3*\r,1.8*\r);
+
+    % Draw and shade the rhombus connecting the centers
+    \fill[blue!20, opacity=0.5] (A) -- (B) -- (D) -- (C) -- cycle;
+
+    % Draw the rhombus border
+    \draw[thick, blue] (A) -- (B) -- (D) -- (C) -- cycle;
+    \draw[thick, dashed, red] (B) -- (C);
+
+    % Draw the circles ensuring they touch adjacent circles
+    \draw (A) circle (\r);
+    \draw (B) circle (\r);
+    \draw (C) circle (\r);
+    \draw (D) circle (\r);
+
+    \foreach \point in {(A), (B), (C), (D)} {
+        \fill[red] \point circle (0.1);
+    }
+
+    % Optionally, label the centers
+    \node[below left] at (A) {A};
+    \node[below right] at (B) {B};
+    \node[above left] at (C) {C};
+    \node[above right] at (D) {D};
+
+\end{tikzpicture}
+
+
 ** q6
 
 #+LATEX_HEADER: \usetikzlibrary{shapes.geometric}

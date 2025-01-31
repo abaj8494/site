@@ -2,7 +2,9 @@
 title = "Typeset Treatises"
 categories = ["latex"]
 tags = ["catus-felis", "gastropods"]
+toc = "true"
 +++
+{{< collapse folded="true" >}}
 
 Eventually I grew tired of numbingly copying out the verse of other authors[fn:2] and began to create things of my own. I only produced 2 treatises, one on Gastropods (snails), and another on the Catus Felis (Domestic[fn:1] Cat).
 

@@ -2,14 +2,23 @@
 title = "Typeset High School Math Booklets"
 categories = ["latex", "cambridge-ice-em"]
 tags = ["yr7", "yr8", "yr9"]
+math = "true"
 +++
 
-In an attempt to continue producing increasingly sophisticated TeX I produced some Mathematics booklets for Year 7's and 8's that mimicked the Cambridge ICE-EM NSW Mathematics series.
+In an attempt to continue producing increasingly sophisticated \(\TeX\) I produced some Mathematics booklets for Year 7's and 8's that mimicked the Cambridge ICE-EM NSW Mathematics series.
 
-I was basically fleshing out that entire textbook into an interactive booklet with space to write. As a result I learned to effectively produce figures and leverage the =exam= class. I also learned how to produce far larger documents, with some booklets nearing 50 pages in length to satisfy 3 hours of tuition.
+In essence, I was fleshing out entire textbooks into interactive booklets with space to write. As a result I learned to effectively produce figures and leverage the =exam= class.
 
-Since the source code basically forms a repository for this project HERE is the link to the nginx indexed directory.
+I also learned how to produce far larger documents, with some booklets nearing 50 pages in length to satisfy 3 hours of tuition.
 
-And one courtesy booklet for show:
+The source code is the most sophisticated typesetting I have produced. From double-sided =marginpar= notes, to assembling the booklets themselves with the =Factory= [[/projects/ccs/design-patterns][design pattern]].
 
-TODO EMBED BOOKLET
+Because the source code basically forms a repository for this project, you may visit the static site structure [[/code/latex/highschool-booklets/yr7/][here]].
+
+Below is the student and teacher's copies for a Whole Numbers topic:
+
+* Student
+{{< embed-pdf url="/code/latex/highschool-booklets/yr7/student.pdf" >}}
+
+* Teacher
+{{< embed-pdf url="/code/latex/highschool-booklets/yr7/teacher.pdf" >}}
