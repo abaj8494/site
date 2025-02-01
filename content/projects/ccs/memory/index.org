@@ -1,0 +1,4 @@
++++
+title = "Memory"
+tags = ["notes", "stack-pointer", "registers", "cache", "L1", "L2", "stack", "heap"]
++++

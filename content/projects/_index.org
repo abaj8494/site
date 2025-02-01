@@ -66,8 +66,10 @@ The following links contain the source code and solution sets:
 
 ** [[/projects/ccs][Classical Computer Science]]
 :PROPERTIES:
-:CUSTOM_ID: classical-computer-science
+:CUSTOM_ID: classical-cs
 :END:
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/memory][Memory]] {{< tags-inline "projects/ccs/memory" >}}
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/adv-alg][Advanced Algorithms]] {{< tags-inline "projects/ccs/adv-alg" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/leetcode][Leetcode]] {{< tags-inline "projects/ccs/leetcode" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/sorting][Sorting]] {{< tags-inline "projects/ccs/sorting" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/searching][Searching]] {{< tags-inline "projects/ccs/searching" >}}

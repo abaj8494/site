@@ -1,7 +1,6 @@
 [submodule "static/code/10k-hrs-ml"]
 	path = static/code/10k-hrs-ml
 	url = https://github.com/abaj8494/10k-hrs-ml
-
 [submodule "static/code/bookshelf"]
 	path = static/code/bookshelf
 	url = git@github.com:abaj8494/bookshelf.git
@@ -11,3 +10,6 @@
 [submodule "static/code/csp"]
 	path = static/code/csp
 	url = https://github.com/abaj8494/cs-projects.git
+[submodule "static/code/latex"]
+	path = static/code/latex
+	url = https://github.com/abaj8494/latex.git

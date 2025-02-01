@@ -22,11 +22,16 @@ math = "true"
 * Solutions
 
 ** Q1
+:PROPERTIES:
+:CUSTOM_ID: q1
+:END:
 
 *** a)
 We use the update rule \[x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}\]
 
-To produce \(x_1 = 1.5\) and \(x_2 = 1.416\). Note to 3 decimal places \(\sqrt{2} \approx 1.412\).
+To produce \(x_1 = 1.5\) and \(x_2 = 1.416\).
+
+Note to 3 decimal places \(\sqrt{2} \approx 1.412\).
 
 *** b)
 :PROPERTIES:
@@ -43,6 +48,9 @@ Advantage: quadratic convergence.
 Disadvantage: computing a second derivative may be difficult, think large and sparse matrices. Furthermore, an analytic approach may not exist.
 
 ** Q2
+:PROPERTIES:
+:CUSTOM_ID: q2
+:END:
 
 *** a)
 
@@ -54,7 +62,7 @@ Let "SB" denote the phrase "share birthdays":
 &= \frac{365!}{365^n(365-n)!}
 \end{align*}\]
 
-However, there is no obvious closed form value of \(n\) which satisfies \(\frac{365!}{365^n(365-n)! < \frac{1}{2}\).
+However, there is no obvious closed form value of \(n\) which satisfies \(\frac{365!}{365^n(365-n)!} < \frac{1}{2}\).
 
 We can massage the equivalent LHS expression \(\frac{365}{365}\times\frac{364}{365}\times\ldots\frac{365-n+1}{365}\) into
 \[\prod_{k=0}^{n-1}\frac{365-k}{365}\]
@@ -88,6 +96,9 @@ which can then be expressed in code:
 By the pigeonhole principle, it would be 366 people for a regular year, and 367 for a leap year.
 
 ** Q3
+:PROPERTIES:
+:CUSTOM_ID: q3
+:END:
 
 *** a)
 
@@ -108,20 +119,23 @@ Thus this matrix does not have an inverse.
 
 Since the determinant of a triangular matrix is equal to the product of the diagonal elements, we have a non-zero determinant and can perform the row-reduction on \(A|I\).
 
-#+BEGIN_SRC jupyter-python :session 23bp :results none
+#+BEGIN_SRC jupyter-python :session 23bp 
   from sympy import *
 
   m = Matrix([
     [4, 3, 2, 1, 1, 0, 0, 0],
-    [0, 4, 3, 2, 0, 1, 0, 0],
-    [0, 0, 4, 3, 0, 0, 1, 0],
-    [0, 0, 0, 4, 0, 0, 0, 1]])
+    [0, 3, 2, 1, 0, 1, 0, 0],
+    [0, 0, 2, 1, 0, 0, 1, 0],
+    [0, 0, 0, 1, 0, 0, 0, 1]])
   print(m.rref())
 #+END_SRC
 
-\[ I|A^{-1} = \begin{bmatrix}\cfrac{1}{4}&-\cfrac{3}{16}&\cfrac{1}{64}&\cfrac{5}{256}\\0&\cfrac{1}{4}&-\cfrac{3}{16}&\cfrac{1}{64}\\0&0&\cfrac{1}{4}&-\cfrac{3}{16}\\0&0&0&\cfrac{1}{4}\end{bmatrix}\]
+\[ I|A^{-1} = \begin{bmatrix}\cfrac{1}{4}&-\cfrac{1}{4}&0&0\\0&\cfrac{1}{3}&-\cfrac{1}{3}&0\\0&0&\cfrac{1}{2}&-\cfrac{1}{2}\\0&0&0&1\end{bmatrix}\]
 
 ** Q4
+:PROPERTIES:
+:CUSTOM_ID: q4
+:END:
 
 *** a)
 \[3\]
@@ -130,6 +144,9 @@ Since the determinant of a triangular matrix is equal to the product of the diag
 \[6\]
 
 ** Q5
+:PROPERTIES:
+:CUSTOM_ID: q5
+:END:
 
 *** a)
 The trace of a matrix is equal to the *sum* of the eigenvalues.
@@ -144,6 +161,9 @@ The determinant of a matrix is equal to the *product* of its eigenvalues.
 Eigendecompositions do not always exist, but Singular Value Decompositions do.
 
 ** Q6
+:PROPERTIES:
+:CUSTOM_ID: q6
+:END:
 
 \[\begin{align*}
 A &= zz^T\\
@@ -158,6 +178,9 @@ Furthermore,
 &\geq 0\qquad\quad\text{by definition of the L2 norm.}\end{align*}\]
 
 ** Q7
+:PROPERTIES:
+:CUSTOM_ID: q7
+:END:
 
 *** a)
 Separating and integrating:
@@ -170,6 +193,9 @@ Solving for the particular and homogenous solutions and combining them:
 \[\large y = \underbrace{Ae^{-7t} + Bte^{-7t}}_{y_h} + \underbrace{\frac{1}{64}e^t}_{y_p}\]
 
 ** Q8
+:PROPERTIES:
+:CUSTOM_ID: q8
+:END:
 
 *** a)
 
@@ -198,10 +224,16 @@ Solving for the particular and homogenous solutions and combining them:
 \[\frac{1}{1-x} = 1 - x + x^2 - x^3 + \ldots\]
 
 ** Q9
+:PROPERTIES:
+:CUSTOM_ID: q9
+:END:
 
-\[large a_n = \frac{2^{(n+1)}}{(n+2)!}\]
+\[\large a_n = \frac{2^{(n+1)}}{(n+2)!}\]
 
 ** Q10
+:PROPERTIES:
+:CUSTOM_ID: q10
+:END:
 
 Perform a couple of row reductions to make the matrix as triangular as possible:
 - L1 = L1
@@ -223,6 +255,9 @@ Then Laplace Expansion across the rows leads us to discover that the determinant
 \[2\times -1\times \begin{vmatrix}1&0&3\\3&1&2\\2&0&3\end{vmatrix} = 6\]
 
 ** Q11
+:PROPERTIES:
+:CUSTOM_ID: q11
+:END:
 
 \[\large\begin{align*}
 \sigma (z) &= \frac{1}{1+e^{-z}}\\
@@ -232,6 +267,9 @@ Then Laplace Expansion across the rows leads us to discover that the determinant
 \sigma '(z) &= \sigma(z)(1-\sigma(z))\quad \small\square\end{align*}\]
 
 ** Q12
+:PROPERTIES:
+:CUSTOM_ID: q12
+:END:
 
 *** a)
 A single /yes/ or /no/ experiment. Something such as a coin toss.
@@ -309,6 +347,9 @@ where:
 - \( b \): upper bound.
 
 ** Q13
+:PROPERTIES:
+:CUSTOM_ID: q13
+:END:
 
 \(n\choose r\) is choosing \(r\) objects from a set of \(n\) distinct objects.
 
@@ -326,6 +367,9 @@ The denominator then just accepts the multiplication to form \(r!(n-r)!\), such 
 \[\frac{n!}{r!(n-r)!}\square\]
 
 ** Q14
+:PROPERTIES:
+:CUSTOM_ID: q14
+:END:
 
 *** a)
 
@@ -359,6 +403,9 @@ w_1 &= \frac{\overline{xy}-\bar{x}\bar{y}}{\overline{x^2}-\overline{x}^2} \\
 \end{align*}\]
 
 ** Q15
+:PROPERTIES:
+:CUSTOM_ID: q15
+:END:
 
 *** a)
 
@@ -407,6 +454,9 @@ w_1 &= \frac{\overline{xy}-\bar{x}\bar{y}}{\overline{x^2}-\overline{x}^2} \\
 
 
 ** Q16
+:PROPERTIES:
+:CUSTOM_ID: q16
+:END:
 
 From the previous part we have \(\mathcal{L}(\vec{w}) = -2\vec{X}^T\vec{y} + 2\vec{X}^T\vec{X}\vec{w}\).
 
@@ -422,6 +472,9 @@ From the previous part we have \(\mathcal{L}(\vec{w}) = -2\vec{X}^T\vec{y} + 2\v
 Thus proving the second condition for PSD-ness, and confirming that our critical point from 15c) was a minimum.
 
 ** Q17
+:PROPERTIES:
+:CUSTOM_ID: q17
+:END:
 
 Recall the update rule for our gradient function from [[{{< ref "projects/bday-problems/23rd#1b" >}}][Question 1b]]:
 \[x_{n+1} = x_n - \frac{f'(x_n)}{f''(x_n)}\]
@@ -438,6 +491,9 @@ Thus
 Thus it only takes a single iteration of the Newton-Raphson method to converge to the optimal minima of the least squares loss function!
 
 ** Q18
+:PROPERTIES:
+:CUSTOM_ID: q18
+:END:
 
 *** a)
 :PROPERTIES:
@@ -495,6 +551,9 @@ Then to solve for the \(\sigma^2_{\mathrm{MLE}}\) we can continue stretch out th
 
 
 ** Q19
+:PROPERTIES:
+:CUSTOM_ID: q19
+:END:
 
 MLE for Linear Regression with Normally Distributed Errors:
 
@@ -512,6 +571,9 @@ y^{(i)} &= {\vec{x}^{(i)}}^T\vec{w} + \epsilon^{(i)}\quad,\epsilon\sim\mathcal{N
 \end{align*}\]
 
 ** Q20
+:PROPERTIES:
+:CUSTOM_ID: q20
+:END:
 
 *** a)
 A parametric model learns a series of turnable knobs from the data; these knobs are then carried around for inference. Dissimilarly, a non-parametric model performs inferences by way of direct comparison against the data. The benefit of this is that this type of modelling requires minimal training, however the caveat is that you must carry around all of the data for inference!
@@ -572,10 +634,16 @@ Given data:
 : 0.6295625143296497
 
 ** Q21
+:PROPERTIES:
+:CUSTOM_ID: q21
+:END:
 
 A *hyper-plane*
 
 ** Q22
+:PROPERTIES:
+:CUSTOM_ID: q22
+:END:
 
 The points had initially been coloured at random, but clearly there is a circular pattern to the data. As a result of this, constructing some kind of linear-decision boundary in /Euclidean space/ would hardly be a good idea.
 
@@ -588,6 +656,9 @@ As such, we can apply a [[https://scikit-learn.org/stable/modules/generated/skle
 #+END_CENTER
 
 ** Q23
+:PROPERTIES:
+:CUSTOM_ID: q23
+:END:
 
 \[\begin{align*}
 \vec{w}_\mathrm{ridge} &= \operatorname*{arg\,max}_{\vec{w}} \left[\|\vec{y}-\vec{X}\vec{w}\|^2_2 + \lambda\|\vec{w}\|^2_2\right] \\
@@ -639,6 +710,6 @@ As such, we can apply a [[https://scikit-learn.org/stable/modules/generated/skle
 
 
 * Footnotes
-[fn:2] note, this is mathematically equivalent to the Bernoulli case, just that the emphasis there would be on binary nature of the outcome, whilst the Uniform distribution focusses on just that --- the uniformity of the outcomes. 
+[fn:2] note, this is mathematically equivalent to the Bernoulli case, just that the emphasis there would be on binary nature of the outcome, whilst the Uniform distribution focuses on just that --- the uniformity of the outcomes. 
 
 [fn:1] as opposed to the roots of the original function (x-intercepts). 
