@@ -166,3 +166,9 @@ table td {
   padding: 10px; /* Add padding for spacing */
   border-bottom: 1px solid #ddd; /* Optional row separator */
 }
+
+figure:has(img.float-right) {
+  float: right;
+  margin-left: 1em;
+  margin-bottom: 1em;
+}

@@ -163,3 +163,5 @@ dist
 backup/
 /content/projects/dl/kmnist/data/
 /static/code/kits19/
+*.nii.gz
+*.pth
