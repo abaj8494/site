@@ -85,7 +85,7 @@ The following links contain the source code and solution sets:
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/csp/lan-messenger][LAN Messenger]] {{< tags-inline "projects/csp/lan-messenger" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/csp/chat-app][Messenger Web App (full-stack)]] {{< tags-inline "projects/csp/chat-app" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/csp/banagrams-solver][Banagrams Solver]] {{< tags-inline "projects/csp/banagrams" >}}
-- @@html:<input type="checkbox" checked class="done"/>@@ [[/projects/csp/peg-solitaire][Peg Solitaire]] {{< tags-inline "projects/csp/peg-solitaire" >}}
+- @@html:<input type="checkbox" checked class="archived"/>@@ [[/projects/csp/peg-solitaire][Peg Solitaire]] {{< tags-inline "projects/csp/peg-solitaire" >}}
 
 ** [[/projects/ai][Artificial Intelligence]]
 :PROPERTIES:

@@ -1,4 +1,5 @@
 {{ define "main" }}
+  <script src="{{ "js/nav-header.js" | relURL }}"></script>
   <div class="content-section">
     <h1>{{ .Title | markdownify }}</h1>
     {{ with .Content }}

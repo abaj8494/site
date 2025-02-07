@@ -1,0 +1,34 @@
+#arrow-svg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+@media (max-width: 767px) {
+  #arrow-svg {
+    display: none;
+  }
+}
+.nav-arrow {
+  stroke-width: 1;
+  fill: none;
+  opacity: 0.4;
+}
+[data-theme="light"] .nav-arrow {
+  stroke: blue;
+}
+[data-theme="dark"] .nav-arrow {
+  stroke: green;
+}
+.nav-arrow-head {
+  opacity: 0.3;
+}
+[data-theme="light"] .nav-arrow-head {
+  fill: blue;
+}
+[data-theme="dark"] .nav-arrow-head {
+  fill: green;
+}
