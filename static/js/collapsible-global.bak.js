@@ -24,11 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
     heading.setAttribute("data-toggle-id", toggleId);
 
     // Determine initial state from localStorage or default to `folded`
-    // (Assumes a global "folded" variable, e.g., set via templating)
-    const isFolded =
-      toggleStates[toggleId] === undefined
-        ? folded === "true"
-        : toggleStates[toggleId] === false;
+    const isFolded = toggleStates[toggleId] === undefined ? folded === "true" : toggleStates[toggleId] === false;
 
     // Set initial button state
     button.setAttribute("aria-expanded", !isFolded);
@@ -39,29 +35,18 @@ document.addEventListener("DOMContentLoaded", function () {
     wrapper.appendChild(button);
     wrapper.appendChild(heading);
 
-    // Create the collapsible content container
+    // Collect all sibling elements below the heading until the next heading
     const content = document.createElement("div");
     content.classList.add("collapsible-content");
     if (!isFolded) {
       content.classList.add("show"); // Start as visible
     }
 
-    // Collect all sibling elements below the wrapper until the next heading
     let sibling = wrapper.nextElementSibling;
     while (sibling && !["H2", "H3", "H4", "H5", "H6"].includes(sibling.tagName)) {
       const nextSibling = sibling.nextElementSibling; // Save reference before moving
       content.appendChild(sibling); // Move the sibling into the collapsible content
       sibling = nextSibling; // Move to the next sibling
-    }
-
-    // Additionally, check if this post has a .post-content element
-    // that is not a sibling of the heading (e.g. a sibling of .post-header)
-    const article = heading.closest("article.post");
-    if (article) {
-      const postContent = article.querySelector(".post-content");
-      if (postContent) {
-        content.appendChild(postContent);
-      }
     }
 
     // Insert the collapsible content container after the wrapper

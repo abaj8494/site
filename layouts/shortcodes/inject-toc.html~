@@ -1,0 +1,33 @@
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  // Locate the TOC container that you define in your base template.
+  // In your case, it’s the <nav> inside the <aside class="toc">
+  const tocContainer = document.querySelector("aside.toc nav");
+  if (!tocContainer) {
+    console.warn("TOC container not found. Make sure your base template includes <aside class='toc'><nav>...</nav></aside>.");
+    return;
+  }
+
+  // Start building the TOC HTML.
+  let tocHTML = "<ul>";
+
+  // Select all headings in the document.
+  // (Adjust the selector if you want to limit the search to a certain container.)
+  const headings = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+  headings.forEach(function (heading) {
+    // If the heading doesn’t have an id, generate one.
+    if (!heading.id) {
+      heading.id = heading.textContent.trim().toLowerCase().replace(/\s+/g, "-");
+    }
+    // Use the heading's tag name (lowercased) as a class to allow different styling for h1, h2, etc.
+    tocHTML += `<li class="toc-item toc-${heading.tagName.toLowerCase()}">
+                  <a href="#${heading.id}">${heading.textContent}</a>
+                </li>`;
+  });
+  tocHTML += "</ul>";
+
+  // Replace the TOC container's content.
+  // This prepends the TOC heading before the dynamically generated list.
+  tocContainer.innerHTML = `<p class="sidebar__heading">Table Of Contents</p>` + tocHTML;
+});
+</script>

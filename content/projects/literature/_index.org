@@ -1,5 +1,11 @@
 +++
 title = "Literature"
-date = "2024-12-15T11:21:55+11:00"
+toc = "true"
+layout = "single"
 +++
 
+{{< collapse folded="false" >}}
+
+{{< post-list >}}
+
+{{< inject-toc >}}

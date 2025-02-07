@@ -583,7 +583,7 @@ torch.allclose(xbow, xbow3)
 * Entering an IDE
 to finish the =.py= file and obtain a val_loss less than 2.
 
-#+INCLUDE: "/code/10k-hrs-ml/PRACTISE/Andrej-Karpathy/decode-transformer/shakespeare.py" src python
+#+INCLUDE: "/code/10khrs-ai-ml-dl/PRACTISE/Andrej-Karpathy/decode-transformer/shakespeare.py" src python
 
 * Results
 After training on UNSW HPC Katana with 1GPU and 120GB of RAM for 12hours we got through 2000 training iterations of the above code and produced the following output:

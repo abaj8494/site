@@ -1,0 +1,9 @@
+{{- /* layouts/shortcodes/cwd.html */ -}}
+{{- with .Page.File.Dir }}
+  {{- /* If the directory doesn’t already start with a slash, add one. */ -}}
+  {{- if not (hasPrefix . "/") -}}
+    /{{ . }}
+  {{- else -}}
+    {{ . }}
+  {{- end -}}
+{{- end }}

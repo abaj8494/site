@@ -145,5 +145,5 @@ See the projects section for my solutions
 My own notes on many of these research papers can be found on the [[/projects/literature/research-papers][research papers]] page.
 
 * Trump Card
-Finally, if you wish to dig deeper through the resources in this site, [[/files][here]] is a static link to all the content.
+Finally, if you wish to dig through the code files that enabled the site, [[/code][here]] is a static link to all the content.
 

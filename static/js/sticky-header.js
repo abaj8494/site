@@ -10,11 +10,19 @@ window.addEventListener("scroll", () => {
 
       // Only hide header and sidebar when scrolling down and past threshold
       if (currentScroll > lastScrollPosition && currentScroll > 50) {
-        header.classList.add("scrolled");
-        sidebarTree.classList.add("hidden"); // Hide sidebar completely when scrolling down
+        if (header) {
+          header.classList.add("scrolled");
+        }
+        if (sidebarTree) {
+          sidebarTree.classList.add("hidden"); // Hide sidebar completely when scrolling down
+        }
       } else if (currentScroll < lastScrollPosition) {
-        header.classList.remove("scrolled");
-        sidebarTree.classList.remove("hidden"); // Reappear the sidebar when scrolling up
+        if (header) {
+          header.classList.remove("scrolled");
+        }
+        if (sidebarTree) {
+          sidebarTree.classList.remove("hidden"); // Reappear the sidebar when scrolling up
+        }
       }
 
       lastScrollPosition = currentScroll;

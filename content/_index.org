@@ -1,7 +1,8 @@
----
-title: "(*A*)ayush (*Baj*)aj's (*A*)rchived (*I*)ntellect."
-layout: single
----
++++
+title = "(*A*)ayush (*Baj*)aj's (*A*)rchived (*I*)ntellect."
+layout = "single"
+clocal = "true"
++++
 
 The AI could equally as well have stood for Artificial Intelligence.
 
