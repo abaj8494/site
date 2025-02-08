@@ -1,0 +1,4 @@
++++
+title = "Antifragile"
+author = "Nicholas Nassim Taleb"
++++

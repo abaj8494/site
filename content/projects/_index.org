@@ -45,16 +45,14 @@ The following links contain the source code and solution sets:
 - @@html:<input type="checkbox" checked class="archived"/>@@ [[{{< ref "/projects/latex/booklets" >}}][Junior High Math Booklets]] {{< tags-inline "projects/latex/booklets" >}}
 - @@html:<input type="checkbox" checked class="archived"/>@@ [[{{< ref "/projects/latex/misc" >}}][Miscellaneous Tasks!]] {{< tags-inline "projects/latex/misc" >}}
 
-** [[/projects/literature][Literature]]
+** [[/projects/textbook-slns][Textbook Solutions]]
 :PROPERTIES:
-:CUSTOM_ID: literature
+:CUSTOM_ID: textbook-slns
 :END:
-- @@html:<input type="checkbox" checked class="refactor"/>@@ [[/projects/literature/library][Library]] {{< tags-inline "projects/literature/library" >}}
-- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/literature/textbook-slns][Textbook Solutions]] {{< tags-inline "projects/literature/textbook-slns" >}}
-  - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/literature/textbook-slns/networked-life][Networked Life - Mung Chiang]] {{< tags-inline "projects/literature/textbook-slns/networked-life" >}}
-  - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/literature/textbook-slns/homl][Hands on Machine Learning]] {{< tags-inline "projects/literature/textbook-slns/homl" >}}
-  - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/literature/textbook-slns/m4ml][Mathematics for Machine Learning]] {{< tags-inline "projects/literature/textbook-slns/m4ml" >}}
-- @@html:<input type="checkbox" checked class="nothing"/>@@ [[/projects/literature/research-papers][Research Paper Notes]] {{< tags-inline "projects/literature/research-papers" >}}
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/textbook-slns/networked-life][Networked Life - Mung Chiang]] {{< tags-inline "projects/textbook-slns/networked-life" >}}
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/textbook-slns/homl][Hands on Machine Learning]] {{< tags-inline "projects/textbook-slns/homl" >}}
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/textbook-slns/m4ml][Mathematics for Machine Learning]] {{< tags-inline "projects/textbook-slns/m4ml" >}}
+
     
 ** [[/projects/moocs][MOOCs (Massive Open Online Courses)]]
 :PROPERTIES:

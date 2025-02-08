@@ -100,12 +100,13 @@ The algorithm can be summarised with this single code block from above:
 #+END_SRC
 
 
+** Algorithmic Analysis.
+
 #+NAME: Naïve DFS Gametree
 #+CAPTION: Figure 2: Naïve DFS Gametree
 #+ATTR_HTML: :id naive-dfs :width 400px :class float-right
 [[naive-dfs.gif]]
 
-** Algorithmic Analysis.
 Above, I call this implementation for DFS naïve. And I say this because our algorithm forces it's way through the game-tree and explores every move for every board state...
 
 Including the board-states it has already visited!
@@ -174,7 +175,7 @@ Depth 31: 5 new unique state(s).
 Finished BFS. Explored a total of 187636299 unique states overall.
 #+END_SRC
 
-Thus, \(187636299 \div 8589934590 \approx 2.18\%\), and this is the percentage of Peg Solitaire boards to the total possible quantity of boards that exist.
+Thus, \(187,636,299 \div 8,589,934,590 \approx 2.18\%\), and this is the percentage of Peg Solitaire boards to the total possible quantity of boards that exist.
 
 ** Solution
 
@@ -319,17 +320,17 @@ So, again we consider a more humane representation:
 \[\begin{matrix} & & \mathrm{o} & \mathrm{o} & \mathrm{o} & & \\
    &\mathrm{o} & \mathrm{o} & \mathrm{o} & \mathrm{o} &\mathrm{o} & \\
    \mathrm{o} & \mathrm{o} & \mathrm{o} & \mathrm{o} & \mathrm{o} & \mathrm{o} & \mathrm{o} \\
-   \mathrm{o} & \mathrm{o} & \mathrm{o} & . & \mathrm{o} & \mathrm{o} & \mathrm{o} \\
    \mathrm{o} & \mathrm{o} & \mathrm{o} & \mathrm{o} & \mathrm{o} & \mathrm{o} & \mathrm{o} \\
-   &\mathrm{o} & \mathrm{o} & \mathrm{o} & \mathrm{o} &\mathrm{o} & \\
-   & & \mathrm{o} & \mathrm{o} & \mathrm{o} & & \\
+   \mathrm{o} & \mathrm{o} & \mathrm{o} & \mathrm{o} & \mathrm{o} & \mathrm{o} & \mathrm{o} \\
+   &\mathrm{o} & \mathrm{o} & \mathrm{o} & \mathrm{o} & \mathrm{o} & \\
+   & & \mathrm{o} & \mathrm{o} & . & & \\
 \end{matrix}\;\leadsto\;\begin{matrix} & & \mathrm{1} & \mathrm{2} & \mathrm{3} & & \\
    &\mathrm{4} & \mathrm{5} & \mathrm{6} & \mathrm{7} &\mathrm{8} & \\
    \mathrm{9} & \mathrm{10} & \mathrm{11} & \mathrm{12} & \mathrm{13} & \mathrm{14} & \mathrm{15} \\
-   \mathrm{16} & \mathrm{17} & \mathrm{18} & . & \mathrm{19} & \mathrm{20} & \mathrm{21} \\
-   \mathrm{22} & \mathrm{23} & \mathrm{24} & \mathrm{25} & \mathrm{26} & \mathrm{27} & \mathrm{28} \\
-   &\mathrm{29} & \mathrm{30} & \mathrm{31} & \mathrm{32} &\mathrm{33} & \\
-   & & \mathrm{34} & \mathrm{35} & \mathrm{36} & & \\
+   \mathrm{16} & \mathrm{17} & \mathrm{18} & \mathrm{19} & \mathrm{20} & \mathrm{21} & \mathrm{22} \\
+   \mathrm{23} & \mathrm{24} & \mathrm{25} & \mathrm{26} & \mathrm{27} & \mathrm{28} & \mathrm{29} \\
+   & \mathrm{30} & \mathrm{31} & \mathrm{32} &\mathrm{33} & \mathrm{34} & \\
+   & & \mathrm{35} & \mathrm{36} & . & & \\
 \end{matrix}\]
 
 And trace out the table:

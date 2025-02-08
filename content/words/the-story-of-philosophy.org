@@ -1,0 +1,4 @@
++++
+title = "The Story of Philosophy"
+author = "Will Durant"
++++

@@ -123,15 +123,15 @@ enableGitInfo = true
     formatString = "mailto:?subject={title}&body={url}"
   
 [menu]
-  #[[menu.main]]
-  #  identifier = "code"
-  #  name = "code"
-  #  url = "/code/"
-  #  weight = 10
   [[menu.main]]
     identifier = "projects"
     name = "projects"
-    url = "/projects"
+    url = "/projects/"
+    weight = 10
+  [[menu.main]]
+    identifier = "words"
+    name = "words"
+    url = "/words/"
     weight = 20
   [[menu.main]]
     identifier = "blog"

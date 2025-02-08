@@ -1,0 +1,4 @@
++++
+title = "Make It Stick: The Science of Successful Learning"
+author = "Brown, Roediger, McDaniel"
++++

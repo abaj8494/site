@@ -5,12 +5,10 @@ tags = ["ai", "computer-science", "mathematics", "japanese", "self-help", "liter
 layout = "single"
 +++
 
-These are all the books that I own / have owned in the past. I have not read them all, neither will I ever be able to. My favourites are listed first.
+These are all the books that I own / have owned in the past. I have not read them all, neither will I ever be able to.
 
-#+BEGIN_CENTER
-#+ATTR_HTML: :class lateximage :width 1000px
-[[bookshelf.svg]]
-#+END_CENTER
+You walked past the [[/words#bookshelf][rendered SVG]] on your way here.
+
 
 #+INCLUDE: "./books-partials.html" export html
 

@@ -1,0 +1,6 @@
++++
+title = "Thinking Fast & Slow"
+author = "Daniel Kahneman"
++++
+
+LLMS?

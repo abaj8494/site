@@ -1,0 +1,4 @@
++++
+title = "Ikigai / 生き甲斐"
+author = "Miralles, Garcia"
++++
