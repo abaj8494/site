@@ -1,9 +1,10 @@
 baseURL = "https://abaj.ai"
-copyright = "© 2024 Aayush Bajaj"
+copyright = "© 2025 Aayush Bajaj"
 title = "(aj)^{ai}"
 pagination.pagerSize = 10
 enableRobotsTXT = true
 enableGitInfo = true
+ignoreFiles = ["/code/bookshelf/doc/fontsel/.*"]
 
 [build]
   _merge = "none"

@@ -1,0 +1,41 @@
+{{/* Create a pages slice from the passed-in pages */}}
+{{ $pages := .pages }}
+
+{{/* If the owning page is a section (_index.org), prepend it to the list */}}
+{{ if .page.IsSection }}
+  {{ $pages = append (slice .page) $pages }}
+{{ end }}
+
+{{/* Store the current page's title (lowercased) for filtering */}}
+{{ $currentTitle := lower .page.Title }}
+
+{{ range $pageIndex, $page := $pages }}
+  {{/* Skip pages whose title (lowercased) matches the current page's title */}}
+  {{ if ne (lower $page.Title) $currentTitle }}
+    <article class="post">
+      <div class="post-header">
+        <h2>
+          <a href="{{ $page.RelPermalink }}">{{ $page.Title | markdownify }}</a>
+        </h2>
+        {{ partial "post-meta.html" (dict "page" $page "pageIndex" $pageIndex) }}
+      </div>
+
+      <div class="post-content">
+        {{/* Choose Description if available; otherwise, use Summary */}}
+        {{ $rawContent := cond $page.Description $page.Description $page.Summary }}
+        {{/*
+             Remove the "Footnotes" header (case-insensitive) and all content that follows.
+             This regex matches any header (h1-h6) with text "footnotes" and deletes it and everything after.
+        */}}
+        {{ $content := replaceRE "(?is)<h[1-6][^>]*>\\s*footnotes\\s*</h[1-6]>[\\s\\S]*" "" $rawContent }}
+        {{ $content | safeHTML }}
+
+        {{ if and (not $page.Description) $page.Truncated }}
+          <div class="post-content__read-more">
+            <a href="{{ $page.RelPermalink }}">Read more &gt;</a>
+          </div>
+        {{ end }}
+      </div>
+    </article>
+  {{ end }}
+{{ end }}

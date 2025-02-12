@@ -1,0 +1,34 @@
+{{/* Create a pages slice from the passed-in pages */}}
+{{ $pages := .pages }}
+
+{{/* If the owning page is a section (_index.org), prepend it to the list */}}
+{{ if .page.IsSection }}
+  {{ $pages = append (slice .page) $pages }}
+{{ end }}
+
+{{ range $pageIndex, $page := $pages }}
+  <article class="post">
+    <div class="post-header">
+      <h2>
+        <a href="{{ $page.RelPermalink }}">{{ $page.Title | markdownify }}</a>
+      </h2>
+      {{ partial "post-meta.html" (dict "page" $page "pageIndex" $pageIndex) }}
+    </div>
+
+    <div class="post-content">
+      {{/* 
+           Choose either Description or Summary, then remove any header 
+           whose contents (ignoring case and surrounding whitespace) are "footnotes".
+      */}}
+      {{ $rawContent := cond $page.Description $page.Description $page.Summary }}
+      {{ $content := $rawContent | replaceRE "(?i)<h[1-6][^>]*>\\s*footnotes\\s*</h[1-6]>" "" }}
+      {{ $content | safeHTML }}
+      
+      {{ if and (not $page.Description) $page.Truncated }}
+        <div class="post-content__read-more">
+          <a href="{{ $page.RelPermalink }}">Read more &gt;</a>
+        </div>
+      {{ end }}
+    </div>
+  </article>
+{{ end }}

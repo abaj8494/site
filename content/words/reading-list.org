@@ -4,7 +4,7 @@ title = "Reading List"
 
 The books which I plan to read, and when I plan to read them
 
-* 2025
+** 2025
 
 - [X] Kafka on the Shore - Murakami
 - [X] Think and Grow Rich - Napolean Hill
@@ -18,7 +18,7 @@ The books which I plan to read, and when I plan to read them
 - [ ] Probability - Jaynes
 - [ ] Networked Life - Mung Chiang
 
-* 2026
+** 2026
 
 Aeneid Virgil
 Almanack Naval Ravikant
@@ -26,6 +26,6 @@ Almanack Naval Ravikant
 Dickens
 Goethe
 
-* 2027
+** 2027
 
 Pushkin

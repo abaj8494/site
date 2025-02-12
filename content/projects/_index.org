@@ -109,22 +109,83 @@ The following links contain the source code and solution sets:
 :CUSTOM_ID: machine-learning
 :END:
 
+I have thought about this ML hierarchy inasmuch as Aristotle thought about the phylums of flowers.
+
+I am not a Data Scientist, but rather a /Computer/ Scientist and Mathematician.
+
+As such, my interests lie in *theory* giving rise to *applications*. Not vice-versa; *applications* giving rise to *theory*, which I believe retard the habit of generalisation and thus imagination. 
+
 *** Datasets
-- MNIST
+The following are all tags, but visiting them provides contextual / historical information on the dataset as well as back-links to the models which have solved these problems.
+- [[/tags/mnist][MNIST]]
+- KMNIST
+- FMNIST
 - CIFAR
 - IRIS
 - ImageNet
 - California Housing
 - Wine Quality
+- IMDB Reviews
 - Pima Indians Diabetes
 - WHO Life Expectancy
 - Titanic Deaths, Kaggle
 - Email SPAM
-- 
+- KDD Cup 1999
+- Digits
 
+*** Theory
+- Backpropagation
+- Cross Validation
+- No Free Lunch Theorem
+- Curse of Dimensionality
+- Bias Variance Decomposition
+- Performance Metrics
+- Loss Functions
+- Kernel Methods
 
 *** Supervised Learning
 
+**** Regression
+- Ordinary Least Squares
+- Regularised
+- Locally Weighted
+- Logistic Regression
+
+**** + Classification
+These methods can be adapted for _regression_, but they are more well suited to classification.
+- Perceptron (Sign Loss)
+- Support Vector Machines
+- Decision Trees #non-parametric
+- K-Nearest-Neighbours #non-parametric
+- Ensemble Learning
+
+*** Unsupervised Learning
+- Principal Component Analysis
+- K-means clustering
+- Gaussian Mixtures
+
+*** Deep Learning
+- Perceptrons with Gradient Descent (Sigmoid Loss)
+- Multi-layered Perceptron
+- Recurrent Neural Networks (RNN)
+- Long Short-Term Memory (LSTM)
+- Convolutional Neural Networks (CNN)
+- Transformers
+- Autoencoders
+- Generative Adversarial Networks (GAN's)
+- Stable Diffusion
+
+**** Natural Language Processing
+- Tokenisers
+- LLM's
+- RAG's
+
+**** Computer Vision
+- Visual Transformers
+
+*** Reinforcement Learning
+
+* refactoring                                                      :noexport:
 
 *** [[/projects/ml/regression][Regression]]  {{< tags-inline "projects/ml/regression" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ml/regression/ols][Ordinary Least Squares]] {{< tags-inline "projects/ml/regression/ols" >}}

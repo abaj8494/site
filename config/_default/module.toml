@@ -17,7 +17,7 @@
   source = "layouts"
   target = "layouts"
 [[mounts]]
-  excludeFiles = "/code/10khrs-ai-ml-dl/PROJECTS/*"
+  excludeFiles = ["/code/10khrs-ai-ml-dl/PROJECTS/.*", "/code/bookshelf/doc/fontsel/.*"]
   source = "static"
   target = "static"
 [[mounts]]

@@ -5,7 +5,8 @@
       <div>{{ . }}</div>
     {{ end }}
   </div>
-  {{ partial "post-list.html" .Paginator }}
+  
+  {{ partial "rec-post-list.html" (dict "pages" .Pages "page" .) }}
 
   {{ partial "inject-toc.html" . }}
 {{ end }}
