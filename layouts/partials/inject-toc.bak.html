@@ -1,0 +1,56 @@
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  console.log("inject-toc: DOM content loaded.");
+
+  // Try to locate the TOC container inside an element with class "sidebar".
+  let tocContainer = document.querySelector(".sidebar aside.toc nav");
+  if (!tocContainer) {
+    console.warn("inject-toc: TOC container not found in the sidebar.");
+
+    // Create the container dynamically.
+    let aside = document.createElement("aside");
+    aside.classList.add("toc");
+
+    tocContainer = document.createElement("nav");
+    aside.appendChild(tocContainer);
+
+    // Insert the aside into the element with class "sidebar", if it exists.
+    const sidebar = document.querySelector(".sidebar");
+    if (sidebar) {
+      sidebar.insertBefore(aside, sidebar.firstChild);
+      console.log("inject-toc: TOC container inserted into .sidebar.");
+    } else {
+      // Fallback: insert the container into the body.
+      document.body.insertBefore(aside, document.body.firstChild);
+      console.log("inject-toc: .sidebar not found. TOC container inserted into body.");
+    }
+  } else {
+    console.log("inject-toc: Found existing TOC container in the sidebar:", tocContainer);
+  }
+
+  // Build the TOC HTML.
+  let tocHTML = "<ul>";
+
+  // Select only headings h2 through h6.
+  const headings = document.querySelectorAll("h2, h3, h4, h5, h6");
+  console.log("inject-toc: Number of headings (h2-h6) found:", headings.length);
+
+  headings.forEach(function (heading, index) {
+    // If the heading doesn't have an id, generate one.
+    if (!heading.id) {
+      heading.id = heading.textContent.trim().toLowerCase().replace(/\s+/g, "-");
+      console.log(`inject-toc: Generated id for heading [${index}]:`, heading.id);
+    } else {
+      console.log(`inject-toc: Existing id for heading [${index}]:`, heading.id);
+    }
+    tocHTML += `<li class="toc-item toc-${heading.tagName.toLowerCase()}">
+                  <a href="#${heading.id}">${heading.textContent}</a>
+                </li>`;
+  });
+  tocHTML += "</ul>";
+
+  // Replace the TOC container's content.
+  tocContainer.innerHTML = `<p class="sidebar__heading">Table Of Contents</p>` + tocHTML;
+  console.log("inject-toc: TOC injected successfully. New innerHTML:", tocContainer.innerHTML);
+});
+</script>

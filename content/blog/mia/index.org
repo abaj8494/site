@@ -2,20 +2,30 @@
 title = "Mia the girl cat"
 +++
 
-Mia is a good cat. Very tame. She's been hanging out with me since she was a blue-eyed baby:
+Mia is a good cat. Very tame. She's been following me around since she was a blue-eyed baby:
 
-insert img of blue eyed memes
+#+ATTR_HTML: :width 200px
+[[{{< cwd >}}blue-eyes.jpg]]
 
 She's a beautiful and largely obedient cat. She was born on the 19th of February 2023, making her almost 2 today.
 
-insert stallion mia.
+#+ATTR_HTML: :width 300px
+[[{{< cwd >}}mia-phillip.jpg]]
 
 Mia is not the most intelligent cat, but she's very clean.
 She is reasonably territorial, and occasionally bitchy.
 
 All things considered, she is a faithful cat that follows me around and responds to being summoned. She also knows how to high-five and stand up.
 
-#+CAPTION: Mia the girl cat, supervising Phillip, [[/blog/phillip][the boy cat]].
-#+BEGIN_SRC
-[[/images/mia-phillip.png]]
-#+END_SRC
+
+#+BEGIN_CENTER
+#+ATTR_HTML: :width 200px
+[[{{< cwd >}}snooze.jpg]]
+#+ATTR_HTML: :width 353px
+[[{{< cwd >}}bed.jpg]]
+#+END_CENTER
+#+BEGIN_CENTER
+She also sleeps /alot/ 😅
+#+END_CENTER
+
+

@@ -1,0 +1,31 @@
++++
+title = "Reading List"
++++
+
+The books which I plan to read, and when I plan to read them
+
+* 2025
+
+- [X] Kafka on the Shore - Murakami
+- [X] Think and Grow Rich - Napolean Hill
+- [ ] Mathematics for Machine Learning (solutions)
+- [ ] The Intelligent Investor - Benjamin Graham
+- [ ] Sophocles - The Three Thebean Plays
+- [ ] Steve Jobs - Walter Isaacson
+- [ ] The Count of Monte Cristo - Alexander Dumas (finish)
+- [ ] Crime and Punishment - Dostoevsky (finish)
+- [ ] Hamlet - Shakespeare
+- [ ] Probability - Jaynes
+- [ ] Networked Life - Mung Chiang
+
+* 2026
+
+Aeneid Virgil
+Almanack Naval Ravikant
+48 Laws of Power
+Dickens
+Goethe
+
+* 2027
+
+Pushkin

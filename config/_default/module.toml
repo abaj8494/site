@@ -17,6 +17,7 @@
   source = "layouts"
   target = "layouts"
 [[mounts]]
+  excludeFiles = "/code/10khrs-ai-ml-dl/PROJECTS/*"
   source = "static"
   target = "static"
 [[mounts]]

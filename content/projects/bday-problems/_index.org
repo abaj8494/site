@@ -15,7 +15,6 @@ This year the prize money shall be $150 for first place and $100 for second.
 
 *ERRATA:*
 - The matrix A in question 15b /is/ symmetric.
-- @@html:<font color="orange">Rules: to be eligible for the prize money, you must now <em>pass</em></font>@@ [fn:1]@@html:<font color="orange"> the problem set.</font>@@
 
 Here is the problem set:
 

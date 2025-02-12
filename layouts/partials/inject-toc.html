@@ -46,6 +46,11 @@ document.addEventListener("DOMContentLoaded", function () {
     tocHTML += `<li class="toc-item toc-${heading.tagName.toLowerCase()}">
                   <a href="#${heading.id}">${heading.textContent}</a>
                 </li>`;
+
+    // If this heading is "Footnotes", insert a break after it.
+    if (heading.textContent.trim().toLowerCase() === "footnotes") {
+      tocHTML += `<li class="toc-break"><hr></li>`;
+    }
   });
   tocHTML += "</ul>";
 

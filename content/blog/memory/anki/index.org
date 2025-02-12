@@ -1,0 +1,10 @@
++++
+title = "Anki Explained"
+date = "2024-12-08T18:39:13+11:00"
+toc = "true"
+tags = ["spaced-repetition","interleaving","active-recall"]
++++
+
+Anki, the flashcard app.
+
+

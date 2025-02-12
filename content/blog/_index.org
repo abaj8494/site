@@ -1,29 +1,24 @@
 +++
 title = "the rabbit hole:"
+layout = "custom-list"
 +++
 
 * welcome
 
 this page is for my non[fn:1]-technical ramblings.
 
-below is a table of contents so you may preview all of my spoutings at once.
-
-below that are small previews of each of the blog posts. 🤮
-
-* table of contents
-- the bayesian cat
-- running barefoot
-- 2018 royal enfield classic 500 bullet
-- the story of socrates
-- *falling* in love
-
-TODO: gan image of myself as the Mad Hatter
-
+#+BEGIN_CENTER
+#+ATTR_HTML: :class hatter
+@@html:<a href="https://huggingface.co/spaces/yanze/PuLID-FLUX"><img width="500" src="{{< cwd >}}mad.svg"></a>@@
+#+END_CENTER
 
 #+BEGIN_QUOTE
-Are you not entertained? ---The Gladiator
+"If I had a world of my own, everything would be nonsense." ---The Hatter
 #+END_QUOTE
 
 * footnotes
+:PROPERTIES:
+:CUSTOM_ID: footnotes
+:END:
 
 [fn:1] this is relative to the [[/projects][projects]] directory. 

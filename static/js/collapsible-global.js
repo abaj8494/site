@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // (Assumes a global "folded" variable, e.g., set via templating)
     const isFolded =
       toggleStates[toggleId] === undefined
-        ? folded === "true"
+        ? window.folded === "true"
         : toggleStates[toggleId] === false;
 
     // Set initial button state
@@ -48,7 +48,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Collect all sibling elements below the wrapper until the next heading
     let sibling = wrapper.nextElementSibling;
-    while (sibling && !["H2", "H3", "H4", "H5", "H6"].includes(sibling.tagName)) {
+    while (
+      sibling &&
+      !["H2", "H3", "H4", "H5", "H6"].includes(sibling.tagName)
+    ) {
       const nextSibling = sibling.nextElementSibling; // Save reference before moving
       content.appendChild(sibling); // Move the sibling into the collapsible content
       sibling = nextSibling; // Move to the next sibling
@@ -59,7 +62,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const article = heading.closest("article.post");
     if (article) {
       const postContent = article.querySelector(".post-content");
-      if (postContent) {
+      if (
+        postContent &&
+        !postContent.contains(wrapper) // ensures no loop
+      ) {
         content.appendChild(postContent);
       }
     }

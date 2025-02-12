@@ -1,10 +1,106 @@
----
-title: "Literate Programming and Donald Knuth"
-date: 2024-12-08T18:39:13+11:00
----
++++
+title = "Literate Programming and Donald Knuth"
+date = "2024-12-08T18:39:13+11:00"
+math = "true"
+toc = "true"
++++
 
-There is much to say about Don Knuth, but we shall begin with literate programming, which is why you clicked here in the first place.
+I was first introduced to this concept by [[https://www.youtube.com/@DistroTube][Distrotube]] (Derek Taylor's) "/literate config/" files. At the time I was not using =emacs= and thus all the code I was writing was sparingly commented.
 
-A divergence in attention is a motif of Don's so he won't mind either.
+Since then, I have entered a world of [[/projects/ml][Machine Learning]] and [[/projects/dl][Deep Learning]], where suddenly in 4 lines, I can sit ontop of my high-horse and perform [[/projects/dl/sentiment-analysis][sentiment analysis]] with tensorflow and keras!
 
+#+BEGIN_SRC jupyter-python line-numbers :session literate
+  from transformers import pipeline
+  classifier = pipeline('sentiment-analysis')
+  prediction = classifier("Donald Knuth was the greatest computer scientist.")[0]
+  print(prediction)
+#+END_SRC
+
+#+RESULTS:
+: Device set to use mps:0
+: {'label': 'POSITIVE', 'score': 0.9997720122337341}
+
+In such an age of abstraction complexity, it becomes paramount to distill what is happening at the last few \((n-k)\) layers.
+
+#+BEGIN_CENTER
+#+ATTR_HTML: :class lateximage :width 400px
+[[{{< cwd >}}abstraction.svg]]
+#+END_CENTER
+
+* Abstraction Inversion
+
+Literate programming is a methodology introduced by Donald E. Knuth in the early 1980s that introduced a paradigm-shift: it allowed developers to reconsider =code= as being a means to the end as opposed to being the /end/ itself.
+
+What I mean by this, is that suddenly code didn't become about *talking to the computer*, it became about talking to *other developers*. Including, importantly talking to your future-self!
+
+Tangibly, this meant inverting the structure of a program and writing *prose imbued with code*, as opposed to *code imbued with prose*, or as known to you a-priori---"comments".
+
+This approach brings documentation, explanation, design justifications to the forefront and enhances maintainability, teaching value, and clarity.
+
+
+* Origins
+
+#+NAME: Young Don
+#+CAPTION: Young Don
+#+ATTR_HTML: :id young-don :width 250px :class float-right
+[[young-don.jpg]]
+
+Donald Knuth, the renowned computer scientist best known for his work on the monumental *The Art of Computer Programming*, introduced the concept of literate programming in 1984 through his system called WEB. According to Knuth, traditional programming methods often inhibit the readability and maintainability of the source code. In WEB (which originally targeted Pascal, then later adapted to C and other languages), a single file contained both explanatory text and code sections. A separate preprocessor would then produce two outputs:
+
+1. **Tangled output** – This contained the machine-readable source code that could be compiled or interpreted.
+2. **Woven output** – This was a richly formatted document that provided a human-readable narrative including the code.
+
+Knuth’s philosophy centered on viewing programs as works of literature, composed primarily for human beings rather than just compilers or interpreters. He believed this perspective better captures the creative process of programming and encourages developers to articulate why certain design choices were made. The result is a more maintainable, accessible, and instructive codebase within which the entry activation threshold is lowered and thus the learning curve is accelerated for new developers. A humbling but effective practice!
+
+* Porcelain
+
+In the days of assembly language or whenever the ancient Prof. Knuth employed Literate Programming, there were not such finely attuned and robust tools such as [[https://www.gnu.org/software/emacs/][Emacs]] and [[https://orgmode.org/][Org-mode]] to glide through with. Nowadays we have [[https://orgmode.org/worg/org-contrib/babel/][Babel]] with syntax highlighting and embedded code-blocks which can be tangled into language-specific files, i.e. =.py= or =.c=, etc. Furthermore, org supports *active* documents whithin which code can be executed and results captured directly within the same file! Additionally, many languages may be included within the same file..
+
+The power of Emacs is itself extreme; often it is likened to an entire operating system wherein you may check your mail, browse internet, write code and even change the very structure of the land you are standing on, as you stand upon it. All in all, it is a very lucrative and liquid ocean.
+
+The synergy of Emacs and Org-mode forms a potent combination for literate programming. 
+
+Lastly, there is a fantastic screencast by [[https://www.howardabrams.com/][Howard Abrams]] on the topic which summarises and extends my notes here on the topic:
+
+{{< youtube dljNabciEGg >}}
+
+
+* figures                                                          :noexport:
+
+** abstraction
+\begin{tikzpicture}[
+    font=\sffamily,
+    stack/.style={
+        draw,
+        rectangle,
+        minimum width=8cm,
+        minimum height=1.5cm,
+        text centered,
+        rounded corners=3pt
+    }
+]
+
+% Define the positions for each layer
+\node[stack, fill=blue!10] (layer1) at (0,0) {Bits (0s and 1s)};
+\node[stack, fill=blue!20] (layer2) at (0,2) {Machine Instructions (Assembly)};
+\node[stack, fill=blue!30] (layer3) at (0,4) {Operating System};
+\node[stack, fill=blue!40] (layer4) at (0,6) {High-level Programming (Python)};
+\node[stack, fill=blue!50] (layer5) at (0,8) {Machine Learning Libraries (TensorFlow, Keras)};
+\node[stack, fill=blue!60] (layer6) at (0,10) {Sentiment Analysis};
+
+% Add vertical arrow on the left side
+\draw[thick] (-4.5,4.9) -- (-4.5,5)
+    node[midway, left, rotate=90] {Increasing Abstraction Level};
+\draw[->, thick] (-4.5,5) -- (-4.5,10);
+
+
+
+% Add layer connections
+\draw[gray!40, -stealth] (layer1.north) -- (layer2.south);
+\draw[gray!40, -stealth] (layer2.north) -- (layer3.south);
+\draw[gray!40, -stealth] (layer3.north) -- (layer4.south);
+\draw[gray!40, -stealth] (layer4.north) -- (layer5.south);
+\draw[gray!40, -stealth] (layer5.north) -- (layer6.south);
+
+\end{tikzpicture}
 

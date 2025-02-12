@@ -1,0 +1,39 @@
++++
+title = "Human Memory"
+tags = ["philosophy", "nature"]
++++
+
+The human mind is a fickle creature. It is prone to dozens of [[/blogs/cognitive-biases][cognitive biases]], and the way it is strengthened, is paradoxical:
+
+#+BEGIN_QUOTE
+To learn, you must forget
+#+END_QUOTE
+
+The above is a mantra all my students are familiar with, and derives from an understanding of [[https://en.wikipedia.org/wiki/Hermann_Ebbinghaus][Ebbinghaus']] [[https://en.wikipedia.org/wiki/Forgetting_curve][forgetting curve]].
+
+Additionally, the human-mind is highly fragile:
+- vulnerable to brain damage (dementia)
+- psychological impairments
+
+And biologically expensive:
+- contributes a meagre 2% of the human mass
+- is responsible for 20% of the body's energy consumption.
+
+Whilst this sword is double-edged; it enables our creativity, capacity for complex thought, reasoning, etc.; the design of this organ leads to largely improper use by its hosts.
+
+@@html:<font size=4><strong>Analogously,</strong></font>@@ we may consider our smartphone with an "App" called "Brain". This app -- although capable -- immediately drains your battery by 20%. Suddenly, it's not an app that you would prefer to use.
+
+Once again, the strengthening of the /brain muscle/ becomes an unintuitive, paradoxical concept---a recurring motif.
+
+-----
+
+This page serves as a rolodex for the following leaf blogs:
+
+#+BEGIN_EXPORT html
+<font size="5">
+<span class="token treeview-part"><span class="token entry-line line-h">├── </span><span class="token entry-name"><a href="/blog/memory/spaced-repetition">spaced repetition</a></span></span><br>
+<span class="token treeview-part"><span class="token entry-line line-h">├── </span><span class="token entry-name"><a href="/blog/memory/active-recall">active recall</a></span></span><br>
+<span class="token treeview-part"><span class="token entry-line line-h">├── </span><span class="token entry-name"><a href="/blog/memory/interleaving">interleaving</a></span></span><br>
+<span class="token treeview-part"><span class="token entry-line line-v-last">└── </span><span class="token entry-name"><a href="/blog/memory/anki">anki</a></span></span>
+</font>
+#+END_EXPORT

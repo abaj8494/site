@@ -213,8 +213,7 @@ Since this is still /Binary Classification/ and you want to compare
 each pairwise pair: 0 and 1, 0 and 2, 0 and 3, ..., 8 and 9. You will
 have \(N\times(N-1)/2\) comparisons.
 
-You can find the proof for this in my [[/projects/n-bday-problems/23rd][23rd Bday Problems Solution Set,
-Q2]]. Here N = 10, thus we would require 45 Binary Classifiers to be
+You can find the proof for this in my [[/projects/bday-problems/23rd#q2][23rd Bday Problems Solution Set, Q2]]. Here N = 10, thus we would require 45 Binary Classifiers to be
 trained.
 
 To output a decision, you would output the classifier which won the

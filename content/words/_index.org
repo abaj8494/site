@@ -29,12 +29,12 @@ happy heckling.
 
 #+BEGIN_CENTER
 #+ATTR_HTML: :class lateximage :width 1000px
-[[{{< cwd >}}/library/bookshelf.svg]]
+[[/code/bookshelf/doc/bookshelf.svg]]
 #+END_CENTER
 
-* Footnotes
+* footnotes
 [fn:2] note that I have not added epics such as the Holy Bible, Plato's dialogues, Shakespeare's plays, Dante's Comedy, etc.
 
 the viewer must appreciate that to Aayush Bajaj, distillation of such transendental, dense and divine writing is a pathway to mediocre re-representations and sinful idolatry.
 
-[fn:1] as per [[https://en.wikipedia.org/wiki/Mortimer_J._Adler][Mortimer J. Adler]]'s definition of the term in [[/words/how-to-read-a-book.org][How to Read a Book]]. 
+[fn:1] as per [[https://en.wikipedia.org/wiki/Mortimer_J._Adler][Mortimer J. Adler]]'s definition of the term in [[/words/how-to-read-a-book][How to Read a Book]]. 

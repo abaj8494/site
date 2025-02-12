@@ -109,6 +109,23 @@ The following links contain the source code and solution sets:
 :CUSTOM_ID: machine-learning
 :END:
 
+*** Datasets
+- MNIST
+- CIFAR
+- IRIS
+- ImageNet
+- California Housing
+- Wine Quality
+- Pima Indians Diabetes
+- WHO Life Expectancy
+- Titanic Deaths, Kaggle
+- Email SPAM
+- 
+
+
+*** Supervised Learning
+
+
 *** [[/projects/ml/regression][Regression]]  {{< tags-inline "projects/ml/regression" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ml/regression/ols][Ordinary Least Squares]] {{< tags-inline "projects/ml/regression/ols" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ml/regression/regularised][Regularisation]] {{< tags-inline "projects/ml/regression/regularised" >}}

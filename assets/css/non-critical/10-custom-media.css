@@ -10,6 +10,16 @@
   filter: invert(1) brightness(1);
 }
 
+[data-theme="light"] .hatter {
+  filter: invert(0.7) brightness(1.1) contrast(1.3) saturate(1.8)
+    hue-rotate(45deg) blur(0.5px);
+  transform: rotate(270deg); /* Rotates the image 15 degrees clockwise */
+}
+
+[data-theme="dark"] .hatter {
+  transform: rotate(180deg); /* Rotates the image 15 degrees clockwise */
+}
+
 .column {
   float: left;
   width: 20%;

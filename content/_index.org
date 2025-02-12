@@ -4,6 +4,11 @@ layout = "single"
 clocal = "true"
 +++
 
+#+BEGIN_QUOTE
+“We all die. The goal isn't to live forever, the goal is to create something that will."
+                                                                                        --- Chuck Palahniuk
+#+END_QUOTE
+
 The AI could equally as well have stood for Artificial Intelligence.
 
 But that would be a little less /historical/. This site is a way for me to
@@ -32,8 +37,11 @@ The content of this current site is more rigorous and deliberate.
 
 * @@html:<h2 id="nav-heading"><span class="nav-text">Navigation</span></h2><svg id="arrow-svg"></svg>@@
 
-
+@@html:<font color="orange"><span style="font-variant: small-caps;">This site looks MUCH better on Desktop. And slightly moreso in <a href="#" id="darkModeTextToggle" aria-label="Toggle dark mode">dark mode</a>.</span></font>@@
 The top right menubar will serve as your main interface to the site. Within it are links to other pages, but at the highest level, every webpage can be discovered through these root nodes.
+
+Furthermore, any links leading [[https://www.youtube.com/watch?v=dQw4w9WgXcQ][out]] of this site are proceeded with a =↗=, whilst those [[#nav-heading][within]] are not.
+
 
 * Portfolio
 
@@ -49,13 +57,12 @@ Furthermore, here is my [[/about/cv][CV]].[fn:5]
 
 * Footnotes
 
-[fn:6] cautiously, I recite Socrates' mantra: "I am the wisest man alive, for I know one thing, and that is that I know nothing at all".
+[fn:6] cautiously, we recite Socrates' mantra: "I am the wisest man alive, for I know one thing, and that is that I know nothing at all".
 [fn:5] you may also navigate there serendipitously via the [[about]] page.
 
 [fn:4] academically interesting 
 [fn:3] See [[https://roamresearch.com][Roam Research]]
 
-[fn:2] In Mung Chiang's sense of the word; see [[][Networked Life:
-Money, Friends and Bytes]]
+[fn:2] In Mung Chiang's sense of the word; see [[/projects/textbook-slns/networked-life][Networked Life: Money, Friends and Bytes]]
 
-[fn:1] See the blog post on [[{{<ref "/blog/anki-explained" >}}][Anki and Active Recall, Spaced Repetition and Interleaving]]    
+[fn:1] see the blog on [[/blog/memory][The Nature of (Human) Memory]] 

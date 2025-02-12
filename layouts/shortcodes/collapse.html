@@ -1,6 +1,5 @@
 {{ $id := .Get "id" }}
 <div id="{{ $id }}" class="collapsible-container">
-  <script src="{{ "js/collapsible-global.js" | relURL }}"></script>
   <style id="collapsible-css">
     /* Wrapper for heading and toggle button */
     .collapsible-wrapper {
@@ -50,7 +49,8 @@
   </style>
 
   <script type="text/javascript">
-    var folded='{{ .Get "folded"}}';
+    var window.folded='{{ .Get "folded"}}';
   </script>
+  <script src="{{ "js/collapsible-global.js" | relURL }}"></script>
 </div>
 

@@ -26,12 +26,6 @@ a {
   text-decoration: none;
 }
 
-a.link--external::after {
-  /* 2009 = Thin Space */
-  content: "\2009↗";
-}
-
-
 img,
 video {
   border: 2px solid var(--bg1);
@@ -237,4 +231,3 @@ blockquote.twitter-tweet {
     text-decoration: none !important;
   }
 }
-

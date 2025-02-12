@@ -9,7 +9,7 @@ tags = ["enfield", "learner", "500cc", "motorcycle"]
 This is my first bike, I bought it second hand:
 
 #+ATTR_HTML: :width 900px
-[[500-listing.jpg]]
+[[{{< cwd >}}500-listing.jpg]]
 
 I got it because it fit my needs:
 - comfortable 2 seater
@@ -23,7 +23,7 @@ I had also tried to do some work on it and ended up snapping the bolt securing t
 #+BEGIN_CENTER
 #+CAPTION: Oil filter cap bolt
 #+ATTR_HTML: :width 400px
-[[500-screw.png]]
+[[{{< cwd >}}500-screw.png]]
 #+END_CENTER
 
 This was my first lesson: from the perspective of the underside of the bike, "lefty loosey" is actually "righty-tighty".
