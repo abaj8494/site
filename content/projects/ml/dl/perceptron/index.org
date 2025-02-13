@@ -1,0 +1,4 @@
++++
+title = "Perceptrons (Augmented with Gradient Descent)"
+tags = ["gradient-descent", "sigmoid"]
++++

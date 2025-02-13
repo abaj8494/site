@@ -1,5 +1,7 @@
 +++
 title = "Titanic Deaths"
 categories = ["ai", "ml", "supervised"]
-tags = ["logistic-regression", "binary-classification", "classification"]
+tags = ["logistic-regression", "binary-classification", "classification", "kaggle"]
 +++
+
+Might not actually be Kaggle, please check.

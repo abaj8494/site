@@ -1,6 +1,7 @@
 +++
 title = "GAN: Generative Adversarial Networks"
 categories = ["ai", "ml", "dl", "adversarial"]
+tags = ["multimodal"]
 +++
 
 vs. stable diffusion. EXPERIMENTS

@@ -1,5 +1,5 @@
 +++
 title = "Stable Diffusion Models"
 categories = ["ai", "ml", "dl"]
-tags = ["state-of-the-art"]
+tags = ["state-of-the-art", "multimodal"]
 +++
