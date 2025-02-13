@@ -113,7 +113,7 @@ I have thought about this ML hierarchy inasmuch as Aristotle thought about the p
 
 I am not a Data Scientist, but rather a /Computer/ Scientist and Mathematician.
 
-As such, my interests lie in *theory* giving rise to *applications*. Not vice-versa; *applications* giving rise to *theory*, which I believe retard the habit of generalisation and thus imagination. 
+As such, my interests lie in *theory* giving rise to *applications*. Not vice-versa--*applications* giving rise to *theory*--which I believe retard the habit of generalisation and thus imagination. 
 
 *** Datasets
 The following are all tags, but visiting them provides contextual / historical information on the dataset as well as back-links to the models which have solved these problems.
@@ -151,7 +151,7 @@ The following are all tags, but visiting them provides contextual / historical i
 - Locally Weighted
 - Logistic Regression
 
-**** + Classification
+**** Classification
 These methods can be adapted for _regression_, but they are more well suited to classification.
 - Perceptron (Sign Loss)
 - Support Vector Machines
