@@ -1,0 +1,106 @@
++++
+title = "MNIST and FMNIST using KNN"
+tags = ["knn", "fmnist", "mnist", "non-parametric"]
++++
+following this fellas youtube video:
+{{< youtube vzabeKdW9tE >}}
+
+
+old mate yann lecunn decided to remove the mnist zip from his site along with the corresponding file info
+
+#+begin_src
+TRAINING SET LABEL FILE (train-labels-idx1-ubyte):
+[offset] [type]          [value]          [description]
+0000     32 bit integer  0x00000801(2049) magic number (MSB first)
+0004     32 bit integer  60000            number of items
+0008     unsigned byte   ??               label
+0009     unsigned byte   ??               label
+........
+xxxx     unsigned byte   ??               label
+The labels values are 0 to 9.
+
+TRAINING SET IMAGE FILE (train-images-idx3-ubyte):
+[offset] [type]          [value]          [description]
+0000     32 bit integer  0x00000803(2051) magic number
+0004     32 bit integer  60000            number of images
+0008     32 bit integer  28               number of rows
+0012     32 bit integer  28               number of columns
+0016     unsigned byte   ??               pixel
+0017     unsigned byte   ??               pixel
+........
+xxxx     unsigned byte   ??               pixel
+Pixels are organized row-wise. Pixel values are 0 to 255. 0 means background (white), 255 means foreground (black).
+
+TEST SET LABEL FILE (t10k-labels-idx1-ubyte):
+[offset] [type]          [value]          [description]
+0000     32 bit integer  0x00000801(2049) magic number (MSB first)
+0004     32 bit integer  10000            number of items
+0008     unsigned byte   ??               label
+0009     unsigned byte   ??               label
+........
+xxxx     unsigned byte   ??               label
+The labels values are 0 to 9.
+
+TEST SET IMAGE FILE (t10k-images-idx3-ubyte):
+[offset] [type]          [value]          [description]
+0000     32 bit integer  0x00000803(2051) magic number
+0004     32 bit integer  10000            number of images
+0008     32 bit integer  28               number of rows
+0012     32 bit integer  28               number of columns
+0016     unsigned byte   ??               pixel
+0017     unsigned byte   ??               pixel
+........
+xxxx     unsigned byte   ??               pixel
+Pixels are organized row-wise. Pixel values are 0 to 255. 0 means background (white), 255 means foreground (black).
+#+end_src
+
+
+(add-hook 'org-mode-hook (lambda () (org-babel-auto-tangle-mode)))
+
+(setq org-babel-tangle-use-relative-file-links t)
+
+
+#+begin_src python :noweb yes :session test :tangle /Users/aayushbajaj/Documents/new-site/static/code/10khrs-ai-ml-dl/PROJECTS/ocr/main.py
+
+  DATA_DIR = 'data/'
+  TEST_DATA_FILENAME = DATA_DIR + 't10k-images-idx3-ubyte'
+  TEST_LABELS_FILNEAME = DATA_DIR + 't10k-labels-idx1-ubyte'
+  TRAIN_DATA_FILENAME = DATA_DIR + 'train-images-idx3-ubyte'
+  TRAIN_LABELS_FILENAME = DATA_DIR + 'train-labels-idx1-ubyte'
+
+  <<read>>
+
+  def main():
+    X_train = read_images(TRAIN_DATA_FILENAME, 100)
+    print(len(X_train))
+    print(len(X_train[0]))
+    print(len(X_train[0][0]))
+
+  if __name__ == '__main__':
+    main()
+#+end_src
+
+
+#+name: read
+#+begin_src python
+      def read_images(filename, n_max_images=None):
+	images = []
+	with(filename, 'rb') as f:
+	   _ = f.read(4) #magic num
+	   n_images = bytes_to_int(f.read(4))
+	   if n_max_images:
+	     n_images = n_max_images
+	   n_rows = bytes_to_int(f.read(4))
+	   n_cols = bytes_to_int(f.read(4))
+	   for image_idx in range(n_images):
+	     row = []
+	     for col_idx in range(n_cols):
+	       pixel = f.read(1)
+	       row.append(pixel)
+	     image.append(row)
+	   images.append(image)
+
+
+
+
+#+end_src

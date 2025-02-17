@@ -1,0 +1,238 @@
++++
+title = "MNIST and FMNIST using KNN"
+tags = ["knn", "fmnist", "mnist", "non-parametric"]
++++
+following this fellas youtube video:
+{{< youtube vzabeKdW9tE >}}
+
+
+old mate yann lecunn decided to remove the mnist zip from his site along with the corresponding file info
+
+#+begin_src
+TRAINING SET LABEL FILE (train-labels-idx1-ubyte):
+[offset] [type]          [value]          [description]
+0000     32 bit integer  0x00000801(2049) magic number (MSB first)
+0004     32 bit integer  60000            number of items
+0008     unsigned byte   ??               label
+0009     unsigned byte   ??               label
+........
+xxxx     unsigned byte   ??               label
+The labels values are 0 to 9.
+
+TRAINING SET IMAGE FILE (train-images-idx3-ubyte):
+[offset] [type]          [value]          [description]
+0000     32 bit integer  0x00000803(2051) magic number
+0004     32 bit integer  60000            number of images
+0008     32 bit integer  28               number of rows
+0012     32 bit integer  28               number of columns
+0016     unsigned byte   ??               pixel
+0017     unsigned byte   ??               pixel
+........
+xxxx     unsigned byte   ??               pixel
+Pixels are organized row-wise. Pixel values are 0 to 255. 0 means background (white), 255 means foreground (black).
+
+TEST SET LABEL FILE (t10k-labels-idx1-ubyte):
+[offset] [type]          [value]          [description]
+0000     32 bit integer  0x00000801(2049) magic number (MSB first)
+0004     32 bit integer  10000            number of items
+0008     unsigned byte   ??               label
+0009     unsigned byte   ??               label
+........
+xxxx     unsigned byte   ??               label
+The labels values are 0 to 9.
+
+TEST SET IMAGE FILE (t10k-images-idx3-ubyte):
+[offset] [type]          [value]          [description]
+0000     32 bit integer  0x00000803(2051) magic number
+0004     32 bit integer  10000            number of images
+0008     32 bit integer  28               number of rows
+0012     32 bit integer  28               number of columns
+0016     unsigned byte   ??               pixel
+0017     unsigned byte   ??               pixel
+........
+xxxx     unsigned byte   ??               pixel
+Pixels are organized row-wise. Pixel values are 0 to 255. 0 means background (white), 255 means foreground (black).
+#+end_src
+
+
+* The Final, Built File:
+
+#+INCLUDE: /Users/aayushbajaj/Documents/new-site/static/code/10khrs-ai-ml-dl/PROJECTS/ocr/main.py src python
+
+* Construction Babel Code ⚒️
+
+#+begin_src python :noweb yes :session test :tangle /Users/aayushbajaj/Documents/new-site/static/code/10khrs-ai-ml-dl/PROJECTS/ocr/main.py
+DATA_DIR = 'data/'
+DATASET = 'fmnist'
+TEST_DATA_FILENAME = DATA_DIR + DATASET + '/t10k-images-idx3-ubyte'
+TEST_LABELS_FILENAME = DATA_DIR + DATASET + '/t10k-labels-idx1-ubyte'
+TRAIN_DATA_FILENAME = DATA_DIR + DATASET + '/train-images-idx3-ubyte'
+TRAIN_LABELS_FILENAME = DATA_DIR + DATASET + '/train-labels-idx1-ubyte'
+
+
+def bytes_to_int(byte_data):
+    return int.from_bytes(byte_data, 'big')
+
+
+<<read>>
+
+
+def flatten_list(subl):
+    return [pixel for sublist in subl for pixel in sublist]
+
+
+def extract_features(X):
+    return [flatten_list(sample) for sample in X]
+
+
+<<knn>>
+
+
+<<garments>>
+
+
+def main():
+    n_train = 1000
+    n_test = 10
+    k = 7
+    print(f"Dataset: {DATASET}")
+    print(f"n_train: {n_train}")
+    print(f"n_test: {n_test}")
+    print(f"k: {k}")
+    X_train = read_images(TRAIN_DATA_FILENAME, n_train)
+    y_train = read_labels(TRAIN_LABELS_FILENAME, n_train)
+    X_test = read_images(TEST_DATA_FILENAME, n_test)
+    y_test = read_labels(TEST_LABELS_FILENAME, n_test)
+    X_train = extract_features(X_train)
+    X_test = extract_features(X_test)
+
+    y_pred = knn(X_train, y_train, X_test, k)
+
+    accuracy = sum([
+        int(y_pred_i == y_test_i)
+        for y_pred_i, y_test_i in zip(y_pred, y_test)
+    ]) / len(y_test)
+
+    if DATASET == 'fmnist':
+        garments_pred = [
+            get_garment_from_label(label)
+            for label in y_pred
+        ]
+        print(f"Predicted garments: {garments_pred}")
+    else:
+        print(f"Predicted labels: {y_pred}")
+
+    print(f"Accuracy: {accuracy * 100}%")
+
+    
+if __name__ == '__main__':
+    main()
+
+#+end_src
+
+
+#+name: read
+#+begin_src python
+def read_images(filename, n_max_images=None):
+    images = []
+    with open(filename, 'rb') as f:
+        _ = f.read(4)
+        n_images = bytes_to_int(f.read(4))
+        if n_max_images:
+            n_images = n_max_images
+        n_rows = bytes_to_int(f.read(4))
+        n_cols = bytes_to_int(f.read(4))
+        for image_idx in range(n_images):
+            image = []
+            for row_idx in range(n_rows):
+                row = []
+                for col_idx in range(n_cols):
+                    pixel = f.read(1)
+                    row.append(pixel)
+                image.append(row)
+            images.append(image)
+        return images
+
+    
+def read_labels(filename, n_max_labels=None):
+    labels = []
+    with open(filename, 'rb') as f:
+        _ = f.read(4)  # magic number
+        n_labels = bytes_to_int(f.read(4))
+        if n_max_labels:
+            n_labels = n_max_labels
+        for label_idx in range(n_labels):
+            label = bytes_to_int(f.read(1))
+            labels.append(label)
+    return labels
+#+end_src
+
+#+name: knn
+#+begin_src python
+def dist(x, y):
+    return sum(
+        [
+            (bytes_to_int(x_i) - bytes_to_int(y_i)) ** 2
+            for x_i, y_i in zip(x, y)]
+    ) ** 0.5
+
+
+def get_training_distances_for_test_sample(X_train, test_sample):
+    return [dist(train_sample, test_sample) for train_sample in X_train]
+
+
+def knn(X_train, y_train, X_test, y_test, k=3):
+    y_pred = []
+    for test_sample_idx, test_sample in enumerate(X_test):
+        training_distances = get_training_distances_for_test_sample(
+            X_train, test_sample
+        )
+        sorted_distance_indices = [
+            pair[0]
+            for pair in sorted(
+                    enumerate(training_distances),
+                    key=lambda x: x[1]
+            )
+        ]
+        candidates = [
+            y_train[idx]
+            for idx in sorted_distance_indices[:k]
+        ]
+        top_candidate = max(candidates, key=candidates.count)
+        y_pred.append(top_candidate)
+    return y_pred
+#+end_src
+
+#+name: garments
+#+begin_src python 
+def get_garment_from_label(label):
+    return [
+        'T-shirt/top',
+        'Trouser',
+        'Pullover',
+        'Dress',
+        'Coat',
+        'Sandal',
+        'Shirt',
+        'Sneaker',
+        'Bag',
+        'Ankle boot',
+    ][label]
+#+end_src
+
+(setq org-src-preserve-indentation nil 
+      org-edit-src-content-indentation 0)
+
+* Results
+
+** FMNIST
+
+** MNIST
+
+#+BEGIN_SRC
+n_train: 10000
+n_test: 100
+k: 7
+Predicted labels: [7, 2, 1, 0, 4, 1, 4, 9, 5, 9, 0, 6, 9, 0, 1, 5, 9, 7, 3, 4, 9, 6, 6, 5, 9, 0, 7, 4, 0, 1, 3, 1, 3, 4, 7, 2, 7, 1, 2, 1, 1, 7, 4, 1, 3, 5, 1, 2, 4, 4, 6, 3, 5, 5, 6, 0, 4, 1, 9, 5, 7, 8, 9, 3, 7, 4, 6, 4, 3, 0, 7, 0, 2, 7, 1, 7, 3, 7, 9, 7, 7, 6, 2, 7, 8, 4, 7, 3, 6, 1, 3, 6, 4, 3, 1, 4, 1, 7, 6, 9]
+Accuracy: 95.0%
+#+END_SRC

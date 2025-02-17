@@ -364,7 +364,7 @@ A quick fitting of the traning data to sklearn's LassoCV model may help clear so
 
 
 * Conclusion
-The above shows that our analysis was not incorrect in attempting to determine the most optimal \(\lambdas\), but rather a mistake has occurred in the preprocessing step causing the statistical signifance of my data to become muddled. In a later refactoring I may come back and improve my preprocessing, or abandon it completely in favour of a more homogenous dataset.
+The above shows that our analysis was not incorrect in attempting to determine the most optimal \(\lambda\)s, but rather a mistake has occurred in the preprocessing step causing the statistical signifance of my data to become muddled. In a later refactoring I may come back and improve my preprocessing, or abandon it completely in favour of a more homogenous dataset.
 
 #+begin_src jupyter-python :session life
   from sklearn.metrics import r2_score

@@ -1,0 +1,9 @@
++++
+title = "KNN Theory"
++++
+
+This page is for the mathematical theory surrounding non-parametric models and in particular, the K-nearest neighbours algorithm.
+
+It is in a TODO state.
+
+Omar.

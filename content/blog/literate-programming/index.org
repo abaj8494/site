@@ -7,7 +7,7 @@ toc = "true"
 
 I was first introduced to this concept by [[https://www.youtube.com/@DistroTube][Distrotube]] (Derek Taylor's) "/literate config/" files. At the time I was not using =emacs= and thus all the code I was writing was sparingly commented.
 
-Since then, I have entered a world of [[/projects/ml][Machine Learning]] and [[/projects/dl][Deep Learning]], where suddenly in 4 lines, I can sit ontop of my high-horse and perform [[/projects/dl/sentiment-analysis][sentiment analysis]] with tensorflow and keras!
+Since then, I have entered a world of [[/projects/ml][Machine Learning]] and [[/projects/dl][Deep Learning]], where suddenly in 4 lines, I can sit atop my high-horse and perform [[/projects/dl/sentiment-analysis][sentiment analysis]] with tensorflow and keras!
 
 #+BEGIN_SRC jupyter-python line-numbers :session literate
   from transformers import pipeline
