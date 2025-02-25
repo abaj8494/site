@@ -1,0 +1,8 @@
++++
+name = "Manjaro Raspberry Pi 4"
+tags = ["ncmpcpp", "mpd", "mopidy", "cd", "tmux", "arch"]
++++
+
+There is more to say about this system than the specificationally inferior RPI3.
+
+TODO

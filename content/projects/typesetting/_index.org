@@ -1,0 +1,6 @@
++++
+name = "Typesetting"
+math = "true"
++++
+
+This is a broader category than just \(\LaTeX\), though trust me, that topic is rather dense too.

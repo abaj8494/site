@@ -8,7 +8,7 @@ You have stepped onto the stickiest page of this site, here sit *all* of my proj
 
 The legend is as follows:
 - @@html:<input type="checkbox" checked class="archived"/>@@ *Archived.*
-- @@html:<input type="checkbox" checked class="done"/>@@ *Done*; でも \(\exists\) room for extension / improvement.
+- @@html:<input type="checkbox" checked class="done"/>@@ *Done*; でも、 \(\exists\) room for extension / improvement.
 - @@html:<input type="checkbox" class="edit"/>@@ *Editing;* code written, ideas fleshed out - prose needs to be reworked.
 - @@html:<input type="checkbox" class="refactor"/>@@ *Refactor;* initial code included, but contains bugs, is incorrect or needs better Design Patterns.
 - @@html:<input type="checkbox" class="nothing"/>@@ *Nothing*. All I have is the seedling of an idea.
@@ -34,8 +34,14 @@ The following links contain the source code and solution sets:
 - @@html:<input type="checkbox" checked class="archived"/>@@ [[{{< ref "/projects/bday-problems/21st" >}}][21st]] {{< tags-inline "projects/bday-problems/21st" >}}
 - @@html:<input type="checkbox" checked class="archived"/>@@ [[{{< ref "/projects/bday-problems/22nd" >}}][22nd]] {{< tags-inline "projects/bday-problems/22nd" >}}
 - @@html:<input type="checkbox" checked class="archived"/>@@ [[{{< ref "/projects/bday-problems/23rd" >}}][23rd]] {{< tags-inline "projects/bday-problems/23rd" >}}
-  
-** [[/projects/latex][LaTeX]]
+
+** Typesetting
+:PROPERTIES:
+:CUSTOM_ID: typesetting
+:END:
+- @@html:<input type="checkbox" checked class="archived"/>@@ [[/projects/typesetting/font2splines][Font2Splines]] {{< tags-inline "projects/typesetting/font2splines" >}}
+
+*** [[/projects/latex][LaTeX]]
 :PROPERTIES:
 :CUSTOM_ID: latex
 :END:
@@ -84,6 +90,12 @@ The following links contain the source code and solution sets:
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/csp/chat-app][Messenger Web App (full-stack)]] {{< tags-inline "projects/csp/chat-app" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/csp/banagrams-solver][Banagrams Solver]] {{< tags-inline "projects/csp/banagrams" >}}
 - @@html:<input type="checkbox" checked class="archived"/>@@ [[/projects/csp/peg-solitaire][Peg Solitaire]] {{< tags-inline "projects/csp/peg-solitaire" >}}
+
+*** Raspberry Pi
+
+For the longest time I kept these projects private, but now after a half decade I have settled on these 2 stable configurations
+- @@html:<input type="checkbox" checked class="archived"/>@@ [[/projects/csp/rpi/kiyomi][RPI3]] {{< tags-inline "projects/csp/rpi/kiyomi" >}}
+- @@html:<input type="checkbox" checked class="archived"/>@@ [[/projects/csp/rpi/rpi][RPI4]] {{< tags-inline "projects/csp/rpi/rpi" >}}
 
 ** [[/projects/ai][Artificial Intelligence]]
 :PROPERTIES:

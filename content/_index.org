@@ -12,7 +12,7 @@ clocal = "true"
 The AI could equally as well have stood for Artificial Intelligence.
 
 But that would be a little less /historical/. This site is a way for me to
-consolidate everything that which I know[fn:6]. My explorations and discoveries are orated, not for the benefit of strangers, but rather for my future-self.[fn:1]
+consolidate everything I know[fn:6]. My explorations and discoveries are orated, not for the benefit of strangers, but rather for that of my future-self.[fn:1]
 
 
 * Scope
