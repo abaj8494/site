@@ -1,6 +1,7 @@
 baseURL = "https://abaj.ai"
 copyright = "© 2025 Aayush Bajaj"
-title = "(aj)^{ai}"
+title = "Aayush Bajaj's Archived Intellect"
+description = "This site contains Aayush Bajaj's Archived Intellect. The content is largely mathematical imbued with code throughout. You will also find prose and art in this garden."
 pagination.pagerSize = 10
 enableRobotsTXT = true
 enableGitInfo = true
@@ -12,7 +13,7 @@ ignoreFiles = ["/code/bookshelf/doc/fontsel/.*"]
   [build.buildStats]
     # With each build, Hugo writes a hugo_stats.json file that contains arrays
     # of the class attributes, id attributes, and tags of each HTML element
-    # within the published site. For production builds, this file is required
+    # within the published site. For prouction builds, this file is required
     # by PurgeCSS to prune unused CSS.
     enable = true
 

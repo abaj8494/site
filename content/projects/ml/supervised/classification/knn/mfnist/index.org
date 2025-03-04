@@ -426,19 +426,3 @@ def get_garment_from_label(label):
 (setq org-src-preserve-indentation nil 
       org-edit-src-content-indentation 0)
 
-* Results
-
-** FMNIST
-#+BEGIN_SRC
-n_train: 10000
-n_test: 100
-k: 7
-Predicted labels: ...
-Accuracy: 95.0%
-#+END_SRC
-
-** MNIST
-
-
-
-The _whole_ dataset:

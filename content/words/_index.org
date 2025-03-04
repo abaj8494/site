@@ -23,6 +23,16 @@ layout = "custom-list"
 "One cannot think without writing."---Luhmann[fn:1], 1992
 #+END_QUOTE
 
+* bookbot!
+
+A full stack, React web-app that injects Public Domain Books into your context window. ChatGPT4o-mini with extra steps :D
+
+#+BEGIN_CENTER
+#+ATTR_HTML: :class lateximage :width 500px
+[[{{< cwd >}}bookbot.svg]]
+#+END_CENTER
+
+
 * bookshelf
 
 all of these books have been profoundly influential in sculpting my own character. I also believe these books--but not only[fn:2]--these books, have the capacity to "leverage" any other human /to the tits/.

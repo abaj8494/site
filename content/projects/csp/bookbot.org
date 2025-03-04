@@ -1,0 +1,10 @@
++++
+title = "Bookbot"
+tags = ["react", "postgres", "public-domain", "node.js", "typescript", "auth", "event-driven", "full-stack", "front-end", "backend", "stripe"]
++++
+
+The [[https://github.com/abaj8494/cloud][repository]] is the authority on this project.
+
+And the [[https://abaj.cloud][site itself]] is terrific fun to play around with.
+
+I constructed the entire affair in approximately 72 hours with no syntactical knowledge of typescript using [[cursor.com][Cursor]] and [[claude.ai][Claude]] AI's!
