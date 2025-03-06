@@ -28,8 +28,8 @@ layout = "custom-list"
 A full stack, React web-app that injects Public Domain Books into your context window. ChatGPT4o-mini with extra steps :D
 
 #+BEGIN_CENTER
-#+ATTR_HTML: :class lateximage :width 500px
-[[https://abaj.cloud][{{< cwd >}}bookbot.svg]]
+#+ATTR_HTML: :class lateximage
+@@html:<a href="https://abaj.cloud"><img width="500" src="{{< cwd >}}bookbot.svg"></a>@@
 #+END_CENTER
 
 

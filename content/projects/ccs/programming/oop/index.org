@@ -1,4 +1,4 @@
 +++
-title = "Design Patterns Catalogue"
-tags = ["oop","agile"]
+title = "Object-Oriented Programming"
+tags = ["design-patters", "agile"]
 +++

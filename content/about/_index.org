@@ -46,7 +46,7 @@ The icon for the site is the real component contour plot of the 4D complex expon
 #+BEGIN_CENTER
 #+ATTR_HTML: :width 400px :class lateximage
 #+CAPTION: 4D Complex Exponential Function
-[[/android-chrome-512x512.png]]
+[[/abs_hsv.svg]]
 #+END_CENTER
 
 * Me
