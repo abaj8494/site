@@ -60,7 +60,7 @@ The following links contain the source code and solution sets:
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/textbook-slns/m4ml][Mathematics for Machine Learning]] {{< tags-inline "projects/textbook-slns/m4ml" >}}
 
     
-** [[/projects/moocs][MOOCs (Massive Open Online Courses)]]
+** [[/projects/moocs][MOOCs (Massive Open Online Courses)]]        :noexport:
 :PROPERTIES:
 :CUSTOM_ID: moocs-massive-open-online-courses
 :END:
