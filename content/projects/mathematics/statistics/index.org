@@ -1,0 +1,18 @@
++++
+title = "Statistics"
+tags = ["mean", "variance", "inference", "regression", "estimators"]
++++
+
+Topics
+Descriptive Statistics (Mean, Median, Variance)
+Inferential Statistics (Hypothesis Testing, Confidence Intervals)
+Regression & Estimation
+Maximum Likelihood Estimation (MLE)
+Bayesian Statistics & Inference
+Important Theorems
+Gauss-Markov Theorem (Best Linear Unbiased Estimator)
+Likelihood Ratio Test Theorem
+Cramér-Rao Bound (MLE)
+Fisher’s Theorem (Sufficiency)
+Chi-Square & t-Distributions
+Neyman-Pearson Lemma

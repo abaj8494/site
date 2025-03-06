@@ -1,0 +1,6 @@
++++
+title = "Calculus"
+tags = ["newton", "leibniz", "change", "differential", "integral"]
++++
+
+You should see gathered listings from this directory below:

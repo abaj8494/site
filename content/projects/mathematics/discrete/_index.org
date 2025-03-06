@@ -1,0 +1,24 @@
++++
+title = "Discrete Mathematics"
+tags = ["counting", "combinatorics", "logic", "number-theory"]
++++
+
+Topics
+Set Theory & Boolean Algebra
+Logic & Proof Techniques
+Combinatorics & Counting
+Graph Theory
+Number Theory (Divisibility, Modular Arithmetic)
+Recurrence Relations
+Finite Automata & Formal Languages
+Discrete Probability
+Important Theorems
+De Morgan’s Laws (Logic & Boolean Algebra)
+Pigeonhole Principle (Combinatorics)
+Inclusion-Exclusion Principle (Counting)
+Euler’s Formula for Graphs (
+Handshaking Lemma (
+Chinese Remainder Theorem (Number Theory)
+Fermat’s Little Theorem (
+RSA Cryptosystem & Modular Inverses
+Master Theorem (Recurrence Relations)

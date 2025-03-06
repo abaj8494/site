@@ -1,0 +1,17 @@
++++
+title = "Differential Equations"
+tags = ["first-order", "second-order", "power-series", "frobenius", "sturm-liouville", "fourier"]
++++
+
+Topics
+First-Order ODEs (Separable, Exact, Linear)
+Higher-Order ODEs
+Laplace Transforms & Fourier Series
+Partial Differential Equations (PDEs)
+Stability & Dynamical Systems
+
+Important Theorems
+Existence & Uniqueness Theorem (ODEs)
+Linear Superposition Principle
+Separation of Variables (PDEs)
+Fourier Convergence Theorem

@@ -73,12 +73,32 @@ The following links contain the source code and solution sets:
 :CUSTOM_ID: classical-cs
 :END:
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/memory][Memory]] {{< tags-inline "projects/ccs/memory" >}}
-- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/adv-alg][Advanced Algorithms]] {{< tags-inline "projects/ccs/adv-alg" >}}
-- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/leetcode][Leetcode]] {{< tags-inline "projects/ccs/leetcode" >}}
-- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/sorting][Sorting]] {{< tags-inline "projects/ccs/sorting" >}}
-- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/searching][Searching]] {{< tags-inline "projects/ccs/searching" >}}
-- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/graph][Graph]] {{< tags-inline "projects/ccs/graph" >}}
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/time-complexity][Time Complexity]] {{< tags-inline "projects/ccs/time-complexity" >}}
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/networking][Internet Networks]] {{< tags-inline "projects/ccs/networking" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/linux][Linux]] {{< tags-inline "projects/ccs/linux" >}}
+
+*** Data Structures _&_ Algorithms
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/data-algs/adv-alg][Advanced Algorithms]] {{< tags-inline "projects/ccs/data-algs/adv-alg" >}}
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/data-algs/leetcode][Leetcode]] {{< tags-inline "projects/ccs/data-algs/leetcode" >}}
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/data-algs/sorting][Sorting]] {{< tags-inline "projects/ccs/data-algs/sorting" >}}
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/data-algs/searching][Searching]] {{< tags-inline "projects/ccs/data-algs/searching" >}}
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/data-algs/graph][Graph]] {{< tags-inline "projects/ccs/data-algs/graph" >}}
+
+*** Programming
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/linear][Linear]] {{< tags-inline "projects/ccs/programming/linear" >}}
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/quadratic][Quadratic]] {{< tags-inline "projects/ccs/programming/quadratic" >}}
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/integer][Integer]] {{< tags-inline "projects/ccs/programming/integer" >}}
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/dynamic][Dynamic]] {{< tags-inline "projects/ccs/programming/dynamic" >}}
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/object-oriented][Object-oriented]] {{< tags-inline "projects/ccs/programming/object-oriented" >}}
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/functional][Functional]] {{< tags-inline "projects/ccs/programming/functional" >}}
+
+**** Beyond                                                        :noexport:
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/stochastic][Stochastic]] {{< tags-inline "projects/ccs/programming/stochastic" >}}
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/robust][Robust]] {{< tags-inline "projects/ccs/programming/robust" >}}
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/goal][Goal]] {{< tags-inline "projects/ccs/programming/goal" >}}
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/multi-objective][Multi-objective]] {{< tags-inline "projects/ccs/programming/multi-objective" >}}
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/constraint][Constraint]] {{< tags-inline "projects/ccs/programming/constraint" >}}
+
   
 ** [[/projects/csp][Computer Science Projects]]
 :PROPERTIES:
@@ -230,4 +250,19 @@ These methods can be adapted for _regression_, but they are more well suited to 
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ml/reinforcement-learning/policy-gradients][Policy Gradients]] {{< tags-inline "projects/ml/reinforcement-learning/policy-gradients" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ml/reinforcement-learning/q-learning][Q-Learning]] {{< tags-inline "projects/ml/reinforcement-learning/q-learning" >}}
 
+** Mathematics
 
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/mathematics/discrete][Discrete]] {{< tags-inline "projects/mathematics/discrete" >}}
+  - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/mathematics/discrete/logic][Logic (+ Proof)]] {{< tags-inline "projects/mathematics/discrete/logic" >}}
+  - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/mathematics/discrete/graph-theory][Graph Theory]] {{< tags-inline "projects/mathematics/discrete/graph-theory" >}}
+  - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/mathematics/discrete/number-theory][Number Theory]] {{< tags-inline "projects/mathematics/discrete/number-theory" >}}
+  - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/mathematics/discrete/combinatorics][Combinatorics]] {{< tags-inline "projects/mathematics/discrete/combinatorics" >}}
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/mathematics/calculus][Calculus]] {{< tags-inline "projects/mathematics/calculus" >}}
+  - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/mathematics/calculus/svars][Single Variable]] {{< tags-inline "projects/mathematics/calculus/svars" >}}
+  - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/mathematics/calculus/mvars][Multivariable]] {{< tags-inline "projects/mathematics/calculus/mvars" >}}
+  - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/mathematics/calculus/diff-eqns][Differential Equations]] {{< tags-inline "projects/mathematics/calculus/diff-eqns" >}}
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/mathematics/linear-algebra][Linear Algebra]] {{< tags-inline "projects/mathematics/linear-algebra" >}}
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/mathematics/optimisation][Optimisation]] {{< tags-inline "projects/mathematics/optimisation" >}}
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/mathematics/probability][Probability]] {{< tags-inline "projects/mathematics/probability" >}}
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/mathematics/analysis/real][Real Analysis]] {{< tags-inline "projects/mathematics/analysis/real" >}}
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/mathematics/analysis/complex][Complex Analysis]] {{< tags-inline "projects/mathematics/analysis/complex" >}}

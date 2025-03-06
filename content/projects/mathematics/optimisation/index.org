@@ -1,0 +1,17 @@
++++
+title = "Optimisation"
+tags = ["constrained", "unconstrained", "convex"]
++++
+
+Topics
+Convexity & Optimization Techniques
+Gradient Descent & Newton’s Method
+Lagrangian & Duality Theory
+Integer & Combinatorial Optimization
+Linear Programming & Simplex Method
+Important Theorems
+KKT Conditions (Karush-Kuhn-Tucker)
+Lagrange Multipliers
+Strong & Weak Duality (Linear Programming)
+Farkas' Lemma
+Von Neumann’s Minimax Theorem

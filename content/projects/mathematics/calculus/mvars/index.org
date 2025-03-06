@@ -1,0 +1,18 @@
++++
+title = "Multivariable Calculus"
+tags = ["stokes", "gauss", "line", "surface", "n-dimensional"]
++++
+
+Topics
+Surfaces
+Partial Derivatives & Gradients
+Multiple Integrals (Double, Triple)
+Vector Fields & Divergence/Curl
+Surface Integrals & Line Integrals
+Integral Theorems in Vector Calculus
+Important Theorems
+Gradient & Directional Derivatives
+Lagrange Multipliers (Optimization with Constraints)
+Divergence Theorem (Gauss’s Theorem)
+Green’s Theorem (2D Circulation & Flux)
+Stokes’ Theorem (Generalization of Green’s Theorem)

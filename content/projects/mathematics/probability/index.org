@@ -1,0 +1,19 @@
++++
+title = "Probability"
+tags = ["expectation", "random-variables", "distribution", "frequentist", "bayesian"]
++++
+
+Topics
+Axioms of Probability (Kolmogorov)
+Random Variables & Distributions
+Expectation & Variance
+Bayesian Probability
+Stochastic Processes & Markov Chains
+Important Theorems
+Kolmogorov’s Axioms
+Law of Large Numbers (Weak & Strong)
+Central Limit Theorem (CLT)
+Bayes’ Theorem
+Markov & Chebyshev Inequalities
+Borel-Cantelli Lemma
+Martingale Convergence Theorem
