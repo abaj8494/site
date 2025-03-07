@@ -141,12 +141,14 @@
 
 /* Title bar for popups */
 .popup-title-bar {
-  flex: 0 0 auto;
+  flex: 0 0 auto; /* Don't grow, don't shrink, use auto basis */
   display: flex;
   align-items: center;
   justify-content: space-between; /* Space buttons and title evenly */
   height: var(--popup-title-bar-height);
-  padding: 0 0.5rem;
+  min-height: var(--popup-title-bar-height); /* Ensure minimum height */
+  max-height: var(--popup-title-bar-height); /* Prevent expanding */
+  padding: 0.2rem 0.5rem; /* Increased top/bottom padding by 0.2rem */
   background: #3c3c3c; /* Solid background instead of gradient */
   border-bottom: 1px solid #000;
   color: #fff; /* White text for better contrast */
@@ -158,6 +160,9 @@
   border-radius: 4px 4px 0 0; /* Rounded corners on top */
   position: relative; /* Establish stacking context */
   z-index: 100; /* Ensure proper stacking with button z-index */
+  /* Prevent title bar from expanding */
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .popup.dragging .popup-title-bar {
@@ -180,14 +185,12 @@
   position: relative; /* Create stacking context */
   z-index: 102; /* Above buttons to ensure clickability */
 
-  /* Add vertical centering */
-  height: 100%;
+  /* Vertical centering without making it bigger */
   line-height: var(
     --popup-title-bar-height
-  ); /* Match line height with title bar height */
-  display: flex;
-  align-items: center; /* Vertically center content */
-  justify-content: center; /* Horizontally center content */
+  ); /* Set line height to match title bar height */
+  max-width: calc(100% - 6rem); /* Limit width to prevent overflow */
+  flex: 0 1 auto; /* Don't let it grow, but allow it to shrink */
 }
 
 .popup-title-bar-title:hover {
@@ -199,8 +202,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 1.8rem;
-  height: 1.8rem;
+  width: 1.5rem; /* Slightly smaller width */
+  height: 1.5rem; /* Slightly smaller height */
   border: none;
   border-radius: 4px;
   background: rgba(255, 255, 255, 0.1); /* Simple semi-transparent background */
@@ -208,12 +211,11 @@
   cursor: pointer;
   transition: all 0.15s ease;
   padding: 0;
-  font-size: 1rem;
+  font-size: 0.9rem; /* Slightly smaller font size */
   flex-shrink: 0;
   margin: 0 2px;
   position: relative;
   z-index: 101; /* Ensure buttons are above other elements */
-  pointer-events: auto; /* Force pointer events to be active */
 }
 
 .popup-title-bar-button:hover {
@@ -265,11 +267,12 @@
   overscroll-behavior: none;
   position: relative;
   width: 100%; /* Changed from auto to 100% to fill container */
-  height: 100%; /* Added to fill vertical space */
+  height: calc(
+    100% - var(--popup-title-bar-height)
+  ); /* Explicit calculation for height */
   min-width: min-content; /* Allow content to determine width */
   box-sizing: border-box; /* Include padding in height calculation */
-  display: flex; /* Add display flex */
-  flex-direction: column; /* Stack children vertically */
+  padding: 0.5rem; /* Add a small padding for content */
 }
 
 /* Scrollbar styling (WebKit/Blink) */
@@ -317,16 +320,16 @@
   font-size: 0.9rem;
   line-height: 1.3;
   padding: 0;
-  margin: -10px 0 0 0; /* Negative top margin only */
-  flex: 1 1 auto; /* Allow it to grow and shrink */
+  margin: 0; /* Remove negative margin */
   width: 100%; /* Ensure full width */
+  height: auto; /* Let content determine height */
 }
 
 .popup .popup-body {
-  margin: -10px 0 0 0; /* Negative top margin only */
+  margin: 0; /* Remove negative margin */
   padding: 0;
-  flex: 1 1 auto; /* Allow it to grow and shrink */
   width: 100%; /* Ensure full width */
+  height: auto; /* Let content determine height */
 }
 
 /* Image handling in popups */

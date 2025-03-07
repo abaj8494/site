@@ -231,7 +231,7 @@ window.Popups = {
     });
   },
 
-  // Handle mouse hover on links
+  // Handle mouseenter events on links
   handleLinkMouseEnter(event) {
     // Skip if popups are disabled
     if (document.body.getAttribute("data-popups-disabled") === "true") {
@@ -240,42 +240,69 @@ window.Popups = {
 
     const link = event.currentTarget;
 
-    // Track current link
-    this.hoverState.currentLink = link;
-
     // Skip if the link has a data attribute to ignore
     if (link.dataset.popup === "ignore") {
-      this.log("Skipping link with data-popup=ignore");
       return;
     }
 
-    // Clear any existing hover timeout
+    // Skip if this is a popup link that's already been activated
+    if (link.classList.contains("popup-active")) {
+      return;
+    }
+
+    // Clear any existing hover timer
     if (this.activeHoverTimer) {
       clearTimeout(this.activeHoverTimer);
       this.activeHoverTimer = null;
     }
 
-    // Set a timeout to spawn the popup
-    this.activeHoverTimer = setTimeout(() => {
-      // Check again if we're still hovering (could have moved away during timeout)
-      if (this.hoverState.currentLink !== link) {
-        this.log("No longer hovering link, cancelling popup spawn");
-        return;
-      }
+    // Store the active link
+    this.hoverState.currentLink = link;
+    this.hoverState.isLeavingLink = false;
 
-      // Check if a popup already exists for this link
+    // Set a timer to show the popup
+    this.activeHoverTimer = setTimeout(() => {
+      // Make sure we're still hovering
+      if (this.hoverState.isLeavingLink) return;
+
+      // Look for existing popup
       const existingPopup = this.findPopupForLink(link);
       if (existingPopup) {
-        this.log("Popup already exists for this link");
+        this.bringToFront(existingPopup);
         return;
       }
 
-      // Now we can spawn the popup
-      this.spawnPopupForLink(link, event);
+      // Create a new popup
+      const popup = this.spawnPopupForLink(link, event);
+
+      // Update hover state
+      this.hoverState.currentPopup = popup;
+
+      // Mark the link as having an active popup
+      link.classList.add("popup-active");
+
+      // Add an event listener to remove the class when the popup is removed
+      const observer = new MutationObserver((mutations) => {
+        for (const mutation of mutations) {
+          if (
+            mutation.type === "childList" &&
+            mutation.removedNodes.length > 0
+          ) {
+            for (const node of mutation.removedNodes) {
+              if (node === popup) {
+                link.classList.remove("popup-active");
+                observer.disconnect();
+              }
+            }
+          }
+        }
+      });
+
+      observer.observe(this.popupContainer, { childList: true });
     }, this.config.hoverDelay);
   },
 
-  // Handle mouse leaving links
+  // Handle mouseleave events on links
   handleLinkMouseLeave(event) {
     // Skip if popups are disabled
     if (document.body.getAttribute("data-popups-disabled") === "true") {
@@ -284,59 +311,60 @@ window.Popups = {
 
     const link = event.currentTarget;
 
-    // Clear hover state for this link
-    if (this.hoverState.currentLink === link) {
-      this.hoverState.currentLink = null;
+    // Skip if the link has a data attribute to ignore
+    if (link.dataset.popup === "ignore") {
+      return;
     }
 
-    // Clear any pending popup creation
+    // Clear any pending hover timer
     if (this.activeHoverTimer) {
       clearTimeout(this.activeHoverTimer);
       this.activeHoverTimer = null;
     }
+
+    // Update hover state
+    this.hoverState.isLeavingLink = true;
+
+    // Only close non-pinned popups
+    // Add a small delay before closing to allow moving to the popup
+    setTimeout(() => {
+      // If we're now hovering the popup, don't close it
+      if (this.isMouseOverPopupOrLink(event)) {
+        return;
+      }
+
+      // Find the popup for this link
+      const popup = this.findPopupForLink(link);
+
+      // Only close unpinned popups
+      if (popup && !popup.classList.contains("pinned")) {
+        // Remove the popup with a fade-out effect
+        popup.style.opacity = "0";
+
+        // Remove after fade completes
+        setTimeout(() => {
+          if (popup.parentNode) {
+            popup.parentNode.removeChild(popup);
+          }
+        }, this.config.fadeOutDuration);
+      }
+    }, 100); // Short delay to allow moving to popup
   },
 
   // Handle click events on links
   handleLinkClick(event) {
-    // Skip if popups are disabled
-    if (document.body.getAttribute("data-popups-disabled") === "true") {
-      return;
-    }
+    // Allow the default link behavior - immediately navigate to the link
+    // No need to prevent default or show popups on click
 
-    const link = event.currentTarget;
+    // The only thing we need to do is close any existing popups that might be showing
+    this.closeAllNonPinnedPopups();
 
-    // Skip if user clicks with control/command to open in new tab
-    if (event.ctrlKey || event.metaKey) {
-      this.log("Control/command click detected, allowing default behavior");
-      return;
-    }
+    // Log for debugging
+    this.log(
+      "Link clicked, allowing navigation to: " + event.currentTarget.href,
+    );
 
-    // Skip if the link has a data attribute to ignore
-    if (link.dataset.popup === "ignore") {
-      this.log("Skipping link with data-popup=ignore");
-      return;
-    }
-
-    // If the link has a target="_blank", let it open normally
-    if (link.target === "_blank") {
-      this.log("Link has target=_blank, allowing default behavior");
-      return;
-    }
-
-    // Prevent the default navigation
-    event.preventDefault();
-
-    // Find existing popup or create a new one
-    const existingPopup = this.findPopupForLink(link);
-    if (existingPopup) {
-      // If already exists, just pin it and bring to front
-      existingPopup.classList.add("pinned");
-      this.bringToFront(existingPopup);
-      this.log("Found existing popup, pinning and bringing to front");
-    } else {
-      // Create a new pinned popup
-      this.spawnPopupForLink(link, event, true);
-    }
+    // The browser will handle the navigation automatically
   },
 
   // Find popup associated with a link
@@ -496,9 +524,18 @@ window.Popups = {
 
     titleText.textContent = titleContent;
     titleText.href = link.href;
-    titleText.target = "_blank";
-    titleText.rel = "noopener";
-    titleText.title = "Open in new tab";
+
+    // Use the same target as the original link, or default to current tab
+    titleText.target = link.target || "_self";
+
+    // For external links, use _blank with noopener
+    if (this.isExternalLink(link.href)) {
+      titleText.target = "_blank";
+      titleText.rel = "noopener";
+      titleText.title = "Open in new tab";
+    } else {
+      titleText.title = "Open link";
+    }
 
     // Prevent the mousedown event from propagating (would conflict with drag)
     titleText.addEventListener("mousedown", (e) => {
@@ -1252,8 +1289,8 @@ window.Popups = {
     const now = Date.now();
     if (!this.dragging.lastMoveTime) this.dragging.lastMoveTime = 0;
 
-    // Throttle to ~120fps (doubled from before)
-    if (now - this.dragging.lastMoveTime < 8) return;
+    // Throttle to ~500fps (quartered from before)
+    if (now - this.dragging.lastMoveTime < 2) return;
     this.dragging.lastMoveTime = now;
 
     // Calculate new position based on mouse movement and initial offset
@@ -1407,7 +1444,7 @@ window.Popups = {
 
         // Variables for throttling
         let lastMoveTime = Date.now();
-        const throttleInterval = 8; // Reduced from 16ms to 8ms (doubled speed - ~120fps)
+        const throttleInterval = 2; // Reduced from 8ms to 2ms (4x faster)
 
         // Handle mousemove for resize with throttling
         function handleMouseMove(e) {
