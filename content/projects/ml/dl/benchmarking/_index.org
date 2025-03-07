@@ -11,7 +11,7 @@ This page contains results and explanations of benchmarking metrics for my hardw
 * 2020 M1 Macbook Pro 8GB
 
 #+ATTR_HTML: :width 300px
-[[m1-about.png]]
+[[{{< cwd >}}m1-about.png]]
 
 ** Stream
 

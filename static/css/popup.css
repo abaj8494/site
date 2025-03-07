@@ -159,8 +159,8 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   text-align: center;
-  margin: 0 0.5rem;
-  color: #fff; /* White text for title */
+  margin: 0 0.1rem;
+  color: var(--fg);
   text-decoration: none;
   font-weight: bold;
   cursor: pointer;
@@ -176,18 +176,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 1.8rem; /* Increased size */
+  width: 1.8rem;
   height: 1.8rem;
   border: none;
   border-radius: 4px;
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.15) 0%,
-    rgba(255, 255, 255, 0.05) 100%
-  ); /* Gradient for button */
-  box-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15); /* Outer and inner shadow */
+  background: rgba(255, 255, 255, 0.1); /* Simple semi-transparent background */
   color: #fff;
   cursor: pointer;
   transition: all 0.15s ease;
@@ -198,21 +191,11 @@
 }
 
 .popup-title-bar-button:hover {
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.25) 0%,
-    rgba(255, 255, 255, 0.15) 100%
-  );
-  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.2); /* Slightly lighter on hover */
 }
 
 .popup-title-bar-button:active {
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.1) 0%,
-    rgba(0, 0, 0, 0.05) 100%
-  );
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.1); /* Slightly darker when clicked */
   transform: scale(0.95);
 }
 
@@ -233,7 +216,7 @@
 .popup-icon-svg {
   width: 16px;
   height: 16px;
-  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.5)); /* Add shadow to SVG */
+  filter: none; /* Remove the drop shadow */
 }
 
 /* Close button (X) */
@@ -385,9 +368,5 @@ body[data-popups-disabled="true"] .popup-container {
 }
 
 [data-theme="dark"] .popup-title-bar-button {
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.1) 0%,
-    rgba(255, 255, 255, 0.03) 100%
-  );
+  background: rgba(255, 255, 255, 0.1); /* Simple background for dark theme */
 }

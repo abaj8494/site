@@ -43,14 +43,14 @@ This approach brings documentation, explanation, design justifications to the fo
 #+NAME: Young Don
 #+CAPTION: Young Don
 #+ATTR_HTML: :id young-don :width 250px :class float-right
-[[young-don.jpg]]
+[[{{< cwd >}}young-don.jpg]]
 
 Donald Knuth, the renowned computer scientist best known for his work on the monumental *The Art of Computer Programming*, introduced the concept of literate programming in 1984 through his system called WEB. According to Knuth, traditional programming methods often inhibit the readability and maintainability of the source code. In WEB (which originally targeted Pascal, then later adapted to C and other languages), a single file contained both explanatory text and code sections. A separate preprocessor would then produce two outputs:
 
 1. **Tangled output** – This contained the machine-readable source code that could be compiled or interpreted.
 2. **Woven output** – This was a richly formatted document that provided a human-readable narrative including the code.
 
-Knuth’s philosophy centered on viewing programs as works of literature, composed primarily for human beings rather than just compilers or interpreters. He believed this perspective better captures the creative process of programming and encourages developers to articulate why certain design choices were made. The result is a more maintainable, accessible, and instructive codebase within which the entry activation threshold is lowered and thus the learning curve is accelerated for new developers. A humbling but effective practice!
+Knuth's philosophy centered on viewing programs as works of literature, composed primarily for human beings rather than just compilers or interpreters. He believed this perspective better captures the creative process of programming and encourages developers to articulate why certain design choices were made. The result is a more maintainable, accessible, and instructive codebase within which the entry activation threshold is lowered and thus the learning curve is accelerated for new developers. A humbling but effective practice!
 
 * Porcelain
 

@@ -24,7 +24,7 @@ The story of MNIST begins with the NIST dataset, developed by the
 United States National Institute of Standards and Technology in the
 late 1980s. The original dataset was created to facilitate research in
 OCR systems, which were becoming increasingly relevant for automating
-tasks like check processing and mail sorting. NIST’s dataset consisted
+tasks like check processing and mail sorting. NIST's dataset consisted
 of tens of thousands of handwritten digits collected from various
 sources, including Census Bureau employees and high school students.
 
@@ -170,7 +170,7 @@ could also work with 3D tensors if we wanted to.
      0   0   0   0   0   0   0   0   0   0]
 #+end_example
 : <matplotlib.image.AxesImage at 0x16d91eed0>
-[[mnist-5.png]]
+[[{{< cwd >}}mnist-5.png]]
 :END:
 
 Now clearly, this looks like a 5. Correspondingly its label is

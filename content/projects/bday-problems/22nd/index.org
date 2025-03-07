@@ -20,7 +20,7 @@ Mr. Rajan nobly refused the charity.
 #+BEGIN_CENTER
 #+ATTR_HTML: :width 300px :class lateximage
 #+CAPTION: Semicircle
-[[q1.svg]]
+[[{{< cwd >}}q1.svg]]
 #+END_CENTER
 
 Thus the mathematics simplifies from using a trigonometric substitution to simply
@@ -42,7 +42,7 @@ The radius \(r\) varies from 0 to 1, whilst the \(\theta\) value traces out a fl
 #+BEGIN_CENTER
 #+ATTR_HTML: :width 300px :class lateximage
 #+CAPTION: Semicircle
-[[q2.svg]]
+[[{{< cwd >}}q2.svg]]
 #+END_CENTER
 
 Our mathematics then again simplifies significantly to just
@@ -93,7 +93,7 @@ We must think outside of the proverbial box for this one:
 
 #+BEGIN_CENTER
 #+ATTR_HTML: :width 400px :class lateximage
-[[q4.svg]]
+[[{{< cwd >}}q4.svg]]
 #+END_CENTER
 
 ** Q5
@@ -127,7 +127,7 @@ Consider two squares, each of side length \(a + b\). We can place four congruent
 
 #+BEGIN_CENTER
 #+ATTR_HTML: :width 600px :class lateximage
-[[q6.svg]]
+[[{{< cwd >}}q6.svg]]
 #+END_CENTER
 
 In the first square, the total area covered by the triangles and the smaller square is \(4 \times \frac{1}{2}ab + c^2 = 2ab + c^2\).
@@ -162,7 +162,7 @@ Consider the figure
 
 #+BEGIN_CENTER
 #+ATTR_HTML: :width 300px :class lateximage
-[[q7.svg]]
+[[{{< cwd >}}q7.svg]]
 #+END_CENTER
 
 then
@@ -199,14 +199,14 @@ The Fibonacci Sequence dictates the number of tendrils that emerge from the main
 
 #+BEGIN_CENTER
 #+ATTR_HTML: :width 900px :class lateximage
-[[q8ba.svg]]
+[[{{< cwd >}}q8ba.svg]]
 #+END_CENTER
 
 If we split the unit circle into fractional rays, then these are mapped to a (usually) curved ray on the main cardioid.
 
 #+BEGIN_CENTER
 #+ATTR_HTML: :width 900px :class lateximage
-[[q8bb.svg]]
+[[{{< cwd >}}q8bb.svg]]
 #+END_CENTER
 
 Digging deeper to see the relation between this and the Fibonacci sequence, we see that each time we take a pair of bulbs on this cardioid and attempt to determine the subsequent bulb's position we are answering the following question:
@@ -238,7 +238,7 @@ For reference the curve we are integrating looks like:
 
 #+BEGIN_CENTER
 #+ATTR_HTML: :width 300px :class lateximage
-[[q9.svg]]
+[[{{< cwd >}}q9.svg]]
 #+END_CENTER
 
 ** Q10
@@ -271,7 +271,7 @@ Taking derivatives and substituting the x-intercept of 5 to find the gradients o
 
 #+BEGIN_CENTER
 #+ATTR_HTML: :width 500px :class lateximage
-[[q12.svg]]
+[[{{< cwd >}}q12.svg]]
 #+END_CENTER
 
 ** Q13
@@ -404,7 +404,7 @@ Clearly the probability of picking an irrational number is low, considering \(0.
 This can be visualised as
 #+BEGIN_CENTER
 #+ATTR_HTML: :class lateximage :width 400px
-[[q22.svg]]
+[[{{< cwd >}}q22.svg]]
 #+END_CENTER
 
 Thus \(I = \int_0^1 D(x)\, \mathrm{d} = 1 - 0 = 1\). 

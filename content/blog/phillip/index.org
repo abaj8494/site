@@ -7,7 +7,7 @@ draft: false
 This is Phillip, our boy cat:
 
 #+ATTR_HTML: :width 400px
-[[{{< cwd>}}peelip.jpeg]]
+[[{{< cwd >}}peelip.jpeg]]
 
 Phillip is a Petbarn rescue and a very noisy creature.
 

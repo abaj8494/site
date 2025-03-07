@@ -14,20 +14,20 @@ Beyond my relationship with the computer I got into trouble a lot, still do occa
 
 #+ATTR_HTML: :width 400px
 #+CAPTION: Kali Linux 2.0 2015
-[[kali-desktop.png]]
+[[{{< cwd >}}kali-desktop.png]]
 
 
 #+ATTR_HTML: :width 222px
 #+CAPTION: My back tattoo
-[[kali-back.jpg]]
+[[{{< cwd >}}kali-back.jpg]]
 
 As the years passed and I crawled out of my hospital bed[fn:2], I lost touch with Linux. My family used Windows, and so I spent time learning the run-box, manipulating the registry, running rocketdock and deleting System32 every few weeks. I also experimented briefly with the Arduino and Microboard programming[fn:5].
 
 #+CAPTION: Memorising arbitrary windows runbox commands
-[[windows-run-ncpacpl.png]]
+[[{{< cwd >}}windows-run-ncpacpl.png]]
 #+CAPTION: Rainmeter + Rocketdock = Poor man's Alienware :D
 #+ATTR_HTML: :width 600px
-[[alienware.png]]
+[[{{< cwd >}}alienware.png]]
 
 By the age of 16, I had no technical knowledge of what I was doing. I spent time rooting and jailbreaking my devices; manipulating memory addresses as instructed to in some forum or YouTube video.
 
@@ -37,7 +37,7 @@ I eventually fail the UCAT and fool around in the Medical Science degree at USYD
 
 #+ATTR_HTML: :width 500px
 #+CAPTION: University of Sydney
-[[usyd.jpg]]
+[[{{< cwd >}}usyd.jpg]]
 
 My principle reasoning for choosing the Computer Science portion of the degree was:
 

@@ -16,7 +16,7 @@ Mum never knew the algorithm, nor any techniques beyond "My hand just knows"; as
 #+BEGIN_CENTER
 #+ATTR_HTML: :width 300px
 #+CAPTION: the one on my /own/ coffee table
-[[coffee-pegs.jpg]]
+[[{{< cwd >}}coffee-pegs.jpg]]
 #+END_CENTER
 
 During these 4 days, I learned a heuristic: to consider the L shape `___|` and realise that for every such set, you can perform /legal operations/ until you are left with a single marble.
@@ -66,7 +66,7 @@ Life takes a few twists and turns, but eventually I end up amongst a serious stu
 #+NAME: British Board
 #+CAPTION: Figure 1: British Board
 #+ATTR_HTML: :id british-board :width 150px :class float-right
-[[board-run.png]]
+[[{{< cwd >}}board-run.png]]
 
 Running the program with =python3.12 board.py= yields [[#british-board][Figure 1]], where you move the =X= with =WASD= controls, and perform "jumps" with it by hitting =<space>= and a direction (=WASD=) to jump in.
 Furthermore, 
@@ -105,7 +105,7 @@ The algorithm can be summarised with this single code block from above:
 #+NAME: Naïve DFS Gametree
 #+CAPTION: Figure 2: Naïve DFS Gametree
 #+ATTR_HTML: :id naive-dfs :width 400px :class float-right
-[[naive-dfs.gif]]
+[[{{< cwd >}}naive-dfs.gif]]
 
 Above, I call this implementation for DFS naïve. And I say this because our algorithm forces it's way through the game-tree and explores every move for every board state...
 
@@ -221,7 +221,7 @@ Yielding
 #+BEGIN_CENTER
 #+ATTR_HTML: :width 300px
 #+CAPTION: 32 Peg Solitaire Solved
-[[british-solved.jpg]]
+[[{{< cwd >}}british-solved.jpg]]
 #+END_CENTER
 
 * Kong Kong's European Version 💀
@@ -232,7 +232,7 @@ I purchased this Peg Solitaire for a relative:
 #+BEGIN_CENTER
 #+ATTR_HTML: :width 300px
 #+CAPTION: European Peg Solitaire
-[[european.jpg]]
+[[{{< cwd >}}european.jpg]]
 #+END_CENTER
 
 It was rather expensive, but it looked to be the only sensible choice on Amazon; so we bought it.
@@ -242,10 +242,10 @@ In reality, the marbles were more like planets, and the board some Chef Flambé'
 #+BEGIN_CENTER
 #+ATTR_HTML: :width 300px
 #+CAPTION: 36 Marble Peg Solitaire
-[[size.jpg]]
+[[{{< cwd >}}size.jpg]]
 #+ATTR_HTML: :width 300px
 #+CAPTION: the seller /was/ honest
-[[fair.jpg]]
+[[{{< cwd >}}fair.jpg]]
 #+END_CENTER
 
 In addition to not realising that the board was 16 inches, I had also not realised that this puzzle was different to one I had grown up with!
@@ -259,8 +259,8 @@ This version contains 36 marbles with an extra marble at each corner. Creating a
    \mathrm{o} & \mathrm{o} & \mathrm{o} & \mathrm{o} & \mathrm{o} & \mathrm{o} & \mathrm{o} \\
    \mathrm{o} & \mathrm{o} & \mathrm{o} & . & \mathrm{o} & \mathrm{o} & \mathrm{o} \\
    \mathrm{o} & \mathrm{o} & \mathrm{o} & \mathrm{o} & \mathrm{o} & \mathrm{o} & \mathrm{o} \\
-   &\mathrm{o} & \mathrm{o} & \mathrm{o} & \mathrm{o} &\mathrm{o} & \\
-   & & \mathrm{o} & \mathrm{o} & \mathrm{o} & & \\
+   &\mathrm{o} & \mathrm{o} & \mathrm{o} & \mathrm{o} & \mathrm{o} & \\
+   & & \mathrm{o} & \mathrm{o} & . & & \\
 \end{matrix}\;\leadsto\;\begin{matrix}
    & & \cdot & \cdot & \cdot & & \\
    & \cdot& \cdot & \cdot & \cdot &\cdot & \\
@@ -350,7 +350,7 @@ And trace out the table:
 #+NAME: European DFS Gametree
 #+CAPTION: Figure 3: Sensible DFS Gametree
 #+ATTR_HTML: :id euro-dfs :width 400px :class float-right
-[[euro-dfs.gif]]
+[[{{< cwd >}}euro-dfs.gif]]
 
 This algorithm produces a far more sensible game-tree as can be observed on the [[#euro-dfs][right]]. The key observation here is that occasionally an edge connects from a node to an identical previously explored node!
 

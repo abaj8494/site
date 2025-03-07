@@ -21,7 +21,7 @@ I would later continue to invest some money into the matter (along with my time 
 Because I was producing Invoices and Educational material with TeX, I could afford to invest more in books and thus fuel my own pyramid scheme. Eventually I ended up with a small stack, including the rest of Stefan Kottwitz' titles, and Frank Mittelbach's newly released TLC:
 
 #+ATTR_HTML: :width 400px
-[[tex-stack.jpg]]
+[[{{< cwd >}}tex-stack.jpg]]
 
 Below here you will find summaries of \(\TeX\) projects I have embarked on. The source code is always provided, either by way of embedding the source code blocks within the page, or redirecting you to the =nginx= files.
 

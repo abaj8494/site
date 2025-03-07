@@ -16,30 +16,30 @@ My operating system was [[https://manjaro.org/][Manjaro]], and I interfaced with
 #+BEGIN_CENTER
 #+ATTR_HTML: :width 160px :class lateximage
 #+CAPTION: HUGO
-[[hugo.svg]]
+[[{{< cwd >}}hugo.svg]]
 #+ATTR_HTML: :width 160px :class lateximage
 #+CAPTION: Orgmode
-[[orgmode.svg]]
+[[{{< cwd >}}orgmode.svg]]
 #+ATTR_HTML: :width 160px :class lateximage
 #+CAPTION: Emacs
-[[emacs.svg]]
+[[{{< cwd >}}emacs.svg]]
 #+ATTR_HTML: :width 160px :class lateximage
 #+CAPTION: Git
-[[git.svg]]
+[[{{< cwd >}}git.svg]]
 #+END_CENTER
 #+BEGIN_CENTER
 #+ATTR_HTML: :width 160px :class lateximage
 #+CAPTION: Conda
-[[conda.svg]]
+[[{{< cwd >}}conda.svg]]
 #+ATTR_HTML: :width 160px :class lateximage
 #+CAPTION: Jupyter
-[[jupyter.svg]]
+[[{{< cwd >}}jupyter.svg]]
 #+ATTR_HTML: :width 160px :class lateximage
 #+CAPTION: Oryx Firmware
-[[oryx.png]]
+[[{{< cwd >}}oryx.png]]
 #+ATTR_HTML: :width 160px :class lateximage
 #+CAPTION: Manjaro OS
-[[manjaro.svg]]
+[[{{< cwd >}}manjaro.svg]]
 #+END_CENTER
 
 The icon for this site is the absolute value contour plot of the 4D complex logarithm function from -4 to 4. [[abaj.cloud][BajBot]] and [[abaj.games][AJcade]] have the real and imaginary contour plots as their icons.
@@ -58,25 +58,25 @@ I'm not stone-cold. Here's me:
 
 #+BEGIN_CENTER
 #+ATTR_HTML: :width 300px
-[[happy-j.jpg]]
+[[{{< cwd >}}happy-j.jpg]]
 #+ATTR_HTML: :width 533px
-[[23-unigames.jpeg]]
+[[{{< cwd >}}23-unigames.jpeg]]
 #+END_CENTER
 
 I play Ultimate Frisbee and have 2 cats. I ride an Enfield Bullet. I study Japanese out of adoration for the language, and own [[/projects/literature/library][hundreds of books]]. I really like TeX[fn:1] and black rap[fn:2].
 
 #+BEGIN_CENTER
 #+ATTR_HTML: :width 400px
-[[rpi-dev.jpg]]
+[[{{< cwd >}}rpi-dev.jpg]]
 #+ATTR_HTML: :width 400px
-[[tex-stack.jpg]]
+[[{{< cwd >}}tex-stack.jpg]]
 #+ATTR_HTML: :width 330px
-[[a-on-500.jpg]]
+[[{{< cwd >}}a-on-500.jpg]]
 
 #+ATTR_HTML: :width 245px
-[[spotify-21.jpg]]
+[[{{< cwd >}}spotify-21.jpg]]
 #+ATTR_HTML: :width 240px
-[[spotify-23.jpg]]
+[[{{< cwd >}}spotify-23.jpg]]
 #+END_CENTER
 
 ** Contact

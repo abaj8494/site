@@ -47,7 +47,7 @@ plt.show()
 #+ATTR_CENTER:
 #+ATTR_HTML: :width 600px
 #+CAPTION: Life Expectancy Box Plot
-[[boxplot.png]]
+[[{{< cwd >}}boxplot.png]]
 
 From here we can glean
 - the folks that died early at late 30's, early 40's;
@@ -119,9 +119,9 @@ le_df = le_df.drop(columns=['Country','Status'])
 
 Note: We only need to view the lower / upper triangular section of the matrix due to the symmetry.
 #+ATTR_CENTER:
-#+ATTR_HTML: :width 800px
-#+CAPTION: Correlation Matrix
-[[heatmap.png]]
+#+ATTR_HTML: :width 600px
+#+CAPTION: Correlation Heatmap
+[[{{< cwd >}}heatmap.png]]
 
 Letting our libraries continue doing the heavy lifting for us:
 #+begin_src jupyter-python :session life
@@ -134,9 +134,9 @@ Letting our libraries continue doing the heavy lifting for us:
 [[file:./.ob-jupyter/c3130272e3c33f0879b8c2bfd8bb955d46495c06.png]]
 #+END_SRC
 #+ATTR_CENTER:
-#+ATTR_HTML: :width 800px
+#+ATTR_HTML: :width 600px
 #+CAPTION: Correlation Pairplot
-[[correlation-pairplot.png]]
+[[{{< cwd >}}correlation-pairplot.png]]
 
 From here we learn that Adult Mortality is very negatively correlated with Life Expectancy (which makes sense). Also the 3 most /positively/ correlated features with Life Expectancy are
 1. HIV/AIDS 0.753
@@ -213,8 +213,8 @@ And start training a Ridge regression with varying values of the hyperparameter 
 #+END_SRC
 #+ATTR_CENTER:
 #+ATTR_HTML: :width 400px
-#+CAPTION: Lambda against Coeff Plot (Ridge)
-[[lambda-coeff-ridge.png]]
+#+CAPTION: Ridge Regression Coefficients vs Lambda
+[[{{< cwd >}}lambda-coeff-ridge.png]]
 
 We then find the best Lambda:
 #+begin_src jupyter-python :session life
@@ -259,9 +259,9 @@ We then find the best Lambda:
 #+END_SRC
 
 #+ATTR_CENTER:
-#+ATTR_HTML: :width 800px
-#+CAPTION: Ridge optimal Lambda
-[[ridge-optimal.png]]
+#+ATTR_HTML: :width 600px
+#+CAPTION: Ridge Regression Optimal Lambda
+[[{{< cwd >}}ridge-optimal.png]]
 
 * Empiricism on Lambda (LASSO)
 We then repeat for our L1 regularisation model:
@@ -291,9 +291,9 @@ We then repeat for our L1 regularisation model:
 [[file:./.ob-jupyter/2930a91b19b99354bfa807b2906b45038ed643e9.png]]
 #+END_SRC
 #+ATTR_CENTER:
-#+ATTR_HTML: :width 800px
-#+CAPTION: Lambda against Coeff Plot (LASSO)
-[[lambda-coeff-lasso.png]]
+#+ATTR_HTML: :width 600px
+#+CAPTION: Lasso Regression Coefficients vs Lambda
+[[{{< cwd >}}lambda-coeff-lasso.png]]
 
 Thus we find the optimal lambda to be...
 
@@ -338,9 +338,9 @@ Thus we find the optimal lambda to be...
 :END:
 #+END_SRC
 #+ATTR_CENTER:
-#+ATTR_HTML: :width 800px
-#+CAPTION: Optimal Lambda (LASSO)
-[[optimal-lambda-lasso.png]]
+#+ATTR_HTML: :width 600px
+#+CAPTION: Lasso Regression Optimal Lambda
+[[{{< cwd >}}optimal-lambda-lasso.png]]
 
 * Results
 It seems that in both situations we have fucked up. The LASSO and Ridge hyperparameters are being found to be 0.

@@ -47,7 +47,7 @@ Assume the negation of the statement: \(\frac{1}{0}\) is defined, s.t. \(\frac{1
 
 #+BEGIN_CENTER
 #+ATTR_HTML: :width 400px :class lateximage
-[[q1.png]]
+[[{{< cwd >}}q1.png]]
 #+END_CENTER
 
 Now clearly the dotted line never touches the blue curve, and thus at no point does \(0 = \frac{1}{x} \implies \) that our initial assumption was /false/.
@@ -69,7 +69,7 @@ Furthermore, by the Pythagorean Theorem on the following figure, we have \(\text
 #+BEGIN_CENTER
 #+CAPTION: Labelled Right Angle Triangle
 #+ATTR_HTML: :width 300px :class lateximage
-[[q2.svg]]
+[[{{< cwd >}}q2.svg]]
 #+END_CENTER
 
 And thus \(\frac{\text{hypotenuse}^2}{\text{hypotenuse}^2} = 1\), which was that to be proved. \(\square\)
@@ -99,7 +99,7 @@ Tracing the most optimal path on the cube we have the red dotted line on the cub
 #+BEGIN_CENTER
 #+ATTR_HTML: :width 300px :class lateximage
 #+CAPTION: Path marked cube
-[[q4cube.svg]]
+[[{{< cwd >}}q4cube.svg]]
 #+END_CENTER
 
 
@@ -109,7 +109,7 @@ Which constructs 2 identical triangles which look like:
 #+BEGIN_CENTER
 #+ATTR_HTML: :width 150px :class lateximage
 #+CAPTION: Subtriangles
-[[q4tri.svg]]
+[[{{< cwd >}}q4tri.svg]]
 #+END_CENTER
 
 We can calculate their lengths with Pythagoras:
@@ -121,7 +121,7 @@ Hexagonal Packing.
 
 #+BEGIN_CENTER
 #+ATTR_HTML: :class lateximage :width 300px
-[[q5.svg]]
+[[{{< cwd >}}q5.svg]]
 #+END_CENTER
 
 We can split the rhombus into two equilateral triangles.
@@ -258,7 +258,7 @@ To sketch \(\frac{1}{(x-3)(x-4)}\) we can first sketch the quadratic on the deno
 #+BEGIN_CENTER
 #+CAPTION: Matplotlib subplots
 #+ATTR_HTML: :width 500px :class lateximage
-[[q13.png]]
+[[{{< cwd >}}q13.png]]
 #+END_CENTER
 
 ** Q14
@@ -390,7 +390,7 @@ We let \(a=4, b=6, c=7\) on the triangle:
 
 #+BEGIN_CENTER
 #+ATTR_HTML: :width 200px :class lateximage
-[[q16.svg]]
+[[{{< cwd >}}q16.svg]]
 #+END_CENTER
 
 And use Heron's formula:
@@ -409,7 +409,7 @@ I &= \int^1_{-1} \cos{2x} + x^2 + 2^x + \frac{2}{x} \mathrm{d}x\\
 
 #+BEGIN_CENTER
 #+ATTR_HTML: :width 1000px :class lateximage
-[[q18.svg]]
+[[{{< cwd >}}q18.svg]]
 #+END_CENTER
 
 ** Q19

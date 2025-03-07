@@ -5,7 +5,7 @@ clocal = "true"
 +++
 
 #+BEGIN_QUOTE
-“We all die. The goal isn't to live forever, the goal is to create something that will."
+"We all die. The goal isn't to live forever, the goal is to create something that will."
                                                                                         --- Chuck Palahniuk
 #+END_QUOTE
 
@@ -25,7 +25,7 @@ farm, many things are happening here.
 
 The breadth of scope does not imply you have entered a circus, but rather alludes to the nonlinearity of knowledge and its structure as a network[fn:2] [fn:3].
 
-[[roam-research.png]]
+[[{{< cwd >}}roam-research.png]]
 
 -----
 My last site was far simpler and served as basic I/O (input output) for myself and my students:

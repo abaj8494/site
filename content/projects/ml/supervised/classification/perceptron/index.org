@@ -22,7 +22,7 @@ We can see in the diagram below what Rosenblatt's theoretical perceptron looked 
 #+BEGIN_CENTER
 #+CAPTION: Neuron Activations
 #+ATTR_HTML: :width 600px :class lateximage
-[[perceptron.svg]]
+[[{{< cwd >}}perceptron.svg]]
 #+END_CENTER
 
 Basically, a number of neurons would connect into our neuron, and if the summationed value was greater than some threshold, that neuron in question would fire. Mathematically we can see that above with the equation \(w_1x_1 + w_2x_2 + ... + w_nx_n > w_0\). If this is true then the step-function returns 1, otherwise -1.
@@ -32,7 +32,7 @@ Here is a diagram showing how the synapses of one neuron connect to the dendrite
 #+BEGIN_CENTER
 #+CAPTION: Synapse Diagram
 #+ATTR_HTML: :width 600px :class lateximage
-[[synapse.jpg]]
+[[{{< cwd >}}synapse.jpg]]
 #+END_CENTER
 
 * The Algorithm
@@ -40,7 +40,7 @@ Here is a diagram showing how the synapses of one neuron connect to the dendrite
 #+BEGIN_CENTER
 #+CAPTION: Perceptron Learning Algorithm
 #+ATTR_HTML: :class lateximage :width 900px
-[[alg.svg]]
+[[{{< cwd >}}alg.svg]]
 #+END_CENTER
 
 ** Explanation
@@ -232,8 +232,9 @@ Now let us chalk up the plot and see if our algorithm's final weights produce th
 #+END_SRC
 
 #+BEGIN_CENTER
-#+ATTR_HTML: :width 600px :class lateximage
-[[euclid1.png]]
+#+CAPTION: Euclidean Distance
+#+ATTR_HTML: :class lateximage :width 500px
+[[{{< cwd >}}euclid1.png]]
 #+END_CENTER
 
 Interpretting this, we see that indeed if we were draw two slopes ourselves (upper and lower), and then slice that in half we would get exactly the decision boundary that the perceptron found.
@@ -391,10 +392,12 @@ Let us add another method to our existing =Perceptron= class by leveraging some 
 #+END_SRC
 
 #+BEGIN_CENTER
-#+ATTR_HTML: :class lateximage :width 490px
-[[eta10.png]]
-#+ATTR_HTML: :class lateximage :width 490px
-[[eta01.png]]
+#+CAPTION: \(\eta = 1.0\)
+#+ATTR_HTML: :class lateximage :width 500px
+[[{{< cwd >}}eta10.png]]
+#+CAPTION: \(\eta = 0.1\)
+#+ATTR_HTML: :class lateximage :width 500px
+[[{{< cwd >}}eta01.png]]
 #+END_CENTER
 
 Clearly we can see the difference between the different choices of hyperparameters for this algorithm: the initial weight vector, as well as the eta learning rate.
@@ -463,12 +466,9 @@ Let us put the nail in this page's coffin and do justice to the iterative nature
   X,y=generate_data(n=20,means=[[-1,-1],[1,2]],seed=204)
   train_perceptron_for_vis(X,y)
 #+END_SRC
-#+CAPTION: Credit: Omar Al Ghattas.
-
-
-#+BEGIN_CENTER
-#+ATTR_HTML: :class lateximage :width 750px
-[[iter.gif]]
+#+CAPTION: Perceptron Iterations
+#+ATTR_HTML: :class lateximage :width 500px
+[[{{< cwd >}}iter.gif]]
 #+END_CENTER
 
 
@@ -566,7 +566,7 @@ $converged \leftarrow \text{false}$\;
     \For{$i \leftarrow 1$ \KwTo $|D|$}{
         \If{$y_i (\vec{w} \cdot \vec{x_i}) \leq 0$ \tcp*[h]{i.e., $\hat{y}_i \neq y_i$}}{
             $\vec{w} \leftarrow \vec{w} + \eta y_i \vec{x_i}$\;
-            $converged \leftarrow \text{false}$ \tcp*[h]{We changed $\vec{w}$, so haven’t converged yet}\;
+            $converged \leftarrow \text{false}$ \tcp*[h]{We changed $\vec{w}$, so haven't converged yet}\;
         }
     }
 }
