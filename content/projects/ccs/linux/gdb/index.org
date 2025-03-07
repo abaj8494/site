@@ -1,0 +1,7 @@
++++
+title = "GNU Debugger"
+tags = ["debugging", "pointers", "stack", "heap", "frames", "registers"]
++++
+
+I often forget many of the commands that I fought hard to learn. Here are some exported notes from my (now-archaic) VimWiki:
+

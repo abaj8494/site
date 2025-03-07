@@ -23,50 +23,10 @@ You may also view the entire =tag= taxonomy [[/tags][here]].
 {{< collapse id="projects" folded="false" >}}
 
 
-
-** [[/projects/bday-problems][N-Bday Problems]]
-:PROPERTIES:
-:CUSTOM_ID: n-bday-problems
-:END:
-The compiled PDFs can be found in the above linked heading.
-
-The following links contain the source code and solution sets:
-- @@html:<input type="checkbox" checked class="archived"/>@@ [[{{< ref "/projects/bday-problems/21st" >}}][21st]] {{< tags-inline "projects/bday-problems/21st" >}}
-- @@html:<input type="checkbox" checked class="archived"/>@@ [[{{< ref "/projects/bday-problems/22nd" >}}][22nd]] {{< tags-inline "projects/bday-problems/22nd" >}}
-- @@html:<input type="checkbox" checked class="archived"/>@@ [[{{< ref "/projects/bday-problems/23rd" >}}][23rd]] {{< tags-inline "projects/bday-problems/23rd" >}}
-
-** Typesetting
-:PROPERTIES:
-:CUSTOM_ID: typesetting
-:END:
-- @@html:<input type="checkbox" checked class="archived"/>@@ [[/projects/typesetting/font2splines][Font2Splines]] {{< tags-inline "projects/typesetting/font2splines" >}}
-
-*** [[/projects/latex][LaTeX]]
-:PROPERTIES:
-:CUSTOM_ID: latex
-:END:
-- @@html:<input type="checkbox" checked class="archived"/>@@ [[{{< ref "/projects/latex/poems" >}}][Poems]] {{< tags-inline "projects/latex/poems" >}}
-- @@html:<input type="checkbox" checked class="archived"/>@@ [[{{< ref "/projects/latex/treatises" >}}][Treatises]] {{< tags-inline "projects/latex/treatises" >}}
-- @@html:<input type="checkbox" checked class="archived"/>@@ [[{{< ref "/projects/latex/pocket-rules" >}}][Pocket Frisbee Rules]] {{< tags-inline "projects/latex/pocket-rules" >}}
-- @@html:<input type="checkbox" checked class="archived"/>@@ [[{{< ref "/projects/latex/booklets" >}}][Junior High Math Booklets]] {{< tags-inline "projects/latex/booklets" >}}
-- @@html:<input type="checkbox" checked class="archived"/>@@ [[{{< ref "/projects/latex/misc" >}}][Miscellaneous Tasks!]] {{< tags-inline "projects/latex/misc" >}}
-
-** [[/projects/textbook-slns][Textbook Solutions]]
-:PROPERTIES:
-:CUSTOM_ID: textbook-slns
-:END:
-- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/textbook-slns/networked-life][Networked Life - Mung Chiang]] {{< tags-inline "projects/textbook-slns/networked-life" >}}
-- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/textbook-slns/homl][Hands on Machine Learning]] {{< tags-inline "projects/textbook-slns/homl" >}}
-- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/textbook-slns/m4ml][Mathematics for Machine Learning]] {{< tags-inline "projects/textbook-slns/m4ml" >}}
-
-    
-** [[/projects/moocs][MOOCs (Massive Open Online Courses)]]        :noexport:
-:PROPERTIES:
-:CUSTOM_ID: moocs-massive-open-online-courses
-:END:
-- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/moocs/cs229][CS229 Stanford]] {{< tags-inline "projects/moocs/cs229" >}}
-- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/moocs/cs230][CS230 Stanford]] {{< tags-inline "projects/moocs/cs230" >}}
-- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/moocs/stat110][STAT110 Harvard]] {{< tags-inline "projects/moocs/stat110" >}}
+** Quant                                                           :noexport:
+- Kafka, CS2511 recreate repo
+- black sholes pricer
+- c++ project?
 
 ** [[/projects/ccs][Classical Computer Science]]
 :PROPERTIES:
@@ -75,9 +35,18 @@ The following links contain the source code and solution sets:
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/memory][Memory]] {{< tags-inline "projects/ccs/memory" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/time-complexity][Time Complexity]] {{< tags-inline "projects/ccs/time-complexity" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/networking][Internet Networks]] {{< tags-inline "projects/ccs/networking" >}}
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/databases][Databases]] {{< tags-inline "projects/ccs/databases" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/linux][Linux]] {{< tags-inline "projects/ccs/linux" >}}
+  - @@html:<input type="checkbox" checked class="archived"/>@@ [[/projects/ccs/linux/vim][Vim]] {{< tags-inline "projects/ccs/linux/vim" >}}
+  - @@html:<input type="checkbox" checked class="archived"/>@@ [[/projects/ccs/linux/shell][Shell]] {{< tags-inline "projects/ccs/linux/shell" >}}
+  - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/linux/gdb][GDB]] {{< tags-inline "projects/ccs/linux/gdb" >}}
+  - @@html:<input type="checkbox" checked class="done"/>@@ [[/projects/ccs/linux/emacs][Emacs]] {{< tags-inline "projects/ccs/linux/emacs" >}}
+  - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/linux/regex][RegEx]] {{< tags-inline "projects/ccs/linux/regex" >}}
 
-*** Data Structures _&_ Algorithms
+
+
+
+*** Data Structures /&/ Algorithms
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/data-algs/adv-alg][Advanced Algorithms]] {{< tags-inline "projects/ccs/data-algs/adv-alg" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/data-algs/leetcode][Leetcode]] {{< tags-inline "projects/ccs/data-algs/leetcode" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/data-algs/sorting][Sorting]] {{< tags-inline "projects/ccs/data-algs/sorting" >}}
@@ -109,13 +78,13 @@ The following links contain the source code and solution sets:
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/csp/lan-messenger][LAN Messenger]] {{< tags-inline "projects/csp/lan-messenger" >}}
 - @@html:<input type="checkbox" checked class="done"/>@@ [[/projects/csp/bookbot][Bookbot]] {{< tags-inline "projects/csp/bookbot" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/csp/banagrams-solver][Banagrams Solver]] {{< tags-inline "projects/csp/banagrams" >}}
-- @@html:<input type="checkbox" checked class="archived"/>@@ [[/projects/csp/peg-solitaire][Peg Solitaire]] {{< tags-inline "projects/csp/peg-solitaire" >}}
+- @@html:<input type="checkbox" checked class="refactor"/>@@ [[/projects/csp/peg-solitaire][Peg Solitaire]] {{< tags-inline "projects/csp/peg-solitaire" >}}
 
 *** Raspberry Pi
 
 For the longest time I kept these projects private, but now after a half decade I have settled on these 2 stable configurations
-- @@html:<input type="checkbox" checked class="archived"/>@@ [[/projects/csp/rpi/kiyomi][RPI3]] {{< tags-inline "projects/csp/rpi/kiyomi" >}}
-- @@html:<input type="checkbox" checked class="archived"/>@@ [[/projects/csp/rpi/rpi][RPI4]] {{< tags-inline "projects/csp/rpi/rpi" >}}
+- @@html:<input type="checkbox" class="editing"/>@@ [[/projects/csp/rpi/kiyomi][RPI3]] {{< tags-inline "projects/csp/rpi/kiyomi" >}}
+- @@html:<input type="checkbox" class="editing"/>@@ [[/projects/csp/rpi/rpi][RPI4]] {{< tags-inline "projects/csp/rpi/rpi" >}}
 
 ** [[/projects/ai][Artificial Intelligence]]
 :PROPERTIES:
@@ -266,3 +235,47 @@ These methods can be adapted for _regression_, but they are more well suited to 
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/mathematics/probability][Probability]] {{< tags-inline "projects/mathematics/probability" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/mathematics/analysis/real][Real Analysis]] {{< tags-inline "projects/mathematics/analysis/real" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/mathematics/analysis/complex][Complex Analysis]] {{< tags-inline "projects/mathematics/analysis/complex" >}}
+
+** [[/projects/bday-problems][N-Bday Problems]]
+:PROPERTIES:
+:CUSTOM_ID: n-bday-problems
+:END:
+The compiled PDFs can be found in the above linked heading.
+
+The following links contain the source code and solution sets:
+- @@html:<input type="checkbox" checked class="archived"/>@@ [[{{< ref "/projects/bday-problems/21st" >}}][21st]] {{< tags-inline "projects/bday-problems/21st" >}}
+- @@html:<input type="checkbox" checked class="archived"/>@@ [[{{< ref "/projects/bday-problems/22nd" >}}][22nd]] {{< tags-inline "projects/bday-problems/22nd" >}}
+- @@html:<input type="checkbox" checked class="archived"/>@@ [[{{< ref "/projects/bday-problems/23rd" >}}][23rd]] {{< tags-inline "projects/bday-problems/23rd" >}}
+
+** Typesetting
+:PROPERTIES:
+:CUSTOM_ID: typesetting
+:END:
+- @@html:<input type="checkbox" checked class="archived"/>@@ [[/projects/typesetting/font2splines][Font2Splines]] {{< tags-inline "projects/typesetting/font2splines" >}}
+
+*** [[/projects/latex][LaTeX]]
+:PROPERTIES:
+:CUSTOM_ID: latex
+:END:
+- @@html:<input type="checkbox" checked class="archived"/>@@ [[{{< ref "/projects/latex/poems" >}}][Poems]] {{< tags-inline "projects/latex/poems" >}}
+- @@html:<input type="checkbox" checked class="archived"/>@@ [[{{< ref "/projects/latex/treatises" >}}][Treatises]] {{< tags-inline "projects/latex/treatises" >}}
+- @@html:<input type="checkbox" checked class="archived"/>@@ [[{{< ref "/projects/latex/pocket-rules" >}}][Pocket Frisbee Rules]] {{< tags-inline "projects/latex/pocket-rules" >}}
+- @@html:<input type="checkbox" checked class="archived"/>@@ [[{{< ref "/projects/latex/booklets" >}}][Junior High Math Booklets]] {{< tags-inline "projects/latex/booklets" >}}
+- @@html:<input type="checkbox" checked class="archived"/>@@ [[{{< ref "/projects/latex/misc" >}}][Miscellaneous Tasks!]] {{< tags-inline "projects/latex/misc" >}}
+
+** [[/projects/textbook-slns][Textbook Solutions]]
+:PROPERTIES:
+:CUSTOM_ID: textbook-slns
+:END:
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/textbook-slns/networked-life][Networked Life - Mung Chiang]] {{< tags-inline "projects/textbook-slns/networked-life" >}}
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/textbook-slns/homl][Hands on Machine Learning]] {{< tags-inline "projects/textbook-slns/homl" >}}
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/textbook-slns/m4ml][Mathematics for Machine Learning]] {{< tags-inline "projects/textbook-slns/m4ml" >}}
+
+    
+** [[/projects/moocs][MOOCs (Massive Open Online Courses)]]        :noexport:
+:PROPERTIES:
+:CUSTOM_ID: moocs-massive-open-online-courses
+:END:
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/moocs/cs229][CS229 Stanford]] {{< tags-inline "projects/moocs/cs229" >}}
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/moocs/cs230][CS230 Stanford]] {{< tags-inline "projects/moocs/cs230" >}}
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/moocs/stat110][STAT110 Harvard]] {{< tags-inline "projects/moocs/stat110" >}}

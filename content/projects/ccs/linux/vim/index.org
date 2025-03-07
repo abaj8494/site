@@ -1,0 +1,90 @@
++++
+title = "Vi Improved, a.k.a Vim"
+tags = ["hjkl", "vimscript", "lua", "speed"]
+toc = "true"
++++
+
+#+BEGIN_QUOTE
+To manipulate code at the speed of thought.
+#+END_QUOTE
+
+It is the same reason that we learn to touch-type --- to write at the speed of thought.
+
+- =gg=: go to the top of the file
+- =G=: go to the bottom of the file
+- =b=: go back a word
+- =f=: go forward a word
+- =$=: teleport to the start of the line, =0=: teleport to the end.
+- replace everything within 2 parenthesis? no worries, it's natural: @@html:<font color="DodgerBlue"><b>c</b>hange <b>i</b>n <b>(</b></font>@@ = "change in brackets" -- duh!
+
+Beyond being able to manipulate code on /your own/ computer very quickly, the benefit of learning Vim is that you can manipulate code on /any machine/ really quickly.
+
+Vim is available everywhere, and if it isn't where you are, then Vi certainly is.
+
+#+BEGIN_CENTER
+#+CAPTION: Vi Improved
+#+ATTR_HTML: :width 300px :class lateximage
+[[{{< cwd >}}vim.svg]]
+#+END_CENTER
+
+
+* My Experience
+
+I have been using Vim for approximately 5 years now, I cannot remember why I started, but perhaps it just seemed obviously better to me. In my youth I was certainly a fan of memorising shortcuts to navigate the PC faster.
+
+These days I use Vim the same way I use my bicycle, when I need it I use it! Simple enough right? But I can do more because I have a bicycle and I know how to use it. I _do_ use Emacs more often, but that is because I need a little more firepower these days.
+
+* Vimtutor
+
+Anyways, all you really need to get started is to type in =vimtutor= on the terminal, and with that you can produce a site as simple, yet effective as my friends': [[https://frizzande.io][Andrew Laurence Wood]].
+
+One thing to learn immediately is that typing =ESC= followed by =ZQ= will get you out of the editor. Then you should understand that you are working in a /Modal Editor/, one with 4 different modes:
+
+#+BEGIN_CENTER
+#+CAPTION: Modal Editor
+#+ATTR_HTML: :width 400px :class lateximage
+[[{{< cwd >}}automaton.svg]]
+#+END_CENTER
+
+
+* Portability
+
+This really is the main reason you should be using Vim in today's world. SSH'ing anywhere and not knowing how to manipulate text quickly is a problem. Vim is supported by [[https://overleaf.com][Overleaf]], [[https://code.visualstudio.com/][VSCode]] and basically every other IDE will offer it as an extension.
+
+* Mastering Vim
+
+This takes a long time, even I currently am not there, but I certainly know enough to be useful - that's the magic of Vim.
+
+These days, NeoVim exists, which improves Vim further by treating Lua as a first-class plugin language. NeoVim allows LSP integration and asynchronous executions which not only makes it /as/ fast as Vim, but in real codebases, makes it /even faster/.
+
+* Evolution
+
+Briefly it is worth understanding the evolution of these 3 editors:
+
+The original vi editor was created in the late 1970s as a visual mode for the =ex= line editor on UNIX. Later in 1991, Vim (“Vi IMproved”) was released by Bram Moolenaar as an extended clone of vi, adding features vi lacked, namely multi-level undo,​ no help menus, no syntax highlighting, no window management, no code completion, and not even a =visual= mode. Then 23 years later comes Neovim. A fork of Vim begun in 2014 to modernize the codebase for better extensibility and to add new capabilities​ such as ​asynchronous job control and IDE-like enhancements such as built-in LSP support.
+
+By way of peformance comparisons, all three are lightweight and very fast. vi has the smallest footprint and runs the fastes, followed probably by NeoVim, and then lastly Vim.
+
+Plugin-wise, Vim offers hundreds of plugins due to the 23 years that elapsed between its conception and NeoVim's existence. Vim's plugins rely on Vimscript which is reasonably archaic and slow. Whilst Neovim /is/ backwards compatible (yay!) with Vim plugins, most are rewritten in the embedded language of Lua which is treated as a first-class plugin language in our newest and most hipster Vi, NeoVim :^].
+
+#+BEGIN_CENTER
+#+HTML: <div style="display: flex; align-items: center; justify-content: center; gap: 20px;">
+#+HTML:   <div style="text-align: center; display: flex; flex-direction: column; align-items: center;">
+#+CAPTION: Vi
+#+ATTR_HTML: :width 250px :class lateximage
+[[{{< cwd >}}vi.svg]]
+#+HTML:   </div>
+#+HTML:   <div style="font-size: 2em; display: flex; align-items: center;">→</div>
+#+HTML:   <div style="text-align: center; display: flex; flex-direction: column; align-items: center;">
+#+CAPTION: ViM
+#+ATTR_HTML: :width 250px :class lateximage
+[[{{< cwd >}}vim.svg]]
+#+HTML:   </div>
+#+HTML:   <div style="font-size: 2em; display: flex; align-items: center;">→</div>
+#+HTML:   <div style="text-align: center; display: flex; flex-direction: column; align-items: center;">
+#+CAPTION: Neovim
+#+ATTR_HTML: :width 230px :class lateximage
+[[{{< cwd >}}neovim.svg]]
+#+HTML:   </div>
+#+HTML: </div>
+#+END_CENTER

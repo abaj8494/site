@@ -1,0 +1,13 @@
++++
+title = "Emacs"
+tags = ["lisp", "unix", "gnu"]
++++
+
+This is my favourite text editor. It was created _by_ programmers, /for/ programmers.
+
+This entire site that you are visiting has been created within Emacs. On top of that, it is really not far from Vanilla Emacs, that is how powerful this system is.
+
+[[{{< cwd >}}window.png]]
+
+I have not even been using Emacs for a year yet, I began in November of 2024. As such I hardly feel the right to comment further on this framework, but I do know it shall be one of my homes til the day I die.
+

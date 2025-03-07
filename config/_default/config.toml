@@ -123,7 +123,7 @@ ignoreFiles = ["/code/bookshelf/doc/fontsel/.*"]
     iconSuite = "tabler-icon"
     iconName = "mail"
     formatString = "mailto:?subject={title}&body={url}"
-  
+
 [menu]
   [[menu.main]]
     identifier = "projects"

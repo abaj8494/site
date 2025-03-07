@@ -1,0 +1,224 @@
++++
+title = "Shell/s"
+tags = ["bash", "sh", "fish", "zsh", "eshell"]
+math = "true"
+author = "chatgpt (o1)"
+date = "2025-03-07"
++++
+
+#+begin_export html
+<aside class="custom-toc">
+<nav>
+<p class="sidebar__heading">Table Of Contents</p>
+#+end_export
+
+#+toc: headlines 2
+
+#+begin_export html
+</nav></aside>
+#+end_export
+
+There are many shells, all of them do the same thing --- they allow you to manipulate your filesystem.
+
+I have experience with all of the major shells excluding Powershell[fn:1]. ChatGPT has written this thousand word explainer, and I have made the @@html:<font color="orange">people orange</font>@@, the @@html:<font color="violet">places purple</font>@@ and the @@html:<font color="DodgerBlue">softwares blue</font>@@ :).
+
+** [[https://en.wikipedia.org/wiki/Bourne_shell][The Bourne shell (sh)]]
+*** Origins
+The @@html:<font color="orange">Stephen Bourne</font>@@ Shell first appeared in Version 7 [[https://en.wikipedia.org/wiki/Unix][Unix]] (1979) at @@html:<font color="Violet">Bell Labs</font>@@. It replaced the earlier Thompson shell and became the standard shell for Unix systems in the late 1970s and 1980s. Its design introduced structured programming features (variables, control flow) to improve on the limitations of older shells.
+
+*** Uses
+By default, =/bin/sh= was the login shell on historical Unix systems. Today, “sh” usually refers to a [[https://en.wikipedia.org/wiki/POSIX][POSIX]]-compliant shell, widely used for portability. For instance, many distributions link =/bin/sh= to [[https://en.wikipedia.org/wiki/Dash_(shell)][dash]]. @@html:<font color="DodgerBlue">The Bourne shell (sh)</font>@@ remains crucial for init scripts, install scripts, and other tasks demanding universal compatibility.
+
+*** Advantages
+- *Universal Compatibility:* A POSIX =sh= script runs on nearly any @@html:<font color="DodgerBlue">Unix</font>@@-like system.
+- *Minimal Resource Usage:* Implementations like @@html:<font color="DodgerBlue">dash</font>@@ are lightweight and start quickly.
+- *Simplicity:* Fewer constructs facilitate easier auditing.
+- *Foundation for Other Shells:* Mastery of @@html:<font color="DodgerBlue">The Bourne shell</font>@@ syntax translates to Bash, Zsh, etc.
+
+*** Disadvantages
+- *Limited Interactivity:* Traditional =sh= lacks history or tab completion.
+- *Few Advanced Features:* No arrays or rich expansions.
+- *Implementation Variance:* =/bin/sh= might be different shells on different systems.
+- *Small Ecosystem:* Relies on external tools for most functionality.
+
+*** Capabilities
+=sh= handles basic control flow (loops, if statements), pipes, redirection, variables, and command substitution. Scripts often leverage other Unix utilities for string manipulation and arithmetic.
+
+#+BEGIN_SRC sh
+#!/bin/sh
+echo "Script name: $0"
+for arg in "$@"; do
+    echo "Arg: $arg"
+done
+#+END_SRC
+
+*** Limitations
+- No array type.
+- Minimal expansions; integer math often requires external tools (=expr=).
+- Weak error handling.
+- Poor for interactive use (no line editing by default).
+
+** [[https://en.wikipedia.org/wiki/Bash_(Unix_shell)][Bash (Bourne Again Shell)]]
+*** Origins
+@@html:<font color="orange">Brian Fox</font>@@ created @@html:<font color="DodgerBlue">Bash</font>@@ in 1989 for the [[https://www.gnu.org/][GNU Project]], later maintained by @@html:<font color="orange">Chet Ramey</font>@@. It was designed to be a free replacement for @@html:<font color="DodgerBlue">The Bourne shell</font>@@ with features from [[https://en.wikipedia.org/wiki/C_shell][C shell]] and [[https://en.wikipedia.org/wiki/KornShell][KornShell]]. It’s the default interactive shell on many [[https://en.wikipedia.org/wiki/Linux][Linux]] distros and was the default on [[https://en.wikipedia.org/wiki/MacOS][macOS]] until recent updates.
+
+*** Uses
+Used both interactively and for scripting, @@html:<font color="DodgerBlue">Bash</font>@@ is ubiquitous in the Linux/Unix world. System boot scripts and user dotfiles (=~/.bashrc=) rely on it. It’s also the standard shell in many Docker images and widely adopted for CI/CD pipelines.
+
+*** Advantages
+- *Widespread Availability:* Preinstalled on most @@html:<font color="DodgerBlue">Linux</font>@@ systems.
+- *Feature-Rich Scripting:* Arrays (indexed/associative), brace expansion, enhanced parameter substitution.
+- *Interactive Tools:* Command history, line editing, programmable tab completion.
+- *POSIX Compatibility (with Extensions):* Smoothly runs many =sh= scripts.
+
+*** Disadvantages
+- *Configuration Required:* By default lacks modern niceties like autosuggestions or highlighting.
+- *Inherited Syntax Quirks:* Complex expansions, quoting, and subtle pitfalls.
+- *Performance in Large Scripts:* Spawning subshells for pipelines can slow complex tasks.
+- *Version Discrepancies:* Some systems ship older releases (e.g., macOS 3.2 vs. 5.x on Linux).
+
+*** Capabilities
+@@html:<font color="DodgerBlue">Bash</font>@@ extends =sh= with features like arrays, =[[...]]= tests, arithmetic expansion, and process substitution. Ideal for moderate automation and daily command-line use.
+
+#+BEGIN_SRC sh
+#!/usr/bin/env bash
+fruits=(apple banana cherry)
+for fruit in "${fruits[@]}"; do
+    echo "$fruit"
+done
+#+END_SRC
+
+*** Limitations
+- Depends on presence of @@html:<font color="DodgerBlue">Bash</font>@@ (not always default on minimal systems).
+- Script portability can break if you rely on non-POSIX features.
+- No built-in floating-point or complex data structures.
+- Error handling limited to exit codes and traps.
+
+** [[https://en.wikipedia.org/wiki/Z_shell][Z shell (Zsh)]]
+*** Origins
+@@html:<font color="orange">Paul Falstad</font>@@ developed @@html:<font color="DodgerBlue">Zsh</font>@@ around 1990, naming it after a Yale professor’s login ID. @@html:<font color="DodgerBlue">Zsh</font>@@ merged ideas from @@html:<font color="DodgerBlue">KornShell</font>@@, @@html:<font color="DodgerBlue">C shell</font>@@, and =sh=, eventually evolving into a highly customizable, feature-rich shell. @@html:<font color="DodgerBlue">Zsh</font>@@ became the default on @@html:<font color="DodgerBlue">macOS</font>@@ starting with Catalina and is also default on [[https://www.kali.org/][Kali Linux]].
+
+*** Uses
+@@html:<font color="DodgerBlue">Zsh</font>@@ is praised for interactive use, with many frameworks like [[https://ohmyz.sh/][Oh My Zsh]] and [[https://github.com/sorin-ionescu/prezto][Prezto]]. It also can handle scripting, largely compatible with @@html:<font color="DodgerBlue">Bash</font>@@. Developers often choose @@html:<font color="DodgerBlue">Zsh</font>@@ for advanced tab completion, theming, and plugin ecosystems.
+
+*** Advantages
+- *Feature Superset:* Extended globbing, floating-point math, advanced array handling.
+- *Programmable Completions:* Completion system can correct spelling and handle command-specific completions.
+- *Customization & Theming:* Powerful prompt expansions and community plugins via frameworks.
+- *Good Bash Compatibility:* Many @@html:<font color="DodgerBlue">Bash</font>@@ scripts work unmodified under @@html:<font color="DodgerBlue">Zsh</font>@@.
+
+*** Disadvantages
+- *Complex Setup:* Defaults are plain; advanced features typically need user configuration or plugins.
+- *Minor Bash Differences:* Some corner cases or built-ins differ slightly from @@html:<font color="DodgerBlue">Bash</font>@@.
+- *Availability:* Not always installed on minimal systems.
+- *Potential Overhead:* Numerous features, plus plugins, can slow startup relative to simpler shells.
+
+*** Capabilities
+@@html:<font color="DodgerBlue">Zsh</font>@@ supports advanced glob qualifiers, theming, spelling corrections, and can emulate POSIX or =sh= if desired. Scripting can employ extended features or remain portable.
+
+#+BEGIN_SRC sh
+# Inside ~/.zshrc:
+autoload -U compinit && compinit
+PROMPT='%n@%m:%~%# '
+setopt autocd
+#+END_SRC
+
+*** Limitations
+- Requires manual enabling of extras like syntax highlighting, autosuggestions.
+- Large configuration surface (zshrc, plugins, etc.).
+- Slight performance overhead vs. minimal shells.
+- Not universal on all systems.
+
+** [[https://en.wikipedia.org/wiki/Fish_(Unix_shell)][Fish (Friendly Interactive Shell)]]
+*** Origins
+@@html:<font color="orange">Axel Liljencrantz</font>@@ first released @@html:<font color="DodgerBlue">Fish</font>@@ in 2005, aiming for a modern, user-friendly shell free from historical POSIX constraints. @@html:<font color="DodgerBlue">Fish</font>@@ is open-source (GPL) and developed by a dedicated community, embracing simplicity and discoverability over strict backward compatibility.
+
+*** Uses
+@@html:<font color="DodgerBlue">Fish</font>@@ is mainly an interactive shell that provides autosuggestions, syntax highlighting, and convenient defaults. It’s not intended for system scripting but can be used if all target environments have @@html:<font color="DodgerBlue">Fish</font>@@ installed. Developers enjoy its user-centric features for daily command-line tasks.
+
+*** Advantages
+- *User-Friendly Defaults:* Syntax highlighting and inline autosuggestions out of the box.
+- *Consistent Syntax:* Avoids many @@html:<font color="DodgerBlue">Bash</font>@@ quirks (e.g., no tricky variable or function definitions).
+- *Rich Tab Completion:* Parses man pages for context-aware completions with descriptions.
+- *Modern Interaction:* Web-based configuration, universal variables, and real-time error checking.
+
+*** Disadvantages
+- *Non-POSIX:* Scripts are @@html:<font color="DodgerBlue">Fish</font>@@-specific; cannot run standard =sh= or @@html:<font color="DodgerBlue">Bash</font>@@ scripts verbatim.
+- *Smaller Ecosystem:* Fewer community frameworks than @@html:<font color="DodgerBlue">Zsh</font>@@ or @@html:<font color="DodgerBlue">Bash</font>@@.
+- *Requires Installation:* Rarely preinstalled; must be installed manually.
+- *Different Scripting Style:* Seasoned shell users must relearn certain syntax.
+
+*** Capabilities
+@@html:<font color="DodgerBlue">Fish</font>@@ excels interactively, providing colored prompts, advanced tab completion, and no subshell forks in pipelines. Configuration typically resides in =~/.config/fish/config.fish=. Its scripting uses straightforward commands: =set= for variables, =function ... end= for functions.
+
+#+BEGIN_SRC sh
+# Fish example:
+set greeting "Hello from Fish!"
+echo $greeting
+function say_hi
+  echo "This is a fish function"
+end
+say_hi
+#+END_SRC
+
+*** Limitations
+- No POSIX compatibility mode.
+- Missing certain shell features (like traps or $LINENO).
+- Possibly slower startup due to extensive completion logic.
+- Not a default on most systems.
+
+** [[https://www.gnu.org/software/emacs/manual/html_node/eshell/][Eshell (Emacs Shell)]]
+*** Origins
+@@html:<font color="orange">John Wiegley</font>@@ created @@html:<font color="DodgerBlue">Eshell</font>@@ in the late 1990s. Entirely written in [[https://en.wikipedia.org/wiki/Emacs_Lisp][Emacs Lisp]], it’s bundled with [[https://www.gnu.org/software/emacs/][GNU Emacs]]. @@html:<font color="DodgerBlue">Eshell</font>@@ aims to provide a shell-like environment within Emacs, working consistently across [[https://en.wikipedia.org/wiki/Windows][Windows]], @@html:<font color="DodgerBlue">macOS</font>@@, and @@html:<font color="DodgerBlue">Linux</font>@@.
+
+*** Uses
+@@html:<font color="DodgerBlue">Eshell</font>@@ is used from inside @@html:<font color="DodgerBlue">Emacs</font>@@, letting developers run commands, manipulate files, and even work with remote directories via [[https://www.gnu.org/software/emacs/manual/html_node/tramp/][Tramp]]. It’s purely an interactive tool rather than a standalone system shell; you cannot =ssh= directly into @@html:<font color="DodgerBlue">Eshell</font>@@.
+
+*** Advantages
+- *Deep Emacs Integration:* Can call Emacs functions inline, like =(message \"Hello\")= or =(find-file)=.
+- *Cross-Platform Consistency:* Implements many Unix utilities in Lisp, bridging gaps on systems lacking them.
+- *Extensibility:* Functions can be overridden or defined in Emacs Lisp.
+- *Multiple Sessions:* Each =Eshell= buffer is independent, and you can easily create more.
+
+*** Disadvantages
+- *Emacs Dependent:* Useless outside @@html:<font color="DodgerBlue">GNU Emacs</font>@@, can’t serve as =/bin/sh=.
+- *Performance Constraints:* Large outputs or directories may slow the editor.
+- *Not Fully POSIX-Compliant:* Some expansions or advanced shell features differ from standard shells.
+- *Terminal Emulation Limits:* Curses-like apps often need a separate =ansi-term= buffer.
+
+*** Capabilities
+@@html:<font color="DodgerBlue">Eshell</font>@@ runs external commands or built-in Lisp versions of commands like =ls=, =grep=, etc. It supports pipes, redirection, and mixing Emacs Lisp expressions inline. Output appears in an Emacs buffer, making it straightforward to copy, edit, or search results. Remote directories work seamlessly with =Tramp=.
+
+#+BEGIN_SRC sh
+;; Example Eshell usage:
+echo "Home: $HOME"
+(message "Hello from Emacs Lisp!")
+find-file ~/notes.org
+#+END_SRC
+
+*** Limitations
+- Not suitable for typical system scripting or login shells.
+- No standard job control (Ctrl-Z, fg/bg) akin to normal terminals.
+- Different syntax in places (partially Lisp-based).
+- Entirely reliant on Emacs being open.
+
+
+* Conclusion
+
+Finally, I would like to add that each instance of the =shell= is atomic (regardless of which particular flavour you choose).
+
+As such, if you are not using a terminal multiplexer such as [[https://github.com/tmux/tmux/wiki][tmux]], then you are an idiot.
+
+Here is a preview of what my \(0^\text{th}\) session windows looked like back in 2022:
+
+#+BEGIN_CENTER
+#+CAPTION: config is on [[https://github.com/abaj8494/dotfiles/blob/abel/tmux/tmux.conf][github]]
+#+ATTR_HTML: :width 700px :class lateximage
+[[{{< cwd >}}tmux.png]]
+#+END_CENTER
+
+
+
+* Footnotes
+
+[fn:1] as of 07/03/25

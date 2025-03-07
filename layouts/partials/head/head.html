@@ -8,10 +8,10 @@
     {{ partial "mathjax.html" . }}
   {{ end }}
   {{ if or .Params.math .Site.Params.math }}
-  {{ partial "math.html" . }}
+    {{ partial "math.html" . }}
   {{ end }}
   {{ if or .Params.chem .Site.Params.chem }}
-  {{ partial "chem.html" . }}
+    {{ partial "chem.html" . }}
   {{ end }}
   <!-- Extensibility -->
   {{ partial "head/head_start.html" . }}

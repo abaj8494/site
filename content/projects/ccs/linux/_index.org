@@ -1,0 +1,7 @@
++++
+title = "Linux"
+categories = ["notes"]
+tags = ["OS", "monolithic", "structure", "kernel", "linus torvalds", "cache", "paging"]
++++
+
+Pagetables, TLB, Cache.

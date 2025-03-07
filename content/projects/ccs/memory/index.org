@@ -2,3 +2,30 @@
 title = "Memory"
 tags = ["notes", "stack-pointer", "registers", "cache", "L1", "L2", "stack", "heap"]
 +++
+
+
+@@latex:\lettrine[lines=1]{T}{this}@@
+
+hello
+
+@@latex:hi mate@@
+
+@@latex:$\Omega@@
+
+end
+
+#+BEGIN_EXPORT html
+hello
+
+#+END_EXPORT
+
+#+begin_latex
+\textit{some italics}
+#+END_latex
+
+#+begin_src latex :exports none :results html
+\textit{hello test}
+#+END_src
+
+
+end agani

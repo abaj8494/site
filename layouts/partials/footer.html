@@ -24,6 +24,8 @@
 <script src="{{ $bundle.RelPermalink }}" {{ if hugo.IsProduction }}integrity="{{ $bundle.Data.Integrity }}"{{ end }}></script>
 <script src="{{ $flexsearch.RelPermalink }}" {{ if hugo.IsProduction }}integrity="{{ $flexsearch.Data.Integrity }}"{{ end }}></script>
 {{/* prettier-ignore-end */}}
+{{ partial "popup-scripts.html" . }}
+
 
 <!-- Extensibility -->
 {{ partial "footer_end.html" . }}

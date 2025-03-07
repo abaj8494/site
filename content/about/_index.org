@@ -42,10 +42,13 @@ My operating system was [[https://manjaro.org/][Manjaro]], and I interfaced with
 [[manjaro.svg]]
 #+END_CENTER
 
-The icon for the site is the real component contour plot of the 4D complex exponential function. A slightly higher fidelity figure can be seen below and Wolfram's article on the function from where I have taken this figure can be found [[https://functions.wolfram.com/ElementaryFunctions/Exp/visualizations/5/][here]]. 
+The icon for this site is the absolute value contour plot of the 4D complex logarithm function from -4 to 4. [[abaj.cloud][BajBot]] and [[abaj.games][AJcade]] have the real and imaginary contour plots as their icons.
+
+The original inspiration plots by WolframAlpha can be found [[https://mathworld.wolfram.com/Logarithm.html][here]].
+
 #+BEGIN_CENTER
 #+ATTR_HTML: :width 400px :class lateximage
-#+CAPTION: 4D Complex Exponential Function
+#+CAPTION: \(\|ln(x+iy\|\)
 [[/abs_hsv.svg]]
 #+END_CENTER
 
