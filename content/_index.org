@@ -31,7 +31,7 @@ The breadth of scope does not imply you have entered a circus, but rather allude
 My last site was far simpler and served as basic I/O (input output) for myself and my students:
 
 #+BEGIN_CENTER
-[[abajio.png]]
+[[{{< cwd >}}abajio.png]]
 #+END_CENTER
 The content of this current site is more rigorous and deliberate.
 

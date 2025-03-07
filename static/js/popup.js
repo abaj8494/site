@@ -38,6 +38,7 @@ window.Popups = {
     popup: null,
     offsetX: 0,
     offsetY: 0,
+    lastMoveTime: null,
   },
 
   // Initialize the popup system
@@ -51,6 +52,7 @@ window.Popups = {
       popup: null,
       offsetX: 0,
       offsetY: 0,
+      lastMoveTime: null,
     };
 
     // Initialize hover tracking
@@ -350,65 +352,60 @@ window.Popups = {
 
   // Create a popup for a link
   spawnPopupForLink(link, event, pinned = false) {
-    // If we're already at max popups, remove the oldest one
-    if (this.popupContainer.children.length >= this.config.maxPopups) {
-      const oldestPopup = this.popupContainer.firstChild;
-      if (oldestPopup) {
-        this.despawnPopup(oldestPopup);
-      }
+    // Check if we have too many popups already
+    if (this.popupRegistry.size >= this.config.maxPopups) {
+      this.closeAllNonPinnedPopups();
     }
 
-    // Create popup element
+    // Create the popup element
     const popup = document.createElement("DIV");
-    popup.className = "popup loading";
-    const popupId = ++this.popupCounter;
-    popup.dataset.popupId = popupId;
-    popup.dataset.linkHref = link.href;
-    popup.dataset.sourceUrl = link.href;
-
-    // Store the link-popup relationship for tracking
-    this.popupRegistry.set(popupId, { popup, sourceLink: link });
-
-    // Update hover state
-    this.hoverState.currentPopup = popup;
-
-    if (pinned) {
-      popup.classList.add("pinned");
-    }
-
-    // Position popup directly at the link location
-    const linkRect = link.getBoundingClientRect();
-
-    // Position exactly at the link location
-    const initialX = linkRect.left;
-    const initialY = window.scrollY + linkRect.top;
-
-    popup.style.left = `${initialX}px`;
-    popup.style.top = `${initialY}px`;
-
-    // Set minimum dimensions but allow content to determine actual size
-    popup.style.minWidth = `${this.config.minWidth}px`;
-    popup.style.minHeight = `${this.config.minHeight}px`;
-    popup.style.width = "auto";
-    popup.style.maxWidth = "none"; // Allow natural width initially
-
-    // Set initial opacity to 0
+    popup.className = "popup";
+    popup.setAttribute("role", "dialog");
+    popup.setAttribute("aria-modal", "false");
     popup.style.opacity = "0";
 
-    // Create the popup structure (title bar, scroll view, content view)
-    this.createPopupStructure(popup, link);
+    // Set initial dimensions
+    popup.style.width = `${this.config.minWidth}px`;
+    popup.style.height = `${this.config.minHeight + 50}px`; // Start with reasonable height
 
-    // Add to container
+    // Generate a unique ID for this popup
+    const popupId = `popup-${++this.popupCounter}`;
+    popup.id = popupId;
+
+    // Add popup to container
     this.popupContainer.appendChild(popup);
 
-    // Fade in
-    setTimeout(() => {
-      popup.style.opacity = "1";
-    }, 50);
+    // Set data attributes
+    popup.setAttribute("data-link-href", link.href);
+    popup.setAttribute("data-spawned-at", Date.now());
+    if (pinned) {
+      popup.setAttribute("data-pinned", "true");
+    }
+
+    // Create popup structure
+    this.createPopupStructure(popup, link);
+
+    // Position popup near mouse or link
+    this.positionPopup(popup, event, link);
 
     // Load content
     this.loadPopupContent(popup, link);
 
+    // Register popup
+    this.popupRegistry.set(popupId, popup);
+
+    // Bring to front
+    this.bringToFront(popup);
+
+    // Fade in
+    setTimeout(() => {
+      popup.style.opacity = "1";
+    }, 10);
+
+    // Add resize capability
+    this.addResizeCapability(popup);
+
+    // Return the created popup
     return popup;
   },
 
@@ -428,6 +425,8 @@ window.Popups = {
     enlargeButton.title = "Open link in current tab";
     enlargeButton.innerHTML =
       '<img src="/icons/maximize-icon.svg" class="popup-icon-svg" alt="Enlarge">';
+
+    // Improve event handling with both click and mousedown listeners
     enlargeButton.addEventListener("click", (e) => {
       e.preventDefault();
       e.stopPropagation();
@@ -436,7 +435,37 @@ window.Popups = {
       window.location.href = link.href;
       console.log("Link opened in current tab");
     });
+
+    // Add mousedown handler as a fallback for desktop browsers
+    enlargeButton.addEventListener("mousedown", (e) => {
+      // Only handle left mouse button
+      if (e.button !== 0) return;
+      e.preventDefault();
+      e.stopPropagation();
+    });
+
     titleBar.appendChild(enlargeButton);
+
+    // Add custom resize capability
+    this.addResizeCapability(popup);
+
+    // Store the original dimensions so we can restore on double-click
+    popup.originalWidth = popup.style.width;
+    popup.originalHeight = popup.style.height;
+
+    // Add double-click handler to restore original dimensions
+    popup.addEventListener("dblclick", (e) => {
+      // Only if clicking on edges (not content)
+      if (
+        !e.target.closest(".popframe-content-view") &&
+        !e.target.closest(".popup-title-bar")
+      ) {
+        if (popup.originalWidth && popup.originalHeight) {
+          popup.style.width = popup.originalWidth;
+          popup.style.height = popup.originalHeight;
+        }
+      }
+    });
 
     // Title text (make it clickable)
     const titleText = document.createElement("A");
@@ -475,13 +504,29 @@ window.Popups = {
     titleText.addEventListener("mousedown", (e) => {
       e.stopPropagation();
     });
-    titleBar.appendChild(titleText);
+
+    // Add explicit click handler to ensure proper behavior
+    titleText.addEventListener("click", (e) => {
+      e.stopPropagation();
+      // No need to prevent default as we want the link to work
+      console.log("Title clicked, opening in new tab");
+    });
+
+    // Create a title wrapper that will take up the flex space
+    const titleWrapper = document.createElement("DIV");
+    titleWrapper.style.flex = "1";
+    titleWrapper.style.textAlign = "center";
+    titleWrapper.appendChild(titleText);
+
+    titleBar.appendChild(titleWrapper);
 
     // Close button (right side)
     const closeButton = document.createElement("BUTTON");
     closeButton.className = "popup-title-bar-button close-button";
     closeButton.title = "Close";
     closeButton.innerHTML = '<span class="popup-icon close">×</span>';
+
+    // Improve event handling with both click and mousedown listeners
     closeButton.addEventListener("click", (e) => {
       e.preventDefault();
       e.stopPropagation();
@@ -496,6 +541,25 @@ window.Popups = {
         console.log("Popup forcefully closed");
       }
     });
+
+    // Add mousedown handler as a fallback for desktop browsers
+    closeButton.addEventListener("mousedown", (e) => {
+      // Only handle left mouse button
+      if (e.button !== 0) return;
+      e.preventDefault();
+      e.stopPropagation();
+
+      // Get a reference to the popup
+      const popup = e.currentTarget.closest(".popup");
+      if (!popup) return;
+
+      // Force immediate removal
+      if (popup.parentNode) {
+        popup.parentNode.removeChild(popup);
+        console.log("Popup forcefully closed via mousedown");
+      }
+    });
+
     titleBar.appendChild(closeButton);
 
     popup.appendChild(titleBar);
@@ -520,6 +584,19 @@ window.Popups = {
     popup.addEventListener("mouseenter", () => {
       this.hoverState.currentPopup = popup;
       this.hoverState.isLeavingPopup = false;
+    });
+
+    // Enable resizing for the popup
+    popup.addEventListener("mousedown", (e) => {
+      // Don't interfere with normal title bar drag operations
+      if (e.target.closest(".popup-title-bar")) {
+        return;
+      }
+
+      // Don't interfere with button clicks
+      if (e.target.closest("button")) {
+        return;
+      }
     });
   },
 
@@ -1087,64 +1164,42 @@ window.Popups = {
         return;
       }
 
-      // Desktop positioning logic (unchanged)
-      // Ensure natural width is maintained if possible
-      // Prevent automatic shrinking when at screen edges
-      const naturalWidth = Math.max(rect.width, this.config.minWidth);
+      // Desktop positioning logic
+      // Get current rect for positioning calculations
+      const currentRect = popup.getBoundingClientRect();
 
-      // Original position
-      let newLeft = parseFloat(popup.style.left);
-      let newTop = parseFloat(popup.style.top);
+      // Original position (parse as float to handle potential non-numeric values)
+      let newLeft = parseFloat(popup.style.left) || currentRect.left;
+      let newTop = parseFloat(popup.style.top) || currentRect.top;
 
-      // Track offsets
-      let leftOffset = 0;
-      let topOffset = 0;
-
-      // Check right edge - if it would go off-screen, calculate the exact offset
-      // and add extra shift for better visibility
-      if (rect.right > viewport.width - margin) {
-        leftOffset = viewport.width - margin - rect.right;
-        // Apply an additional shift to move it further away from the edge
-        leftOffset = leftOffset * 1.5; // Increase shift by 50%
-        newLeft = newLeft + leftOffset;
+      // Standard edge checking for all popups
+      // Check right edge
+      if (currentRect.right > viewport.width - margin) {
+        newLeft = viewport.width - currentRect.width - margin;
       }
 
-      // Check bottom edge - if it would go off-screen, calculate the exact offset
-      // and add extra shift for better visibility
-      if (rect.bottom > viewport.height - margin) {
-        topOffset = viewport.height - margin - rect.bottom;
-        // Apply an additional shift to move it further away from the edge
-        topOffset = topOffset * 1.5; // Increase shift by 50%
-        newTop = newTop + topOffset;
+      // Check bottom edge
+      if (currentRect.bottom > viewport.height - margin) {
+        newTop = viewport.height - currentRect.height - margin;
       }
 
       // Check left edge
-      if (rect.left < margin) {
-        leftOffset = margin - rect.left;
-        // Apply an additional shift for better visibility
-        leftOffset = leftOffset * 1.5; // Increase shift by 50%
-        newLeft = newLeft + leftOffset;
+      if (currentRect.left < margin) {
+        newLeft = margin;
       }
 
       // Check top edge
-      if (rect.top < margin) {
-        topOffset = margin - rect.top;
-        // Apply an additional shift for better visibility
-        topOffset = topOffset * 1.5; // Increase shift by 50%
-        newTop = newTop + topOffset;
+      if (currentRect.top < margin) {
+        newTop = margin;
       }
 
       // Apply position if needed (only adjust position if necessary)
-      popup.style.left = `${newLeft}px`;
-      popup.style.top = `${newTop}px`;
-
-      // Fix width to preserve the natural content width
-      // This is key to ensuring headings show their full content width
-      popup.style.width = `${naturalWidth}px`;
+      popup.style.left = `${Math.round(newLeft)}px`;
+      popup.style.top = `${Math.round(newTop)}px`;
 
       // Log for debugging
       this.log(
-        `Positioned popup: width=${naturalWidth}, left=${newLeft} (offset=${leftOffset}), top=${newTop} (offset=${topOffset})`,
+        `Positioned popup: width=${currentRect.width}, left=${newLeft}, top=${newTop}`,
       );
     }, 10);
   },
@@ -1180,6 +1235,7 @@ window.Popups = {
       popup: popup,
       offsetX: event.clientX - rect.left,
       offsetY: event.clientY - rect.top,
+      lastMoveTime: null,
     };
 
     popup.classList.add("dragging");
@@ -1188,19 +1244,41 @@ window.Popups = {
     this.bringToFront(popup);
   },
 
-  // Handle mousemove for dragging
+  // Handle mouse move during dragging
   handleMouseMove(event) {
-    if (!this.dragging.active) return;
+    if (!this.dragging.active || !this.dragging.popup) return;
 
+    // Use throttling to prevent performance issues
+    const now = Date.now();
+    if (!this.dragging.lastMoveTime) this.dragging.lastMoveTime = 0;
+
+    // Throttle to ~120fps (doubled from before)
+    if (now - this.dragging.lastMoveTime < 8) return;
+    this.dragging.lastMoveTime = now;
+
+    // Calculate new position based on mouse movement and initial offset
+    const newLeft = event.clientX - this.dragging.offsetX;
+    const newTop = event.clientY - this.dragging.offsetY;
+
+    // Add boundaries to prevent losing the popup off-screen
     const popup = this.dragging.popup;
+    const rect = popup.getBoundingClientRect();
+    const minVisibleSize = 100; // Minimum visible size to ensure popup can be retrieved
 
-    // Calculate new position
-    const x = event.clientX - this.dragging.offsetX;
-    const y = event.clientY - this.dragging.offsetY;
+    // Calculate bounded positions
+    const boundedLeft = Math.min(
+      Math.max(newLeft, -rect.width + minVisibleSize),
+      window.innerWidth - minVisibleSize,
+    );
 
-    // Set new position
-    popup.style.left = `${x}px`;
-    popup.style.top = `${y}px`;
+    const boundedTop = Math.min(
+      Math.max(newTop, -rect.height + minVisibleSize),
+      window.innerHeight - minVisibleSize,
+    );
+
+    // Apply the new position
+    popup.style.left = `${boundedLeft}px`;
+    popup.style.top = `${boundedTop}px`;
   },
 
   // Handle mouseup to end dragging
@@ -1216,6 +1294,7 @@ window.Popups = {
       popup: null,
       offsetX: 0,
       offsetY: 0,
+      lastMoveTime: null,
     };
 
     // Ensure popup is within viewport
@@ -1274,6 +1353,215 @@ window.Popups = {
 
     // Return the natural width, with a minimum cap
     return Math.max(naturalWidth, this.config.minWidth);
+  },
+
+  // Add custom resize capability to popup
+  addResizeCapability(popup) {
+    // Create resize handles for all 8 directions (4 corners + 4 edges)
+    const directions = ["nw", "n", "ne", "e", "se", "s", "sw", "w"];
+
+    // Create and append all resize handles
+    directions.forEach((dir) => {
+      const handle = document.createElement("DIV");
+      handle.className = `popup-resize-handle ${dir}`;
+      handle.setAttribute("data-direction", dir);
+      popup.appendChild(handle);
+
+      // Add mousedown event listener for each handle
+      handle.addEventListener("mousedown", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        // Start resizing - bind to this closure
+        let resizing = true;
+        const direction = dir;
+
+        // Get the current popup position and size
+        const rect = popup.getBoundingClientRect();
+        const startX = e.clientX;
+        const startY = e.clientY;
+        const startWidth = rect.width;
+        const startHeight = rect.height;
+        const startLeft = parseInt(popup.style.left) || rect.left;
+        const startTop = parseInt(popup.style.top) || rect.top;
+
+        // Get the scroll view element for later use
+        const scrollView = popup.querySelector(".popframe-scroll-view");
+
+        // Force the popup to have explicit width, height and position
+        popup.style.width = `${rect.width}px`;
+        popup.style.height = `${rect.height}px`;
+        popup.style.left = `${startLeft}px`;
+        popup.style.top = `${startTop}px`;
+
+        // Set the body cursor based on direction
+        document.body.style.cursor = getComputedStyle(handle).cursor;
+
+        // Add a class to the popup to indicate it's being resized
+        popup.classList.add("resizing");
+
+        // Bring the popup to front
+        if (typeof window.Popups.bringToFront === "function") {
+          window.Popups.bringToFront(popup);
+        }
+
+        // Variables for throttling
+        let lastMoveTime = Date.now();
+        const throttleInterval = 8; // Reduced from 16ms to 8ms (doubled speed - ~120fps)
+
+        // Handle mousemove for resize with throttling
+        function handleMouseMove(e) {
+          if (!resizing) return;
+
+          // Throttle resize operations to prevent losing the window
+          const now = Date.now();
+          if (now - lastMoveTime < throttleInterval) return;
+          lastMoveTime = now;
+
+          // Calculate position changes
+          const deltaX = e.clientX - startX;
+          const deltaY = e.clientY - startY;
+
+          // Get minimum dimensions
+          const minWidth = 150;
+          const minHeight = 100;
+
+          // Calculate new dimensions and position based on resize direction
+          let newWidth = startWidth;
+          let newHeight = startHeight;
+          let newLeft = startLeft;
+          let newTop = startTop;
+
+          // Add safety bounds to prevent window from disappearing
+          const viewportWidth = window.innerWidth;
+          const viewportHeight = window.innerHeight;
+          const minVisibleSize = 50; // Minimum visible area to prevent losing the popup
+
+          // Handle width and horizontal position changes
+          if (direction.includes("e")) {
+            // East (right) edge - only width changes
+            newWidth = Math.max(minWidth, startWidth + deltaX);
+            // Ensure the popup doesn't expand beyond the viewport
+            newWidth = Math.min(
+              newWidth,
+              viewportWidth - newLeft - minVisibleSize,
+            );
+          } else if (direction.includes("w")) {
+            // West (left) edge - width and left position both change
+            const widthChange = deltaX;
+            newWidth = Math.max(minWidth, startWidth - widthChange);
+
+            // Only adjust the left position if we haven't hit the minimum width
+            if (newWidth > minWidth) {
+              newLeft = Math.min(
+                startLeft + widthChange,
+                viewportWidth - minVisibleSize,
+              );
+              // Ensure at least part of the popup remains visible
+              newLeft = Math.max(newLeft, -newWidth + minVisibleSize);
+            }
+          }
+
+          // Handle height and vertical position changes
+          if (direction.includes("s")) {
+            // South (bottom) edge - only height changes
+            newHeight = Math.max(minHeight, startHeight + deltaY);
+            // Ensure the popup doesn't expand beyond the viewport
+            newHeight = Math.min(
+              newHeight,
+              viewportHeight - newTop - minVisibleSize,
+            );
+          } else if (direction.includes("n")) {
+            // North (top) edge - height and top position both change
+            const heightChange = deltaY;
+            newHeight = Math.max(minHeight, startHeight - heightChange);
+
+            // Only adjust the top position if we haven't hit the minimum height
+            if (newHeight > minHeight) {
+              newTop = Math.min(
+                startTop + heightChange,
+                viewportHeight - minVisibleSize,
+              );
+              // Ensure at least part of the popup remains visible
+              newTop = Math.max(newTop, -newHeight + minVisibleSize);
+            }
+          }
+
+          // Apply the new dimensions and position
+          popup.style.width = `${newWidth}px`;
+          popup.style.height = `${newHeight}px`;
+          popup.style.left = `${newLeft}px`;
+          popup.style.top = `${newTop}px`;
+
+          // Update immediately instead of waiting for next animation frame
+          if (scrollView) {
+            scrollView.style.maxHeight = `calc(100% - var(--popup-title-bar-height))`;
+            // Ensure content stretches to fill the new size
+            scrollView.style.height = `calc(${newHeight}px - var(--popup-title-bar-height))`;
+          }
+        }
+
+        // Handle mouseup to end resize
+        function handleMouseUp() {
+          resizing = false;
+          document.removeEventListener("mousemove", handleMouseMove);
+          document.removeEventListener("mouseup", handleMouseUp);
+
+          // Reset resizing state
+          popup.classList.remove("resizing");
+          document.body.style.cursor = "";
+
+          // Ensure content layout updates
+          if (scrollView) {
+            scrollView.style.maxHeight = `calc(100% - var(--popup-title-bar-height))`;
+            // Set explicit height to ensure content fills the container
+            scrollView.style.height = `calc(100% - var(--popup-title-bar-height))`;
+          }
+        }
+
+        // Add document event listeners
+        document.addEventListener("mousemove", handleMouseMove);
+        document.addEventListener("mouseup", handleMouseUp);
+      });
+    });
+  },
+
+  // Position the popup relative to the source
+  positionPopup(popup, event, link) {
+    // Default position is centered on screen
+    let posX = window.innerWidth / 2 - this.config.minWidth / 2;
+    let posY = window.innerHeight / 3; // Position in the upper third of screen
+
+    // If we have event coordinates, use those
+    if (event && event.clientX && event.clientY) {
+      posX = event.clientX + 10; // Offset slightly from cursor
+      posY = event.clientY + 10;
+    }
+    // If no event, position near the link
+    else if (link) {
+      const linkRect = link.getBoundingClientRect();
+      posX = linkRect.right + 5;
+      posY = linkRect.top;
+
+      // If positioning would push off right edge, position to the left of the link
+      if (posX + this.config.minWidth > window.innerWidth) {
+        posX = Math.max(0, linkRect.left - this.config.minWidth - 5);
+      }
+    }
+
+    // Apply initial position
+    popup.style.left = `${posX}px`;
+    popup.style.top = `${posY}px`;
+
+    // Use consistent dimensions for all popups - 450px by default
+    const standardWidth = 450;
+    const standardHeight = 400;
+
+    popup.style.width = `${standardWidth}px`;
+    popup.style.height = `${standardHeight}px`;
+
+    // Fine-tune position after the popup is rendered
+    this.adjustPopupPosition(popup);
   },
 };
 

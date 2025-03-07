@@ -1,10 +1,10 @@
 /* Popup system for link previews */
 :root {
   /* Variables for popup dimensions */
-  --popup-max-width: 640px;
-  --popup-max-height: 480px;
-  --popup-min-width: 320px;
-  --popup-min-height: 120px;
+  --popup-max-width: 555px; /* This is now just the initial size, not a constraint */
+  --popup-max-height: 350px; /* Reduced from 480px to 350px for a smaller initial height */
+  --popup-min-width: 150px;
+  --popup-min-height: 100px;
   --popup-border-width: 3px;
   --popup-title-bar-height: 1.8rem;
 
@@ -50,14 +50,15 @@
   position: absolute;
   display: flex;
   flex-direction: column;
-  overflow: visible;
+  overflow: hidden;
 
   /* Dimensions - allow proper sizing based on content */
   min-width: var(--popup-min-width);
-  max-width: var(--popup-max-width);
+  max-width: none; /* Remove max width constraint */
   min-height: var(--popup-min-height);
-  max-height: var(--popup-max-height);
-  width: auto !important; /* Force width to be determined by content */
+  max-height: none; /* Remove max height constraint */
+  width: var(--popup-max-width); /* Initial width - reasonable default */
+  height: var(--popup-max-height); /* Explicitly set initial height */
 
   background-color: var(--popup-background);
   border: var(--popup-border-width) double var(--popup-border-color);
@@ -74,6 +75,15 @@
 
   /* Box sizing for accurate dimensions */
   box-sizing: border-box;
+
+  /* Enable resizing */
+  resize: none;
+  overflow: auto !important; /* Force auto overflow for resize to work */
+}
+
+/* Style the popup edges to indicate resizability */
+.popup:hover {
+  border-color: var(--popup-border-color);
 }
 
 /* Mobile-specific styling */
@@ -146,6 +156,8 @@
   user-select: none;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* Add shadow for depth */
   border-radius: 4px 4px 0 0; /* Rounded corners on top */
+  position: relative; /* Establish stacking context */
+  z-index: 100; /* Ensure proper stacking with button z-index */
 }
 
 .popup.dragging .popup-title-bar {
@@ -154,17 +166,28 @@
 
 /* Title text */
 .popup-title-bar-title {
-  flex: 1;
+  display: inline-block;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   text-align: center;
-  margin: 0 0.1rem;
-  color: var(--fg);
+  margin: 0 0.4rem;
+  color: #ebdbb2;
   text-decoration: none;
   font-weight: bold;
   cursor: pointer;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5); /* Text shadow for better readability */
+  position: relative; /* Create stacking context */
+  z-index: 102; /* Above buttons to ensure clickability */
+
+  /* Add vertical centering */
+  height: 100%;
+  line-height: var(
+    --popup-title-bar-height
+  ); /* Match line height with title bar height */
+  display: flex;
+  align-items: center; /* Vertically center content */
+  justify-content: center; /* Horizontally center content */
 }
 
 .popup-title-bar-title:hover {
@@ -188,10 +211,14 @@
   font-size: 1rem;
   flex-shrink: 0;
   margin: 0 2px;
+  position: relative;
+  z-index: 101; /* Ensure buttons are above other elements */
+  pointer-events: auto; /* Force pointer events to be active */
 }
 
 .popup-title-bar-button:hover {
   background: rgba(255, 255, 255, 0.2); /* Slightly lighter on hover */
+  transform: scale(1.05); /* Slightly larger on hover for better UX */
 }
 
 .popup-title-bar-button:active {
@@ -237,8 +264,12 @@
   overflow-y: auto;
   overscroll-behavior: none;
   position: relative;
-  width: auto;
+  width: 100%; /* Changed from auto to 100% to fill container */
+  height: 100%; /* Added to fill vertical space */
   min-width: min-content; /* Allow content to determine width */
+  box-sizing: border-box; /* Include padding in height calculation */
+  display: flex; /* Add display flex */
+  flex-direction: column; /* Stack children vertically */
 }
 
 /* Scrollbar styling (WebKit/Blink) */
@@ -269,21 +300,33 @@
 
 /* Actual content container */
 .popframe-content-view {
-  padding: 0.4rem;
+  padding: 0;
+  margin-top: -10px; /* Add negative top margin to move content up */
   background-color: var(--popup-background);
   color: var(--popup-foreground);
-  width: auto;
+  width: 100%; /* Changed from auto to 100% to fill container */
+  height: auto; /* Allow content to determine height */
   min-width: min-content;
+  flex: 1 1 auto; /* Allow it to grow and shrink */
+  display: flex; /* Add display flex */
+  flex-direction: column; /* Stack children vertically */
 }
 
 /* Popup content styling */
 .popup .popup-content {
   font-size: 0.9rem;
-  line-height: 1.5;
+  line-height: 1.3;
+  padding: 0;
+  margin: -10px 0 0 0; /* Negative top margin only */
+  flex: 1 1 auto; /* Allow it to grow and shrink */
+  width: 100%; /* Ensure full width */
 }
 
 .popup .popup-body {
-  margin: 0;
+  margin: -10px 0 0 0; /* Negative top margin only */
+  padding: 0;
+  flex: 1 1 auto; /* Allow it to grow and shrink */
+  width: 100%; /* Ensure full width */
 }
 
 /* Image handling in popups */
@@ -369,4 +412,101 @@ body[data-popups-disabled="true"] .popup-container {
 
 [data-theme="dark"] .popup-title-bar-button {
   background: rgba(255, 255, 255, 0.1); /* Simple background for dark theme */
+}
+
+/* Fix for popup icons */
+.popup-icon,
+.popup-icon-svg {
+  pointer-events: none; /* Ensure the icon doesn't intercept clicks meant for the button */
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Adjust the popup scroll view to work with resizing */
+.popup .popframe-scroll-view {
+  overflow: auto !important;
+  max-height: calc(100% - var(--popup-title-bar-height)) !important;
+}
+
+/* Custom resize handle */
+.popup-resize-handle {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  z-index: 200;
+  will-change: transform; /* Hint to browser to optimize for changes */
+  transform: translateZ(0); /* Force GPU acceleration */
+  backface-visibility: hidden; /* Prevent flickering */
+}
+
+/* Corner resize handles */
+.popup-resize-handle.nw {
+  top: 0;
+  left: 0;
+  cursor: nwse-resize;
+}
+
+.popup-resize-handle.ne {
+  top: 0;
+  right: 0;
+  cursor: nesw-resize;
+}
+
+.popup-resize-handle.sw {
+  bottom: 0;
+  left: 0;
+  cursor: nesw-resize;
+}
+
+.popup-resize-handle.se {
+  bottom: 0;
+  right: 0;
+  cursor: nwse-resize;
+  background: linear-gradient(
+    135deg,
+    transparent 50%,
+    var(--popup-border-color) 50%
+  );
+}
+
+/* Edge resize handles */
+.popup-resize-handle.n {
+  top: 0;
+  left: 14px;
+  right: 14px;
+  height: 6px;
+  width: auto;
+  cursor: ns-resize;
+}
+
+.popup-resize-handle.e {
+  right: 0;
+  top: 14px;
+  bottom: 14px;
+  width: 6px;
+  height: auto;
+  cursor: ew-resize;
+}
+
+.popup-resize-handle.s {
+  bottom: 0;
+  left: 14px;
+  right: 14px;
+  height: 6px;
+  width: auto;
+  cursor: ns-resize;
+}
+
+.popup-resize-handle.w {
+  left: 0;
+  top: 14px;
+  bottom: 14px;
+  width: 6px;
+  height: auto;
+  cursor: ew-resize;
+}
+
+.popup.resizing {
+  transition: none !important;
 }
