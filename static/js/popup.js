@@ -422,6 +422,22 @@ window.Popups = {
       this.handleTitleBarMouseDown.bind(this),
     );
 
+    // Enlarge button (left side) - opens the link in the current tab
+    const enlargeButton = document.createElement("BUTTON");
+    enlargeButton.className = "popup-title-bar-button enlarge-button";
+    enlargeButton.title = "Open link in current tab";
+    enlargeButton.innerHTML =
+      '<img src="icons/maximize-icon.svg" class="popup-icon-svg" alt="Enlarge">';
+    enlargeButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      // Open the link in the current tab
+      window.location.href = link.href;
+      console.log("Link opened in current tab");
+    });
+    titleBar.appendChild(enlargeButton);
+
     // Title text (make it clickable)
     const titleText = document.createElement("A");
     titleText.className = "popup-title-bar-title";
@@ -460,6 +476,27 @@ window.Popups = {
       e.stopPropagation();
     });
     titleBar.appendChild(titleText);
+
+    // Close button (right side)
+    const closeButton = document.createElement("BUTTON");
+    closeButton.className = "popup-title-bar-button close-button";
+    closeButton.title = "Close";
+    closeButton.innerHTML = '<span class="popup-icon close">×</span>';
+    closeButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      // Get a reference to the popup
+      const popup = e.currentTarget.closest(".popup");
+      if (!popup) return;
+
+      // Force immediate removal
+      if (popup.parentNode) {
+        popup.parentNode.removeChild(popup);
+        console.log("Popup forcefully closed");
+      }
+    });
+    titleBar.appendChild(closeButton);
 
     popup.appendChild(titleBar);
 
@@ -993,16 +1030,11 @@ window.Popups = {
       this.hoverState.currentPopup = null;
     }
 
-    // Add fading class
-    popup.classList.add("fading");
-    popup.style.opacity = "0";
-
-    // Remove from DOM after animation
-    setTimeout(() => {
-      if (popup.parentNode) {
-        popup.parentNode.removeChild(popup);
-      }
-    }, this.config.fadeOutDuration);
+    // Remove immediately
+    if (popup.parentNode) {
+      popup.parentNode.removeChild(popup);
+      this.log("Popup removed from DOM");
+    }
   },
 
   // Adjust popup position to ensure it's within viewport
@@ -1017,6 +1049,45 @@ window.Popups = {
         height: window.innerHeight,
       };
 
+      // Check if on mobile (screen width below 768px)
+      const isMobile = window.innerWidth <= 768;
+
+      // For mobile, center horizontally and just worry about vertical positioning
+      if (isMobile) {
+        // Center horizontally with a fixed width
+        const mobileWidth = Math.min(viewport.width - 20, this.config.minWidth);
+        popup.style.width = `${mobileWidth}px`;
+        popup.style.left = `${(viewport.width - mobileWidth) / 2}px`;
+
+        // Adjust vertical position to ensure it's visible
+        let newTop = parseFloat(popup.style.top);
+
+        // Make sure it's not too high
+        if (rect.top < margin) {
+          newTop = margin;
+        }
+
+        // Make sure it's not too low
+        if (
+          rect.bottom > viewport.height - margin &&
+          rect.height < viewport.height - margin * 2
+        ) {
+          newTop = viewport.height - rect.height - margin;
+        } else if (rect.bottom > viewport.height - margin) {
+          // If popup is taller than viewport, position to show the top
+          newTop = margin;
+        }
+
+        popup.style.top = `${newTop}px`;
+
+        // Log for debugging
+        this.log(
+          `Mobile positioned popup: width=${mobileWidth}, left=${popup.style.left}, top=${newTop}`,
+        );
+        return;
+      }
+
+      // Desktop positioning logic (unchanged)
       // Ensure natural width is maintained if possible
       // Prevent automatic shrinking when at screen edges
       const naturalWidth = Math.max(rect.width, this.config.minWidth);

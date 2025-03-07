@@ -76,20 +76,76 @@
   box-sizing: border-box;
 }
 
+/* Mobile-specific styling */
+@media (max-width: 768px) {
+  .popup {
+    min-width: auto; /* Override min-width for mobile */
+    max-width: calc(
+      100vw - 20px
+    ) !important; /* Ensure popup doesn't exceed screen width minus margins */
+    width: calc(100vw - 20px) !important; /* Force narrower width on mobile */
+    left: 10px !important; /* Position consistently from left edge */
+    right: 10px !important;
+    margin: 0 auto; /* Center horizontally */
+  }
+
+  /* Adjust title bar for mobile */
+  .popup-title-bar {
+    padding: 0 0.3rem;
+  }
+
+  /* Make buttons slightly smaller on mobile */
+  .popup-title-bar-button {
+    width: 1.6rem;
+    height: 1.6rem;
+  }
+
+  /* Adjust content padding to maximize reading space */
+  .popframe-content-view {
+    padding: 0.3rem;
+  }
+
+  /* Make text slightly more readable on small screens */
+  .popup .popup-content {
+    font-size: 0.95rem;
+  }
+}
+
+/* Extra small screens (phones in portrait orientation) */
+@media (max-width: 480px) {
+  .popup {
+    max-width: calc(
+      100vw - 10px
+    ) !important; /* Even tighter fit for very small screens */
+    width: calc(100vw - 10px) !important;
+    left: 5px !important;
+    right: 5px !important;
+    min-height: 100px; /* Slightly reduce min-height */
+  }
+
+  /* Further reduce padding */
+  .popframe-content-view {
+    padding: 0.25rem;
+  }
+}
+
 /* Title bar for popups */
 .popup-title-bar {
   flex: 0 0 auto;
   display: flex;
   align-items: center;
+  justify-content: space-between; /* Space buttons and title evenly */
   height: var(--popup-title-bar-height);
   padding: 0 0.5rem;
-  background-color: var(--bg1);
-  border-bottom: 1px solid var(--popup-border-color);
-  color: var(--fg);
+  background: #3c3c3c; /* Solid background instead of gradient */
+  border-bottom: 1px solid #000;
+  color: #fff; /* White text for better contrast */
   font-size: 0.85rem;
   font-weight: bold;
   cursor: grab;
   user-select: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* Add shadow for depth */
+  border-radius: 4px 4px 0 0; /* Rounded corners on top */
 }
 
 .popup.dragging .popup-title-bar {
@@ -104,14 +160,92 @@
   white-space: nowrap;
   text-align: center;
   margin: 0 0.5rem;
-  color: var(--fg);
+  color: #fff; /* White text for title */
   text-decoration: none;
   font-weight: bold;
   cursor: pointer;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5); /* Text shadow for better readability */
 }
 
 .popup-title-bar-title:hover {
   text-decoration: underline;
+}
+
+/* Title bar buttons */
+.popup-title-bar-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.8rem; /* Increased size */
+  height: 1.8rem;
+  border: none;
+  border-radius: 4px;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.05) 100%
+  ); /* Gradient for button */
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15); /* Outer and inner shadow */
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  padding: 0;
+  font-size: 1rem;
+  flex-shrink: 0;
+  margin: 0 2px;
+}
+
+.popup-title-bar-button:hover {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(255, 255, 255, 0.15) 100%
+  );
+  transform: scale(1.05);
+}
+
+.popup-title-bar-button:active {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(0, 0, 0, 0.05) 100%
+  );
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+  transform: scale(0.95);
+}
+
+/* Button icons */
+.popup-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: 1.1rem;
+  line-height: 1;
+  color: #fff;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+/* SVG icons */
+.popup-icon-svg {
+  width: 16px;
+  height: 16px;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.5)); /* Add shadow to SVG */
+}
+
+/* Close button (X) */
+.popup-icon.close {
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+/* Enlarge button (outward arrows) */
+.popup-icon.enlarge {
+  font-size: 1.4rem; /* Slightly larger than before */
+  line-height: 0.9; /* Adjust vertical alignment */
 }
 
 /* Scrollable content area */
@@ -243,4 +377,17 @@ body[data-popups-disabled="true"] a[href]:not([data-popup-ignore="true"]) {
 
 body[data-popups-disabled="true"] .popup-container {
   display: none;
+}
+
+/* Dark theme adjustments */
+[data-theme="dark"] .popup-title-bar {
+  background: #222222; /* Solid dark background instead of gradient */
+}
+
+[data-theme="dark"] .popup-title-bar-button {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.03) 100%
+  );
 }
