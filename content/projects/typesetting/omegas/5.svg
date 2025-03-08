@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="59.689846pt"
+   height="58.194668pt"
+   viewBox="0 0 59.689848 58.19467"
+   version="1.1"
+   id="svg2"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1">
+    <clipPath
+       id="clip-0">
+      <path
+         clip-rule="nonzero"
+         d="M 3,1 H 71.464844 V 64.90625 H 3 Z m 0,0"
+         id="path1" />
+    </clipPath>
+  </defs>
+  <g
+     clip-path="url(#clip-0)"
+     id="g2"
+     transform="translate(-8.7363795,-6.711581)">
+    <path
+       fill="none"
+       stroke-width="0.3985"
+       stroke-linecap="butt"
+       stroke-linejoin="miter"
+       stroke="#000000"
+       stroke-opacity="1"
+       stroke-miterlimit="10"
+       d="m 9.0625e-4,-0.0019375 c -11.05468725,0 20.52734375,7.8203125 28.34765575,0 -15.699218,0 17.246094,39.4492185 28.34375,28.3476565 -11.054687,0 -7.816406,36.164062 0,28.347656"
+       transform="matrix(1,0,0,-1,11.253,64.709)"
+       id="path2" />
+  </g>
+</svg>

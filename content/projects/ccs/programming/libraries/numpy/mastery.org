@@ -1,0 +1,306 @@
++++
+title = "Mastering Numpy"
+tags = ["sharpen"]
++++
+
+Source: https://www.w3resource.com/python-exercises/numpy/numpy_100_exercises_with_solutions.php
+
+** Exercise 1:
+Create a 1D array with values ranging from 0 to 9.
+
+** Exercise 2:
+Convert a 1D array to a 2D array with 2 rows.
+
+** Exercise 3:
+Multiply a 5x3 matrix by a 3x2 matrix.
+
+** Exercise 4:
+Extract all odd numbers from an array of 1-10.
+
+** Exercise 5:
+Replace all odd numbers in an array of 1-10 with -1.
+
+** Exercise 6:
+Convert a 1D array to a boolean array where all positive values become True.
+
+** Exercise 7:
+Replace all even numbers in a 1D array with their negative.
+
+** Exercise 8:
+Create a random 3x3 matrix and normalize it.
+
+** Exercise 9:
+Calculate the sum of the diagonal elements of a 3x3 matrix.
+
+** Exercise 10:
+Find the indices of non-zero elements from [1,2,0,0,4,0].
+
+** Exercise 11:
+Reverse a 1D array (first element becomes the last).
+
+** Exercise 12:
+Create a 3x3 identity matrix.
+
+** Exercise 13:
+Reshape a 1D array to a 2D array with 5 rows and 2 columns.
+
+** Exercise 14:
+Stack two arrays vertically.
+
+** Exercise 15:
+Get the common items between two arrays.
+
+** Exercise 16:
+Create a 5x5 matrix with row values ranging from 0 to 4.
+
+** Exercise 17:
+Find the index of the maximum value in a 1D array.
+
+** Exercise 18:
+Normalize the values in a 1D array between 0 and 1.
+
+** Exercise 19:
+Calculate the dot product of two arrays.
+
+** Exercise 20:
+Count the number of elements in an array within a specific range.
+
+** Exercise 21:
+Find the mean of each row in a 2D array.
+
+** Exercise 22:
+Create a random 4x4 matrix and extract the diagonal elements.
+
+** Exercise 23:
+Count the number of occurrences of a specific value in an array.
+
+** Exercise 24:
+Replace all values in a 1D array with the mean of the array.
+
+** Exercise 25:
+Find the indices of the maximum and minimum values in a 1D array.
+
+** Exercise 26:
+Create a 2D array with 1 on the border and 0 inside.
+
+** Exercise 27:
+Find the unique values and their counts in a 1D array.
+
+** Exercise 28:
+Create a 3x3 matrix with values ranging from 0 to 8.
+
+** Exercise 29:
+Calculate the exponential of all elements in a 1D array.
+
+** Exercise 30:
+Swap two rows in a 2D array.
+
+** Exercise 31:
+Create a random 3x3 matrix and replace all values greater than 0.5 with 1 and all others with 0.
+
+** Exercise 32:
+Find the indices of the top N maximum values in a 1D array.
+
+** Exercise 33:
+Calculate the mean of each column in a 2D array.
+
+** Exercise 34:
+Normalize the values in each column of a 2D array.
+
+** Exercise 35:
+Concatenate two 1D arrays.
+
+** Exercise 36:
+Create a 2D array with random values and sort each row.
+
+** Exercise 37:
+Compute the mean squared error between two arrays.
+
+** Exercise 38:
+Replace all negative values in an array with 0.
+
+** Exercise 39:
+Find the 5th and 95th percentiles of an array.
+
+** Exercise 40:
+Create a random 2x2 matrix and compute its determinant.
+
+** Exercise 41:
+Count the number of elements in an array that are greater than the mean.
+
+** Exercise 42:
+Calculate the square root of each element in a 1D array.
+
+** Exercise 43:
+Create a 3x3 matrix and compute the matrix square root.
+
+** Exercise 44:
+Convert the data type of an array to float.
+
+** Exercise 45:
+Calculate the element-wise absolute values of an array.
+
+** Exercise 46:
+Find the indices where elements of two arrays match.
+
+** Exercise 47:
+Calculate the cumulative sum of elements in a 1D array.
+
+** Exercise 48:
+Compute the inverse of a 2x2 matrix.
+
+** Exercise 49:
+Count the number of non-zero elements in a 2D array.
+
+** Exercise 50:
+Create a 2D array and replace all nan values with 0.
+
+** Exercise 51:
+Find the correlation coefficient between two arrays.
+
+** Exercise 52:
+Create a 1D array and remove all duplicate values.
+
+** Exercise 53:
+Compute the element-wise product of two arrays.
+
+** Exercise 54:
+Calculate the standard deviation of each column in a 2D array.
+
+** Exercise 55:
+Create a 2D array and set all values above a certain threshold to that threshold.
+
+** Exercise 56:
+Create a random 5x5 matrix and replace the maximum value by -1.
+
+** Exercise 57:
+Convert a 1D array of Fahrenheit temperatures to Celsius.
+
+** Exercise 58:
+Compute the outer product of two arrays.
+
+** Exercise 59:
+Create a 1D array with 10 equidistant values between 0 and 1.
+
+** Exercise 60:
+Compute the cross product of two 3D arrays.
+
+** Exercise 61:
+Calculate the percentile along a specific axis of a 2D array.
+
+** Exercise 62:
+Create a 1D array and add a border of 0s around it.
+
+** Exercise 63:
+Compute the histogram of a 1D array.
+
+** Exercise 64:
+Create a 2D array with random values and normalize each row.
+
+** Exercise 65:
+Create a random 2D array and sort it by the second column.
+
+** Exercise 66:
+Calculate the determinant of a 3x3 matrix.
+
+** Exercise 67:
+Calculate the element-wise exponentiation of a 1D array.
+
+** Exercise 68:
+Calculate the Frobenius norm of a 2D array.
+
+** Exercise 69:
+Create a 2D array with random values and replace the maximum value with the minimum.
+
+** Exercise 70:
+Compute the matrix multiplication of two 2D arrays.
+
+** Exercise 71:
+Create a 1D array and set the values between 10 and 20 to 0.
+
+** Exercise 72:
+Compute the inverse hyperbolic sine of each element in a 1D array.
+
+** Exercise 73:
+Compute the Kronecker product of two arrays.
+
+** Exercise 74:
+Calculate the mean absolute deviation of a 1D array.
+
+** Exercise 75:
+Create a 3x3 matrix and set all values above the main diagonal to zero.
+
+** Exercise 76:
+Count the number of occurrences of each unique value in a 1D array.
+
+** Exercise 77:
+Compute the cumulative product of elements along a given axis in a 2D array.
+
+** Exercise 78:
+Round elements of a 1D array to the nearest integer.
+
+** Exercise 79:
+Create a 1D array and append a new element to the end.
+
+** Exercise 80:
+Calculate the element-wise absolute difference between two arrays.
+
+** Exercise 81:
+Create a 2D array with random values and replace the maximum value in each row with -1.
+
+** Exercise 82:
+Normalize the columns of a 2D array to have a sum of 1.
+
+** Exercise 83:
+Find the indices of the top N minimum values in a 1D array.
+
+** Exercise 84:
+Convert the elements of a 1D array to strings.
+
+** Exercise 85:
+Compute the percentile rank of each element in a 1D array.
+
+** Exercise 86:
+Create a 1D array and shuffle its elements randomly.
+
+** Exercise 87:
+Check if all elements in a 1D array are non-zero.
+
+** Exercise 88:
+Find the indices of the maximum value in each row of a 2D array.
+
+** Exercise 89:
+Create a 2D array and replace all nan values with the mean of the array.
+
+** Exercise 90:
+Calculate the mean of each row in a 2D array ignoring nan values.
+
+** Exercise 91:
+Compute the sum of diagonal elements in a 2D array.
+
+** Exercise 92:
+Convert radians to degrees for each element in a 1D array.
+
+** Exercise 93:
+Calculate the pairwise Euclidean distance between two arrays.
+
+** Exercise 94:
+Create a 1D array and set the values between the 25th and 75th percentile to 0.
+
+** Exercise 95:
+Calculate the element-wise square of the difference between two arrays.
+
+** Exercise 96:
+Replace all even numbers in a 1D array with the next odd number.
+
+** Exercise 97:
+Create a 2D array and normalize each column by its range.
+
+** Exercise 98:
+Compute the cumulative sum of elements along a given axis in a 2D array.
+
+** Exercise 99:
+Check if any element in a 1D array is non-zero.
+
+** Exercise 100:
+Create a 2D array with random integers and replace all values greater than a certain threshold with that threshold.

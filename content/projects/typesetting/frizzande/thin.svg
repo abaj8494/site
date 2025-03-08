@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="96.211845pt"
+   height="170.99521pt"
+   viewBox="0 0 96.211846 170.99521"
+   version="1.1"
+   id="svg3"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs3" />
+  <path
+     fill="none"
+     stroke-width="0.3985"
+     stroke-linecap="butt"
+     stroke-linejoin="miter"
+     stroke="#000000"
+     stroke-opacity="1"
+     stroke-miterlimit="10"
+     d="M 29.79533,85.239507 C 40.885174,51.966066 91.412514,11.290286 58.142986,0.19653574 124.59611,11.274666 96.248454,181.35279 29.79533,170.27857"
+     id="path1" />
+  <path
+     fill="none"
+     stroke-width="0.3985"
+     stroke-linecap="butt"
+     stroke-linejoin="miter"
+     stroke="#000000"
+     stroke-opacity="1"
+     stroke-miterlimit="10"
+     d="M 29.79533,170.27857 C 57.502361,159.19654 -9.6343573,71.704351 1.4476737,99.411382 23.642986,132.70435 108.68204,76.009038 86.486734,42.719976"
+     id="path2" />
+  <path
+     fill="none"
+     stroke-width="0.3985"
+     stroke-linecap="butt"
+     stroke-linejoin="miter"
+     stroke="#000000"
+     stroke-opacity="1"
+     stroke-miterlimit="10"
+     d="m 86.486734,42.719976 c 0,-5.52734 -14.171873,-5.52734 -14.171873,0 0,2.76172 7.085933,2.76172 7.085933,0 0,-1.38281 -3.54296,-1.38281 -3.54296,0"
+     id="path3" />
+</svg>

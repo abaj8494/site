@@ -1,0 +1,109 @@
++++
+title = "Lambda Functions in Python"
+tags = ["functional-programming"]
++++
+
+Source: https://www.w3resource.com/python-exercises/lambda/index.php
+
+** Q41
+Write a Python program to reverse strings in a given list of string values using lambda.
+Original lists:
+['Red', 'Green', 'Blue', 'White', 'Black']
+Reverse strings of the said given list:
+['deR', 'neerG', 'eulB', 'etihW', 'kcalB']
+
+*** soln
+#+begin_src jupyter-python :session lambda
+  inp = ['Red', 'Green', 'Blue', 'White', 'Black']
+
+#+end_src
+
+
+42. Write a Python program to calculate the product of a given list of numbers using lambda.
+list1: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+Product of the said list numbers:
+3628800
+list2: [2.2, 4.12, 6.6, 8.1, 8.3]
+Product of the said list numbers:
+4021.8599520000007
+Click me to see the sample solution
+
+43. Write a Python program to multiply all the numbers in a given list using lambda.
+Original list:
+[4, 3, 2, 2, -1, 18]
+Mmultiply all the numbers of the said list: -864
+Original list:
+[2, 4, 8, 8, 3, 2, 9]
+Mmultiply all the numbers of the said list: 27648
+Click me to see the sample solution
+
+44. Write a Python program to calculate the average value of the numbers in a given tuple of tuples using lambda.
+Original Tuple:
+((10, 10, 10), (30, 45, 56), (81, 80, 39), (1, 2, 3))
+Average value of the numbers of the said tuple of tuples:
+(30.5, 34.25, 27.0)
+Original Tuple:
+((1, 1, -5), (30, -15, 56), (81, -60, -39), (-10, 2, 3))
+Average value of the numbers of the said tuple of tuples:
+(25.5, -18.0, 3.75)
+Click me to see the sample solution
+
+45. Write a Python program to convert string elements to integers inside a given tuple using lambda.
+Original tuple values:
+(('233', 'ABCD', '33'), ('1416', 'EFGH', '55'), ('2345', 'WERT', '34'))
+New tuple values:
+((233, 33), (1416, 55), (2345, 34))
+Click me to see the sample solution
+
+46. Write a Python program to find the index position and value of the maximum and minimum values in a given list of numbers using lambda.
+Original list:
+[12, 33, 23, 10.11, 67, 89, 45, 66.7, 23, 12, 11, 10.25, 54]
+Index position and value of the maximum value of the said list:
+(5, 89)
+Index position and value of the minimum value of the said list:
+(3, 10.11)
+Click me to see the sample solution
+
+47. Write a Python program to sort a given mixed list of integers and strings using lambda. Numbers must be sorted before strings.
+Original list:
+[19, 'red', 12, 'green', 'blue', 10, 'white', 'green', 1]
+Sort the said mixed list of integers and strings:
+[1, 10, 12, 19, 'blue', 'green', 'green', 'red', 'white']
+Click me to see the sample solution
+
+48. Write a Python program to sort a given list of strings (numbers) numerically using lambda.
+Original list:
+['4', '12', '45', '7', '0', '100', '200', '-12', '-500']
+Sort the said list of strings(numbers) numerically:
+['-500', '-12', '0', '4', '7', '12', '45', '100', '200']
+Click me to see the sample solution
+
+49. Write a Python program to count the occurrences of items in a given list using lambda.
+Original list:
+[3, 4, 5, 8, 0, 3, 8, 5, 0, 3, 1, 5, 2, 3, 4, 2]
+Count the occurrences of the items in the said list:
+{3: 4, 4: 2, 5: 3, 8: 2, 0: 2, 1: 1, 2: 2}
+Click me to see the sample solution
+
+50. Write a Python program to remove specific words from a given list using lambda.
+Original list:
+['orange', 'red', 'green', 'blue', 'white', 'black']
+Remove words:
+['orange', 'black']
+After removing the specified words from the said list:
+['red', 'green', 'blue', 'white']
+Click me to see the sample solution
+
+51. Write a Python program to find the maximum and minimum values in a given list of tuples using the lambda function.
+Original list with tuples:
+[('V', 62), ('VI', 68), ('VII', 72), ('VIII', 70), ('IX', 74), ('X', 65)]
+Maximum and minimum values of the said list of tuples:
+(74, 62)
+Click me to see the sample solution
+
+52. Write a Python program to remove None values from a given list using the lambda function.
+Original list:
+[12, 0, None, 23, None, -55, 234, 89, None, 0, 6, -12]
+Remove None value from the said list:
+[12, 0, 23, -55, 234, 89, 0, 6, -12]
+Click me to see the sample solution

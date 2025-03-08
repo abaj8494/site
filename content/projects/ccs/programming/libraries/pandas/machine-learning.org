@@ -1,0 +1,80 @@
++++
+title = "Machine Learning Example with Pandas"
+tags = ["ml", "pandas"]
++++
+
+Source: https://www.w3resource.com/python-exercises/pandas/pandas-machine-learning-integration.php
+
+
+Structure of data.csv:
+
+ID	Name	  Age	Gender	Salary	 Target
+1,Sara,25,Female,50000,0
+2,Ophrah,30,Male,60000,1
+3,Torben,22,Male,70000,0
+4,Masaharu,35,Male,80000,1
+5,Kaya,NaN,Female,55000,0
+6,Abaddon,29,Male,NaN,1
+Column Description:
+
+ID: A unique identifier for each record (integer).
+
+Name: The name of the individual (string).
+
+Age: Age of the individual (numerical, may have missing values).
+
+Gender: Gender of the individual (categorical: Male/Female).
+
+Salary: The individual's salary (numerical, may have missing values).
+
+Target: The target variable for binary classification (binary: 0 or 1).
+
+1. Write a Pandas program that loads a Dataset from a CSV file.
+
+
+2. Write a Pandas program to check for missing values in a dataset.
+
+
+3. Write a Pandas program to drop rows with missing values from a dataset.
+
+
+4. Write a Pandas program that fills missing values with the Mean.
+
+
+5. Write a Pandas program that converts categorical variables into numerical values using label.
+
+
+6. Write a Pandas program to apply one-hot encoding to categorical variables.
+
+   
+7. Write a Pandas program that normalizes numerical data using Min-Max scaling.
+
+
+8. Write a Pandas program to standardize numerical data using Z-Score scaling.
+
+
+9. Write a Pandas program that splits Dataset into Training and Testing sets.
+
+
+10. Write a Pandas program that removes outliers from a Dataset.
+
+
+11. Write a Pandas program that imputes missing values using K-Nearest neighbours.
+
+
+12. Write a Pandas program to select feature selection using variance threshold.
+
+
+13. Write a Pandas program to handling class imbalance using random oversampling.
+
+
+14. Write a Pandas program that applies Polynomial Features for feature expansion.
+
+
+15. Write a Pandas program to scale numerical features using Scikit-learn's RobustScaler.
+
+
+16. Write a Pandas program to save the processed Dataset to a CSV file.
+
+
+17. Write a Pandas program that applies Log Transformation to Skewed Data.

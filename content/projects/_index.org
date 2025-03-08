@@ -4,6 +4,12 @@ toc = "true"
 math = "true"
 +++
 
+#BEGIN_QUOTE
+Knowledge is a paradox. The more one understand, the more one realises the vastness of his ignorance.
+
+---Viktor (Arcane, Season 2)
+#+END_QUOTE
+
 You have stepped onto the stickiest page of this site, here sit *all* of my projects.
 
 The legend is as follows:
@@ -42,24 +48,48 @@ You may also view the entire =tag= taxonomy [[/tags][here]].
   - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/linux/gdb][GDB]] {{< tags-inline "projects/ccs/linux/gdb" >}}
   - @@html:<input type="checkbox" checked class="done"/>@@ [[/projects/ccs/linux/emacs][Emacs]] {{< tags-inline "projects/ccs/linux/emacs" >}}
   - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/linux/regex][RegEx]] {{< tags-inline "projects/ccs/linux/regex" >}}
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/vc][Version Control]] {{< tags-inline "projects/ccs/vc" >}}
 
-
-
-
-*** Data Structures /&/ Algorithms
+*** Data Structures *&* Algorithms
+:PROPERTIES:
+:CUSTOM_ID: data-algs
+:END:
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/data-algs/adv-alg][Advanced Algorithms]] {{< tags-inline "projects/ccs/data-algs/adv-alg" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/data-algs/leetcode][Leetcode]] {{< tags-inline "projects/ccs/data-algs/leetcode" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/data-algs/sorting][Sorting]] {{< tags-inline "projects/ccs/data-algs/sorting" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/data-algs/searching][Searching]] {{< tags-inline "projects/ccs/data-algs/searching" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/data-algs/graph][Graph]] {{< tags-inline "projects/ccs/data-algs/graph" >}}
 
-*** Programming
-- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/linear][Linear]] {{< tags-inline "projects/ccs/programming/linear" >}}
-- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/quadratic][Quadratic]] {{< tags-inline "projects/ccs/programming/quadratic" >}}
-- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/integer][Integer]] {{< tags-inline "projects/ccs/programming/integer" >}}
-- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/dynamic][Dynamic]] {{< tags-inline "projects/ccs/programming/dynamic" >}}
-- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/object-oriented][Object-oriented]] {{< tags-inline "projects/ccs/programming/object-oriented" >}}
-- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/functional][Functional]] {{< tags-inline "projects/ccs/programming/functional" >}}
+
+*** [[/projects/ccs/programming][Programming]]
+:PROPERTIES:
+:CUSTOM_ID: programming
+:END:
+
+**** [[/projects/ccs/programming/paradigms][Paradigms]]
+:PROPERTIES:
+:CUSTOM_ID: paradigms
+:END:
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/paradigms/linear][Linear]] {{< tags-inline "projects/ccs/programming/paradigms/linear" >}}
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/paradigms/quadratic][Quadratic]] {{< tags-inline "projects/ccs/programming/paradigms/quadratic" >}}
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/paradigms/integer][Integer]] {{< tags-inline "projects/ccs/programming/paradigms/integer" >}}
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/paradigms/dynamic][Dynamic]] {{< tags-inline "projects/ccs/programming/paradigms/dynamic" >}}
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/paradigms/object-oriented][Object-oriented]] {{< tags-inline "projects/ccs/programming/paradigms/object-oriented" >}}
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/paradigms/functional][Functional]] {{< tags-inline "projects/ccs/programming/paradigms/functional" >}}
+
+**** [[/projects/ccs/programming/languages][Languages]]
+:PROPERTIES:
+:CUSTOM_ID: languages
+:END:
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/languages/python][Python]] {{< tags-inline "projects/ccs/programming/languages/python" >}}
+
+**** [[/projects/ccs/programming/libraries][Libraries]]
+:PROPERTIES:
+:CUSTOM_ID: libraries
+:END:
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/libraries/numpy][Numpy]] {{< tags-inline "projects/ccs/programming/libraries/numpy" >}}
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/libraries/pandas][Pandas]] {{< tags-inline "projects/ccs/programming/libraries/pandas" >}}
+
 
 **** Beyond                                                        :noexport:
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/stochastic][Stochastic]] {{< tags-inline "projects/ccs/programming/stochastic" >}}
@@ -83,8 +113,8 @@ You may also view the entire =tag= taxonomy [[/tags][here]].
 *** Raspberry Pi
 
 For the longest time I kept these projects private, but now after a half decade I have settled on these 2 stable configurations
-- @@html:<input type="checkbox" class="editing"/>@@ [[/projects/csp/rpi/kiyomi][RPI3]] {{< tags-inline "projects/csp/rpi/kiyomi" >}}
-- @@html:<input type="checkbox" class="editing"/>@@ [[/projects/csp/rpi/rpi][RPI4]] {{< tags-inline "projects/csp/rpi/rpi" >}}
+- @@html:<input type="checkbox" class="edit"/>@@ [[/projects/csp/rpi/kiyomi][RPI3]] {{< tags-inline "projects/csp/rpi/kiyomi" >}}
+- @@html:<input type="checkbox" class="edit"/>@@ [[/projects/csp/rpi/rpi][RPI4]] {{< tags-inline "projects/csp/rpi/rpi" >}}
 
 ** [[/projects/ai][Artificial Intelligence]]
 :PROPERTIES:
@@ -252,7 +282,10 @@ The following links contain the source code and solution sets:
 :CUSTOM_ID: typesetting
 :END:
 - @@html:<input type="checkbox" checked class="archived"/>@@ [[/projects/typesetting/font2splines][Font2Splines]] {{< tags-inline "projects/typesetting/font2splines" >}}
+- @@html:<input type="checkbox" checked class="done"/>@@ [[/projects/typesetting/frizzande][Frizzande's F]] {{< tags-inline "projects/typesetting/frizzande" >}}
+- @@html:<input type="checkbox" checked class="done"/>@@ [[/projects/typesetting/omegas][Omegas]] {{< tags-inline "projects/typesetting/omegas" >}}
 
+  
 *** [[/projects/latex][LaTeX]]
 :PROPERTIES:
 :CUSTOM_ID: latex

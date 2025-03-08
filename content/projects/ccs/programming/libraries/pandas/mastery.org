@@ -1,0 +1,406 @@
++++
+title = "Mastering Pandas"
+tags = ["sharpen"]
++++
+
+Source: https://www.w3resource.com/python-exercises/pandas/pandas_100_exercises_with_solutions.php
+
+** Exercise 1:
+
+Create a DataFrame from a dictionary of lists.
+
+** Exercise 2:
+
+Select the first 3 rows of a DataFrame.
+
+** Exercise 3:
+
+Select the 'X' column from a DataFrame.
+
+** Exercise 4:
+
+Filter rows based on a column condition.
+
+** Exercise 5:
+
+Add a new column to an existing DataFrame.
+
+** Exercise 6:
+
+Remove a column from a DataFrame.
+
+** Exercise 7:
+
+Sort a DataFrame by a column.
+
+** Exercise 8:
+
+Group a DataFrame by a column and calculate the mean of each group.
+
+** Exercise 9:
+
+Replace missing values in a DataFrame.
+
+** Exercise 10:
+
+Convert a column to datetime.
+
+** Exercise 11:
+
+Create a DataFrame with specific column names.
+
+** Exercise 12:
+
+Calculate the sum of values in each column.
+
+** Exercise 13:
+
+Calculate the mean of values in each row.
+
+** Exercise 14:
+
+Concatenate two DataFrames.
+
+** Exercise 15:
+
+Merge two DataFrames on a key.
+
+** Exercise 16:
+
+Create a pivot table from a DataFrame.
+
+** Exercise 17:
+
+Reshape a DataFrame from long to wide format.
+
+** Exercise 18:
+
+Calculate the correlation between columns in a DataFrame.
+
+** Exercise 19:
+
+Iterate over rows in a DataFrame using iterrows().
+
+** Exercise 20:
+
+Apply a function to each element in a DataFrame.
+
+** Exercise 21:
+
+Create a DataFrame from a list of dictionaries.
+
+** Exercise 22:
+
+Rename columns in a DataFrame.
+
+** Exercise 23:
+
+Filter rows by multiple conditions.
+
+** Exercise 24:
+
+Calculate the cumulative sum of a column.
+
+** Exercise 25:
+
+Drop rows with missing values.
+
+** Exercise 26:
+
+Replace values in a DataFrame based on a condition.
+
+** Exercise 27:
+
+Create a DataFrame with a MultiIndex.
+
+** Exercise 28:
+
+Calculate the rolling mean of a column.
+
+** Exercise 29:
+
+Create a DataFrame from a list of tuples.
+
+** Exercise 30:
+
+Add a row to a DataFrame.
+
+** Exercise 31:
+
+Create a DataFrame with random values.
+
+** Exercise 32:
+
+Calculate the rank of values in a DataFrame.
+
+** Exercise 33:
+
+Change the data type of a column.
+
+** Exercise 34:
+
+Filter rows based on string matching.
+
+** Exercise 35:
+
+Create a DataFrame with specified row and column labels.
+
+** Exercise 36:
+
+Transpose a DataFrame.
+
+** Exercise 37:
+
+Set a column as the index of a DataFrame.
+
+** Exercise 38:
+
+Reset the index of a DataFrame.
+
+** Exercise 39:
+
+Add a prefix or suffix to column names.
+
+** Exercise 40:
+
+Filter rows based on datetime index.
+
+** Exercise 41:
+
+Create a DataFrame with duplicate rows and remove duplicates.
+
+** Exercise 42:
+
+Create a DataFrame with hierarchical index.
+
+** Exercise 43:
+
+Calculate the difference between consecutive rows in a DataFrame.
+
+** Exercise 44:
+
+Create a DataFrame with hierarchical columns.
+
+** Exercise 45:
+
+Filter rows based on the length of strings in a column.
+
+** Exercise 46:
+
+Calculate the percentage change between rows in a DataFrame.
+
+** Exercise 47:
+
+Create a DataFrame from a dictionary of Series.
+
+** Exercise 48:
+
+Filter rows based on whether a column value is in a list.
+
+** Exercise 49:
+
+Calculate the z-score of values in a DataFrame.
+
+** Exercise 50:
+
+Create a DataFrame with random integers and calculate descriptive statistics.
+
+** Exercise 51:
+
+Calculate the rank of values in each column of a DataFrame.
+
+** Exercise 52:
+
+Filter rows based on multiple string conditions.
+
+** Exercise 53:
+
+Create a DataFrame with random values and calculate the skewness.
+
+** Exercise 54:
+
+Create a DataFrame and calculate the kurtosis.
+
+** Exercise 55:
+
+Calculate the cumulative product of a column in a DataFrame.
+
+** Exercise 56:
+
+Create a DataFrame and calculate the rolling standard deviation.
+
+** Exercise 57:
+
+Create a DataFrame and calculate the expanding mean.
+
+** Exercise 58:
+
+Create a DataFrame with random values and calculate the covariance matrix.
+
+** Exercise 59:
+
+Create a DataFrame with random values and calculate the correlation matrix.
+
+** Exercise 60:
+
+Create a DataFrame and calculate the rolling correlation between two columns.
+
+** Exercise 61:
+
+Create a DataFrame and calculate the expanding variance.
+
+** Exercise 62:
+
+Create a DataFrame with datetime index and resample by month.
+
+** Exercise 63:
+
+Create a DataFrame and calculate the exponential moving average.
+
+** Exercise 64:
+
+Create a DataFrame with random integers and calculate the mode.
+
+** Exercise 65:
+
+Create a DataFrame and calculate the z-score of each column.
+
+** Exercise 66:
+
+Create a DataFrame with random values and calculate the median.
+
+** Exercise 67:
+
+Create a DataFrame and apply a custom function to each column.
+
+** Exercise 68:
+
+Create a DataFrame with hierarchical index and calculate the mean for each group.
+
+** Exercise 69:
+
+Create a DataFrame and calculate the percentage of missing values in each column.
+
+** Exercise 70:
+
+Create a DataFrame and apply a custom function to each row.
+
+** Exercise 71:
+
+Create a DataFrame with random values and calculate the quantiles.
+
+** Exercise 72:
+
+Create a DataFrame and calculate the interquartile range (IQR).
+
+** Exercise 73:
+
+Create a DataFrame with datetime index and calculate the rolling mean.
+
+** Exercise 74:
+
+Create a DataFrame and calculate the cumulative maximum.
+
+** Exercise 75:
+
+Create a DataFrame and calculate the cumulative minimum.
+
+** Exercise 76:
+
+Create a DataFrame with random values and calculate the cumulative variance.
+
+** Exercise 77:
+
+Create a DataFrame and apply a custom function to each element.
+
+** Exercise 78:
+
+Create a DataFrame with random values and calculate the z-score for each element.
+
+** Exercise 79:
+
+Create a DataFrame and calculate the cumulative sum for each group.
+
+** Exercise 80:
+
+Create a DataFrame with random values and calculate the rank for each element.
+
+** Exercise 81:
+
+Create a DataFrame and calculate the cumulative product for each group.
+
+** Exercise 82:
+
+Create a DataFrame with random values and calculate the expanding sum.
+
+** Exercise 83:
+
+Create a DataFrame and calculate the expanding minimum for each group.
+
+** Exercise 84:
+
+Create a DataFrame with random values and calculate the expanding maximum for each group.
+
+** Exercise 85:
+
+Create a DataFrame and calculate the expanding variance for each group.
+
+** Exercise 86:
+
+Create a DataFrame with random values and calculate the expanding standard deviation.
+
+** Exercise 87:
+
+Create a DataFrame and calculate the expanding covariance.
+
+** Exercise 88:
+
+Create a DataFrame with random values and calculate the expanding correlation.
+
+** Exercise 89:
+
+Create a DataFrame and calculate the expanding median.
+
+** Exercise 90:
+
+Create a DataFrame with datetime index and calculate the expanding mean for each group.
+
+** Exercise 91:
+
+Create a DataFrame with random values and calculate the rolling sum for each group.
+
+** Exercise 92:
+
+Create a DataFrame and calculate the rolling mean for each group.
+
+** Exercise 93:
+
+Create a DataFrame with random values and calculate the rolling standard deviation for each group.
+
+** Exercise 94:
+
+Create a DataFrame and calculate the rolling variance for each group.
+
+** Exercise 95:
+
+Create a DataFrame with random values and calculate the rolling correlation for each group.
+
+** Exercise 96:
+
+Create a DataFrame and calculate the rolling covariance for each group.
+
+** Exercise 97:
+
+Create a DataFrame with random values and calculate the rolling skewness for each group.
+
+** Exercise 98:
+
+Create a DataFrame and calculate the rolling kurtosis for each group.
+
+** Exercise 99:
+
+Create a DataFrame with random values and calculate the rolling median for each group.
+
+** Exercise 100:
+
+Create a DataFrame and calculate the expanding sum for each group.
