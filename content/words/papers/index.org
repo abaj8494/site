@@ -6,29 +6,74 @@ tags = ["perceptron", "cnn", "rnn", "attention", "gpt"]
 
 Here is a table of all the research papers I have taken the liberty to print and annotate.
 
-I may --- at a later date --- add brief notes.
+You may find the static directory [[/doc/papers/][here]].
 
-|-------------------------------------------------------------------------------------------------------+------------------------+--------------------------------------------------------------------------------------------------------------------------+--------+--------------------|
-| *Title*                                                                                               | *Synonyms*             | *Author/s*                                                                                                               | *Year* | *Implementation/s* |
-|-------------------------------------------------------------------------------------------------------+------------------------+--------------------------------------------------------------------------------------------------------------------------+--------+--------------------|
-| Deep Learning for Classical Japanese Literature                                                       |                        | Masaki Nakagawa                                                                                                          |   2018 | [[/projects/ml/supervised/kmnist][kmnist]]             |
-| A Logical Calculus of the Ideas Immanent in Nervous Activity                                          | McCulloch-Pitts Model  | Warren S. McCulloch, Walter Pitts                                                                                        |   1943 | [[/projects/dl/perceptron][perceptron]]         |
-| UMAP: Uniform Manifold Approximation and Projection for Dimension Reduction                           |                        | Leland McInnes, John Healy, James Melville                                                                               |   2020 |                    |
-| Intriguing Properties of Neural Networks                                                              |                        | Christian Szegedy, Wojciech Zaremba, Ian Goodfellow                                                                      |   2014 |                    |
-| Language Models are Unsupervised Multitask Learners                                                   | GPT-2                  | Alec Radford, Jeffrey Wu, Rewon Child, David Luan, Dario Amodei, Ilya Sutskever                                          |   2019 |                    |
-| Improving Language Understanding by Generative Pre-training                                           | GPT                    | Alec Radford, Karthik Narasimhan, Tim Salimans, Ilya Sutskever                                                           |   2018 |                    |
-| Attention is All You Need                                                                             | Attention, Transformer | Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Lukasz Kaiser, Illia Polosukhin |   2017 |                    |
-| Sequence to Sequence Learning with Neural Networks                                                    | Seq2Seq                | Ilya Sutskever, Oriol Vinyals, Quoc V. Le                                                                                |   2014 |                    |
-| Very Deep Convolutional Networks for Large-Scale Image Recognition                                    | VGGNet                 | Karen Simonyan, Andrew Zisserman                                                                                         |   2015 |                    |
-| ImageNet Classification with Deep Convolutional Neural Networks                                       | AlexNet                | Alex Krizhevsky, Ilya Sutskever, Geoffrey Hinton                                                                         |   2012 |                    |
-| Deep Residual Learning for Image Recognition                                                          | ResNet                 | Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun                                                                        |   2015 |                    |
-| Review: Deep Learning                                                                                 |                        | Yann LeCun, Yoshua Bengio, Geoffrey Hinton                                                                               |   2015 |                    |
-| Gradient-Based Learning Applied to Document Recognition                                               | LeNet                  | Yann LeCun, Léon Bottou, Yoshua Bengio, Patrick Haffner                                                                  |   1998 |                    |
-| Incremental Training of First Order Recurrent Neural Networks to Predict a Context-Sensitive Language |                        | Stephan K. Chalup, Alan D. Blair                                                                                         |   2003 |                    |
-| The KiTS19 Challenge Data                                                                             |                        | Nicholas Heller, Niranjan Sathiananathen                                                                                 |   2020 |                    |
-| Handwritten Digit Recognition with a Back-Propagation Network                                         |                        | Yann LeCun, Bernhard Boser, John S. Denker, Donnie Henderson, Richard E. Howard, Wayne Hubbard, Lawrence D. Jackel       |   1989 |                    |
-| Convolution Networks for Kidney Vessels Segmentation from CT-Volumes                                  | KidNet                 | Ahmed Taha, Pechin Lo, Junning Li                                                                                        |   2018 |                    |
-| Convolutional Networks for Biomedical Image Segmentation                                              | UNet                   | Olaf Ronneberger, Philipp Fischer, Thomas Brox                                                                           |   2015 |                    |
-| Automatic Segmentation of Kidneys and Kidney Tumors: The KiTS19 International Challenge               |                        | Niranjan J. Sathianathen, Nicholas Heller, Samuel Kleppe, James M. Mountney, Bradley Erickson                            |   2022 |                    |
-|-------------------------------------------------------------------------------------------------------+------------------------+--------------------------------------------------------------------------------------------------------------------------+--------+--------------------|
+#+BEGIN_EXPORT html
+<script>
+  // Only apply the expanded table styles when directly viewing the papers page
+  (function() {
+    // Check if we are on the papers page directly (not included from elsewhere)
+    // This works because window.location.pathname will be the actual URL being viewed
+    if (window.location.pathname === "/words/papers/" || 
+        window.location.pathname === "/words/papers") {
+      
+      // Create a style element
+      var styleEl = document.createElement('style');
+      
+      // Set the CSS content
+      styleEl.textContent = `
+        /* Force table to extend into sidebar space */
+        .bibtex2html {
+          position: relative;
+          width: 100%;
+          overflow: visible !important;
+        }
+        
+        .bibtex2html table {
+          width: calc(100% + 300px) !important;
+          max-width: none !important;
+          margin-right: -300px !important;
+          position: relative;
+          z-index: 1;
+          border-collapse: collapse;
+        }
+        
+        /* Ensure containers don't clip the expanded table */
+        .main-content, 
+        .content, 
+        .content-container, 
+        .grid-container, 
+        main, 
+        article, 
+        .wrapper, 
+        .container, 
+        .page-content, 
+        .post-content, 
+        .page {
+          overflow: visible !important;
+          position: relative;
+        }
+        
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+          .bibtex2html table {
+            width: 100% !important;
+            max-width: 100% !important;
+            margin-right: 0 !important;
+          }
+        }
+      `;
+      
+      // Add the style element to the document head
+      document.head.appendChild(styleEl);
+    }
+  })();
+</script>
+<div class="bibtex2html">
+#+END_EXPORT
 
+#+INCLUDE: "./nonbook.html" export html
+
+#+BEGIN_EXPORT html
+</div>
+#+END_EXPORT

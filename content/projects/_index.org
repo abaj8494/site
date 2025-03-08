@@ -4,7 +4,7 @@ toc = "true"
 math = "true"
 +++
 
-#BEGIN_QUOTE
+#+BEGIN_QUOTE
 Knowledge is a paradox. The more one understand, the more one realises the vastness of his ignorance.
 
 ---Viktor (Arcane, Season 2)

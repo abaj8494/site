@@ -165,3 +165,4 @@ backup/
 /static/code/kits19/
 *.nii.gz
 *.pth
+/static/doc/papers

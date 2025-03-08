@@ -17,6 +17,7 @@ window.Popups = {
     minHeight: 120,
     initialPositionMargin: 20,
     loadingTimeout: 7500,
+    pdfJsPath: "/js/pdf-js/web/viewer.html",
   },
 
   // State
@@ -641,6 +642,12 @@ window.Popups = {
   loadPopupContent(popup, link) {
     const contentView = popup.contentView;
     const url = link.href;
+
+    // Check if link is a PDF file
+    if (url.toLowerCase().endsWith(".pdf")) {
+      this.loadPdfPreview(popup, url);
+      return;
+    }
 
     // Check if link is an internal fragment/anchor link
     if (
@@ -1599,6 +1606,168 @@ window.Popups = {
 
     // Fine-tune position after the popup is rendered
     this.adjustPopupPosition(popup);
+  },
+
+  // Load PDF content in an iframe for preview
+  loadPdfPreview(popup, url) {
+    const contentView = popup.contentView;
+
+    // Mark this popup as having an iframe and add a special class for PDF styling
+    popup.classList.add("has-iframe", "pdf-preview");
+
+    // Create loading indicator
+    contentView.innerHTML =
+      '<div class="popup-loading">Loading PDF preview...</div>';
+
+    // Update the title
+    if (popup.titleText) {
+      // Extract filename from URL
+      const filename = url.split("/").pop();
+      popup.titleText.textContent = `PDF: ${filename}`;
+    }
+
+    // Create a wrapper div to help with sizing
+    const wrapperDiv = document.createElement("DIV");
+    wrapperDiv.className = "pdf-iframe-wrapper";
+    wrapperDiv.style.width = "100%";
+    wrapperDiv.style.height = "100%";
+    wrapperDiv.style.overflow = "hidden";
+    wrapperDiv.style.margin = "0";
+    wrapperDiv.style.padding = "0";
+
+    // Create an iframe for PDF content
+    const iframe = document.createElement("iframe");
+    iframe.style.width = "100%";
+    iframe.style.height = "100%";
+    iframe.style.border = "none";
+    iframe.style.margin = "0";
+    iframe.style.padding = "0";
+    iframe.style.display = "block"; // Prevents inline spacing issues
+    iframe.style.backgroundColor = "transparent";
+
+    // Following gwern.net's approach by using PDF.js viewer
+    // This avoids Chrome's security restrictions while providing full PDF viewer functionality
+
+    // For local PDFs use PDF.js viewer directly
+    if (!this.isExternalLink(url)) {
+      // Use the configured PDF.js path
+      const pdfJsPath = this.config.pdfJsPath || "/js/pdf-js/web/viewer.html";
+
+      // Add custom params to ensure full screen view without toolbars if possible
+      iframe.src = `${pdfJsPath}?file=${encodeURIComponent(url)}&embedded=true`;
+    } else {
+      // For external PDFs, use Google Docs Viewer
+      iframe.src = `https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true`;
+    }
+
+    // Add custom styles to document head to handle PDF viewer appearance
+    this.ensurePdfStyles();
+
+    // Set up load handler
+    iframe.onload = () => {
+      // Remove loading class
+      popup.classList.remove("loading");
+
+      // Attempt to communicate with the PDF.js iframe to adjust styling if possible
+      try {
+        const iframeDocument =
+          iframe.contentDocument || iframe.contentWindow.document;
+
+        // If we can access the iframe content, try to modify its styling
+        if (iframeDocument) {
+          // Try to find and modify the viewer container
+          const viewerContainer =
+            iframeDocument.getElementById("viewerContainer");
+          if (viewerContainer) {
+            viewerContainer.style.backgroundColor = "transparent";
+          }
+
+          // Try to modify the main viewer
+          const viewer = iframeDocument.getElementById("viewer");
+          if (viewer) {
+            viewer.style.backgroundColor = "transparent";
+          }
+
+          // Add custom CSS to the iframe document if possible
+          const style = iframeDocument.createElement("style");
+          style.textContent = `
+            body, html { 
+              margin: 0 !important; 
+              padding: 0 !important; 
+              background-color: transparent !important;
+            }
+            #viewerContainer, #viewer, .pdfViewer {
+              background-color: transparent !important;
+            }
+          `;
+          iframeDocument.head.appendChild(style);
+        }
+      } catch {
+        // Ignore CORS errors when trying to access iframe content
+        console.log(
+          "Could not access iframe document due to security restrictions",
+        );
+      }
+
+      // Size the iframe based on content and make it large enough for controls
+      setTimeout(() => {
+        // Make the popup larger to accommodate the PDF viewer controls
+        popup.style.minWidth = "800px";
+        popup.style.minHeight = "600px";
+
+        // Apply full width/height styling
+        popup.style.padding = "0";
+        contentView.style.padding = "0";
+        contentView.style.margin = "0";
+
+        this.adjustPopupPosition(popup);
+      }, 100);
+    };
+
+    // Add iframe to wrapper, then add wrapper to content view
+    wrapperDiv.appendChild(iframe);
+
+    // Clear content view and add wrapper with iframe
+    contentView.innerHTML = "";
+    contentView.appendChild(wrapperDiv);
+  },
+
+  // Ensure PDF-specific styles are added to the document
+  ensurePdfStyles() {
+    // Check if we've already added the styles
+    if (document.getElementById("popup-pdf-styles")) {
+      return;
+    }
+
+    // Create style element
+    const style = document.createElement("style");
+    style.id = "popup-pdf-styles";
+    style.textContent = `
+      .popup.pdf-preview {
+        padding: 0 !important;
+        overflow: hidden !important;
+      }
+      
+      .popup.pdf-preview .popup-content-view {
+        padding: 0 !important;
+        margin: 0 !important;
+        overflow: hidden !important;
+      }
+      
+      .popup.pdf-preview .pdf-iframe-wrapper {
+        width: 100%;
+        height: calc(100% - 40px); /* Account for title bar */
+        overflow: hidden;
+        display: block;
+      }
+      
+      .popup.pdf-preview .popup-title-bar {
+        margin-bottom: 0 !important;
+      }
+    `;
+
+    // Add to document head
+    document.head.appendChild(style);
   },
 };
 

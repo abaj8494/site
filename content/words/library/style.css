@@ -2,6 +2,13 @@
 .bibtex2html table {
   width: 100%;
   border-collapse: collapse;
+
+  /* Make the table expand beyond its container */
+  max-width: calc(
+    100vw - var(--sidebar-tree-width, 250px) - var(--main-padding, 40px)
+  );
+  margin-right: calc(-1 * var(--sidebar-width, 300px));
+  position: relative;
 }
 
 /* Style the first column (e.g., for numbers like [6]) */
@@ -20,4 +27,12 @@
 .bibtex2html td {
   padding: 5px;
   border: 1px solid #ddd;
+}
+
+/* Responsive adjustment for smaller screens */
+@media (max-width: 768px) {
+  .bibtex2html table {
+    max-width: 100%;
+    margin-right: 0;
+  }
 }

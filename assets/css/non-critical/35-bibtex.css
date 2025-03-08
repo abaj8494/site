@@ -1,0 +1,62 @@
+/* Basic table styling for all pages */
+.bibtex2html {
+  position: relative;
+  width: 100%;
+}
+
+.bibtex2html table {
+  width: 100%;
+  border-collapse: collapse;
+  position: relative;
+  box-sizing: border-box;
+}
+
+/* Style the first column (e.g., for numbers like [6]) */
+.bibtex2html td:first-child {
+  width: 10%;
+  text-align: right;
+}
+
+/* Style the second column (e.g., for entry content) */
+.bibtex2html td:nth-child(2) {
+  width: 90%;
+  text-align: left;
+}
+
+/* Optional: Add borders or padding */
+.bibtex2html td {
+  padding: 5px;
+  border: 1px solid #ddd;
+}
+
+/* Paper page specific styles - Add this class to body via JavaScript */
+.papers-page .bibtex2html {
+  overflow: visible !important;
+}
+
+.papers-page .bibtex2html table {
+  width: calc(100% + 300px) !important;
+  max-width: none !important;
+  margin-right: -300px !important;
+  z-index: 1;
+}
+
+/* Disable overflow constraints on parent containers in papers page */
+.papers-page .main-content,
+.papers-page .content,
+.papers-page .content-container,
+.papers-page .grid-container,
+.papers-page main,
+.papers-page article {
+  overflow: visible !important;
+}
+
+/* Responsive adjustment for smaller screens */
+@media (max-width: 768px) {
+  .bibtex2html table,
+  .papers-page .bibtex2html table {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-right: 0 !important;
+  }
+}

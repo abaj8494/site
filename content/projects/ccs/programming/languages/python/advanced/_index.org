@@ -1,0 +1,6 @@
++++
+title = "Advanced Python Programming"
+tags = ["concurrency", "iterators", "decorators", "object-oriented"]
++++
+
+Source: https://www.w3resource.com/python-exercises/advanced/index.php
