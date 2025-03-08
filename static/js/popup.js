@@ -645,7 +645,7 @@ window.Popups = {
 
     // Check if link is a PDF file
     if (url.toLowerCase().endsWith(".pdf")) {
-      this.loadPdfPreview(popup, url);
+      this.loadPdfPreview(popup, link);
       return;
     }
 
@@ -1609,8 +1609,11 @@ window.Popups = {
   },
 
   // Load PDF content in an iframe for preview
-  loadPdfPreview(popup, url) {
+  loadPdfPreview(popup, link) {
     const contentView = popup.contentView;
+
+    // Get the URL
+    const url = link.href;
 
     // Mark this popup as having an iframe and add a special class for PDF styling
     popup.classList.add("has-iframe", "pdf-preview");
@@ -1626,110 +1629,112 @@ window.Popups = {
       popup.titleText.textContent = `PDF: ${filename}`;
     }
 
-    // Create a wrapper div to help with sizing
-    const wrapperDiv = document.createElement("DIV");
-    wrapperDiv.className = "pdf-iframe-wrapper";
-    wrapperDiv.style.width = "100%";
-    wrapperDiv.style.height = "100%";
-    wrapperDiv.style.overflow = "hidden";
-    wrapperDiv.style.margin = "0";
-    wrapperDiv.style.padding = "0";
+    // Create a container for better size control
+    const container = document.createElement("div");
+    container.style.position = "relative";
+    container.style.width = "100%";
+    container.style.height = "100%";
+    container.style.overflow = "hidden";
+    container.style.display = "flex";
+    container.style.flexDirection = "column";
 
-    // Create an iframe for PDF content
+    // Create the iframe for PDF content
     const iframe = document.createElement("iframe");
     iframe.style.width = "100%";
     iframe.style.height = "100%";
     iframe.style.border = "none";
-    iframe.style.margin = "0";
-    iframe.style.padding = "0";
-    iframe.style.display = "block"; // Prevents inline spacing issues
-    iframe.style.backgroundColor = "transparent";
+    iframe.style.flexGrow = "1";
+    iframe.src = url;
 
-    // Following gwern.net's approach by using PDF.js viewer
-    // This avoids Chrome's security restrictions while providing full PDF viewer functionality
+    // Add the iframe to the container
+    container.appendChild(iframe);
 
-    // For local PDFs use PDF.js viewer directly
-    if (!this.isExternalLink(url)) {
-      // Use the configured PDF.js path
-      const pdfJsPath = this.config.pdfJsPath || "/js/pdf-js/web/viewer.html";
+    // Apply some essential styles to the content view
+    contentView.style.padding = "0";
+    contentView.style.margin = "0";
+    contentView.style.height = "calc(100% - 40px)"; // Account for title bar
+    contentView.style.display = "flex";
+    contentView.style.flexDirection = "column";
+    contentView.style.overflow = "hidden";
 
-      // Add custom params to ensure full screen view without toolbars if possible
-      iframe.src = `${pdfJsPath}?file=${encodeURIComponent(url)}&embedded=true`;
-    } else {
-      // For external PDFs, use Google Docs Viewer
-      iframe.src = `https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true`;
+    // Ensure that the popup body also fills available space
+    const popupBody = popup.querySelector(".popup-body") || contentView;
+    if (popupBody) {
+      popupBody.style.height = "100%";
+      popupBody.style.display = "flex";
+      popupBody.style.flexDirection = "column";
+      popupBody.style.overflow = "hidden";
+      popupBody.style.padding = "0";
+      popupBody.style.margin = "0";
     }
-
-    // Add custom styles to document head to handle PDF viewer appearance
-    this.ensurePdfStyles();
 
     // Set up load handler
     iframe.onload = () => {
       // Remove loading class
       popup.classList.remove("loading");
 
-      // Attempt to communicate with the PDF.js iframe to adjust styling if possible
-      try {
-        const iframeDocument =
-          iframe.contentDocument || iframe.contentWindow.document;
+      // Make the popup larger to accommodate the PDF viewer controls
+      popup.style.minWidth = "800px";
+      popup.style.minHeight = "600px";
 
-        // If we can access the iframe content, try to modify its styling
-        if (iframeDocument) {
-          // Try to find and modify the viewer container
-          const viewerContainer =
-            iframeDocument.getElementById("viewerContainer");
-          if (viewerContainer) {
-            viewerContainer.style.backgroundColor = "transparent";
-          }
+      // Ensure all popup parts have full height
+      // This is critical for proper height allocation
+      popup.style.display = "flex";
+      popup.style.flexDirection = "column";
 
-          // Try to modify the main viewer
-          const viewer = iframeDocument.getElementById("viewer");
-          if (viewer) {
-            viewer.style.backgroundColor = "transparent";
-          }
+      // Set fixed height on container
+      container.style.height = contentView.offsetHeight + "px";
 
-          // Add custom CSS to the iframe document if possible
-          const style = iframeDocument.createElement("style");
-          style.textContent = `
-            body, html { 
-              margin: 0 !important; 
-              padding: 0 !important; 
-              background-color: transparent !important;
-            }
-            #viewerContainer, #viewer, .pdfViewer {
-              background-color: transparent !important;
-            }
-          `;
-          iframeDocument.head.appendChild(style);
-        }
-      } catch {
-        // Ignore CORS errors when trying to access iframe content
-        console.log(
-          "Could not access iframe document due to security restrictions",
-        );
-      }
-
-      // Size the iframe based on content and make it large enough for controls
+      // Adjust position after content has loaded
       setTimeout(() => {
-        // Make the popup larger to accommodate the PDF viewer controls
-        popup.style.minWidth = "800px";
-        popup.style.minHeight = "600px";
-
-        // Apply full width/height styling
-        popup.style.padding = "0";
-        contentView.style.padding = "0";
-        contentView.style.margin = "0";
-
         this.adjustPopupPosition(popup);
-      }, 100);
+      }, 50);
     };
 
-    // Add iframe to wrapper, then add wrapper to content view
-    wrapperDiv.appendChild(iframe);
-
-    // Clear content view and add wrapper with iframe
+    // Clear content view and add container
     contentView.innerHTML = "";
-    contentView.appendChild(wrapperDiv);
+    contentView.appendChild(container);
+
+    // Add basic resize capability
+    this.makeIframeResponsive(popup);
+
+    // Add a resize handler specifically for fixing height on resize
+    const resizeHandler = () => {
+      if (container.offsetHeight < contentView.offsetHeight) {
+        container.style.height = contentView.offsetHeight + "px";
+      }
+    };
+
+    // Create a MutationObserver to handle dynamic resize
+    if (window.MutationObserver) {
+      const observer = new MutationObserver(resizeHandler);
+      observer.observe(popup, { attributes: true, attributeFilter: ["style"] });
+      popup._pdfObserver = observer; // Store for cleanup
+    }
+
+    // Add a resize event for window resize
+    window.addEventListener("resize", resizeHandler);
+
+    // Create a cleanup function
+    popup._pdfCleanup = () => {
+      window.removeEventListener("resize", resizeHandler);
+      if (popup._pdfObserver) {
+        popup._pdfObserver.disconnect();
+        delete popup._pdfObserver;
+      }
+    };
+
+    // Handle popup close to clean up resources
+    const originalDespawn = this.despawnPopup;
+    if (originalDespawn && !this._pdfDespawnOverridden) {
+      this.despawnPopup = (popupToClose) => {
+        if (popupToClose._pdfCleanup) {
+          popupToClose._pdfCleanup();
+        }
+        return originalDespawn.call(this, popupToClose);
+      };
+      this._pdfDespawnOverridden = true;
+    }
   },
 
   // Ensure PDF-specific styles are added to the document
@@ -1743,31 +1748,112 @@ window.Popups = {
     const style = document.createElement("style");
     style.id = "popup-pdf-styles";
     style.textContent = `
+      /* Keep the main popup container with proper background */
       .popup.pdf-preview {
         padding: 0 !important;
         overflow: hidden !important;
+        display: flex !important;
+        flex-direction: column !important;
+        /* Don't make the main popup transparent */
       }
       
+      /* Keep the title bar visible with its original styling */
+      .popup.pdf-preview .popup-title-bar {
+        margin-bottom: 0 !important;
+        flex-shrink: 0 !important;
+        /* Keep original background */
+      }
+      
+      /* Only make the content area transparent for PDF viewing */
       .popup.pdf-preview .popup-content-view {
         padding: 0 !important;
         margin: 0 !important;
         overflow: hidden !important;
+        flex: 1 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        height: calc(100% - 40px) !important; /* Exact calculation for title bar */
+        background-color: transparent !important;
+      }
+      
+      .popup.pdf-preview .popup-body {
+        padding: 0 !important;
+        margin: 0 !important;
+        height: 100% !important;
+        background-color: transparent !important;
       }
       
       .popup.pdf-preview .pdf-iframe-wrapper {
-        width: 100%;
-        height: calc(100% - 40px); /* Account for title bar */
-        overflow: hidden;
-        display: block;
+        width: 100% !important;
+        height: 100% !important;
+        flex: 1 !important;
+        overflow: hidden !important;
+        display: block !important;
+        position: relative !important;
+        background-color: transparent !important;
       }
       
-      .popup.pdf-preview .popup-title-bar {
-        margin-bottom: 0 !important;
+      /* Ensure resize handles remain visible */
+      .popup.pdf-preview .popup-resize-handle {
+        z-index: 10 !important;
+      }
+      
+      /* Add a special class for when popup is being resized */
+      .popup.pdf-preview.resizing .pdf-iframe-wrapper iframe {
+        pointer-events: none !important; /* Disable iframe interaction during resize */
       }
     `;
 
     // Add to document head
     document.head.appendChild(style);
+  },
+
+  // Make the iframe responsive to popup resizing
+  makeIframeResponsive(popup) {
+    // Create a ResizeObserver to watch for size changes to the popup
+    if (window.ResizeObserver) {
+      const resizeObserver = new ResizeObserver((entries) => {
+        for (const entry of entries) {
+          // When popup size changes, update any internal elements if needed
+          if (entry.target === popup) {
+            // No need to manually update the iframe size as we're using
+            // 100% width/height with absolute positioning, but we could add
+            // special handling here if needed
+          }
+        }
+      });
+
+      // Start observing the popup
+      resizeObserver.observe(popup);
+
+      // Store the observer reference for cleanup
+      popup.setAttribute("data-has-resize-observer", "true");
+      popup._resizeObserver = resizeObserver;
+    }
+
+    // Handle popup resize start - disable iframe interaction during resize
+    popup.addEventListener(
+      "mousedown",
+      (e) => {
+        // Check if this is a resize handle
+        if (e.target.classList.contains("popup-resize-handle")) {
+          // Add a class to disable iframe pointer events during resize
+          popup.classList.add("resizing");
+        }
+      },
+      true,
+    );
+
+    // Handle popup resize end - re-enable iframe interaction
+    document.addEventListener(
+      "mouseup",
+      () => {
+        if (popup.classList.contains("resizing")) {
+          popup.classList.remove("resizing");
+        }
+      },
+      true,
+    );
   },
 };
 
