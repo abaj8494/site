@@ -54,7 +54,7 @@ You may also view the entire =tag= taxonomy [[/tags][here]].
 :PROPERTIES:
 :CUSTOM_ID: data-algs
 :END:
-- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/data-algs/adv-alg][Advanced Algorithms]] {{< tags-inline "projects/ccs/data-algs/adv-alg" >}}
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/data-algs/advanced][Advanced Algorithms]] {{< tags-inline "projects/ccs/data-algs/adv-alg" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/data-algs/leetcode][Leetcode]] {{< tags-inline "projects/ccs/data-algs/leetcode" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/data-algs/sorting][Sorting]] {{< tags-inline "projects/ccs/data-algs/sorting" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/data-algs/searching][Searching]] {{< tags-inline "projects/ccs/data-algs/searching" >}}

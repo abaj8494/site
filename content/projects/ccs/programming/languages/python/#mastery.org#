@@ -24,11 +24,20 @@ Convert a list of integers to a list of strings.
 
 #+begin_src jupyter-python :session mast-python
   my_list_as_strs = map(str, my_list)
-  my_list_as_strs()
+  my_list_as_strs
 #+end_src
 
 #+RESULTS:
-: <map at 0x1045788e0>
+:RESULTS:
+# [goto error]
+: [0;31m---------------------------------------------------------------------------[0m
+: [0;31mTypeError[0m                                 Traceback (most recent call last)
+: Cell [0;32mIn[10], line 2[0m
+: [1;32m      1[0m my_list_as_strs [38;5;241m=[39m [38;5;28mmap[39m([38;5;28mstr[39m, my_list)
+: [0;32m----> 2[0m my_list_as_strs()
+: 
+: [0;31mTypeError[0m: 'map' object is not callable
+:END:
 
 ** Exercise 3:
 

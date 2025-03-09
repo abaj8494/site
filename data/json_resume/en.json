@@ -1,10 +1,10 @@
 {
   "basics": {
     "name": "Aayush Bajaj",
-    "label": "Machine Learning Engineer",
+    "label": "Power Programmer",
     "image": "../../monke.webp",
     "email": "j@abaj.ai",
-    "summary": "I used to be passionate about Education, but then I discovered Deep Learning. What's the point in teaching humans when I can just teach my Computer to reason?",
+      "summary": "Monkey read, monkey think, monkey build.",
     "location": {
       "city": "Sydney",
       "region": "Australia"
