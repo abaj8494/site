@@ -1,4 +1,6 @@
 {{ $id := .Get "id" }}
+{{ $folded := .Get "folded" | default "true" }}
+{{ $lvl := .Get "lvl" | default "0" }}
 <div id="{{ $id }}" class="collapsible-container">
   <style id="collapsible-css">
     /* Wrapper for heading and toggle button */
@@ -49,8 +51,8 @@
   </style>
 
   <script type="text/javascript">
-    var window.folded='{{ .Get "folded"}}';
+    window.folded = '{{ $folded }}';
+    window.collapseLvl = parseInt('{{ $lvl }}');
   </script>
   <script src="{{ "js/collapsible-global.js" | relURL }}"></script>
 </div>
-

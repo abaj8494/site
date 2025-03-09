@@ -37,7 +37,7 @@ The content of this current site is more rigorous and deliberate.
 
 * @@html:<h2 id="nav-heading"><span class="nav-text">Navigation</span></h2><svg id="arrow-svg"></svg>@@
 
-@@html:<font color="orange"><span style="font-variant: small-caps;">This site looks MUCH better on Desktop. And slightly moreso in <a href="#" id="darkModeTextToggle" aria-label="Toggle dark mode">dark mode</a>.</span></font>@@
+@@html:<font color="orange"><span style="font-variant: small-caps;">This site looks MUCH better on Desktop. And slightly moreso in <a href="#" id="darkModeTextToggle" data-popup="ignore" aria-label="Toggle dark mode">dark mode</a>.</span></font>@@
 The top right menubar will serve as your main interface to the site. Within it are links to other pages, but at the highest level, every webpage can be discovered through these root nodes.
 
 Furthermore, any links leading [[https://www.youtube.com/watch?v=dQw4w9WgXcQ][out]] of this site are proceeded with a =↗=, whilst those [[#nav-heading][within]] are not.

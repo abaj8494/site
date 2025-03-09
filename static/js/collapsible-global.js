@@ -4,12 +4,18 @@ document.addEventListener("DOMContentLoaded", function () {
   // Retrieve stored toggle states (or initialize to an empty object)
   let toggleStates = JSON.parse(localStorage.getItem(storageKey)) || {};
 
+  // Get the collapse level if specified (default is 0, which means no level-based collapse)
+  const collapseLvl = window.collapseLvl || 0;
+
   // Select all headings globally (e.g., h1 to h6)
   const headings = document.querySelectorAll("h2, h3, h4, h5, h6");
 
   headings.forEach((heading, index) => {
     // Skip if heading is already wrapped
     if (heading.closest(".collapsible-wrapper")) return;
+
+    // Get the heading level (2 for h2, 3 for h3, etc.)
+    const headingLevel = parseInt(heading.tagName.substring(1));
 
     // Create a wrapper for the heading and button
     const wrapper = document.createElement("div");
@@ -23,12 +29,21 @@ document.addEventListener("DOMContentLoaded", function () {
     const toggleId = `${window.location.pathname}-toggle-${index}`;
     heading.setAttribute("data-toggle-id", toggleId);
 
-    // Determine initial state from localStorage or default to `folded`
-    // (Assumes a global "folded" variable, e.g., set via templating)
-    const isFolded =
-      toggleStates[toggleId] === undefined
-        ? window.folded === "true"
-        : toggleStates[toggleId] === false;
+    // Determine initial state based on:
+    // 1. localStorage if it exists
+    // 2. level-based collapse setting if specified
+    // 3. default folded state
+    let isFolded;
+    if (toggleStates[toggleId] !== undefined) {
+      // If we have a stored state, use it
+      isFolded = toggleStates[toggleId] === false;
+    } else if (collapseLvl > 0) {
+      // If collapseLvl is specified, collapse all headings deeper than the specified level
+      isFolded = headingLevel > collapseLvl;
+    } else {
+      // Otherwise use the default folded state
+      isFolded = window.folded === "true";
+    }
 
     // Set initial button state
     button.setAttribute("aria-expanded", !isFolded);
