@@ -9,6 +9,9 @@ Source: https://www.w3resource.com/python-exercises/python_100_exercises_with_so
 
 Create a list with values ranging from 0 to 9.
 
+*** soln
+
+list's take in iterators
 #+begin_src jupyter-python :session mast-python
   #my_list = [i for i in range(10)]
   my_list = list(range(10))
@@ -22,21 +25,51 @@ Create a list with values ranging from 0 to 9.
 
 Convert a list of integers to a list of strings.
 
+*** soln
+
+=map(function, iterable, *iterables)=
+map returns an iterator. it applies fn to an iterator with iterable args.
 #+begin_src jupyter-python :session mast-python
-  my_list_as_strs = map(str, my_list)
-  my_list_as_strs()
+  my_list_as_strs = list(map(str, my_list))
+  my_list_as_strs
 #+end_src
 
 #+RESULTS:
-: <map at 0x1045788e0>
+| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
 
 ** Exercise 3:
 
 Multiply all elements in a list by 2.
 
+*** soln
+
+a very functional programming approach; manipulating data with subsequent functional transformations.
+
+also, unusually I could not find any documentation on lambda expressions in the main [[https://docs.python.org/3/library/index.html][Python Standard Library]]. I had to click into the tutorial and take a look at [[https://docs.python.org/3/tutorial/controlflow.html#lambda-expressions]["more control flow tools"]].
+#+begin_src jupyter-python :session mast-python
+  another_list = list(range(5))
+  times_two_list = list(map(lambda x: 2*x, another_list))
+  times_two_list
+#+end_src
+
+#+RESULTS:
+| 0 | 2 | 4 | 6 | 8 |
+
+
 ** Exercise 4:
 
 Extract all odd numbers from a list of integers.
+
+*** soln
+
+maps continue to be useful, however perhaps a filter will be a better idea here.
+
+
+#+begin_src jupyter-python :session mast-python
+  another_list = list(range(8))
+  times_two_list = list(map(lambda x: 2*x, another_list))
+  times_two_list
+#+end_src
 
 ** Exercise 5:
 
