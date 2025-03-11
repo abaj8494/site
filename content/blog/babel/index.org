@@ -1,0 +1,9 @@
++++
+title = "The Babels"
+tags = ["library", "tower", "emacs"]
++++
+
+This page is for the richness of Babel.
+
+I shall come back to populate it with Biblical history, Emacs inspirations and unpack Jorge's concept of infinity in this blog post.
+

@@ -131,7 +131,11 @@ note that the ternary operator syntax is different to C/Java.
 #+RESULTS:
 | 0 | -1 | 2 | -1 | 4 | -1 | 6 | -1 | 8 | -1 | 10 | -1 | 12 | -1 | 14 | -1 | 16 | -1 | 18 | -1 |
 
-** Exercise 6:
+** DONE Exercise 6:
+CLOSED: [2025-03-11 Tue 12:55]
+:LOGBOOK:
+- State "DONE"       from              [2025-03-11 Tue 12:55]
+:END:
 
 Convert a list of integers to a list of booleans where all non-zero values become True.
 
@@ -149,7 +153,11 @@ note that in Python, true is actually =True= and false, =False=.
 #+RESULTS:
 | False | True | True | True | True | True | True | True | True | True | True | True | True | True | True |
 
-** Exercise 7:
+** DONE Exercise 7:
+CLOSED: [2025-03-11 Tue 12:55]
+:LOGBOOK:
+- State "DONE"       from              [2025-03-11 Tue 12:55]
+:END:
 
 Replace all even numbers in a list with their negative.
 
@@ -162,7 +170,11 @@ Replace all even numbers in a list with their negative.
 #+RESULTS:
 | 0 | 1 | -2 | 3 | -4 | 5 | -6 | 7 | -8 | 9 | -10 | 11 | -12 | 13 | -14 |
 
-** Exercise 8:
+** DONE Exercise 8:
+CLOSED: [2025-03-11 Tue 12:55]
+:LOGBOOK:
+- State "DONE"       from              [2025-03-11 Tue 12:55]
+:END:
 
 Create a 3x3 list of lists with random values and normalize it.
 
@@ -195,7 +207,11 @@ also I used numpy to skip a list comprehension.
 :  [0.         0.33333333 0.16666667 0.         1.         0.83333333]
 :  [1.         0.33333333 1.         0.33333333 0.16666667 0.16666667]]
 
-** Exercise 9:
+** DONE Exercise 9:
+CLOSED: [2025-03-11 Tue 12:55]
+:LOGBOOK:
+- State "DONE"       from              [2025-03-11 Tue 12:55]
+:END:
 
 Calculate the sum of the diagonal elements of a 3x3 matrix (list of lists).
 
@@ -209,7 +225,11 @@ Calculate the sum of the diagonal elements of a 3x3 matrix (list of lists).
 #+RESULTS:
 : 3.3333333333333335
 
-** Exercise 10:
+** DONE Exercise 10:
+CLOSED: [2025-03-11 Tue 12:55]
+:LOGBOOK:
+- State "DONE"       from              [2025-03-11 Tue 12:55]
+:END:
 
 Find the indices of non-zero elements in a list.
 
@@ -232,21 +252,173 @@ fk that was hard.
 
 Reverse a list.
 
+*** soln
+one thing to be careful of with the =list.reverse()= method is that the reversal happens "in-place", i.e. on the object that the method was called on.
+#+begin_src jupyter-python :session mast-python
+  out_list.reverse() # no return value for this
+  print(out_list)
+  print(new_list) # defined in the last q
+  print(reversed(new_list)) # returns an iterator object
+  print(list(reversed(new_list)))
+#+end_src
+
+
+#+RESULTS:
+: [8, 7, 6, 4, 3, 2, 1, 0]
+: [-5, -4, -3, -2, -1, 0, 1, 2, 3]
+: <list_reverseiterator object at 0x107bdf8b0>
+: [3, 2, 1, 0, -1, -2, -3, -4, -5]
+
+further, it must noted that all the above are "shallow-copies", whilst they are fast, if the objects which constitute the list are mutable, then you could run into problems with the reversed list misbehaving later:
+
+#+begin_src jupyter-python :session mast-python
+  x = 6
+  a = 7
+  b = 8
+  var_list = [x, a, b]
+  print(f"var_list: {var_list}")
+  stable_list = var_list[::-1]
+  question_list = list(reversed(var_list))
+  x = 1
+  a = 2
+  b = 3
+  unstable_list = list(reversed(var_list))
+  print(question_list)
+  print(unstable_list)
+  print(stable_list)
+#+end_src
+
+now, notice that you STILL cannot see a difference! this is because your =x,a,b= variables are immutable; they are integers.
+#+RESULTS:
+: var_list: [6, 7, 8]
+: [8, 7, 6]
+: [8, 7, 6]
+: [8, 7, 6]
+
+try this code
+#+begin_src jupyter-python :session mast-python
+  x = [6]
+  a = [7]
+  b = [8]
+  var_list = [x, a, b]
+  print(f"var_list: {var_list}")
+  stable_list = var_list[::-1]
+  question_list = list(reversed(var_list))
+  x.append(1)
+  a.append(2)
+  b.append(3)
+  unstable_list = list(reversed(var_list))
+  print(f"question_list: {question_list}")
+  print(f"unstable_list: {unstable_list}")
+  print(f"stable_list: {stable_list}")
+#+end_src
+
+#+RESULTS:
+: var_list: [[6], [7], [8]]
+: question_list: [[8, 3], [7, 2], [6, 1]]
+: unstable_list: [[8, 3], [7, 2], [6, 1]]
+: stable_list: [[8, 3], [7, 2], [6, 1]]
+
+ultimately, if you want a non-shallow copy you must use deepcopy
+#+begin_src jupyter-python :session mast-python
+  import copy
+  stable_list = copy.deepcopy(var_list)
+  print(f"stable_list: {stable_list}")
+  # and now, even if you mutate the lists, stable_list does not change but unstable_list will:
+  x.pop()
+  print(f"unstable_list: {unstable_list}")
+  print(f"still stable: {stable_list}")
+#+end_src
+
+#+RESULTS:
+: stable_list: [[6, 1], [7, 2], [8, 3]]
+: unstable_list: [[8, 3], [7, 2], [6]]
+: still stable: [[6, 1], [7, 2], [8, 3]]
+
 ** Exercise 12:
 
 Create a 3x3 identity matrix as a list of lists.
+
+#+begin_src jupyter-python :session mast-python
+  import numpy as np
+  print(np.eye(3))
+#+end_src
+
+#+RESULTS:
+: [[1. 0. 0.]
+:  [0. 1. 0.]
+:  [0. 0. 1.]]
 
 ** Exercise 13:
 
 Reshape a 1D list to a 2D list with 2 rows.
 
+*** soln1
+#+begin_src jupyter-python :session mast-python
+  l = np.array(range(12))
+  print(l.reshape(2, -1))
+#+end_src
+
+*** output
+#+RESULTS:
+: [[ 0  1  2  3  4  5]
+:  [ 6  7  8  9 10 11]]
+
+*** soln2, no numpy
+#+begin_src jupyter-python :session mast-python
+  l = list(range(12))
+  x = [l[x:x+int(len(l)/2)] for x in range(0, len(l), int(len(l)/2))]
+  print(x)
+#+end_src
+
+*** output
+terrific, well done!
+#+RESULTS:
+: [[0, 1, 2, 3, 4, 5], [6, 7, 8, 9, 10, 11]]
+
 ** Exercise 14:
 
 Stack two lists vertically.
 
+#+begin_src jupyter-python :session mast-python
+  l1 = list(range(4))[::-1]
+  l2 = list(range(4))
+  l = [l1, l2]
+  print(l)
+#+end_src
+
+#+RESULTS:
+: [[3, 2, 1, 0], [0, 1, 2, 3]]
+
 ** Exercise 15:
 
 Get the common items between two lists.
+
+shit, I accidentally got all the /unique/ items by using sets
+#+begin_src jupyter-python :session mast-python
+  l1 = list(range(4))[::-1]
+  l2 = list(range(7))
+  l1.extend(l2)
+  s = list(set(l1))
+  print(s)
+#+end_src
+
+#+RESULTS:
+: [0, 1, 2, 3, 4, 5, 6]
+
+that's okay, it's not much different to find the duplicates; we can use the =intersection= method of =sets=
+#+begin_src jupyter-python :session mast-python
+  l1 = list(range(4))[::-1]
+  l2 = list(range(7))
+  dupes = list(set(l1).intersection(set(l2)))
+  # also, note that the intersection method can accept any iterable! thus this works too:
+  dupes = list(set(l1).intersection(l2))
+  print(dupes)
+#+end_src
+
+*** output
+#+RESULTS:
+: [0, 1, 2, 3]
 
 ** Exercise 16:
 
