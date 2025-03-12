@@ -248,7 +248,11 @@ fk that was hard.
 #+RESULTS:
 | 0 | 1 | 2 | 3 | 4 | 6 | 7 | 8 |
 
-** Exercise 11:
+** DONE Exercise 11:
+CLOSED: [2025-03-12 Wed 11:15]
+:LOGBOOK:
+- State "DONE"       from              [2025-03-12 Wed 11:15]
+:END:
 
 Reverse a list.
 
@@ -335,7 +339,12 @@ ultimately, if you want a non-shallow copy you must use deepcopy
 : unstable_list: [[8, 3], [7, 2], [6]]
 : still stable: [[6, 1], [7, 2], [8, 3]]
 
-** Exercise 12:
+** DONE Exercise 12:
+CLOSED: [2025-03-12 Wed 11:15]
+:LOGBOOK:
+- State "DONE"       from "DONE"       [2025-03-12 Wed 11:15]
+- State "DONE"       from              [2025-03-12 Wed 11:15]
+:END:
 
 Create a 3x3 identity matrix as a list of lists.
 
@@ -349,7 +358,11 @@ Create a 3x3 identity matrix as a list of lists.
 :  [0. 1. 0.]
 :  [0. 0. 1.]]
 
-** Exercise 13:
+** DONE Exercise 13:
+CLOSED: [2025-03-12 Wed 11:15]
+:LOGBOOK:
+- State "DONE"       from              [2025-03-12 Wed 11:15]
+:END:
 
 Reshape a 1D list to a 2D list with 2 rows.
 
@@ -376,7 +389,11 @@ terrific, well done!
 #+RESULTS:
 : [[0, 1, 2, 3, 4, 5], [6, 7, 8, 9, 10, 11]]
 
-** Exercise 14:
+** DONE Exercise 14:
+CLOSED: [2025-03-12 Wed 11:15]
+:LOGBOOK:
+- State "DONE"       from              [2025-03-12 Wed 11:15]
+:END:
 
 Stack two lists vertically.
 
@@ -390,7 +407,11 @@ Stack two lists vertically.
 #+RESULTS:
 : [[3, 2, 1, 0], [0, 1, 2, 3]]
 
-** Exercise 15:
+** DONE Exercise 15:
+CLOSED: [2025-03-12 Wed 11:15]
+:LOGBOOK:
+- State "DONE"       from              [2025-03-12 Wed 11:15]
+:END:
 
 Get the common items between two lists.
 
@@ -424,21 +445,167 @@ that's okay, it's not much different to find the duplicates; we can use the =int
 
 Create a 5x5 list of lists with row values ranging from 0 to 4.
 
+*** soln1
+
+#+begin_src jupyter-python :session mast-python
+  import random
+  random.seed(4)
+  n = 5
+  l = [ [random.randint(0,n-1) for i in range(n)] for i in range(n)]
+  print(l)
+#+end_src
+
+#+RESULTS:
+: [[1, 2, 0, 3, 3], [1, 0, 0, 0, 3], [4, 2, 0, 1, 4], [4, 2, 2, 1, 0], [2, 1, 0, 2, 2]]
+
+*** soln2
+i believe we can accomplish the same thing more quickly with numpy:
+
+#+begin_src jupyter-python :session mast-python
+  import numpy
+  m = numpy.random.randint(5, size=(5,5))
+  print(m)
+#+end_src
+
+#+RESULTS:
+: [[2 3 1 3 3]
+:  [0 4 4 3 3]
+:  [3 2 0 2 2]
+:  [4 3 4 1 2]
+:  [1 4 0 0 4]]
+
+*** timing
+
+#+begin_src jupyter-python :session mast-python
+import timeit
+
+# Setup code for the list-comprehension approach
+setup1 = """
+import random
+random.seed(4)
+n = 5
+"""
+
+# The statement we want to time repeatedly
+stmt1 = """
+l = [[random.randint(0, n - 1) for i in range(n)] for j in range(n)]
+"""
+
+# Setup code for the NumPy approach
+setup2 = """
+import numpy
+"""
+
+# The statement we want to time repeatedly
+stmt2 = """
+m = numpy.random.randint(5, size=(5, 5))
+"""
+
+# Number of iterations to run timeit
+iterations = 1_000_000
+
+time1 = timeit.timeit(stmt=stmt1, setup=setup1, number=iterations)
+time2 = timeit.timeit(stmt=stmt2, setup=setup2, number=iterations)
+
+print(f"List comprehension approach: {time1:.6f} seconds")
+print(f"NumPy approach:              {time2:.6f} seconds")
+#+end_src
+
+#+RESULTS:
+: List comprehension approach: 7.771532 seconds
+: NumPy approach:              3.685444 seconds
+
+
 ** Exercise 17:
 
 Find the index of the maximum value in a list.
+
+*** soln
+#+begin_src jupyter-python :session mast-python
+max(max(l))
+#+end_src
+
+#+RESULTS:
+: 4
+
+and for a single dimensional array (the above was 2d)
+#+begin_src jupyter-python :session mast-python
+max(range(15))
+#+end_src
+
+#+RESULTS:
+: 14
+
+however, the number of =max= calls is clearly dependent on the dimensionality. as such we can use =numpy=:
+#+begin_src jupyter-python :session mast-python
+numpy.amax(l)
+#+end_src
+
+#+RESULTS:
+: 4
 
 ** Exercise 18:
 
 Normalize the values in a list between 0 and 1.
 
+we can do it nakedly with the =math= library and implement softmax, which is defined in [[https://abaj.ai/projects/mathematics/calculus/mvars#softmax][multi-variate calculus]].
+#+begin_src jupyter-python :session mast-python
+  import math
+  my_list = list(range(7))
+  new_list = list(map(lambda x: math.exp(x) / sum(math.exp(y) for y in my_list), my_list))
+  print(new_list)
+  print(sum(new_list)) # checking it all sums to 1
+#+end_src
+
+#+RESULTS:
+: [0.0015683003158864725, 0.004263082250240778, 0.011588259014055805, 0.03150015390138463, 0.08562629594379713, 0.23275640430228017, 0.6326975042723549]
+: 0.9999999999999999
+
+#+begin_src jupyter-python :session mast-python
+  import numpy as np
+  def softmax(x):
+      return np.exp(x) / sum(np.exp(x))
+
+  print(sum(softmax(my_list)))
+  print(softmax(my_list))
+#+end_src
+
+#+RESULTS:
+: 0.9999999999999999
+: [0.0015683  0.00426308 0.01158826 0.03150015 0.0856263  0.2327564
+:  0.6326975 ]
+
 ** Exercise 19:
 
 Calculate the dot product of two lists.
 
+#+begin_src jupyter-python :session mast-python
+  random.seed(4)
+  list_a = random.choices(range(10),k=10) # without numpy
+  list_b = random.choices(range(10),k=10)
+  print(list_a)
+  print(list_b)
+  dot_p = sum(list(map(math.prod, zip(list_a,list_b))))
+  print(dot_p)
+#+end_src
+
+#+RESULTS:
+: [2, 1, 3, 1, 0, 4, 9, 8, 7, 2]
+: [5, 2, 1, 1, 2, 9, 8, 8, 8, 1]
+: 246
+
 ** Exercise 20:
 
 Count the number of elements in a list within a specific range.
+
+#+begin_src jupyter-python :session mast-python
+  def count_elements_within_range(a, b, x):
+      return sum(a <= y <= b for y in x)
+  count_elements_within_range(5, 12, list(range(14))[5::3])
+#+end_src
+
+#+RESULTS:
+: 3
 
 ** Exercise 21:
 
