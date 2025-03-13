@@ -34,6 +34,15 @@ You may also view the entire =tag= taxonomy [[/tags][here]].
 - black sholes pricer
 - c++ project?
 
+#+begin_export html
+<div style="border:1px solid #ccc; padding:10px; width:50%; margin:0 auto; text-align:center;">
+  <input type="checkbox" class="edit"/>
+  <a href="/projects/ccs/cs-major">What Every CS Major Ought to Know</a>
+  {{< tags-inline "projects/ccs/cs-major" >}}
+</div>
+#+end_export
+
+
 ** [[/projects/ccs][Classical Computer Science]]
 :PROPERTIES:
 :CUSTOM_ID: classical-cs
