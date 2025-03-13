@@ -14,6 +14,9 @@ The prize money for this year was $100 AUD and $50 aud respectively.
 Mr. Rajan nobly refused the charity.
 
 ** Question 1
+:PROPERTIES:
+:CUSTOM_ID: q1
+:END:
 
 \[I = \int^3_0 \sqrt{9-x^2}\,\, \mathrm{d}x\]
 
@@ -30,6 +33,9 @@ A_{\text{circle}} &= \pi r^2\\
 \implies I &= \frac{9\pi}{4}\end{align*}\]
 
 ** Question 2
+:PROPERTIES:
+:CUSTOM_ID: q2
+:END:
 
 We continue with the theme of visualising integrals in the multivariate case.
 
@@ -51,6 +57,9 @@ V_{\text{sphere}} &= \frac{4}{3}\pi r^3\\
 &=\frac{4}{3}\pi\end{align*}\]
 
 ** Q3
+:PROPERTIES:
+:CUSTOM_ID: q3
+:END:
 
 Regrettably a mistake in this question steered the crowd in the wrong direction[fn:1]. The question asked was regarding an /indefinite/ integral which can be correctly solved by using the Weierstrass \(t\) substitution of \[\cos{t} = \frac{1-t^2}{1+t^2}\quad .\]
 
@@ -88,6 +97,9 @@ J &= \frac{\rlap{-i}\textcolor{red}{\cancel{\phantom{-i}}}}{\rlap{\,2}\textcolor
 \end{align*}\]
 
 ** Q4
+:PROPERTIES:
+:CUSTOM_ID: q4
+:END:
 
 We must think outside of the proverbial box for this one:
 
@@ -97,6 +109,9 @@ We must think outside of the proverbial box for this one:
 #+END_CENTER
 
 ** Q5
+:PROPERTIES:
+:CUSTOM_ID: q5
+:END:
 
 \[\begin{align*}
 \left ( \frac{3}{2} \right ){\large !} &= \Gamma\left(\frac{3}{2}+1\right)\\
@@ -116,6 +131,9 @@ and \(\Gamma\left(\frac{1}{2}\right) = \sqrt{\pi}\), either by doing it manually
 \[\therefore \Gamma\left (\frac{5}{2}\right ) =\left( \frac{3\pi}{4}\right )\]
 
 ** Q6
+:PROPERTIES:
+:CUSTOM_ID: q6
+:END:
 
 *** Theorem
 For a right-angled triangle, the square of the length of the hypotenuse (\(c\)) is equal to the sum of the squares of the lengths of the other two sides (\(a\) and \(b\)). This can be represented as:
@@ -137,6 +155,9 @@ In the second square, after rearranging the triangles, two smaller squares appea
 From the two squares, it is clear that the area represented by \(c^2\) in the first square is equal to the combined areas of \(a^2\) and \(b^2\) in the second square, thus proving the theorem.
 
 ** Q7
+:PROPERTIES:
+:CUSTOM_ID: q7
+:END:
 
 Recall that
 \[f'(x) = \lim_{h\to 0} \frac{f(x+h)-f(x)}{h}\]
@@ -153,6 +174,9 @@ f'(x) &= \lim_{h\to 0} \frac{\sin(x+h)-\sin(x)}{h}\\
 At this point we get stuck because it is not immediately obvious what the limit of \(\frac{\sin(h)}{h}\) is.
 
 *** Lemma
+:PROPERTIES:
+:CUSTOM_ID: q7-lemma
+:END:
 
 **** Theorem
 \[\lim_{h\to 0} \frac{\sin(h)}{h} = 1\]
@@ -187,6 +211,9 @@ Resuming our initial proof:
 \[\lim_{h\to 0}\,\, \sin(x)\frac{\cos(h)}{h} + \cos(x)\frac{\sin(h)}{h} - \frac{\sin(x)}{h}  = 0 + \cos(x)\times 1 - 0\\ = \cos(x)\,\,\square .\]
 
 ** Q8
+:PROPERTIES:
+:CUSTOM_ID: q8
+:END:
 
 *** 8.1
 \[[\begin{array}{cccccccccc}
@@ -216,6 +243,9 @@ The minimal answer to this will always be the mediant of the two fractions:
 which is entirely equivalent to finding \[F_n = F_{n-1} = F_{n-2}.\]
 
 ** Q9
+:PROPERTIES:
+:CUSTOM_ID: q1
+:END:
 Again I make a mistake and ask the wrong question[fn:1].
 \[\rlap{\int^\infty_\infty e^{-x^2}\mathrm{d}x}\textcolor{red}{\xcancel{\phantom{\int^\infty_\infty e^{-x^2}\mathrm{d}x}}} = 0\]
 but obviously what I intended to ask was \[I =\int^\infty_{-\infty} e^{-x^2}\mathrm{d}x.\]
@@ -242,6 +272,9 @@ For reference the curve we are integrating looks like:
 #+END_CENTER
 
 ** Q10
+:PROPERTIES:
+:CUSTOM_ID: q10
+:END:
 
 Recall that \[\frac{1}{1+x^2} = 1 - x^2 + x^4 - \dots + \dots \]
 
@@ -259,9 +292,16 @@ Also, we can directly integrate:
 Thus the infinite series \(1 - \frac{1}{3} + \frac{1}{5} -\frac{1}{7}+\dots \) indeed converges to \(\frac{\pi}{4}\).
 
 ** Q11
+:PROPERTIES:
+:CUSTOM_ID: q11
+:END:
+
 Calculus is for *children* whilst analysis is for *adults*.
 
 ** Q12
+:PROPERTIES:
+:CUSTOM_ID: q12
+:END:
 Given that \(f(x) = x^4 -5x^3\) and \(g(x) = 8x-40\) we can find their points of intersection by equating the functions and factoring the polynomial:
 
 \[x^4-5x^3-8x+40 = 0 \\
@@ -275,9 +315,15 @@ Taking derivatives and substituting the x-intercept of 5 to find the gradients o
 #+END_CENTER
 
 ** Q13
+:PROPERTIES:
+:CUSTOM_ID: q13
+:END:
 \[S\rightarrow V_2 \rightarrow V_4 \rightarrow t \implies \text{path cost of }31\]
 
 ** Q14
+:PROPERTIES:
+:CUSTOM_ID: q14
+:END:
 
 To solve 
 \begin{equation}
@@ -297,6 +343,9 @@ z &= i(2\pm\sqrt{3}) \qquad\text{(by the quadratic formula)}
 
 
 ** Q15
+:PROPERTIES:
+:CUSTOM_ID: q15
+:END:
 
 We begin by considering \(X^2-X-1=0\label{eq:2}\) and letting its solution be \(\phi\).
 
@@ -332,6 +381,9 @@ Substituting these \(\phi_1\) and \(\phi_2\) into \ref{eq:4} yields
 \[F_n = \frac{1}{\sqrt{5}}\left[ \bigg(\frac{1+\sqrt{5}}{2}\bigg)^n - \bigg(\frac{1-\sqrt{5}}{2}\bigg)^n\right].\]
 
 ** Q16
+:PROPERTIES:
+:CUSTOM_ID: q16
+:END:
 
 We solve the ODE by combining solutions to the homogenous case
 \[y_h = Ae^{-x} + Bxe^{-x}\]
@@ -341,6 +393,9 @@ And solving the initial conditions to find our constants and ultimately produce:
 \[y = e^{-x}-e^{-x}\cos(x)\]
 
 ** Q17
+:PROPERTIES:
+:CUSTOM_ID: q17
+:END:
 \[\begin{align*}
 \langle\sin(x),\cos(x)\rangle &= \int^{2\pi}_0\sin(x)\cos(x)\mathrm{d}x\\
 &= \frac{1}{2}\int^{2\pi}_0 \sin(2x)~\mathrm{d}x\\
@@ -348,6 +403,9 @@ And solving the initial conditions to find our constants and ultimately produce:
 \end{align*}\]
 
 ** Q18
+:PROPERTIES:
+:CUSTOM_ID: q18
+:END:
 
 There are 8 corners with 3 permutations each: \(3^8\). They can all be arranged in \(8!\) ways.
 Then similarly, we have 12 edges with 2 permutations each: \(2^{12}\); these can be arranged in \(12!\) ways.
@@ -369,12 +427,18 @@ Reduces to
 
 
 ** Q19
+:PROPERTIES:
+:CUSTOM_ID: q19
+:END:
 
 #+BEGIN_QUOTE
 Rome was not built in a day
 #+END_QUOTE
 
 ** Q20
+:PROPERTIES:
+:CUSTOM_ID: q20
+:END:
 
 We take an infinitesimal summation (an integral) of all the length components of the curve with:
 \[\int\sqrt{1+[f'(x)]^2} \mathrm{d}x\]
@@ -385,10 +449,16 @@ After the algebraic dust settles we are left with:
 \[\frac{x\sqrt{1+4x^2}}{2} + \frac{\ln(\sqrt{1+4x^2}+2x)}{4} \bigg\rvert^4_0 \approx 16.82\]
 
 ** Q21
+:PROPERTIES:
+:CUSTOM_ID: q21
+:END:
 
 Someone who is majoring in mathematics, has a friend who needs help with his or her homework.
 
 ** Q22
+:PROPERTIES:
+:CUSTOM_ID: q22
+:END:
 \[D(x) = \begin{cases}
 1 & \text{if } x \text{ is rational}, \\
 0 & \text{if } x \text{ is irrational}

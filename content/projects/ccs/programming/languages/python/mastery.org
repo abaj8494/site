@@ -194,6 +194,14 @@ crazy: notice that the =randint= bounds are <= and >=!
   print(norm_list)
 #+end_src
 
+#+RESULTS:
+: [[0.16666667 0.33333333 0.         0.83333333 0.5        0.5       ]
+:  [0.16666667 0.         0.         0.         0.5        0.66666667]
+:  [0.33333333 1.         1.         0.         0.16666667 0.66666667]
+:  [0.66666667 0.33333333 0.33333333 1.         0.16666667 1.        ]
+:  [0.         0.33333333 0.16666667 0.         1.         0.83333333]
+:  [1.         0.33333333 1.         0.33333333 0.16666667 0.16666667]]
+
 *** output
 
 I generalised the problem to nxn.
@@ -441,7 +449,11 @@ that's okay, it's not much different to find the duplicates; we can use the =int
 #+RESULTS:
 : [0, 1, 2, 3]
 
-** Exercise 16:
+** DONE Exercise 16:
+CLOSED: [2025-03-13 Thu 15:41]
+:LOGBOOK:
+- State "DONE"       from              [2025-03-13 Thu 15:41]
+:END:
 
 Create a 5x5 list of lists with row values ranging from 0 to 4.
 
@@ -516,7 +528,11 @@ print(f"NumPy approach:              {time2:.6f} seconds")
 : NumPy approach:              3.685444 seconds
 
 
-** Exercise 17:
+** DONE Exercise 17:
+CLOSED: [2025-03-13 Thu 15:41]
+:LOGBOOK:
+- State "DONE"       from              [2025-03-13 Thu 15:41]
+:END:
 
 Find the index of the maximum value in a list.
 
@@ -544,7 +560,11 @@ numpy.amax(l)
 #+RESULTS:
 : 4
 
-** Exercise 18:
+** DONE Exercise 18:
+CLOSED: [2025-03-13 Thu 15:41]
+:LOGBOOK:
+- State "DONE"       from              [2025-03-13 Thu 15:41]
+:END:
 
 Normalize the values in a list between 0 and 1.
 
@@ -575,7 +595,11 @@ we can do it nakedly with the =math= library and implement softmax, which is def
 : [0.0015683  0.00426308 0.01158826 0.03150015 0.0856263  0.2327564
 :  0.6326975 ]
 
-** Exercise 19:
+** DONE Exercise 19:
+CLOSED: [2025-03-13 Thu 15:41]
+:LOGBOOK:
+- State "DONE"       from              [2025-03-13 Thu 15:41]
+:END:
 
 Calculate the dot product of two lists.
 
@@ -594,7 +618,11 @@ Calculate the dot product of two lists.
 : [5, 2, 1, 1, 2, 9, 8, 8, 8, 1]
 : 246
 
-** Exercise 20:
+** DONE Exercise 20:
+CLOSED: [2025-03-13 Thu 15:41]
+:LOGBOOK:
+- State "DONE"       from              [2025-03-13 Thu 15:41]
+:END:
 
 Count the number of elements in a list within a specific range.
 
@@ -607,45 +635,178 @@ Count the number of elements in a list within a specific range.
 #+RESULTS:
 : 3
 
-** Exercise 21:
+** DONE Exercise 21:
+CLOSED: [2025-03-13 Thu 15:46]
+:LOGBOOK:
+- State "DONE"       from              [2025-03-13 Thu 15:46]
+:END:
 
 Find the mean of each row in a 2D list.
+
+#+begin_src jupyter-python :session mast-python
+  def average(l):
+      return sum(l)/len(l)
+
+  """ takes in list of lists
+      returns list of averages, one for each row
+  """
+  def mean_list_of_rows(ml):
+    return [average(x) for x in ml]
+
+  my_list = [[1,2,3],[4,5],[3,3]]
+  mean_list_of_rows(my_list)
+#+end_src
+
+#+RESULTS:
+| 2.0 | 4.5 | 3.0 |
 
 ** Exercise 22:
 
 Create a random 4x4 list of lists and extract the diagonal elements.
 
+#+begin_src jupyter-python :session mast-python
+  import numpy as np
+  list_of_lists = np.random.randint(10, size=(4,4))
+  print(list_of_lists)
+  np.diag(list_of_lists)
+#+end_src
+
+#+RESULTS:
+:RESULTS:
+: [[4 6 4 0]
+:  [9 2 2 1]
+:  [9 0 6 7]
+:  [7 3 1 4]]
+: array([4, 2, 6, 4])
+:END:
+
 ** Exercise 23:
 
 Count the number of occurrences of a specific value in a list.
+
+#+begin_src jupyter-python :session mast-python
+range_list = list(range(6))
+range_list.count(4)
+#+end_src
+
+#+RESULTS:
+: 1
 
 ** Exercise 24:
 
 Replace all values in a list with the mean of the list.
 
+#+begin_src jupyter-python :session mast-python
+  range_list = list(range(6))
+  range_list = [average(range_list) for x in range_list]
+  print(range_list)
+#+end_src
+
+#+RESULTS:
+: [2.5, 2.5, 2.5, 2.5, 2.5, 2.5]
+
 ** Exercise 25:
 
 Find the indices of the maximum and minimum values in a list.
+
+#+begin_src jupyter-python :session mast-python
+  range_list = list(range(6))
+  print(range_list.index(min(range_list)))
+  print(range_list.index(max(range_list)))
+#+end_src
+
+#+RESULTS:
+: 0
+: 5
+
+you of course also have the numpy method, however that requires the overhead of converting to a numpy array first:
+#+begin_src jupyter-python :session mast-python
+  range_list = list(range(6))
+  print(np.argmin(range_list))
+  print(np.argmax(range_list))
+#+end_src
+
+#+RESULTS:
+: 0
+: 5
 
 ** Exercise 26:
 
 Create a 2D list with 1 on the border and 0 inside.
 
+#+begin_src jupyter-python :session mast-python
+  # note this program only works for odd n
+  n = 3
+  mat = np.ones((n,n))
+  mat[n//2][n//2] = 0
+  print(mat)
+#+end_src
+
+#+RESULTS:
+: [[1. 1. 1.]
+:  [1. 0. 1.]
+:  [1. 1. 1.]]
+
 ** Exercise 27:
 
 Find the unique values and their counts in a list.
+
+#+begin_src jupyter-python :session mast-python
+  l1 = list(range(6))
+  l2 = list(range(2,7))
+  l1.extend(l2)
+  uniq = list(set(l1))
+  counts = {x: l1.count(x) for x in l1}
+  print(counts)
+  print(uniq)
+#+end_src
+
+#+RESULTS:
+: {0: 1, 1: 1, 2: 2, 3: 2, 4: 2, 5: 2, 6: 1}
+: [0, 1, 2, 3, 4, 5, 6]
 
 ** Exercise 28:
 
 Create a 3x3 list of lists with values ranging from 0 to 8.
 
+#+begin_src jupyter-python :session mast-python
+  nums = list(range(9))
+  ll_nums = [nums[x:x+3] for x in range(0,9,3)]
+  print(ll_nums)
+#+end_src
+
+#+RESULTS:
+: [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
+
 ** Exercise 29:
 
 Calculate the exponential of all elements in a list.
 
+#+begin_src jupyter-python :session mast-python
+  import math
+  nums = list(range(9))
+  nums = [math.exp(x) for x in nums]
+  print(nums)
+#+end_src
+
+#+RESULTS:
+: [1.0, 2.718281828459045, 7.38905609893065, 20.085536923187668, 54.598150033144236, 148.4131591025766, 403.4287934927351, 1096.6331584284585, 2980.9579870417283]
+
 ** Exercise 30:
 
 Swap two rows in a 2D list.
+
+#+begin_src jupyter-python :session mast-python
+  import random
+  matrix = create_n_by_n_list(4)
+  print(matrix)
+  matrix[0], matrix[1] = matrix[1], matrix[0]
+  print(matrix)
+#+end_src
+
+#+RESULTS:
+: [[2, 2, 2, 0], [4, 2, 3, 4], [1, 1, 1, 3], [2, 0, 4, 2]]
+: [[4, 2, 3, 4], [2, 2, 2, 0], [1, 1, 1, 3], [2, 0, 4, 2]]
 
 ** Exercise 31:
 
