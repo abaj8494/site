@@ -83,20 +83,21 @@ I have removed the imperative matter, and left the declarative material; marking
 - [ ] create, modify and execute a Makefile for a software project;
 - [X] write simple shell scripts.
   - [.] Find the five folders in a given directory consuming the most space.
-    #+INCLUDE: "./top5.py" python
+    #+INCLUDE: "top5.py" src python
   - [.] Report duplicate MP3s (by file contents, not file name) on a computer.
-    #+INCLUDE: "./duplicate_mp3s.py" python
+    #+INCLUDE: "duplicate_mp3s.py" src python
   - [.] Take a list of names whose first and last names have been lower-cased, and properly recapitalize them.
-    #+INCLUDE: "./recap_names.py" python
+    #+INCLUDE: "recap_names.py" src python
   - [.] Find all words in English that have x as their second letter, and n as their second-to-last.
-    #+INCLUDE: "./pattern_words.py" python
+    #+INCLUDE: "pattern_words.py" src python
   - [.] Directly route your microphone input over the network to another computer's speaker.
-    #+INCLUDE: "./stream_mic.sh" sh
+    #+INCLUDE: "stream_mic.sh" src sh
   - [.] Replace all spaces in a filename with underscore for a given directory.
-    #+INCLUDE: "./spaces_to_underscores.py" python
+    #+INCLUDE: "spaces_to_underscores.py" src python
   - [.] Report the last ten errant accesses to the web server coming from a specific IP address.
-    #+INCLUDE: "./errant-accesses.py" python
+    #+INCLUDE: "errant_accesses.py" src python
   
+ 
 *** Recommended reading
 
 - [[http://www.amazon.com/gp/product/013937681X/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=013937681X][The Unix Programming Environment]] by Kernighan and Pike.
