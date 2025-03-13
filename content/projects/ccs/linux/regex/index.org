@@ -3,4 +3,34 @@ title = "Regular Expressions"
 tags = ["sed", "awk"]
 +++
 
-I will complete a tutorial on these soon.
+#+begin_quote
+You should not be permitted to write production code if you do not have an journeyman licence in regular expressions or floating point math.
+---Rob Pike
+#+end_quote
+
+#+begin_src sh
+. single character
+\ escape
+? optional character
+* zero or more of previous
++ one ore more
+| or on the word level
+[] or for specific characters
+^ not
+\d digit
+\s whitespace (tabs, carriage returns, null)
+\b word boundary
+\d{4} equiv \d\d\d\d
+parenthesis and ? makes the stuff in parens optional
+same for + and *
+\w{n} n letter words
+\w{n,k} n or k letter words
+#+end_src
+
+=?*+= are "quantifiers"
+
+=*+= are greedy
+
+=*?= is the non-greedy version
+
+try not to use ranges: =[0-9]=.

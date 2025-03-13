@@ -1,0 +1,997 @@
++++
+title = "What every computer science major should know"
+author = "https://matt.might.net/"
+toc = "true"
++++
+
+Here are my distillations of Matt's seminal blog post: [[https://matt.might.net/articles/what-cs-majors-should-know/][What CS Majors Ought to Know]].
+
+I have removed the imperative matter, and left the declarative material; marking off that which I have completed.
+
+#+begin_quote
+- What should every student know to get a good job?
+
+- What should every student know to maintain lifelong employment?
+
+- What should every student know to enter graduate school?
+
+- What should every student know to benefit society?
+#+end_quote
+
+
+** Portfolio versus resume
+
+- [X] Every computer science major should build a portfolio.
+- [X] Contributions to open source should be linked and documented.
+
+
+** Technical communication
+
+*** Specific recommendations
+
+- [X] Master a presentation tool.
+
+
+*** Recommended reading
+
+- [[http://www.amazon.com/gp/product/B000SW1HKC/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=B000SW1HKC&linkCode=as2&tag=mmamzn06-20][Writing for Computer Science]] by Zobel.
+
+- [[http://www.amazon.com/gp/product/0978577604/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0978577604][Even a Geek Can Speak]] by Asher.
+
+- [X] [[http://www.amazon.com/gp/product/0201362996/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0201362996][The LaTeX Companion]].
+
+- [X] [[http://www.amazon.com/gp/product/0201134489/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0201134489][The TeXbook]] by Knuth. (Warning: Experts only.)
+
+- Notes on [[http://www-cs-faculty.stanford.edu/~uno/klr.html][Mathematical Writing]]
+
+- Simon Peyton-Jones's advice on [[http://research.microsoft.com/en-us/um/people/simonpj/papers/giving-a-talk/giving-a-talk-html.html][How to Give a Good Research Talk]]
+
+- My advice on [[http://matt.might.net/articles/how-to-email/][how to send and reply to email]].
+
+** An engineering core
+
+- [ ] real analysis
+- [X] linear algebra
+- [ ] probability
+- [ ] physics
+
+- [ ] physics through to electromagnetism
+- [X] multivariable calculus
+- [X] differential equations
+
+- [ ] statistics
+
+*** Recommended reading
+
+- [[http://www.amazon.com/gp/product/0914098918/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399373&creativeASIN=0914098918][Calculus]] by Spivak.
+
+- [[http://www.amazon.com/gp/product/1441923225/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=1441923225&linkCode=as2&tag=mmamzn06-20][All of Statistics: A Concise Course in Statistical Inference]] by Wasserman.
+
+** The Unix philosophy
+
+- [X] comfortable with and practiced in the Unix philosophy of computing.
+
+- [X] in practice, this means becoming comfortable with the notion of command-line computing, text-file configuration and IDE-less software development.
+
+
+*** Specific recommendations
+
+- [X] fluent in basic Unix, including the ability to:
+  - [X] navigate and manipulate the filesystem;
+  - [X] compose processes with pipes;
+  - [X] comfortably edit a file with emacs and vim
+- [ ] create, modify and execute a Makefile for a software project;
+- [ ] write simple shell scripts.
+
+- [ ] Find the five folders in a given directory consuming the most space.
+
+#+INCLUDE: "/code/
+  
+- [ ] Report duplicate MP3s (by file contents, not file name) on a computer.
+
+- [ ] Take a list of names whose first and last names have been lower-cased, and properly recapitalize them.
+
+- [ ] Find all words in English that have x as their second letter, and n as their second-to-last.
+
+- [ ] Directly route your microphone input over the network to another computer's speaker.
+
+- [ ] Replace all spaces in a filename with underscore for a given directory.
+
+- [ ] Report the last ten errant accesses to the web server coming from a specific IP address.
+
+*** Recommended reading
+
+- [[http://www.amazon.com/gp/product/013937681X/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=013937681X][The Unix Programming Environment]] by Kernighan and Pike.
+
+- [[http://www.amazon.com/gp/product/1593272200/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=1593272200&linkCode=as2&tag=mmamzn06-20][The Linux Programming Interface: A Linux and UNIX System Programming Handbook]] by Kerrisk.
+
+- [[http://www.amazon.com/gp/product/0596003307/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=0596003307&linkCode=as2&tag=mmamzn06-20][Unix Power Tools]] by Powers, Peek, O'Reilly and Loukides.
+
+- [[http://www.commandlinefu.com/][commandlinefu]].
+
+- [[http://www.amazon.com/gp/product/0596004613/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0596004613][Linux Server Hacks]].
+
+- [[http://www.unix.org/online.html][The single Unix specification]].
+
+** Systems administration
+
+- [X] computer scientists must be able to competently and securely administer their own systems and networks.
+  - c.f. raspberry pi projects, and this site along with abaj.bots and abaj.games all running out of the same vps
+
+*** Specific recommendations
+
+- [X] Install and administer a Linux distribution.
+- [X] Configure and compile the Linux kernel.
+- [X] Troubleshoot a connection with =dig=, =ping= and =traceroute=.
+- [X] Compile and configure a web server like apache.
+  - done multiple times. running a custom build of nginx for this site
+- [ ] Compile and configure a DNS daemon like bind.
+- [X] Maintain a web site with a text editor.
+
+- [[http://matt.might.net/articles/how-to-make-your-own-cat-5-ethernet-cable/][Cut and crimp a network cable]].
+
+*** Recommended reading
+
+- [[http://www.amazon.com/gp/product/0131480057/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0131480057][UNIX and Linux System Administration Handbook]]
+by Nemeth, Synder, Hein and Whaley.
+
+** Programming languages
+
+Yet, to truly understand programming languages, one must implement one.
+
+Ideally, every computer science major would take a compilers class.
+
+At a minimum,  every computer science major should implement 
+an interpreter.
+
+
+*** Specific languages
+
+- [X] C;
+  - [[http://www.amazon.com/gp/product/0131103628/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0131103628][ANSI C]] by Kernighan and Ritchie.
+  
+- [ ] JavaScript;
+  - [[http://www.amazon.com/gp/product/0596805527/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=0596805527&linkCode=as2&tag=mmamzn06-20][JavaScript: The Definitive Guide]] by Flanagan.
+  - [[http://www.amazon.com/gp/product/0596517742/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0596517742][JavaScript: The Good Parts]] by Crockford.
+  - [[http://www.amazon.com/gp/product/0321812182/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=0321812182&linkCode=as2&tag=mmamzn06-20][Effective JavaScript: 68 Specific Ways to Harness the Power of JavaScript]] by Herman.
+  
+- [ ] Java;
+  - [[http://www.amazon.com/gp/product/0321356683/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0321356683][Effective Java]] by Bloch.
+  
+- [ ] Haskell;
+  - [[http://learnyouahaskell.com/][Learn You a Haskell]] by Lipovaca.
+
+  - [[http://www.amazon.com/gp/product/0596514980/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0596514980][Real World Haskell]] by  O'Sullivan, Goerzen and Stewart.
+  
+- [ ] C++; and
+  - [[http://www.amazon.com/gp/product/0201700735/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0201700735][The C++ Programming Language]] by Stroustrup.
+
+  - [[http://www.amazon.com/gp/product/0201734842/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0201734842][C++ Templates: The Complete Guide]] by Vandevoorde and Josuttis.
+
+  - [[http://www.amazon.com/gp/product/0201657880/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=0201657880&linkCode=as2&tag=mmamzn06-20][Programming Pearls]] by Bentley.
+
+ 
+- [ ] Assembly.
+  - [ ] generative programming (macros);
+  - [ ] lexical (and dynamic) scope;
+  - [ ] closures;
+  - [ ] continuations;
+  - [ ] higher-order functions;
+  - [ ] dynamic dispatch;
+  - [ ] subtyping; 
+  - [ ] modules and functors;
+  - [ ] monads as semantic concepts distinct from any specific syntax.
+
+  - [[http://mitpress.mit.edu/sicp/full-text/book/book.html][Structure and Interpretation of Computer Programs]] by Abelson, Sussman and Sussman.
+
+  - [[http://www.amazon.com/gp/product/0521545668/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0521545668][Lisp in Small Pieces]] by Queinnec.
+  
+
+** Discrete mathematics
+
+Computer scientists must have a solid grasp of formal logic and of proof.
+Proof by algebraic manipulation and by natural deduction 
+engages the reasoning common to routine programming tasks.
+Proof by induction engages the reasoning used in the construction
+of recursive functions.
+
+
+Computer scientists must be fluent in formal mathematical notation,
+and in reasoning rigorously about the basic discrete structures: sets, tuples,
+sequences, functions and power sets.
+
+
+*** Specific recommendations
+
+For computer scientists, it's important to cover reasoning about:
+
+
+- trees;
+
+- graphs;
+
+- formal languages; and
+
+- automata.
+
+Students should learn enough number theory to 
+study and implement common cryptographic protocols.
+
+
+*** Recommended reading
+
+- [[http://www.amazon.com/gp/product/0521675995/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0521675995][How to Prove It: A Structured Approach]]
+by Velleman.
+
+- [[http://www.amazon.com/gp/product/4871878309/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=4871878309][How To Solve It]]
+by Polya.
+
+** Data structures and algorithms
+
+Students should certainly see the common (or rare yet unreasonably
+effective) data structures and algorithms.
+
+
+But, more important than knowing a specific algorithm or data structure
+(which is usually easy enough to look up), computer scientists must understand
+how to design algorithms (e.g., greedy, dynamic strategies) and how to span the
+gap between an algorithm in the ideal and the nitty-gritty of its
+implementation.
+
+
+*** Specific recommendations
+
+At a minimum, computer scientists seeking stable long-run employment
+should know all of the following:
+
+
+- hash tables;
+
+- linked lists;
+
+- trees;
+
+- binary search trees; and
+
+- directed and undirected graphs.
+
+Computer scientists should be ready to implement or extend an
+algorithm that operates on these data structures, including the ability to
+search for an element, to add an element and to remove an element.
+
+
+For completeness, computer scientists should know both the imperative
+and functional versions of each algorithm.
+
+
+*** Recommended reading
+
+- [[http://www.amazon.com/gp/product/0262033844/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0262033844][CLRS]]
+.
+
+- Any of the
+[[http://www.amazon.com/gp/product/0321751043/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399373&creativeASIN=0321751043][Art of Computer Programming]]
+series by Knuth.
+
+** Theory
+
+A grasp of theory is a prerequisite to research
+in graduate school.
+
+
+Theory is invaluable when it provides hard boundaries on a problem (or when
+it provides a means of circumventing what initially appear to be hard
+boundaries).
+
+
+Computational complexity can legitimately claim to be one of the few truly
+predictive theories in all of computer "science."
+
+
+A computer scientist
+must
+know where the 
+boundaries of tractability and computability lie.
+To ignore these limits invites frustration in the best case,
+and failure in the worst.
+
+
+*** Specific recommendations
+
+At the undergraduate level, theory should cover at least
+models of computation and computational complexity.
+
+
+Models of computation should cover finite-state automata, regular
+languages (and regular expressions), pushdown automata, context-free languages, formal grammars,
+Turing machines, the lambda calculus,
+and undecidability.
+
+
+At the undergraduate level, students should learn at least enough
+complexity to understand the difference between P, NP, NP-Hard and NP-Complete.
+
+
+To avoid leaving the wrong impression, students should solve a few large
+problems in NP by reduction to SAT and the use of 
+modern SAT solvers.
+
+
+*** Recommended reading
+
+- [[http://www.amazon.com/gp/product/0534950973/ref=as_li_ss_tl?ie=UTF8&tag=aboutmmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0534950973][Introduction to the Theory of Computation]]
+by Sipser.
+
+- [[http://www.amazon.com/gp/product/0201530821/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0201530821][Computational Complexity]]
+by Papadimitriou.
+
+- [[http://www.amazon.com/gp/product/032157351X/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=032157351X&linkCode=as2&tag=mmamzn06-20][Algorithms]]
+by Sedgewick and Wayne.
+
+- [[http://www.amazon.com/gp/product/0262033844/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=0262033844&linkCode=as2&tag=mmamzn06-20][Introduction to Algorithms]]
+by Cormen, Leiserson, Rivest and Stein.
+
+** Architecture
+
+There is no substitute for a solid understanding
+of computer architecture.
+
+
+Computer scientists should understand a computer 
+from the transistors up.
+
+
+The understanding of architecture should encompass the
+standard levels of abstraction: transistors, gates, adders, muxes, flip flops,
+ALUs, control units, caches and RAM.
+
+
+An understanding of the GPU model of high-performance computing
+will be important for the foreseeable future.
+
+
+*** Specific recommendations
+
+A good understanding of caches, buses and hardware memory management is
+essential to achieving good performance on modern systems.
+
+
+To get a good grasp of machine architecture, students should design and
+simulate a small CPU.
+
+
+*** Recommended reading
+
+- [[http://nand2tetris.org/][nand2tetris]]
+,
+ which constructs a computer from the ground up.
+
+- [[http://www.amazon.com/gp/product/0123744938/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0123744938][Computer Organization and Design]]
+by Patterson and Hennessy.
+
+- [[http://lwn.net/Articles/250967/]["What every programmer should know about memory"]]
+by Drepper.
+
+** Operating systems
+
+Any sufficiently large program eventually becomes
+an operating system.
+
+
+As such, computer scientists should be aware of how kernels handle system
+calls, paging, scheduling, context-switching, filesystems and internal resource
+management.
+
+
+A good understanding of operating systems is secondary only to an
+understanding of compilers and architecture for achieving performance.
+
+
+Understanding operating systems (which I would interpret liberally to
+include runtime systems) becomes especially important when 
+programming an embedded system without one.
+
+
+*** Specific recommendations
+
+It's important for students to get their hands dirty on a real operating system.
+With Linux and virtualization, this is easier than ever before.
+
+
+To get a better understanding of the kernel,
+students could:
+
+
+- print "hello world" during the boot process;
+
+- design their own scheduler;
+
+- modify the page-handling policy; and
+
+- create their own filesystem.
+
+*** Recommended reading
+
+- [[http://www.amazon.com/gp/product/0672329468/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0672329468][Linux Kernel Development]]
+by Love.
+
+** Networking
+
+Given the ubiquity of networks, computer scientists should have a 
+firm understanding of the network stack and 
+routing protocols within a network.
+
+
+The mechanics of building an efficient, reliable
+transmission protocol (like TCP) on top of an unreliable
+transmission protocol (like IP) 
+should not be magic to a computer scientist.
+It should be core knowledge.
+
+
+Computer scientists must understand the trade-offs involved in
+protocol design--for example, when to choose TCP and when to choose UDP.
+
+(Programmers need to understand the larger social implications for congestion should they use UDP at large scales as well.)
+
+
+*** Specific recommendations
+
+Given the frequency with which the modern programmer encounters
+network programming, it's helpful to know the protocols for existing
+standards, such as:
+
+
+- 802.3 and 802.11;
+
+- IPv4 and IPv6; and
+
+- DNS, SMTP and HTTP.
+
+Computer scientists should
+understand exponential back off in packet collision resolution and the
+additive-increase multiplicative-decrease mechanism involved in congestion
+control.
+
+
+Every computer scientist
+should implement the following:
+
+
+- an HTTP client and daemon;
+
+- a DNS resolver and server; and
+
+- a command-line SMTP mailer.
+
+No student should ever pass an intro neworking class without
+sniffing 
+their instructor's Google query off
+[[http://www.wireshark.org/][wireshark]]
+.
+
+
+It's probably going too far to require all students to implement a reliable
+transmission protocol from scratch atop IP, but I can say that it was a
+personally transformative experience for me as a student.
+
+
+*** Recommended reading
+
+- [[http://www.amazon.com/gp/product/0131411551/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0131411551][Unix Network Programming]]
+by Stevens, Fenner and Rudoff.
+
+** Security
+
+The sad truth of security is that the majority 
+of security vulnerabilities come from sloppy programming.
+
+The sadder truth is that many schools do a poor job of 
+training programmers to secure their code.
+
+
+Computer scientists must be aware of the means by which
+a program can be compromised.
+
+
+They need to develop a sense of defensive programming--a mind for thinking
+about how their own code might be attacked.
+
+
+Security is the kind of training that is best distributed throughout
+the entire curriculum: each discipline should warn
+students of its native vulnerabilities.
+
+
+*** Specific recommendations
+
+At a minimum, every computer scientist needs to
+understand:
+
+
+- social engineering;
+
+- buffer overflows;
+
+- integer overflow;
+
+- code injection vulnerabilities;
+
+- race conditions; and
+
+- privilege confusion.
+
+A few readers have pointed out that computer scientists
+also need to be aware of basic IT security measures, 
+such how to choose legitimately good passwords
+and
+how to properly configure a firewall with iptables.
+
+
+*** Recommended reading
+
+- [[http://www.amazon.com/gp/product/159327288X/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399373&creativeASIN=159327288X][Metasploit: The Penetration Tester's Guide]]
+by Kennedy, O'Gorman, Kearns and Aharoni.
+
+- [[http://www.amazon.com/gp/product/0470068523/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=0470068523&linkCode=as2&tag=mmamzn06-20][Security Engineering]]
+by Anderson.
+
+** Cryptography
+
+Cryptography is what makes much of our digital lives possible.
+
+
+Computer scientists should understand and be able to implement the following
+concepts, as well as the common pitfalls in doing so:
+
+
+- symmetric-key cryptosystems;
+
+- public-key cryptosystems;
+
+- secure hash functions;
+
+- challenge-response authentication;
+
+- digital signature algorithms; and
+threshold cryptosystems.
+
+Since it's a common fault in implementations of cryptosystems,
+every computer scientist should know how to acquire a
+sufficiently
+random number for the task at hand.
+
+
+At the very least, as nearly every data breach has shown,  
+computer scientists need to know how to salt and hash passwords for storage.
+
+
+*** Specific recommendations
+
+Every computer scientist should have the pleasure of breaking ciphertext
+using pre-modern cryptosystems with hand-rolled statistical tools.
+
+
+RSA is
+[[http://matt.might.net/articles/implementation-of-rsa-public-key-cryptography-algorithm-in-scheme-dialect-of-lisp/][easy enough to implement]]
+that everyone should do it.
+
+
+Every student should create their own digital certificate
+and set up https in apache.  (It's surprisingly arduous to do this.)
+
+
+Student should also write a console web client that connects over SSL.
+
+
+As strictly practical matters, computer scientists 
+should know how to use GPG; 
+how to use public-key authentication for ssh;
+and how to encrypt a directory or a hard disk.
+
+
+**** Recommended reading
+
+- [[http://www.amazon.com/gp/product/0470474246/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0470474246][Cryptography Engineering]]
+by Ferguson, Schneier and Kohno.
+
+** Software testing
+
+Software testing must be distributed throughout the entire
+curriculum.
+
+
+A course on software engineering can cover the basic styles of testing,
+but there's no substitute for practicing the art.
+
+
+Students should be graded on the test cases they turn in.
+
+
+I use test cases turned in by students against all other
+students.
+
+
+Students don't seem to care much about developing defensive test cases, but
+they unleash hell when it comes to sandbagging their classmates.
+
+
+** User experience design
+
+Programmers too often write software for other 
+programmers, or worse, for themselves.
+
+
+User interface design (or more broadly, user experience design) 
+might be the most underappreciated aspect of computer science.
+
+
+There's a misconception, even among professors, that user experience is a
+"soft" skill that can't be taught.
+
+
+In reality, modern user experience design is anchored in
+empirically-wrought principles from human factors engineering
+and industrial design.
+
+
+If nothing else, computer scientists should know that interfaces need to
+make the ease of executing any task proportional to the frequency of the task
+multiplied by its importance.
+
+
+As a practicality, every programmer should be comfortable with 
+designing usable web interfaces in HTML, CSS and JavaScript.
+
+
+*** Recommended reading
+
+- Paul Graham's
+[[http://www.paulgraham.com/web20.html][essay on Web 2.0]]
+.
+
+- [[http://www.joelonsoftware.com/articles/Unicode.html]["The Absolute Minimum Every Software Developer Absolutely, Positively Must Know About Unicode and Character Sets"]]
+by Spolsky.
+
+- [[http://www.amazon.com/gp/product/1118008189/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=1118008189&linkCode=as2&tag=mmamzn06-20][HTML and CSS: Design and Build Websites]]
+by Duckett.
+
+- [[http://www.amazon.com/gp/product/0596805527/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=0596805527&linkCode=as2&tag=mmamzn06-20][JavaScript: The Definitive Guide]]
+by Flanagan.
+
+<h2>Web programming</h2>
+
+<p>
+</p>
+** Visualization
+
+Good visualization is about rendering data 
+in such a fashion that
+humans perceive it as information.
+This is not an easy thing to do.
+
+
+The modern world is a sea of data, and exploiting 
+the 
+local maxima of human
+perception is key to making sense of it.
+
+
+*** Recommended reading
+
+- [[http://www.amazon.com/gp/product/0961392142/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0961392142][The Visual Display of Quantitative Information]]
+by Tufte.
+
+** Parallelism
+
+Parallelism is back, and uglier than ever.
+
+
+The unfortunate truth is that harnessing parallelism
+requires deep knowledge of architecture: multicore, caches, buses, GPUs, etc.
+
+
+And, practice.  Lots of practice.
+
+
+*** Specific recommendations
+
+It is not at all clear what the "final" answer
+on parallel programming is, but a few 
+domain-specific solutions have emerged.
+
+
+For now, students should learn CUDA and OpenCL.
+
+
+Threads are a flimsy abstraction for parallelism, particularly when caches
+and cache coherency are involved.  But, threads are popular and tricky, so
+worth learning.  Pthreads is a reasonably portable threads library to learn.
+
+
+For anyone interested in large-scale parallelism, MPI is a
+prerequisite.
+
+
+On the principles side, it does seem that map-reduce is enduring.
+
+
+** Software engineering
+
+The principles in software engineering change
+about as fast as the programming languages do.
+
+
+A good, hands-on course in the practice of team software construction
+provides a working knowledge of the pitfalls inherent in the endeavor.
+
+
+It's been recommended by several readers that students break up into teams
+of three, with the role of leader rotating through three different projects.
+
+
+Learning how to attack and maneuver through a large existing
+codebase is a skill most programmers will have to master,
+and it's one best learned in school instead of on the job.
+
+
+*** Specific recommendations
+
+All students need to understand centralized version control systems like
+svn and distributed version control systems like git.
+
+
+A working knowlege of debugging tools
+like gdb and valgrind goes a long way when they finally become necessary.
+
+
+*** Recommended reading
+
+- [[http://www.ericsink.com/vcbe/][Version Control by Example]]
+by Sink.
+
+Economics -- much of SE is informed by the ideas of (technically) superior tempered by the cost/benefit analysis that economics codifies.  Being able to estimate, perform trend analysis, and compute overhead can strongly affect success outcomes.
+
+   Psychology -- their rigorous study of of (sensory) perception, intuition, and memory (chunking) applies strongly to HCI components of software design, but also code architecture and modularity [what is "one" thing in the sense of 'each module does one thing']
+
+   Sociology -- bringing to bear the ideas of group dynamics, how to avoid group-think', understanding individual work styles (Meyers-Briggs) and environments (my desk is never clean, others have spotless offices every night; my office drives them insane and their OCD scares me :-)
+** Formal methods
+
+As the demands on secure, reliable software increase, formal methods 
+may one day end up as the only means for delivering it.
+
+
+At present, formal modeling and verification of software remains
+challenging, but progress in the field is steady: it gets easier every
+year.
+
+
+There may even come a day within the lifetime of today's
+computer science majors where formal software construction
+is an expected skill.
+
+
+Every computer scientist should be at least moderately comfortable
+using one theorem prover.  (I don't think it matters which one.)
+
+
+Learning to use a theorem prover immediately impacts coding style.
+
+
+For example, one feels instinctively allergic to writing
+a
+match
+or
+switch
+statement that 
+doesn't cover all possibilities.
+
+
+And, when writing recursive functions, users of theorem provers 
+have a strong urge to eliminate ill-foundedness.
+
+
+*** Recommended reading
+
+- [[http://www.cis.upenn.edu/~bcpierce/sf/][Software Foundations]]
+.
+
+** Graphics and simulation
+
+There is no discipline more dominated by "clever" 
+than graphics.
+
+
+The field is driven toward, even defined by, the "good enough."
+
+
+As such, there is no better way to teach clever programming
+or a solid appreciation of optimizing 
+effort than graphics and simulation.
+
+
+Over half of the coding hacks I've learned
+came from my study of graphics.
+
+
+*** Specific recommendations
+
+Simple ray tracers can be constructed in under 100
+lines of code.
+
+
+It's good mental hygiene to work out the transformations necessary 
+to perform a perspective 3D projection in a wireframe 3D engine.
+
+
+Data structures like BSP trees 
+and algorithms like z-buffer rendering
+are great examples of clever design.
+
+
+In graphics and simulation, there are many more.
+
+
+*** Recommended reading
+
+- [[http://www.amazon.com/gp/product/1435458869/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399373&creativeASIN=1435458869][Mathematics for 3D Game Programming and Computer Graphics]]
+by Lengyel.
+
+** Robotics
+
+Robotics may be one of the most engaging ways to teach
+introductory programming.
+
+
+Moreover, as the cost of robotics continues to fall, thresholds are being
+passed which will enable a personal robotics revolution.
+
+
+For those that can program, unimaginable degrees of 
+personal physical automation are on the horizon.
+
+
+*** Related posts
+
+- [[http://matt.might.net/articles/ios-multitouch-robot-control/][Multitouch gesture control for a robot]]
+.
+
+** Artificial intelligence
+
+If for no other reason than its outsized impact on the early history of
+computing, computer scientists should study artificial intelligence.
+
+
+While the original dream of intelligent machines seems far off, artificial
+intelligence spurred a number of practical fields, such as machine learning,
+data mining and natural language processing.
+
+
+*** Recommended reading
+
+- [[http://www.amazon.com/gp/product/0136042597/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0136042597][Artificial Intelligence]]
+by Russell and Norvig.
+
+** Machine learning
+
+Aside from its outstanding technical merits,
+the sheer number of job openings for "relevance engineer," 
+indicates that every computer scientist should grasp
+the fundamentals of machine learning.
+
+
+Machine learning doubly emphasizes the need for an understanding of
+probability and statistics.
+
+
+*** Specific recommendations
+
+At the undergraduate level, core concepts 
+should include Bayesian networks, 
+clustering and decision-tree learning.
+
+
+*** Recommended reading
+
+- [[http://www.amazon.com/gp/product/0070428077/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0070428077][Machine Learning]]
+by Mitchell.
+
+** Databases
+
+Databases are too common and too useful to ignore.
+
+
+It's useful to understand the fundamental data structures and algorithms
+that power a database engine, since programmers often enough reimplement a
+database system within a larger software system.
+
+
+Relational algebra and relational calculus stand out as 
+exceptional success stories in sub-Turing models of computation.
+
+
+Unlike UML modeling, ER modeling seems to be a reasonable mechanism for
+visualing encoding the design of and constraints upon a software artifact.
+
+
+*** Specific recommendations
+
+A computer scientist that can set up and operate a LAMP stack is one good
+idea and a lot of hard work away from running their own company.
+
+
+*** Recommended reading
+
+- [[http://www.amazon.com/gp/product/0596523068/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0596523068][SQL and Relational Theory]]
+by Date.
+
+** Non-specific reading recommendations
+
+- [[http://www.amazon.com/gp/product/0465026567/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0465026567][Gödel, Escher, Bach]]
+by Hofstadter.
+
+- [[http://nick-black.com/dankwiki/images/8/85/Msadvice.pdf][Nick Black's advice for MS students]]
+.
+
+** What else?
+
+My suggestions are limited by blind spots in my own knowledge.
+
+
+What have I not listed here that should be included?
+
+
+** Related posts
+
+<!--
+// SyntaxHighlighter.all() ;
+//-->
+[
+[[../][article index]]
+]
+ [
+var emailMatt = '<a href="mai'+'lto:matt-blog'+'@'+'migh'+'t.net">email me</a>'
+document.write(emailMatt);
+ //-->
+] 
+ [
+[[http://twitter.com/mattmight][@mattmight]]
+]
+ [
+[[../feed.rss][rss]]
+]
+
+
+
+
+/#content
+
+
+/#content-container
+matt.might.net is powered by
+[[http://www.linode.com/?r=bf5d4e7c8a1af61855b5227279a6744c3bde8a8a][linode]]
+|
+[[../legal/][legal information]]
+
+
+
+
+
+
+/#body
+Google tag (gtag.js)
+window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KBLDCT7XGS');
+Old tracking code:
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-3661244-1");
+pageTracker._trackPageview();
+</script>

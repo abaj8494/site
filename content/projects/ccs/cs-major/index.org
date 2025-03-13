@@ -1,0 +1,502 @@
++++
+title = "What every computer science major should know"
+author = "https://matt.might.net/"
+toc = "true"
++++
+
+Here are my distillations of Matt's seminal blog post: [[https://matt.might.net/articles/what-cs-majors-should-know/][What CS Majors Ought to Know]].
+
+I have removed the imperative matter, and left the declarative material; marking off that which I have completed.
+
+#+begin_quote
+- What should every student know to get a good job?
+
+- What should every student know to maintain lifelong employment?
+
+- What should every student know to enter graduate school?
+
+- What should every student know to benefit society?
+#+end_quote
+
+
+** Portfolio versus resume
+
+- [X] Every computer science major should build a portfolio.
+- [X] Contributions to open source should be linked and documented.
+
+
+** Technical communication
+
+*** Specific recommendations
+
+- [X] Master a presentation tool.
+
+
+*** Recommended reading
+
+- [[http://www.amazon.com/gp/product/B000SW1HKC/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=B000SW1HKC&linkCode=as2&tag=mmamzn06-20][Writing for Computer Science]] by Zobel.
+
+- [[http://www.amazon.com/gp/product/0978577604/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0978577604][Even a Geek Can Speak]] by Asher.
+
+- [X] [[http://www.amazon.com/gp/product/0201362996/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0201362996][The LaTeX Companion]].
+
+- [X] [[http://www.amazon.com/gp/product/0201134489/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0201134489][The TeXbook]] by Knuth. (Warning: Experts only.)
+
+- Notes on [[http://www-cs-faculty.stanford.edu/~uno/klr.html][Mathematical Writing]]
+
+- Simon Peyton-Jones's advice on [[http://research.microsoft.com/en-us/um/people/simonpj/papers/giving-a-talk/giving-a-talk-html.html][How to Give a Good Research Talk]]
+
+- My advice on [[http://matt.might.net/articles/how-to-email/][how to send and reply to email]].
+
+** An engineering core
+
+- [ ] real analysis
+- [X] linear algebra
+- [ ] probability
+- [ ] physics
+
+- [ ] physics through to electromagnetism
+- [X] multivariable calculus
+- [X] differential equations
+
+- [ ] statistics
+
+*** Recommended reading
+
+- [[http://www.amazon.com/gp/product/0914098918/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399373&creativeASIN=0914098918][Calculus]] by Spivak.
+
+- [[http://www.amazon.com/gp/product/1441923225/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=1441923225&linkCode=as2&tag=mmamzn06-20][All of Statistics: A Concise Course in Statistical Inference]] by Wasserman.
+
+** The Unix philosophy
+
+- [X] comfortable with and practiced in the Unix philosophy of computing.
+
+- [X] in practice, this means becoming comfortable with the notion of command-line computing, text-file configuration and IDE-less software development.
+
+
+*** Specific recommendations
+
+- [X] fluent in basic Unix, including the ability to:
+  - [X] navigate and manipulate the filesystem;
+  - [X] compose processes with pipes;
+  - [X] comfortably edit a file with emacs and vim
+- [ ] create, modify and execute a Makefile for a software project;
+- [X] write simple shell scripts.
+  - [.] Find the five folders in a given directory consuming the most space.
+    #+INCLUDE: "./top5.py" python
+  - [.] Report duplicate MP3s (by file contents, not file name) on a computer.
+    #+INCLUDE: "./duplicate_mp3s.py" python
+  - [.] Take a list of names whose first and last names have been lower-cased, and properly recapitalize them.
+    #+INCLUDE: "./recap_names.py" python
+  - [.] Find all words in English that have x as their second letter, and n as their second-to-last.
+    #+INCLUDE: "./pattern_words.py" python
+  - [.] Directly route your microphone input over the network to another computer's speaker.
+    #+INCLUDE: "./stream_mic.sh" sh
+  - [.] Replace all spaces in a filename with underscore for a given directory.
+    #+INCLUDE: "./spaces_to_underscores.py" python
+  - [.] Report the last ten errant accesses to the web server coming from a specific IP address.
+    #+INCLUDE: "./errant-accesses.py" python
+  
+*** Recommended reading
+
+- [[http://www.amazon.com/gp/product/013937681X/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=013937681X][The Unix Programming Environment]] by Kernighan and Pike.
+
+- [[http://www.amazon.com/gp/product/1593272200/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=1593272200&linkCode=as2&tag=mmamzn06-20][The Linux Programming Interface: A Linux and UNIX System Programming Handbook]] by Kerrisk.
+
+- [[http://www.amazon.com/gp/product/0596003307/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=0596003307&linkCode=as2&tag=mmamzn06-20][Unix Power Tools]] by Powers, Peek, O'Reilly and Loukides.
+
+- [[http://www.commandlinefu.com/][commandlinefu]].
+
+- [[http://www.amazon.com/gp/product/0596004613/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0596004613][Linux Server Hacks]].
+
+- [[http://www.unix.org/online.html][The single Unix specification]].
+
+** Systems administration
+
+- [X] computer scientists must be able to competently and securely administer their own systems and networks.
+  - c.f. raspberry pi projects, and this site along with abaj.bots and abaj.games all running out of the same vps
+
+*** Specific recommendations
+
+- [X] Install and administer a Linux distribution.
+- [X] Configure and compile the Linux kernel.
+- [X] Troubleshoot a connection with =dig=, =ping= and =traceroute=.
+- [X] Compile and configure a web server like apache.
+  - done multiple times. running a custom build of nginx for this site
+- [ ] Compile and configure a DNS daemon like bind.
+- [X] Maintain a web site with a text editor.
+
+- [X] [[http://matt.might.net/articles/how-to-make-your-own-cat-5-ethernet-cable/][Cut and crimp a network cable]].
+
+*** Recommended reading
+
+- [[http://www.amazon.com/gp/product/0131480057/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0131480057][UNIX and Linux System Administration Handbook]]
+by Nemeth, Synder, Hein and Whaley.
+
+** Programming languages
+
+- [ ] ideally, every computer science major would take a compilers class.
+- [ ] At a minimum,  every computer science major should implement an interpreter.
+  - [ ] https://ruslanspivak.com/lsbasi-part1/
+  - [ ] https://compilers.iecc.com/crenshaw/
+
+*** Specific languages
+
+- [X] C;
+  - [[http://www.amazon.com/gp/product/0131103628/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0131103628][ANSI C]] by Kernighan and Ritchie.
+  
+- [ ] JavaScript;
+  - [[http://www.amazon.com/gp/product/0596805527/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=0596805527&linkCode=as2&tag=mmamzn06-20][JavaScript: The Definitive Guide]] by Flanagan.
+  - [[http://www.amazon.com/gp/product/0596517742/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0596517742][JavaScript: The Good Parts]] by Crockford.
+  - [[http://www.amazon.com/gp/product/0321812182/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=0321812182&linkCode=as2&tag=mmamzn06-20][Effective JavaScript: 68 Specific Ways to Harness the Power of JavaScript]] by Herman.
+  
+- [ ] Java;
+  - [[http://www.amazon.com/gp/product/0321356683/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0321356683][Effective Java]] by Bloch.
+  
+- [ ] Haskell;
+  - [[http://learnyouahaskell.com/][Learn You a Haskell]] by Lipovaca.
+
+  - [[http://www.amazon.com/gp/product/0596514980/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0596514980][Real World Haskell]] by  O'Sullivan, Goerzen and Stewart.
+  
+- [ ] C++; and
+  - [[http://www.amazon.com/gp/product/0201700735/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0201700735][The C++ Programming Language]] by Stroustrup.
+
+  - [[http://www.amazon.com/gp/product/0201734842/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0201734842][C++ Templates: The Complete Guide]] by Vandevoorde and Josuttis.
+
+  - [[http://www.amazon.com/gp/product/0201657880/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=0201657880&linkCode=as2&tag=mmamzn06-20][Programming Pearls]] by Bentley.
+
+ 
+- [ ] Assembly.
+  - [ ] generative programming (macros);
+  - [ ] lexical (and dynamic) scope;
+  - [ ] closures;
+  - [ ] continuations;
+  - [ ] higher-order functions;
+  - [ ] dynamic dispatch;
+  - [ ] subtyping; 
+  - [ ] modules and functors;
+  - [ ] monads as semantic concepts distinct from any specific syntax.
+
+  - [[http://mitpress.mit.edu/sicp/full-text/book/book.html][Structure and Interpretation of Computer Programs]] by Abelson, Sussman and Sussman.
+
+  - [[http://www.amazon.com/gp/product/0521545668/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0521545668][Lisp in Small Pieces]] by Queinnec.
+  
+
+** Discrete mathematics
+
+- [X] solid grasp of formal logic and of proof.
+- [X] proof by algebraic manipulation and by natural deduction 
+- [X] proof by induction
+- [X] fluent in formal mathematical notation, and in reasoning rigorously about the basic discrete structures: sets, tuples, sequences, functions and power sets.
+
+*** Specific recommendations
+
+- reason clearly about:
+  - [ ] trees;
+  - [ ] graphs;
+  - [ ] formal languages; and
+  - [ ] automata.
+
+- [ ] learn enough number theory to study and implement common cryptographic protocols.
+
+
+*** Recommended reading
+
+- [X] [[http://www.amazon.com/gp/product/0521675995/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0521675995][How to Prove It: A Structured Approach]] by Velleman.
+
+- [[http://www.amazon.com/gp/product/4871878309/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=4871878309][How To Solve It]] by Polya.
+
+** Data structures and algorithms
+
+- [ ] understand how to design algorithms (e.g., greedy, dynamic strategies)
+- [ ] and how to span the gap between an algorithm in the ideal and the nitty-gritty of its implementation.
+
+
+*** Specific recommendations
+
+- [ ] hash tables;
+- [ ] linked lists;
+- [ ] trees;
+- [ ] binary search trees; and
+- [ ] directed and undirected graphs.
+
+- [ ] know both the imperative and functional versions of each algorithm.
+
+
+*** Recommended reading
+
+- [X] [[http://www.amazon.com/gp/product/0262033844/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0262033844][CLRS]].
+
+- [X] Any of the [[http://www.amazon.com/gp/product/0321751043/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399373&creativeASIN=0321751043][Art of Computer Programming]] series by Knuth.
+
+** Theory
+
+- [ ] models of computation and computational complexity.
+  - [ ] computation: should cover finite-state automata, regular languages (and regular expressions), pushdown automata, context-free languages, formal grammars, Turing machines, the lambda calculus, and undecidability.
+  - [ ] difference between P, NP, NP-Hard and NP-Complete.
+
+- [ ] solve a few large problems in NP by reduction to SAT and the use of modern SAT solvers.
+
+*** Recommended reading
+
+- [[http://www.amazon.com/gp/product/0534950973/ref=as_li_ss_tl?ie=UTF8&tag=aboutmmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0534950973][Introduction to the Theory of Computation]] by Sipser.
+
+- [[http://www.amazon.com/gp/product/0201530821/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0201530821][Computational Complexity]] by Papadimitriou.
+
+- [X] [[http://www.amazon.com/gp/product/032157351X/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=032157351X&linkCode=as2&tag=mmamzn06-20][Algorithms]] by Sedgewick and Wayne.
+
+- [X] [[http://www.amazon.com/gp/product/0262033844/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=0262033844&linkCode=as2&tag=mmamzn06-20][Introduction to Algorithms]] by Cormen, Leiserson, Rivest and Stein.
+
+** Architecture
+
+- [ ] understand a computer from the transistors up.
+  - [ ] transistors, gates, adders, muxes, flip flops, ALUs, control units, caches and RAM.
+
+- [ ] GPU model of high-performance computing
+
+
+*** Specific recommendations
+
+- [ ] good understanding of caches, buses and hardware memory management is essential to achieving good performance on modern systems.
+
+- [ ] to get a good grasp of machine architecture, students should design and simulate a small CPU.
+
+
+*** Recommended reading
+
+- [[http://nand2tetris.org/][nand2tetris]], which constructs a computer from the ground up.
+
+- [[http://www.amazon.com/gp/product/0123744938/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0123744938][Computer Organization and Design]] by Patterson and Hennessy.
+
+- [X] [[http://lwn.net/Articles/250967/]["What every programmer should know about memory"]] by Drepper.
+
+** Operating systems
+
+- [ ] be aware of how kernels handle system calls, paging, scheduling, context-switching, filesystems and internal resource
+management.
+
+#+begin_quote
+A good understanding of operating systems is secondary only to an
+understanding of compilers and architecture for achieving performance.
+#+end_quote
+
+*** Specific recommendations
+
+- [ ] get hands dirty on a real operating system. (With Linux and virtualization, this is easier than ever before.)
+
+- [ ] To get a better understanding of the kernel, students could:
+  - [ ] print "hello world" during the boot process;
+  - [ ] design their own scheduler;
+  - [ ] modify the page-handling policy; and
+  - [ ] create their own filesystem.
+
+*** Recommended reading
+
+- [[http://www.amazon.com/gp/product/0672329468/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0672329468][Linux Kernel Development]] by Love.
+
+** Networking
+
+- [ ] firm understanding of the network stack and routing protocols within a network.
+- [ ] mechanics of building an efficient, reliable transmission protocol (like TCP) on top of an unreliable transmission protocol (like IP) should not be magic to a computer scientist.
+- [ ] must understand the trade-offs involved in protocol design--for example, when to choose TCP and when to choose UDP.
+- [ ] Programmers need to understand the larger social implications for congestion should they use UDP at large scales as well.
+
+
+*** Specific recommendations
+
+- [ ] know the protocols for existing standards, such as:
+  - [ ] 802.3 and 802.11;
+  - [ ] IPv4 and IPv6; and
+  - [ ] DNS, SMTP and HTTP.
+
+- [ ] understand exponential back off in packet collision resolution and the additive-increase multiplicative-decrease mechanism involved in congestion control.
+
+
+- [ ] implement the following:
+  - [ ] an HTTP client and daemon;
+  - [ ] a DNS resolver and server; and
+  - [ ] a command-line SMTP mailer.
+
+- [ ] no student should ever pass an intro neworking class without sniffing their instructor's Google query off [[http://www.wireshark.org/][wireshark]].
+
+
+- [ ]* implement a reliable transmission protocol from scratch atop IP
+
+
+*** Recommended reading
+
+- [[http://www.amazon.com/gp/product/0131411551/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0131411551][Unix Network Programming]] by Stevens, Fenner and Rudoff.
+
+** Security
+
+*** Specific recommendations
+
+- [ ] At a minimum, every computer scientist needs to
+understand:
+  - [X] social engineering;
+  - [ ] buffer overflows;
+  - [ ] integer overflow;
+  - [ ] code injection vulnerabilities;
+  - [ ] race conditions; and
+  - [ ] privilege confusion.
+
+- [ ] how to properly configure a firewall with iptables.
+
+
+*** Recommended reading
+
+- [[http://www.amazon.com/gp/product/159327288X/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399373&creativeASIN=159327288X][Metasploit: The Penetration Tester's Guide]] by Kennedy, O'Gorman, Kearns and Aharoni.
+
+- [[http://www.amazon.com/gp/product/0470068523/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=0470068523&linkCode=as2&tag=mmamzn06-20][Security Engineering]] by Anderson.
+
+** Cryptography
+
+- [ ] understand and be able to implement the following concepts, as well as the common pitfalls in doing so:
+  - [ ] symmetric-key cryptosystems;
+  - [ ] public-key cryptosystems;
+  - [ ] secure hash functions;
+  - [ ] challenge-response authentication;
+  - [ ] digital signature algorithms; and
+  - [ ] threshold cryptosystems.
+
+- [ ] every computer scientist should know how to acquire a sufficiently random number for the task at hand.
+
+- [ ] computer scientists need to know how to salt and hash passwords for storage.
+
+
+*** Specific recommendations
+
+- [ ] RSA is [[http://matt.might.net/articles/implementation-of-rsa-public-key-cryptography-algorithm-in-scheme-dialect-of-lisp/][easy enough to implement]] that everyone should do it.
+
+- [ ] Every student should create their own digital certificate and set up https in apache.  (It's surprisingly arduous to do this.)
+
+- [ ] Student should also write a console web client that connects over SSL.
+
+- [ ] computer scientists should know how to use GPG;
+  - [ ] how to use public-key authentication for ssh;
+  - [ ] and how to encrypt a directory or a hard disk.
+
+
+**** Recommended reading
+
+- [[http://www.amazon.com/gp/product/0470474246/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0470474246][Cryptography Engineering]] by Ferguson, Schneier and Kohno.
+
+** Software testing
+
+#+begin_quote
+Software testing must be distributed throughout the entire
+curriculum.
+#+end_quote
+
+** User experience design
+
+#+begin_quote
+Programmers too often write software for other 
+programmers, or worse, for themselves.
+#+end_quote
+
+*** Recommended reading
+
+- Paul Graham's [[http://www.paulgraham.com/web20.html][essay on Web 2.0]].
+
+- [[http://www.joelonsoftware.com/articles/Unicode.html]["The Absolute Minimum Every Software Developer Absolutely, Positively Must Know About Unicode and Character Sets"]] by Spolsky.
+
+- [[http://www.amazon.com/gp/product/1118008189/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=1118008189&linkCode=as2&tag=mmamzn06-20][HTML and CSS: Design and Build Websites]] by Duckett.
+
+- [[http://www.amazon.com/gp/product/0596805527/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=0596805527&linkCode=as2&tag=mmamzn06-20][JavaScript: The Definitive Guide]] by Flanagan.
+
+  
+** Visualization
+
+*** Recommended reading
+
+- [[http://www.amazon.com/gp/product/0961392142/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0961392142][The Visual Display of Quantitative Information]] by Tufte.
+
+** Parallelism
+
+- [ ] deep knowledge of architecture: multicore, caches, buses, GPUs, etc.
+
+- [ ] and, practice.  Lots of practice.
+
+
+*** Specific recommendations
+
+- [ ] learn CUDA
+- [ ] threads
+- [ ] pthreads (the library)
+
+
+** Software engineering
+
+- [X] a good, hands-on course in the practice of team software construction provides a working knowledge of the pitfalls inherent in the endeavor.
+
+
+*** Specific recommendations
+
+- [ ] centralized version control systems
+- [ ] working knowlege of debugging tools like gdb and valgrind
+
+
+*** Recommended reading
+
+- [[http://www.ericsink.com/vcbe/][Version Control by Example]] by Sink.
+
+** Formal methods
+
+- [ ] learn to use a theorem prover (it immediately impacts coding style.)
+   - incomplete =switch= statements and correctness of recursive functions
+
+- [[http://www.cis.upenn.edu/~bcpierce/sf/][Software Foundations]].
+
+** Graphics and simulation
+
+#+begin_quote
+There is no discipline more dominated by "clever" than graphics.
+#+end_quote
+
+*** Recommended reading
+
+- [[http://www.amazon.com/gp/product/1435458869/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399373&creativeASIN=1435458869][Mathematics for 3D Game Programming and Computer Graphics]] by Lengyel.
+
+** Robotics
+
+*** Related posts
+
+- [[http://matt.might.net/articles/ios-multitouch-robot-control/][Multitouch gesture control for a robot]].
+
+** Artificial intelligence
+
+*** Recommended reading
+
+- [[http://www.amazon.com/gp/product/0136042597/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0136042597][Artificial Intelligence]] by Russell and Norvig.
+
+** Machine learning
+
+- [ ] Bayesian networks, clustering and decision-tree learning.
+
+
+*** Recommended reading
+
+- [[http://www.amazon.com/gp/product/0070428077/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0070428077][Machine Learning]] by Mitchell.
+
+** Databases
+
+- [ ] Relational algebra and relational calculus
+- [ ] ER modeling
+
+*** Specific recommendations
+
+- [ ] set up and operate a LAMP stack
+
+
+*** Recommended reading
+
+- [[http://www.amazon.com/gp/product/0596523068/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0596523068][SQL and Relational Theory]] by Date.
+
+** Non-specific reading recommendations
+
+- [[http://www.amazon.com/gp/product/0465026567/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0465026567][Gödel, Escher, Bach]] by Hofstadter.
+
+- [[http://nick-black.com/dankwiki/images/8/85/Msadvice.pdf][Nick Black's advice for MS students]].
+
+

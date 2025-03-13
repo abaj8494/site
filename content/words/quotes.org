@@ -1,0 +1,14 @@
++++
+title = "Quotes"
+tags = ["wisdom", "philosophy"]
++++
+
+Here are quotes that I have collected, but have nowhere else to place purposefully at the moment:
+
+#+begin_quote
+“A room without books is like a body without a soul.” — Cicero
+#+end_quote
+
+#+begin_quote
+“Anything worth doing is worth doing poorly - until you learn to do it well.” - Steve Brown.
+#+end_quote
