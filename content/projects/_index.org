@@ -28,19 +28,21 @@ You may also view the entire =tag= taxonomy [[/tags][here]].
 :END:
 {{< collapse id="projects" folded="false" >}}
 
+#+begin_export html
+<div style="border:1px solid #ccc; padding:10px; width:50%; margin:0 auto; text-align:center;">
+  <input type="checkbox" class="edit"/>
+  <a href="/projects/cs-major">What Every CS Major Ought to Know</a>
+  {{< tags-inline "projects/cs-major" >}}
+</div>
+#+end_export
+
+
 
 ** Quant                                                           :noexport:
 - Kafka, CS2511 recreate repo
 - black sholes pricer
 - c++ project?
 
-#+begin_export html
-<div style="border:1px solid #ccc; padding:10px; width:50%; margin:0 auto; text-align:center;">
-  <input type="checkbox" class="edit"/>
-  <a href="/projects/ccs/cs-major">What Every CS Major Ought to Know</a>
-  {{< tags-inline "projects/ccs/cs-major" >}}
-</div>
-#+end_export
 
 
 ** [[/projects/ccs][Classical Computer Science]]
