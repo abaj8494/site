@@ -1,13 +1,27 @@
 +++
 title = "What every computer science major should know"
 author = "https://matt.might.net/"
-toc = "true"
+tags = ["architecture", "networks", "os", "unix", "mathematics", "cryptography", "testing"]
 +++
+
+#+begin_export html
+<aside class="custom-toc">
+<nav>
+<p class="sidebar__heading">Table Of Contents</p>
+#+end_export
+
+#+toc: headlines 2
+
+#+begin_export html
+</nav></aside>
+#+end_export
+
 
 Here are my distillations of Matt's seminal blog post: [[https://matt.might.net/articles/what-cs-majors-should-know/][What CS Majors Ought to Know]].
 
 I have removed the imperative matter, and left the declarative material; marking off that which I have completed.
 
+The original post distils Matt's lifelong experience as a Computer Scientist and Professor to answer these 4 questions:
 #+begin_quote
 - What should every student know to get a good job?
 
@@ -18,18 +32,21 @@ I have removed the imperative matter, and left the declarative material; marking
 - What should every student know to benefit society?
 #+end_quote
 
+Here are his prescriptions:
 
 ** Portfolio versus resume
 
-- [X] Every computer science major should build a portfolio.
-- [X] Contributions to open source should be linked and documented.
+- @@html:<input type="checkbox" checked class="done"/>@@ Every computer science major should build a portfolio.
+- @@html:<input type="checkbox" class="edit"/>@@ item2
+- @@html:<input type="checkbox" class="nothing"/>@@ item3
+- @@html:<input type="checkbox" checked class="done"/>@@ Contributions to open source should be linked and documented.
 
 
 ** Technical communication
 
 *** Specific recommendations
 
-- [X] Master a presentation tool.
+- @@html:<input type="checkbox" checked class="done"/>@@ Master a presentation tool.
 
 
 *** Recommended reading
@@ -38,9 +55,9 @@ I have removed the imperative matter, and left the declarative material; marking
 
 - [[http://www.amazon.com/gp/product/0978577604/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0978577604][Even a Geek Can Speak]] by Asher.
 
-- [X] [[http://www.amazon.com/gp/product/0201362996/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0201362996][The LaTeX Companion]].
+- @@html:<input type="checkbox" checked class="done"/>@@ [[http://www.amazon.com/gp/product/0201362996/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0201362996][The LaTeX Companion]].
 
-- [X] [[http://www.amazon.com/gp/product/0201134489/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0201134489][The TeXbook]] by Knuth. (Warning: Experts only.)
+- @@html:<input type="checkbox" checked class="done"/>@@ [[http://www.amazon.com/gp/product/0201134489/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0201134489][The TeXbook]] by Knuth. (Warning: Experts only.)
 
 - Notes on [[http://www-cs-faculty.stanford.edu/~uno/klr.html][Mathematical Writing]]
 
@@ -50,16 +67,16 @@ I have removed the imperative matter, and left the declarative material; marking
 
 ** An engineering core
 
-- [ ] real analysis
-- [X] linear algebra
-- [ ] probability
-- [ ] physics
+- @@html:<input type="checkbox" class="nothing"/>@@ real analysis
+- @@html:<input type="checkbox" checked class="done"/>@@ linear algebra
+- @@html:<input type="checkbox" class="nothing"/>@@ probability
+- @@html:<input type="checkbox" class="nothing"/>@@ physics
 
-- [ ] physics through to electromagnetism
-- [X] multivariable calculus
-- [X] differential equations
+- @@html:<input type="checkbox" class="nothing"/>@@ physics through to electromagnetism
+- @@html:<input type="checkbox" checked class="done"/>@@ multivariable calculus
+- @@html:<input type="checkbox" checked class="done"/>@@ differential equations
 
-- [ ] statistics
+- @@html:<input type="checkbox" class="nothing"/>@@ statistics
 
 *** Recommended reading
 
@@ -69,32 +86,32 @@ I have removed the imperative matter, and left the declarative material; marking
 
 ** The Unix philosophy
 
-- [X] comfortable with and practiced in the Unix philosophy of computing.
+- @@html:<input type="checkbox" checked class="done"/>@@ comfortable with and practiced in the Unix philosophy of computing.
 
-- [X] in practice, this means becoming comfortable with the notion of command-line computing, text-file configuration and IDE-less software development.
+- @@html:<input type="checkbox" checked class="done"/>@@ in practice, this means becoming comfortable with the notion of command-line computing, text-file configuration and IDE-less software development.
 
 
 *** Specific recommendations
 
-- [X] fluent in basic Unix, including the ability to:
+- @@html:<input type="checkbox" checked class="done"/>@@ fluent in basic Unix, including the ability to:
   - [X] navigate and manipulate the filesystem;
   - [X] compose processes with pipes;
   - [X] comfortably edit a file with emacs and vim
-- [ ] create, modify and execute a Makefile for a software project;
-- [X] write simple shell scripts.
-  - [.] Find the five folders in a given directory consuming the most space.
+- @@html:<input type="checkbox" class="nothing"/>@@ create, modify and execute a Makefile for a software project;
+- @@html:<input type="checkbox" checked class="done"/>@@ write simple shell scripts.
+  - @@html:<input type="checkbox" class="edit"/>@@ Find the five folders in a given directory consuming the most space.
     #+INCLUDE: "top5.py" src python
-  - [.] Report duplicate MP3s (by file contents, not file name) on a computer.
+  - @@html:<input type="checkbox" class="edit"/>@@ Report duplicate MP3s (by file contents, not file name) on a computer.
     #+INCLUDE: "duplicate_mp3s.py" src python
-  - [.] Take a list of names whose first and last names have been lower-cased, and properly recapitalize them.
+  - @@html:<input type="checkbox" class="edit"/>@@ Take a list of names whose first and last names have been lower-cased, and properly recapitalize them.
     #+INCLUDE: "recap_names.py" src python
-  - [.] Find all words in English that have x as their second letter, and n as their second-to-last.
+  - @@html:<input type="checkbox" class="edit"/>@@ Find all words in English that have x as their second letter, and n as their second-to-last.
     #+INCLUDE: "pattern_words.py" src python
-  - [.] Directly route your microphone input over the network to another computer's speaker.
+  - @@html:<input type="checkbox" class="edit"/>@@ Directly route your microphone input over the network to another computer's speaker.
     #+INCLUDE: "stream_mic.sh" src sh
-  - [.] Replace all spaces in a filename with underscore for a given directory.
+  - @@html:<input type="checkbox" class="edit"/>@@ Replace all spaces in a filename with underscore for a given directory.
     #+INCLUDE: "spaces_to_underscores.py" src python
-  - [.] Report the last ten errant accesses to the web server coming from a specific IP address.
+  - @@html:<input type="checkbox" class="edit"/>@@ Report the last ten errant accesses to the web server coming from a specific IP address.
     #+INCLUDE: "errant_accesses.py" src python
   
  
@@ -114,20 +131,20 @@ I have removed the imperative matter, and left the declarative material; marking
 
 ** Systems administration
 
-- [X] computer scientists must be able to competently and securely administer their own systems and networks.
+- @@html:<input type="checkbox" checked class="done"/>@@ computer scientists must be able to competently and securely administer their own systems and networks.
   - c.f. raspberry pi projects, and this site along with abaj.bots and abaj.games all running out of the same vps
 
 *** Specific recommendations
 
-- [X] Install and administer a Linux distribution.
-- [X] Configure and compile the Linux kernel.
-- [X] Troubleshoot a connection with =dig=, =ping= and =traceroute=.
-- [X] Compile and configure a web server like apache.
+- @@html:<input type="checkbox" checked class="done"/>@@ Install and administer a Linux distribution.
+- @@html:<input type="checkbox" checked class="done"/>@@ Configure and compile the Linux kernel.
+- @@html:<input type="checkbox" checked class="done"/>@@ Troubleshoot a connection with =dig=, =ping= and =traceroute=.
+- @@html:<input type="checkbox" checked class="done"/>@@ Compile and configure a web server like apache.
   - done multiple times. running a custom build of nginx for this site
-- [ ] Compile and configure a DNS daemon like bind.
-- [X] Maintain a web site with a text editor.
+- @@html:<input type="checkbox" class="nothing"/>@@ Compile and configure a DNS daemon like bind.
+- @@html:<input type="checkbox" checked class="done"/>@@ Maintain a web site with a text editor.
 
-- [X] [[http://matt.might.net/articles/how-to-make-your-own-cat-5-ethernet-cable/][Cut and crimp a network cable]].
+- @@html:<input type="checkbox" checked class="done"/>@@ [[http://matt.might.net/articles/how-to-make-your-own-cat-5-ethernet-cable/][Cut and crimp a network cable]].
 
 *** Recommended reading
 
@@ -136,30 +153,30 @@ by Nemeth, Synder, Hein and Whaley.
 
 ** Programming languages
 
-- [ ] ideally, every computer science major would take a compilers class.
-- [ ] At a minimum,  every computer science major should implement an interpreter.
+- @@html:<input type="checkbox" class="nothing"/>@@ ideally, every computer science major would take a compilers class.
+- @@html:<input type="checkbox" class="nothing"/>@@ At a minimum,  every computer science major should implement an interpreter.
   - [ ] https://ruslanspivak.com/lsbasi-part1/
   - [ ] https://compilers.iecc.com/crenshaw/
 
 *** Specific languages
 
-- [X] C;
+- @@html:<input type="checkbox" checked class="done"/>@@ C;
   - [[http://www.amazon.com/gp/product/0131103628/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0131103628][ANSI C]] by Kernighan and Ritchie.
   
-- [ ] JavaScript;
+- @@html:<input type="checkbox" class="nothing"/>@@ JavaScript;
   - [[http://www.amazon.com/gp/product/0596805527/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=0596805527&linkCode=as2&tag=mmamzn06-20][JavaScript: The Definitive Guide]] by Flanagan.
   - [[http://www.amazon.com/gp/product/0596517742/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0596517742][JavaScript: The Good Parts]] by Crockford.
   - [[http://www.amazon.com/gp/product/0321812182/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=0321812182&linkCode=as2&tag=mmamzn06-20][Effective JavaScript: 68 Specific Ways to Harness the Power of JavaScript]] by Herman.
   
-- [ ] Java;
+- @@html:<input type="checkbox" class="nothing"/>@@ Java;
   - [[http://www.amazon.com/gp/product/0321356683/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0321356683][Effective Java]] by Bloch.
   
-- [ ] Haskell;
+- @@html:<input type="checkbox" class="nothing"/>@@ Haskell;
   - [[http://learnyouahaskell.com/][Learn You a Haskell]] by Lipovaca.
 
   - [[http://www.amazon.com/gp/product/0596514980/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0596514980][Real World Haskell]] by  O'Sullivan, Goerzen and Stewart.
   
-- [ ] C++; and
+- @@html:<input type="checkbox" class="nothing"/>@@ C++; and
   - [[http://www.amazon.com/gp/product/0201700735/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0201700735][The C++ Programming Language]] by Stroustrup.
 
   - [[http://www.amazon.com/gp/product/0201734842/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0201734842][C++ Templates: The Complete Guide]] by Vandevoorde and Josuttis.
@@ -167,7 +184,7 @@ by Nemeth, Synder, Hein and Whaley.
   - [[http://www.amazon.com/gp/product/0201657880/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=0201657880&linkCode=as2&tag=mmamzn06-20][Programming Pearls]] by Bentley.
 
  
-- [ ] Assembly.
+- @@html:<input type="checkbox" class="nothing"/>@@ Assembly.
   - [ ] generative programming (macros);
   - [ ] lexical (and dynamic) scope;
   - [ ] closures;
@@ -185,10 +202,10 @@ by Nemeth, Synder, Hein and Whaley.
 
 ** Discrete mathematics
 
-- [X] solid grasp of formal logic and of proof.
-- [X] proof by algebraic manipulation and by natural deduction 
-- [X] proof by induction
-- [X] fluent in formal mathematical notation, and in reasoning rigorously about the basic discrete structures: sets, tuples, sequences, functions and power sets.
+- @@html:<input type="checkbox" checked class="done"/>@@ solid grasp of formal logic and of proof.
+- @@html:<input type="checkbox" checked class="done"/>@@ proof by algebraic manipulation and by natural deduction 
+- @@html:<input type="checkbox" checked class="done"/>@@ proof by induction
+- @@html:<input type="checkbox" checked class="done"/>@@ fluent in formal mathematical notation, and in reasoning rigorously about the basic discrete structures: sets, tuples, sequences, functions and power sets.
 
 *** Specific recommendations
 
@@ -198,45 +215,45 @@ by Nemeth, Synder, Hein and Whaley.
   - [ ] formal languages; and
   - [ ] automata.
 
-- [ ] learn enough number theory to study and implement common cryptographic protocols.
+- @@html:<input type="checkbox" class="nothing"/>@@ learn enough number theory to study and implement common cryptographic protocols.
 
 
 *** Recommended reading
 
-- [X] [[http://www.amazon.com/gp/product/0521675995/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0521675995][How to Prove It: A Structured Approach]] by Velleman.
+- @@html:<input type="checkbox" checked class="done"/>@@ [[http://www.amazon.com/gp/product/0521675995/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0521675995][How to Prove It: A Structured Approach]] by Velleman.
 
 - [[http://www.amazon.com/gp/product/4871878309/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=4871878309][How To Solve It]] by Polya.
 
 ** Data structures and algorithms
 
-- [ ] understand how to design algorithms (e.g., greedy, dynamic strategies)
-- [ ] and how to span the gap between an algorithm in the ideal and the nitty-gritty of its implementation.
+- @@html:<input type="checkbox" class="nothing"/>@@ understand how to design algorithms (e.g., greedy, dynamic strategies)
+- @@html:<input type="checkbox" class="nothing"/>@@ and how to span the gap between an algorithm in the ideal and the nitty-gritty of its implementation.
 
 
 *** Specific recommendations
 
-- [ ] hash tables;
-- [ ] linked lists;
-- [ ] trees;
-- [ ] binary search trees; and
-- [ ] directed and undirected graphs.
+- @@html:<input type="checkbox" class="nothing"/>@@ hash tables;
+- @@html:<input type="checkbox" class="nothing"/>@@ linked lists;
+- @@html:<input type="checkbox" class="nothing"/>@@ trees;
+- @@html:<input type="checkbox" class="nothing"/>@@ binary search trees; and
+- @@html:<input type="checkbox" class="nothing"/>@@ directed and undirected graphs.
 
-- [ ] know both the imperative and functional versions of each algorithm.
+- @@html:<input type="checkbox" class="nothing"/>@@ know both the imperative and functional versions of each algorithm.
 
 
 *** Recommended reading
 
-- [X] [[http://www.amazon.com/gp/product/0262033844/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0262033844][CLRS]].
+- @@html:<input type="checkbox" checked class="done"/>@@ [[http://www.amazon.com/gp/product/0262033844/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0262033844][CLRS]].
 
-- [X] Any of the [[http://www.amazon.com/gp/product/0321751043/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399373&creativeASIN=0321751043][Art of Computer Programming]] series by Knuth.
+- @@html:<input type="checkbox" checked class="done"/>@@ Any of the [[http://www.amazon.com/gp/product/0321751043/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399373&creativeASIN=0321751043][Art of Computer Programming]] series by Knuth.
 
 ** Theory
 
-- [ ] models of computation and computational complexity.
+- @@html:<input type="checkbox" class="nothing"/>@@ models of computation and computational complexity.
   - [ ] computation: should cover finite-state automata, regular languages (and regular expressions), pushdown automata, context-free languages, formal grammars, Turing machines, the lambda calculus, and undecidability.
   - [ ] difference between P, NP, NP-Hard and NP-Complete.
 
-- [ ] solve a few large problems in NP by reduction to SAT and the use of modern SAT solvers.
+- @@html:<input type="checkbox" class="nothing"/>@@ solve a few large problems in NP by reduction to SAT and the use of modern SAT solvers.
 
 *** Recommended reading
 
@@ -244,23 +261,23 @@ by Nemeth, Synder, Hein and Whaley.
 
 - [[http://www.amazon.com/gp/product/0201530821/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0201530821][Computational Complexity]] by Papadimitriou.
 
-- [X] [[http://www.amazon.com/gp/product/032157351X/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=032157351X&linkCode=as2&tag=mmamzn06-20][Algorithms]] by Sedgewick and Wayne.
+- @@html:<input type="checkbox" checked class="done"/>@@ [[http://www.amazon.com/gp/product/032157351X/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=032157351X&linkCode=as2&tag=mmamzn06-20][Algorithms]] by Sedgewick and Wayne.
 
-- [X] [[http://www.amazon.com/gp/product/0262033844/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=0262033844&linkCode=as2&tag=mmamzn06-20][Introduction to Algorithms]] by Cormen, Leiserson, Rivest and Stein.
+- @@html:<input type="checkbox" checked class="done"/>@@ [[http://www.amazon.com/gp/product/0262033844/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=0262033844&linkCode=as2&tag=mmamzn06-20][Introduction to Algorithms]] by Cormen, Leiserson, Rivest and Stein.
 
 ** Architecture
 
-- [ ] understand a computer from the transistors up.
+- @@html:<input type="checkbox" class="nothing"/>@@ understand a computer from the transistors up.
   - [ ] transistors, gates, adders, muxes, flip flops, ALUs, control units, caches and RAM.
 
-- [ ] GPU model of high-performance computing
+- @@html:<input type="checkbox" class="nothing"/>@@ GPU model of high-performance computing
 
 
 *** Specific recommendations
 
-- [ ] good understanding of caches, buses and hardware memory management is essential to achieving good performance on modern systems.
+- @@html:<input type="checkbox" class="nothing"/>@@ good understanding of caches, buses and hardware memory management is essential to achieving good performance on modern systems.
 
-- [ ] to get a good grasp of machine architecture, students should design and simulate a small CPU.
+- @@html:<input type="checkbox" class="nothing"/>@@ to get a good grasp of machine architecture, students should design and simulate a small CPU.
 
 
 *** Recommended reading
@@ -269,11 +286,11 @@ by Nemeth, Synder, Hein and Whaley.
 
 - [[http://www.amazon.com/gp/product/0123744938/ref=as_li_ss_tl?ie=UTF8&tag=mmamzn06-20&linkCode=as2&camp=217145&creative=399369&creativeASIN=0123744938][Computer Organization and Design]] by Patterson and Hennessy.
 
-- [X] [[http://lwn.net/Articles/250967/]["What every programmer should know about memory"]] by Drepper.
+- @@html:<input type="checkbox" checked class="done"/>@@ [[http://lwn.net/Articles/250967/]["What every programmer should know about memory"]] by Drepper.
 
 ** Operating systems
 
-- [ ] be aware of how kernels handle system calls, paging, scheduling, context-switching, filesystems and internal resource
+- @@html:<input type="checkbox" class="nothing"/>@@ be aware of how kernels handle system calls, paging, scheduling, context-switching, filesystems and internal resource
 management.
 
 #+begin_quote
@@ -283,9 +300,9 @@ understanding of compilers and architecture for achieving performance.
 
 *** Specific recommendations
 
-- [ ] get hands dirty on a real operating system. (With Linux and virtualization, this is easier than ever before.)
+- @@html:<input type="checkbox" class="nothing"/>@@ get hands dirty on a real operating system. (With Linux and virtualization, this is easier than ever before.)
 
-- [ ] To get a better understanding of the kernel, students could:
+- @@html:<input type="checkbox" class="nothing"/>@@ To get a better understanding of the kernel, students could:
   - [ ] print "hello world" during the boot process;
   - [ ] design their own scheduler;
   - [ ] modify the page-handling policy; and
@@ -297,28 +314,28 @@ understanding of compilers and architecture for achieving performance.
 
 ** Networking
 
-- [ ] firm understanding of the network stack and routing protocols within a network.
-- [ ] mechanics of building an efficient, reliable transmission protocol (like TCP) on top of an unreliable transmission protocol (like IP) should not be magic to a computer scientist.
-- [ ] must understand the trade-offs involved in protocol design--for example, when to choose TCP and when to choose UDP.
-- [ ] Programmers need to understand the larger social implications for congestion should they use UDP at large scales as well.
+- @@html:<input type="checkbox" class="nothing"/>@@ firm understanding of the network stack and routing protocols within a network.
+- @@html:<input type="checkbox" class="nothing"/>@@ mechanics of building an efficient, reliable transmission protocol (like TCP) on top of an unreliable transmission protocol (like IP) should not be magic to a computer scientist.
+- @@html:<input type="checkbox" class="nothing"/>@@ must understand the trade-offs involved in protocol design--for example, when to choose TCP and when to choose UDP.
+- @@html:<input type="checkbox" class="nothing"/>@@ Programmers need to understand the larger social implications for congestion should they use UDP at large scales as well.
 
 
 *** Specific recommendations
 
-- [ ] know the protocols for existing standards, such as:
+- @@html:<input type="checkbox" class="nothing"/>@@ know the protocols for existing standards, such as:
   - [ ] 802.3 and 802.11;
   - [ ] IPv4 and IPv6; and
   - [ ] DNS, SMTP and HTTP.
 
-- [ ] understand exponential back off in packet collision resolution and the additive-increase multiplicative-decrease mechanism involved in congestion control.
+- @@html:<input type="checkbox" class="nothing"/>@@ understand exponential back off in packet collision resolution and the additive-increase multiplicative-decrease mechanism involved in congestion control.
 
 
-- [ ] implement the following:
+- @@html:<input type="checkbox" class="nothing"/>@@ implement the following:
   - [ ] an HTTP client and daemon;
   - [ ] a DNS resolver and server; and
   - [ ] a command-line SMTP mailer.
 
-- [ ] no student should ever pass an intro neworking class without sniffing their instructor's Google query off [[http://www.wireshark.org/][wireshark]].
+- @@html:<input type="checkbox" class="nothing"/>@@ no student should ever pass an intro neworking class without sniffing their instructor's Google query off [[http://www.wireshark.org/][wireshark]].
 
 
 - [ ]* implement a reliable transmission protocol from scratch atop IP
@@ -332,7 +349,7 @@ understanding of compilers and architecture for achieving performance.
 
 *** Specific recommendations
 
-- [ ] At a minimum, every computer scientist needs to
+- @@html:<input type="checkbox" class="nothing"/>@@ At a minimum, every computer scientist needs to
 understand:
   - [X] social engineering;
   - [ ] buffer overflows;
@@ -341,7 +358,7 @@ understand:
   - [ ] race conditions; and
   - [ ] privilege confusion.
 
-- [ ] how to properly configure a firewall with iptables.
+- @@html:<input type="checkbox" class="nothing"/>@@ how to properly configure a firewall with iptables.
 
 
 *** Recommended reading
@@ -352,7 +369,7 @@ understand:
 
 ** Cryptography
 
-- [ ] understand and be able to implement the following concepts, as well as the common pitfalls in doing so:
+- @@html:<input type="checkbox" class="nothing"/>@@ understand and be able to implement the following concepts, as well as the common pitfalls in doing so:
   - [ ] symmetric-key cryptosystems;
   - [ ] public-key cryptosystems;
   - [ ] secure hash functions;
@@ -360,20 +377,20 @@ understand:
   - [ ] digital signature algorithms; and
   - [ ] threshold cryptosystems.
 
-- [ ] every computer scientist should know how to acquire a sufficiently random number for the task at hand.
+- @@html:<input type="checkbox" class="nothing"/>@@ every computer scientist should know how to acquire a sufficiently random number for the task at hand.
 
-- [ ] computer scientists need to know how to salt and hash passwords for storage.
+- @@html:<input type="checkbox" class="nothing"/>@@ computer scientists need to know how to salt and hash passwords for storage.
 
 
 *** Specific recommendations
 
-- [ ] RSA is [[http://matt.might.net/articles/implementation-of-rsa-public-key-cryptography-algorithm-in-scheme-dialect-of-lisp/][easy enough to implement]] that everyone should do it.
+- @@html:<input type="checkbox" class="nothing"/>@@ RSA is [[http://matt.might.net/articles/implementation-of-rsa-public-key-cryptography-algorithm-in-scheme-dialect-of-lisp/][easy enough to implement]] that everyone should do it.
 
-- [ ] Every student should create their own digital certificate and set up https in apache.  (It's surprisingly arduous to do this.)
+- @@html:<input type="checkbox" class="nothing"/>@@ Every student should create their own digital certificate and set up https in apache.  (It's surprisingly arduous to do this.)
 
-- [ ] Student should also write a console web client that connects over SSL.
+- @@html:<input type="checkbox" class="nothing"/>@@ Student should also write a console web client that connects over SSL.
 
-- [ ] computer scientists should know how to use GPG;
+- @@html:<input type="checkbox" class="nothing"/>@@ computer scientists should know how to use GPG;
   - [ ] how to use public-key authentication for ssh;
   - [ ] and how to encrypt a directory or a hard disk.
 
@@ -415,27 +432,27 @@ programmers, or worse, for themselves.
 
 ** Parallelism
 
-- [ ] deep knowledge of architecture: multicore, caches, buses, GPUs, etc.
+- @@html:<input type="checkbox" class="nothing"/>@@ deep knowledge of architecture: multicore, caches, buses, GPUs, etc.
 
-- [ ] and, practice.  Lots of practice.
+- @@html:<input type="checkbox" class="nothing"/>@@ and, practice.  Lots of practice.
 
 
 *** Specific recommendations
 
-- [ ] learn CUDA
-- [ ] threads
-- [ ] pthreads (the library)
+- @@html:<input type="checkbox" class="nothing"/>@@ learn CUDA
+- @@html:<input type="checkbox" class="nothing"/>@@ threads
+- @@html:<input type="checkbox" class="nothing"/>@@ pthreads (the library)
 
 
 ** Software engineering
 
-- [X] a good, hands-on course in the practice of team software construction provides a working knowledge of the pitfalls inherent in the endeavor.
+- @@html:<input type="checkbox" checked class="done"/>@@ a good, hands-on course in the practice of team software construction provides a working knowledge of the pitfalls inherent in the endeavor.
 
 
 *** Specific recommendations
 
-- [ ] centralized version control systems
-- [ ] working knowlege of debugging tools like gdb and valgrind
+- @@html:<input type="checkbox" class="nothing"/>@@ centralized version control systems
+- @@html:<input type="checkbox" class="nothing"/>@@ working knowlege of debugging tools like gdb and valgrind
 
 
 *** Recommended reading
@@ -444,7 +461,7 @@ programmers, or worse, for themselves.
 
 ** Formal methods
 
-- [ ] learn to use a theorem prover (it immediately impacts coding style.)
+- @@html:<input type="checkbox" class="nothing"/>@@ learn to use a theorem prover (it immediately impacts coding style.)
    - incomplete =switch= statements and correctness of recursive functions
 
 - [[http://www.cis.upenn.edu/~bcpierce/sf/][Software Foundations]].
@@ -473,7 +490,7 @@ There is no discipline more dominated by "clever" than graphics.
 
 ** Machine learning
 
-- [ ] Bayesian networks, clustering and decision-tree learning.
+- @@html:<input type="checkbox" class="nothing"/>@@ Bayesian networks, clustering and decision-tree learning.
 
 
 *** Recommended reading
@@ -482,12 +499,12 @@ There is no discipline more dominated by "clever" than graphics.
 
 ** Databases
 
-- [ ] Relational algebra and relational calculus
-- [ ] ER modeling
+- @@html:<input type="checkbox" class="nothing"/>@@ Relational algebra and relational calculus
+- @@html:<input type="checkbox" class="nothing"/>@@ ER modeling
 
 *** Specific recommendations
 
-- [ ] set up and operate a LAMP stack
+- @@html:<input type="checkbox" class="nothing"/>@@ set up and operate a LAMP stack
 
 
 *** Recommended reading
@@ -501,3 +518,28 @@ There is no discipline more dominated by "clever" than graphics.
 - [[http://nick-black.com/dankwiki/images/8/85/Msadvice.pdf][Nick Black's advice for MS students]].
 
 
+* elisp                                                            :noexport:
+
+(defun convert-org-bullets-to-html-checkboxes ()
+  "Convert lines of the form:
+- @@html:<input type="checkbox" checked class="done"/>@@ ...
+- @@html:<input type="checkbox" class="edit"/>@@ ...
+- @@html:<input type="checkbox" class="nothing"/>@@ ...
+  ;; note this code did not handle the partial case well.
+into HTML checkboxes with specific classes."
+  (interactive)
+  (save-excursion
+    ;; Replace checked items: [X] -> <input type="checkbox" checked class="done"/>
+    (goto-char (point-min))
+    (while (re-search-forward "^- \\[X\\] \\(.*\\)$" nil t)
+      (replace-match "- @@html:<input type=\"checkbox\" checked class=\"done\"/>@@ \\1"))
+
+    ;; Replace partial items: [.] -> <input type="checkbox" class="edit"/>
+    (goto-char (point-min))
+    (while (re-search-forward "^- \\[\\.\\] \\(.*\\)$" nil t)
+      (replace-match "- @@html:<input type=\"checkbox\" class=\"edit\"/>@@ \\1"))
+
+    ;; Replace unchecked items: [ ] -> <input type="checkbox" class="nothing"/>
+    (goto-char (point-min))
+    (while (re-search-forward "^- \\[ \\] \\(.*\\)$" nil t)
+      (replace-match "- @@html:<input type=\"checkbox\" class=\"nothing\"/>@@ \\1"))))
