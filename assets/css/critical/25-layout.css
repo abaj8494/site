@@ -14,13 +14,31 @@ main {
   display: grid;
   grid-area: main;
   grid-template-areas: "empty content sidebar";
-  grid-template-columns: 1fr minmax(0, 1000px) 1fr; /* Adjust the width of the left sidebar as needed */
+  grid-template-columns: 30px minmax(0, 1000px) 1fr; /* Changed from 40px to 30px */
   gap: 1rem; /* Add some gap between columns */
+  padding-left: 30px; /* Changed from 40px to 30px */
 }
 
 header {
   background: var(--bg1);
   grid-area: header;
+  opacity: 1;
+  transition: opacity 0.3s ease !important; /* Match the sidebar-tree transition */
+  z-index: 100; /* Ensure header is above other elements */
+  transform: none !important; /* Prevent transform animation */
+}
+
+/* Fade out state for header */
+header.fade-out,
+.sticky-header.fade-out {
+  opacity: 0 !important;
+}
+
+/* Remove transform-based animation for consistency with sidebar-tree */
+header.scrolled,
+.sticky-header.scrolled {
+  opacity: 0 !important; /* Use opacity instead of transform */
+  transform: none !important; /* Prevent transform animation */
 }
 
 footer {
@@ -82,7 +100,7 @@ footer {
   padding: 0;
   margin: 0;
   padding: 0;
-  transition: transform 0.3s ease-in-out; /* Add smooth transition */
+  transition: opacity 0.3s ease !important; /* Change to only opacity transition */
   z-index: 1;
   position: sticky;
   top: 60px;
@@ -116,7 +134,7 @@ footer {
 }
 
 .sidebar-tree.hidden {
-  transform: translateY(-100%); /* Use transform instead of top */
+  /* Remove transform rules to avoid conflicts */
   opacity: 0;
-  transition: transform 1s ease;
+  transition: opacity 0.3s ease !important;
 }
