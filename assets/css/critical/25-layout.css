@@ -14,9 +14,9 @@ main {
   display: grid;
   grid-area: main;
   grid-template-areas: "empty content sidebar";
-  grid-template-columns: 30px minmax(0, 1000px) 1fr; /* Changed from 40px to 30px */
+  grid-template-columns: 10px minmax(0, 1000px) 1fr; /* Changed from 40px to 30px */
   gap: 1rem; /* Add some gap between columns */
-  padding-left: 30px; /* Changed from 40px to 30px */
+  padding-left: 10px; /* Changed from 40px to 30px */
 }
 
 header {
@@ -32,13 +32,20 @@ header {
 header.fade-out,
 .sticky-header.fade-out {
   opacity: 0 !important;
+  transition: opacity 0.3s ease !important;
 }
 
-/* Remove transform-based animation for consistency with sidebar-tree */
+/* Fade out state for sidebar tree */
+.sidebar-tree.fade-out {
+  opacity: 0 !important;
+  transition: opacity 0.3s ease !important;
+}
+
+/* Remove transform-based animation for consistency */
 header.scrolled,
 .sticky-header.scrolled {
-  opacity: 0 !important; /* Use opacity instead of transform */
-  transform: none !important; /* Prevent transform animation */
+  opacity: 0 !important;
+  transform: none !important;
 }
 
 footer {

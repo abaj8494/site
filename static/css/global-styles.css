@@ -1,0 +1,44 @@
+/**
+ * Global styles for header and sidebar animations
+ */
+
+/* Base state for header */
+header,
+.sticky-header {
+  opacity: 1;
+  transition: opacity 0.3s ease !important;
+  z-index: 100;
+  transform: none !important;
+}
+
+/* Base state for sidebar tree */
+.sidebar-tree {
+  opacity: 1;
+  transition: opacity 0.3s ease !important;
+  transform: none !important;
+}
+
+/* Fade out state for header */
+header.fade-out,
+.sticky-header.fade-out {
+  opacity: 0 !important;
+  transition: opacity 0.3s ease !important;
+}
+
+/* Fade out state for sidebar tree */
+.sidebar-tree.fade-out {
+  opacity: 0 !important;
+  transition: opacity 0.3s ease !important;
+}
+
+/* For backward compatibility */
+header.scrolled,
+.sticky-header.scrolled {
+  opacity: 0 !important;
+  transform: none !important;
+}
+
+/* Debug styles to check if CSS is loading */
+.css-loaded-indicator {
+  display: none;
+}

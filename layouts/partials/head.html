@@ -1,0 +1,14 @@
+<!-- Additional CSS files -->
+{{ if .Site.Data.site.customCSS }}
+  <link rel="stylesheet" href="{{ .Site.Data.site.customCSS | absURL }}" />
+{{ end }}
+
+
+<!-- Global styles for header and sidebar animations -->
+<link rel="stylesheet" href="/css/global-styles.css" />
+
+{{ if .Params.custom_css }}
+  {{ range .Params.custom_css }}
+    <link rel="stylesheet" href="{{ . | absURL }}" />
+  {{ end }}
+{{ end }}

@@ -33,7 +33,6 @@ document.addEventListener("DOMContentLoaded", function () {
   // Variables for scroll handling
   let isScrolling;
   let notesHidden = false;
-  let lastScrollTop = 0;
 
   // Process each margin note
   marginNotes.forEach((note, index) => {
@@ -146,52 +145,13 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener(
     "scroll",
     function () {
-      // Get current scroll position
-      const st = window.pageYOffset || document.documentElement.scrollTop;
-      const sidebarTree = document.querySelector(".sidebar-tree");
-      const header =
-        document.querySelector(".sticky-header") ||
-        document.querySelector("header");
-
-      // Clear any existing timer
+      // Clear any existing timer for margin notes
       window.clearTimeout(isScrolling);
-
-      // Fade sidebar tree and header based on scroll direction
-      if (st > lastScrollTop && st > 50) {
-        // Scrolling DOWN and past threshold
-        if (sidebarTree) {
-          sidebarTree.classList.add("fade-out");
-          console.log("[Margin Notes] Hiding sidebar-tree");
-        }
-        if (header) {
-          // Just use fade-out for consistency with sidebar-tree
-          header.classList.add("fade-out");
-          // Keep scrolled class for backward compatibility
-          header.classList.add("scrolled");
-          console.log("[Margin Notes] Hiding header", header);
-        }
-      } else if (st < lastScrollTop) {
-        // Scrolling UP - immediately show sidebar and header
-        if (sidebarTree) {
-          sidebarTree.classList.remove("fade-out");
-          console.log("[Margin Notes] Showing sidebar-tree");
-        }
-        if (header) {
-          // Just use fade-out for consistency with sidebar-tree
-          header.classList.remove("fade-out");
-          // Keep scrolled class for backward compatibility
-          header.classList.remove("scrolled");
-          console.log("[Margin Notes] Showing header", header);
-        }
-      }
 
       // Hide margin notes when scrolling in ANY direction
       if (!notesHidden) {
         hideMarginNotes();
       }
-
-      // Update last scroll position
-      lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
 
       // Set a timeout to run after scrolling ends
       isScrolling = setTimeout(() => {

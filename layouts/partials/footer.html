@@ -27,5 +27,14 @@
 {{ partial "popup-scripts.html" . }}
 
 
+<!-- Global scroll handler script - must be included on all pages -->
+<script src="/js/scroll-handler.js"></script>
+
+{{- $sticky := resources.Get "js/sticky-header.js" -}}
+{{- if $sticky }}
+  <script src="{{ $sticky.RelPermalink }}"></script>
+{{- end }}
+
+
 <!-- Extensibility -->
 {{ partial "footer_end.html" . }}
