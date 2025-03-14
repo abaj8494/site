@@ -1,0 +1,107 @@
++++
+title = "Set, functions and sequences"
+math = "true"
+toc = "true"
++++
+
+#+begin_quote
+"The introduction of suitable abstractions is our only mentail aid to organize and master complexity"
+--- E. W. Dijkstra. 1930-2002
+#+end_quote
+
+* Sets
+
+** Proper Subset
+Let A and B be sets. A is proper subset of B \(\iff \exists \forall a \in A, a \in B\), but \(\exists\) at least one element of B \(\not\in A\).  
+
+** Cartesian Product
+Given sets \(A_1, A_2, ..., A_n\), their Cartesian Product is the set of *all* ordered n-tuples \((a_1, a_2, ..., a_n)\) where \(a_1\in A_1, a_2\in A_2, ..., a_n\in A_n\).
+
+** Set Identities
+1. Commutative
+2. Associative
+3. Distributive
+\[A\cup(B\cap C) = (A\cup B)\cap(A\cup C)\\
+A\cap(B\cup C) = (A\cap B)\cup(A\cap C)\\
+\]
+4. Identity
+5. Complement
+6. Double Complement
+7. Idempotent
+8. Universal Bound Law
+9. De Morgan's Laws
+\[(A\cap B)^c = A^c \cap B^c\\
+(A\cup B)^c = A^c \cup B^c\]
+10. Absorption Laws
+11. Complements of \(U\) and \(\emptyset\)
+12. Set Difference Law
+\[A-B = A\cap B^c\]
+
+** Equality
+To prove \(X = Y\), prove \(X\subseteq Y\) and \(Y\subseteq X\).
+
+** Boolean Algebra
+
+*** Definition
+Is a set B together with two operations, \(+\) and \(\cdot\), such that for all \(a, b\in B\) B is closed and
+1. commutative
+2. associative
+3. distributive
+4. identity
+5. complement
+
+*** Properties
+1. Uniqueness of the Complement Law
+2. Uniqueness of 0 and 1
+3. Double Complement Law
+4. Idempotent Law
+5. Universal Bound Law
+6. De Morgan's Laws
+7. Absorption Laws
+8. Complements of 0 and 1
+
+** Russell's paradox and the Halting Problem
+
+#+begin_quote
+From the paradise created for us by Cantor, no one will drive us out.
+--- David Hilbert 1862-1943
+#+end_quote
+
+*** The Barber Puzzle
+In a certain town there is a male barber who shaves all those men, and only those men, who do not shave themselves.
+
+Does the barber shave himself?
+
+*** Halting Problem
+There is no computer algorithm that will accept any algorithm \(X\) and data set \(D\) as input and then will output, "halts" or "loops forever" to indicate whether \(X\) terminates in a finite number of steps when \(X\) is run with data set \(D\).
+
+**** Proof
+
+Suppose that such a system did exist. Then you could consider the algorithm \(X\) itself as a dataset of characters...
+
+* Functions
+
+\[f: X \rightarrow Y\]
+\(X\) is the domain and \(Y\) is the codomain. The /range/ of \(f\) is the set of all values reached in the codomain. The two /can/ be equal, but do not have to be.{{< mnote "same as the image of f under X" >}}
+
+** Injective
+Let \(F\) be a function from a set \(X\) to a set \(Y\). \(F\) is *one-to-one* (or *injective*) if, and only if, for all elements \(x_1\) and \(x_2\) in \(X\),
+if \(F(x_1) = F(x_2)\), then \(x_1 = x_2\)
+or, equivalently if \(x_1 \neq x_2\) then \(F(x_1) \neq F(x_2)\).{{< mnote "the contrapositive" >}}
+
+
+Symbolically,
+\[F: X\rightarrow \text{is one-to-one} \iff \forall x_1, x_2 \in X, \text{if } F(x_1) = F(x_2) \text{ then } x_1 = x_2\]
+
+** Surjective
+\[F: X\rightarrow \text{is onto} \iff \forall y \in Y, \exists x\in X \text{ s.t. } F(x) = y\]
+
+** Bijective
+A *one-to-one* correspondence (or *bijection*) from a set \(X\) to a set \(Y\) is a function \(F: X\rightarrow Y\) that is both one-to-one and onto.
+
+** Inverse Functions
+Theorem: If F is bijective, then an inverse exists:
+\[F^{-1}(y) = x \iff y = F(x)\]
+
+* sequences
+

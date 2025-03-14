@@ -1,15 +1,28 @@
-{{ if .File }}
-  {{ $dir := (print .File.Dir) | strings.TrimSuffix "/" }}
-  {{ if $dir }}
-    {{ $parts := split $dir "/" }}
-    <div class="sidebar-tree">
-      {{ partial "left-sidebar-recursive.html" (dict
-          "parts"  $parts
-          "index"  0
-          "page"   .
-          "prefix" ""
-          "accum"  ""
-      ) }}
-    </div>
+<!-- Left sidebar with tree and margin notes -->
+<aside class="sidebar-container">
+  {{ if .File }}
+    {{ $dir := (print .File.Dir) | strings.TrimSuffix "/" }}
+    {{ if $dir }}
+      {{ $parts := split $dir "/" }}
+      <!-- Margin notes container - positioned independently -->
+      <div id="margin-notes-container" class="margin-notes">
+        <!-- Margin notes will be dynamically inserted here by JavaScript -->
+      </div>
+
+      <!-- Sidebar tree - now separated from margin notes -->
+      <div class="sidebar-tree">
+        <!-- Tree navigation - will be anchored at the top left under the header -->
+        <div class="tree-navigation">
+          {{ partial "left-sidebar-recursive.html" (dict
+            "parts"  $parts
+            "index"  0
+            "page"   .
+            "prefix" ""
+            "accum"  ""
+            )
+          }}
+        </div>
+      </div>
+    {{ end }}
   {{ end }}
-{{ end }}
+</aside>

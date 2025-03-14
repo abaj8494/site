@@ -1,34 +1,18 @@
-let lastScrollPosition = 0;
-let ticking = false;
-
+// Sticky header functionality
 window.addEventListener("scroll", () => {
-  if (!ticking) {
-    window.requestAnimationFrame(() => {
-      const header = document.querySelector(".sticky-header");
-      const sidebarTree = document.querySelector(".sidebar-tree");
-      const currentScroll = window.scrollY;
+  const header = document.querySelector(".sticky-header");
 
-      // Only hide header and sidebar when scrolling down and past threshold
-      if (currentScroll > lastScrollPosition && currentScroll > 50) {
-        if (header) {
-          header.classList.add("scrolled");
-        }
-        if (sidebarTree) {
-          sidebarTree.classList.add("hidden"); // Hide sidebar completely when scrolling down
-        }
-      } else if (currentScroll < lastScrollPosition) {
-        if (header) {
-          header.classList.remove("scrolled");
-        }
-        if (sidebarTree) {
-          sidebarTree.classList.remove("hidden"); // Reappear the sidebar when scrolling up
-        }
-      }
-
-      lastScrollPosition = currentScroll;
-      ticking = false;
-    });
-
-    ticking = true;
+  // Don't apply sticky behavior to elements that should be exempt
+  if (
+    header &&
+    !header.classList.contains("no-sticky-effect") &&
+    !header.closest(".sidebar-container") &&
+    !header.closest(".no-sticky-effect")
+  ) {
+    if (window.scrollY > 50) {
+      header.classList.add("scrolled");
+    } else {
+      header.classList.remove("scrolled");
+    }
   }
 });

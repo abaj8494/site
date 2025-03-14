@@ -1,3 +1,22 @@
 <!--
   Add custom HTML at the end of <body>
 -->
+
+<!-- Debug info for margin notes -->
+<script>
+  console.log("[Margin Notes] Footer loaded");
+  console.log(
+    "[Margin Notes] Margin notes in document:",
+    document.querySelectorAll(".margin-note").length,
+  );
+  console.log(
+    "[Margin Notes] Container exists:",
+    document.getElementById("margin-notes-container") !== null,
+  );
+</script>
+
+<!-- Load margin notes JavaScript -->
+<script src="/js/margin-notes.js"></script>
+<script>
+  console.log("[Margin Notes] Script loaded from static directory");
+</script>

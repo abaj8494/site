@@ -6,6 +6,10 @@
 {{ $prismDark := resources.Get "prism-themes/prism-gruvbox-dark.css" }}
 {{ $prismLight := resources.Get "prism-themes/prism-gruvbox-light.css" }}
 
+
+<!-- Margin Notes CSS - load directly from static -->
+<link rel="stylesheet" href="/css/margin-notes.css" />
+
 {{ if hugo.IsProduction }}
   {{ $critical = $critical | resources.PostProcess }}
   {{ $nonCritical = $nonCritical | fingerprint "sha512" | resources.PostProcess }}

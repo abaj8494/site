@@ -4,6 +4,7 @@ toc = "true"
 math = "true"
 +++
 
+
 #+BEGIN_QUOTE
 Knowledge is a paradox. The more one understand, the more one realises the vastness of his ignorance.
 
@@ -31,7 +32,7 @@ You may also view the entire =tag= taxonomy [[/tags][here]].
 #+begin_export html
 <div style="border:1px solid #ccc; padding:10px; width:50%; margin:0 auto; text-align:center;">
   <input type="checkbox" class="edit"/>
-  <a href="/projects/cs-major">What Every CS Major Ought to Know</a>
+  <a href="/projects/cs-major">What every computer science major should know</a>
   {{< tags-inline "projects/cs-major" >}}
 </div>
 #+end_export
@@ -262,7 +263,7 @@ These methods can be adapted for _regression_, but they are more well suited to 
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ml/reinforcement-learning/policy-gradients][Policy Gradients]] {{< tags-inline "projects/ml/reinforcement-learning/policy-gradients" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ml/reinforcement-learning/q-learning][Q-Learning]] {{< tags-inline "projects/ml/reinforcement-learning/q-learning" >}}
 
-** Mathematics
+** [[/projects/mathematics][Mathematics]]
 
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/mathematics/discrete][Discrete]] {{< tags-inline "projects/mathematics/discrete" >}}
   - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/mathematics/discrete/logic][Logic (+ Proof)]] {{< tags-inline "projects/mathematics/discrete/logic" >}}
