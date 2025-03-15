@@ -16,7 +16,16 @@
 </script>
 
 <!-- Load margin notes JavaScript -->
-<script src="/js/margin-notes.js"></script>
+{{ $marginNotesJS := resources.Get "js/margin-notes.js" | js.Build }}
+{{ if hugo.IsProduction }}
+  {{ $marginNotesJS = $marginNotesJS | minify | fingerprint }}
+  <script
+    src="{{ $marginNotesJS.RelPermalink }}"
+    integrity="{{ $marginNotesJS.Data.Integrity }}"
+  ></script>
+{{ else }}
+  <script src="{{ $marginNotesJS.RelPermalink }}"></script>
+{{ end }}
 <script>
-  console.log("[Margin Notes] Script loaded from static directory");
+  console.log("[Margin Notes] Script loaded from asset pipeline");
 </script>

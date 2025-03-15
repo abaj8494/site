@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  border: 1px solid green; /* DEBUG: highlight container */
+  /* border: 1px solid green; */ /* DEBUG: removed highlight container */
 }
 
 /* Container for margin notes */
@@ -18,7 +18,7 @@
   height: 100%;
   pointer-events: none; /* Allow clicking through to sidebar when no notes */
   z-index: 5;
-  border: 1px dashed blue; /* DEBUG: highlight margin notes container */
+  /* border: 1px dashed blue; */ /* DEBUG: removed highlight margin notes container */
 }
 
 /* Individual margin note item */
@@ -27,17 +27,17 @@
   left: 0;
   width: 90%;
   background-color: rgba(60, 60, 60, 0.97); /* Dark gray background */
-  border-left: 5px solid red; /* Thicker, more visible border */
-  padding: 6px 10px;
-  margin: 2px 0;
-  font-size: 0.8rem;
-  line-height: 1.3;
-  color: #fff; /* Changed to white for better contrast on dark background */
-  border-radius: 0 4px 4px 0;
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3); /* More visible shadow */
+  border-left: 5px solid #6d98c5; /* Blue border - changed from red */
+  padding: 15px 20px; /* More generous padding */
+  margin: 10px 0; /* Larger margin between notes */
+  font-size: 0.9rem; /* Slightly larger font */
+  line-height: 1.6; /* More generous line height */
+  color: #fff; /* White text for contrast */
+  border-radius: 0 6px 6px 0; /* Larger rounded corners */
+  box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.4); /* Stronger shadow */
   opacity: 1; /* Always fully visible */
   transform: translateX(0);
-  transition: opacity 0.3s;
+  transition: all 0.3s ease; /* Smooth transitions for all properties */
   pointer-events: auto; /* Make note itself clickable */
   z-index: 100; /* Higher z-index to ensure visibility */
 }
@@ -49,26 +49,36 @@
 
 .margin-note-item:hover {
   opacity: 1;
+  box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.5); /* Enhanced shadow on hover */
+  transform: translateX(2px); /* Slight movement on hover */
 }
 
 /* In-text note marker */
 .margin-note {
   position: relative;
   cursor: pointer;
-  border-bottom: 2px dotted red; /* More visible underline */
-  color: red; /* More visible text color */
+  border-bottom: 2px dotted #6d98c5; /* Blue dotted underline - changed from red */
+  color: #6d98c5; /* Blue text color - changed from red */
   background-color: rgba(
-    255,
-    200,
-    200,
-    0.3
-  ); /* Light background for visibility */
-  padding: 0 2px;
+    109,
+    152,
+    197,
+    0.1
+  ); /* Light blue background - changed from red */
+  padding: 0 3px;
+  border-radius: 2px;
+  transition: all 0.2s ease;
 }
 
 /* Active state for in-text reference */
 .margin-note.active {
-  background-color: rgba(255, 100, 100, 0.5); /* More visible active state */
+  background-color: rgba(
+    109,
+    152,
+    197,
+    0.2
+  ); /* Slightly darker blue when active - changed from red */
+  color: #4a7ab0; /* Darker blue when active - changed from darker red */
 }
 
 /* Hide the note content in the main text */
@@ -86,20 +96,40 @@
 
 /* Responsive adjustments */
 @media (max-width: 1024px) {
+  /* Default mobile behavior - fixed at bottom */
   .margin-note-item {
     position: fixed;
     top: auto !important;
-    bottom: 10px;
-    left: 10px;
-    right: 10px;
+    bottom: 20px; /* More space from bottom */
+    left: 20px; /* More space from left */
+    right: 20px; /* More space from right */
     width: auto;
     max-width: none;
     z-index: 1000;
     opacity: 0; /* Hide by default on mobile */
+    border-radius: 6px; /* Rounded corners all around on mobile */
+    border-left-width: 5px;
+    border-top: none;
   }
 
   .margin-note-item.active {
     opacity: 1; /* Show only when active on mobile */
+  }
+
+  /* Class applied when desktop mode is detected on mobile */
+  html.desktop-view .margin-note-item {
+    position: absolute;
+    top: auto !important; /* Let positioning function handle it */
+    bottom: auto;
+    left: 0;
+    right: auto;
+    width: 90%;
+    opacity: 0.95;
+    border-radius: 0 6px 6px 0;
+  }
+
+  html.desktop-view .margin-note-item.active {
+    opacity: 1;
   }
 }
 
@@ -107,17 +137,27 @@
 @media (prefers-color-scheme: dark) {
   .margin-note-item {
     background-color: rgba(60, 60, 60, 0.97); /* Same dark gray in dark mode */
-    border-left-color: red;
+    border-left-color: #6d98c5; /* Blue border in dark mode - changed from red */
     color: white;
   }
 
   .margin-note {
-    color: #ff6666;
-    border-bottom-color: #ff6666;
-    background-color: rgba(255, 100, 100, 0.2);
+    color: #85afd8; /* Lighter blue in dark mode - changed from red */
+    border-bottom-color: #85afd8; /* Lighter blue in dark mode - changed from red */
+    background-color: rgba(
+      109,
+      152,
+      197,
+      0.15
+    ); /* Lighter blue background in dark mode - changed from red */
   }
 
   .margin-note.active {
-    background-color: rgba(255, 100, 100, 0.4);
+    background-color: rgba(
+      109,
+      152,
+      197,
+      0.25
+    ); /* Blue active background in dark mode - changed from red */
   }
 }

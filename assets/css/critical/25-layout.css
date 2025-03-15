@@ -14,13 +14,9 @@ main {
   display: grid;
   grid-area: main;
   grid-template-areas: "empty content sidebar";
-  grid-template-columns: minmax(5px, 2%) minmax(0, 1000px) 1fr; /* Made first column responsive */
+  grid-template-columns: minmax(0px, 4%) minmax(0, 1000px) 1fr; /* Reduced first column from 2% to 1% */
   gap: 1rem;
-  padding-left: clamp(
-    5px,
-    2vw,
-    10px
-  ); /* Dynamic padding based on viewport width */
+  padding-left: clamp(5px, 1vw, 10px); /* Reduced padding from 2vw to 1vw */
 }
 
 header {
@@ -126,11 +122,13 @@ footer {
 @media (max-width: 768px) {
   main {
     grid-template-areas:
-      "content content"
-      "sidebar sidebar";
-    grid-template-columns: 1fr;
+      "content"
+      "sidebar";
+    grid-template-columns: 1fr; /* Single column layout */
     padding-left: 10px;
     padding-right: 10px;
+    gap: 0.5rem; /* Smaller gap on mobile */
+    margin: 0.5em 0; /* Remove horizontal margin on mobile */
   }
 
   .sidebar {

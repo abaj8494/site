@@ -5,9 +5,21 @@
 {{ $nonCritical := sort (resources.Match "css/non-critical/*.css") "Name" | resources.Concat "css/non-critical.css" | resources.ExecuteAsTemplate "css/non-critical.css" . | css.PostCSS }}
 {{ $prismDark := resources.Get "prism-themes/prism-gruvbox-dark.css" }}
 {{ $prismLight := resources.Get "prism-themes/prism-gruvbox-light.css" }}
+{{ $marginNotes := resources.Get "css/non-critical/margin-notes.css" | resources.ExecuteAsTemplate "css/margin-notes.css" . | css.PostCSS }}
 
 
-<!-- Margin Notes CSS is now included in non-critical CSS -->
+<!-- Process the margin notes CSS separately so it's available at a specific URL -->
+{{ if hugo.IsProduction }}
+  {{ $marginNotes = $marginNotes | minify | fingerprint "sha512" | resources.PostProcess }}
+{{ end }}
+<link
+  rel="stylesheet"
+  href="{{ $marginNotes.RelPermalink }}"
+  {{ if hugo.IsProduction }}
+    integrity="{{ $marginNotes.Data.Integrity }}"
+  {{ end }}
+
+/>
 
 {{ if hugo.IsProduction }}
   {{ $critical = $critical | resources.PostProcess }}
