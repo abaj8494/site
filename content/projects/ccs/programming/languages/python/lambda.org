@@ -1,6 +1,6 @@
 +++
-title = "Lambda Functions in Python"
-tags = ["functional-programming"]
+title= "@@html:<input type=\"checkbox\" class=\"done\"/>@@Lambda Functions in Python"
+tags= ["functional-programming"]
 +++
 
 {{< collapse id="python-lambda" lvl="3" >}}
@@ -17,8 +17,20 @@ Reverse strings of the said given list:
 #+end_src
 
 *** soln
+#+begin_src jupyter-python :session lambda-py-new
+  colour_list = ['Red', 'Green', 'Blue', 'White', 'Black']
+  # three times slower
+  #rev_colour_list = list(map(lambda x: ''.join(reversed(x)), colour_list))
+  # quick
+  rev_colour_list = list(map(lambda x: x[::-1], colour_list))
+  print(rev_colour_list)
+#+end_src
 
 *** output
+#+RESULTS:
+: ['deR', 'neerG', 'eulB', 'etihW', 'kcalB']
+
+
 
 ** Q42
 Write a Python program to calculate the product of a given list of numbers using lambda.
@@ -32,24 +44,19 @@ Product of the said list numbers:
 #+end_src
 
 *** soln
-
-*** output
-
-
-** Q43
-Write a Python program to multiply all the numbers in a given list using lambda.
-#+begin_src sh
-Original list:
-[4, 3, 2, 2, -1, 18]
-Mmultiply all the numbers of the said list: -864
-Original list:
-[2, 4, 8, 8, 3, 2, 9]
-Mmultiply all the numbers of the said list: 27648
+#+begin_src jupyter-python :session lambda-py
+  from functools import reduce
+  list1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  list2 = [2.2, 4.12, 6.6, 8.1, 8.3]
+  product = lambda x, y: x*y
+  print(f"Product of the said list numbers: {reduce(product, list1)}")
+  print(f"Product of the said list numbers: {reduce(product, list2)}")
 #+end_src
 
-*** soln
-
 *** output
+#+RESULTS:
+: Product of the said list numbers: 3628800
+: Product of the said list numbers: 4021.8599520000007
 
 
 ** Q44
@@ -66,8 +73,24 @@ Average value of the numbers of the said tuple of tuples:
 #+end_src
 
 *** soln
+#+begin_src jupyter-python :session lambda-py-new
+  t1 = ((10, 10, 10), (30, 45, 56), (81, 80, 39), (1, 2, 3))
+  t2 = ((1, 1, -5), (30, -15, 56), (81, -60, -39), (-10, 2, 3))
+  average_idx_tuple_given_list = lambda nt: tuple(map(lambda t: sum(t) / len(t), zip(*nt)))
+  print(average_idx_tuple_given_list(t1))
+  print(average_idx_tuple_given_list(t2))
+
+#+end_src
 
 *** output
+#+RESULTS:
+: (30.5, 34.25, 27.0)
+: (25.5, -18.0, 3.75)
+
+*** lessons
+a couple learning points from this:
+1. in python, the /pointer/ is actually called a /splat/: =*=, and it unpacks the given iterator
+2. you can put a lambda in a lambda :D
 
 
 ** Q45
@@ -80,8 +103,18 @@ New tuple values:
 #+end_src
 
 *** soln
+#+begin_src jupyter-python :session lambda-py-new
+  t3 = (('233', 'ABCD', '33'), ('1416', 'EFGH', '55'), ('2345', 'WERT', '34'))
+  t_to_ints = lambda nt: tuple(map(lambda t: tuple(map(lambda x: int(x), filter(lambda y: y.isdigit(), t))),nt))
+  print(t_to_ints(t3))
+#+end_src
 
 *** output
+#+RESULTS:
+: ((233, 33), (1416, 55), (2345, 34))
+
+*** comments
+my code here was far superior to the w3resource solution. that solution simple indexed into the first and third elements and then converted them to integers, this approach is more robust to n-dimensional tuples.
 
 
 ** Q46
@@ -96,8 +129,18 @@ Index position and value of the minimum value of the said list:
 #+end_src
 
 *** soln
+#+begin_src jupyter-python :session lambda-py-new
+  l1 = [12, 33, 23, 10.11, 67, 89, 45, 66.7, 23, 12, 11, 10.25, 54]
+  min_pos_val_t = lambda l: (l.index(min(l)), min(l))
+  max_pos_val_t = lambda l: (l.index(max(l)), max(l))
+  print(max_pos_val_t(l1))
+  print(min_pos_val_t(l1))
+#+end_src
 
 *** output
+#+RESULTS:
+: (5, 89)
+: (3, 10.11)
 
 
 ** Q47
@@ -110,8 +153,15 @@ Sort the said mixed list of integers and strings:
 #+end_src
 
 *** soln
+#+begin_src jupyter-python :session lambda-py-new
+  sort_mixed = lambda sm: sorted(list(filter(lambda x: type(x) == int, sm))) + sorted(list(filter(lambda x: type(x) == str, sm)))
+  print(sort_mixed([19, 'red', 12, 'green', 'blue', 10, 'white', 'green', 1]))
+#+end_src
+
 
 *** output
+#+RESULTS:
+: [1, 10, 12, 19, 'blue', 'green', 'green', 'red', 'white']
 
 
 ** Q48
@@ -124,8 +174,14 @@ Sort the said list of strings(numbers) numerically:
 #+end_src
 
 *** soln
+#+begin_src jupyter-python :session lambda-python
+  sort_nums_as_str = lambda nums: list(map(str, sorted(list(map(lambda num: int(num), nums)))))
+  print(sort_nums_as_str(['4', '12', '45', '7', '0', '100', '200', '-12', '-500']))
+#+end_src
 
 *** output
+#+RESULTS:
+: ['-500', '-12', '0', '4', '7', '12', '45', '100', '200']
 
 
 ** Q49
@@ -138,8 +194,19 @@ Count the occurrences of the items in the said list:
 #+end_src
 
 *** soln
+#+begin_src jupyter-python :session lambda-python
+  #count_occ = lambda l: dict(sorted({x: l.count(x) for x in set(l)}.items(), key=lambda item: item[1], reverse=True))
+  #count_occ = lambda l: {x: l.count(x) for x in set(l)}
+  count_occ = lambda nums: dict(map(lambda el: (el, list(nums).count(el)), nums))
+  print(count_occ([3, 4, 5, 8, 0, 3, 8, 5, 0, 3, 1, 5, 2, 3, 4, 2]))
+#+end_src
 
 *** output
+#+RESULTS:
+: {3: 4, 4: 2, 5: 3, 8: 2, 0: 2, 1: 1, 2: 2}
+
+*** lessons
+I struggled with this question *a lot*. The trick was to create a sequence of tuples and then convert those into the dictionary.
 
 
 ** Q50
@@ -154,9 +221,18 @@ After removing the specified words from the said list:
 #+end_src
 
 *** soln
+#+begin_src jupyter-python :session lambda-python
+  remove_words = lambda lw, rw: [word for word in lw if word not in rw]
+  print(remove_words(['orange', 'red', 'green', 'blue', 'white', 'black'], ['orange', 'black']))
+#+end_src
+
+#+RESULTS:
+: ['red', 'green', 'blue', 'white']
 
 *** output
 
+*** lessons
+the =.remove()= function only takes in an item, not a generator.
 
 ** Q51
 Write a Python program to find the maximum and minimum values in a given list of tuples using the lambda function.
@@ -168,8 +244,15 @@ Maximum and minimum values of the said list of tuples:
 #+end_src
 
 *** soln
+#+begin_src jupyter-python :session lambda-python
+
+  max_min_vals = lambda tl: (min(tl, key=lambda item: item[1])[1], max(tl, key=lambda item: item[1])[1])
+  print(max_min_vals([('V', 62), ('VI', 68), ('VII', 72), ('VIII', 70), ('IX', 74), ('X', 65)]))
+#+end_src
 
 *** output
+#+RESULTS:
+: (62, 74)
 
 
 ** Q52
@@ -182,5 +265,14 @@ Remove None value from the said list:
 #+end_src
 
 *** soln
+#+begin_src jupyter-python :session lambda-python
+  remove_nones = lambda l: [x for x in l if x != None]
+  print(remove_nones([12, 0, None, 23, None, -55, 234, 89, None, 0, 6, -12]))
+#+end_src
 
 *** output
+#+RESULTS:
+: [12, 0, 23, -55, 234, 89, 0, 6, -12]
+
+
+
