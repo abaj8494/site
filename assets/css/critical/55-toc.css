@@ -1,3 +1,18 @@
-.post-content .custom-toc {
-  display: none;
+.post-content .custom-toc,
+.custom-toc {
+  display: none !important;
+}
+
+/* Make sure TOCs are visible in the sidebar */
+.sidebar .custom-toc {
+  display: block !important;
+}
+
+/* Additional selectors to ensure all TOCs are hidden in content */
+.post-content nav:has(.sidebar__heading),
+.post-content aside:has(.sidebar__heading),
+.post-content aside:has(nav),
+.post-content .toc,
+.post-content #TableOfContents {
+  display: none !important;
 }

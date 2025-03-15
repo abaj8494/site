@@ -452,8 +452,7 @@ window.Popups = {
     const enlargeButton = document.createElement("BUTTON");
     enlargeButton.className = "popup-title-bar-button enlarge-button";
     enlargeButton.title = "Open link in current tab";
-    enlargeButton.innerHTML =
-      '<img src="/icons/maximize-icon.svg" class="popup-icon-svg" alt="Enlarge">';
+    enlargeButton.innerHTML = '<span class="popup-icon enlarge">⛶</span>';
 
     // Improve event handling with both click and mousedown listeners
     enlargeButton.addEventListener("click", (e) => {

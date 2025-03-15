@@ -37,8 +37,6 @@ Here are his prescriptions:
 ** Portfolio versus resume
 
 - @@html:<input type="checkbox" checked class="done"/>@@ Every computer science major should build a portfolio.
-- @@html:<input type="checkbox" class="edit"/>@@ item2
-- @@html:<input type="checkbox" class="nothing"/>@@ item3
 - @@html:<input type="checkbox" checked class="done"/>@@ Contributions to open source should be linked and documented.
 
 

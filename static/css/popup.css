@@ -210,7 +210,7 @@
   color: #fff;
   cursor: pointer;
   transition: all 0.15s ease;
-  padding: 0;
+  padding: 0; /* Remove padding */
   font-size: 0.9rem; /* Slightly smaller font size */
   flex-shrink: 0;
   margin: 0 2px;
@@ -248,6 +248,11 @@
   filter: none; /* Remove the drop shadow */
 }
 
+/* Remove outline/stroke from enlarge button SVG */
+.popup-title-bar-button.enlarge-button .popup-icon-svg {
+  stroke-width: 0; /* Remove the outline completely */
+}
+
 /* Close button (X) */
 .popup-icon.close {
   font-size: 1.6rem;
@@ -256,8 +261,9 @@
 
 /* Enlarge button (outward arrows) */
 .popup-icon.enlarge {
-  font-size: 1.4rem; /* Slightly larger than before */
-  line-height: 0.9; /* Adjust vertical alignment */
+  font-size: 1.2rem; /* Slightly smaller */
+  line-height: 1; /* Adjust vertical alignment */
+  font-weight: bold;
 }
 
 /* Scrollable content area */

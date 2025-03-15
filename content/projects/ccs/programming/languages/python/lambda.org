@@ -1,5 +1,5 @@
 +++
-title= "@@html:<input type=\"checkbox\" class=\"done\"/>@@Lambda Functions in Python"
+title= "@@html:<input type=\"checkbox\" checked class=\"done\" style=\"transform: scale(1.4); vertical-align: middle; margin-right: 8px;\"/>@@Lambda Functions in Python"
 tags= ["functional-programming"]
 +++
 
