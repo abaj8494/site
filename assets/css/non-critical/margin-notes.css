@@ -26,13 +26,13 @@
   position: absolute;
   left: 0;
   width: 90%;
-  background-color: rgba(255, 200, 200, 0.95); /* More visible background */
+  background-color: rgba(60, 60, 60, 0.97); /* Dark gray background */
   border-left: 5px solid red; /* Thicker, more visible border */
   padding: 6px 10px;
   margin: 2px 0;
   font-size: 0.8rem;
   line-height: 1.3;
-  color: #333;
+  color: #fff; /* Changed to white for better contrast on dark background */
   border-radius: 0 4px 4px 0;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3); /* More visible shadow */
   opacity: 1; /* Always fully visible */
@@ -106,7 +106,7 @@
 /* Dark mode support */
 @media (prefers-color-scheme: dark) {
   .margin-note-item {
-    background-color: rgba(255, 100, 100, 0.8); /* More visible in dark mode */
+    background-color: rgba(60, 60, 60, 0.97); /* Same dark gray in dark mode */
     border-left-color: red;
     color: white;
   }

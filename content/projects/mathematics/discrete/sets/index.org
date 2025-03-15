@@ -89,7 +89,6 @@ Let \(F\) be a function from a set \(X\) to a set \(Y\). \(F\) is *one-to-one* (
 if \(F(x_1) = F(x_2)\), then \(x_1 = x_2\)
 or, equivalently if \(x_1 \neq x_2\) then \(F(x_1) \neq F(x_2)\).{{< mnote "the contrapositive" >}}
 
-
 Symbolically,
 \[F: X\rightarrow \text{is one-to-one} \iff \forall x_1, x_2 \in X, \text{if } F(x_1) = F(x_2) \text{ then } x_1 = x_2\]
 
@@ -102,6 +101,9 @@ A *one-to-one* correspondence (or *bijection*) from a set \(X\) to a set \(Y\) i
 ** Inverse Functions
 Theorem: If F is bijective, then an inverse exists:
 \[F^{-1}(y) = x \iff y = F(x)\]
+
+** Composition
+\[g\circ f: X\rightarrow Z \implies (g\circ f)(x) = g(f(x))\]
 
 * sequences
 

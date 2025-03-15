@@ -14,9 +14,13 @@ main {
   display: grid;
   grid-area: main;
   grid-template-areas: "empty content sidebar";
-  grid-template-columns: 10px minmax(0, 1000px) 1fr; /* Changed from 40px to 30px */
-  gap: 1rem; /* Add some gap between columns */
-  padding-left: 10px; /* Changed from 40px to 30px */
+  grid-template-columns: minmax(5px, 2%) minmax(0, 1000px) 1fr; /* Made first column responsive */
+  gap: 1rem;
+  padding-left: clamp(
+    5px,
+    2vw,
+    10px
+  ); /* Dynamic padding based on viewport width */
 }
 
 header {
@@ -120,6 +124,19 @@ footer {
   }
 }
 @media (max-width: 768px) {
+  main {
+    grid-template-areas:
+      "content content"
+      "sidebar sidebar";
+    grid-template-columns: 1fr;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .sidebar {
+    margin-top: 2rem;
+  }
+
   .sidebar-tree {
     display: none; /* Hides sidebar-tree on smaller screens */
   }
