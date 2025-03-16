@@ -1,6 +1,238 @@
 +++
-title = "Regular Expressions in Python"
+title = "@@html:<input type=\"checkbox\" class=\"nothing\" style=\"transform: scale(1.4); vertical-align: middle; margin-right: 8px;\"/>@@Regular Expressions in Python"
 tags = ["regex", "unix"]
 +++
 
-Link: https://www.w3resource.com/python-exercises/re/index.php
+Source: https://www.w3resource.com/python-exercises/re/index.php
+
+* Exercise 1.
+Write a Python program to check that a string contains only a certain set of characters (in this case a-z, A-Z and 0-9).
+
+* Exercise 2.
+Write a Python program that matches a string that has an a followed by zero or more b's.
+
+* Exercise 3.
+Write a Python program that matches a string that has an a followed by one or more b's.
+
+* Exercise 4.
+Write a Python program that matches a string that has an a followed by zero or one 'b'.
+
+* Exercise 5.
+Write a Python program that matches a string that has an a followed by three 'b'.
+
+* Exercise 6.
+Write a Python program that matches a string that has an a followed by two to three 'b'.
+
+* Exercise 7.
+Write a Python program to find sequences of lowercase letters joined by an underscore.
+
+* Exercise 8.
+Write a Python program to find the sequences of one upper case letter followed by lower case letters.
+
+* Exercise 9.
+Write a Python program that matches a string that has an 'a' followed by anything ending in 'b'.
+
+* Exercise 10.
+Write a Python program that matches a word at the beginning of a string.
+
+* Exercise 11.
+Write a Python program that matches a word at the end of a string, with optional punctuation.
+
+* Exercise 12.
+Write a Python program that matches a word containing 'z'.
+
+* Exercise 13.
+Write a Python program that matches a word containing 'z', not the start or end of the word.
+
+* Exercise 14.
+Write a Python program to match a string that contains only upper and lowercase letters, numbers, and underscores.
+
+* Exercise 15.
+Write a Python program that starts each string with a specific number.
+
+* Exercise 16.
+Write a Python program to remove leading zeros from an IP address.
+
+* Exercise 17.
+Write a Python program to check for a number at the end of a string.
+
+* Exercise 18.
+Write a Python program to search for numbers (0-9) of length between 1 and 3 in a given string.
+
+"Exercises number 1, 12, 13, and 345 are important"
+
+* Exercise 19.
+Write a Python program to search for literal strings within a string.
+Sample text : "The quick brown fox jumps over the lazy dog."
+Searched words : "fox", "dog", "horse"
+
+* Exercise 20.
+Write a Python program to search for a literal string in a string and also find the location within the original string where the pattern occurs.
+Sample text : "The quick brown fox jumps over the lazy dog."
+Searched words : "fox"
+
+* Exercise 21.
+Write a Python program to find the substrings within a string.
+
+Sample text:
+"Python exercises, PHP exercises, C# exercises"
+
+Pattern:
+"exercises"
+
+Note: There are two instances of exercises in the input string.
+
+* Exercise 22.
+Write a Python program to find the occurrence and position of substrings within a string.
+
+* Exercise 23.
+Write a Python program to replace whitespaces with an underscore and vice versa.
+
+* Exercise 24.
+Write a Python program to extract year, month and date from an URL.
+
+* Exercise 25.
+Write a Python program to convert a date of yyyy-mm-dd format to dd-mm-yyyy format.
+
+* Exercise 26.
+Write a Python program to match if two words from a list of words start with the letter 'P'.
+
+* Exercise 27.
+Write a Python program to separate and print the numbers in a given string.
+
+* Exercise 28.
+Write a Python program to find all words starting with 'a' or 'e' in a given string.
+
+* Exercise 29.
+Write a Python program to separate and print the numbers and their position in a given string.
+
+* Exercise 30.
+Write a Python program to abbreviate "Road" as "Rd." in a given string.
+
+* Exercise 31.
+Write a Python program to replace all occurrences of a space, comma, or dot with a colon.
+
+* Exercise 32.
+Write a Python program to replace maximum 2 occurrences of space, comma, or dot with a colon.
+
+* Exercise 33.
+Write a Python program to find all five-character words in a string.
+
+* Exercise 34.
+Write a Python program to find all three, four, and five character words in a string.
+
+* Exercise 35.
+Write a Python program to find all words that are at least 4 characters long in a string.
+
+* Exercise 36.
+Write a Python program to convert a camel-case string to a snake-case string.
+
+* Exercise 37.
+Write a Python program to convert a snake-case string to a camel-case string.
+
+* Exercise 38.
+Write a Python program to extract values between quotation marks of a string.
+
+* Exercise 39.
+Write a Python program to remove multiple spaces from a string.
+
+* Exercise 40.
+Write a Python program to remove all whitespaces from a string.
+
+* Exercise 41.
+Write a Python program to remove everything except alphanumeric characters from a string.
+
+* Exercise 42.
+Write a Python program to find URLs in a string.
+
+* Exercise 43.
+Write a Python program to split a string into uppercase letters.
+
+* Exercise 44.
+Write a Python program to do case-insensitive string replacement.
+
+* Exercise 45.
+Write a Python program to remove ANSI escape sequences from a string.
+
+* Exercise 46.
+Write a Python program to find all adverbs and their positions in a given sentence.
+Sample text : "Clearly, he has no excuse for such behavior."
+
+* Exercise 47.
+Write a Python program to split a string with multiple delimiters.
+Note: A delimiter is a sequence of one or more characters used to specify the boundary between separate, independent regions in plain text or other data streams. For example, the comma character acts as a field delimiter in a sequence of comma-separated values.
+
+* Exercise 48.
+Write a Python program to check a decimal with a precision of 2.
+
+* Exercise 49.
+Write a Python program to remove words from a string of length between 1 and a given number.
+
+* Exercise 50.
+Write a Python program to remove the parenthesis area in a string.
+Sample data: ["example (.com)", "w3resource", "github (.com)", "stackoverflow (.com)"]
+Expected Output:
+example
+w3resource
+github
+stackoverflow
+
+* Exercise 51.
+Write a Python program to insert spaces between words starting with capital letters.
+
+* Exercise 52.
+Write a Python program that reads a given expression and evaluates it.
+Terms and conditions:
+- The expression consists of numerical values, operators and parentheses, and ends with '='.
+- The operators include +, -, *, / representing addition, subtraction, multiplication and division.
+- When two operators have the same precedence, they are applied from left to right.
+- You may assume that there is no division by zero.
+- All calculations are performed as integers, and any decimal portion is truncated.
+- The length of the expression will not exceed 100.
+- Intermediate results of computation will be within the range of -1 to 10^9.
+
+* Exercise 53.
+Write a Python program to remove lowercase substrings from a given string.
+
+* Exercise 54.
+Write a Python program to concatenate the consecutive numbers in a given string.
+
+Original string:
+"Enter at 1 20 Kearny Street. The security desk can direct you to floor 1 6. Please have your identification ready."
+
+After concatenating the consecutive numbers:
+"Enter at 120 Kearny Street. The security desk can direct you to floor 16. Please have your identification ready."
+
+* Exercise 55.
+Write a Python program to convert a given string to snake case.
+
+Sample Output:
+java-script
+gd-script
+btw...-what-*-do*-you-call-that-naming-style?-snake-case?
+
+* Exercise 56.
+Write a Python program that takes any number of iterable objects or objects with a length property and returns the longest one.
+
+Sample Output:
+Orange  
+[1, 2, 3, 4, 5]  
+Java  
+Python
+
+* Exercise 57.
+Write a Python program that checks whether a word starts and ends with a vowel in a given string. Return true if a word matches the condition; otherwise, return false.
+
+Sample Data:
+("Red Orange White") -> True  
+("Red White Black") -> False  
+("abcd dkise eosksu") -> True
+
+* Exercise 58.
+Write a Python program that takes a string with some words. For two consecutive words in the string, check whether the first word ends with a vowel and the next word begins with a vowel. If the condition is met, return true; otherwise, return false. Only one space is allowed between words.
+
+Sample Data:
+("These exercises can be used for practice.") -> True  
+("Following exercises should be removed for practice.") -> False  
+("I use these stories in my classroom.") -> True
+

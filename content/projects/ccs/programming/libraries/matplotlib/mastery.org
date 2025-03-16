@@ -1,0 +1,7 @@
++++
+title = "Mastery of Matplotlib"
++++
+
+Source: https://www.w3resource.com/graphics/matplotlib/
+
+todo later, need to see the images side-by-side

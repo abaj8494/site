@@ -1,7 +1,8 @@
 +++
-title = "Mastering Python"
+title = "@@html:<input type=\"checkbox\" class=\"refactor\" style=\"transform: scale(1.4); vertical-align: middle; margin-right: 8px;\"/>@@Mastering Python"
 tags = ["sharpen"]
 +++
+
 
 
 {{< collapse id="mastery-python" lvl="3" >}}
@@ -20,6 +21,25 @@ tags = ["sharpen"]
 
 Source: https://www.w3resource.com/python-exercises/python_100_exercises_with_solutions.php
 
+* Tangles                                                          :noexport:
+
+#+PROPERTY: dest /Users/aayushbajaj/Documents/new-site/static/code/ccs/programming/languages/100-days-python/mastery/
+
+#+begin_src emacs-lisp
+  (setq ndk/tangle-dir (org-entry-get nil "dest" t))
+
+  (defun ndk/org-babel-tangle-rename ()
+    (let ((tangledir ndk/tangle-dir)
+          (tanglefile (buffer-file-name)))
+        (rename-file tanglefile tangledir t)))
+
+  (add-hook 'org-babel-post-tangle-hook #'ndk/org-babel-tangle-rename)
+#+end_src
+
+#+RESULTS:
+| ndk/org-babel-tangle-rename |
+
+
 ** DONE Exercise 1:
 CLOSED: [2025-03-10 Mon 13:32]
 :LOGBOOK:
@@ -31,7 +51,7 @@ Create a list with values ranging from 0 to 9.
 *** soln
 
 list's take in iterators
-#+begin_src jupyter-python :session mast-python
+#+begin_src jupyter-python :session mast-python :tangle q1.py
   #my_list = [i for i in range(10)]
   my_list = list(range(10))
   my_list
@@ -53,7 +73,7 @@ Convert a list of integers to a list of strings.
 
 =map(function, iterable, *iterables)=
 map returns an iterator. it applies fn to an iterator with iterable args.
-#+begin_src jupyter-python :session mast-python
+#+begin_src jupyter-python :session mast-python :tangle q2.py
   my_list_as_strs = list(map(str, my_list))
   my_list_as_strs
 #+end_src
@@ -75,7 +95,7 @@ Multiply all elements in a list by 2.
 a very functional programming approach; manipulating data with subsequent functional transformations.
 
 also, unusually I could not find any documentation on lambda expressions in the main [[https://docs.python.org/3/library/index.html][Python Standard Library]]. I had to click into the tutorial and take a look at [[https://docs.python.org/3/tutorial/controlflow.html#lambda-expressions]["more control flow tools"]].
-#+begin_src jupyter-python :session mast-python
+#+begin_src jupyter-python :session mast-python :tangle q3.py
   another_list = list(range(5))
   times_two_list = list(map(lambda x: 2*x, another_list))
   times_two_list
@@ -98,7 +118,7 @@ Extract all odd numbers from a list of integers.
 
 maps continue to be useful, however perhaps a filter will be a better idea here.
 
-#+begin_src jupyter-python :session mast-python
+#+begin_src jupyter-python :session mast-python :tangle q4.py
   another_list = list(range(20))
   odd_lists = list(filter(lambda x: x%2==1, another_list))
   odd_lists
@@ -122,7 +142,7 @@ Replace all odd numbers in a list with -1.
 we go back to a map for this one.
 
 note that the ternary operator syntax is different to C/Java.
-#+begin_src jupyter-python :session mast-python
+#+begin_src jupyter-python :session mast-python :tangle q5.py
   another_list = list(range(20))
   odd_lists_minus_one = list(map(lambda x:-1 if x%2==1 else x, another_list))
   odd_lists_minus_one
@@ -143,7 +163,7 @@ Convert a list of integers to a list of booleans where all non-zero values becom
 
 note that in Python, true is actually =True= and false, =False=.
 
-#+begin_src jupyter-python :session mast-python
+#+begin_src jupyter-python :session mast-python :tangle q6.py
   list_ints = list(range(15))
   bool_list = list(map(lambda x: True if x != 0 else False, list_ints))
   bool_list
@@ -161,7 +181,7 @@ CLOSED: [2025-03-11 Tue 12:55]
 
 Replace all even numbers in a list with their negative.
 
-#+begin_src jupyter-python :session mast-python
+#+begin_src jupyter-python :session mast-python :tangle q7.py
   list_ints = list(range(15))
   neg_list = list(map(lambda x: -x if x % 2 == 0 else x, list_ints))
   neg_list
@@ -181,7 +201,7 @@ Create a 3x3 list of lists with random values and normalize it.
 *** soln
 
 crazy: notice that the =randint= bounds are <= and >=!
-#+begin_src jupyter-python :session mast-python
+#+begin_src jupyter-python :session mast-python :tangle q8.py
   import random
   random.seed(4)
   def create_n_by_n_list(n):
@@ -225,7 +245,7 @@ Calculate the sum of the diagonal elements of a 3x3 matrix (list of lists).
 
 *** soln
 
-#+begin_src jupyter-python :session mast-python
+#+begin_src jupyter-python :session mast-python :tangle q9.py
   import numpy
   print(sum(numpy.diag(norm_list)))
 #+end_src
@@ -244,7 +264,7 @@ Find the indices of non-zero elements in a list.
 *** soln
 
 this notation is illegal: =lambda i, v:=
-#+begin_src jupyter-python :session mast-python
+#+begin_src jupyter-python :session mast-python :tangle q10.py
   new_list = list(range(-5, 4))
   tuple_list = filter(lambda t: t[1] != 0, enumerate(new_list)) # filter correct tuples
   out_list = [e[0] for e in tuple_list] # construct list of indices
@@ -266,7 +286,7 @@ Reverse a list.
 
 *** soln
 one thing to be careful of with the =list.reverse()= method is that the reversal happens "in-place", i.e. on the object that the method was called on.
-#+begin_src jupyter-python :session mast-python
+#+begin_src jupyter-python :session mast-python :tangle q11.py
   out_list.reverse() # no return value for this
   print(out_list)
   print(new_list) # defined in the last q
@@ -356,7 +376,7 @@ CLOSED: [2025-03-12 Wed 11:15]
 
 Create a 3x3 identity matrix as a list of lists.
 
-#+begin_src jupyter-python :session mast-python
+#+begin_src jupyter-python :session mast-python :tangle q12.py
   import numpy as np
   print(np.eye(3))
 #+end_src
@@ -375,7 +395,7 @@ CLOSED: [2025-03-12 Wed 11:15]
 Reshape a 1D list to a 2D list with 2 rows.
 
 *** soln1
-#+begin_src jupyter-python :session mast-python
+#+begin_src jupyter-python :session mast-python :tangle q13.py
   l = np.array(range(12))
   print(l.reshape(2, -1))
 #+end_src
@@ -386,7 +406,7 @@ Reshape a 1D list to a 2D list with 2 rows.
 :  [ 6  7  8  9 10 11]]
 
 *** soln2, no numpy
-#+begin_src jupyter-python :session mast-python
+#+begin_src jupyter-python :session mast-python :tangle q13b.py
   l = list(range(12))
   x = [l[x:x+int(len(l)/2)] for x in range(0, len(l), int(len(l)/2))]
   print(x)
@@ -405,7 +425,7 @@ CLOSED: [2025-03-12 Wed 11:15]
 
 Stack two lists vertically.
 
-#+begin_src jupyter-python :session mast-python
+#+begin_src jupyter-python :session mast-python :tangle q14.py
   l1 = list(range(4))[::-1]
   l2 = list(range(4))
   l = [l1, l2]
@@ -424,7 +444,7 @@ CLOSED: [2025-03-12 Wed 11:15]
 Get the common items between two lists.
 
 shit, I accidentally got all the /unique/ items by using sets
-#+begin_src jupyter-python :session mast-python
+#+begin_src jupyter-python :session mast-python :tangle q15.py
   l1 = list(range(4))[::-1]
   l2 = list(range(7))
   l1.extend(l2)
@@ -459,7 +479,7 @@ Create a 5x5 list of lists with row values ranging from 0 to 4.
 
 *** soln1
 
-#+begin_src jupyter-python :session mast-python
+#+begin_src jupyter-python :session mast-python :tangle q16.py
   import random
   random.seed(4)
   n = 5
@@ -553,7 +573,7 @@ max(range(15))
 : 14
 
 however, the number of =max= calls is clearly dependent on the dimensionality. as such we can use =numpy=:
-#+begin_src jupyter-python :session mast-python
+#+begin_src jupyter-python :session mast-python :tangle q17.py
 numpy.amax(l)
 #+end_src
 
@@ -569,7 +589,7 @@ CLOSED: [2025-03-13 Thu 15:41]
 Normalize the values in a list between 0 and 1.
 
 we can do it nakedly with the =math= library and implement softmax, which is defined in [[https://abaj.ai/projects/mathematics/calculus/mvars#softmax][multi-variate calculus]].
-#+begin_src jupyter-python :session mast-python
+#+begin_src jupyter-python :session mast-python :tangle q18.py
   import math
   my_list = list(range(7))
   new_list = list(map(lambda x: math.exp(x) / sum(math.exp(y) for y in my_list), my_list))
@@ -581,7 +601,7 @@ we can do it nakedly with the =math= library and implement softmax, which is def
 : [0.0015683003158864725, 0.004263082250240778, 0.011588259014055805, 0.03150015390138463, 0.08562629594379713, 0.23275640430228017, 0.6326975042723549]
 : 0.9999999999999999
 
-#+begin_src jupyter-python :session mast-python
+#+begin_src jupyter-python :session mast-python :tangle q18b.py
   import numpy as np
   def softmax(x):
       return np.exp(x) / sum(np.exp(x))
@@ -603,7 +623,7 @@ CLOSED: [2025-03-13 Thu 15:41]
 
 Calculate the dot product of two lists.
 
-#+begin_src jupyter-python :session mast-python
+#+begin_src jupyter-python :session mast-python :tangle q19.py
   random.seed(4)
   list_a = random.choices(range(10),k=10) # without numpy
   list_b = random.choices(range(10),k=10)
@@ -626,7 +646,7 @@ CLOSED: [2025-03-13 Thu 15:41]
 
 Count the number of elements in a list within a specific range.
 
-#+begin_src jupyter-python :session mast-python
+#+begin_src jupyter-python :session mast-python :tangle q20.py
   def count_elements_within_range(a, b, x):
       return sum(a <= y <= b for y in x)
   count_elements_within_range(5, 12, list(range(14))[5::3])
@@ -643,7 +663,7 @@ CLOSED: [2025-03-13 Thu 15:46]
 
 Find the mean of each row in a 2D list.
 
-#+begin_src jupyter-python :session mast-python
+#+begin_src jupyter-python :session mast-python :tangle q21.py
   def average(l):
       return sum(l)/len(l)
 
@@ -664,7 +684,7 @@ Find the mean of each row in a 2D list.
 
 Create a random 4x4 list of lists and extract the diagonal elements.
 
-#+begin_src jupyter-python :session mast-python
+#+begin_src jupyter-python :session mast-python :tangle q22.py
   import numpy as np
   list_of_lists = np.random.randint(10, size=(4,4))
   print(list_of_lists)
@@ -684,7 +704,7 @@ Create a random 4x4 list of lists and extract the diagonal elements.
 
 Count the number of occurrences of a specific value in a list.
 
-#+begin_src jupyter-python :session mast-python
+#+begin_src jupyter-python :session mast-python :tangle q23.py
 range_list = list(range(6))
 range_list.count(4)
 #+end_src
@@ -696,7 +716,7 @@ range_list.count(4)
 
 Replace all values in a list with the mean of the list.
 
-#+begin_src jupyter-python :session mast-python
+#+begin_src jupyter-python :session mast-python :tangle q24.py
   range_list = list(range(6))
   range_list = [average(range_list) for x in range_list]
   print(range_list)
@@ -709,7 +729,7 @@ Replace all values in a list with the mean of the list.
 
 Find the indices of the maximum and minimum values in a list.
 
-#+begin_src jupyter-python :session mast-python
+#+begin_src jupyter-python :session mast-python :tangle q25.py
   range_list = list(range(6))
   print(range_list.index(min(range_list)))
   print(range_list.index(max(range_list)))
@@ -734,7 +754,7 @@ you of course also have the numpy method, however that requires the overhead of 
 
 Create a 2D list with 1 on the border and 0 inside.
 
-#+begin_src jupyter-python :session mast-python
+#+begin_src jupyter-python :session mast-python :tangle q26.py
   # note this program only works for odd n
   n = 3
   mat = np.ones((n,n))
@@ -751,7 +771,7 @@ Create a 2D list with 1 on the border and 0 inside.
 
 Find the unique values and their counts in a list.
 
-#+begin_src jupyter-python :session mast-python
+#+begin_src jupyter-python :session mast-python :tangle q27.py
   l1 = list(range(6))
   l2 = list(range(2,7))
   l1.extend(l2)
@@ -769,7 +789,7 @@ Find the unique values and their counts in a list.
 
 Create a 3x3 list of lists with values ranging from 0 to 8.
 
-#+begin_src jupyter-python :session mast-python
+#+begin_src jupyter-python :session mast-python :tangle q28.py
   nums = list(range(9))
   ll_nums = [nums[x:x+3] for x in range(0,9,3)]
   print(ll_nums)
@@ -782,7 +802,7 @@ Create a 3x3 list of lists with values ranging from 0 to 8.
 
 Calculate the exponential of all elements in a list.
 
-#+begin_src jupyter-python :session mast-python
+#+begin_src jupyter-python :session mast-python :tangle q29.py
   import math
   nums = list(range(9))
   nums = [math.exp(x) for x in nums]
@@ -796,7 +816,7 @@ Calculate the exponential of all elements in a list.
 
 Swap two rows in a 2D list.
 
-#+begin_src jupyter-python :session mast-python
+#+begin_src jupyter-python :session mast-python :tangle q30.py
   import random
   matrix = create_n_by_n_list(4)
   print(matrix)

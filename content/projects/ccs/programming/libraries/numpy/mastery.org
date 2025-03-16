@@ -1,5 +1,5 @@
 +++
-title = "Mastering Numpy"
+title = "@@html:<input type=\"checkbox\" class=\"nothing\" style=\"transform: scale(1.4); vertical-align: middle; margin-right: 8px;\"/>@@Mastering Numpy"
 tags = ["sharpen"]
 +++
 

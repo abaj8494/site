@@ -51,6 +51,7 @@ You may also view the entire =tag= taxonomy [[/tags][here]].
 :CUSTOM_ID: classical-cs
 :END:
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/memory][Memory]] {{< tags-inline "projects/ccs/memory" >}}
+  - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/csp/connect4][Connect 4]] {{< tags-inline "projects/csp/connect4" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/time-complexity][Time Complexity]] {{< tags-inline "projects/ccs/time-complexity" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/networking][Internet Networks]] {{< tags-inline "projects/ccs/networking" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/databases][Databases]] {{< tags-inline "projects/ccs/databases" >}}
@@ -66,6 +67,8 @@ You may also view the entire =tag= taxonomy [[/tags][here]].
 :PROPERTIES:
 :CUSTOM_ID: data-algs
 :END:
+- @@html:<input type="checkbox" checked class="refactor"/>@@ [[/projects/csp/peg-solitaire][Peg Solitaire]] {{< tags-inline "projects/csp/peg-solitaire" >}}
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/csp/banagrams-solver][Banagrams Solver]] {{< tags-inline "projects/csp/banagrams" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/data-algs/advanced][Advanced Algorithms]] {{< tags-inline "projects/ccs/data-algs/advanced" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/data-algs/leetcode][Leetcode]] {{< tags-inline "projects/ccs/data-algs/leetcode" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/data-algs/sorting][Sorting]] {{< tags-inline "projects/ccs/data-algs/sorting" >}}
@@ -97,12 +100,14 @@ You may also view the entire =tag= taxonomy [[/tags][here]].
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/languages/lua][Lua]] {{< tags-inline "projects/ccs/programming/languages/lua" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/languages/go][Go]] {{< tags-inline "projects/ccs/programming/languages/go" >}}
 
+  
 **** [[/projects/ccs/programming/libraries][Libraries]]
 :PROPERTIES:
 :CUSTOM_ID: libraries
 :END:
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/libraries/numpy][Numpy]] {{< tags-inline "projects/ccs/programming/libraries/numpy" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/libraries/pandas][Pandas]] {{< tags-inline "projects/ccs/programming/libraries/pandas" >}}
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/libraries/matplotlib][Matplotlib]] {{< tags-inline "projects/ccs/programming/libraries/matplotlib" >}}
 
 
 **** Beyond                                                        :noexport:
@@ -117,12 +122,16 @@ You may also view the entire =tag= taxonomy [[/tags][here]].
 :PROPERTIES:
 :CUSTOM_ID: computer-science-projects
 :END:
-- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/csp/connect4][Connect 4]] {{< tags-inline "projects/csp/connect4" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/csp/bytelocker][File Encrypter (Bytelocker)]] {{< tags-inline "projects/csp/bytelocker" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/csp/lan-messenger][LAN Messenger]] {{< tags-inline "projects/csp/lan-messenger" >}}
 - @@html:<input type="checkbox" checked class="done"/>@@ [[/projects/csp/bookbot][Bookbot]] {{< tags-inline "projects/csp/bookbot" >}}
-- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/csp/banagrams-solver][Banagrams Solver]] {{< tags-inline "projects/csp/banagrams" >}}
-- @@html:<input type="checkbox" checked class="refactor"/>@@ [[/projects/csp/peg-solitaire][Peg Solitaire]] {{< tags-inline "projects/csp/peg-solitaire" >}}
+
+*** Games                                                          :noexport:
+
+#+BEGIN_CENTER
+#+ATTR_HTML: :class lateximage :style "display: block; border: none;"
+@@html:<a href="[[https://abaj.games]]" style="display: inline-block; border: none;"><img width="500" src="{{< cwd >}}games.svg" style="display: block; border: none;"></a>@@
+#+END_CENTER
 
 *** Raspberry Pi
 

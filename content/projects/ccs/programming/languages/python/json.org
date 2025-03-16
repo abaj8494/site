@@ -1,5 +1,5 @@
 +++
-title = "JSON's in Python"
+title = "@@html:<input type=\"checkbox\" class=\"nothing\" style=\"transform: scale(1.4); vertical-align: middle; margin-right: 8px;\"/>@@JSON's in Python"
 +++
 
 Source: https://www.w3resource.com/python-exercises/python-json-index.php

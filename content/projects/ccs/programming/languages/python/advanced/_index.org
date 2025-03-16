@@ -1,6 +1,44 @@
 +++
-title = "Advanced Python Programming"
+title = "@@html:<input type=\"checkbox\" class=\"nothing\" style=\"transform: scale(1.4); vertical-align: middle; margin-right: 8px;\"/>@@Advanced Python Programming"
 tags = ["concurrency", "iterators", "decorators", "object-oriented"]
 +++
 
 Source: https://www.w3resource.com/python-exercises/advanced/index.php
+
+* 1. Multi-threaded web scraper that respects robots.txt rules.
+
+* 2. Class-based decorator that logs the execution time of methods.
+
+* 3. Custom iterator that iterates over a tree data structure.
+
+* 4. Performs matrix multiplication using list comprehensions.
+
+* 5. Implements a thread-safe priority queue.
+
+* 6. Create a data validation library using Python's dataclasses and type hints.
+
+* 7. Implement the A* search algorithm for a pathfinding problem.
+
+* 8. Command-line tool that synchronizes files between two directories.
+
+* 9. Custom JSON encoder and decoder for complex Python objects.
+
+* 10. Implement a Bloom filter for probabilistic data structures.
+
+* 11. Build a concurrent task scheduler using asyncio.
+
+* 12. Create a caching system with support for LRU eviction policy.
+
+* 13. Python library for parsing and evaluating mathematical expressions.
+
+* 16. Build a real-time data visualization dashboard using Plotly and Dash.
+
+* 17. Python library for working with polynomial arithmetic.
+
+* 18. Build a time series forecasting model using ARIMA and Pandas.
+
+* 19. Python tool for monitoring and alerting system resource usage.
+
+* 20. Rule-based chatbot using regular expressions.
+
+* 24. Library for working with finite automata and regular languages.

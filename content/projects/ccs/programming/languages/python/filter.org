@@ -1,48 +1,40 @@
 +++
-title = "Filter Function"
+title = "@@html:<input type=\"checkbox\" class=\"nothing\" style=\"transform: scale(1.4); vertical-align: middle; margin-right: 8px;\"/>@@Filter Function"
 tags = ["python"]
 +++
 
 Source: https://www.w3resource.com/python-exercises/filter/index.php
 
-1. Write a Python function that filters out even numbers from a list of integers using the filter function.
+* Exercise 1.
+Write a Python function that filters out even numbers from a list of integers using the filter function.
 
+* Exercise 2.
+Write a Python program that uses the filter function to extract all uppercase letters from a list of mixed-case strings.
 
+* Exercise 3.
+Write a Python function that filters out all elements less than or equal than a specified value from a list of numbers using the filter function.
 
-2. Write a Python program that uses the filter function to extract all uppercase letters from a list of mixed-case strings.
+* Exercise 4.
+Write a Python program that creates a list of names and uses the filter function to extract names that start with a vowel (A, E, I, O, U).
 
+* Exercise 5.
+Write a Python function that filters out all empty strings from a list of strings using the filter function.
 
+* Exercise 6.
+Write a Python program that creates a list of dictionaries containing student information (name, age, grade) and uses the filter function to extract students with a grade greater than or equal to 95.
 
-3. Write a Python function that filters out all elements less than or equal than a specified value from a list of numbers using the filter function.
+* Exercise 7.
+Write a Python program that filters out prime numbers from a list of integers using the filter function.
 
+* Exercise 8.
+Write a Python program that creates a list of words and use the filter function to extract words that contain more than five letters.
 
+* Exercise 9.
+Write a Python function that filters out elements from a list of strings containing a specific substring using the filter function.
 
-4. Write a Python program that creates a list of names and uses the filter function to extract names that start with a vowel (A, E, I, O, U).
+* Exercise 10.
+Write a Python program that implements a Python program that filters out dates (in the format "YYYY-MM-DD") that are in the future using the filter function.
 
-
-
-5. Write a Python function that filters out all empty strings from a list of strings using the filter function.
-
-
-
-6. Write a Python program that creates a list of dictionaries containing student information (name, age, grade) and uses the filter function to extract students with a grade greater than or equal to 95.
-
-
-7. Write a Python program that filters out prime numbers from a list of integers using the filter function.
-
-
-
-8. Write a Python program that creates a list of words and use the filter function to extract words that contain more than five letters.
-
-
-
-9. Write a Python function that filters out elements from a list of strings containing a specific substring using the filter function.
-
-
-
-10. Write a Python program that implements a Python program that filters out dates (in the format "YYYY-MM-DD") that are in the future using the filter function.
-
-
-
-11. Write a Python program that creates a list of tuples, each containing a city name and its population. Use the filter function to extract cities with a population greater than 2 million.
+* Exercise 11.
+Write a Python program that creates a list of tuples, each containing a city name and its population. Use the filter function to extract cities with a population greater than 2 million.
 
