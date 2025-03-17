@@ -1,0 +1,182 @@
++++
+title = "On the (Im)proper Usage of ChatGPT models in Academia"
+tags = ["chatgpt", "ethics", "value-sensitive-design"]
+toc = "true"
+math = "true"
++++
+
+#+bibliography: cs4920grp.bib
+
+* Raison d etre
+The meat content of this page is to be repurposed for an assignment, however the textuality of Emacs fosters my thinking.
+
+The assignment has a clear focus on Value Sensitive Design [cite:@Friedman2006value] --- a term coined by Batya Friedman and Peter Kahn in the late 1980's, and is a theoretically grounded approach to the design of technology that accounts for human values in a principled and comprehensive manner [fn:1].
+
+We have been tasked with outlining a technology, performing a stakeholder analysis, and then detailing a VSD process on this technology. 
+
+There is mention of a "FATE" framework:
+- *F* airness
+- *A* ccountability
+- *T* ransparency
+- *E* thics
+
+We must consider the risks / benefits associated with the technology. Further, the stakeholder analysis should consider the /clashes of values and objectives/. Ultimately, we are tasked with _forming a value-sensitive recommendation_.
+
+
+* Outline
+
+** Scope
+Our technology is the indelible ChatGPT3 series of Large Language
+Models. In this Value-Sensitive-Design analysis, we explore their
+first-to-market novelty and enamouration, followed by the stark reality
+in "worshipping false gods".
+
+We pull back the veil of "magic" and
+demonstrate the fallibility of these models due to the nature of their
+constructions, and posit that the danger of these mistakes is the
+gusto with which they are made:
+
+TODO: Include an image of a high confidence failure
+
+Further, we delve into a brief comparative analysis at the same
+generational level of the LLM-tree, acknowledging similar flaws across
+all models by various providers. Additionally, we do a deeper dive
+across the time-axis with OpenAI's *alignment* product: /InstructGPT/ [cite:@instructgpt].
+
+
+** Orientation
+Before we can begin discussing the models themselves, we must
+understand their nomenclatures and the difference between API
+(Application Programming Interface) models and the Chat Interface
+Models.
+
+During their Public Debut at [[https://openai.com]] on the 30th of
+November 2022, OpenAI released their GPT-3.5 model. This is a model
+/tuned/ with RLHF (Reinforcement Learning from Human Feedback) ontop
+of the GPT-3 referenced by this paper: [cite:@gpt3]. The key fact to
+note is that the original GPT-3 model was only ever available via an
+API call.
+
+The original paper tabulates 8 models of different sizes:
+
+#+begin_center
+|----------+----------+----------+----------|
+|GPT-3     |Small     |125M      |n/a       |
+|GPT-3     |Medium    |350M      |ada       |
+|GPT-3     |Large     |760M      |n/a       |
+|GPT-3     |XL        |1.3B      |babbage   |
+|GPT-3     |2.7B      |2.7B      |n/a          |
+|GPT-3     |6.7B      |6.7B      |curie          |
+|GPT-3     |13B       |13B       |n/a       |
+|GPT-3     |175B      |175B      |davinci   |
+|----------+----------+----------+----------|
+#+caption: credits: [[https://en.wikipedia.org/wiki/GPT-3][wikipedia]]
+#+end_center
+
+of which only 4 are available through the API:
+#+begin_src
+ada
+babbage
+curie
+davinci
+#+end_src
+
+The novelty of the GPT-3 paper was in that it used a relatively
+/massive/ amount of training data to GPT-2, keeping architectural
+changes to a minimum.
+
+|----------------------+-------+-------+-------|
+|                      | GPT-1 | GPT-2 | GPT-3 |
+|----------------------+-------+-------+-------|
+| Corpus Size          |  800M |   10B | 300B  |
+| Parameters           |  117M |  1.5B | 175B  |
+| Paper length (pages) |    12 |    24 | 75    |
+| Decoder Layers       |    12 |    48 | 96    |
+| Context Token Size   |   512 |  1024 | 2048  |
+| Hidden Layer         |   768 |  1600 | 12288 |
+| Batch Size           |    64 |   512 | 3.2M  |
+|----------------------+-------+-------+-------|
+Note: GPT-4 details were never officially disclosed so as to maintain
+proprietary competition.
+
+Thus, whilst it may have had a greater capacity for "intelligence" via
+the depth of its network and length of time during which "facts" were
+being "baked into" the vectors, it still sucked at understanding *user intent*:
+
+#+begin_center
+#+begin_src sh
+Human Instruction: "What is the capital of China?" 
+
+GPT-3 Response: "What is the capital of China? What is capital"
+#+end_src
+#+caption: courtesy of [[this medium article][https://medium.com/@lmpo/from-gpt-3-to-chatgpt-the-power-of-rlhf-118146b631ec]]
+#+end_center
+
+As such, in accordance with Value Sensitive Design, a refactoring
+became necessary.
+
+* Stakeholder Analysis
+
+** Biases
+
+Discuss training data.{{< mnote "it is only the internet!" >}}
+
+[cite:@baezayates2018bias]
+[cite:@shneiderman2020human]
+
+* Value Sensitive Design
+
+[cite:@Friedman2006value]
+
+* Footnotes
+
+[fn:1] https://en.wikipedia.org/wiki/Value_sensitive_design 
+
+
+* Notes                                                            :noexport:
+
+** GPT 1
+2018
+117 Million Parameters
+12 Layer Model
+
+** GPT 2
+2019
+1.5 Billion Parameters
+48 layers
+
+improvement from gpt 1; unsupervised learning now!
+
+
+** GPT 3
+2020
+175 Billion parameters, over 100x
+96 layers
+
+0 shot learning.
+
+contradicts itself in longer passages of text
+trained on the internet! talk about the biases of the internet! humans have real-world intellect, gpt3 only has the internet slice!
+
+** GPT 3.5
+2022
+unclear parameters
+deep reinforcement learning?
+
+** GPT 4
+2023
+no parameters released.
+
+** Transformer
+self-attention
+encoder, decoder connect via attention mechanisms
+
+
+** an important point to consider is the
+context token size.
+
+
+
+
+
+** definitely do not forget to discuss bias

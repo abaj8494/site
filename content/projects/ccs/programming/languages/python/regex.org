@@ -3,6 +3,7 @@ title = "@@html:<input type=\"checkbox\" class=\"nothing\" style=\"transform: sc
 tags = ["regex", "unix"]
 +++
 
+{{< collapse id="regex-python" lvl="3" >}}
 Source: https://www.w3resource.com/python-exercises/re/index.php
 
 * Exercise 1.

@@ -2,7 +2,7 @@
 title = "@@html:<input type=\"checkbox\" class=\"nothing\" style=\"transform: scale(1.4); vertical-align: middle; margin-right: 8px;\"/>@@Advanced Python Programming"
 tags = ["concurrency", "iterators", "decorators", "object-oriented"]
 +++
-
+{{< collapse id="python-adv" lvl="3" >}}
 Source: https://www.w3resource.com/python-exercises/advanced/index.php
 
 * 1. Multi-threaded web scraper that respects robots.txt rules.

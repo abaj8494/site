@@ -5,3 +5,7 @@ layout = "custom-list"
 
 {{< uncollapse id="mastery-python" >}}
 {{< uncollapse id="python-lambda" >}}
+{{< uncollapse id="python-filter" >}}
+{{< uncollapse id="json-python" >}}
+{{< uncollapse id="regex-python" >}}
+{{< uncollapse id="python-adv" >}}

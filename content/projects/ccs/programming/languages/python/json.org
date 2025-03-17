@@ -2,30 +2,32 @@
 title = "@@html:<input type=\"checkbox\" class=\"nothing\" style=\"transform: scale(1.4); vertical-align: middle; margin-right: 8px;\"/>@@JSON's in Python"
 +++
 
+{{< collapse id="json-python" lvl="3" >}}
 Source: https://www.w3resource.com/python-exercises/python-json-index.php
 
-1. Write a Python program to convert JSON data to Python object.
+** Exercise 1.
+Write a Python program to convert JSON data to Python object.
 
+** Exercise 2.
+Write a Python program to convert Python object to JSON data.
 
-2. Write a Python program to convert Python object to JSON data.
+** Exercise 3.
+Write a Python program to convert Python objects into JSON strings. Print all the values.
 
+** Exercise 4.
+Write a Python program to convert Python dictionary object (sort by key) to JSON data. Print the object members with indent level 4.
 
-3. Write a Python program to convert Python objects into JSON strings. Print all the values.
+** Exercise 5.
+Write a Python program to convert JSON encoded data into Python objects.
 
+** Exercise 6.
+Write a Python program to create a new JSON file from an existing JSON file.
 
-4. Write a Python program to convert Python dictionary object (sort by key) to JSON data. Print the object members with indent level 4.
+** Exercise 7.
+Write a Python program to check whether an instance is complex or not.
 
+** Exercise 8.
+Write a Python program to check whether a JSON string contains complex object or not.
 
-5. Write a Python program to convert JSON encoded data into Python objects.
-
-
-6. Write a Python program to create a new JSON file from an existing JSON file.
-
-
-7. Write a Python program to check whether an instance is complex or not.
-
-
-8. Write a Python program to check whether a JSON string contains complex object or not.
-
-
-9. Write a Python program to access only unique key value of a Python object.
+** Exercise 9.
+Write a Python program to access only unique key value of a Python object.

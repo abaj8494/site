@@ -16,7 +16,7 @@ main {
   grid-template-areas: "empty content sidebar";
   grid-template-columns: minmax(0px, 4%) minmax(0, 1000px) 1fr; /* Reduced first column from 2% to 1% */
   gap: 1rem;
-  padding-left: clamp(5px, 1vw, 10px); /* Reduced padding from 2vw to 1vw */
+  padding-left: clamp(8px, calc(1vw + 3px), 13px); /* Added 3px to each value */
 }
 
 header {

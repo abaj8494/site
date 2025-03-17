@@ -3,8 +3,6 @@ title = "@@html:<input type=\"checkbox\" class=\"refactor\" style=\"transform: s
 tags = ["sharpen"]
 +++
 
-
-
 {{< collapse id="mastery-python" lvl="3" >}}
 #+begin_export html
 <aside class="custom-toc">
