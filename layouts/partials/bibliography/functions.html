@@ -1,0 +1,10 @@
+{{/* Define echoParam function */}}
+{{ define "echoParam" }}
+  {{- with index . 0 -}}
+    {{/* The context */}}
+    {{- with index . (index . 1) -}}
+      {{/* The parameter name */}}
+      {{- . -}}
+    {{- end -}}
+  {{- end -}}
+{{ end }}

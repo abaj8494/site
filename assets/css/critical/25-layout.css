@@ -14,9 +14,9 @@ main {
   display: grid;
   grid-area: main;
   grid-template-areas: "empty content sidebar";
-  grid-template-columns: minmax(0px, 4%) minmax(0, 1000px) 1fr; /* Reduced first column from 2% to 1% */
+  grid-template-columns: 1.5fr minmax(0, 1000px) 3.5fr; /* Reduced first column from 2% to 1% */
   gap: 1rem;
-  padding-left: clamp(8px, calc(1vw + 3px), 13px); /* Added 3px to each value */
+  /*padding-left: clamp(2px, 1vw, 10px); /* Added 3px to each value */
 }
 
 header {
@@ -97,9 +97,10 @@ footer {
 }
 
 .sidebar-tree {
+  width: 90%;
   font-family: var(--font-monospace);
+  margin-left: -20px;
   max-width: 400px;
-  margin-left: 0;
   margin-right: 0;
   padding-left: 0;
   padding-top: 10rem;

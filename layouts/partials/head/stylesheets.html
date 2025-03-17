@@ -8,6 +8,9 @@
 {{ $marginNotes := resources.Get "css/non-critical/margin-notes.css" | resources.ExecuteAsTemplate "css/margin-notes.css" . | css.PostCSS }}
 
 
+<!-- Citation styles -->
+<link rel="stylesheet" type="text/css" href="{{ "/hugo-cite.css" | relURL }}" />
+
 <!-- Process the margin notes CSS separately so it's available at a specific URL -->
 {{ if hugo.IsProduction }}
   {{ $marginNotes = $marginNotes | minify | fingerprint "sha512" | resources.PostProcess }}
