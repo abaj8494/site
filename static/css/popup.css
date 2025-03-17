@@ -54,11 +54,11 @@
 
   /* Dimensions - allow proper sizing based on content */
   min-width: var(--popup-min-width);
-  max-width: none; /* Remove max width constraint */
+  max-width: none;
   min-height: var(--popup-min-height);
-  max-height: none; /* Remove max height constraint */
-  width: var(--popup-max-width); /* Initial width - reasonable default */
-  height: var(--popup-max-height); /* Explicitly set initial height */
+  max-height: none;
+  width: var(--popup-max-width);
+  height: var(--popup-max-height);
 
   background-color: var(--popup-background);
   border: var(--popup-border-width) double var(--popup-border-color);
@@ -70,15 +70,10 @@
     opacity 0.2s ease-out,
     transform 0.2s ease-out;
 
-  /* Create stacking context */
   isolation: isolate;
-
-  /* Box sizing for accurate dimensions */
   box-sizing: border-box;
-
-  /* Enable resizing */
   resize: none;
-  overflow: auto !important; /* Force auto overflow for resize to work */
+  overflow: hidden !important; /* Change from auto to hidden */
 }
 
 /* Style the popup edges to indicate resizability */
@@ -266,30 +261,25 @@
   font-weight: bold;
 }
 
-/* Scrollable content area */
+/* Scroll view styling */
 .popframe-scroll-view {
-  flex: 1 1 auto;
+  flex: 1;
   overflow-y: auto;
-  overscroll-behavior: none;
-  position: relative;
-  width: 100%; /* Changed from auto to 100% to fill container */
-  height: calc(
-    100% - var(--popup-title-bar-height)
-  ); /* Explicit calculation for height */
-  min-width: min-content; /* Allow content to determine width */
-  box-sizing: border-box; /* Include padding in height calculation */
-  padding: 0.5rem; /* Add a small padding for content */
+  overflow-x: hidden;
+  padding: 0;
+  margin: 0;
+  background-color: var(--popup-background);
+  opacity: 1 !important; /* Force opacity */
 }
 
-/* Scrollbar styling (WebKit/Blink) */
 .popframe-scroll-view::-webkit-scrollbar {
-  width: 12px;
+  width: 8px;
+  height: 8px;
 }
 
 .popframe-scroll-view::-webkit-scrollbar-thumb {
   background-color: var(--popup-scrollbar-thumb-color);
-  border-radius: 6px;
-  border: 3px solid var(--popup-background);
+  border-radius: 4px;
 }
 
 .popframe-scroll-view::-webkit-scrollbar-thumb:hover {

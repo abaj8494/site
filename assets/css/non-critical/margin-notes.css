@@ -20,7 +20,19 @@
   height: 100%;
   pointer-events: none; /* Allow clicking through to sidebar when no notes */
   z-index: 5;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+  opacity: 1;
+  transform: translateX(0);
   /* border: 1px dashed blue; */ /* DEBUG: removed highlight margin notes container */
+}
+
+/* Hidden state for margin notes container */
+.margin-notes.hidden {
+  opacity: 0;
+  transform: translateX(-10px);
+  pointer-events: none;
 }
 
 /* Individual margin note item */
@@ -28,31 +40,47 @@
   position: absolute;
   left: 0;
   width: 90%;
-  background-color: rgba(60, 60, 60, 0.97); /* Dark gray background */
-  border-left: 5px solid #6d98c5; /* Blue border - changed from red */
-  padding: 15px 20px; /* More generous padding */
-  margin: 10px 0; /* Larger margin between notes */
-  font-size: 0.9rem; /* Slightly larger font */
-  line-height: 1.6; /* More generous line height */
-  color: #fff; /* White text for contrast */
-  border-radius: 0 6px 6px 0; /* Larger rounded corners */
-  box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.4); /* Stronger shadow */
-  opacity: 1; /* Always fully visible */
-  transform: translateX(0);
-  transition: all 0.3s ease; /* Smooth transitions for all properties */
-  pointer-events: auto; /* Make note itself clickable */
-  z-index: 100; /* Higher z-index to ensure visibility */
-}
-
-/* Visible state for margin note - always visible */
-.margin-note-item {
+  background-color: rgba(60, 60, 60, 0.97);
+  border-left: 5px solid #6d98c5;
+  padding: 15px 20px;
+  margin: 10px 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #fff;
+  border-radius: 0 6px 6px 0;
+  box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.4);
   opacity: 0.95;
+  transform: translateX(0);
+  transition: all 0.3s ease;
+  pointer-events: auto;
+  z-index: 100;
 }
 
+/* Pulsate animation for margin notes */
+@keyframes pulsate {
+  0% {
+    transform: translateX(0);
+    box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.4);
+  }
+  50% {
+    transform: translateX(5px);
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.6);
+  }
+  100% {
+    transform: translateX(0);
+    box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.4);
+  }
+}
+
+.margin-note-item.pulsate {
+  animation: pulsate 1s ease;
+}
+
+/* Remove .visible class since we want them always visible by default */
 .margin-note-item:hover {
   opacity: 1;
-  box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.5); /* Enhanced shadow on hover */
-  transform: translateX(2px); /* Slight movement on hover */
+  box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.5);
+  transform: translateX(2px);
 }
 
 /* In-text note marker */
@@ -102,26 +130,26 @@
   .margin-note-item {
     position: fixed;
     top: auto !important;
-    bottom: 20px; /* More space from bottom */
-    left: 20px; /* More space from left */
-    right: 20px; /* More space from right */
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
     width: auto;
     max-width: none;
     z-index: 1000;
-    opacity: 0; /* Hide by default on mobile */
-    border-radius: 6px; /* Rounded corners all around on mobile */
+    opacity: 0; /* Only hide by default on mobile */
+    border-radius: 6px;
     border-left-width: 5px;
     border-top: none;
   }
 
   .margin-note-item.active {
-    opacity: 1; /* Show only when active on mobile */
+    opacity: 0.95; /* Show when active on mobile */
   }
 
   /* Class applied when desktop mode is detected on mobile */
   html.desktop-view .margin-note-item {
     position: absolute;
-    top: auto !important; /* Let positioning function handle it */
+    top: auto !important;
     bottom: auto;
     left: 0;
     right: auto;

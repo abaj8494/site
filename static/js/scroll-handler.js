@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Variables for scroll handling
   let isScrolling;
   let lastScrollTop = 0;
+  let notesHidden = false;
 
   // Better scroll handling
   window.addEventListener(
@@ -24,11 +25,14 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelector(".sticky-header") ||
         document.querySelector("header");
       const sidebarTree = document.querySelector(".sidebar-tree");
+      const marginNotesContainer = document.querySelector(".margin-notes");
 
       // Debug log element presence
       if (!header) console.log("[Scroll Handler] Warning: No header found");
       if (!sidebarTree)
         console.log("[Scroll Handler] Warning: No sidebar-tree found");
+      if (!marginNotesContainer)
+        console.log("[Scroll Handler] Warning: No margin-notes found");
 
       // Clear any existing timer
       window.clearTimeout(isScrolling);
@@ -37,6 +41,13 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log(
         `[Scroll Handler] Scroll position: ${st}, direction: ${st > lastScrollTop ? "DOWN" : "UP"}`,
       );
+
+      // Hide margin notes while scrolling
+      if (marginNotesContainer && !notesHidden) {
+        marginNotesContainer.classList.add("hidden");
+        notesHidden = true;
+        console.log("[Scroll Handler] Hiding margin notes");
+      }
 
       // Fade elements based on scroll direction
       if (st > lastScrollTop && st > 50) {
@@ -71,6 +82,12 @@ document.addEventListener("DOMContentLoaded", function () {
       // Set a timeout to run after scrolling ends
       isScrolling = setTimeout(() => {
         console.log("[Scroll Handler] Scrolling has stopped");
+        // Show margin notes when scrolling stops
+        if (marginNotesContainer && notesHidden) {
+          marginNotesContainer.classList.remove("hidden");
+          notesHidden = false;
+          console.log("[Scroll Handler] Showing margin notes");
+        }
       }, 500);
     },
     { passive: true },
