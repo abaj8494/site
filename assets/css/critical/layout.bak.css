@@ -1,0 +1,66 @@
+.layout {
+  display: grid;
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
+  grid-template-rows: auto 1fr auto;
+  height: 100%;
+  /* height was once 100vh; */
+}
+
+main {
+  align-items: start;
+  display: grid;
+  grid-area: main;
+  grid-template-areas: "empty content sidebar";
+  grid-template-columns: 1fr minmax(0, 1000px) 4fr;
+}
+
+header {
+  background: var(--bg1);
+  grid-area: header;
+}
+
+footer {
+  grid-area: footer;
+}
+
+main,
+footer {
+  margin: 0.5em 1.1em;
+}
+
+.content {
+  grid-area: content;
+}
+
+.content {
+  & a {
+    color: var(--primary-alt);
+  }
+
+  & a:hover {
+    color: var(--primary);
+  }
+  & a[href^="http://"]:not([href*="localhost"]):not([href*="192.168.1.113"]):not([href^="http://abaj.ai"])::after,
+  a[href^="https://"]:not([href*="localhost"]):not([href*="192.168.1.113"]):not([href^="https://abaj.ai"])::after
+  {
+    content: "\2009↗";
+    font-size: 0.9em;
+    color: inherit;
+  }
+}
+
+.sidebar {
+  display: none;
+  flex-direction: column;
+  grid-area: sidebar;
+  margin-top: 3rem;
+  position: sticky;
+  top: 2rem;
+
+  @media (--lg) {
+    display: flex;
+  }
+}

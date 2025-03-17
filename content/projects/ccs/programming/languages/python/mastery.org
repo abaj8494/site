@@ -19,9 +19,11 @@ tags = ["sharpen"]
 
 Source: https://www.w3resource.com/python-exercises/python_100_exercises_with_solutions.php
 
-* Tangles                                                          :noexport:
+** preamble                                                        :noexport:
 
 #+PROPERTY: dest /Users/aayushbajaj/Documents/new-site/static/code/ccs/programming/languages/100-days-python/mastery/
+#+OPTIONS: todo:nil d:nil
+
 
 #+begin_src emacs-lisp
   (setq ndk/tangle-dir (org-entry-get nil "dest" t))
@@ -678,7 +680,11 @@ Find the mean of each row in a 2D list.
 #+RESULTS:
 | 2.0 | 4.5 | 3.0 |
 
-** Exercise 22:
+** DONE Exercise 22:
+CLOSED: [2025-03-18 Tue 09:51]
+:LOGBOOK:
+- State "DONE"       from              [2025-03-18 Tue 09:51]
+:END:
 
 Create a random 4x4 list of lists and extract the diagonal elements.
 
@@ -698,7 +704,11 @@ Create a random 4x4 list of lists and extract the diagonal elements.
 : array([4, 2, 6, 4])
 :END:
 
-** Exercise 23:
+** DONE Exercise 23:
+CLOSED: [2025-03-18 Tue 09:53]
+:LOGBOOK:
+- State "DONE"       from              [2025-03-18 Tue 09:53]
+:END:
 
 Count the number of occurrences of a specific value in a list.
 
@@ -710,7 +720,11 @@ range_list.count(4)
 #+RESULTS:
 : 1
 
-** Exercise 24:
+** DONE Exercise 24:
+CLOSED: [2025-03-18 Tue 09:53]
+:LOGBOOK:
+- State "DONE"       from              [2025-03-18 Tue 09:53]
+:END:
 
 Replace all values in a list with the mean of the list.
 
@@ -723,7 +737,11 @@ Replace all values in a list with the mean of the list.
 #+RESULTS:
 : [2.5, 2.5, 2.5, 2.5, 2.5, 2.5]
 
-** Exercise 25:
+** DONE Exercise 25:
+CLOSED: [2025-03-18 Tue 09:53]
+:LOGBOOK:
+- State "DONE"       from              [2025-03-18 Tue 09:53]
+:END:
 
 Find the indices of the maximum and minimum values in a list.
 
@@ -748,7 +766,11 @@ you of course also have the numpy method, however that requires the overhead of 
 : 0
 : 5
 
-** Exercise 26:
+** DONE Exercise 26:
+CLOSED: [2025-03-18 Tue 09:53]
+:LOGBOOK:
+- State "DONE"       from              [2025-03-18 Tue 09:53]
+:END:
 
 Create a 2D list with 1 on the border and 0 inside.
 
@@ -765,7 +787,11 @@ Create a 2D list with 1 on the border and 0 inside.
 :  [1. 0. 1.]
 :  [1. 1. 1.]]
 
-** Exercise 27:
+** DONE Exercise 27:
+CLOSED: [2025-03-18 Tue 09:53]
+:LOGBOOK:
+- State "DONE"       from              [2025-03-18 Tue 09:53]
+:END:
 
 Find the unique values and their counts in a list.
 
@@ -783,7 +809,11 @@ Find the unique values and their counts in a list.
 : {0: 1, 1: 1, 2: 2, 3: 2, 4: 2, 5: 2, 6: 1}
 : [0, 1, 2, 3, 4, 5, 6]
 
-** Exercise 28:
+** DONE Exercise 28:
+CLOSED: [2025-03-18 Tue 09:53]
+:LOGBOOK:
+- State "DONE"       from              [2025-03-18 Tue 09:53]
+:END:
 
 Create a 3x3 list of lists with values ranging from 0 to 8.
 
@@ -796,7 +826,11 @@ Create a 3x3 list of lists with values ranging from 0 to 8.
 #+RESULTS:
 : [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
 
-** Exercise 29:
+** DONE Exercise 29:
+CLOSED: [2025-03-18 Tue 09:54]
+:LOGBOOK:
+- State "DONE"       from              [2025-03-18 Tue 09:54]
+:END:
 
 Calculate the exponential of all elements in a list.
 
@@ -810,7 +844,11 @@ Calculate the exponential of all elements in a list.
 #+RESULTS:
 : [1.0, 2.718281828459045, 7.38905609893065, 20.085536923187668, 54.598150033144236, 148.4131591025766, 403.4287934927351, 1096.6331584284585, 2980.9579870417283]
 
-** Exercise 30:
+** DONE Exercise 30:
+CLOSED: [2025-03-18 Tue 09:54]
+:LOGBOOK:
+- State "DONE"       from              [2025-03-18 Tue 09:54]
+:END:
 
 Swap two rows in a 2D list.
 
@@ -826,25 +864,113 @@ Swap two rows in a 2D list.
 : [[2, 2, 2, 0], [4, 2, 3, 4], [1, 1, 1, 3], [2, 0, 4, 2]]
 : [[4, 2, 3, 4], [2, 2, 2, 0], [1, 1, 1, 3], [2, 0, 4, 2]]
 
-** Exercise 31:
+** DONE Exercise 31:
+CLOSED: [2025-03-18 Tue 10:05]
+:LOGBOOK:
+- State "DONE"       from              [2025-03-18 Tue 10:05]
+:END:
 
 Create a random 3x3 list of lists and replace all values greater than 0.5 with 1 and all others with 0.
 
-** Exercise 32:
+*** soln
+#+begin_src jupyter-python :session mast-python :tangle q31.py
+  import random
+  random.seed(3)
+  print([[1 if random.random() > 0.5 else 0 for _ in range(3)] for _ in range(3)]) 
+#+end_src
+
+*** output
+#+RESULTS:
+: [[0, 1, 0], [1, 1, 0], [0, 1, 0]]
+
+** DONE Exercise 32:
+CLOSED: [2025-03-18 Tue 10:17]
+:LOGBOOK:
+- State "DONE"       from              [2025-03-18 Tue 10:17]
+:END:
 
 Find the indices of the top N maximum values in a list.
+
+*** soln
+#+begin_src jupyter-python :session mast-python :tangle q32.py
+  top_n_idx = lambda x,n: list(list(zip(*sorted(enumerate(x), key=lambda x:x[1], reverse=True)))[0][:n:])
+  print(top_n_idx([1, 2, 6, 4], 3))
+#+end_src
+
+*** output
+#+RESULTS:
+: [2, 3, 1]
+
 
 ** Exercise 33:
 
 Calculate the mean of each column in a 2D list.
 
+*** soln (oops sums over rows!)
+#+begin_src jupyter-python :session mast-python :tangle q33z.py
+  mean_cols = lambda l: [sum(l[i]) / len(l) for i in range(len(l))]
+  n = 5
+  d2_list = [[random.randint(0,10) for _ in range(n)] for _ in range(n)]
+  print(mean_cols(d2_list))
+#+end_src
+
+#+RESULTS:
+: [5.4, 6.0, 7.4, 6.0, 5.2]
+
+*** soln (over cols)
+#+begin_src jupyter-python :session mast-python :tangle q33a.py
+  mean_cols = lambda l: [sum(row[i] for row in l) / len(l) for i in range(len(l))]
+  n = 5
+  d2_list = [[random.randint(0,10) for _ in range(n)] for _ in range(n)]
+  print(mean_cols(d2_list))
+#+end_src
+
+#+RESULTS:
+: [2.6, 4.6, 5.6, 3.2, 3.6]
+
+
 ** Exercise 34:
 
 Normalize the values in each column of a 2D list.
 
+*** soln
+#+begin_src jupyter-python :session mast-python :tangle q34.py
+  random.seed(4)
+  mean_cols = lambda l: [
+	[l[r][c] / sum(l[i][c] for i in range(len(l[r])))
+	 for c in range(len(l[r]))]
+	for r in range(len(l))
+    ]
+  n = 5
+  d2_list = [[random.randint(0,10) for _ in range(n)] for _ in range(n)]
+  print("original matrix:", d2_list)
+  print(mean_cols(d2_list))
+#+end_src
+
+*** output
+#+RESULTS:
+: original matrix: [[3, 4, 1, 6, 7], [2, 1, 1, 0, 6], [8, 4, 0, 3, 8], [8, 5, 4, 2, 1], [4, 3, 0, 10, 4]]
+: [[0.12, 0.23529411764705882, 0.16666666666666666, 0.2857142857142857, 0.2692307692307692], [0.08, 0.058823529411764705, 0.16666666666666666, 0.0, 0.23076923076923078], [0.32, 0.23529411764705882, 0.0, 0.14285714285714285, 0.3076923076923077], [0.32, 0.29411764705882354, 0.6666666666666666, 0.09523809523809523, 0.038461538461538464], [0.16, 0.17647058823529413, 0.0, 0.47619047619047616, 0.15384615384615385]]
+
+*** lessons
+1. you need be careful along the axis which you are computing index calculations on
+2. if you are going to use huge lambda functions, at least indent them and split them across multiple lines.
+
 ** Exercise 35:
 
 Concatenate two lists.
+
+*** soln
+#+begin_src jupyter-python :session mast-python :tangle q35.py
+  l1 = list(range(5))
+  l2 = ['a', 'b', 'string']
+  l1.extend(l2)
+  print(l1)
+#+end_src
+
+*** output
+#+RESULTS:
+: [0, 1, 2, 3, 4, 'a', 'b', 'string']
 
 ** Exercise 36:
 
