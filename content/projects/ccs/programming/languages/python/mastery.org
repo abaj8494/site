@@ -22,18 +22,17 @@ Source: https://www.w3resource.com/python-exercises/python_100_exercises_with_so
 ** preamble                                                        :noexport:
 
 #+PROPERTY: dest /Users/aayushbajaj/Documents/new-site/static/code/ccs/programming/languages/100-days-python/mastery/
-#+OPTIONS: todo:nil d:nil
-
+#+OPTIONS: todo:nil d:nil p:nil
 
 #+begin_src emacs-lisp
-  (setq ndk/tangle-dir (org-entry-get nil "dest" t))
+(setq ndk/tangle-dir (org-entry-get nil "dest" t))
 
-  (defun ndk/org-babel-tangle-rename ()
-    (let ((tangledir ndk/tangle-dir)
-          (tanglefile (buffer-file-name)))
-        (rename-file tanglefile tangledir t)))
+(defun ndk/org-babel-tangle-rename ()
+  (let ((tangledir ndk/tangle-dir)
+        (tanglefile (buffer-file-name)))
+      (rename-file tanglefile tangledir t)))
 
-  (add-hook 'org-babel-post-tangle-hook #'ndk/org-babel-tangle-rename)
+(add-hook 'org-babel-post-tangle-hook #'ndk/org-babel-tangle-rename)
 #+end_src
 
 #+RESULTS:
@@ -41,8 +40,8 @@ Source: https://www.w3resource.com/python-exercises/python_100_exercises_with_so
 
 
 ** DONE Exercise 1:
-CLOSED: [2025-03-10 Mon 13:32]
 :LOGBOOK:
+CLOSED: [2025-03-10 Mon 13:32]
 - State "DONE"       from "TODO"       [2025-03-10 Mon 13:32]
 :END:
 
@@ -902,7 +901,11 @@ Find the indices of the top N maximum values in a list.
 : [2, 3, 1]
 
 
-** Exercise 33:
+** DONE Exercise 33:
+CLOSED: [2025-03-19 Wed 21:15]
+:LOGBOOK:
+- State "DONE"       from              [2025-03-19 Wed 21:15]
+:END:
 
 Calculate the mean of each column in a 2D list.
 
@@ -929,7 +932,11 @@ Calculate the mean of each column in a 2D list.
 : [2.6, 4.6, 5.6, 3.2, 3.6]
 
 
-** Exercise 34:
+** DONE Exercise 34:
+CLOSED: [2025-03-19 Wed 21:15]
+:LOGBOOK:
+- State "DONE"       from              [2025-03-19 Wed 21:15]
+:END:
 
 Normalize the values in each column of a 2D list.
 
@@ -956,7 +963,11 @@ Normalize the values in each column of a 2D list.
 1. you need be careful along the axis which you are computing index calculations on
 2. if you are going to use huge lambda functions, at least indent them and split them across multiple lines.
 
-** Exercise 35:
+** DONE Exercise 35:
+CLOSED: [2025-03-19 Wed 21:15]
+:LOGBOOK:
+- State "DONE"       from              [2025-03-19 Wed 21:15]
+:END:
 
 Concatenate two lists.
 
@@ -972,25 +983,150 @@ Concatenate two lists.
 #+RESULTS:
 : [0, 1, 2, 3, 4, 'a', 'b', 'string']
 
-** Exercise 36:
+** DONE Exercise 36:
+CLOSED: [2025-03-19 Wed 21:37]
+:LOGBOOK:
+- State "DONE"       from              [2025-03-19 Wed 21:37]
+:END:
 
 Create a 2D list with random values and sort each row.
 
-** Exercise 37:
+*** soln
+#+begin_src jupyter-python :session mast-python
+  import random
+  n = 3
+  sort_rows = lambda l: [sorted(row) for row in l]
+  print(sort_rows([[random.randint(0,n) for _ in range(n)] for _ in range(n)]))
+#+end_src
+
+*** output
+#+RESULTS:
+: [[0, 3, 3], [2, 2, 3], [0, 3, 3]]
+
+** DONE Exercise 37:
+CLOSED: [2025-03-19 Wed 21:37]
+:LOGBOOK:
+- State "DONE"       from              [2025-03-19 Wed 21:37]
+:END:
 
 Check if all elements in a list are non-zero.
+
+*** soln(bad)
+#+begin_src jupyter-python :session mast-python :tangle q37bad.py
+  my_list = [random.randint(0,n) for _ in range(n)]
+  check_nonzero = lambda l: True if len(list(filter(lambda x: x == 0, l))) == 0 else False
+  print(my_list)
+  print(check_nonzero(my_list))
+
+#+end_src
+
+*** output
+#+RESULTS:
+: [3, 3, 3]
+: True
+#+RESULTS:
+: [3, 0, 3]
+: False
+
+*** soln(good)
+#+begin_src jupyter-python :session mast-python :tangle q37pythonic.py
+  my_list = [random.randint(0,n) for _ in range(n)]
+  check_nonzero = lambda l: all(l)
+  print(my_list)
+  print(check_nonzero(my_list))
+#+end_src
+
+*** output
+#+RESULTS:
+: [0, 3, 2]
+: False
+
+#+RESULTS:
+: [3, 3, 3]
+: True
 
 ** Exercise 38:
 
 Find the indices of the maximum value in each row of a 2D list.
 
+*** soln
+#+begin_src jupyter-python :session mast-python
+  my_list = [[random.randint(0,n+2) for _ in range(n)] for _ in range(n)]
+  max_idx_rows_as_list = lambda l: list(map(lambda x: x.index(max(x)), l))
+  print(my_list)
+  print(max_idx_rows_as_list(my_list))
+
+#+end_src
+
+*** output
+#+RESULTS:
+: [[2, 0, 5], [1, 2, 3], [0, 5, 0]]
+: [2, 2, 1]
+
 ** Exercise 39:
 
 Create a 2D list and replace all nan values with the mean of the list.
 
+*** soln
+#+begin_src jupyter-python :session mast-python
+  my_list = [[random.randint(0,n+2) for _ in range(n)] for _ in range(n)]
+  max_idx_rows_as_list = lambda l: list(map(lambda x: x.index(max(x)), l))
+  print(my_list)
+  print(max_idx_rows_as_list(my_list))
+
+#+end_src
+
+*** output
+
 ** Exercise 40:
 
 Calculate the mean of each row in a 2D list ignoring nan values.
+
+*** soln
+#+begin_src jupyter-python :session mast-python
+  import math
+  matrix = [[1, float('nan'), 3], [4, 5, float('nan')], [7, 8, 9]]
+  #row_means = [sum(x for x in row if not math.isnan(x)) / sum(1 for x in row if not math.isnan(x)) for row in matrix]
+  row_means = list(map(lambda x: sum(i for i in x if not math.isnan(i)) / sum(1 for i in x if not math.isnan(i)) , matrix))
+  print(row_means)
+#+end_src
+
+*** soln
+#+RESULTS:
+: [2.0, 4.5, 8.0]
+
+*** lessons
+to summon a nan, you may use =float('nan')=. or you may also use
+
+#+begin_src python
+n1 = float("nan")
+n2 = float("Nan")
+n3 = float("NaN")
+n4 = float("NAN")
+print n1, n2, n3, n4
+from decimal import *
+
+n1 = Decimal("nan")
+n2 = Decimal("Nan")
+n3 = Decimal("NaN")
+n4 = Decimal("NAN")
+print n1, n2, n3, n4
+import math
+
+n1 = math.nan
+print(n1)
+print(math.isnan(n1))
+import numpy as np
+
+n1 = np.nan
+
+# Check if a value is NaN
+print(np.isnan(n1))
+#+end_src
+
+furthermore, to sum across elements in an unknown dimensional array, with each of the entries contributing weights, we can use =sum(i for i in x if not math.isnan(i))=.
+
+then for when only the existence of the digit matters, you can use =sum(1 for i in x if not math.nan(i))= as above.
 
 ** Exercise 41:
 
