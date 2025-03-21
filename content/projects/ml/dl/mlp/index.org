@@ -153,10 +153,10 @@ It is also worth acknowledging that we introduced a degree of non-linearity by u
 
 #+begin_center
 #+ATTR_HTML: :width 300px :class lateximage
-[[sgn.png]]
+[[{{< cwd >}}sgn.png]]
 \(\leadsto\)
 #+ATTR_HTML: :width 300px :class lateximage
-[[sigmoid.png]]
+[[{{< cwd >}}sigmoid.png]]
 #+end_center
 
 Real world problems -- such as MNIST tackled in the last heading of this page -- have hundreds of inputs with thousands of weights across tens of layers. {{< mnote "stringing multiple such MLP's form a Feedforward Neural Network" >}}

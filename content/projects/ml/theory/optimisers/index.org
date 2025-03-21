@@ -2,6 +2,7 @@
 title = "Optimiser Paradigms in Machine Learning"
 toc = "true"
 math = "true"
+tags = ["notes","sgd","adam","momentum","resnet18","cifar10"]
 +++
 
 * deep learning pipeline
@@ -35,9 +36,10 @@ clearly if you unroll the \(V_{t+1}\) term, you are equivalently unrolling the e
 \[\begin{align*}
 V_{t+1} &= \beta V_t + (1-\beta)\nabla W_t\\
 V_{t+2} &= \beta [\beta V_t + (1-\beta)\nabla W_t] + (1-\beta)\nabla W_t\\
-&= \beta^2 V_t + \beta(1-\beta)\nabla W_t + (1-\beta)\nabla W_t\\\]
+&= \beta^2 V_t + \beta(1-\beta)\nabla W_t + (1-\beta)\nabla W_t
+\end{align*}\]
 
-which represents all the subsequently older gradients with more decayed contributions to the current gradient; nonetheless the are contributive.
+which represents all the subsequently older gradients with more decayed contributions to the current gradient; nonetheless they are contributive.
 
 *** nag (Nesterov Accelerated Gradient)
 is also an option. it adds a corrective term to sgd momentum:
@@ -121,10 +123,11 @@ W_{t+1} &= W_t -\alpha \cfrac{\hat{M}_t}{\sqrt{\hat{V}_t}+\epsilon}\\
 \end{align}\]
 
 might delete:
+
 \[\begin{align}
 M_t &= \beta_1 M_{t-1} + (1-\beta_1)\nabla W_t \\
 V_t &= \beta_2 V_{t-1} + (1-\beta_2)\nabla W_t^2 \\
-\left.\begin{aligned}
+\left.\begin{aligned}[t]
 \hat{M}_t &= \cfrac{M_t}{1-\beta_1^t}\\
 \hat{V}_t &= \cfrac{V_t}{1-\beta_2^t}
 \end{aligned}\right\} \text{ bias correction} \\
@@ -137,18 +140,28 @@ W_{t+1} &= W_t -\alpha \cfrac{\hat{M}_t}{\sqrt{\hat{V}_t}+\epsilon}\\
 * experiments
 
 #+begin_center
-[[{{ < cwd >}}cifar10][3x32x32 dimensionality per image]]
+[[{{< cwd >}}cifar10.png][3x32x32 dimensionality per image]]
 #+end_center
 
+* resnet 18
 
-#+begin_src jupyter-python :session optims
-  import torch
-  import torchvision
-  import torchvision.transforms as transforms
-  model = torch.hub.load('/pytorch/vision:v0.10.0', 'resnet18', preTrained=True)
+I retrained the final fully-connected layer across 10 epochs
 
+#+begin_center
+#+ATTR_HTML: :width 500px :class lateximage
+[[{{< cwd >}}resnet-100-epochs.png]]
+#+end_center
 
-#+end_src
+to see a little more detail claude helped me split the epochs into smaller batches
+#+begin_center
+#+ATTR_HTML: :width 500px :class lateximage
+[[{{< cwd >}}resnet-10-epochs.png]]
+#+end_center
+
+** code
+{{< collapse-local folded="true" >}}
+
+#+INCLUDE: "resnet.py" src python
 
 * environment (earth)
 better optimiser, means less ruining earth.
@@ -167,3 +180,5 @@ just taking notes for the moment. a video by Sourish Kundu
 
 
 * references
+
+https://youtu.be/MD2fYip6QsQ?si=6jcK1kMMH1ix9OBt

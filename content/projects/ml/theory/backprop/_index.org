@@ -1,0 +1,29 @@
++++
+title = "Backpropagation"
++++
+
+#+begin_quote
+"Back-propagation is often misunderstood as meaning the whole learning algorithm for multi layer neural networks" --- Deep Learning (2015), Bengio
+#+end_quote
+
+Backpropagation{{< mnote "lovingly abbreviated to \"backprop\"" >}} is the process of computing the derivatives of the loss function recursively through a computation graph with respect to each of its weights. Another algorithm, usually some flavour of [[https://abaj.ai/projects/ml/theory/gradient-descent][gradient descent]] is used to perform learning /with/ this gradient.
+
+It is worth drawing a few lines in the sand from the getgo:
+- Backpropagation differs from the more general process of automatic differentiation in that we always compute gradients from the last layer to all weights
+- Furthermore, backprop is not the only way, nor is it the most optimal way of computing the gradients{{< mnote "finding the optimal sequence of operations to compute the gradient is [[https://abaj.ai/projects/ccs/time-complexity#np-complete][NP-complete]] (Naumann, 2008) >}}
+
+This algorithm guarantees that the number of computations for the gradient computation is of the same order as the number of computations for the forward computation; thus the overall computation is \(O(#edges)\).
+
+* Toy Example
+
+* The Chain Rule
+
+
+
+
+
+
+
+* History
+
+David Rumelhart, Geoffrey Hinton, Ronald Williams apply backpropagation to [[https://abaj.ai/projects/dl/mlp/][MLP's]] in 1986.
