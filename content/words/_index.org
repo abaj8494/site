@@ -33,10 +33,12 @@ A full stack, React web-app that injects Public Domain Books into your context w
 #+END_CENTER
 
 * bookshelf
-
+:PROPERTIES:
+:CUSTOM_ID: bookshelf
+:END:
 all of these books have been profoundly influential in sculpting my own character. I also believe these books--but not only[fn:2]--these books, have the capacity to "leverage" any other human /to the tits/.
 #+BEGIN_CENTER
-#+ATTR_HTML: :class lateximage :width 1000px
+#+ATTR_HTML: :id the-shelf :class lateximage :width 1000px
 [[/code/bookshelf/doc/bookshelf.svg]]
 #+END_CENTER
 

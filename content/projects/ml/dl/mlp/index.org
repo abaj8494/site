@@ -11,16 +11,15 @@ We have seen what can be learned by the [[/projects/dl/perceptron][perceptron al
 It may also be of interest to know that the perceptron algorithm can also be used for regression with the simple modification of not applying an activation function (i.e. the sigmoid). I refer the interested reader to open another [[/projects/ml/regression/perceptron][tab]].
 
 We begin with the punchline:
+
 * XOR
-
-
 #+BEGIN_CENTER
-#+CAPTION: Not linearly separabel in \(\mathbb{R}^2\)
+#+CAPTION: Not linearly separable in \(\mathbb{R}^2\)
 #+ATTR_HTML: :class lateximage :width 500px
 [[{{< cwd >}}xor.png]]
 #+END_CENTER
 
-Now clearly, taking a ruler, your finger or positioning any straight-lined object on the above figure will not enable you to separate the @@html:<font color="#0071c5">blue</font>@@ from the @@html:<font color=red>red</font>@@ circles.
+Now clearly, taking a ruler, your finger or positioning any straight-lined object on the above figure will not enable you to separate the @@html:<font color="#0071c5">blue</font>@@ (true) from the @@html:<font color=red>red</font>@@ (false) circles.
 This was also one of Marvin Minsky's arguments against further development of the Perceptron in 1963. However, with the benefit of hindsight, we shall not retire so quickly, instead we add another layer of the neurons:
 
 #+BEGIN_CENTER
@@ -95,7 +94,7 @@ We now test all of our points to see if they are correctly classified by the abo
 ** Linear Decision Boundary in Hidden State Space
 From the above trace we can summarise the following results:
 |---------+---------+-----------+----------+
-| \(x_1\) | \(x_2\) | \(h_1\)   | \(\h_2\) |
+| \(x_1\) | \(x_2\) | \(h_1\)   | \(h_2\)  |
 |---------+---------+-----------+----------+
 |       1 |       1 |         1 |        0 |
 |       0 |       0 |         0 |        1 |
@@ -141,7 +140,7 @@ A benefit of this analysis is noticing that we have another equivalence for the 
 Also, for reference, here is a single neuron:
 #+BEGIN_CENTER
 #+CAPTION: Single Layered Perceptron
-#+ATTR_HTML: :class lateximage :width 500px
+#+ATTR_HTML: :id slp :class lateximage :width 500px
 [[{{< cwd >}}perceptron.svg]]
 #+END_CENTER
 
@@ -150,20 +149,119 @@ Also, for reference, here is a single neuron:
 
 Now, as beautiful and rewarding this manual derivation is, it is not always possible to know how many neurons you will need to be able to linearly separate your data in a different state space.
 
-It is also worth acknowledging that we introduced a degree of non-linearity by using the step-function activation at the hidden nodes. See the =Single Layered Perceptron= diagram above.
+It is also worth acknowledging that we introduced a degree of non-linearity by using the step-function activation at the hidden nodes{{< mnote "See the [[#slp][Single Layered Perceptron]] diagram above." >}} --- this function is not differentiable, and is now nearing the end of its shelf life. As such we must refactor the wheel:
 
-Also it is unlikely that you will have such a toy problem with such a small number of inputs and weights. In reality you will have hundreds of inputs with thousands of weights across tens of layers. Note, that the stringing of multiple such MLP's form a Feedforward Neural Network.
+#+begin_center
+#+ATTR_HTML: :width 300px :class lateximage
+[[sgn.png]]
+\(\leadsto\)
+#+ATTR_HTML: :width 300px :class lateximage
+[[sigmoid.png]]
+#+end_center
 
-As such we will now tackle a problem that lies in the middle of both these camps, N-XOR.
+Real world problems -- such as MNIST tackled in the last heading of this page -- have hundreds of inputs with thousands of weights across tens of layers. {{< mnote "stringing multiple such MLP's form a Feedforward Neural Network" >}}
+
+[[https://abaj.ai/projects/ml/theory/backprop/][Backpropagation]] is the bridge between simple Perceptrons and Deep Learning with Multi-layered Perceptrons. We will now solve 3-XOR by Backpropagation.
+
+** sigmoid fig                                                     :noexport:
+
+#+begin_src jupyter-python :session mlp
+  import matplotlib.pyplot as plt
+  import numpy as np
+  
+  # Create x values for plotting
+  x = np.linspace(-5, 5, 1000)
+  
+  # Calculate sigmoid values: sigmoid(x) = 1 / (1 + exp(-x))
+  sigmoid = 1 / (1 + np.exp(-x))
+  
+  # Create the plot
+  plt.figure(figsize=(8, 6))
+  plt.plot(x, sigmoid, color='blue', linewidth=2)
+  
+  # Add horizontal asymptotes
+  plt.axhline(y=1, color='black', linestyle='--', alpha=0.3)
+  plt.axhline(y=0, color='black', linestyle='--', alpha=0.3)
+  
+  # Add vertical line at x=0
+  plt.axvline(x=0, color='gray', linestyle='--', alpha=0.3)
+  
+  # Mark the midpoint (0, 0.5)
+  plt.scatter(0, 0.5, s=80, color='red')
+  
+  # Add labels and title
+  plt.xlabel('x')
+  plt.ylabel('σ(x)')
+  plt.title('Sigmoid Function: σ(x) = 1 / (1 + e^(-x))')
+  plt.grid(True, alpha=0.3)
+  
+  # Set y-axis limits for better visualization
+  plt.ylim(-0.1, 1.1)
+  
+  plt.show()
+#+end_src
 
 * \(N^2\)-XOR / Advanced XOR
 
-I do not know what this problem is actually called, but it makes perfect sense to extend our XOR of two inputs ([0,1]), to that of three inputs ([0,1,2]).
+#+BEGIN_CENTER
+#+CAPTION: keeps going from \(4\ldots N\)
+#+ATTR_HTML: :class lateximage :width 500px
+[[{{< cwd >}}3xor.png]]
+#+END_CENTER
+
+I call this problem \(N^2\) XOR. It makes sense to extend our XOR of two inputs =([0,1])=, to that of three inputs =([0,1,2])=.
 
 In general we could extend the problem to any integer N, and the number of dots would be \(N^2\).
 
+** 3xor fig                                                        :noexport:
+
+#+begin_src jupyter-python :session mlp
+
+    import matplotlib.pyplot as plt
+  import numpy as np
+
+  # Define data points
+  a = np.array([0, 0, 0])
+  b = np.array([1, 1, 0])
+  c = np.array([0, 1, 1])
+  d = np.array([1, 0, 1])
+  e = np.array([2, 0, 0])
+  f = np.array([2, 1, 1])
+  g = np.array([2, 2, 0])
+  h = np.array([1, 2, 1])
+  i = np.array([0, 2, 0])
+  X = np.array([a, b, c, d, e, f, g, h, i])
+
+  # Separate points based on the third column
+  x_neg = X[X[:, 2] == 0][:, 0]
+  x_pos = X[X[:, 2] == 1][:, 0]
+  y_neg = X[X[:, 2] == 0][:, 1]
+  y_pos = X[X[:, 2] == 1][:, 1]
+
+  # Generate X values for the lines
+  X_vals = np.linspace(-0.5, 1.5, 100)
+
+  # Create the plot
+  plt.figure(figsize=(8, 6))
+  plt.scatter(x_neg, y_neg, color='r', label='Class —')
+  plt.scatter(x_pos, y_pos, color='b', label='Class +')
+
+  # Add grid, labels, legend
+  plt.grid(True)
+  plt.xlabel("x")
+  plt.ylabel("y", rotation=0)
+  plt.legend()
+  plt.title("3 XOR")
+  plt.show()
+
+#+end_src
+
+#+RESULTS:
+[[file:./.ob-jupyter/0cb31dd2f7cb32494bba6056b101a50d2ab6dcb9.png]]
 
 ** Code
+
+{{< collapse-local folded="true" >}}
 
 Here we implement a MLP in Pytorch, train it using binary cross-entropy loss and visualise the hidden layer activations and outputs.
 We will also in a moment make use of the ability to set weights manually, but for now we will let the network use random initialisations of 0.15.
@@ -565,201 +663,6 @@ print('Test loss, Test accuracy:', results)
     \node[below of=y,font=\scriptsize] {Output};
 
 \end{tikzpicture}
-
-** lor
-\begin{tikzpicture}[basic/.style={draw,fill=blue!20,text width=1em,text badly centered},
-		    input/.style={basic,circle},
-		    weights/.style={basic,rectangle},
-		    functions/.style={basic,circle,fill=blue!10}]
-    % Input layer
-    \node[input] (x1) at (0, 0) {$x_1$};
-    \node[input] (x2) at (2, 0) {$x_2$};
-
-    % Output layer
-    \node[functions] (y) at (1, 2) {$y$};
-
-    % Input to hidden layer connections
-    \draw[->] (x1) -- (y) node[midway, left] {$+1$};
-    \draw[->] (x2) -- (y) node[midway, right] {$+1$};
-    \node[right] at (1.2,2.2) {$-0.5$};
-\end{tikzpicture}
-
-** land
-\begin{tikzpicture}[basic/.style={draw,fill=blue!20,text width=1em,text badly centered},
-		    input/.style={basic,circle},
-		    weights/.style={basic,rectangle},
-		    functions/.style={basic,circle,fill=blue!10}]
-    % Input layer
-    \node[input] (x1) at (0, 0) {$x_1$};
-    \node[input] (x2) at (2, 0) {$x_2$};
-
-    % Output layer
-    \node[functions] (y) at (1, 2) {$y$};
-
-    % Input to hidden layer connections
-    \draw[->] (x1) -- (y) node[midway, left] {$+1$};
-    \draw[->] (x2) -- (y) node[midway, right] {$+1$};
-    \node[right] at (1.2,2.2) {$-1.5$};
-\end{tikzpicture}
-
-** neg land
-\begin{tikzpicture}[basic/.style={draw,fill=blue!20,text width=1em,text badly centered},
-		    input/.style={basic,circle},
-		    weights/.style={basic,rectangle},
-		    functions/.style={basic,circle,fill=blue!10}]
-    % Input layer
-    \node[input] (x1) at (0, 0) {$x_1$};
-    \node[input] (x2) at (2, 0) {$x_2$};
-
-    % Output layer
-    \node[functions] (y) at (1, 2) {$y$};
-
-    % Input to hidden layer connections
-    \draw[->] (x1) -- (y) node[midway, left] {$-1$};
-    \draw[->] (x2) -- (y) node[midway, right] {$-1$};
-    \node[right] at (1.2,2.2) {$+1.5$};
-\end{tikzpicture}
-
-** xor mlp
-\begin{tikzpicture}[basic/.style={draw,fill=blue!20,text width=2em,text badly centered},
-		    input/.style={basic,circle},
-		    weights/.style={basic,rectangle},
-		    functions/.style={basic,circle,fill=blue!10},scale=1.5]
-    % vertices
-    \node[input] (x1) at (1, 0) {$x_1$};
-    \node[input] (x2) at (4, 0) {$x_2$};
-    \node[functions] (h1) at (1, 3) {$h_1$};
-    \node[functions] (h2) at (4, 3) {$h_2$};
-    \node[functions] (y) at (2.5, 5) {$y$};
-
-    % lines
-    \draw[very thick,->] (x1) -- (h1) -- (y);
-    \draw[very thick,->] (x1) -- (h2) -- (y);
-    \draw[very thick,->] (x2) -- (h1);
-    \draw[very thick,->] (x2) -- (h2);
-
-    %biases
-    \draw[--] (h1) -- (0.5,2.7) node[weights,left] {$-0.5$};
-    \draw[--] (h2) -- (5.2,2.7) node[weights,left] {$+1.5$};
-    \draw[--] (y) -- (3.2,5) node[weights,right] {$-1.5$};
-
-    %weights
-    \node[weights,left] at (1,1.5) {$+1$};
-    \node[weights,right] at (4,1.5) {$-1$};
-    \node[weights,above] at (2,2) {$+1$};
-    \node[weights] at (3.2,2) {$-1$};
-    \node[weights,left] at (2,4) {$+1$};
-    \node[weights,right] at (3,4) {$+1$};
-
-\end{tikzpicture}
-
-** hidden state space
-
-#+begin_src jupyter-python :session mlp :exports none
-  import matplotlib.pyplot as plt
-  import numpy as np
-  a = np.array([1, 0, 0])
-  b = np.array([0, 1, 0])
-  c = np.array([1, 1, 1])
-  d = np.array([1, 1, 1])
-  X = np.array([a,b,c,d])
-  x_neg = X[X[:,2]==0][:,0]
-  x_pos = X[X[:,2]==1][:,0]
-  y_neg = X[X[:,2]==0][:,1]
-  y_pos = X[X[:,2]==1][:,1]
-  X = np.linspace(-1,2,11)
-  plt.scatter(x_neg, y_neg, color='r')
-  plt.scatter(x_pos, y_pos, color='b')
-  plt.plot(X,-X+1.5,color='green')
-  plt.grid(True)
-  plt.xlabel("$h_1$")
-  plt.ylabel("$h_2$",rotation=0)
-  plt.show()
-
-#+end_src
-
-#+RESULTS:
-[[file:./.ob-jupyter/e8f1d3f14f70e8f4b1070e83931f28d18975046d.png]]
-
-
-** original state space
-#+begin_src jupyter-python :session mlp :exports none
-  import matplotlib.pyplot as plt
-  import numpy as np
-  a = np.array([0, 0, 0])
-  b = np.array([1, 1, 0])
-  c = np.array([0, 1, 1])
-  d = np.array([1, 0, 1])
-  X = np.array([a,b,c,d])
-  x_neg = X[X[:,2]==0][:,0]
-  x_pos = X[X[:,2]==1][:,0]
-  y_neg = X[X[:,2]==0][:,1]
-  y_pos = X[X[:,2]==1][:,1]
-  X = np.linspace(-0.5,1.5,11)
-  plt.scatter(x_neg, y_neg, color='r')
-  plt.scatter(x_pos, y_pos, color='b')
-  plt.plot(X, 0.5-X,color='green')
-  plt.plot(X, 1.5-X,color='green')
-  plt.grid(True)
-  plt.xlabel("x")
-  plt.ylabel("y", rotation=0)
-  plt.show()
-
-#+end_src
-
-#+RESULTS:
-[[file:./.ob-jupyter/383400d581bfe8afe52a2687e78079ab653c8f00.png]]
-
-#+begin_src jupyter-python :session mlp
-  import matplotlib.pyplot as plt
-import numpy as np
-
-# Define data points
-a = np.array([0, 0, 0])
-b = np.array([1, 1, 0])
-c = np.array([0, 1, 1])
-d = np.array([1, 0, 1])
-X = np.array([a, b, c, d])
-
-# Separate points based on the third column
-x_neg = X[X[:, 2] == 0][:, 0]
-x_pos = X[X[:, 2] == 1][:, 0]
-y_neg = X[X[:, 2] == 0][:, 1]
-y_pos = X[X[:, 2] == 1][:, 1]
-
-# Generate X values for the lines
-X_vals = np.linspace(-0.5, 1.5, 100)
-
-# Define the equations for the lines
-line1 = 0.5 - X_vals
-line2 = 1.5 - X_vals
-
-# Create the plot
-plt.figure(figsize=(8, 6))
-plt.scatter(x_neg, y_neg, color='r', label='Class —')
-plt.scatter(x_pos, y_pos, color='b', label='Class +')
-
-# Plot the lines and label them
-plt.plot(X_vals, line1, color='green', label='y = 0.5 - x')
-plt.plot(X_vals, line2, color='green', label='y = 1.5 - x')
-
-# Shade the region between the two lines
-plt.fill_between(X_vals, line1, line2, color='green', alpha=0.2, label='Shaded Region')
-
-# Add grid, labels, legend
-plt.grid(True)
-plt.xlabel("x")
-plt.ylabel("y", rotation=0)
-plt.legend()
-plt.title("Shaded Region Between Inequalities")
-plt.show()
-
-
-#+end_src
-
-#+RESULTS:
-[[file:./.ob-jupyter/ed804a0e47d3bae415e0e76567bc7ea148c93eea.png]]
-
 
 ** lor
 \begin{tikzpicture}[basic/.style={draw,fill=blue!20,text width=1em,text badly centered},

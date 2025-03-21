@@ -21,7 +21,7 @@ We can see in the diagram below what Rosenblatt's theoretical perceptron looked 
 
 #+BEGIN_CENTER
 #+CAPTION: Neuron Activations
-#+ATTR_HTML: :width 600px :class lateximage
+#+ATTR_HTML: :id perceptron :width 600px :class lateximage
 [[{{< cwd >}}perceptron.svg]]
 #+END_CENTER
 
@@ -34,6 +34,50 @@ Here is a diagram showing how the synapses of one neuron connect to the dendrite
 #+ATTR_HTML: :width 600px :class lateximage
 [[{{< cwd >}}synapse.jpg]]
 #+END_CENTER
+
+* The Loss Function (Sgn)
+
+It is absolutely worth taking a moment to blow up the Activation Function on the last node of the [[#perceptron][perceptron]].
+
+#+begin_center
+#+ATTR_HTML: :width 300px :class lateximage
+[[sgn.png]]
+\(\leadsto\)
+#+ATTR_HTML: :width 300px :class lateximage
+[[sgn-binary.png]]
+#+end_center
+
+Clearly, this function is discontinuous at 0 and thus not smooth and differentiable. For now we can iteratively adjust the weights of our hyperplane until linear separation is achieved, but in general when we stitch together Multi-Layered Perceptrons later, we will need a new loss function.
+
+I cover the theory of Loss Functions in more detail [[https://abaj.ai/projects/ml/theory/loss-fns][here]].
+
+** code                                                            :noexport:
+#+begin_src jupyter-python :session perceptron
+  import matplotlib.pyplot as plt
+  import numpy as np
+  xx_neg = np.linspace(-5,-0.15,1000)
+  xx_pos = np.linspace(0.15,5,1000)
+  plt.plot(xx_neg, np.sign(xx_neg), color='black')
+  plt.plot(xx_pos, np.sign(xx_pos), color='black')
+  plt.scatter(0,0,s=80,color='black')
+  plt.scatter(0,1,s=80, facecolors='none', edgecolors='black')
+  plt.scatter(0,-1,s=80, facecolors='none', edgecolors='black')
+  plt.title("y=sgn(x)")
+  plt.show()
+#+end_src
+
+#+begin_src jupyter-python :session perceptron
+  import matplotlib.pyplot as plt
+  import numpy as np
+  xx_neg = np.linspace(-5,-0.15,1000)
+  xx_pos = np.linspace(0.15,5,1000)
+  plt.plot(xx_neg, np.sign(xx_neg), color='black')
+  plt.plot(xx_pos, np.sign(xx_pos), color='black')
+  plt.scatter(0,-1,s=80,color='black')
+  plt.scatter(0,1,s=80, facecolors='none', edgecolors='black')
+  plt.title("y=sgn(x) strictly binary")
+  plt.show()
+#+end_src
 
 * The Algorithm
 
@@ -393,10 +437,10 @@ Let us add another method to our existing =Perceptron= class by leveraging some 
 
 #+BEGIN_CENTER
 #+CAPTION: \(\eta = 1.0\)
-#+ATTR_HTML: :class lateximage :width 500px
+#+ATTR_HTML: :class lateximage :width 450px
 [[{{< cwd >}}eta10.png]]
 #+CAPTION: \(\eta = 0.1\)
-#+ATTR_HTML: :class lateximage :width 500px
+#+ATTR_HTML: :class lateximage :width 450px
 [[{{< cwd >}}eta01.png]]
 #+END_CENTER
 
@@ -466,6 +510,8 @@ Let us put the nail in this page's coffin and do justice to the iterative nature
   X,y=generate_data(n=20,means=[[-1,-1],[1,2]],seed=204)
   train_perceptron_for_vis(X,y)
 #+END_SRC
+
+#+BEGIN_CENTER
 #+CAPTION: Perceptron Iterations
 #+ATTR_HTML: :class lateximage :width 500px
 [[{{< cwd >}}iter.gif]]

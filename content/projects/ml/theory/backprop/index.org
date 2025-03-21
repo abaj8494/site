@@ -1,3 +1,7 @@
 +++
 title = "Backpropagation"
 +++
+
+* History
+
+David Rumelhart, Geoffrey Hinton, Ronald Williams apply backpropagation to [[https://abaj.ai/projects/dl/mlp/][MLP's]] in 1986.

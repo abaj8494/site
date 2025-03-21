@@ -7,11 +7,9 @@ layout = "single"
 
 These are all the books that I own / have owned in the past. I have not read them all, neither will I ever be able to.
 
-You walked past the [[/words#bookshelf][rendered SVG]] on your way here.
+You walked past the [[/words#the-shelf][rendered SVG]] on your way here.
 
 
 #+INCLUDE: "./books-partials.html" export html
 
-* TODO add more books                                              :noexport:
-* TODO integrate hyperlinks to pages that collect backlinks        :noexport:
 
