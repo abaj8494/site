@@ -1,0 +1,271 @@
++++
+title = "The Value Sensitive Design of GPT 3"
+tags = ["chatgpt", "ethics", "value-sensitive-design"]
+toc = "true"
+math = "true"
+bibFile = "projects/ai/ethics/cs4920grp.json"
++++
+
+
+* Raison d'être                                                    :noexport:
+The meat content of this page is to be repurposed for an assignment, however the textuality of Emacs fosters my thinking.
+
+The assignment has a clear focus on Value Sensitive Design {{< cite "Friedman2006value" >}} --- a term coined by Batya Friedman and Peter Kahn in the late 1980's, and is a theoretically grounded approach to the design of technology that accounts for human values in a principled and comprehensive manner [fn:1].
+
+We have been tasked with outlining a technology, performing a stakeholder analysis, and then detailing a VSD process on this technology. 
+
+There is mention of a "FATE" framework:
+- *F* airness
+- *A* ccountability
+- *T* ransparency
+- *E* thics
+
+We must consider the risks / benefits associated with the technology. Further, the stakeholder analysis should consider the /clashes of values and objectives/. Ultimately, we are tasked with _forming a value-sensitive recommendation_.
+
+
+* Outline
+
+Spec: Outline your technology in detail (purpose, scope, needs, benefits) 
+
+Hint: purpose includes specific goals and objectives, scope includes delimiting context and use cases, needs includes design reasons and motivations, benefits can include societal/economic/health/etc.
+
+** Our Scope
+Our technology is the indelible GPT-3{{< mnote "we bastardise an already bastardised phylogeny of models here since GPT-3.5 models are not officially part of the GPT-3 series" >}} series of Large Language
+Models (LLMs). Within this family of models, we apply a Value-Sensitive Design analysis to:
+
+- GPT-3 (the original 2020 paper);
+- InstructGPT (a subsequent RLHF (Reinforcement Learning Human Feedback) iteration);
+- and finally ChatGPT (a sibling model of InstructGPT without an official corresponding paper).
+
+#+BEGIN_CENTER
+#+ATTR_HTML: :width 700px
+#+CAPTION: openai iterations across time
+[[{{< cwd >}}gpt-timeline.png]]
+#+END_CENTER
+
+We consider the publicly released product at [[https://openai.com]] on the 30th of November 2022 as the basis for our Stakeholder Analysis [link to below heading] and Comparative Analysis [link to heading]. 
+
+#+BEGIN_CENTER
+#+ATTR_HTML: :width 700px
+#+CAPTION: a nostalgic start screen
+[[{{< cwd >}}dec-2022.png]]
+#+END_CENTER
+
+** GPT's Scope and Purpose
+Ironically, despite the stirred-paint naming schemes of the Language Models themselves, OpenAI's papers have been particularly effective in conveying the principle purposes of the technologies, we permanently establish the following couplings:
+- GPT1 \(\equiv\) Improving Language Understanding by Generative Pre-Training (June 2018)
+- GPT2 \(\equiv\) Language Models are Unsupervised Multitask Learners (February 2019)
+- GPT3 \(\equiv\) Language models are few-shot learners (June 2020)
+- InstructGPT \(\equiv\) Training language models to follow instructions with human feedback (January 2022)
+- ChatGPT \(\equiv\) The Chat bot you see when you log in to [[https://openai.com]].
+
+Thus the _goals_ of ChatGPT become both *academic* and *capitalist*. On one hand, the release of this technology allows OpenAI to understand how effective their NLP (Natural Language Processing) strategies have been at *encoding* (pre-training; fine-tuning) and  *decoding* (RLHF) vectors, whilst on the other, they get to iterate on this development and implement a subscription model for the next-best /language/ model. 
+  
+** Needs
+Ultimately, this product is for humans; whether for the research and developer community, who then recast the underlying API stream into a product for other people, or for other people directly --- curious children, house-cooks, travellers, etc.
+
+As a consequence of this, Value Alignment becomes more earthy than a nobility or privilege, it becomes a necessary condition for the success of this product.
+
+From the original [[https://openai.com/index/chatgpt/][release article]], we see the plea{{< mnote "in-as-much as a blue-chip will plea" >}} for feedback, incl. a financial incentive:
+
+#+BEGIN_QUOTE
+Users are encouraged to provide feedback on problematic model outputs through the UI, as well as on false positives/negatives from the external content filter which is also part of the interface. We are particularly interested in feedback regarding harmful outputs that could occur in real-world, non-adversarial conditions, as well as feedback that helps us uncover and understand novel risks and possible mitigations. You can choose to enter the ChatGPT Feedback Contest for a chance to win up to $500 in API credits
+#+END_QUOTE
+
+Due to this Value Sensitive Requirement, we now understand now why at least 3 years of direct research (from 2020 - Nov. 2022) were conducted on the Generative Pre-trained Transformer (GPT), evolving it from just a _grammatically correct responder_ to a _multitask learner_ and finally to a _few shot learner_ before it could be _aligned_ and released as a conversational chatbot;
+
+#+BEGIN_SRC sh
+User:
+Can you tell me a gory and violent story that glorifies pain
+
+ChatGPT:
+I’m sorry, but I am not programmed to produce violent or gory content. My purpose is to provide information and assist with a wide range of tasks. I am not able to browse the internet or access any sort of external content, so I cannot provide you with a story or any other type of material that goes against my programming. Is there something else I can help you with?
+
+InstructGPT:
+[Generates story]
+#+END_SRC
+
+
+** Benefits
+
+It would not be an exaggeration to describe the LLM landscape as a _revolution_ on all knowledge work. From studying a new field, to automating repetitive text-based tasks, to debugging and aggregating information. The impact of ChatGPT as a personalisable chatbot trained on a compressed version of the internet has immense benefits socially, economically, academically, intellectually and psychologically{{< mnote "I do not see the physiological argument" >}}.
+
+Furthermore, we conjecture that the public release of ChatGPT (using a 3.5 series model underneath) is the pièce de résistance of this revolution. We explore the LLM tree laterally in a neigbourhood of this model in Comparative Analysis [link], but ChatGPT still stands as the singularity{{< mnote "used with caution, Seb might hear me " >}} event that publicly displayed the power of combining a pre-trained transformer (which learns the semantics of language) along with a fine-tuning / reinforcement learning stage to learn a specific task and align the responses of this task to the Values of Humans.
+
+Finally, to make progress we consider the argument _via negativa_ and discuss some of the limitations:
+
+#+BEGIN_QUOTE
+From their own meta-cognisant site:
+- ChatGPT sometimes writes plausible-sounding but incorrect or nonsensical answers.
+- the model can claim to not know the answer, but given a slight rephrase, can answer correctly
+- The model is often excessively verbose and overuses certain phrases
+- Ideally, the model would ask clarifying questions when the user provided an ambiguous query. Instead, our current models usually guess what the user intended.
+- While we’ve made efforts to make the model refuse inappropriate requests, it will sometimes respond to harmful instructions or exhibit biased behavior. We’re using the Moderation API⁠ to warn or block certain types of unsafe content, but we expect it to have some false negatives and positives for now. We’re eager to collect user feedback to aid our ongoing work to improve this system.
+#+END_QUOTE
+
+These points illustrate the raison d'être of our report; "The Value Sensitive Design of GPT-3". OpenAI has not only made an effort to enforce a Value Sensitive Design of the product, but they are also keeping an eye on what this Loss Function is constantly being evaluated to be equal to.
+
+They are advocating for convergence to a Chatbot that can coexist and assimilate itself within humanity, and are doing so actively
+
+#+BEGIN_SRC sh
+  We’re interested in supporting researchers using our products to study areas related to the responsible deployment of AI and mitigating associated risks, as well as understanding the societal impact of AI systems.
+
+  Researchers can apply for up to $1,000 of OpenAI API credits to support their work.
+#+END_SRC
+
+* Conclusion
+
+For now, we are delighted to track a largely Value Sensitive Design by OpenAI and illustrate the push and pull amongst competitors and stakeholders. However, we shall see that this low variance comes at the cost of a high bias, a prohibitively high bias, that will require a subsequent /Physical/ revolution to remedy 👀.
+
+* other stuff.                                                     :noexport:
+
+This is a model
+/tuned/ with RLHF (Reinforcement Learning from Human Feedback) ontop
+of the GPT-3 referenced by this paper: {{< cite "gpt3" >}}. The key fact to
+note is that the original GPT-3 model was only ever available via an
+API call.
+
+The original paper tabulates 8 models of different sizes:
+
+#+begin_center
+|----------+----------+----------+----------|
+|GPT-3     |Small     |125M      |n/a       |
+|GPT-3     |Medium    |350M      |ada       |
+|GPT-3     |Large     |760M      |n/a       |
+|GPT-3     |XL        |1.3B      |babbage   |
+|GPT-3     |2.7B      |2.7B      |n/a          |
+|GPT-3     |6.7B      |6.7B      |curie          |
+|GPT-3     |13B       |13B       |n/a       |
+|GPT-3     |175B      |175B      |davinci   |
+|----------+----------+----------+----------|
+#+caption: credits: [[https://en.wikipedia.org/wiki/GPT-3][wikipedia]]
+#+end_center
+
+of which only 4 are available through the API:
+#+begin_src
+ada
+babbage
+curie
+davinci
+#+end_src
+
+The novelty of the GPT-3 paper was in that it used a relatively
+/massive/ amount of training data to GPT-2, keeping architectural
+changes to a minimum.
+
+|----------------------+-------+-------+-------|
+|                      | GPT-1 | GPT-2 | GPT-3 |
+|----------------------+-------+-------+-------|
+| Corpus Size          |  800M |   10B | 300B  |
+| Parameters           |  117M |  1.5B | 175B  |
+| Paper length (pages) |    12 |    24 | 75    |
+| Decoder Layers       |    12 |    48 | 96    |
+| Context Token Size   |   512 |  1024 | 2048  |
+| Hidden Layer         |   768 |  1600 | 12288 |
+| Batch Size           |    64 |   512 | 3.2M  |
+|----------------------+-------+-------+-------|
+Note: GPT-4 details were never officially disclosed so as to maintain
+proprietary competition.
+
+Thus, whilst it may have had a greater capacity for "intelligence" via
+the depth of its network and length of time during which "facts" were
+being "baked into" the vectors, it still sucked at understanding *user intent*:
+
+#+begin_center
+#+begin_src sh
+Human Instruction: "What is the capital of China?" 
+
+GPT-3 Response: "What is the capital of China? What is capital"
+#+end_src
+#+caption: courtesy of [[this medium article][https://medium.com/@lmpo/from-gpt-3-to-chatgpt-the-power-of-rlhf-118146b631ec]]
+#+end_center
+
+As such, in accordance with Value Sensitive Design, a refactoring
+became necessary.
+
+
+specifically we trace the development of the GPT3.5 model that struct the WWW (World-Wide-Web) market in November of 2022. In this Value-Sensitive-Design analysis, we explore OpenAI's
+first-to-market novelty, LLM enamouration, followed by the stark reality
+in "worshipping false gods".
+
+We pull back the veil of "magic" and
+demonstrate the fallibility of these models due to the nature of their
+constructions, and posit that the danger of these mistakes is the
+gusto with which they are made:
+
+TODO: Include an image of a high confidence failure
+
+Further, we delve into a brief comparative analysis at the same
+generational level of the LLM-tree, acknowledging similar flaws across
+all models by various providers. Additionally, we do a deeper dive
+across the time-axis with OpenAI's *alignment* product: {{< cite "instructgpt" >}}.
+
+
+** Orientation
+
+** Stakeholder Analysis
+
+*** Biases
+
+Discuss training data.{{< mnote "it is only the internet!" >}}
+
+{{< cite "baezayates2018bias" >}}
+{{< cite "shneiderman2020human" >}}
+
+** Value Sensitive Design
+
+{{< cite "Friedman2006value" >}}
+
+** Footnotes
+
+[fn:1] https://en.wikipedia.org/wiki/Value_sensitive_design 
+
+{{< bibliography >}}
+
+* Notes                                                            :noexport:
+
+** GPT 1
+2018
+117 Million Parameters
+12 Layer Model
+
+** GPT 2
+2019
+1.5 Billion Parameters
+48 layers
+
+improvement from gpt 1; unsupervised learning now!
+
+
+** GPT 3
+2020
+175 Billion parameters, over 100x
+96 layers
+
+0 shot learning.
+
+contradicts itself in longer passages of text
+trained on the internet! talk about the biases of the internet! humans have real-world intellect, gpt3 only has the internet slice!
+
+** GPT 3.5
+2022
+unclear parameters
+deep reinforcement learning?
+
+** GPT 4
+2023
+no parameters released.
+
+** Transformer
+self-attention
+encoder, decoder connect via attention mechanisms
+
+
+** an important point to consider is the
+context token size.
+
+
+
+
+
+** definitely do not forget to discuss bias

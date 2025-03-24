@@ -154,11 +154,12 @@ I retrained the final fully-connected layer across 10 epochs
 
 to see a little more detail claude helped me split the epochs into smaller batches
 #+begin_center
-#+ATTR_HTML: :width 500px :class lateximage
+#+ATTR_HTML: :width 900px :class lateximage
 [[{{< cwd >}}resnet-10-epochs.png]]
 #+end_center
 
 ** code
+
 {{< collapse-local folded="true" >}}
 
 #+INCLUDE: "resnet.py" src python

@@ -13,3 +13,21 @@
 [submodule "static/code/10khrs-ai-ml-dl"]
 	path = static/code/10khrs-ai-ml-dl
 	url = https://github.com/abaj8494/10khrs-ai-ml-dl
+[submodule "static/code/abaj8494"]
+	path = static/code/abaj8494
+	url = https://github.com/abaj8494/abaj8494
+[submodule "static/code/abaj8494.github.io"]
+	path = static/code/abaj8494.github.io
+	url = https://github.com/abaj8494/abaj8494.github.io
+[submodule "static/code/font2splines"]
+	path = static/code/font2splines
+	url = https://github.com/abaj8494/font2splines
+[submodule "static/code/trades"]
+	path = static/code/trades
+	url = https://github.com/abaj8494/trades
+[submodule "static/code/games"]
+	path = static/code/games
+	url = https://github.com/abaj8494/games
+[submodule "static/code/icons"]
+	path = static/code/icons
+	url = https://github.com/abaj8494/icons
