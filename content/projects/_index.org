@@ -144,13 +144,21 @@ For the longest time I kept these projects private, but now after a half decade 
 :CUSTOM_ID: artificial-intelligence
 :END:
 
+*** [[/projects/ai/ethics][Ethics]]
+:PROPERTIES:
+:CUSTOM_ID: ethics
+:END:
+
+- @@html:<input type="checkbox" class="edit"/>@@ [[/projects/ai/ethics/gpt3][Value Sensitive Design of GPT3 Series]] {{< tags-inline "projects/ai/ethics/gpt3" >}}
+
 *** [[/projects/ai/adv-search][Adversarial Searching]]
 :PROPERTIES:
 :CUSTOM_ID: adversarial-searching
 :END:
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ai/adv-search/ultimate-ttt][Ultimate Tic Tac Toe Bot]] {{< tags-inline "projects/ai/adv-search/ultimate-ttt" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ai/adv-search/chess-bot][Chess Bot]] {{< tags-inline "projects/ai/adv-search/chess-bot" >}}
-  
+
+
 *** [[/projects/ai/csp][Constraint Satisfaction Problems]]
 :PROPERTIES:
 :CUSTOM_ID: csp
@@ -273,6 +281,11 @@ These methods can be adapted for _regression_, but they are more well suited to 
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ml/reinforcement-learning/q-learning][Q-Learning]] {{< tags-inline "projects/ml/reinforcement-learning/q-learning" >}}
 
 ** [[/projects/mathematics][Mathematics]]
+
+#+BEGIN_CENTER
+#+ATTR_HTML: :class lateximage :style "display: block; border: none;"
+@@html:<a href="https://abaj.ai/projects/mathematics/icons" style="display: inline-block; border: none;"><img width="222" src="{{< cwd >}}games.svg" style="display: block; border: none;"></a>@@
+#+END_CENTER
 
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/mathematics/discrete][Discrete]] {{< tags-inline "projects/mathematics/discrete" >}}
   - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/mathematics/discrete/logic][Logic (+ Proof)]] {{< tags-inline "projects/mathematics/discrete/logic" >}}

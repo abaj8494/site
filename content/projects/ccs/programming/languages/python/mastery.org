@@ -1045,7 +1045,11 @@ Check if all elements in a list are non-zero.
 : [3, 3, 3]
 : True
 
-** Exercise 38:
+** DONE Exercise 38:
+CLOSED: [2025-03-25 Tue 00:53]
+:LOGBOOK:
+- State "DONE"       from              [2025-03-25 Tue 00:53]
+:END:
 
 Find the indices of the maximum value in each row of a 2D list.
 
@@ -1063,7 +1067,11 @@ Find the indices of the maximum value in each row of a 2D list.
 : [[2, 0, 5], [1, 2, 3], [0, 5, 0]]
 : [2, 2, 1]
 
-** Exercise 39:
+** DONE Exercise 39:
+CLOSED: [2025-03-25 Tue 00:53]
+:LOGBOOK:
+- State "DONE"       from              [2025-03-25 Tue 00:53]
+:END:
 
 Create a 2D list and replace all nan values with the mean of the list.
 
@@ -1078,7 +1086,11 @@ Create a 2D list and replace all nan values with the mean of the list.
 
 *** output
 
-** Exercise 40:
+** DONE Exercise 40:
+CLOSED: [2025-03-25 Tue 00:53]
+:LOGBOOK:
+- State "DONE"       from              [2025-03-25 Tue 00:53]
+:END:
 
 Calculate the mean of each row in a 2D list ignoring nan values.
 
@@ -1132,41 +1144,142 @@ then for when only the existence of the digit matters, you can use =sum(1 for i 
 
 Compute the sum of diagonal elements in a 2D list.
 
+*** soln
+#+BEGIN_SRC jupyter-python :session mast-py
+  import random
+  random.seed(3)
+  n = 10
+  my_list = [ [random.randint(0,n) for _ in range(n) ] for _ in range(n)]
+  diag_2d = lambda l: sum(l[i][i] for i in range(n))
+  print(my_list)
+  print(diag_2d(my_list))
+#+END_SRC
+
+#+RESULTS:
+: [[3, 9, 8, 2, 5, 9, 7, 10, 9, 1], [9, 0, 7, 4, 8, 3, 3, 7, 8, 8], [7, 6, 10, 2, 3, 10, 2, 8, 6, 0], [10, 1, 2, 9, 0, 4, 0, 4, 7, 9], [6, 6, 6, 9, 7, 2, 5, 1, 0, 2], [7, 3, 4, 10, 6, 10, 4, 6, 8, 6], [9, 5, 8, 9, 6, 9, 3, 5, 10, 0], [4, 9, 10, 2, 5, 8, 9, 9, 1, 10], [3, 10, 9, 4, 4, 1, 1, 7, 10, 7], [1, 5, 1, 6, 2, 0, 4, 6, 6, 1]]
+: 62
+
 ** Exercise 42:
 
 Convert radians to degrees for each element in a list.
+
+*** soln
+#+BEGIN_SRC jupyter-python :session mast-py
+  import math
+  convert_list = [1, 2, 0.5, 0.25]
+  rad_2_deg = lambda x: [y*180/math.pi for y in x]
+  #rad_2_deg = lambda x: list(map(lambda y: y*180/math.pi, x))
+  print(rad_2_deg(convert_list))
+#+END_SRC
+
+#+RESULTS:
+: [57.29577951308232, 114.59155902616465, 28.64788975654116, 14.32394487827058]
 
 ** Exercise 43:
 
 Calculate the pairwise Euclidean distance between two lists.
 
+*** soln
+#+BEGIN_SRC jupyter-python :session mast-py
+  import math
+  first_list = [1, 2, 0.5, 0.25]
+  second_list = list(range(4))
+  pairwise_euc = lambda x, y: [abs(i[0] - i[1]) for i in zip(x,y)]
+  print(pairwise_euc(first_list, second_list))
+#+END_SRC
+
+#+RESULTS:
+: [1, 1, 1.5, 2.75]
+
 ** Exercise 44:
 
 Create a list and set the values between the 25th and 75th percentile to 0.
+
+*** soln
+#+BEGIN_SRC jupyter-python :session mast-py
+    def percentile(data, percentile):
+      data = sorted(data)
+      k = (len(data) - 1) * (percentile / 100)
+      return data[int(k)]
+
+    lst = [10, 20, 30, 40, 50]
+    q1 = percentile(lst, 25)
+    q3 = percentile(lst, 75)
+    lst = [0 if q1 <= x <= q3 else x for x in lst]
+    print(lst)
+
+    lst = [10, 20, 30, 40, 50]
+    percentile_25th = sorted(lst)[int(len(lst) * 0.25)] # indexing into the first quarter
+    percentile_75th = sorted(lst)[int(len(lst) * 0.75)]
+    lst = [0 if percentile_25th <= x <= percentile_75th else x for x in lst]
+    print(lst)
+
+#+END_SRC
+
+#+RESULTS:
+: [10, 0, 0, 0, 50]
+: [10, 0, 0, 0, 50]
 
 ** Exercise 45:
 
 Calculate the element-wise square of the difference between two lists.
 
+*** soln
+#+BEGIN_SRC jupyter-python :session mast-py
+  import math
+  first_list = [1, 2, 0.5, 0.25]
+  second_list = list(range(4))
+  pairwise_squared = lambda x, y: [(i[0] - i[1])**2 for i in zip(x,y)]
+  print(pairwise_euc(first_list, second_list))
+#+END_SRC
+
+#+RESULTS:
+: [1, 1, 2.25, 7.5625]
+
 ** Exercise 46:
 
 Replace all even numbers in a list with the next odd number.
+
+*** soln
+#+BEGIN_SRC jupyter-python :session mast-py
+
+#+END_SRC
 
 ** Exercise 47:
 
 Create a 2D list and normalize each column by its range.
 
+*** soln
+#+BEGIN_SRC jupyter-python :session mast-py
+
+#+END_SRC
+
 ** Exercise 48:
 
 Compute the cumulative sum of elements along a given axis in a 2D list.
+
+*** soln
+#+BEGIN_SRC jupyter-python :session mast-py
+
+#+END_SRC
 
 ** Exercise 49:
 
 Check if any element in a list is non-zero.
 
+*** soln
+#+BEGIN_SRC jupyter-python :session mast-py
+
+#+END_SRC
+
 ** Exercise 50:
 
 Create a 2D list with random integers and replace all values greater than a certain threshold with that threshold.
+
+*** soln
+#+BEGIN_SRC jupyter-python :session mast-py
+
+#+END_SRC
 
 ** Exercise 51:
 

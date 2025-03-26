@@ -3,6 +3,7 @@ title = "Optimiser Paradigms in Machine Learning"
 toc = "true"
 math = "true"
 tags = ["notes","sgd","adam","momentum","resnet18","cifar10"]
+clocal = "true"
 +++
 
 * deep learning pipeline

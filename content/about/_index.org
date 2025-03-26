@@ -1,6 +1,7 @@
 +++
 title = "About"
 toc = "true"
+math = "true"
 +++
 
 {{< uncollapse id="cv" >}}
@@ -42,7 +43,7 @@ My operating system was [[https://manjaro.org/][Manjaro]], and I interfaced with
 [[{{< cwd >}}manjaro.svg]]
 #+END_CENTER
 
-The icon for this site is the absolute value contour plot of the 4D complex logarithm function from -4 to 4. [[abaj.cloud][BajBot]] and [[abaj.games][AJcade]] have the real and imaginary contour plots as their icons.
+The icon for this site is the absolute value contour plot of the 4D complex logarithm function from -4 to 4. The [[bots.abaj.ai][Bots]] and the [[arcade.abaj.ai][arcade]] use the real and imaginary contour plots as their icons. A broader analysis of the analysis is [[https://abaj.ai/projects/maths/icons][here]].
 
 The original inspiration plots by WolframAlpha can be found [[https://mathworld.wolfram.com/Logarithm.html][here]].
 
