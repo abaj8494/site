@@ -1,0 +1,12 @@
++++
+title = "24 bday problems"
+draft = "true"
++++
+
+* q1
+
+#+begin_src
+  non_zero = lambda l: False if all(l) else True
+  print(non_zero([0,0,0,0]))
+#+end_src
+
