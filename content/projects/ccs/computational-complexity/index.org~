@@ -1,0 +1,225 @@
++++
+title = "Computational Complexity"
+tags = ["big-oh", "np-complete", "polynomial-time", "np-hard"]
+toc = "true"
+math = "true"
++++
+
+* Complexity Classes
+
+The Computational Zoo is far more subtle and complex than I thought it was.
+
+#+CAPTION: Computational Zoo
+#+ATTR_HTML: :id zoo
+#+BEGIN_CENTER
+[[zoo.svg]]
+#+END_CENTER
+
+It contains P, NP (+complete), EXP, NP-hard, CO-NP (+complete), PSPACE, BPP, BQP, EXPSPACE, 2-EXP, halting problem, decidable, etc!
+
+** figure                                                          :noexport:
+#+begin_src latex
+\begin{tikzpicture}
+\pgftransformscale{.8}
+
+%%% HELP LINES - uncomment to design/extend
+% \draw[step=1cm,gray,very thin] (-10,0) grid (10,12);
+% \node at (0,0) {\textbf{(0,0)}};
+
+%% Horizontal bar
+\draw[very thick] (10,0) -- (-10,0);
+
+% LOG TIME
+\draw (-1,0) parabola bend (0,2) (1,0) ;
+\node at (0,1) {
+	\begin{tabular}{c}
+	LOG \\ Time
+	\end{tabular}
+};
+
+% LOG SPACE
+\draw (-2,0) parabola bend (0,3.5) (2,0);
+\node at (0,2.5) {
+	\begin{tabular}{c}
+	LOG \\ Space
+	\end{tabular}
+};
+
+% PTIME
+\draw (-3,0) parabola bend (0,4.5) (3,0);
+\node at (0,4) {PTIME};
+
+% NP
+\draw[dotted] (-4,0) parabola bend (2,6) (4.5,0);
+\node[rotate=-45] at (3,3.5) {NPTIME};
+
+% NP-complete
+\node[circle,dotted,draw] at (2,5) {NPC};
+
+% Co-NP
+\draw[dashed] (4,0) parabola bend (-2,6) (-4.5,0);
+\node[rotate=45] at (-2.5,4) {co-NPTIME};
+
+% PSPACE
+\draw (-6,0) parabola bend (0,7.2) (6,0);
+\node at (0,6.5) {PSPACE};
+
+% EXPTIME
+\draw (-7,0) parabola bend (0,8.5) (7,0);
+\node at (0,8) {EXPTIME};
+
+% EXPTIME
+\draw (-8,0) parabola bend (0,9.5) (8,0);
+\node at (0,9) {EXPSPACE};
+
+% ELEMENTARY
+\draw (-9,0) parabola bend (0,11.5) (9,0);
+\node at (0,10.5) {$\vdots$};
+\node[anchor=north] at (0,11.4) {
+	\begin{tabular}{c}
+		ELEMENTARY \\
+		$\vdots$ \\
+		2EXPTIME
+	\end{tabular}
+};
+
+% RECURSIVE
+\draw[very thick] (-9.5,0) parabola bend (0,12.5) (9.5,0);
+\node at (0,12) {R};
+\end{tikzpicture}
+#+end_src
+
+
+* Big Oh Notation
+:PROPERTIES:
+:CUSTOM_ID: big-oh
+:END:
+
+TODO
+
+* NP-Hard and NP-Complete
+
+#+BEGIN_QUOTE
+If \(P=NP\), then the world would be a profoundly different place than we usually assume it to be. There would be no special value in 'creative leaps', no fundamental gap between /solving/ a problem and /recognising the solution/ once it's found. Everyone that could appreciate a symphony would be Mozart, everyone who could follow a step-by-step argument would be Gauss"-Scott Aaronson
+#+END_QUOTE
+
+TODO main diagram.
+
+This topic usually concludes a course on algorithms, and for good reason.
+
+At this stage we possess a /potpourri/ of algorithmic methods; ranging from \(O(n)\) to \(O(n^n\) time. If in your mind you did not read this as "Oh of N time", then you ought to go back to the [[#big-oh][Big Oh Notation]] section.
+
+Roughly we can chalk up a table of /polynomial time methods/ and /non-polynomial time methods/ -- i.e. /exponential time methods/
+
+|--------------------------------+----------------------------|
+| Polynomial Time                | Exponential Time           |
+|--------------------------------+----------------------------|
+| Linear Search (O(n))           | 0/1 Knapsack (O(2^n))      |
+| Binary Search (O(log(n)))      | Travelling Salesman(O(n!)) |
+| Insertion Sort (O(n^2))        | Sum of Subsets (O(2^n))    |
+| MergeSort (O(nlog(n)))         | k-Graph Colouring (O(k^n)) |
+| Matrix Multiplication (O(n^3)) | Hamiltonian Cycle (O(n!))  |
+| ...                            | ...                        |
+|--------------------------------+----------------------------|
+
+
+From here, we would realistically like to convert all our Exponential Time Algorithms into Polynomial Time algorithms. However, doing so for each individual problem is labouriously infeasible{{< mnote "just imagine as researchers how this would be a waste of resources / funding" >}}. As such, we ought to determine the common thread/s between all of our /exponential time/ problems and then try our hardest to convert this /base problem/ into polynomial time.
+
+** Satisfiability
+
+*** Notation
+Simply, we can consider any CNF (Conjunctive Normal Form) of \(n\) variables: \(x_1, x_2, ..., x_n\):
+\[ (x_1 \lor x_2 ) \land (x_3 \lor \not x_1 ) \]
+Here \(n=3\), and the /Conjunctive Normal Form/ means that sequences of brackets are formed with disjunction operators and conjunction operators are used between those.
+
+\[ (x_1 \lor x_2) \land (\not x_3 \lor x_4 \lor x_5)\quad\text{another example} \]
+notice that the \(\lor\) is always between the decision variables in the brackets.
+
+*** Problem
+The problem is finding the values of the decision variables such that the CNF equates to =True=.
+
+Considering a couple of examples, we can see that with \(n=2\)
+\[x_1 \land \not x_2 \]
+Is indeed satisfiable:
+| \(x_1\) | \(x_2)\ | \(\not x_2\) | \(x_1 \land \not x_2\) |
+| T       | T       | F            | F                      |
+| T       | F       | T            | T                      |
+| F       | T       | F            | F                      |
+| F       | F       | T            | F                      |
+
+The second row *satisfies* the logical expression. You must also quickly realise that for us to come to this conclusion we had to search all 4 rows --- i.e. all \(2^2\) combinations.
+
+In general it is true that to determine the truth value we had to consider \(2^n\) possibilities.
+
+For completeness, let us check the satisfiability of "a and not a":
+
+| \(a)\   | \(\not a\)   | \(a \land \not a\)     |
+| T       | F            | F                      |
+| F       | T            | F                      |
+| T       | F            | F                      |
+| F       | T            | F                      |
+
+Thus "a and not a" is unsatisfiable.
+
+** Non-Deterministic Polynomial Time
+
+It is worth just quickly jab stepping in the sand and attacking this problem from a different angle --- all the whilst -- keeping an eye on the prize.
+
+/If you can't write Polynomial Time algorithms, then why don't you just write *Non-Deterministic Poylnomial Time* algorithms?/
+
+What this means is that, for the above _exponential time_ algorithms, it's not like every line is exponential in time-complexity. It would just be a select few lines. And in honour of trying to reduce these problems to their essence (as we did above by finding the archetypal exponential problem CNF-SAT), we can rewrite an exponential algorithm such as:
+
+#+BEGIN_CENTER
+#+ATTR_HTML: :id search
+#+CAPTION: Figure 1
+#+BEGIN_SRC text
+  Algorithm NSearch(A,n,key)
+  {
+	  j=choice();
+	  if(key=A[j])
+	  {
+		  write(j);
+		  success();
+	  }
+	  write(0);
+	  failure();
+  }
+#+END_SRC
+#+END_CENTER
+
+Here the Non-deterministic parts of the above algorithm would be =choice()=, =success()= and =failure()=, and so a usually \(O(n)\) time algorithm is converted to \(O(1)\) constant time.
+
+
+** Polynomial Time
+
+The principle of the above point is /ad nihil redactus/; to reduce towards zero, the non-deterministic segments of the code.
+
+A couple notable examples of such NP-hard problems which eventually become part of the *P* Class are:
+1. Linear Programming
+2. Maximum Flow
+3. Perfect Matching in Bipartite Graphs
+4. Primality Testing
+5. Graph Isomorphisms
+
+
+TODO Graphic
+
+** NP-Hard
+
+If instances of an exponential-time algorithm are congruent with instances of the CNF-SAT problem, then the problem in question would be "NP-Hard".
+
+** NP-Complete
+
+When you can actually write a Non-deterministic Polynomial Time for the problem in question -- same as [[#search][Figure 1]]
+
+** NP Second Definition
+
+Technically speaking, a Mathematically equivalent, but different way of defining these problems (defined above as a means for ad nihil redactum), is that:
+
+"Given a solution to the exponential-time problem, you can at least verify the solution in Polynomial time".
+
+A good example of this is Sudoku. Solving the game would require an exponential time algorithm, but verifying the correctness of a solution can be done in polynomial time.
+
+** Cook-Levin Theorem
+
+If the Satisfiable Problem is in P, then \(P=NP\).

@@ -11,3 +11,5 @@ what is the output of this python code?
   print(non_zero([0,0,0,0]))
 #+end_src
 
+
+

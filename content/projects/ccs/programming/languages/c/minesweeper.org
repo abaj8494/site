@@ -1,0 +1,230 @@
++++
+title = "Minesweeper in C"
+author = "Not Aayush"
++++
+
+I have no idea where I got this from, however I do plan on remaking Minesweeper for the Arcade in Java so having an existing implementation syntax highlighted and version controlled does not hurt.
+
+#+begin_src C
+#include <stdio.h>
+#include <stdlib.h>
+
+// Possible square states.
+#define VISIBLE_SAFE    0
+#define HIDDEN_SAFE     1
+#define HIDDEN_MINE     2
+
+// The size of the starting grid.
+#define SIZE              8
+
+// The possible command codes.
+#define DETECT_ROW      1
+#define DETECT_SQUARE   2
+#define REVEAL_CROSS    3
+#define GAME_MODE       4
+#define FLAG_MINE       5
+#define DEFUSE          6
+
+// Add any extra #defines here.
+
+void initialise_field(int minefield[SIZE][SIZE]);
+void print_debug_minefield(int minefield[SIZE][SIZE]);
+
+// Function prototypes
+void print_minefield(int minefield[SIZE][SIZE]);
+int count_adjacent_mines(int minefield[SIZE][SIZE], int row, int col);
+void reveal_square(int minefield[SIZE][SIZE], int row, int col);
+void reveal_cross(int minefield[SIZE][SIZE], int row, int col);
+int check_win(int minefield[SIZE][SIZE]);
+void flag_mine(int minefield[SIZE][SIZE], int row, int col);
+int defuse_mine(int minefield[SIZE][SIZE], int row, int col);
+
+// Print the minefield in a user-friendly format
+void print_minefield(int minefield[SIZE][SIZE]) {
+    printf("  0 1 2 3 4 5 6 7\n");
+    for (int i = 0; i < SIZE; i++) {
+        printf("%d ", i);
+        for (int j = 0; j < SIZE; j++) {
+            if (minefield[i][j] == VISIBLE_SAFE) {
+                int count = count_adjacent_mines(minefield, i, j);
+                printf("%d ", count);
+            } else if (minefield[i][j] == HIDDEN_SAFE) {
+                printf(". ");
+            } else if (minefield[i][j] == HIDDEN_MINE) {
+                printf("* ");
+            }
+        }
+        printf("\n");
+    }
+}
+
+// Count adjacent mines for a given square
+int count_adjacent_mines(int minefield[SIZE][SIZE], int row, int col) {
+    int count = 0;
+    for (int i = -1; i <= 1; i++) {
+        for (int j = -1; j <= 1; j++) {
+            int new_row = row + i;
+            int new_col = col + j;
+            if (new_row >= 0 && new_row < SIZE && new_col >= 0 && new_col < SIZE) {
+                if (minefield[new_row][new_col] == HIDDEN_MINE) {
+                    count++;
+                }
+            }
+        }
+    }
+    return count;
+}
+
+// Reveal a single square
+void reveal_square(int minefield[SIZE][SIZE], int row, int col) {
+    if (row < 0 || row >= SIZE || col < 0 || col >= SIZE) {
+        return;
+    }
+    
+    if (minefield[row][col] == HIDDEN_SAFE) {
+        minefield[row][col] = VISIBLE_SAFE;
+        if (count_adjacent_mines(minefield, row, col) == 0) {
+            // Reveal adjacent squares if no mines nearby
+            for (int i = -1; i <= 1; i++) {
+                for (int j = -1; j <= 1; j++) {
+                    reveal_square(minefield, row + i, col + j);
+                }
+            }
+        }
+    }
+}
+
+// Reveal a cross pattern
+void reveal_cross(int minefield[SIZE][SIZE], int row, int col) {
+    if (row < 0 || row >= SIZE || col < 0 || col >= SIZE) {
+        return;
+    }
+    
+    reveal_square(minefield, row, col);
+    reveal_square(minefield, row - 1, col);
+    reveal_square(minefield, row + 1, col);
+    reveal_square(minefield, row, col - 1);
+    reveal_square(minefield, row, col + 1);
+}
+
+// Check if the game is won
+int check_win(int minefield[SIZE][SIZE]) {
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            if (minefield[i][j] == HIDDEN_SAFE) {
+                return 0;  // Game not won yet
+            }
+        }
+    }
+    return 1;  // Game won
+}
+
+// Flag a mine
+void flag_mine(int minefield[SIZE][SIZE], int row, int col) {
+    if (row >= 0 && row < SIZE && col >= 0 && col < SIZE) {
+        if (minefield[row][col] == HIDDEN_MINE) {
+            minefield[row][col] = VISIBLE_SAFE;
+        }
+    }
+}
+
+// Attempt to defuse a mine
+int defuse_mine(int minefield[SIZE][SIZE], int row, int col) {
+    if (row >= 0 && row < SIZE && col >= 0 && col < SIZE) {
+        if (minefield[row][col] == HIDDEN_MINE) {
+            minefield[row][col] = VISIBLE_SAFE;
+            return 1;  // Successfully defused
+        }
+    }
+    return 0;  // Failed to defuse
+}
+
+int main(void) {
+    int minefield[SIZE][SIZE];
+    int num_mines;
+    int game_over = 0;
+    int command, row, col;
+
+    initialise_field(minefield);
+    printf("Welcome to minesweeper!\n");
+    printf("How many mines? ");
+    scanf("%d", &num_mines);
+
+    printf("Enter pairs:\n");
+    for (int i = 0; i < num_mines; i++) {
+        scanf("%d %d", &row, &col);
+        if (row >= 0 && row < SIZE && col >= 0 && col < SIZE) {
+            minefield[row][col] = HIDDEN_MINE;
+        }
+    }
+
+    printf("Game Started\n");
+    print_debug_minefield(minefield);
+
+    while (!game_over && scanf("%d %d %d", &command, &row, &col) == 3) {
+        switch (command) {
+            case DETECT_ROW:
+                for (int j = 0; j < SIZE; j++) {
+                    reveal_square(minefield, row, j);
+                }
+                break;
+            case DETECT_SQUARE:
+                for (int i = -1; i <= 1; i++) {
+                    for (int j = -1; j <= 1; j++) {
+                        reveal_square(minefield, row + i, col + j);
+                    }
+                }
+                break;
+            case REVEAL_CROSS:
+                reveal_cross(minefield, row, col);
+                break;
+            case FLAG_MINE:
+                flag_mine(minefield, row, col);
+                break;
+            case DEFUSE:
+                if (!defuse_mine(minefield, row, col)) {
+                    printf("Game Over!\n");
+                    game_over = 1;
+                }
+                break;
+        }
+
+        if (!game_over) {
+            print_minefield(minefield);
+            if (check_win(minefield)) {
+                printf("Game Won!\n");
+                game_over = 1;
+            }
+        }
+    }
+
+    return 0;
+}
+
+// Set the entire minefield to HIDDEN_SAFE.
+void initialise_field(int minefield[SIZE][SIZE]) {
+    int i = 0;
+    while (i < SIZE) {
+        int j = 0;
+        while (j < SIZE) {
+            minefield[i][j] = HIDDEN_SAFE;
+            j++;
+        }
+        i++;
+    }
+}
+
+// Print out the actual values of the minefield.
+void print_debug_minefield(int minefield[SIZE][SIZE]) {
+    int i = 0;
+    while (i < SIZE) {
+        int j = 0;
+        while (j < SIZE) {
+            printf("%d ", minefield[i][j]);
+            j++;
+        }
+        printf("\n");
+        i++;
+    }
+}
+#+end_src

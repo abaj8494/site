@@ -12,3 +12,13 @@ Here are quotes that I have collected, but have nowhere else to place purposeful
 #+begin_quote
 “Anything worth doing is worth doing poorly - until you learn to do it well.” - Steve Brown.
 #+end_quote
+
+
+#+BEGIN_QUOTE
+"Simplicity is the final achievement. After one has played a vast quantity of notes and more notes, it is simplicity that emerges as the crowning reward of art." - Chopin
+#+END_QUOTE
+
+
+#+BEGIN_QUOTE
+"One day I will find the right words and they will be simple"-Jack Kerouac
+#+END_QUOTE

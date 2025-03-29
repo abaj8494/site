@@ -25,6 +25,8 @@ Source: https://www.w3resource.com/python-exercises/python_100_exercises_with_so
 #+OPTIONS: todo:nil d:nil p:nil
 #+OPTIONS: d:(not "LOGBOOK")
 
+
+
 #+begin_src emacs-lisp
 (setq ndk/tangle-dir (org-entry-get nil "dest" t))
 

@@ -1,0 +1,1279 @@
++++
+title = "Miscellaneous Exercises over the years"
+tags = ["misc", "tools"]
+toc = "true"
+clocal = "true"
++++
+
+#+PROPERTY: dest /Users/aayushbajaj/Documents/new-site/static/code/ccs/programming/c/
+
+#+begin_src emacs-lisp
+(setq ndk/tangle-dir (org-entry-get nil "dest" t))
+
+(defun ndk/org-babel-tangle-rename ()
+  (let ((tangledir ndk/tangle-dir)
+        (tanglefile (buffer-file-name)))
+      (rename-file tanglefile tangledir t)))
+
+(add-hook 'org-babel-post-tangle-hook #'ndk/org-babel-tangle-rename)
+#+end_src
+
+#+RESULTS:
+| ndk/org-babel-tangle-rename |
+
+
+* Hexadecimal Converter
+
+I think I made this for integration into Alfred. This needs to be refactored if you want to use it!
+
+#+begin_src C :cmdline 16 255 :results output :tangle base-changer.c
+#include <stdio.h>
+#include <math.h>
+#include <string.h>
+#include <stdlib.h>
+#include <stdint.h>
+
+#define N_BITS 16
+
+// Function declarations
+void change_base(int base, int user_num);
+char *convert_to_binary(int16_t value);
+
+// Convert number to any base (2-36)
+void change_base(int base, int user_num)
+{
+    int i = 0;
+    int j = 0;
+    int raised, ceiling, floored;
+    int length = snprintf(NULL, 0, "%d", base);
+    char base_name[20] = "";
+    char output[55] = "";
+    char floored_str[32] = "";
+    char alphabet[26] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    
+    for (raised = pow(base,i); user_num % raised < user_num; i++) {
+        raised = pow(base, i);
+        ceiling = i - 1;
+    }
+    
+    for (j = ceiling; j > -1; j--) {
+        floored = floor(user_num / pow(base, j));
+        user_num -= floored*pow(base, j); 
+        sprintf(floored_str, "%d", floored);
+        if (floored > 9) {
+            sprintf(floored_str, "%c", alphabet[floored - 10]);
+        }    
+        strcat(output, floored_str);
+    }
+    
+    if (base == 2) strcpy(base_name, "Binary");
+    else if (base == 16) strcpy(base_name, "Hexadecimal");
+    else snprintf(base_name, length + 1, "%d", base);
+    
+    printf("<items><item uid=\"%s\" arg=\"%s\"><title>%s</title><subtitle></subtitle><icon>icon.png</icon></item></items>", base_name, output, output);
+}
+
+// Convert number to 16-bit binary
+char *convert_to_binary(int16_t value) {
+    char *buffer = malloc((N_BITS + 1) * sizeof(char));
+    if (!buffer) {
+        return NULL;
+    }
+
+    for (int i = 0; i < N_BITS; i++) {
+        int16_t bit_mask = 1 << (N_BITS - i - 1);
+        buffer[i] = (value & bit_mask) ? '1' : '0';
+    }
+
+    buffer[N_BITS] = '\0';
+    return buffer;
+}
+
+void print_usage() {
+    printf("Usage: %s <base> <number>\n", "base_changer");
+    printf("\nBase must be between 2 and 36\n");
+    printf("Number must be between 0 and 2147483647\n");
+}
+
+int main(int argc, char *argv[])
+{
+    if (argc != 3) {
+        print_usage();
+        return 1;
+    }
+    
+    int base = atoi(argv[1]);
+    int user_num = atoi(argv[2]);
+    
+    if (!(base >= 2 && base <= 36)) {
+        print_usage();
+        return 2;
+    }
+    if (user_num > 2147483647) {
+        print_usage();
+        return 2;
+    }
+    
+    change_base(base, user_num);
+    return 0;
+}
+
+#+end_src
+
+** output
+{{< collapse-local folded="true" >}}
+
+#+RESULTS:
+: <items><item uid="Hexadecimal" arg="FF"><title>FF</title><subtitle></subtitle><icon>icon.png</icon></item></items>
+
+* Binary Converter
+
+Same bullshit with this:
+
+#+begin_src C :cmdline 42 -42 :results output :tangle binary-converter.c
+#include <stdio.h>
+#include <stdint.h>
+#include <stdlib.h>
+
+#define N_BITS 16
+
+// Convert number to 16-bit binary
+char *convert_to_binary(int16_t value) {
+    char *buffer = malloc((N_BITS + 1) * sizeof(char));
+    if (!buffer) {
+        return NULL;
+    }
+
+    for (int i = 0; i < N_BITS; i++) {
+        int16_t bit_mask = 1 << (N_BITS - i - 1);
+        buffer[i] = (value & bit_mask) ? '1' : '0';
+    }
+
+    buffer[N_BITS] = '\0';
+    return buffer;
+}
+
+void print_usage() {
+    printf("Usage: %s <number> [number2 ...]\n", "binary_converter");
+    printf("\nConvert numbers to 16-bit binary representation\n");
+    printf("Each number must be between -32768 and 32767\n");
+}
+
+int main(int argc, char *argv[]) {
+    if (argc < 2) {
+        print_usage();
+        return 1;
+    }
+
+    for (int arg = 1; arg < argc; arg++) {
+        long l = strtol(argv[arg], NULL, 0);
+        if (l < INT16_MIN || l > INT16_MAX) {
+            print_usage();
+            return 2;
+        }
+        int16_t value = l;
+
+        char *bits = convert_to_binary(value);
+        if (!bits) {
+            return 3;
+        }
+        
+        printf("<items><item uid=\"%s\" arg=\"%s\"><title>%s</title><subtitle></subtitle><icon>icon.png</icon></item></items>", bits, bits, bits);
+        free(bits);
+    }
+
+    return 0;
+} 
+#+end_src
+
+
+** output
+{{< collapse-local folded="true" >}}
+
+#+RESULTS:
+: <items><item uid="0000000000101010" arg="0000000000101010"><title>0000000000101010</title><subtitle></subtitle><icon>icon.png</icon></item></items><items><item uid="1111111111010110" arg="1111111111010110"><title>1111111111010110</title><subtitle></subtitle><icon>icon.png</icon></item></items>
+
+
+* Boxes
+
+#+begin_src C :results output :tangle boxes.c
+#include <stdio.h>
+
+int main(void) {
+    int boxes_num = 0, sides, row = 0, col = 0, i, j;
+    printf("How many boxes: ");
+    scanf("%d", &boxes_num);
+    sides = 3+4*(boxes_num - 1);
+    boxes_num = (sides + 1) / 2;
+    while (row < sides) {
+        while (col < sides) { 
+            //do not fully understand the following 2 lines of logic.
+            i = (row >= boxes_num) ? sides - row - 1: row;
+            j = (col >= boxes_num) ? sides - col - 1 : col;
+            if ((boxes_num - ((i < j) ? i : j))%2 == 0) printf("*");
+            else printf("-");
+            col++;
+        }
+        col = 0;
+        row++;
+        putchar ('\n');
+    }
+    return 0;
+}
+
+// this one was difficult. had to appropriate a few lines from stack
+
+#+end_src
+
+
+* Decimal Spiral
+
+#+begin_src C :cmdline  :results output :tangle decimal-spiral.c
+#include <stdio.h>
+
+int value(int size, int row, int col) {
+    // this is the quadratic equation which 
+    // we will leverage to determine the digit values
+    int quad = (size*size + 2* size - 3) / 2;
+    // checking the first row
+    if (row == 0) return quad - col;
+    // checking second row
+    else if (row == 1) {
+        if (col == size - 1) return quad - col - 1;
+    // this is the second-last row
+    } else if (row == size - 2) {
+        if (col == 0) return quad - 3*size + 2;
+        else if (col == size - 1) return quad - 2*size + 3;
+    // last row
+    } else if (row == size - 1) return quad - 3*size + col + 3;
+    // the rest
+    else {
+        if (col == 0) return quad - 4*size + row + 4;
+        else if (col == 1) {
+            if (row == 2) return quad - 4*size  + row + 3;
+            else return -1;
+        } else if (col == size - 1) return quad - size + 1 - row;
+        else if (col == size - 2) return -1;
+        else return value(size - 4, row - 2, col - 2);
+    }
+    return 0;
+}
+
+int draw(int size, int half) {
+    // top half spiral. iterating through rows
+    int row, col;
+    for (row = 0; row < half; row++) {
+        // deals with even rows in the top half
+        if (row % 2) {
+            // iterating through columns for each row
+            for (col = 0; col < size; col++) {
+                // logic. even columns are true. checks left / right side. 
+                if (!(col % 2) && (col < row - 1 || col >= size - row)) {
+                    printf("%d", value(size, row, col) % 10);
+                }
+                else {
+                    putchar('-');
+                }
+            }
+        }
+        // deals with the odd rows in the top half
+        else {
+            // iterating through columns for each row 
+            for (col = 0; col < size; col++) {
+                // logic.
+                if ((col % 2) && (col < row - 1 || col >= size - row)) {
+                    putchar('-');
+                }
+                else {
+                    printf("%d", value(size, row, col) % 10);
+                }
+            }
+        }
+        printf("\n");
+    }
+    // bottom half spiral
+    for (; row < size; row++) {
+        // deals with even rows
+        if (row % 2) {
+            // check cols. again these are the evens, but for the lower half.
+            for (col = 0; col < size; col++) {
+                // logic.
+                if (!(col % 2) && (col < size - row || col > row)) {
+                    printf("%d", value(size, row, col) % 10);
+                }
+                else {
+                    putchar('-');
+                }
+            }
+        }
+        // deals with odd rows
+        else {
+            // check cols. again these are the odds, but for the lower half
+            for (col = 0; col < size; col++) {
+                // logic.
+                if ((col % 2) && (col < size - row || col > row)) {
+                    putchar('-');
+                }
+                else {
+                    printf("%d", value(size, row, col) % 10);
+                }
+            }
+        }
+        printf("\n");
+    } 
+    return 0;
+}
+
+int main() {
+    int spiral_size = 0;
+    printf("Enter size: ");
+    scanf("%d", &spiral_size);
+    int half = (spiral_size / 2) + 1;
+    draw(spiral_size, half);
+}
+
+// credits: i did use sabine's code to derive the quadratic
+// I then used alex's code to understand how to peel back layers
+// and then finally used some code from github to structure my layer logic
+#+end_src
+
+* Donut
+this is a classical program that prints out a spinning donut in the terminal, updating it every 30ms. it *will* crash emacs.
+
+#+begin_src C :cmdline  :results output :tangle donut.c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+#include <unistd.h>
+int main() {
+    float A = 0, B = 0;
+    float i, j;
+    int k;
+    float z[1760];
+    char b[1760];
+    printf("\x1b[2J");
+    for(;;) {
+        memset(b,32,1760);
+        memset(z,0,7040);
+        for(j=0; j < 6.28; j += 0.07) {
+            for(i=0; i < 6.28; i += 0.02) {
+                float c = sin(i);
+                float d = cos(j);
+                float e = sin(A);
+                float f = sin(j);
+                float g = cos(A);
+                float h = d + 2;
+                float D = 1 / (c * h * e + f * g + 5);
+                float l = cos(i);
+                float m = cos(B);
+                float n = sin(B);
+                float t = c * h * g - f * e;
+                int x = 40 + 30 * D * (l * h * m - t * n);
+                int y= 12 + 15 * D * (l * h * n + t * m);
+                int o = x + 80 * y;
+                int N = 8 * ((f * e - c * d * g) * m - c * d * e - f * g - l * d * n);
+                if(22 > y && y > 0 && x > 0 && 80 > x && D > z[o]) {
+                    z[o] = D;
+                    b[o] = ".,-~:;=!*#$@"[N > 0 ? N : 0];
+                }
+            }
+        }
+        printf("\x1b[H");
+        for(k = 0; k < 1761; k++) {
+            putchar(k % 80 ? b[k] : 10);
+            A += 0.00004;
+            B += 0.00002;
+        }
+        usleep(30000);
+    }
+    return 0;
+} 
+
+#+end_src
+
+* Easter Calculator
+
+#+begin_src C :cmdline  :results output :tangle easter.c
+#include <stdio.h>
+
+int main() {
+	int month, easter, a, b, c, d, e, f, g, h, i, k, l, m, p;
+	int year = 0;
+	printf("Enter year: ");
+	scanf("%d", &year);
+	a=year%19;
+	b=year/100;
+	c=year%100;
+	d=b/4;
+	e=b%4;
+	f=(b+8)/25;
+	g=(b-f+1)/3;
+	h=(19*a+b-d-g+15)%30;
+	i=c/4;
+	k=c%4;
+	l=(32+2*e+2*i-h-k)%7;
+	m=(a+11*h+22*l)/451;
+	month = (h+l-7*m+114)/31;
+	p=(h+l-7*m+114)%31;
+	easter=p+1;
+	if (month == 3)
+		printf("Easter is March %d in %d.\n", easter, year);	
+	else if (month == 4)
+		printf("Easter is April %d in %d.\n", easter, year);	
+}
+
+#+end_src
+
+* Endian Checker
+
+#+begin_src C :cmdline  :results output :tangle endian.c
+#include <stdio.h>
+#include <stdint.h>
+
+int main(void) {
+    uint8_t b;
+    uint32_t u;
+    u = 0x03040506;
+    b = *(uint8_t *)&u; // load first byte of u
+    if (b == 3) printf("Big-Endian\n");
+    else if (b == 6) printf("Little-Endian\n");
+}
+
+#+end_src
+
+** output
+{{< collapse-local folded="true" >}}
+
+#+RESULTS:
+: Little-Endian
+
+
+* GCD (Greatest Common Divisor)
+
+#+begin_src C :cmdline 4 325 :results output :tangle gcd.c
+// contains a recursive implementation of euclids algorithm which returns the gcd of 2 numbers
+
+#include <stdio.h>
+#include <stdlib.h>
+
+
+int gcd(int a, int b) {
+    if (!b) return a;
+    return gcd(b, a % b);
+}
+
+
+int main(int argc, char **argv) {
+    if (argc != 3) {
+        fprintf(stderr, "Usage: %s a b\n", argv[0]);
+        return 1;
+    }
+    int a = atoi(argv[1]), b = atoi(argv[2]);
+    printf("%d\n", gcd(a, b));
+}
+
+#+end_src
+
+** output
+
+{{< collapse-local folded="true" >}}
+
+#+RESULTS:
+: 1
+
+
+* Extended GCD
+
+#+begin_src C :cmdline 4 66 :results output :tangle gcd-ext.c
+// program which prints out the extended euclid algorithm for 2 integers.
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int q_func(int a, int b) {
+    return a / b;
+}
+
+int r_func(int a, int b, int q) {
+    return a - (q * b);
+}
+
+int main(int argc, char *argv[]) {
+    if (argc != 3) {
+        fprintf(stderr, "Usage: %s <integer 1> <integer 2>\n", argv[0]);
+        return 1;
+    }
+
+    int a = atoi(argv[1]), b = atoi(argv[2]), 
+        q = q_func(a, b), r = r_func(a, b, q);
+
+    do {
+        printf("%d = %d * %d + %d\n", a, q, b, r);
+        a = b;
+        b = r;
+        q = q_func(a, b);
+    }
+    while ((r = r_func(a, b, q)));
+
+    printf("%d = %d * %d + %d\n", a, q, b, r);
+    printf("Hence the GCD is %d\n", b);
+    return 0;
+}
+
+#+end_src
+
+
+** output
+{{< collapse-local folded="true" >}}
+
+#+RESULTS:
+: 4 = 0 * 66 + 4
+: 66 = 16 * 4 + 2
+: 4 = 2 * 2 + 0
+: Hence the GCD is 2
+
+
+* Is Amicable (number theory)
+
+#+begin_src C :cmdline  :results output :tangle is-amicable.c
+#include <unistd.h>
+#include <stdio.h>
+
+int len(char *str) {
+    int i;
+    for (i = 0; str[i] != '\0'; i++);
+    return i;
+}
+
+int atoi(char *str)
+{
+    int res = 0;
+
+    for (int i = 0; str[i] != '\0'; ++i) {
+        if (str[i]> '9' || str[i]<'0')
+            return -1;
+        res = res*10 + str[i] - '0';
+    }
+    return res;
+}
+
+int amicable(int a, int b)
+{
+    int sum = 0;
+    for (int fac = 1; fac < b; fac++) { // note: you cannot modulo by 0
+        if (!(b % fac)) sum += fac;     // -> floating point exception
+    }
+    return (a == sum) ? 1 : 0;
+}
+
+int main(int argc, char *argv[])
+{
+    char usage[50];
+    sprintf(usage,"Usage: %s <int> <int>\n", argv[0]);
+    if (argc != 3) {write(2, usage, len(usage)); return 1;}
+
+    int a = atoi(argv[1]);
+    int b = atoi(argv[2]);
+    write(1, amicable(a, b) ? "true\n" : "false\n", 6);
+}
+
+#+end_src
+** output
+{{< collapse-local folded="true" >}}
+
+* Is Leap
+
+#+begin_src C :cmdline  :results output :tangle is-leap.c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char *argv[]) {
+	int year = atoi(argv[1]);
+	int leap;
+	if ((year % 4) != 0)
+		leap = 0;
+	else if ((year % 100) != 0)
+		leap = 1;
+	else if ((year % 400) != 0)
+		leap = 0;
+	else 
+		leap = 1;
+	if (leap == 1)
+		printf("%d is a leap year.\n", year);
+	else if (leap == 0)
+		printf("%d is not a leap year.\n", year);
+	return 0;
+}
+
+#+end_src
+** output
+{{< collapse-local folded="true" >}}
+
+* Is Perfect
+
+#+begin_src C :cmdline  :results output :tangle is-perfect.c
+#include <stdio.h>
+
+int main() {
+    int user_num = 0, i = 0, sum = 0;
+    printf("Enter number: ");
+    scanf("%d", &user_num);
+    printf("The factors of %d are:\n", user_num);
+    while (1) {
+        i++;
+        if (user_num%i == 0) {
+            printf("%d\n", i);
+            sum += i;
+        }
+        if (i == user_num + 1) break;
+    }
+    printf("Sum of factors = %d\n", sum);
+    if (sum - user_num == user_num) {
+        printf("%d is a perfect number\n", user_num);
+    }
+    else printf("%d is not a perfect number\n", user_num);
+}
+#+end_src
+** output
+{{< collapse-local folded="true" >}}
+* Is Prime
+
+#+begin_src C :cmdline  :results output :tangle is-prime.c
+// checks if an integer is prime
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <math.h>
+
+bool is_prime(int p) {
+    int n = (int) sqrt(p);
+    for (int i = 2; i < n; i++) {
+        if (!(p % i)) return false;
+    }
+    return true;
+}
+
+int main (int argc, char **argv) {
+    int p = atoi(argv[1]);
+    printf(is_prime(p) ? "true\n" : "false\n");
+    return 0;
+}
+
+#+end_src
+** output
+{{< collapse-local folded="true" >}}
+* Modulo Congruence
+
+#+begin_src C :cmdline  :results output :tangle mod-cong.c
+// solves the integer values which satisfy the equation ax equiv b (mod m)
+// uses the euclidean algorithm
+
+#include <stdio.h>
+#include <stdlib.h>
+
+
+int gcd_ext(int a, int b, int *x, int *y)
+{
+    // Base Case
+    if (a == 0)
+    {
+        *x = 0;
+        *y = 1;
+        return b;
+    }
+ 
+    int x1, y1; // To store results of recursive call
+    int gcd_ret = gcd_ext( b % a, a, &x1, &y1);
+ 
+    // Update x and y using results of recursive
+    // call
+    *x = y1 - (b/a) * x1;
+    *y = x1;
+ 
+    return gcd_ret;
+}
+
+int main(int argc, char **argv) {
+    if (argc != 4) {
+        fprintf(stderr, "Usage: %s a b c\n", argv[0]);
+        return  1;
+    }
+    int a = atoi(argv[1]), b = atoi(argv[2]), m = atoi(argv[3]), x, y; 
+    int d = gcd_ext(a, m, &x, &y);
+    x = (x * b / d) % m;
+    if (x < 0) x += m;
+
+    // ax equiv b (mod) c => ax + by = c
+    if (b % d) printf("no solutions\n");
+    else {
+        printf("Solutions are: ");
+        for (int i = 0; i < d; i++) {
+            printf("%d ", (x + i * m/d) % m);
+        }
+        printf("\n");
+    }
+    return 0;
+    
+}
+
+#+end_src
+** output
+{{< collapse-local folded="true" >}}
+* Postfix Calculator
+
+#+begin_src C :cmdline  :results output :tangle postfix-calc.c
+#include <stdio.h>
+#include <stdlib.h>
+#include <assert.h>
+#include <string.h>
+
+#define MAX_LEN 100
+
+struct arg_node {
+    char data[MAX_LEN];
+    struct arg_node *next;
+};
+
+struct StackNode {
+	int data;
+	struct StackNode *next;
+};
+
+struct StackNode *tail = NULL;
+
+
+// my prototypes
+void push(int value);
+struct StackNode *pop();
+void print_stack();
+
+static struct arg_node *strings_to_list(int len, char *strings[]);
+int evaluate_reverse_polish_notation(struct arg_node *head);
+void free_arg_list(struct arg_node *head);
+
+
+int negative(int num) {
+	return -num;
+}
+
+int evaluate_reverse_polish_notation(struct arg_node *head) {
+	if (head == NULL) return 0;
+	struct arg_node *current = head;
+	while (current != NULL) {
+		if (strcmp(current->data, "-") == 0) {
+			push(negative(pop()->data) + pop()->data);
+		}
+		else if (strcmp(current->data, "+") == 0) {
+			push(pop()->data + pop()->data);
+		}
+		else if (strcmp(current->data, "/") == 0) {
+			push(pop()->data / pop()->data);
+		}
+		else if (strcmp(current->data, "x") == 0) {
+			push(pop()->data * pop()->data);
+		}
+		else {
+			push(atoi(current->data));
+		}
+		current = current->next;
+	}
+    
+	return tail->data;
+}
+
+
+int main(int argc, char *argv[]) {
+    int length = argc - 1;
+    struct arg_node *head = strings_to_list(length, &argv[1]);
+
+    printf("%d\n", evaluate_reverse_polish_notation(head));
+    free_arg_list(head);
+
+    return 0;
+}
+
+// create linked list from array of strings
+static struct arg_node *strings_to_list(int len, char *strings[]) {
+    struct arg_node *head = NULL;
+    for (int i = len - 1; i >= 0; i = i - 1) {
+        struct arg_node *n = malloc(sizeof (*n));
+        assert(n != NULL);
+        n->next = head;
+        strcpy(n->data, strings[i]);
+        head = n;
+    }
+    return head;
+}
+
+void free_arg_list(struct arg_node *head) {
+    if (head == NULL) return;
+    free_arg_list(head->next);
+    free(head);
+}
+
+
+void push(int value)
+{
+	struct StackNode* new = (struct StackNode*)malloc(sizeof(struct StackNode));
+	new->data = value;
+	new->next = tail;
+	tail = new;
+}	
+
+
+struct StackNode *pop()
+{
+	if (tail == NULL) return NULL;
+	struct StackNode *popped = tail;
+	tail = tail->next;
+	return popped;
+}
+
+
+void print_stack()
+{
+	if (tail == NULL) return;
+	
+	struct StackNode *current = tail;
+	while (current != NULL) {
+		printf("%d ", current->data);
+		current = current->next;
+	}
+	printf("\n");
+}	
+
+#+end_src
+
+** output
+{{< collapse-local folded="true" >}}
+* Powers of 2
+
+#+begin_src C :cmdline  :results output :tangle powers-of-two.c
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdint.h>
+#include <math.h>
+
+int main(int argc, char **argv)
+{
+    if (argc != 2) {fprintf(stderr, "Usage %s <power>\n", argv[0]); return 1;}
+    uint8_t loop = atoi(argv[1]);
+    
+    for (int i = 0; i < loop; i++) {
+        printf("%20.0f\n", pow(2, i));
+    }
+    
+}
+
+#+end_src
+** output
+{{< collapse-local folded="true" >}}
+* Print bits
+
+#+begin_src C :cmdline u 1 15 :results output :tangle print-bits.c
+#include <stdlib.h>
+#include <stdio.h>
+#include <stdint.h>
+
+void print_bits_unsigned(uint8_t bytes, int integer)
+{
+    int bits = bytes * 8;
+    for (int i = bits - 1; i >= 0; i--) {
+        printf("%d", (integer >> i) & 1);
+    }
+    printf("\n");
+}
+
+void print_bits_signed(uint8_t bytes, int integer)
+{
+    int bits = bytes * 8;
+    for (int i = bits - 1; i >= 0; i--) {
+        printf("%d", (integer >> i) & 1);
+    }
+    printf("\n");
+}
+
+int main(int argc, char *argv[])
+{
+    if (argc != 4) {
+        fprintf(stderr, "Usage %s <u/s> <byte size> <int>\n", argv[0]);
+        return 1;
+    }
+
+    char sign_type = argv[1][0];
+    uint8_t bytes = atoi(argv[2]);
+    int integer = atoi(argv[3]);
+
+    if (sign_type == 'u') {
+        print_bits_unsigned(bytes, integer);
+    } else if (sign_type == 's') {
+        print_bits_signed(bytes, integer);
+    } else {
+        fprintf(stderr, "Usage %s <u/s> <byte size> <int>\n", argv[0]);
+        return 1;
+    }
+
+    return 0;
+}
+#+end_src
+
+** output
+{{< collapse-local folded="true" >}}
+#+RESULTS:
+: 00001111
+
+
+* Print Primes
+
+#+begin_src C :cmdline  :results output :tangle primes.c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char *argv[]) {
+	int factors = 0, total_primes = 0;
+	for (int i = 1; i <= atoi(argv[1]); i++) {
+		factors = 0;
+		for (int j = 1; j <= i; j++) {
+			if (i % j == 0) factors++;
+		}
+		if (factors == 2) {
+			total_primes++;
+			printf("%d\n", i);
+		}
+	}
+	printf("Total Primes: %d\n", total_primes);
+	return 0;
+}
+
+#+end_src
+
+** output
+{{< collapse-local folded="true" >}}
+
+* Sawtooth Diagram
+
+#+begin_src C :cmdline  :results output :tangle sawtooth.c
+#include <stdio.h>
+
+int main() {
+    int height = 0, length = 0, row = 1, col = 1;
+    printf("Please enter the height of the sawtooth: ");
+    scanf("%d", &height);
+    printf("Please enter the length of the sawtooth: ");
+    scanf("%d", &length);
+    while (!(row == height + 1)) {
+        while (!(col == length + 1)) {
+            if ((col - 1)%height == 0) printf("*"); 
+            else if ((col - 1)%height == (row - 1)) printf("*");
+            else printf(" ");
+            col++;
+        }
+        printf("\n");
+        col = 1;
+        row++;
+    }
+}
+#+end_src
+
+** output
+{{< collapse-local folded="true" >}}
+* Sizeof Primitives
+
+#+begin_src C :cmdline  :results output :tangle sizeof-primitives.c
+#include <stdio.h>
+#include <stdlib.h>
+
+char *int_to_bits(int i)
+{
+    char *bit_string = malloc(sizeof(int) * 8);
+
+    for (int n = sizeof(i) * 8, j = 0; j < 32; n--, j++) {
+        bit_string[j] = '0' + ((i >> n) & 1);
+    }
+    return bit_string;
+}
+
+char *uint_to_bits(unsigned int i)
+{
+    char *bit_string = malloc(sizeof(unsigned int) * 8);
+
+    for (int n = sizeof(i) * 8, j = 0; j < 32; n--, j++) {
+        bit_string[j] = '0' + ((i >> n) & 1);
+    }
+
+    return bit_string;
+    
+}
+
+int main(int argc, char *argv[])
+{
+    if (argc > 1 && argc != 2) {
+        fprintf(stderr, "Usage: %s [-v]\n", argv[0]);
+        return 1;
+    }
+
+    printf("Signed Representations\n"
+            " 1: %s\n"
+            " 2: %s\n"
+            " 3: %s\n"
+            " 4: %s\n"
+            "16: %s\n"
+            "32: %s\n", 
+            int_to_bits(1), int_to_bits(2), int_to_bits(3), int_to_bits(4),
+            int_to_bits(16), int_to_bits(32));
+    printf("Unsigned Representations\n"
+            " 1: %s\n"
+            " 2: %s\n"
+            " 3: %s\n"
+            " 4: %s\n"
+            "16: %s\n"
+            "32: %s\n", 
+            uint_to_bits(1), uint_to_bits(2), uint_to_bits(3), uint_to_bits(4),
+            uint_to_bits(16), uint_to_bits(32));
+
+    return 0;
+
+}
+
+#+end_src
+** output
+{{< collapse-local folded="true" >}}
+* Spiral
+
+#+begin_src C :cmdline  :results output :tangle spiral.c
+#include <stdio.h>
+
+int main() {
+    int spiral_size = 0, row, col;
+    printf("Enter size: ");
+    scanf("%d", &spiral_size);
+    int half = (spiral_size / 2) + 1;
+    // top of spiral 
+    // iterating through rows
+    for (row = 0; row < half; row++) {
+        // deals with even rows
+        if (row % 2) {
+            // iterating through columns for each row
+            for (col = 0; col < spiral_size; col++) {
+                // logic. even columns are true. checks left / right side. 
+                if (!(col % 2) && (col < row - 1 || col >= spiral_size - row)) {
+                    putchar('*');
+                }
+                else {
+                    putchar('-');
+                }
+            }
+        }
+        // deals with odd rows
+        else {
+            // iterating through columns for each row 
+            for (col = 0; col < spiral_size; col++) {
+                // logic.
+                if ((col % 2) && (col < row - 1 || col >= spiral_size - row)) {
+                    putchar('-');
+                }
+                else {
+                    putchar('*');
+                }
+            }
+        }
+        printf("\n");
+    }
+    // bottom of spiral
+    for (; row < spiral_size; row++) {
+        // deals with even rows
+        if (row % 2) {
+            // check cols
+            for (col = 0; col < spiral_size; col++) {
+                // logic.
+                if (!(col % 2) && (col < spiral_size - row || col > row)) {
+                    putchar('*');
+                }
+                else {
+                    putchar('-');
+                }
+            }
+        }
+        // deals with odd rows
+        else {
+            // check cols
+            for (col = 0; col < spiral_size; col++) {
+                // logic.
+                if ((col % 2) && (col < spiral_size - row || col > row)) {
+                    putchar('-');
+                }
+                else {
+                    putchar('*');
+                }
+            }
+        }
+        printf("\n");
+    } 
+    return 0;
+}
+
+// did appropriate second operand within the if conditional
+// on line 16 from stack
+#+end_src
+** output
+{{< collapse-local folded="true" >}}
+
+* Squares
+
+#+begin_src C :cmdline  :results output :tangle squares.c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char *argv[]) {
+	int total_squares = 0;
+	for (int i = 1; i < atoi(argv[1]); i++) {
+		if (i*i > atoi(argv[1])) break;
+		printf("%d\n", i*i);
+		total_squares++;
+	}
+	printf("Total Squares: %d\n", total_squares);
+	return 0;
+}
+
+#+end_src
+** output
+{{< collapse-local folded="true" >}}
+* Turing Paint
+
+#+begin_src C :cmdline  :results output :tangle turing-paint.c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_SIZE 21000
+
+void print_canvas(int *canvas)
+{
+	for (int i = 0; canvas[i] != '\0'; i++) {
+		printf("%d ", i);
+		int j = canvas[i];
+		int count = 0;
+		for (; j == canvas[i]; i++, count++) {
+			;
+		}
+		printf("%d %d \n", count, j);
+	}
+	return;
+}	
+
+int main(void) {
+	int canvas[MAX_SIZE] = {0};
+	int pos, paint, colour; 
+	while (scanf("%d %d %d", &pos, &paint, &colour) != EOF) {
+		pos--;
+		for (int i = pos; paint > 0; paint--) {
+			canvas[i++] = colour;
+		}
+		//for (int i = 0; canvas[i] != '\0'; i++) {
+		//	printf("%d", canvas[i]);
+		//}
+		//printf("\n");
+	}
+	print_canvas(canvas);
+	return 0;
+}
+
+#+end_src
+** output
+{{< collapse-local folded="true" >}}
+* Uppercase
+
+#+begin_src C :cmdline  :results output :tangle uppercase.c
+#include <stdio.h>
+#include <string.h>
+
+int main (int argc, char *argv[]) {
+        char str[25];
+        for (int i = 0; argv[1][i] != '\0'; i++) {
+                if (argv[1][i] >= 65 && argv[1][i] <= 90) {
+                        str[i] = argv[1][i];
+                }
+                else {
+                        str[i] = argv[1][i] - 32;
+                }
+        }
+        str[strlen(str)] += '\n';
+        printf("%s\n", str);
+        return 0;
+}
+
+#+end_src
+** output
+{{< collapse-local folded="true" >}}
+* Vector Sum
+
+#+begin_src C :cmdline  :results output :tangle vector-sum.c
+#include <stdio.h>
+
+int main() {
+    int x1 = 0, x2 = 0, y1 = 0, y2 = 0, z1 = 0, z2 = 0;
+    printf("Please enter the values of the first vector (x, y, z): ");
+    scanf("%d%d%d", &x1, &y1, &z1);
+    printf("Please enter the values of the second vector (x, y, z): ");
+    scanf("%d%d%d", &x2, &y2, &z2);
+    printf("The resulting sum vector is:\n"
+        "x: %d\ny: %d\nz: %d\n", x1 + x2, y1 + y2, z1 + z2);
+}
+#+end_src
+** output
+{{< collapse-local folded="true" >}}
+* Word Square
+
+#+begin_src C :cmdline  :results output :tangle word-square.c
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+	char str[1024];
+	int i = 0, ch;
+	printf("Input word: ");
+	while ((ch = getchar())) {
+		if (ch == '\n' || ch == '\0') {
+			break;
+		}
+		str[i++] = ch;
+	}
+	printf("\nWord square is:\n");
+	for (int j = i; j > 0; j--) {
+		for (int k = 0; k < i; k++) {
+			putchar(str[k]);
+		}
+		putchar('\n');
+	}
+}
+
+#+end_src
+** output
+{{< collapse-local folded="true" >}}
+* X
+
+#+begin_src C :cmdline  :results output :tangle x.c
+#include <stdio.h>
+
+int main() {
+    int size = 0, row = 1, col = 1;
+    printf("Enter size: ");
+    scanf("%d", &size);
+    while (!(row > size)) {
+        while (!(col > size)) {
+            if (col == row ) printf("*");
+            else if (col == size + 1 - row) printf("*");
+            else printf("-");
+            col++;
+        }
+        printf("\n");
+        col = 1;
+        row++; 
+    }
+
+}
+#+end_src
+** output
+{{< collapse-local folded="true" >}}

@@ -1,0 +1,92 @@
++++
+title = "Cryptography Code"
+tags = ["cryptography", "tools", "c"]
+toc = "true"
+clocal = "true"
++++
+
+#+PROPERTY: dest /Users/aayushbajaj/Documents/new-site/static/code/ccs/programming/languages/100-days-python/mastery/
+
+* Caesar
+
+some of the code I've written is so stupid I tell you.
+
+this one basically fires up a REPL with a =argv[1]= as the number of forward caesar cipher steps you want to take.
+
+really not worth running.
+
+#+begin_src C :cmdline 69 :results output :tangle caesar.c
+#include <stdio.h>
+#include <stdlib.h>
+
+int upper(int character, int shift) {
+	character += shift;
+	if (character > 90) {
+		character = (character-90)%26 + 64;
+	}
+	else if (character < 65) {
+		character = (65-character)%26;
+		if (character == 0) return 65;
+		character = 91 - character;
+	}
+	return character;
+}
+
+int lower(int character, int shift) {
+	character += shift;
+	if (character > 122) {
+		character = (character-122)%26 + 96;
+	}
+	else if (character < 97) {
+		character = (97-character)%26;
+		if (character == 0) return 97;
+		character = 123 - character;
+	}
+	return character;
+}
+
+
+int main(int argc, char* argv[]) {
+	int shift = atoi(argv[1]);
+	int character = getchar();
+	while (character != EOF) {
+		if (character >= 'A' && character <= 'Z') {
+			putchar(upper(character, shift));
+		}
+		else if (character >= 'a' && character <= 'z') {
+			putchar(lower(character, shift));
+		}
+		else putchar(character);
+		character = getchar();
+	}
+}
+
+#+end_src
+
+* File XOR
+
+#+begin_src C :cmdline file1 file2 :results output :tangle base-changer.c
+#include <stdio.h>
+
+int main(int argc, char *argv[])
+{
+    FILE *fi, *fo;
+    char *cp;
+    int c;
+
+    if ((cp = argv[1]) && *cp!='\0') {
+        if ((fi = fopen(argv[2], "rb")) != NULL) {
+            if ((fo = fopen(argv[3], "wb")) != NULL) {
+                while ((c = getc(fi)) != EOF) {
+                    if (!*cp) cp = argv[1];
+                    c ^= *(cp++);
+                    putc(c,fo);
+                }
+                fclose(fo);
+            }
+            fclose(fi);
+        }
+    }
+}
+#+end_src
+

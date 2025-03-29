@@ -1,7 +1,7 @@
 +++
 title = "Multilayer Perceptron"
 categories = ["non-linear"]
-tags = ["xor", "feedforward-networks", "backpropagation","pytorch","hidden-units","perceptron"]
+tags = ["xor", "feedforward-networks", "backpropagation","pytorch","hidden-units","perceptron","mnist"]
 math = "true"
 toc = "true"
 +++

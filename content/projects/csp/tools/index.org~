@@ -1,0 +1,19 @@
++++
+title = "Tools"
+tags = ["go", "tools"]
+toc = "true"
++++
+
+I am using this project as an excuse to learn [[https://go.dev/][GO]]. 
+
+Each heading below is a tool I have produced, the Go code is tangled into a repository called [[https://github.com/abaj8494/100-days-go][100 Days of Go]] and repurposed at [[tools.abaj.ai][tools.abaj.ai]] --- which serves these convenience mathematical and programmatic tools in a nice frontend.
+
+The Table of Contents is your friend.
+
+* Primality Checker
+
+
+
+* Nth Fibonacci Number
+
+* 
