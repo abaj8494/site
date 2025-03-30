@@ -1,5 +1,7 @@
 +++
 title = "chapter 1: using neural networks to recognise handwritten digits"
+math = "true"
+toc = "true"
 +++
 
 ** notes
@@ -9,7 +11,7 @@ title = "chapter 1: using neural networks to recognise handwritten digits"
   
 #+BEGIN_CENTER
 #+CAPTION: The visual cortex is located in the occipital lobe
-[[{{< cwd >}}primary-visual.webp]]
+[[{{< cwd >}}primary-visual.png]]
 #+END_CENTER
 
 - primary visual cortex has 140 million neurons
@@ -19,8 +21,8 @@ title = "chapter 1: using neural networks to recognise handwritten digits"
 - neural nets can express =NAND=, which means /any computation/ can be built using these gates!
 
 #+BEGIN_CENTER
-#+ATTR_HTML :id nand :class lateximage :width 300px
-[[nand.svg]]
+#+ATTR_HTML: :id nand :class lateximage :width 300px
+[[{{< cwd >}}nand.svg]]
 #+END_CENTER
 
 *** sigmoid neurons
@@ -46,12 +48,12 @@ title = "chapter 1: using neural networks to recognise handwritten digits"
 thus the mathematics of \(\varphi\) becomes:
 \[\begin{align*}
 \sigma(z) &\equiv \cfrac{1}{1+e^{-z}}\\
-&\implies \cfrac{1}{1+exp(-\sum_j w_jx_j -b)}
+&\implies \cfrac{1}{1+\text{exp}(-\sum_j w_jx_j -b)}
 \end{align*}\]
 
 and since the output = \(\sigma(w\cdot x + b)\)
-\[\delta \text{output} \approx \sum_j \frac{\partial \text{output}}{\partial w_j}\delta w_j + \frac{\partial \text{output}}{\partial b}\delta b \]
-where \(\delta\) is *change*, not the gradient / nabla!
+\[\Delta \text{output} \approx \sum_j \frac{\partial \text{output}}{\partial w_j}\Delta w_j + \frac{\partial \text{output}}{\partial b}\Delta b \]
+where \(\Delta\) is *change*, not the gradient / nabla!
 
 - the input ound output layers of a neural network are straight-forward, there is an art to the design of the hidden layers.
 - /feedforward/ neural networks means there are no loops in the network.
@@ -63,18 +65,19 @@ where \(\delta\) is *change*, not the gradient / nabla!
 - we minimise the loss function: \[C(w,b) \equiv \frac{1}{2n}\sum_x \|y(x) -a \|^2 \]
   - a good question to ask is why do we minimise this auxillary function and not just the number of misclassified examples?
   - the answer to this is that the _number of misclassified examples_ is not a continuous value.
+
 \[\begin{align*}
-\delta C &\approx \nabla C \cdot \delta v\\
-\nabla C &\equiv \left(\cfrac{\partial C}{\partial v_1}, \ldots, \cfrac{\partial C}{\partial v_m})\right ^T \\
-\delta v &= -\eta \nabla C \\
-v\rightarrow v^' = v - \eta\nabla C
+\Delta C &\approx \nabla C \cdot \Delta v\\
+\nabla C &\equiv \left( \cfrac{\partial C}{\partial v_1}, \ldots, \cfrac{\partial C}{\partial v_m} \right ) ^T \\
+\Delta v &= -\eta \nabla C \\
+v&\rightarrow v' = v - \eta\nabla C
 \end{align*}\]
 
 then replacing \(v_j\) with \(w_j\) and \(b_l\) yields *gradient descent*
 
 \[\begin{align*}
-w_k \rightarrow w_k^' &= w_k - \eta\cfrac{\partial C}{\partial w_k}\\
-b_l \rightarrow b_l^' &= b_l - \eta\cfrac{\partial C}{\partial b_l}\\
+w_k \rightarrow w_k' &= w_k - \eta\cfrac{\partial C}{\partial w_k}\\
+b_l \rightarrow b_l' &= b_l - \eta\cfrac{\partial C}{\partial b_l}
 \end{align*}\]
 
 however, clearly for *huge* datasets, taking the partial derivatives w.r.t every weight and bias would be computationally infeasible.
@@ -89,15 +92,15 @@ thus we average over a smaller number of batches, called mini-batches:
 and then use those in the gradient calculation instead:
 
 \[\begin{align*}
-w_k \rightarrow w_k^' &= w_k - \frac{\eta}{m}\sum_j\cfrac{\partial C_{x_j}}{\partial w_k}\\
-b_l \rightarrow b_l^' &= b_l - \frac{\eta}{m}\sum_j\cfrac{\partial C_{x_j}}{\partial b_l}\\
+w_k \rightarrow w_k' &= w_k - \frac{\eta}{m}\sum_j\cfrac{\partial C_{x_j}}{\partial w_k}\\
+b_l \rightarrow b_l' &= b_l - \frac{\eta}{m}\sum_j\cfrac{\partial C_{x_j}}{\partial b_l}
 \end{align*}\]
 
 * implementation
 
-#+INCLUDE: "/code/10khrs-ai-ml-dl/PRACTISE/nielsen-dl/ch1-network.py" src python
+#+INCLUDE: "/code/10khrs-ai-ml-dl/learning/nielsen-dl/ch1-network.py" src python
 
-#+INCLUDE: "/code/10khrs-ai-ml-dl/PRACTISE/nielsen-dl/mnist_loader.py" src python
+#+INCLUDE: "/code/10khrs-ai-ml-dl/learning/nielsen-dl/mnist_loader.py" src python
 
 
 * fig                                                              :noexport:
