@@ -1,6 +1,9 @@
 +++
 title = "C: The Programming Language"
 tags = ["c"]
+layout = "custom-list"
 +++
 
 I learned to program in C.
+
+{{< collapse id="c" folded="true" >}}

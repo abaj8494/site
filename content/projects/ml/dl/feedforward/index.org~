@@ -1,0 +1,8 @@
++++
+title = "Feedforward Deep Neural Networks"
+tags = ["feedforward", "deep", "back-prop", "grad-descent", "regularisation"]
+author = ["Michael Neilsen", "Aayush Bajaj"]
++++
+
+This page follows the [[https://abaj.ai/doc/books/nielsen-nn-dl.pdf][book]] by [[https://michaelnielsen.org/][Michael Nielsen]].
+

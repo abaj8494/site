@@ -253,6 +253,7 @@ These methods can be adapted for _regression_, but they are more well suited to 
 - @@html:<input type="checkbox" checked class="done"/>@@ [[/projects/dl/benchmarking][Hardware Benchmarking]] {{< tags-inline "projects/ml/dl/benchmarking" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ml/dl/perceptron][Perceptrons with Gradient Descent (Sigmoid Loss)]]  {{< tags-inline "projects/ml/dl/perceptron" >}}
 - @@html:<input type="checkbox" checked class="archived"/>@@ [[/projects/ml/dl/mlp][Multi-layered Perceptron]]  {{< tags-inline "projects/ml/dl/mlp" >}}
+- @@html:<input type="checkbox" checked class="refactor"/>@@ [[/projects/ml/dl/feedforward][Feedforward Neural Networks]]  {{< tags-inline "projects/ml/dl/feedforward" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ml/dl/rnn][Recurrent Neural Networks (RNN)]]  {{< tags-inline "projects/ml/dl/rnn" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ml/dl/lstm][Long Short-Term Memory (LSTM)]] {{< tags-inline "projects/ml/dl/lstm" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ml/dl/cnn][Convolutional Neural Networks (CNN)]]  {{< tags-inline "projects/ml/dl/cnn" >}}

@@ -1389,6 +1389,8 @@ Create a 2D list with random integers and replace all values greater than a cert
 
 Find the median of a list of numbers.
 
+
+
 ** Exercise 52:
 
 Convert a list of numbers to a list of their logarithms.

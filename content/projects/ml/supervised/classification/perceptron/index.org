@@ -25,7 +25,7 @@ We can see in the diagram below what Rosenblatt's theoretical perceptron looked 
 [[{{< cwd >}}perceptron.svg]]
 #+END_CENTER
 
-Basically, a number of neurons would connect into our neuron, and if the summationed value was greater than some threshold, that neuron in question would fire. Mathematically we can see that above with the equation \(w_1x_1 + w_2x_2 + ... + w_nx_n > w_0\). If this is true then the step-function returns 1, otherwise -1.
+Basically, a number of neurons (in either the on or off state) would connect into our neuron, and if the weighted summation value was greater than some threshold, then our neuron would fire. Mathematically we can see that above with the equation \(w_1x_1 + w_2x_2 + ... + w_nx_n > w_0\). If this is true then the step-function returns 1, otherwise -1.
 
 Here is a diagram showing how the synapses of one neuron connect to the dendrites of another. Then if enough dendrites send charges through the synaptic terminals of another neuron, then that neuron will fire!
 
@@ -39,13 +39,22 @@ Here is a diagram showing how the synapses of one neuron connect to the dendrite
 
 It is absolutely worth taking a moment to blow up the Activation Function on the last node of the [[#perceptron][perceptron]].
 
-#+begin_center
+#+BEGIN_CENTER
+#+HTML: <div style="display: flex; align-items: center; justify-content: center; gap: 20px;">
+#+HTML:   <div style="text-align: center; display: flex; flex-direction: column; align-items: center;">
+#+CAPTION: Sign
 #+ATTR_HTML: :width 300px :class lateximage
-[[sgn.png]]
-\(\leadsto\)
+[[{{< cwd >}}sgn.png]]
+#+HTML:   </div>
+#+HTML:   <div style="font-size: 2em; display: flex; align-items: center;">\(\leadsto\)</div>
+#+HTML:   <div style="text-align: center; display: flex; flex-direction: column; align-items: center;">
+#+CAPTION: Sign Binary
 #+ATTR_HTML: :width 300px :class lateximage
-[[sgn-binary.png]]
-#+end_center
+[[{{< cwd >}}sign-binary.png]]
+#+HTML:   </div>
+#+HTML: </div>
+#+END_CENTER
+
 
 Clearly, this function is discontinuous at 0 and thus not smooth and differentiable. For now we can iteratively adjust the weights of our hyperplane until linear separation is achieved, but in general when we stitch together Multi-Layered Perceptrons later, we will need a new loss function.
 

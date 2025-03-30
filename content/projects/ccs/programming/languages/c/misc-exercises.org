@@ -5,6 +5,8 @@ toc = "true"
 clocal = "true"
 +++
 
+* preamble                                                         :noexport:
+
 #+PROPERTY: dest /Users/aayushbajaj/Documents/new-site/static/code/ccs/programming/c/
 
 #+begin_src emacs-lisp
