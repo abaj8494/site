@@ -151,13 +151,21 @@ Now, as beautiful and rewarding this manual derivation is, it is not always poss
 
 It is also worth acknowledging that we introduced a degree of non-linearity by using the step-function activation at the hidden nodes{{< mnote "See the [[#slp][Single Layered Perceptron]] diagram above." >}} --- this function is not differentiable, and is now nearing the end of its shelf life. As such we must refactor the wheel:
 
-#+begin_center
+#+BEGIN_CENTER
+#+HTML: <div style="display: flex; align-items: center; justify-content: center; gap: 20px;">
+#+HTML:   <div style="text-align: center; display: flex; flex-direction: column; align-items: center;">
+#+CAPTION: Sign
 #+ATTR_HTML: :width 300px :class lateximage
 [[{{< cwd >}}sgn.png]]
-\(\leadsto\)
+#+HTML:   </div>
+#+HTML:   <div style="font-size: 2em; display: flex; align-items: center;">\(\leadsto\)</div>
+#+HTML:   <div style="text-align: center; display: flex; flex-direction: column; align-items: center;">
+#+CAPTION: Sign Binary
 #+ATTR_HTML: :width 300px :class lateximage
 [[{{< cwd >}}sigmoid.png]]
-#+end_center
+#+HTML:   </div>
+#+HTML: </div>
+#+END_CENTER
 
 Real world problems -- such as MNIST tackled in the last heading of this page -- have hundreds of inputs with thousands of weights across tens of layers. {{< mnote "stringing multiple such MLP's form a Feedforward Neural Network" >}}
 

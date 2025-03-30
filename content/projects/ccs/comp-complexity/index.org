@@ -129,19 +129,19 @@ From here, we would realistically like to convert all our Exponential Time Algor
 
 *** Notation
 Simply, we can consider any CNF (Conjunctive Normal Form) of \(n\) variables: \(x_1, x_2, ..., x_n\):
-\[ (x_1 \lor x_2 ) \land (x_3 \lor \not x_1 ) \]
+\[ (x_1 \lor x_2 ) \land (x_3 \lor \neg x_1 ) \]
 Here \(n=3\), and the /Conjunctive Normal Form/ means that sequences of brackets are formed with disjunction operators and conjunction operators are used between those.
 
-\[ (x_1 \lor x_2) \land (\not x_3 \lor x_4 \lor x_5)\quad\text{another example} \]
+\[ (x_1 \lor x_2) \land (\neg x_3 \lor x_4 \lor x_5)\quad\text{another example} \]
 notice that the \(\lor\) is always between the decision variables in the brackets.
 
 *** Problem
 The problem is finding the values of the decision variables such that the CNF equates to =True=.
 
 Considering a couple of examples, we can see that with \(n=2\)
-\[x_1 \land \not x_2 \]
+\[x_1 \land \neg x_2 \]
 Is indeed satisfiable:
-| \(x_1\) | \(x_2)\ | \(\not x_2\) | \(x_1 \land \not x_2\) |
+| \(x_1\) | \(x_2)\ | \(\neg x_2\) | \(x_1 \land \neg x_2\) |
 | T       | T       | F            | F                      |
 | T       | F       | T            | T                      |
 | F       | T       | F            | F                      |
@@ -153,7 +153,7 @@ In general it is true that to determine the truth value we had to consider \(2^n
 
 For completeness, let us check the satisfiability of "a and not a":
 
-| \(a)\   | \(\not a\)   | \(a \land \not a\)     |
+| \(a)\)  | \(\neg a\)   | \(a \land \neg a\)     |
 | T       | F            | F                      |
 | F       | T            | F                      |
 | T       | F            | F                      |
