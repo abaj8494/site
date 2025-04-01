@@ -1385,41 +1385,158 @@ Create a 2D list with random integers and replace all values greater than a cert
 #+RESULTS:
 : [[3, 4, 1, 5, 5, 2, 1, 1, 0, 5], [5, 4, 0, 3, 5, 5, 5, 4, 2, 1], [4, 3, 0, 5, 4, 4, 3, 2, 4, 4], [5, 5, 1, 5, 5, 5, 5, 5, 3, 2]]
 
-** Exercise 51:
+** DONE Exercise 51:
+CLOSED: [2025-03-30 Sun 22:58]
+:LOGBOOK:
+- State "DONE"       from              [2025-03-30 Sun 22:58]
+:END:
 
 Find the median of a list of numbers.
 
-** Exercise 52:
+*** soln
+
+#+BEGIN_SRC jupyter-python :session mast-py :tangle q51.py
+  import random
+  random.seed()
+  list_nums = [random.randint(0,5) for _ in range(5)]
+  median = lambda l: l[len(l) / 2 if len(l) % 2 == 0 else len(l)//2 ]
+  print(list_nums)
+  print(median(list_nums))
+#+END_SRC
+
+#+RESULTS:
+: [5, 5, 2, 5, 3]
+: 2
+
+** DONE Exercise 52:
+CLOSED: [2025-03-30 Sun 22:58]
+:LOGBOOK:
+- State "DONE"       from              [2025-03-30 Sun 22:58]
+:END:
 
 Convert a list of numbers to a list of their logarithms.
 
-** Exercise 53:
+*** soln
+
+#+BEGIN_SRC jupyter-python :session mast-py :tangle q52.py
+  import math
+  log_list = lambda l: [math.log(x) for x in l]
+  print(log_list(list_nums))
+#+END_SRC
+
+#+RESULTS:
+: [1.6094379124341003, 1.6094379124341003, 0.6931471805599453, 1.6094379124341003, 1.0986122886681098]
+
+** DONE Exercise 53:
+CLOSED: [2025-03-30 Sun 22:58]
+:LOGBOOK:
+- State "DONE"       from              [2025-03-30 Sun 22:58]
+:END:
 
 Find the mode of a list of numbers.
 
-** Exercise 54:
+*** soln
+
+disclaimer: this implementation does not deal with *multiple* most often occurring values
+#+BEGIN_SRC jupyter-python :session mast-py :tangle q53.py
+  list_nums = [random.randint(0,5) for _ in range(5)]
+  def mode(l):
+    uniques = set(l)
+    mo = (0,) # most often
+    for x in uniques:
+      y = l.count(x)
+      if y > mo[0]:
+	mo = (y, x)
+    return mo[1]
+  print(list_nums)
+  print(mode(list_nums))
+#+END_SRC
+
+#+RESULTS:
+: [5, 3, 5, 1, 1]
+: 1
+
+** DONE Exercise 54:
+CLOSED: [2025-03-30 Sun 22:58]
+:LOGBOOK:
+- State "DONE"       from              [2025-03-30 Sun 22:58]
+:END:
 
 Flatten a list of lists.
 
-** Exercise 55:
+*** soln
+
+#+BEGIN_SRC jupyter-python :session mast-py :tangle q54.py
+  nested_list = [[ [ random.randint(0,4) for _ in range(4) ] for _ in range(3) ] for _ in range(2) ]
+  twod_nested_list = [ [ random.randint(0,4) for _ in range(4) ] for _ in range(3) ]
+  print(nested_list)
+  unwrap_2d = lambda l: [x for rows in l for x in rows]
+  print(unwrap_2d(twod_nested_list))
+  print(nested_list)
+  unwrap_3d = lambda l: [x for matrices in l for rows in matrices for x in rows]
+  print(unwrap_3d(nested_list))
+#+END_SRC
+
+#+RESULTS:
+: [[[4, 0, 1, 2], [2, 0, 4, 0], [3, 0, 0, 0]], [[3, 4, 1, 4], [1, 3, 4, 1], [0, 4, 0, 4]]]
+: [2, 0, 4, 3, 0, 0, 0, 0, 0, 3, 0, 3]
+: [[[4, 0, 1, 2], [2, 0, 4, 0], [3, 0, 0, 0]], [[3, 4, 1, 4], [1, 3, 4, 1], [0, 4, 0, 4]]]
+: [4, 0, 1, 2, 2, 0, 4, 0, 3, 0, 0, 0, 3, 4, 1, 4, 1, 3, 4, 1, 0, 4, 0, 4]
+
+** DONE Exercise 55:
+CLOSED: [2025-03-30 Sun 22:58]
+:LOGBOOK:
+- State "DONE"       from              [2025-03-30 Sun 22:58]
+:END:
 
 Transpose a 2D list.
+*** soln
+
+#+BEGIN_SRC jupyter-python :session mast-py :tangle q55.py
+  print(twod_nested_list)
+  transpose = lambda l: [[ l[j][i] for j in range(len(l)) ] for i in range(len(l[0]))]
+  print(transpose(twod_nested_list))
+#+END_SRC
+
+#+RESULTS:
+: [[2, 0, 4, 3], [0, 0, 0, 0], [0, 3, 0, 3]]
+: [[2, 0, 0], [0, 0, 3], [4, 0, 0], [3, 0, 3]]
 
 ** Exercise 56:
 
 Remove duplicates from a list while preserving order.
+*** soln
+
+#+BEGIN_SRC jupyter-python :session mast-py :tangle q51.py
+
+#+END_SRC
 
 ** Exercise 57:
 
 Find the intersection of two lists.
+*** soln
+
+#+BEGIN_SRC jupyter-python :session mast-py :tangle q51.py
+
+#+END_SRC
 
 ** Exercise 58:
 
 Merge two dictionaries.
+*** soln
+
+#+BEGIN_SRC jupyter-python :session mast-py :tangle q51.py
+
+#+END_SRC
 
 ** Exercise 59:
 
 Sort a list of dictionaries by a key.
+*** soln
+
+#+BEGIN_SRC jupyter-python :session mast-py :tangle q51.py
+
+#+END_SRC
 
 ** Exercise 60:
 

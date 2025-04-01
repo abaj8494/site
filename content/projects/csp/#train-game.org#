@@ -1,0 +1,239 @@
++++
+title = "Train Game, Get 10"
+mathjax = "true"
++++
+
+This is just Python write up of a game that we used to play (and I still do), as a child on the NSW trains:
+
+Given a series of 4 numbers (the train carriage identifier), we were tasked with constructing the number 10 using mathematical operations.
+
+Say our carriage number was:
+\[\require{bbox}\bbox[lightblue,5px,border:2px solid red]{\color{#800000}{ 6325 }}}\]
+
+Then one valid configuration would be \(6-3+2+5\) which equals 10.
+
+Today I am going to write some Python code to replicate this functionality and test 4 digit sequences that can make 10 using permutations of =+-x/^%!=.
+
+I shall opt to perform computations in that order to minimise time-complexity and also floating point errors.
+
+#+begin_src jupyter-python :session train
+  carriage_num = 6325
+  operations = '+-x/^%!'
+  from itertools import permutations
+  permuted_ops = list(permutations(operations, 3))
+  print(len(permuted_ops)) # expected 210=5040/24=7!/4!
+
+  def check_10(car, permuted_ops):
+      for p in permuted_ops:
+	  if round(car[0] p[0] car[1] p[1] car[2] p[2] car[3]) == 10:
+	      return car
+#+end_src
+
+#+RESULTS:
+: 210
+
+
+#+begin_src jupyter-python :session train
+carriage_num = 6325
+operations = '+-*/^%!'  # All operations including factorial, exponentiation, modulo
+from itertools import permutations
+import math
+
+permuted_ops = list(permutations(operations, 3))
+print(len(permuted_ops))  # Should be 210 (7P3)
+
+def check_10(car, permuted_ops):
+    car_str = str(car)
+    
+    for p in permuted_ops:
+        # Skip cases with division by zero
+        if (p[0] == '/' and car_str[1] == '0') or \
+           (p[1] == '/' and car_str[2] == '0') or \
+           (p[2] == '/' and car_str[3] == '0'):
+            continue
+            
+        # Skip factorial of zero or negative numbers
+        if (p[0] == '!' and int(car_str[0]) <= 0) or \
+           (p[1] == '!' and int(car_str[1]) <= 0) or \
+           (p[2] == '!' and int(car_str[2]) <= 0) or \
+           (p[0] != '!' and p[1] == '!' and int(car_str[1]) <= 0) or \
+           (p[1] != '!' and p[2] == '!' and int(car_str[2]) <= 0):
+            continue
+        
+        # Convert string to expression that can be evaluated
+        expression = ""
+        result = None
+        
+        try:
+            # Create a proper expression with our custom operators
+            # We'll build this step by step
+            a, b, c, d = int(car_str[0]), int(car_str[1]), int(car_str[2]), int(car_str[3])
+            
+            # Apply first operator
+            if p[0] == '+':
+                temp1 = a + b
+            elif p[0] == '-':
+                temp1 = a - b
+            elif p[0] == '*':
+                temp1 = a * b
+            elif p[0] == '/':
+                temp1 = a / b
+            elif p[0] == '^':
+                temp1 = a ** b
+            elif p[0] == '%':
+                temp1 = a % b
+            elif p[0] == '!':
+                temp1 = math.factorial(a)
+                # After applying factorial to a, we need to apply the next operator to this result and b
+                if p[1] == '+':
+                    temp2 = temp1 + b
+                elif p[1] == '-':
+                    temp2 = temp1 - b
+                elif p[1] == '*':
+                    temp2 = temp1 * b
+                elif p[1] == '/':
+                    temp2 = temp1 / b
+                elif p[1] == '^':
+                    temp2 = temp1 ** b
+                elif p[1] == '%':
+                    temp2 = temp1 % b
+                elif p[1] == '!':
+                    temp2 = math.factorial(b)
+                    
+                # Now apply the third operator to temp2 and c
+                if p[2] == '+':
+                    result = temp2 + c
+                elif p[2] == '-':
+                    result = temp2 - c
+                elif p[2] == '*':
+                    result = temp2 * c
+                elif p[2] == '/':
+                    if c == 0:
+                        continue
+                    result = temp2 / c
+                elif p[2] == '^':
+                    result = temp2 ** c
+                elif p[2] == '%':
+                    if c == 0:
+                        continue
+                    result = temp2 % c
+                elif p[2] == '!':
+                    if temp2 < 0 or not temp2.is_integer():
+                        continue
+                    result = math.factorial(int(temp2))
+                
+                # We need to still include d in the calculation
+                result = result + d
+                expression = f"{a}! {p[1]} {b} {p[2]} {c} + {d}"
+                
+                if round(result) == 10:
+                    return expression, result
+                continue
+            
+            # Apply second operator
+            if p[1] == '+':
+                temp2 = temp1 + c
+            elif p[1] == '-':
+                temp2 = temp1 - c
+            elif p[1] == '*':
+                temp2 = temp1 * c
+            elif p[1] == '/':
+                temp2 = temp1 / c
+            elif p[1] == '^':
+                temp2 = temp1 ** c
+            elif p[1] == '%':
+                temp2 = temp1 % c
+            elif p[1] == '!':
+                if temp1 < 0 or not temp1.is_integer():
+                    continue
+                temp2 = math.factorial(int(temp1))
+                
+            # Apply third operator
+            if p[2] == '+':
+                result = temp2 + d
+            elif p[2] == '-':
+                result = temp2 - d
+            elif p[2] == '*':
+                result = temp2 * d
+            elif p[2] == '/':
+                result = temp2 / d
+            elif p[2] == '^':
+                result = temp2 ** d
+            elif p[2] == '%':
+                result = temp2 % d
+            elif p[2] == '!':
+                if temp2 < 0 or not temp2.is_integer():
+                    continue
+                result = math.factorial(int(temp2))
+            
+            # Build expression string for output
+            if p[0] != '!':
+                part1 = f"{a} {p[0]} {b}"
+            else:
+                part1 = f"{a}!"
+                
+            if p[1] != '!':
+                part2 = f"{part1} {p[1]} {c}"
+            else:
+                part2 = f"({part1})!"
+                
+            if p[2] != '!':
+                expression = f"{part2} {p[2]} {d}"
+            else:
+                expression = f"({part2})!"
+            
+            # Check if result rounded equals 10
+            if round(result) == 10:
+                return expression, result
+                
+        except (ValueError, ZeroDivisionError, OverflowError):
+            # Handle any errors (large factorials, etc.)
+            continue
+    
+    return None
+
+# Test with the carriage number
+result = check_10(carriage_num, permuted_ops)
+if result:
+    print(f"Found: {result[0]} = {result[1]} (rounds to 10)")
+else:
+    print("No solution found")
+
+#+end_src
+
+#+RESULTS:
+:RESULTS:
+: 210
+# [goto error]
+#+begin_example
+  [0;31m---------------------------------------------------------------------------[0m
+  [0;31mAttributeError[0m                            Traceback (most recent call last)
+  Cell [0;32mIn[8], line 160[0m
+  [1;32m    157[0m     [38;5;28;01mreturn[39;00m [38;5;28;01mNone[39;00m
+  [1;32m    159[0m [38;5;66;03m# Test with the carriage number[39;00m
+  [0;32m--> 160[0m result [38;5;241m=[39m check_10(carriage_num, permuted_ops)
+  [1;32m    161[0m [38;5;28;01mif[39;00m result:
+  [1;32m    162[0m     [38;5;28mprint[39m([38;5;124mf[39m[38;5;124m"[39m[38;5;124mFound: [39m[38;5;132;01m{[39;00mresult[[38;5;241m0[39m][38;5;132;01m}[39;00m[38;5;124m = [39m[38;5;132;01m{[39;00mresult[[38;5;241m1[39m][38;5;132;01m}[39;00m[38;5;124m (rounds to 10)[39m[38;5;124m"[39m)
+
+  Cell [0;32mIn[8], line 129[0m, in [0;36mcheck_10[0;34m(car, permuted_ops)[0m
+  [1;32m    127[0m     result [38;5;241m=[39m temp2 [38;5;241m%[39m d
+  [1;32m    128[0m [38;5;28;01melif[39;00m p[[38;5;241m2[39m] [38;5;241m==[39m [38;5;124m'[39m[38;5;124m![39m[38;5;124m'[39m:
+  [0;32m--> 129[0m     [38;5;28;01mif[39;00m temp2 [38;5;241m<[39m [38;5;241m0[39m [38;5;129;01mor[39;00m [38;5;129;01mnot[39;00m temp2[38;5;241m.[39mis_integer():
+  [1;32m    130[0m         [38;5;28;01mcontinue[39;00m
+  [1;32m    131[0m     result [38;5;241m=[39m math[38;5;241m.[39mfactorial([38;5;28mint[39m(temp2))
+
+  [0;31mAttributeError[0m: 'int' object has no attribute 'is_integer'
+#+end_example
+:END:
+
+
+
+#+begin_src jupyter-python :session mast-python :tangle q4.py
+      another_list = list(range(20))
+      odd_lists = list(filter(lambda x: x%2==1, another_list))
+      odd_lists
+#+end_src
+
+#+RESULTS:
+| 1 | 3 | 5 | 7 | 9 | 11 | 13 | 15 | 17 | 19 |
+

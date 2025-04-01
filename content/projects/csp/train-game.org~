@@ -1,0 +1,33 @@
++++
+title = "Train Game, Get 10"
+mathjax = "true"
++++
+
+This is just Python write up of a game that we used to play (and I still do), as a child on the NSW trains:
+
+Given a series of 4 numbers (the train carriage identifier), we were tasked with constructing the number 10 using mathematical operations.
+
+Say our carriage number was:
+\[\require{bbox}\bbox[lightblue,5px,border:2px solid red]{\color{#800000}{ 6325 }}}\]
+
+Then one valid configuration would be \(6-3+2+5\) which equals 10.
+
+Today I am going to write some Python code to replicate this functionality and test 4 digit sequences that can make 10 using permutations of =+-x/^%!=.
+
+I shall opt to perform computations in that order to minimise time-complexity and also floating point errors.
+
+#+begin_src jupyter-python :session train
+  carriage_num = 6325
+  operations = '+-x/^%!'
+  from itertools import permutations
+  permuted_ops = permutations(operations)
+  print(permuted_ops)
+#+end_src
+
+
+#+begin_src jupyter-python :session mast-python :tangle q4.py
+  another_list = list(range(20))
+  odd_lists = list(filter(lambda x: x%2==1, another_list))
+  odd_lists
+#+end_src
+
