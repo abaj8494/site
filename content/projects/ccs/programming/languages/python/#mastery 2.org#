@@ -1385,7 +1385,11 @@ Create a 2D list with random integers and replace all values greater than a cert
 #+RESULTS:
 : [[3, 4, 1, 5, 5, 2, 1, 1, 0, 5], [5, 4, 0, 3, 5, 5, 5, 4, 2, 1], [4, 3, 0, 5, 4, 4, 3, 2, 4, 4], [5, 5, 1, 5, 5, 5, 5, 5, 3, 2]]
 
-** Exercise 51:
+** DONE Exercise 51:
+CLOSED: [2025-03-30 Sun 22:58]
+:LOGBOOK:
+- State "DONE"       from              [2025-03-30 Sun 22:58]
+:END:
 
 Find the median of a list of numbers.
 
@@ -1395,191 +1399,499 @@ Find the median of a list of numbers.
   import random
   random.seed()
   list_nums = [random.randint(0,5) for _ in range(5)]
-  median = lambda l: l[len(l) / 2 if len(l) % 2 == 0 else len(l) +1 ]
+  median = lambda l: l[len(l) / 2 if len(l) % 2 == 0 else len(l)//2 ]
+  print(list_nums)
   print(median(list_nums))
 #+END_SRC
 
 #+RESULTS:
-:RESULTS:
-# [goto error]
-#+begin_example
-  [0;31m---------------------------------------------------------------------------[0m
-  [0;31mIndexError[0m                                Traceback (most recent call last)
-  Cell [0;32mIn[2], line 5[0m
-  [1;32m      3[0m list_nums [38;5;241m=[39m [random[38;5;241m.[39mrandint([38;5;241m0[39m,[38;5;241m5[39m) [38;5;28;01mfor[39;00m _ [38;5;129;01min[39;00m [38;5;28mrange[39m([38;5;241m5[39m)]
-  [1;32m      4[0m median [38;5;241m=[39m [38;5;28;01mlambda[39;00m l: l[[38;5;28mlen[39m(l) [38;5;241m/[39m [38;5;241m2[39m [38;5;28;01mif[39;00m [38;5;28mlen[39m(l) [38;5;241m%[39m [38;5;241m2[39m [38;5;241m==[39m [38;5;241m0[39m [38;5;28;01melse[39;00m [38;5;28mlen[39m(l) [38;5;241m+[39m[38;5;241m1[39m ]
-  [0;32m----> 5[0m [38;5;28mprint[39m(median(list_nums))
+: [5, 5, 2, 5, 3]
+: 2
 
-  Cell [0;32mIn[2], line 4[0m, in [0;36m<lambda>[0;34m(l)[0m
-  [1;32m      2[0m random[38;5;241m.[39mseed()
-  [1;32m      3[0m list_nums [38;5;241m=[39m [random[38;5;241m.[39mrandint([38;5;241m0[39m,[38;5;241m5[39m) [38;5;28;01mfor[39;00m _ [38;5;129;01min[39;00m [38;5;28mrange[39m([38;5;241m5[39m)]
-  [0;32m----> 4[0m median [38;5;241m=[39m [38;5;28;01mlambda[39;00m l: l[[38;5;28mlen[39m(l) [38;5;241m/[39m [38;5;241m2[39m [38;5;28;01mif[39;00m [38;5;28mlen[39m(l) [38;5;241m%[39m [38;5;241m2[39m [38;5;241m==[39m [38;5;241m0[39m [38;5;28;01melse[39;00m [38;5;28mlen[39m(l) [38;5;241m+[39m[38;5;241m1[39m ]
-  [1;32m      5[0m [38;5;28mprint[39m(median(list_nums))
-
-  [0;31mIndexError[0m: list index out of range
-#+end_example
+** DONE Exercise 52:
+CLOSED: [2025-03-30 Sun 22:58]
+:LOGBOOK:
+- State "DONE"       from              [2025-03-30 Sun 22:58]
 :END:
-
-
-** Exercise 52:
 
 Convert a list of numbers to a list of their logarithms.
 
 *** soln
 
-#+BEGIN_SRC jupyter-python :session mast-py :tangle q51.py
-
+#+BEGIN_SRC jupyter-python :session mast-py :tangle q52.py
+  import math
+  log_list = lambda l: [math.log(x) for x in l]
+  print(log_list(list_nums))
 #+END_SRC
 
+#+RESULTS:
+: [1.6094379124341003, 1.6094379124341003, 0.6931471805599453, 1.6094379124341003, 1.0986122886681098]
 
-** Exercise 53:
+** DONE Exercise 53:
+CLOSED: [2025-03-30 Sun 22:58]
+:LOGBOOK:
+- State "DONE"       from              [2025-03-30 Sun 22:58]
+:END:
 
 Find the mode of a list of numbers.
 
 *** soln
 
-#+BEGIN_SRC jupyter-python :session mast-py :tangle q51.py
-
+disclaimer: this implementation does not deal with *multiple* most often occurring values
+#+BEGIN_SRC jupyter-python :session mast-py :tangle q53.py
+  list_nums = [random.randint(0,5) for _ in range(5)]
+  def mode(l):
+    uniques = set(l)
+    mo = (0,) # most often
+    for x in uniques:
+      y = l.count(x)
+      if y > mo[0]:
+	mo = (y, x)
+    return mo[1]
+  print(list_nums)
+  print(mode(list_nums))
 #+END_SRC
 
-** Exercise 54:
+#+RESULTS:
+: [5, 3, 5, 1, 1]
+: 1
+
+** DONE Exercise 54:
+CLOSED: [2025-03-30 Sun 22:58]
+:LOGBOOK:
+- State "DONE"       from              [2025-03-30 Sun 22:58]
+:END:
 
 Flatten a list of lists.
 
 *** soln
 
-#+BEGIN_SRC jupyter-python :session mast-py :tangle q51.py
-
+#+BEGIN_SRC jupyter-python :session mast-py :tangle q54.py
+  nested_list = [[ [ random.randint(0,4) for _ in range(4) ] for _ in range(3) ] for _ in range(2) ]
+  twod_nested_list = [ [ random.randint(0,4) for _ in range(4) ] for _ in range(3) ]
+  print(nested_list)
+  unwrap_2d = lambda l: [x for rows in l for x in rows]
+  print(unwrap_2d(twod_nested_list))
+  print(nested_list)
+  unwrap_3d = lambda l: [x for matrices in l for rows in matrices for x in rows]
+  print(unwrap_3d(nested_list))
 #+END_SRC
 
-** Exercise 55:
+#+RESULTS:
+: [[[4, 0, 1, 2], [2, 0, 4, 0], [3, 0, 0, 0]], [[3, 4, 1, 4], [1, 3, 4, 1], [0, 4, 0, 4]]]
+: [2, 0, 4, 3, 0, 0, 0, 0, 0, 3, 0, 3]
+: [[[4, 0, 1, 2], [2, 0, 4, 0], [3, 0, 0, 0]], [[3, 4, 1, 4], [1, 3, 4, 1], [0, 4, 0, 4]]]
+: [4, 0, 1, 2, 2, 0, 4, 0, 3, 0, 0, 0, 3, 4, 1, 4, 1, 3, 4, 1, 0, 4, 0, 4]
+
+** DONE Exercise 55:
+CLOSED: [2025-03-30 Sun 22:58]
+:LOGBOOK:
+- State "DONE"       from              [2025-03-30 Sun 22:58]
+:END:
 
 Transpose a 2D list.
 *** soln
 
-#+BEGIN_SRC jupyter-python :session mast-py :tangle q51.py
-
+#+BEGIN_SRC jupyter-python :session mast-py :tangle q55.py
+  print(twod_nested_list)
+  transpose = lambda l: [[ l[j][i] for j in range(len(l)) ] for i in range(len(l[0]))]
+  print(transpose(twod_nested_list))
 #+END_SRC
 
-** Exercise 56:
+#+RESULTS:
+: [[2, 0, 4, 3], [0, 0, 0, 0], [0, 3, 0, 3]]
+: [[2, 0, 0], [0, 0, 3], [4, 0, 0], [3, 0, 3]]
+
+** DONE Exercise 56:
+CLOSED: [2025-04-02 Wed 00:44]
+:LOGBOOK:
+- State "DONE"       from              [2025-04-02 Wed 00:44]
+:END:
 
 Remove duplicates from a list while preserving order.
 *** soln
 
-#+BEGIN_SRC jupyter-python :session mast-py :tangle q51.py
-
+#+BEGIN_SRC jupyter-python :session mast-py :tangle q56.py
+  lst = [5,3,2,3,4,5,5,1,2,1,1]
+  seen = set()
+  print(set(lst)) # note that this orders things, that's all.
+  unique_lst = [x for x in lst if not (x in seen or seen.add(x))] # i'm not grasping the seen.add(x) part.
+  print(unique_lst)
 #+END_SRC
 
-** Exercise 57:
+#+RESULTS:
+: {1, 2, 3, 4, 5}
+: [5, 3, 2, 4, 1]
+
+** DONE Exercise 57:
+CLOSED: [2025-04-02 Wed 00:44]
+:LOGBOOK:
+- State "DONE"       from              [2025-04-02 Wed 00:44]
+:END:
 
 Find the intersection of two lists.
 *** soln
 
-#+BEGIN_SRC jupyter-python :session mast-py :tangle q51.py
-
+#+BEGIN_SRC jupyter-python :session mast-py :tangle q57.py
+  lst1 = [5,2,5,3,1,2]
+  lst2 = [1,3,9,5,2]
+  print(set(lst1).intersection(lst2))
+  # turns out there's another way:
+  print(set(lst1) & set(lst2))
 #+END_SRC
 
-** Exercise 58:
+#+RESULTS:
+: {1, 2, 3, 5}
+: {1, 2, 3, 5}
+
+** DONE Exercise 58:
+CLOSED: [2025-04-02 Wed 00:44]
+:LOGBOOK:
+- State "DONE"       from              [2025-04-02 Wed 00:44]
+:END:
 
 Merge two dictionaries.
 *** soln
 
-#+BEGIN_SRC jupyter-python :session mast-py :tangle q51.py
-
+#+BEGIN_SRC jupyter-python :session mast-py :tangle q58.py
+  dic1 = {'a': 1, 'c': 6}
+  dic2 = {'d': 6, 'r': 2, 'l': 3}
+  print(dic1 | dic2)
+  # furthermore, there is
+  print({**dic1, **dic2})
 #+END_SRC
 
-** Exercise 59:
+#+RESULTS:
+: {'a': 1, 'c': 6, 'd': 6, 'r': 2, 'l': 3}
+: {'a': 1, 'c': 6, 'd': 6, 'r': 2, 'l': 3}
+
+** DONE Exercise 59:
+CLOSED: [2025-04-02 Wed 00:44]
+:LOGBOOK:
+- State "DONE"       from              [2025-04-02 Wed 00:44]
+:END:
 
 Sort a list of dictionaries by a key.
 *** soln
 
-#+BEGIN_SRC jupyter-python :session mast-py :tangle q51.py
-
+#+BEGIN_SRC jupyter-python :session mast-py :tangle q59wrong.py
+  print(sorted(dic2.items(), key=lambda x:x[0])) # can sort on values with x[1]
 #+END_SRC
 
-** Exercise 60:
+#+RESULTS:
+: [('d', 6), ('l', 3), ('r', 2)]
+
+this is actually *not* what the question asked for. they asked for sorting on a /specific/ key from a /list of dicts/.
+
+#+BEGIN_SRC jupyter-python :session mast-py :tangle q59wright.py
+  lst = [{'name' : 'Alice', 'age': 10}, {'name':'Bob','age':15}, {'name':'Charlie','age':20}]
+  print(sorted(lst, key=lambda x:x['age']))
+#+END_SRC
+
+#+RESULTS:
+: [{'name': 'Alice', 'age': 10}, {'name': 'Bob', 'age': 15}, {'name': 'Charlie', 'age': 20}]
+
+** DONE Exercise 60:
+CLOSED: [2025-04-02 Wed 00:44]
+:LOGBOOK:
+- State "DONE"       from              [2025-04-02 Wed 00:44]
+:END:
 
 Filter a dictionary based on its values.
+
+*** soln
+
+#+BEGIN_SRC jupyter-python :session mast-py :tangle q60.py
+  d = {'a': 1, 'b':2, 'c':3}
+  filtered_dict = {k:v for k,v in d.items() if v > 1}
+  print(filtered_dict)
+#+END_SRC
+
+#+RESULTS:
+: {'b': 2, 'c': 3}
 
 ** Exercise 61:
 
 Create a dictionary from two lists.
 
+*** soln
+
+#+BEGIN_SRC jupyter-python :session mast-py :tangle q61.py
+  keys = ['a','b','c','d']
+  values = [1,2,3,4]
+  joined_dict = dict(zip(keys,values))
+  print(joined_dict)
+#+END_SRC
+
+#+RESULTS:
+: {'a': 1, 'b': 2, 'c': 3, 'd': 4}
+
 ** Exercise 62:
 
 Find the maximum value in a dictionary.
+
+*** soln
+
+#+BEGIN_SRC jupyter-python :session mast-py :tangle q62.py
+  print(max(joined_dict))
+  print(max(joined_dict.items()))
+  print(max(joined_dict.values()))
+#+END_SRC
+
+#+RESULTS:
+: d
+: ('d', 4)
+: 4
 
 ** Exercise 63:
 
 Invert a dictionary (swap keys and values).
 
+*** soln
+
+#+BEGIN_SRC jupyter-python :session mast-py :tangle q63.py
+  new_dict = {v:k for k,v in joined_dict.items()}
+  print(new_dict)
+#+END_SRC
+
+#+RESULTS:
+: {1: 'a', 2: 'b', 3: 'c', 4: 'd'}
+
 ** Exercise 64:
 
 Create a dictionary with a default value.
+
+*** soln
+
+#+BEGIN_SRC jupyter-python :session mast-py :tangle q64.py
+  keys = ['x', 'y', 'z']
+  v = 5
+  mydict = {k:v for k in keys}
+  print(mydict)
+#+END_SRC
+
+#+RESULTS:
+: {'x': 5, 'y': 5, 'z': 5}
 
 ** Exercise 65:
 
 Convert a dictionary to a list of tuples.
 
+*** soln
+
+#+BEGIN_SRC jupyter-python :session mast-py :tangle q65.py
+  ts = [item for item in mydict.items()]
+  # the above is probably a little slower than:
+  ts_fast = list(mydict.items()) # note that [] is different here than to list.
+  print(ts_fast)
+#+END_SRC
+
+#+RESULTS:
+: [('x', 5), ('y', 5), ('z', 5)]
+
+*** list comparison aside
+
+#+BEGIN_SRC jupyter-python :session mast-py :tangle list-notation.py
+  # [] is different to list(). [] is a literal, whereas list() is a constructor
+  # [] is bytecode, list() requires a function call
+  import timeit
+  print(timeit.timeit("[]", number=10**6)) # faster
+  print(timeit.timeit("list()", number=10**6)) # slower
+  # list() is more versatile and can convert iterables into lists
+  # [] can only define new lists.
+#+END_SRC
+
+#+RESULTS:
+: 0.0166785828769207
+: 0.034710833337157965
+
 ** Exercise 66:
 
 Find the length of the longest string in a list.
+
+*** soln
+
+#+BEGIN_SRC jupyter-python :session mast-py :tangle q66.py
+  strings = ["my", "cartridge", "got", "hitroadige", "by", "a", "truck"]
+  print(max(strings)) # alphabetised
+  print(max(strings, key=lambda x: len(x)))
+#+END_SRC
+
+#+RESULTS:
+: truck
+: hitroadige
 
 ** Exercise 67:
 
 Reverse the words in a sentence.
 
+*** soln
+
+#+BEGIN_SRC jupyter-python :session mast-py :tangle q67.py
+  s = "oh my god, I might fail this course"
+  list_of_words = s.split()
+  print(' '.join(list_of_words[::-1]))
+#+END_SRC
+
+#+RESULTS:
+: course this fail might I god, my oh
+
 ** Exercise 68:
 
 Check if a string is a palindrome.
+
+*** soln
+
+#+BEGIN_SRC jupyter-python :session mast-py :tangle q68.py
+  palindrome_checker = lambda s: True if s==s[::-1] else False
+  print(palindrome_checker("lick"))
+  print(palindrome_checker("kayak"))
+#+END_SRC
+
+#+RESULTS:
+: False
+: True
 
 ** Exercise 69:
 
 Remove punctuation from a string.
 
+*** soln
+
+#+BEGIN_SRC jupyter-python :session mast-py :tangle q69.py
+  import string
+  remove_punc = lambda s: s.translate(str.maketrans('','',string.punctuation))
+  print(remove_punc("remove, punc? punk!"))
+#+END_SRC
+
+#+RESULTS:
+: remove punc punk
+
 ** Exercise 70:
 
 Count the occurrences of each character in a string.
+
+*** soln
+
+#+BEGIN_SRC jupyter-python :session mast-py :tangle q70.py
+  print(s)
+  count_chars = lambda s: {char: s.count(char) for char in set(s)}
+  print(sorted(list(count_chars(s).items()), key=lambda x:x[1]))
+#+END_SRC
+
+#+RESULTS:
+: oh my god, I might fail this course
+: [('f', 1), ('y', 1), ('l', 1), ('d', 1), ('r', 1), ('u', 1), (',', 1), ('I', 1), ('a', 1), ('c', 1), ('e', 1), ('g', 2), ('s', 2), ('m', 2), ('t', 2), ('h', 3), ('i', 3), ('o', 3), (' ', 7)]
 
 ** Exercise 71:
 
 Find the longest common prefix among a list of strings.
 
+*** soln
+
+#+BEGIN_SRC jupyter-python :session mast-py :tangle q71.py
+
+#+END_SRC
+
+
 ** Exercise 72:
 
 Convert a string to a list of characters.
+
+*** soln
+
+#+BEGIN_SRC jupyter-python :session mast-py :tangle q71.py
+
+#+END_SRC
+
 
 ** Exercise 73:
 
 Generate a list of random integers.
 
+*** soln
+
+#+BEGIN_SRC jupyter-python :session mast-py :tangle q71.py
+
+#+END_SRC
+
+
 ** Exercise 74:
 
 Shuffle a list.
+
+*** soln
+
+#+BEGIN_SRC jupyter-python :session mast-py :tangle q71.py
+
+#+END_SRC
+
 
 ** Exercise 75:
 
 Generate a random password of a given length.
 
+*** soln
+
+#+BEGIN_SRC jupyter-python :session mast-py :tangle q71.py
+
+#+END_SRC
+
+
 ** Exercise 76:
 
 Calculate the factorial of a number.
+
+*** soln
+
+#+BEGIN_SRC jupyter-python :session mast-py :tangle q71.py
+
+#+END_SRC
+
 
 ** Exercise 77:
 
 Calculate the Fibonacci sequence up to a given number of terms.
 
+*** soln
+
+#+BEGIN_SRC jupyter-python :session mast-py :tangle q71.py
+
+#+END_SRC
+
+
 ** Exercise 78:
 
 Check if a number is prime.
+
+*** soln
+
+#+BEGIN_SRC jupyter-python :session mast-py :tangle q71.py
+
+#+END_SRC
+
 
 ** Exercise 79:
 
 Find the greatest common divisor (GCD) of two numbers.
 
+*** soln
+
+#+BEGIN_SRC jupyter-python :session mast-py :tangle q71.py
+
+#+END_SRC
+
+
 ** Exercise 80:
 
 Find the least common multiple (LCM) of two numbers.
+
+*** soln
+
+#+BEGIN_SRC jupyter-python :session mast-py :tangle q71.py
+
+#+END_SRC
+
 
 ** Exercise 81:
 
