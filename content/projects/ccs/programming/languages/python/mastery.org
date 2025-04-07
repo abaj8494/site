@@ -53,7 +53,7 @@ Create a list with values ranging from 0 to 9.
 *** soln
 
 list's take in iterators
-#+begin_src jupyter-python :session mast-python :tangle q1.py
+#+begin_src jupyter-python :session mast-python :tangle q01.py
   #my_list = [i for i in range(10)]
   my_list = list(range(10))
   my_list
@@ -75,7 +75,7 @@ Convert a list of integers to a list of strings.
 
 =map(function, iterable, *iterables)=
 map returns an iterator. it applies fn to an iterator with iterable args.
-#+begin_src jupyter-python :session mast-python :tangle q2.py
+#+begin_src jupyter-python :session mast-python :tangle q02.py
   my_list_as_strs = list(map(str, my_list))
   my_list_as_strs
 #+end_src
@@ -97,7 +97,7 @@ Multiply all elements in a list by 2.
 a very functional programming approach; manipulating data with subsequent functional transformations.
 
 also, unusually I could not find any documentation on lambda expressions in the main [[https://docs.python.org/3/library/index.html][Python Standard Library]]. I had to click into the tutorial and take a look at [[https://docs.python.org/3/tutorial/controlflow.html#lambda-expressions]["more control flow tools"]].
-#+begin_src jupyter-python :session mast-python :tangle q3.py
+#+begin_src jupyter-python :session mast-python :tangle q03.py
   another_list = list(range(5))
   times_two_list = list(map(lambda x: 2*x, another_list))
   times_two_list
@@ -120,7 +120,7 @@ Extract all odd numbers from a list of integers.
 
 maps continue to be useful, however perhaps a filter will be a better idea here.
 
-#+begin_src jupyter-python :session mast-python :tangle q4.py
+#+begin_src jupyter-python :session mast-python :tangle q04.py
   another_list = list(range(20))
   odd_lists = list(filter(lambda x: x%2==1, another_list))
   odd_lists
@@ -144,7 +144,7 @@ Replace all odd numbers in a list with -1.
 we go back to a map for this one.
 
 note that the ternary operator syntax is different to C/Java.
-#+begin_src jupyter-python :session mast-python :tangle q5.py
+#+begin_src jupyter-python :session mast-python :tangle q05.py
   another_list = list(range(20))
   odd_lists_minus_one = list(map(lambda x:-1 if x%2==1 else x, another_list))
   odd_lists_minus_one
@@ -165,7 +165,7 @@ Convert a list of integers to a list of booleans where all non-zero values becom
 
 note that in Python, true is actually =True= and false, =False=.
 
-#+begin_src jupyter-python :session mast-python :tangle q6.py
+#+begin_src jupyter-python :session mast-python :tangle q06.py
   list_ints = list(range(15))
   bool_list = list(map(lambda x: True if x != 0 else False, list_ints))
   bool_list
@@ -183,7 +183,7 @@ CLOSED: [2025-03-11 Tue 12:55]
 
 Replace all even numbers in a list with their negative.
 
-#+begin_src jupyter-python :session mast-python :tangle q7.py
+#+begin_src jupyter-python :session mast-python :tangle q07.py
   list_ints = list(range(15))
   neg_list = list(map(lambda x: -x if x % 2 == 0 else x, list_ints))
   neg_list
@@ -203,7 +203,7 @@ Create a 3x3 list of lists with random values and normalize it.
 *** soln
 
 crazy: notice that the =randint= bounds are <= and >=!
-#+begin_src jupyter-python :session mast-python :tangle q8.py
+#+begin_src jupyter-python :session mast-python :tangle q08.py
   import random
   random.seed(4)
   def create_n_by_n_list(n):
@@ -247,7 +247,7 @@ Calculate the sum of the diagonal elements of a 3x3 matrix (list of lists).
 
 *** soln
 
-#+begin_src jupyter-python :session mast-python :tangle q9.py
+#+begin_src jupyter-python :session mast-python :tangle q09.py
   import numpy
   print(sum(numpy.diag(norm_list)))
 #+end_src
@@ -1823,28 +1823,66 @@ Count the occurrences of each character in a string.
 : oh my god, I might fail this course
 : [('f', 1), ('y', 1), ('l', 1), ('d', 1), ('r', 1), ('u', 1), (',', 1), ('I', 1), ('a', 1), ('c', 1), ('e', 1), ('g', 2), ('s', 2), ('m', 2), ('t', 2), ('h', 3), ('i', 3), ('o', 3), (' ', 7)]
 
-** Exercise 71:
+** DONE Exercise 71:
+CLOSED: [2025-04-07 Mon 09:08]
+:LOGBOOK:
+- State "DONE"       from              [2025-04-07 Mon 09:08]
+:END:
 
 Find the longest common prefix among a list of strings.
 
 *** soln
 
 #+BEGIN_SRC jupyter-python :session mast-py :tangle q71.py
+  lstrings = ["hello", "world", "worldly", "hells"]
 
+  def longest_prefix(lstr):
+        if not lstr:
+            return ""
+        shortest_str = min(lstr, key=len)
+        longest_common_prefix = ""
+        for i in range(len(shortest_str)):
+            current_char = shortest_str[i]
+            if all(x[i] == current_char for x in lstr):
+                longest_common_prefix += current_char
+            else:
+                break
+        return longest_common_prefix
+
+  print(longest_prefix(["flower","flow","flight"]))
 #+END_SRC
 
-** Exercise 72:
+#+RESULTS:
+: fl
+
+** DONE Exercise 72:
+CLOSED: [2025-04-07 Mon 09:09]
+:LOGBOOK:
+- State "DONE"       from              [2025-04-07 Mon 09:09]
+:END:
 
 Convert a string to a list of characters.
 
 *** soln
 
 #+BEGIN_SRC jupyter-python :session mast-py :tangle q72.py
-
+  stringcheese = "stringcheese"
+  listcheese = [stringcheese[i] for i in range(len(stringcheese))]
+  print(listcheese)
+  # this could be done more easily with:
+  print(list(stringcheese)) # recall that list takes an iterable object
 #+END_SRC
 
+#+RESULTS:
+: ['s', 't', 'r', 'i', 'n', 'g', 'c', 'h', 'e', 'e', 's', 'e']
+: ['s', 't', 'r', 'i', 'n', 'g', 'c', 'h', 'e', 'e', 's', 'e']
 
-** Exercise 73:
+
+** DONE Exercise 73:
+CLOSED: [2025-04-07 Mon 09:09]
+:LOGBOOK:
+- State "DONE"       from              [2025-04-07 Mon 09:09]
+:END:
 
 Generate a list of random integers.
 
@@ -1852,18 +1890,33 @@ Generate a list of random integers.
 
 #+BEGIN_SRC jupyter-python :session mast-py :tangle q73.py
 
+  import random
+  rand_list = [random.randint(0,5) for _ in range(5)]
+  print(rand_list)
 #+END_SRC
 
+#+RESULTS:
+: [0, 4, 5, 0, 1]
 
-** Exercise 74:
+
+** DONE Exercise 74:
+CLOSED: [2025-04-07 Mon 09:09]
+:LOGBOOK:
+- State "DONE"       from              [2025-04-07 Mon 09:09]
+:END:
 
 Shuffle a list.
 
 *** soln
 
 #+BEGIN_SRC jupyter-python :session mast-py :tangle q74.py
-
+  print(random.shuffle(rand_list)) # returns none
+  print(rand_list)
 #+END_SRC
+
+#+RESULTS:
+: None
+: [0, 0, 1, 4, 5]
 
 
 ** Exercise 75:
@@ -1873,22 +1926,50 @@ Generate a random password of a given length.
 *** soln
 
 #+BEGIN_SRC jupyter-python :session mast-py :tangle q75.py
-
+  #cheating with this one to see what the sols want:
+  import string
+  import random
+  length = 8
+  password = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(length))
+  print(password)
 #+END_SRC
 
+#+RESULTS:
+: JWjgzD1C
 
-** Exercise 76:
+** DONE Exercise 76:
+CLOSED: [2025-04-07 Mon 09:52]
+:LOGBOOK:
+- State "DONE"       from              [2025-04-07 Mon 09:52]
+:END:
 
 Calculate the factorial of a number.
 
 *** soln
 
 #+BEGIN_SRC jupyter-python :session mast-py :tangle q76.py
+  def factorial(n):
+    if n < 0:
+      return -1
+    if n == 0:
+      return 1
+    return n*factorial(n-1)
+
+  print(factorial(-1))
+  print(factorial(10))
 
 #+END_SRC
 
+#+RESULTS:
+: -1
+: 3628800
 
-** Exercise 77:
+
+** DONE Exercise 77:
+CLOSED: [2025-04-07 Mon 09:52]
+:LOGBOOK:
+- State "DONE"       from              [2025-04-07 Mon 09:52]
+:END:
 
 Calculate the Fibonacci sequence up to a given number of terms.
 
@@ -1896,21 +1977,80 @@ Calculate the Fibonacci sequence up to a given number of terms.
 
 #+BEGIN_SRC jupyter-python :session mast-py :tangle q76.py
 
+  def fibonacci(n):
+       if n == 0:
+           return 0
+       if n == 1:
+           return 1
+       return fibonacci(n-1) + fibonacci(n-2)
+  for i in range(10):
+       print(fibonacci(i))
 #+END_SRC
 
+#+RESULTS:
+: 0
+: 1
+: 1
+: 2
+: 3
+: 5
+: 8
+: 13
+: 21
+: 34
 
-** Exercise 78:
+
+** DONE Exercise 78:
+CLOSED: [2025-04-07 Mon 09:52]
+:LOGBOOK:
+- State "DONE"       from              [2025-04-07 Mon 09:52]
+:END:
 
 Check if a number is prime.
 
 *** soln
 
 #+BEGIN_SRC jupyter-python :session mast-py :tangle q77.py
+  def is_prime(n):
+       if n <= 1:
+            return False
+       for i in range(2, n):
+           if n % i == 0:
+               return False
+       return True
 
+  for i in range(1,20):
+      print(i, "prime" if is_prime(i) else "not")
 #+END_SRC
 
+#+RESULTS:
+#+begin_example
+  1 not
+  2 prime
+  3 prime
+  4 not
+  5 prime
+  6 not
+  7 prime
+  8 not
+  9 not
+  10 not
+  11 prime
+  12 not
+  13 prime
+  14 not
+  15 not
+  16 not
+  17 prime
+  18 not
+  19 prime
+#+end_example
 
-** Exercise 79:
+** DONE Exercise 79:
+CLOSED: [2025-04-07 Mon 09:52]
+:LOGBOOK:
+- State "DONE"       from              [2025-04-07 Mon 09:52]
+:END:
 
 Find the greatest common divisor (GCD) of two numbers.
 
@@ -1918,117 +2058,250 @@ Find the greatest common divisor (GCD) of two numbers.
 
 #+BEGIN_SRC jupyter-python :session mast-py :tangle q79.py
 
+  def gcd(a, b):
+      limit = max(a,b)
+      highest = 1
+      for i in range(1,limit+1):
+          if a%i==0 and b%i==0:
+              highest=i
+
+      return highest
+
+  print(gcd(8,6))
 #+END_SRC
 
+#+RESULTS:
+: 2
 
-** Exercise 80:
+
+** DONE Exercise 80:
+CLOSED: [2025-04-07 Mon 09:52]
+:LOGBOOK:
+- State "DONE"       from              [2025-04-07 Mon 09:52]
+:END:
 
 Find the least common multiple (LCM) of two numbers.
 
 *** soln
 
 #+BEGIN_SRC jupyter-python :session mast-py :tangle q80.py
-
+  """ returns the highest number that is divisible by both a and b """
+  def lcm(a, b):
+      i = 1
+      while True:
+          if i%a==0 and i%b==0:
+              return i
+          else:
+              i += 1
+              
+  print(lcm(8,6))
 #+END_SRC
 
+#+RESULTS:
+: 24
 
-** Exercise 81:
+
+** DONE Exercise 81:
+CLOSED: [2025-04-08 Tue 06:11]
+:LOGBOOK:
+- State "DONE"       from              [2025-04-08 Tue 06:11]
+:END:
 
 Sort a list of tuples by the second element.
 
 *** soln
 
 #+BEGIN_SRC jupyter-python :session mast-py :tangle q81.py
-
+  lt = [('a',2),('c',3),('b',1)]
+  sorted(lt,key=lambda x:x[1])
 #+END_SRC
 
+#+RESULTS:
+| b | 1 |
+| a | 2 |
+| c | 3 |
 
-** Exercise 82:
+
+** DONE Exercise 82:
+CLOSED: [2025-04-08 Tue 06:11]
+:LOGBOOK:
+- State "DONE"       from              [2025-04-08 Tue 06:11]
+:END:
 
 Find the second largest number in a list.
 
 *** soln
 
 #+BEGIN_SRC jupyter-python :session mast-py :tangle q82.py
-
+  second_largest = [5,1,2,1,3,4,7]
+  sorted(second_largest)[-2]
 #+END_SRC
 
+#+RESULTS:
+: 5
 
-** Exercise 83:
+
+** DONE Exercise 83:
+CLOSED: [2025-04-08 Tue 06:11]
+:LOGBOOK:
+- State "DONE"       from              [2025-04-08 Tue 06:11]
+:END:
 
 Check if a list is a palindrome.
 
 *** soln
 
 #+BEGIN_SRC jupyter-python :session mast-py :tangle q83.py
+  p = ['k', 'a', 'y', 'a', 'k']
+  n = ['n', 'o', 't']
+  def list_palindrome(l):
+      for i in range(len(l)//2):
+          if l[i] != l[-1-i]:
+              return False
+      return True
 
+  list_palindrome(n)
 #+END_SRC
 
+#+RESULTS:
+: False
 
-** Exercise 84:
+** DONE Exercise 84:
+CLOSED: [2025-04-08 Tue 06:11]
+:LOGBOOK:
+- State "DONE"       from              [2025-04-08 Tue 06:11]
+:END:
 
 Find the sum of the digits of a number.
 
 *** soln
 
 #+BEGIN_SRC jupyter-python :session mast-py :tangle q84.py
+  num = 804
+  def sum_digits(n):
+      digits = len(str(n))
+      sum = 0
+      for i in range(digits):
+          sum += int(str(n)[i])
+      return sum
 
+  sum_digits(num)
 #+END_SRC
 
+#+RESULTS:
+: 12
 
-** Exercise 85:
+
+** DONE Exercise 85:
+CLOSED: [2025-04-08 Tue 06:11]
+:LOGBOOK:
+- State "DONE"       from              [2025-04-08 Tue 06:11]
+:END:
 
 Find the product of the digits of a number.
 
 *** soln
 
 #+BEGIN_SRC jupyter-python :session mast-py :tangle q85.py
+  def prod_digits(n):
+      digits = len(str(n))
+      prod = 1
+      for i in range(digits):
+          prod *= int(str(n)[i])
+      return prod
 
+  prod_digits(43)
 #+END_SRC
 
+#+RESULTS:
+: 12
 
-** Exercise 86:
+
+** DONE Exercise 86:
+CLOSED: [2025-04-08 Tue 06:11]
+:LOGBOOK:
+- State "DONE"       from              [2025-04-08 Tue 06:11]
+:END:
 
 Check if a string is a valid number.
 
 *** soln
 
 #+BEGIN_SRC jupyter-python :session mast-py :tangle q86.py
-
+  def check_str_is_num(s):
+    return s.replace('.', '', 1).isdigit()
+  check_str_is_num("6s")
+  check_str_is_num("s")
+  check_str_is_num("7")
+  check_str_is_num("4.0")
 #+END_SRC
 
+#+RESULTS:
+: True
 
-** Exercise 87:
+
+** DONE Exercise 87:
+CLOSED: [2025-04-08 Tue 06:11]
+:LOGBOOK:
+- State "DONE"       from              [2025-04-08 Tue 06:11]
+:END:
 
 Find the length of the longest word in a sentence.
 
 *** soln
 
 #+BEGIN_SRC jupyter-python :session mast-py :tangle q87.py
-
+  import string
+  sentence = "here are some words in a sentence"
+  def len_longest_word(s):
+      words = s.split()
+      return len(max(words, key=len))
+      #return ' '.join(["word", "maybe", "cat"])
+  len_longest_word(sentence)
 #+END_SRC
 
+#+RESULTS:
+: 8
 
-** Exercise 88:
+
+** DONE Exercise 88:
+CLOSED: [2025-04-08 Tue 06:11]
+:LOGBOOK:
+- State "DONE"       from              [2025-04-08 Tue 06:11]
+:END:
 
 Convert a list of tuples to a dictionary.
 
 *** soln
 
 #+BEGIN_SRC jupyter-python :session mast-py :tangle q88.py
-
+  print(lt)
+  print(dict(lt))
 #+END_SRC
 
+#+RESULTS:
+: [('a', 2), ('c', 3), ('b', 1)]
+: {'a': 2, 'c': 3, 'b': 1}
 
-** Exercise 89:
+
+** DONE Exercise 89:
+CLOSED: [2025-04-08 Tue 06:11]
+:LOGBOOK:
+- State "DONE"       from              [2025-04-08 Tue 06:11]
+:END:
 
 Filter a list of dictionaries based on a key value.
 
 *** soln
 
 #+BEGIN_SRC jupyter-python :session mast-py :tangle q89.py
-
+  lst = [{'name': 'Vivek', 'age': 25}, {'name': 'Esther', 'age': 22}, {'name': ' Neassa', 'age': 28}]                            
+  filtered_lst = [x for x in lst if x['age'] > 23]
+  print(filtered_lst)
 #+END_SRC
+
+#+RESULTS:
+: [{'name': 'Vivek', 'age': 25}, {'name': ' Neassa', 'age': 28}]
 
 
 ** Exercise 90:

@@ -6,6 +6,23 @@ math = "true"
 bibFile = "projects/ai/ethics/cs4920grp.json"
 +++
 
+* Conclusion
+
+We believe that the ChatGPT technology should be adopted as long as the underlying model is greater than or equal to InstructGPT and regular independent ethical audits are performed. 
+
+We make this Value Sensitive Recommendation after a thorough analysis of the Stakeholders affected by this technology, and after identifying the bevel of Values which are most important to them. We believe that the InstructGPT and above generation models marginally skew the cost-benefit analysis between Stakeholder disadvantages and advantages in favour of ChatGPT.
+
+This marginality is then enlarged by the rapid development of the GPT technology, where a burr is forming on the Advantages side; OpenAI is sufficiently mitigating risks and biases with active efforts to promote RST (Reliable, Safe and Trustworthy) LLMs.
+
+However, oscillating in the trend of Ethical analysis, we posit that this technological transparency can only be believed due to the open-access nature of the GPT-1, 2, 3 and Instruct papers. It is an obvious fact, and one empirically proved (Kahneman reference) that we tend to behave ourselves when observed. As such, we desire Open Access Publications for all LLM's that will affect the stakeholders above (link to section).
+
+Clearly, though the proprietary and competitive nature of these businesses (OpenAI, Google, etc.) enslaves Public Stakeholders by the Private (financial) Stakeholders. As such, realistic limitations will forbid open-access to LLM architectures and thus obscure the realistic efforts OpenAI is making towards Value Alignment, upholding HCAI and maintaining a VSD. 
+
+Finally, we posit the most realistic recommendation; for
+
+Independent Ethical AI Auditors to be contracted and presented with any and all Stakeholder affecting technical reports. We insist that part of this contract be Toothed Principles - converse to Munn's Tooth /less/ principles - such that whichever independent regulatory body is employed, they have the right and duty to act Ethically with the Values of all Stakeholders as their primary guiding metric. Furthermore, we insist that the report of the auditors be publicly published so as to avoid ‘ethics-washing’ (Bietti 2019). Lastly, this Authoritative body must be certified by the ACM.
+
+
 
 * Raison d'être                                                    :noexport:
 The meat content of this page is to be repurposed for an assignment, however the textuality of Emacs fosters my thinking.
@@ -23,7 +40,7 @@ There is mention of a "FATE" framework:
 We must consider the risks / benefits associated with the technology. Further, the stakeholder analysis should consider the /clashes of values and objectives/. Ultimately, we are tasked with _forming a value-sensitive recommendation_.
 
 
-* Outline
+* Outline                                                          :noexport:
 
 Spec: Outline your technology in detail (purpose, scope, needs, benefits) 
 
