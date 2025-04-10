@@ -2304,120 +2304,281 @@ Filter a list of dictionaries based on a key value.
 : [{'name': 'Vivek', 'age': 25}, {'name': ' Neassa', 'age': 28}]
 
 
-** Exercise 90:
+** DONE Exercise 90:
+CLOSED: [2025-04-10 Thu 18:31]
+:LOGBOOK:
+- State "DONE"       from              [2025-04-10 Thu 18:31]
+:END:
 
 Sort a list of tuples by multiple keys.
 
 *** soln
-
+one thing to understand is that tuples can be n-dimensional: =(a,b,c,d,...,n)=!
 #+BEGIN_SRC jupyter-python :session mast-py :tangle q90.py
-
+  list_of_t = [(1,2,3,4),(1,2,3),(4,2,1),(1,2,3)]
+  print(sorted(list_of_t,key=lambda x: (x[1],x[2])))
 #+END_SRC
 
+#+RESULTS:
+: [(4, 2, 1), (1, 2, 3, 4), (1, 2, 3), (1, 2, 3)]
 
-** Exercise 91:
+note also that you can get an =IndexError= if the lambda func within sorted is accessing outofbounds incdices.
+
+#+RESULTS:
+: [(4, 2, 1), (1, 2, 3, 4), (1, 2, 3), (1, 2, 3)]
+
+
+** DONE Exercise 91:
+CLOSED: [2025-04-10 Thu 18:31]
+:LOGBOOK:
+- State "DONE"       from              [2025-04-10 Thu 18:31]
+:END:
 
 Merge two lists into a dictionary, using one as keys and the other as values.
 
 *** soln
 
 #+BEGIN_SRC jupyter-python :session mast-py :tangle q91.py
-
+  keys = ['jonah','sarah','cupcake']
+  values = [14,21,33]
+  merge_lists_dict = lambda k,v: dict(zip(k,v))
+  print(merge_lists_dict(keys,values))
 #+END_SRC
 
-** Exercise 92:
+#+RESULTS:
+: {'jonah': 14, 'sarah': 21, 'cupcake': 33}
+
+** DONE Exercise 92:
+CLOSED: [2025-04-10 Thu 18:31]
+:LOGBOOK:
+- State "DONE"       from              [2025-04-10 Thu 18:31]
+:END:
 
 Create a dictionary with keys as numbers and values as their squares.
 
 *** soln
 
 #+BEGIN_SRC jupyter-python :session mast-py :tangle q92.py
-
+  nums = range(6)
+  dict_square = dict(zip(nums, [x**2 for x in nums]))
+  print(dict_square)
 #+END_SRC
 
+#+RESULTS:
+: {0: 0, 1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
 
-** Exercise 93:
+
+** DONE Exercise 93:
+CLOSED: [2025-04-10 Thu 18:31]
+:LOGBOOK:
+- State "DONE"       from              [2025-04-10 Thu 18:31]
+:END:
 
 Check if two strings are anagrams.
 
 *** soln
 
+I may have glimpsed at the solution, it's quite clean
 #+BEGIN_SRC jupyter-python :session mast-py :tangle q93.py
-
+  str1, str2 = "listen", "silent"
+  str3, str4 = "mold", "wolf"
+  check_anagram = lambda s1,s2: True if sorted(s1)==sorted(s2) else False
+  print(check_anagram(str1,str2))
+  print(check_anagram(str3,str4))
 #+END_SRC
 
+#+RESULTS:
+: True
+: False
 
-** Exercise 94:
+
+** DONE Exercise 94:
+CLOSED: [2025-04-10 Thu 18:31]
+:LOGBOOK:
+- State "DONE"       from              [2025-04-10 Thu 18:31]
+:END:
 
 Count the number of vowels in a string.
 
 *** soln
 
 #+BEGIN_SRC jupyter-python :session mast-py :tangle q94.py
-
+  vowel_counter= lambda s: sum(1 for c in s.lower() if c in "aeiou")
+  print(vowel_counter("hello world's people"))
 #+END_SRC
 
+#+RESULTS:
+: 6
 
-** Exercise 95:
+
+** DONE Exercise 95:
+CLOSED: [2025-04-10 Thu 18:31]
+:LOGBOOK:
+- State "DONE"       from              [2025-04-10 Thu 18:31]
+:END:
 
 Check if a string contains only digits.
 
 *** soln
 
 #+BEGIN_SRC jupyter-python :session mast-py :tangle q95.py
-
+  str_is_dig = lambda s:True if sum(1 for c in s if c.isdigit()) == len(s) else False
+  print(str_is_dig("123"))
+  print(str_is_dig("12a"))
+  # as it turns out, you don't even need the for loop:
+  print("123456".isdigit())
+  print("1a23".isdigit())
 #+END_SRC
 
-** Exercise 96:
+#+RESULTS:
+: True
+: False
+: True
+: False
+
+** DONE Exercise 96:
+CLOSED: [2025-04-10 Thu 18:31]
+:LOGBOOK:
+- State "DONE"       from              [2025-04-10 Thu 18:31]
+:END:
 
 Find the first non-repeated character in a string.
 
 *** soln
 
+this one is pretty interesting. I've never used the =next= iterator:
 #+BEGIN_SRC jupyter-python :session mast-py :tangle q96.py
+  ultimate = "frisbee"
+  non_repeated_char = lambda s: [char for char in s if s.count(char) == 1][0] # you could also use next!
+  print(non_repeated_char(ultimate))
+  print(non_repeated_char(ultimate))
 
 #+END_SRC
 
+#+RESULTS:
+: f
+: f
 
-** Exercise 97:
+
+** DONE Exercise 97:
+CLOSED: [2025-04-10 Thu 18:31]
+:LOGBOOK:
+- State "DONE"       from              [2025-04-10 Thu 18:31]
+:END:
 
 Reverse each word in a sentence.
 
 *** soln
 
 #+BEGIN_SRC jupyter-python :session mast-py :tangle q97.py
-
+  s = "oh my god, I will not fail any course"
+  s_as_l = s.split()
+  print(' '.join(word[::-1] for word in s_as_l))
 #+END_SRC
 
+#+RESULTS:
+: ho ym ,dog I lliw ton liaf yna esruoc
 
-** Exercise 98:
+
+** DONE Exercise 98:
+CLOSED: [2025-04-10 Thu 18:31]
+:LOGBOOK:
+- State "DONE"       from              [2025-04-10 Thu 18:31]
+:END:
 
 Generate a list of Fibonacci numbers up to a given number.
 
 *** soln
 
 #+BEGIN_SRC jupyter-python :session mast-py :tangle q98.py
+  def fibonacci(n):
+       if n == 0:
+           return 0
+       if n == 1:
+           return 1
+       return fibonacci(n-1) + fibonacci(n-2)
 
+  def fibo_until(x):
+      n=0
+      y=[fibonacci(n)]
+      while x >= y[n]:
+          fib = fibonacci(n)
+          if fib > x:
+               break
+          n+=1
+          y.append(fib)
+      return y
+
+  print(fibo_until(55))
 #+END_SRC
 
+#+RESULTS:
+: [0, 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
 
-** Exercise 99:
+
+** DONE Exercise 99:
+CLOSED: [2025-04-10 Thu 18:31]
+:LOGBOOK:
+- State "DONE"       from              [2025-04-10 Thu 18:31]
+:END:
 
 Remove all whitespaces from a string.
 
 *** soln
 
 #+BEGIN_SRC jupyter-python :session mast-py :tangle q99.py
+  tring = "here are some words and a \n"
+  print(tring.strip()) # won't replace all whitespace, only trailing and leading.
+  print(tring.replace(" ", ""))
 
 #+END_SRC
 
+#+RESULTS:
+: here are some words and a
+: herearesomewordsanda
+: 
 
-** Exercise 100:
+
+** DONE Exercise 100:
+CLOSED: [2025-04-10 Thu 18:31]
+:LOGBOOK:
+- State "DONE"       from              [2025-04-10 Thu 18:31]
+:END:
 
 Replace all occurrences of a substring in a string.
 
 *** soln
 
 #+BEGIN_SRC jupyter-python :session mast-py :tangle q100.py
-
+  mainstr = "my mother is a grand wolf"
+  print(mainstr.replace("wolf", "bob"))
 #+END_SRC
+
+#+RESULTS:
+: my mother is a grand bob
+
+** instructGPT appendix
+
+#+BEGIN_SRC jupyter-python :session mast-py :tangle q100.py
+  def binomial_coefficient(n, r):
+    C = [0 for i in range(r+1)]
+    C[0]=1
+    for i in range(1,n+1):
+      j = min(i,r)
+      while j > 0:
+        C[j] += C[j-1]
+        j -= 1
+      print(C)
+    return C[r]
+
+  binomial_coefficient(4,4)
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+: [1, 1, 0, 0, 0]
+: [1, 2, 1, 0, 0]
+: [1, 3, 3, 1, 0]
+: [1, 4, 6, 4, 1]
+: 1
+:END:
