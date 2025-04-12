@@ -1,0 +1,59 @@
+https://www.tug.org/TUGboat/tb40-1/tb124fowler-js.pdf
+
+
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \usepackage{cleveref}
+#+LATEX_HEADER: \usepackage[most]{tcolorbox}
+#+LATEX_HEADER: \newtcbtheorem{Theorem}{Theorem}{%
+#+LATEX_HEADER:   enhanced,%
+#+LATEX_HEADER:   sharp corners,%
+#+LATEX_HEADER:   attach boxed title to top left={%
+#+LATEX_HEADER:     yshifttext=-1mm%
+#+LATEX_HEADER:   },%
+#+LATEX_HEADER:   colback=white,%
+#+LATEX_HEADER:   colframe=blue!75!black,%
+#+LATEX_HEADER:   fonttitle=\bfseries,%
+#+LATEX_HEADER:   boxed title style={%
+#+LATEX_HEADER:     sharp corners,%
+#+LATEX_HEADER:     size=small,%
+#+LATEX_HEADER:     colback=blue!75!black,%
+#+LATEX_HEADER:     colframe=blue!75!black%
+#+LATEX_HEADER:   }%
+#+LATEX_HEADER: }{thm}
+#+LATEX_HEADER: \newtcbtheorem[no counter]{Proof}{Proof}{%
+#+LATEX_HEADER:   enhanced,%
+#+LATEX_HEADER:   sharp corners,%
+#+LATEX_HEADER:   attach boxed title to top left={%
+#+LATEX_HEADER:     yshifttext=-1mm%
+#+LATEX_HEADER:   },%
+#+LATEX_HEADER:   colback=white,%
+#+LATEX_HEADER:   colframe=blue!25,%
+#+LATEX_HEADER:   fonttitle=\bfseries,%
+#+LATEX_HEADER:   coltitle=black,%
+#+LATEX_HEADER:   boxed title style={%
+#+LATEX_HEADER:     sharp corners,%
+#+LATEX_HEADER:     size=small,%
+#+LATEX_HEADER:     colback=blue!25,%
+#+LATEX_HEADER:     colframe=blue!25%
+#+LATEX_HEADER:   }%
+#+LATEX_HEADER: }{prf}
+
+\begin{figure}
+\begin{Theorem}{}{fermat}
+  No three positive integers \(a\), \(b\) and \(c\) satisfy the equation \(a^{n}
+  + b^{n} = c^{n}\) for any integer greater than two.
+\end{Theorem}
+\begin{Proof}{Theorem \ref{thm:fermat}}{}
+  The proof is easy, but too large to fit in this box.
+\end{Proof}
+\end{figure}
+
+#+BEGIN_CENTER
+#+ATTR_HTML: :width 400px :class lateximage
+[[{{< cwd >}}img2.svg]]
+#+END_CENTER
+
+#+BEGIN_CENTER
+#+ATTR_HTML: :width 400px :class lateximage
+[[{{< cwd >}}img1.svg]]
+#+END_CENTER

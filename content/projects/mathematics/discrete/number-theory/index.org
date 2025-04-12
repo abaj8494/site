@@ -1,3 +1,30 @@
 +++
 title = "Number Theory"
 +++
+
+
+
+
+#+BEGIN_EXPORT html
+<link rel="stylesheet" type="text/css" href="http://tikzjax.com/v1/fonts.css">
+<script src="https://tikzjax.com/v1/tikzjax.js"></script>
+<script type="text/tikz">
+\begin{tikzpicture}
+    \draw (0,0) circle (1in);
+    \node (0,1) {hello};
+\end{tikzpicture}
+\begin{tikzpicture}
+\def \n {5}
+\def \radius {3cm}
+\def \margin {8} % margin in angles, depends on the radius
+
+\foreach \s in {1,...,\n}
+{
+  \node[draw, circle] at ({360/\n * (\s - 1)}:\radius) {$\s$};
+  \draw[->, >=latex] ({360/\n * (\s - 1)+\margin}:\radius) 
+    arc ({360/\n * (\s - 1)+\margin}:{360/\n * (\s)-\margin}:\radius);
+}
+      
+\end{tikzpicture}
+</script>
+#+END_EXPORT

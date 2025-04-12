@@ -1,6 +1,7 @@
 +++
-title= "@@html:<input type=\"checkbox\" checked class=\"done\" style=\"transform: scale(1.4); vertical-align: middle; margin-right: 8px;\"/>@@Lambda Functions in Python"
-tags= ["functional-programming"]
+title = "Lambda Functions in Python"
+displayTitle = "<input type=\"checkbox\" checked class=\"done\" style=\"transform: scale(1.4); vertical-align: middle; margin-right: 8px;\"/>Lambda Functions in Python"
+tags = ["functional-programming"]
 toc = "true"
 +++
 

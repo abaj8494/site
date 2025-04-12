@@ -1,0 +1,124 @@
++++
+title = "chapter 3: improving the way neural networks learn"
+mathjax = "true"
+date = "2025-04-04"
+toc = "true"
+clocal = "true"
++++
+
+** 3.1 the cross entropy function
+
+- we often learn fastest when we're badly wrong about something
+- the cross-entropy cost function is always negative (which is something you desire for a cost function)
+
+\begin{equation}
+\label{eq:neuron_ce}
+C = -\frac{1}{n}\sum_x [y \ln a  + (1-y)\ln(1-a)]
+\end{equation}
+
+- note here that at a = 1, you'll get =nan=. we handle this in the code below.
+- this cost tends towards zero as the neuron gets better at computing the desired output y
+- it also punishes bad guesses more harshly.
+- *the cross-entropy is nearly always the better choice, provided the output neurons are sigmoid neurons*
+- if the output neurons however are *linear neurons*, then the quadratic cost will not cause learning slowdown. you may use it.
+- to find the learning rate \(\eta\) for log-reg, you can divide that of the lin-reg by 6.
+- ch1 = 95.42 accuracy
+- 100 hidden neurons \(\implies\) 96.82 percent.
+  - eliminated one in fourteen errors; pretty good!
+- neuron saturation is an important problem in neural nets.
+- /cross-entropy is a measure of surprise/
+  - ch5 Cover & Thomas
+- a softmax output layer with log-likelihood cost is quite similar to a sigmoid output layer with cross-entropy cost.
+- softmax plus log-likelihood is worth using whenever you want to interpret the output activations as probabilities.
+
+** 3.2 overfitting and regularisation
+
+#+BEGIN_CENTER
+[[{{< cwd >}}Figure_1.png]]
+[[{{< cwd >}}Figure_2.png]]
+[[{{< cwd >}}Figure_3.png]]
+[[{{< cwd >}}Figure_4.png]]
+[[{{< cwd >}}Figure_5.png]]
+#+END_CENTER
+
+- the cost on the test data is no more than a proxy for classifiaction accuracy
+- once the classification accuracy on the validation_data has saturated, we stop training
+  - this strategy is called *early stopping*
+- /hold out method/
+- one of the best ways of reducing overfitting is to increase the size of the training data {{< mnote "not always feasible" >}}
+- regularisation term doesn't include the biases
+- intuitively, the effect of regularisation is to make it so the network prefers to learn small weights
+- unregularised runs will occasionally get "stuck", apparently caught in local minima of the cost function
+- if the cost function is unregularised, then the length of the weight vector is likely to grow
+  - over time this weight vector can become very large and so will get stuck pointing in the same direction
+- "Occam's Razor" is a fallacy (I think)
+  - there is no /a priori/ logical reason to prefer simple explanations over more complex explanations.
+- it's an empirical reason that regularised neural nets usually generalise better than unregularised networks
+- it has been conjectured that _the dynamics of gradient descent learning in multilayer nets has a 'self-regularisation' effect_
+- large biases make it easier for neurons to saturate
+  - we don't usually include bias terms when regularising
+- *L1* regularisation shrinks the weights by a constant amount toward 0
+- in *L2* regularisation, the weights shrink by an amount proportional to \(w\)
+- i.e. when \(|w|\) is small, L1 shrinks the weights more than L2, and when it is large L2 shrinks it harder than L1
+  - the net effect is L1 concentrates the weights into a select few high-importance connections
+- *dropout* is like training different neural networks
+- you can also *translate* and *skew* the data to generate more samples (and thus reduce your overfitting)
+
+
+** 3.3 weight initialisation
+
+- just divide the standard deviation by \(\sqrt{n_{\text{in}}}\)
+  - it will slow down /saturation/
+
+** 3.4 handwriting recognition revisited: the code
+
+- the cost plays two different roles in the network:
+  1. a measure of how well an output activation, =a=, matches the desired output =y=
+  2. the derivative of this cost function used to update parameters
+
+#+RESULTS:
+
+Epoch 29 training complete
+Cost on training data: 0.1337562096961126
+Accuracy on training data: 48414 / 50000
+Cost on evaluation data: 0.6687826521607004
+Accuracy on evaluation data: 9595 / 10000
+
+** code
+
+{{< collapse-local folded="true" >}}
+
+#+INCLUDE: "/code/10khrs-ai-ml-dl/learning/nielsen-dl/network2.py" src python
+#+CAPTION: network2.py
+
+** 3.5 how to choose a neural network's hyper-parameters
+
+- it's easy to feel lost in hyper-parameter space
+- it damages your confidence
+- maybe you should quit your job and take up beekeeping
+- the way to go is to strip the problem down. get rid of all the training and validation images except images which are 0s and 1s
+  - then try to train a network to distinguish between the two.
+  - enables much more rapid experimentation
+- as with many things in life, getting started can be the hardest thing to do.
+- it's best to use a large learning rate that causes the weights to change quickly. later, we can reduce the learning rate
+- a common technique is grid-search, which systematically searches through a grid in hyper-parameter space.
+- books are never finished, only abandoned.
+
+** 3.6 other techniques
+
+- Hessian techniques can converge on a minimum in fewer steps, but are computationally more demanding
+- conjugate gradient descent
+- Nesterov's accelerated gradient technique
+- =tanh= is just a rescaled version of the sigmoid function
+
+\begin{align}
+\tanh(z) &\equiv \cfrac{e^z-e^{-z}}{e^z+e^{-z}} \\
+\sigma(z) &= \cfrac{1+\tanh(z/2)}{2}
+\end{align}
+
+#+BEGIN_CENTER
+[[{{< cwd >}}tanh.svg]]
+[[{{< cwd >}}sigmoid.svg]]
+#+END_CENTER
+
+- explore boldly, as opposed to being rigorously correct.

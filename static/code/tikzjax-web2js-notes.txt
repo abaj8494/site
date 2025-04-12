@@ -1,0 +1,13 @@
+git clone tikzjax
+git clone web2js
+cd web2js
+npm install
+change node-kpathsea from ^1.1.0 to kisonecat/node-kpathsea
+run npm install
+if header find fails, locate the header file directory and then pass it explicitly:
+export CXXFLAGS="-I/opt/homebrew/Cellar/texlive/20250308_1/include" && export LDFLAGS="-L/opt/homebrew/Cellar/texlive/20250308_1/lib" && npm install --no-save
+
+
+run make install
+if that fails, remove the relooper threading flag from the makefile
+

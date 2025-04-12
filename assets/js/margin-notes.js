@@ -117,6 +117,15 @@ document.addEventListener("DOMContentLoaded", function () {
     marginNoteElement.innerHTML = noteContent;
     marginNotesContainer.appendChild(marginNoteElement);
 
+    // Trigger MathJax/KaTeX processing for the new content
+    if (window.MathJax) {
+      MathJax.typesetPromise([marginNoteElement]).catch((err) =>
+        console.log("MathJax typeset error:", err),
+      );
+    } else if (window.renderMathInElement) {
+      renderMathInElement(marginNoteElement);
+    }
+
     // Position the margin note to align with its reference
     positionMarginNote(note, marginNoteElement);
 

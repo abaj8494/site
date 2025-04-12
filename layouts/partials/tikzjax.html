@@ -1,0 +1,35 @@
+<!-- layouts/partials/tikzjax.html -->
+{{ if or .Params.tikzjax .Site.Params.tikzjax }}
+  <!-- Link TikZJax CSS -->
+  <link
+    rel="stylesheet"
+    type="text/css"
+    href="{{ "/code/boxjax/public/fonts.css" | relURL }}"
+  />
+
+  <!-- Load TikZJax JavaScript -->
+  <script src="{{ "/code/boxjax/public/tikzjax.js" | relURL }}"></script>
+
+  <!-- Standard TikZJax initialization -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Basic initialization targeting default script tags
+      // You might need to adjust selectors if your .org file uses different types
+      try {
+        window
+          .BoxJax(document)
+          .then(() => {
+            console.log("TikZJax (BoxJax fork) initialized successfully.");
+          })
+          .catch((error) => {
+            console.error(
+              "TikZJax (BoxJax fork) initialization failed:",
+              error,
+            );
+          });
+      } catch (e) {
+        console.error("Error calling BoxJax:", e);
+      }
+    });
+  </script>
+{{ end }}

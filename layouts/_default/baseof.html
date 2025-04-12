@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <script src="{{ "js/sticky-header.js" | relURL }}"></script>
 {{ if .Params.clocal }}
   <script src="{{ "js/collapsible-local.js" | relURL }}"></script>
@@ -15,6 +15,7 @@
         <!-- Left Sidebar -->
         {{ partial "left-sidebar.html" . }}
 
+
         <!-- Main Content -->
         <div class="content">
           {{ block "main" . }}{{ end }}
@@ -25,5 +26,6 @@
       </main>
       {{ partial "footer.html" . }}
     </div>
+    {{ partial "tikzjax.html" . }}
   </body>
 </html>

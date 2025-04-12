@@ -166,3 +166,5 @@ backup/
 *.nii.gz
 *.pth
 *.pdf
+
+/static/code/tikzjax/

@@ -13,6 +13,9 @@
   {{ if or .Params.chem .Site.Params.chem }}
     {{ partial "chem.html" . }}
   {{ end }}
+  {{ if or .Params.boxjax .Site.Params.boxjax }}
+    {{ partial "boxjax.html" . }}
+  {{ end }}
   <!-- Extensibility -->
   {{ partial "head/head_start.html" . }}
 

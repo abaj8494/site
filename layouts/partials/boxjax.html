@@ -1,0 +1,810 @@
+{{ if or .Params.boxjax .Site.Params.boxjax }}
+  <!-- Global module shims to prevent errors - MUST BE LOADED FIRST -->
+  <script>
+    // Define module.exports and require shims for browser environment
+    window.module = window.module || {};
+    window.exports = window.exports || {};
+
+    // More comprehensive require shim with common Node.js utilities
+    window.require =
+      window.require ||
+      function (moduleName) {
+        console.log("Shimmed require called for:", moduleName);
+
+        // Return basic implementations for common modules
+        if (moduleName === "inherits") {
+          return function inherits(ctor, superCtor) {
+            ctor.super_ = superCtor;
+            ctor.prototype = Object.create(superCtor.prototype, {
+              constructor: {
+                value: ctor,
+                enumerable: false,
+                writable: true,
+                configurable: true,
+              },
+            });
+          };
+        } else if (moduleName === "events") {
+          function EventEmitter() {}
+          EventEmitter.prototype.on = function () {
+            return this;
+          };
+          EventEmitter.prototype.once = function () {
+            return this;
+          };
+          EventEmitter.prototype.emit = function () {
+            return true;
+          };
+          EventEmitter.prototype.addListener = function () {
+            return this;
+          };
+          EventEmitter.prototype.removeListener = function () {
+            return this;
+          };
+          return { EventEmitter: EventEmitter };
+        }
+
+        // Return empty objects for other required modules
+        return {};
+      };
+  </script>
+
+  <!-- BoxJax dependencies -->
+  <script src="https://cdn.jsdelivr.net/npm/pako@2.0.4/dist/pako.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/buffer@6.0.3/index.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/stream-browserify@3.0.0/index.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fetch-readablestream@0.2.0/lib/index.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dvi2html@1.4.3/dist/dvi2html.js"></script>
+  <link rel="stylesheet" href="/js/boxjax/fonts.css" />
+
+  <!-- Custom BoxJax styles -->
+  <style>
+    .boxjax-error {
+      border: 1px solid #f44336;
+      background-color: #ffebee;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 4px;
+      color: #d32f2f;
+      font-family: monospace;
+    }
+
+    .boxjax-placeholder {
+      border: 1px solid #2196f3;
+      background-color: #e3f2fd;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+
+    .boxjax-content {
+      white-space: pre-wrap;
+      font-family: monospace;
+      font-size: 0.9em;
+      overflow-x: auto;
+    }
+
+    .boxjax-title {
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #1976d2;
+    }
+  </style>
+
+  <!-- Aggressive WebAssembly patching BEFORE BoxJax is loaded -->
+  <script>
+    // --- Consolidated File System Logic (defined *before* patching) ---
+    var virtualFS = {}; // Single source of truth for the virtual FS
+
+    var fs_deleteEverything = function () {
+      console.log("fs.deleteEverything called");
+      virtualFS = {};
+    };
+
+    var fs_writeFileSync = function (filename, buffer) {
+      console.log(
+        "fs.writeFileSync called with filename:",
+        filename,
+        "data length:",
+        buffer ? buffer.length : 0,
+      );
+      virtualFS[filename] = buffer;
+      return 0;
+    };
+
+    var fs_readFileSync = function (filename) {
+      console.log("fs.readFileSync called with filename:", filename);
+      if (virtualFS.hasOwnProperty(filename)) {
+        console.log("Found file in virtual FS:", filename);
+        return virtualFS[filename];
+      } else {
+        console.error("File not found in virtual FS:", filename);
+        console.log("Current virtualFS keys:", Object.keys(virtualFS)); // Log keys on failure
+        throw new Error("Could not find file " + filename);
+      }
+    };
+
+    var fs_getfilesize = function (filename) {
+      console.log("fs.getfilesize called with filename:", filename);
+      if (virtualFS.hasOwnProperty(filename) && virtualFS[filename]) {
+        return virtualFS[filename].length;
+      } else {
+        console.log("File not found or empty in getfilesize:", filename);
+        return 0;
+      }
+    };
+
+    var fs_fileExists = function (filename) {
+      console.log("fs.fileExists called with filename:", filename);
+      var exists = virtualFS.hasOwnProperty(filename);
+      console.log("File exists in virtual FS:", exists);
+      return exists;
+    };
+    // --- End Consolidated File System Logic ---
+
+    // Replace WebAssembly.instantiate with our own version - MUST be done before BoxJax loads
+    var originalInstantiateStreaming = WebAssembly.instantiateStreaming;
+    var originalInstantiate = WebAssembly.instantiate;
+
+    // Create necessary functions that will be injected into the WebAssembly imports
+    var getfilesize = function (filename) {
+      console.log("Patched getfilesize called with filename:", filename);
+      return 0;
+    };
+
+    var snapshot = function (ptr) {
+      console.log("Patched snapshot called with ptr:", ptr);
+      return 0;
+    };
+
+    var inputln = function () {
+      console.log("Patched inputln called");
+      return 0;
+    };
+
+    var evaljs = function (code) {
+      console.log("Patched evaljs called with code:", code);
+      try {
+        // VERY basic eval implementation - might need refinement
+        // WARNING: Using eval() can be a security risk if the code comes from untrusted sources.
+        // Ensure that the 'code' parameter passed by BoxJax is safe to execute.
+        return eval(code);
+      } catch (e) {
+        console.error("Error in patched evaljs:", e);
+        return null; // Return null or some indicator of failure
+      }
+    };
+
+    // Function factory to create other needed functions
+    var createFunction = function (name) {
+      return function () {
+        console.log(
+          "Patched " + name + " called with args:",
+          Array.from(arguments),
+        );
+        return 0;
+      };
+    };
+
+    // Patch instantiateStreaming
+    WebAssembly.instantiateStreaming = function (promise, importObject) {
+      console.log("WebAssembly.instantiateStreaming intercepted");
+
+      // Make sure we have a library in importObject
+      if (importObject && importObject.library) {
+        // Force replace critical functions
+        importObject.library.getfilesize = getfilesize;
+        importObject.library.snapshot = snapshot;
+        importObject.library.inputln = inputln;
+        importObject.library.evaljs = evaljs;
+
+        // Add other needed functions
+        var requiredFunctions = [
+          "deleteEverything",
+          "writeFileSync",
+          "readFileSync",
+          "fileExists",
+          "setMemory",
+          "setInput",
+          "restore",
+          "openSync",
+          "closeSync",
+          "readSync",
+          "writeSync",
+        ];
+
+        for (var i = 0; i < requiredFunctions.length; i++) {
+          var funcName = requiredFunctions[i];
+          if (typeof importObject.library[funcName] !== "function") {
+            importObject.library[funcName] = createFunction(funcName);
+          }
+        }
+      }
+
+      return originalInstantiateStreaming.call(this, promise, importObject);
+    };
+
+    // Patch instantiate
+    WebAssembly.instantiate = function (moduleOrBytes, importObject) {
+      console.log("WebAssembly.instantiate intercepted");
+
+      // Make sure we have a library in importObject
+      if (importObject && importObject.library) {
+        // Force replace critical functions
+        importObject.library.getfilesize = getfilesize;
+        importObject.library.snapshot = snapshot;
+        importObject.library.inputln = inputln;
+        importObject.library.evaljs = evaljs;
+
+        // Add other needed functions
+        var requiredFunctions = [
+          "deleteEverything",
+          "writeFileSync",
+          "readFileSync",
+          "fileExists",
+          "setMemory",
+          "setInput",
+          "restore",
+          "openSync",
+          "closeSync",
+          "readSync",
+          "writeSync",
+        ];
+
+        for (var i = 0; i < requiredFunctions.length; i++) {
+          var funcName = requiredFunctions[i];
+          if (typeof importObject.library[funcName] !== "function") {
+            importObject.library[funcName] = createFunction(funcName);
+          }
+        }
+      }
+
+      return originalInstantiate.apply(this, arguments);
+    };
+  </script>
+
+  <!-- Library and Asyncify modules for BoxJax WebAssembly -->
+  <script>
+    (function () {
+      // Create a comprehensive asyncify module
+      var asyncify = {
+        start_unwind: function (ptr) {
+          console.log("asyncify.start_unwind called with ptr:", ptr);
+          return 0;
+        },
+        stop_unwind: function () {
+          console.log("asyncify.stop_unwind called");
+          return 0;
+        },
+        start_rewind: function (ptr) {
+          console.log("asyncify.start_rewind called with ptr:", ptr);
+          return 0;
+        },
+        stop_rewind: function () {
+          console.log("asyncify.stop_rewind called");
+          return 0;
+        },
+        get_state: function () {
+          console.log("asyncify.get_state called");
+          return 0; // 0 = normal
+        },
+      };
+
+      // Create a simple in-memory virtual file system
+      var virtualFS = {};
+
+      // Create required library functions
+      var libraryFunctions = {
+        // File system related functions (referencing consolidated functions)
+        deleteEverything: fs_deleteEverything,
+        writeFileSync: fs_writeFileSync,
+        readFileSync: fs_readFileSync,
+        getfilesize: fs_getfilesize,
+        fileExists: fs_fileExists,
+
+        // Input/output related functions
+        inputln: function () {
+          console.log("library.inputln called");
+          return 0;
+        },
+        // Memory related functions
+        setMemory: function (buffer) {
+          console.log("library.setMemory called");
+        },
+        setInput: function (input) {
+          console.log("library.setInput called with input:", input);
+        },
+        // Required for WebAssembly process
+        snapshot: function (ptr) {
+          console.log("library.snapshot called with ptr:", ptr);
+          return 0;
+        },
+        restore: function (ptr) {
+          console.log("library.restore called with ptr:", ptr);
+          return 0;
+        },
+        openSync: function (filename, mode) {
+          console.log(
+            "library.openSync called with filename:",
+            filename,
+            "mode:",
+            mode,
+          );
+          return 0;
+        },
+        closeSync: function (fd) {
+          console.log("library.closeSync called with fd:", fd);
+        },
+        readSync: function (fd, buffer, offset, length, position) {
+          console.log("library.readSync called");
+          return 0;
+        },
+        writeSync: function (fd, buffer, offset, length, position) {
+          console.log("library.writeSync called");
+          return 0;
+        },
+        // Time related functions
+        getCurrentMinutes: function () {
+          return new Date().getHours() * 60 + new Date().getMinutes();
+        },
+        getCurrentDay: function () {
+          return new Date().getDate();
+        },
+        getCurrentMonth: function () {
+          return new Date().getMonth() + 1;
+        },
+        getCurrentYear: function () {
+          return new Date().getFullYear();
+        },
+        // Print related functions
+        printString: function () {
+          return 0;
+        },
+        printBoolean: function () {
+          return 0;
+        },
+        printChar: function () {
+          return 0;
+        },
+        printInteger: function () {
+          return 0;
+        },
+        printFloat: function () {
+          return 0;
+        },
+        printNewline: function () {
+          return 0;
+        },
+        // File related functions
+        reset: function () {
+          return 0;
+        },
+        rewrite: function () {
+          return 0;
+        },
+        close: function () {
+          return 0;
+        },
+        eof: function () {
+          return true;
+        },
+        erstat: function () {
+          return 0;
+        },
+        eoln: function () {
+          return true;
+        },
+        get: function () {
+          return 0;
+        },
+        put: function () {
+          return 0;
+        },
+        // Add evaljs here
+        evaljs: function (code) {
+          console.log("library.evaljs called with code:", code);
+          try {
+            // Basic eval - ensure it's safe for your context
+            // WARNING: Using eval() can be a security risk.
+            return eval(code);
+          } catch (e) {
+            console.error("Error in library.evaljs:", e);
+            return null;
+          }
+        },
+      };
+
+      // Add to global scope
+      window.asyncify = asyncify;
+      window.libraryFunctions = libraryFunctions;
+
+      // Create beautiful placeholders that at least show the content nicely
+      window.showBoxJaxPlaceholders = function () {
+        document
+          .querySelectorAll('script[type="text/tcolorbox"]')
+          .forEach(function (script) {
+            // Skip if we already created a placeholder for this tcolorbox
+            if (script.hasAttribute("data-placeholder-created")) {
+              return;
+            }
+            script.setAttribute("data-placeholder-created", "true");
+
+            var content = script.textContent.trim();
+
+            // Try to extract title from content
+            var title = "tcolorbox";
+            var titleMatch = content.match(/title=([^,\]]+)/);
+            if (titleMatch && titleMatch[1]) {
+              title = titleMatch[1].trim().replace(/^['"]|['"]$/g, "");
+            }
+
+            // Extract colors if possible
+            var colbackMatch = content.match(/colback=([^,\]]+)/);
+            var colframeMatch = content.match(/colframe=([^,\]]+)/);
+            var bgcolor = colbackMatch ? colbackMatch[1].trim() : "#f5f5f5";
+            var borderColor = colframeMatch
+              ? colframeMatch[1].trim()
+              : "#2196f3";
+
+            // Replace complex color expressions with simple ones
+            bgcolor = bgcolor.replace(/blue!5!white/, "#e3f2fd");
+            bgcolor = bgcolor.replace(/yellow!10!white/, "#fffde7");
+            bgcolor = bgcolor.replace(/white/, "#ffffff");
+            borderColor = borderColor.replace(/blue!75!black/, "#1565c0");
+            borderColor = borderColor.replace(/yellow!50!black/, "#f57f17");
+
+            // Create a nicer looking representation of the tcolorbox
+            var placeholder = document.createElement("div");
+            placeholder.className = "boxjax-placeholder";
+            placeholder.style.backgroundColor = bgcolor;
+            placeholder.style.borderColor = borderColor;
+            placeholder.style.borderWidth = "1px";
+            placeholder.style.borderStyle = "solid";
+            placeholder.style.padding = "10px";
+            placeholder.setAttribute("data-boxjax-placeholder", "true");
+
+            // Create a title if one was found
+            var titleDiv = document.createElement("div");
+            titleDiv.className = "boxjax-title";
+            titleDiv.textContent = title;
+
+            // Create content div
+            var contentDiv = document.createElement("div");
+            contentDiv.className = "boxjax-content";
+
+            // Extract and clean the actual content (between begin/end tcolorbox)
+            var contentMatch = content.match(
+              /\\begin\s*{tcolorbox}(\[.*?\])?\s*([\s\S]*?)\\end\s*{tcolorbox}/,
+            );
+            if (contentMatch && contentMatch[2]) {
+              contentDiv.textContent = contentMatch[2].trim();
+            } else {
+              contentDiv.textContent = content;
+            }
+
+            // Assemble the placeholder
+            placeholder.appendChild(titleDiv);
+            placeholder.appendChild(contentDiv);
+
+            // Insert it before the script
+            script.parentNode.insertBefore(placeholder, script);
+          });
+
+        console.log("BoxJax placeholders added");
+
+        // Process math in the placeholders with MathJax if available
+        if (window.MathJax && window.MathJax.typesetPromise) {
+          var placeholders = document.querySelectorAll(".boxjax-placeholder");
+          window.MathJax.typesetPromise(placeholders).catch(function (err) {
+            console.error("MathJax typeset error:", err);
+          });
+        }
+      };
+
+      // Function to hide placeholders if BoxJax renders successfully
+      window.hideBoxJaxPlaceholders = function () {
+        // First check if real BoxJax containers exist before hiding placeholders
+        var boxJaxRendered =
+          document.querySelectorAll(".tcolorbox-container").length > 0;
+
+        if (!boxJaxRendered) {
+          console.warn(
+            "BoxJax did not render any containers, keeping placeholders visible",
+          );
+          return;
+        }
+
+        document
+          .querySelectorAll('[data-boxjax-placeholder="true"]')
+          .forEach(function (placeholder) {
+            placeholder.style.display = "none";
+          });
+        console.log("BoxJax placeholders hidden");
+      };
+    })();
+  </script>
+
+  <!-- BoxJax -->
+  <script src="/js/boxjax/boxjax.js"></script>
+
+  <!-- Direct library patching -->
+  <script>
+    // Additional function to check if the BoxJax rendered well
+    function checkBoxJaxRendering() {
+      // Check if any boxes were rendered
+      var renderedBoxes = document.querySelectorAll(".tcolorbox-container");
+      if (renderedBoxes.length === 0) {
+        console.log("No BoxJax containers found, showing placeholders");
+        // Show placeholders again
+        document
+          .querySelectorAll('[data-boxjax-placeholder="true"]')
+          .forEach(function (placeholder) {
+            placeholder.style.display = "block";
+          });
+        return false;
+      }
+      return true;
+    }
+
+    // Find and patch the library modules
+    (function () {
+      // Find the library module inside BoxJax
+      for (var key in window) {
+        if (
+          key.includes("_WEBPACK_MODULE") &&
+          window[key] &&
+          typeof window[key] === "object"
+        ) {
+          var module = window[key];
+          for (var moduleId in module) {
+            if (module[moduleId] && module[moduleId].library) {
+              console.log("Found library module:", moduleId);
+              // This looks like the library module, patch it
+              var libraryModule = module[moduleId].library;
+
+              // Patch each function individually to avoid closure issues
+              (function (lib) {
+                // --- Patch with Consolidated FS Functions ---
+                lib.deleteEverything = fs_deleteEverything;
+                lib.writeFileSync = fs_writeFileSync;
+                lib.readFileSync = fs_readFileSync;
+                lib.getfilesize = fs_getfilesize;
+                lib.fileExists = fs_fileExists;
+                console.log(
+                  "Directly patched FS functions using consolidated logic",
+                );
+                // --- End FS Patch ---
+
+                // Force replace snapshot function
+                lib.snapshot = function (ptr) {
+                  console.log("Direct patched snapshot called with ptr:", ptr);
+                  return 0;
+                };
+                console.log("Directly patched snapshot function");
+
+                // Force replace inputln function
+                lib.inputln = function () {
+                  console.log("Direct patched inputln called");
+                  return 0;
+                };
+                console.log("Directly patched inputln function");
+
+                // Force replace evaljs function
+                lib.evaljs = function (code) {
+                  console.log("Direct patched evaljs called with code:", code);
+                  try {
+                    // WARNING: Using eval() can be a security risk.
+                    return eval(code);
+                  } catch (e) {
+                    console.error("Error in direct patched evaljs:", e);
+                    return null;
+                  }
+                };
+                console.log("Directly patched evaljs function");
+
+                // Define each function separately to avoid closure issues
+                var patchFunction = function (name) {
+                  // Skip FS functions already patched by consolidated logic
+                  if (
+                    [
+                      "deleteEverything",
+                      "writeFileSync",
+                      "readFileSync",
+                      "getfilesize",
+                      "fileExists",
+                    ].includes(name)
+                  ) {
+                    return;
+                  }
+                  if (typeof lib[name] !== "function") {
+                    lib[name] = function () {
+                      console.log(
+                        "Patched " + name + " called with args:",
+                        Array.from(arguments),
+                      );
+                      return 0;
+                    };
+                    console.log("Patched missing function:", name);
+                  }
+                };
+
+                // Add any other missing functions one by one
+                var requiredFunctions = [
+                  "deleteEverything",
+                  "writeFileSync",
+                  "readFileSync",
+                  "fileExists",
+                  "setMemory",
+                  "setInput",
+                  "restore",
+                  "openSync",
+                  "closeSync",
+                  "readSync",
+                  "writeSync",
+                  "getCurrentMinutes",
+                  "getCurrentDay",
+                  "getCurrentMonth",
+                  "getCurrentYear",
+                  "printString",
+                  "printBoolean",
+                  "printChar",
+                  "printInteger",
+                  "printFloat",
+                  "printNewline",
+                  "reset",
+                  "rewrite",
+                  "close",
+                  "eof",
+                  "erstat",
+                  "eoln",
+                  "get",
+                  "put",
+                  "evaljs",
+                ];
+
+                for (var i = 0; i < requiredFunctions.length; i++) {
+                  patchFunction(requiredFunctions[i]);
+                }
+
+                console.log("Library module patching complete");
+
+                // Export the patched library to the global scope for debugging
+                window._patchedLibrary = lib;
+              })(libraryModule);
+            }
+          }
+        }
+      }
+    })();
+  </script>
+
+  <!-- Initialize BoxJax on load with enhanced error handling -->
+  <script>
+    // Add a global error handler to catch any unhandled WebAssembly errors
+    window.addEventListener("error", function (event) {
+      console.error("Global error caught:", event.error);
+      if (
+        event.error &&
+        (event.error instanceof WebAssembly.RuntimeError ||
+          event.error instanceof WebAssembly.LinkError ||
+          event.error.toString().includes("WebAssembly"))
+      ) {
+        console.warn(
+          "WebAssembly error detected, showing placeholders as fallback",
+        );
+        if (window.showBoxJaxPlaceholders) {
+          window.showBoxJaxPlaceholders();
+        }
+      }
+    });
+
+    // Also catch unhandled promise rejections
+    window.addEventListener("unhandledrejection", function (event) {
+      console.error("Unhandled promise rejection:", event.reason);
+      if (
+        event.reason &&
+        (event.reason instanceof WebAssembly.RuntimeError ||
+          event.reason instanceof WebAssembly.LinkError ||
+          event.reason.toString().includes("WebAssembly"))
+      ) {
+        console.warn(
+          "WebAssembly error in promise, showing placeholders as fallback",
+        );
+        if (window.showBoxJaxPlaceholders) {
+          window.showBoxJaxPlaceholders();
+        }
+      }
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+      console.log("BoxJax initialization starting...");
+
+      // Always show placeholders first, BoxJax will replace them if successful
+      window.showBoxJaxPlaceholders();
+
+      // Handle MathJax rendering for placeholders
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        var placeholders = document.querySelectorAll(".boxjax-placeholder");
+        window.MathJax.typesetPromise(placeholders).catch(function (err) {
+          console.error("MathJax typeset error:", err);
+        });
+      }
+
+      if (typeof window.BoxJax === "function") {
+        var initTimeout;
+
+        // Set a timeout to check for BoxJax rendering status
+        initTimeout = setTimeout(function () {
+          console.warn("BoxJax initialization timed out after 5 seconds");
+          checkBoxJaxRendering();
+        }, 5000);
+
+        // Try initializing with a timeout to ensure dependencies are loaded
+        setTimeout(function () {
+          try {
+            console.log("Starting BoxJax with document");
+
+            // Override the BoxJax to always use our patched functions
+            var originalBoxJax = window.BoxJax;
+            window.BoxJax = function (doc) {
+              console.log("Patched BoxJax called");
+              var result = originalBoxJax(doc);
+
+              // Add a rendering check after a delay
+              setTimeout(function () {
+                checkBoxJaxRendering();
+              }, 1000);
+
+              return result;
+            };
+
+            window
+              .BoxJax(document)
+              .then(function () {
+                console.log("BoxJax initialized successfully");
+
+                // Check if BoxJax actually rendered boxes before hiding placeholders
+                var rendered = checkBoxJaxRendering();
+
+                // Only hide placeholders if rendering worked
+                if (rendered) {
+                  window.hideBoxJaxPlaceholders();
+                }
+
+                clearTimeout(initTimeout);
+
+                // Process math in BoxJax rendered elements with MathJax
+                if (window.MathJax && window.MathJax.typesetPromise) {
+                  setTimeout(function () {
+                    window.MathJax.typesetPromise().catch(function (err) {
+                      console.error(
+                        "MathJax typeset error after BoxJax render:",
+                        err,
+                      );
+                    });
+                  }, 500); // Short delay to ensure BoxJax has completed rendering
+                }
+              })
+              .catch(function (error) {
+                console.error("BoxJax Promise rejected:", error);
+                clearTimeout(initTimeout);
+                // Ensure placeholders remain visible
+                checkBoxJaxRendering();
+              });
+            console.log("BoxJax initialization call complete");
+          } catch (e) {
+            console.error("BoxJax initialization error:", e);
+            clearTimeout(initTimeout);
+            // Ensure placeholders remain visible on error
+            checkBoxJaxRendering();
+          }
+        }, 1000); // Reduced delay to 1 second
+      } else {
+        console.error(
+          "BoxJax not loaded properly - window.BoxJax is not a function",
+        );
+      }
+    });
+  </script>
+{{ end }}

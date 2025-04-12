@@ -1,2 +1,0 @@
-* chapter 4: a visual proof that neural nets can compute any function
-
