@@ -1,1 +1,390 @@
-* chapter 6: deep learning
++++
+title = "chapter 6: deep learning"
+mathjax = "true"
+date = "2025-04-14"
+toc = "true"
+clocal = "true"
+tags = ["cnn", "theano", "relu", "dropout", "regularisation", "overfitting", "augmented-data"]
++++
+
+{{ < tikz > }}
+
+
+\begin{tikzpicture}[x=1.6cm,y=1.1cm]
+  \large
+  \message{^^JDeep convolution neural network}
+  
+  % Define colors
+  \colorlet{myred}{red!80!black}
+  \colorlet{myblue}{blue!80!black}
+  \colorlet{mygreen}{green!60!black}
+  \colorlet{myorange}{orange!70!red!60!black}
+  \colorlet{mydarkred}{red!30!black}
+  \colorlet{mydarkblue}{blue!40!black}
+  \colorlet{mydarkgreen}{green!30!black}
+  
+  % Define TikZ styles
+  \tikzset{
+    >=latex, % for default LaTeX arrow head
+    node/.style={thick,circle,draw=myblue,minimum size=22,inner sep=0.5,outer sep=0.6},
+    node in/.style={node,green!20!black,draw=mygreen!30!black,fill=mygreen!25},
+    node hidden/.style={node,blue!20!black,draw=myblue!30!black,fill=myblue!20},
+    node convol/.style={node,orange!20!black,draw=myorange!30!black,fill=myorange!20},
+    node out/.style={node,red!20!black,draw=myred!30!black,fill=myred!20},
+    connect/.style={thick,mydarkblue}, %,line cap=round
+    connect arrow/.style={-{Latex[length=4,width=3.5]},thick,mydarkblue,shorten <=0.5,shorten >=1}
+  }
+  
+  % Define layers and nodes
+  \def\layerNodes{{5,5,4,3,2,4,4,3}} % Number of nodes in each layer
+  \def\NC{6} % number of convolutional layers
+  \def\totalLayers{8} % total number of layers
+  
+  % Node style mapping
+  \tikzset{ % node styles, numbered for easy mapping with \nstyle
+    node 1/.style={node in},
+    node 2/.style={node convol},
+    node 3/.style={node hidden},
+    node 4/.style={node out},
+  }
+  
+  % TRAPEZIA
+  \draw[myorange!40,fill=myorange,fill opacity=0.02,rounded corners=2]
+    (1.6,-2.7) --++ (0,5.4) --++ (3.8,-1.9) --++ (0,-1.6) -- cycle;
+  \draw[myblue!40,fill=myblue,fill opacity=0.02,rounded corners=2]
+    (5.6,-2.0) rectangle++ (1.8,4.0);
+  \node[right=19,above=3,align=center,myorange!60!black] at (3.1,1.8) {convolutional\\[-0.2em]layers};
+  \node[above=3,align=center,myblue!60!black] at (6.5,1.9) {fully-connected\\[-0.2em]hidden layers};
+  
+  \message{^^J  Layer}
+  % Loop over layers
+  \foreach \lay in {1,...,\totalLayers} {
+    % Get number of nodes for this layer
+    \pgfmathsetmacro\N{\layerNodes[\lay-1]}
+    \pgfmathsetmacro\prev{int(\lay-1)} % number of previous layer
+    
+    % Determine node style based on layer position
+    \pgfmathsetmacro\n{int(\lay<\totalLayers?(\lay<\NC?min(2,\lay):3):4)}
+    
+    \message{\lay,}
+    \foreach \i in {1,...,\N} { % loop over nodes
+      % Calculate y-position
+      \pgfmathsetmacro\y{\N/2-\i+0.5}
+      
+      % NODES
+      \node[node \n,outer sep=0.6] (N\lay-\i) at (\lay,\y) {};
+      
+      % CONNECTIONS
+      \ifnum\lay>1 % connect to previous layer
+        \pgfmathsetmacro\prevN{\layerNodes[\prev-1]} % nodes in previous layer
+        
+        \ifnum\lay<\NC % convolutional layers
+          \foreach \j in {-1,0,1} {
+            \pgfmathsetmacro\jprev{int(\i-\j)}
+            \pgfmathsetmacro\cconv{int(\prevN>\N)}
+            \pgfmathsetmacro\ctwo{int((\cconv&&\j>0)?1:0)}
+            \pgfmathsetmacro\c{int((\jprev<1||\jprev>\prevN||\ctwo)?0:1)}
+            
+            \ifnum\c=1
+              \ifnum\cconv=0
+                \draw[connect,white,line width=1.2] (N\prev-\jprev) -- (N\lay-\i);
+              \fi
+              \draw[connect] (N\prev-\jprev) -- (N\lay-\i);
+            \fi
+          }
+        \else % fully connected layers
+          \foreach \j in {1,...,\prevN} { % loop over nodes in previous layer
+            \draw[connect,white,line width=1.2] (N\prev-\j) -- (N\lay-\i);
+            \draw[connect] (N\prev-\j) -- (N\lay-\i);
+          }
+        \fi
+      \fi % else: nothing to connect first layer
+    }
+  }
+  
+  % LABELS
+  \node[above=3,align=center,mygreen!60!black] at (N1-1.90) {input\\[-0.2em]layer};
+  \node[above=3,align=center,myred!60!black] at (N\totalLayers-1.90) {output\\[-0.2em]layer};
+\end{tikzpicture}
+{{ < /tikz > }}
+
+
+* notes
+
+
+- topics: convolutions, pooling, GPUs (to do more training), algorithmic expansion of data (reduce overfitting), dropout (also reduce overfitting), ensembles of networks
+- upon reflection, it is strange to use networks with fc (fully-connected) layers to classify images.
+  - such a network does not take into account the spatial information of the images:
+    - it treats input pixels which are far apart and close together as the same.
+- cnns use three basic ideas: *local receptive fields*, *shared weights* and *pooling*.
+  1. the creation of maps that learn a feature, i.e. a feature map
+  2. a subset of the input image (28x28), say 5x5 is weighted and added to a bias to create a single node of the feature map. these weights and biases remain the same for each new 5x5 subset computation from the original input image
+     - hence /shared weights/. this relates to the feature maps being invariant to where that feature occurs in the input image 
+  3. we discard the positional information with *pooling*{{< mnote "variants are available; max pooling, L2 pooling, etc >}}, because the relative position of a feature is more important than the absolute location of that feature
+- the "local receptive field" slides over by a "stride-length"
+  - BTW, we can use validation data to choose the stride length that gives the best performance!
+- for the \(j\), \(k\)-th hidden neuron the output is:
+  \begin{equation}
+  \label{eq:a}
+  \sigma \left ( b + \sum^4_{l=0}\sum^4_{m=0} w_{l,m} a_{j+l, k+m}  \right )
+  \end{equation}
+- the convolution operation can be used to rewrite \ref{eq:a}:
+  \begin{equation}
+  \label{eq:a-conv}
+  a^1 = \sigma(b + w * a ^0)
+  \end{equation}
+- pooling layers are usually used immediately after convolutional layers.
+  - they take each feature map and prepare a /condensed/ feature map
+  - max-pooling just takes the highest activation in a given 2x2 region
+  - L2 pooling takes the square root of the sum of the squares of the activations in the 2x2 region.
+  - we can certainly leverage the validation data to see which pooling strategy is most superior!
+- we need to modify backprop (from =network.py= / =network2.py= for CNN's.)
+- softmax plus log-likelihood cost is more common in modern image classification networks.
+
+
+* experiments
+
+- in the code, the convolutional and pooling layers are treated as a single layer.
+
+** network3.py
+
+{{< collapse-local folded="true" >}}
+
+#+INCLUDE: "/code/10khrs-ai-ml-dl/learning/nielsen-dl/network3.py" src python
+#+CAPTION: network3.py
+
+** DONE single hidden layer, baseline
+CLOSED: [2025-04-14 Mon 13:06]
+:LOGBOOK:
+- State "DONE"       from              [2025-04-14 Mon 13:06]
+:END:
+
+60 epochs, \(\eta = 0.1\), mini-batch 10, 100 hidden neurons
+
+#+begin_src python
+(theo310) z5362216@k105:~/neural-networks-and-deep-learning/src $ python
+Python 3.10.8 (main, Dec  5 2022, 10:38:26) [GCC 12.2.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import network3
+WARNING (theano.tensor.blas): Using NumPy C-API based implementation for BLAS functions.
+Trying to run under a GPU.  If this is not desired, then modify network3.py
+to set the GPU flag to False.
+>>> from network3 import Network
+>>> from network3 import ConvPoolLayer, FullyConnectedLayer, SoftmaxLayer
+>>> training_data, validation_data, test_data = network3.load_data_shared()
+>>> mini_batch_size = 10
+>>> net = Network([FullyConnectedLayer(n_in=784, n_out=100),SoftmaxLayer(n_in=100,n_out=10)], mini_batch_size)
+>>> net.SGD(training_data, 60, mini_batch_size, 0.1, validation_data, test_data)
+#+end_src
+
+#+RESULTS
+Epoch 59: validation accuracy 97.74%
+Finished training network.
+Best validation accuracy of 97.82% obtained at iteration 114999
+Corresponding test accuracy of 97.67%
+
+
+** DONE adding 1 convolutional-pooling layer:
+CLOSED: [2025-04-14 Mon 13:06]
+:LOGBOOK:
+- State "DONE"       from              [2025-04-14 Mon 13:06]
+:END:
+
+#+begin_src python
+>>> net = Network([
+... ConvPoolLayer(
+... image_shape=(mini_batch_size, 1, 28, 28),
+... filter_shape=(20,1,5,5),
+... poolsize=(2,2)),
+... FullyConnectedLayer(n_in=20*12*12, n_out=100),
+... SoftmaxLayer(n_in=100, n_out=10)], mini_batch_size)
+>>> net.SGD(training_data, 60, mini_batch_size, 0.1, validation_data, test_data)
+#+end_src
+
+#+RESULTS
+Epoch 59: validation accuracy 98.90%
+This is the best validation accuracy to date.
+The corresponding test accuracy is 98.81%
+Finished training network.
+Best validation accuracy of 98.90% obtained at iteration 299999
+Corresponding test accuracy of 98.81%
+
+** DONE adding a second conv-pool layer:
+CLOSED: [2025-04-14 Mon 13:06]
+:LOGBOOK:
+- State "DONE"       from              [2025-04-14 Mon 13:06]
+:END:
+
+#+begin_src python
+net = Network([
+    ConvPoolLayer(
+	image_shape=(mini_batch_size, 1, 28, 28),
+	filter_shape=(20,1,5,5),poolsize=(2,2)),
+    ConvPoolLayer(
+	image_shape=(mini_batch_size, 20, 12, 12),
+	filter_shape=(40,20,5,5),poolsize=(2,2)),
+    FullyConnectedLayer(n_in=40*4*4, n_out=100),
+    SoftmaxLayer(n_in=100, n_out=10)], mini_batch_size)
+>>> net.SGD(training_data, 60, mini_batch_size, 0.1, validation_data, test_data)
+#+end_src
+
+#+RESULTS
+Epoch 59: validation accuracy 98.94%
+Finished training network.
+Best validation accuracy of 98.94% obtained at iteration 259999
+Corresponding test accuracy of 98.98%
+
+
+** DONE changing to relu activation function:
+CLOSED: [2025-04-14 Mon 14:34]
+:LOGBOOK:
+- State "DONE"       from "WAIT"       [2025-04-14 Mon 14:34]
+- State "WAIT"       from              [2025-04-14 Mon 13:06]
+:END:
+
+#+begin_src python
+  from network3 import ReLU
+  net = Network([
+      ConvPoolLayer(
+	  image_shape=(mini_batch_size, 1, 28, 28),
+	  filter_shape=(20,1,5,5),poolsize=(2,2), activation_fn=ReLU),
+      ConvPoolLayer(
+	  image_shape=(mini_batch_size, 20, 12, 12),
+	  filter_shape=(40,20,5,5),poolsize=(2,2), activation_fn=ReLU),
+      FullyConnectedLayer(n_in=40*4*4, n_out=100, activation_fn=ReLU),
+      SoftmaxLayer(n_in=100, n_out=10)], mini_batch_size)
+  net.SGD(training_data, 60, mini_batch_size, 0.03, validation_data, test_data, lmbda=0.1)
+#+end_src
+
+#+RESULTS
+Epoch 59: validation accuracy 99.12%
+Finished training network.
+Best validation accuracy of 99.13% obtained at iteration 199999
+Corresponding test accuracy of 99.19%
+
+
+** DONE augment training data:
+CLOSED: [2025-04-14 Mon 21:43]
+:LOGBOOK:
+- State "DONE"       from "WAIT"       [2025-04-14 Mon 21:43]
+- State "WAIT"       from "TODO"       [2025-04-14 Mon 15:11]
+:END:
+
+minor but significant! move each image 1 pixel up/down/left/right
+
+#+begin_src python
+  python expand_mnist.py
+  expanded_training_data, _, _ = network3.load_data_shared("../data/mnist_expanded.pkl.gz")
+  net = Network([
+      ConvPoolLayer(
+	  image_shape=(mini_batch_size, 1, 28, 28),
+	  filter_shape=(20,1,5,5),poolsize=(2,2), activation_fn=ReLU),
+      ConvPoolLayer(
+	  image_shape=(mini_batch_size, 20, 12, 12),
+	  filter_shape=(40,20,5,5),poolsize=(2,2), activation_fn=ReLU),
+      FullyConnectedLayer(n_in=40*4*4, n_out=100, activation_fn=ReLU),
+      SoftmaxLayer(n_in=100, n_out=10)], mini_batch_size)
+  net.SGD(expanded_training_data, 60, mini_batch_size, 0.03, validation_data, test_data, lmbda=0.1)
+#+end_src
+
+#+RESULTS
+Epoch 59: validation accuracy 99.39%
+Finished training network.
+Best validation accuracy of 99.40% obtained at iteration 1449999
+Corresponding test accuracy of 99.36%
+
+*** expand_mnist code
+
+#+INCLUDE: "/code/10khrs-ai-ml-dl/learning/nielsen-dl/expand_mnist.py" src python
+#+CAPTION: expand_mnist.py
+
+** TODO dropout (regularisation)
+
+#+begin_src python
+     net = Network([
+	 ConvPoolLayer(
+	     image_shape=(mini_batch_size, 1, 28, 28),
+	     filter_shape=(20,1,5,5),poolsize=(2,2), activation_fn=ReLU),
+	 ConvPoolLayer(
+	     image_shape=(mini_batch_size, 20, 12, 12),
+	     filter_shape=(40,20,5,5),poolsize=(2,2), activation_fn=ReLU),
+	 FullyConnectedLayer(n_in=40*4*4, n_out=1000, activation_fn=ReLU, p_dropout=0.5),
+	 FullyConnectedLayer(n_in=1000, n_out=1000, activation_fn=ReLU, p_dropout=0.5),
+	 SoftmaxLayer(n_in=1000, n_out=10, p_dropout=0.5)
+     ], mini_batch_size)
+     >>> net.SGD(expanded_training_data, 40, mini_batch_size, 0.03, validation_data, test_data, lmbda=0.1)
+#+end_src
+
+* discussion
+
+** from fc to c-p
+
+- a big advantage of _shared weights (and biases)_ is that it greatly reduces the number of parameters of the network.
+  - in this case, if you just had a c-p (convolutional-pooling) layer instead of fc layer, then you would have a 40x saving
+
+** second conv-pool layer
+
+- what does it conceptually mean to add such a layer?
+  - just think of the new input images as slighly more condensed versions of the original image, with lots of patterns still to discover.
+  - interestingly there is not just 1 input layer anymore. there would be however many inputs as there are feature maps.
+    - the answer to this, is the same answer if the input image was RGB: just let the convolutional operation sample across all channels.
+
+** relu
+
+- empirically this performs better than the sigmoid.
+  - \(max(0,z)\) doesn't saturate in the limit of large \(z\), unlike sigmoid neurons
+
+{{< img "relu.svg" >}}
+
+** expanded mnist
+
+- reasonable gains to be had here. we explode the training data from 50,000 images to 250,000.
+  - each copy generates another 4, one pixel up/down/left/right
+- in 2003, Simard, Steinkraus and Platt improved their MNIST performance to 99.6 by mimicking handwriting data augmentation with "elastic distortions"
+  - they did not have ReLU back then.
+
+** dropout
+
+- our best result.
+- we applied dropout to FC layers only. convolutional layers have their own regularisation due to the shared weights.
+
+** ensembles
+
+- implemented by Nielsen on his own, he achieved 99.67 percent accuracy.
+  - realise that this implies 9,967 / 10,000 images were classified correctly!
+    
+
+* conclusion
+
+we managed to train despite the [[../ch5][difficulties]] (exploding / vanishing gradients).
+
+these difficulties did not disappear, but rather we avoided them by:
+- using convolutional layers, reducing the number of parameters which would suffer
+- using dropout, and more data to reduce overfitting
+- using ReLU instead of sigmoids
+- using GPU's
+- good weight initialisations
+  - note that these are different for the different activation functions.
+
+
+deep belief networks are worth looking into. they can do both unsupervised and semi-supervised learning. they are generative models. a key component of these are restricted Boltzmann Machines.
+
+#+BEGIN_QUOTE
+To recognise shapes, first learn to generate images.---Geoffrey Hinton
+#+END_QUOTE
+
+
+The ability to learn hierarchies of concepts, building up multiple layers of abstraction, seems to be fundamental to making sense of the world.
+
+Conway's Law:
+
+#+BEGIN_QUOTE
+Any organization that designs a system... will inevinable produce a design whose structure is a copy of the organization's communication structure.
+#+END_QUOTE
+
+---
+
+The mark of a mature field is the necessity for specialisation, c.f. Hippocrates / Galen in medicine:
+
+"the fields start out monolithic, with just a few deep ideas. early experts can master all those ideas. but as time passes that monolithic character changes. we discover many deep new ideas, too many for any one person to really master."
+

@@ -1,2 +1,150 @@
-* chapter 4: a visual proof that neural nets can compute any function
++++
+title = "chapter 4: a visual proof that neural nets can compute any function"
+mathjax = "true"
+date = "2025-04-15"
+toc = "true"
+clocal = "true"
+tags = ["universality", "functions"]
++++
 
+- one of the most striking facts about neural networks is that they can compute *any* function.{{< mnote "quite like the universality of NAND gates!" >}}
+- we will always be able to do better than some given error \(\epsilon\)
+- what's even crazier is that this /universality/ holds even if we restrict our networks to just have a single layer intermediate between the input and output neurons:
+
+{{< tikz >}}
+\begin{tikzpicture}[
+    shorten >=1pt,
+    neuron/.style={circle, draw, minimum size=0.5cm},
+    layer/.style={text width=1.5cm, text centered}
+]
+
+% Draw the input layer (3 neurons)
+\foreach \i in {1,...,3} {
+    \node[neuron] (input-\i) at (0,-\i-1.2) {$x_\i$};
+}
+
+% Draw the hidden layer (5 neurons)
+\foreach \i in {1,...,5} {
+    \node[neuron] (hidden-\i) at (3,-\i) {};
+}
+
+% Draw the output layer (2 neurons)
+\foreach \i in {1,...,2} {
+    \node[neuron] (output-\i) at (6,-\i-1.5) {};
+}
+
+% Connect input layer to hidden layer
+\foreach \i in {1,...,3} {
+    \foreach \j in {1,...,5} {
+        \draw[->] (input-\i) -- (hidden-\j);
+    }
+}
+
+% Connect hidden layer to output layer
+\foreach \i in {1,...,5} {
+    \foreach \j in {1,...,2} {
+        \draw[->] (hidden-\i) -- (output-\j);
+    }
+}
+\end{tikzpicture}
+{{< /tikz >}}
+
+- one of the original papers publishing this result leveraged the Hahn-Banach Theorem, the Riesz Representation theorem and some Fourier Analysis!
+- realise that really complicated things are actually just functions:
+  - naming a piece of music based off a short sample
+  - translating a Chinese text to English
+  - etc.
+
+- note importantly that we cannot get an *exact* analytic approximation, but rather it is *approximately* equal in the limit.
+- another caveat is that the _functions must be continuous_
+  - in practice though, we can circumvent this.
+
+
+* one input, one output
+
+- this means 2-space, an input (x-axis), and one output (y-axis).
+- for universality to hold, this would mean that we can plot any arbitrarily complex function:
+
+{{ <tikz> }}
+\begin{tikzpicture}
+\begin{axis}[
+    width=12cm, height=8cm,
+    xlabel=$x$,
+    ylabel=$f(x)$,
+    title={$f(x) = 0.2+0.4x^2+0.3x\sin(15x)+0.05\cos(50x)$},
+    xmin=0, xmax=1,
+    ymin=0, ymax=1,
+    grid=both,
+    grid style={line width=.1pt, draw=gray!10},
+    major grid style={line width=.2pt,draw=gray!50},
+    axis lines=middle,
+    samples=1000,
+    smooth
+]
+    \addplot[thick, blue] {0.2+0.4*x^2+0.3*x*sin(15*x*180/pi)+0.05*cos(50*x*180/pi)};
+\end{axis}
+\end{tikzpicture}
+{{ </tikz> }}
+
+with a series of hidden neurons.
+
+{{ <img "one-bump.png" >}}
+
+{{ <img "two-bump.png" >}}
+
+Now clearly the degrees of freedom is increasing with an increase of hidden nodes.
+
+Ultimately, we can produce:
+
+{{ <img "imitated.png" >}}
+
+* 2 inputs, one output
+
+- this would be 3D, and clearly increasing the number of inputs can be matched by increasing the degrees of variability with the hidden neuron connections:
+
+{{ <img "3d-universality" >}}
+
+* n inputs, n outputs
+
+- these would be your "vector-valued functions" and are clearly just \(n\) separate real-valued functions.
+  - thus we could just create a network approximating \(f^1\), \(f^2\), etc.
+
+- it's just that for visualisation purposes, one output with one and two inputs is easier.
+
+* choice of activation function
+
+- note that this proof uses the *sigmoid function*. it is also true for a specific class of functions, but you should understand that the activation function requires special properties before it can allow universal computation.
+  - linear activation functions cannot be used for universal computation.
+
+* patching up the discontinuity.
+
+because we have been using the step function for our (visual) proofs above, the sigmoid will fail in the green region:
+
+{{ <tikz> }}
+\begin{tikzpicture}
+\begin{axis}[
+    width=10cm, height=7cm,
+    xlabel=$x$,
+    ylabel=$\sigma(x)$,
+    xmin=-6, xmax=6,
+    ymin=-0.1, ymax=1.1,
+    grid=both,
+    grid style={line width=.1pt, draw=gray!10},
+    major grid style={line width=.2pt,draw=gray!50},
+    axis lines=middle,
+    samples=100,
+    domain=-6:6,
+    smooth
+]
+    % Draw the sigmoid function
+    \addplot[thick, blue, domain=-6:6] {1/(1+exp(-x))};
+    
+    % Draw a green rectangle from x=-0.3 to x=0.3 with height 1
+    \draw[fill=green!30, opacity=0.4] (axis cs:-0.5,0) rectangle (axis cs:0.5,1);
+    
+\end{axis}
+\end{tikzpicture}
+{{ </tikz> }}
+
+
+to "patch" this up we just superimpose 2 or more bumps and average them out to "white-wash" this discontinuity.

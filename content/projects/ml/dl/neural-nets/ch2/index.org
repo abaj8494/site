@@ -79,7 +79,16 @@ note that *saturation* means that the neuron has *low* or *high* activations (cl
 4. *Backpropagate the error:* For each \(l=L-1,L-2,\ldots,2\) compute \(\delta^l = ((w^{l^1})^T \delta^{l^1}) \odot \sigma'(z^l)\)
 5. *Output*: The gradient of the cost function is given by \(\cfrac{\partial C}{\partial w_{jk}^l = a_k^{l-1}\delta^l_j}\) and \(\cfrac{\partial C}{\partial b_j^l} = \delta_j^l\).
 
-*** TODO sgd
+*** sgd
+
+given a minibatch, we step in the direction of steepest descent with the _stochastic gradient descent_ algorithm:
+
+1. *Input minibatch*
+2. For each training example *x*: Set the corresponding input activation \(a^{x,1}, and perform the following steps:
+   a. *Feedforward*: For each \(l = 2, 3, ..., L\) compute \(z^{x,l} = w^l a^{x, l-1} + b^l\) and \(a^{x,l} = \sigma(z^{x,l})\)
+   b. *Output Error* \(\delta^{x,L}\): Compute the vector \(\delta^{x,L} = \nabla_a C_x \odot \sigma'(z^{x,L})\).
+   c. *Backpropagate the Error*: For each \(l = L-1, L-2, ..., 2\) compute \(\delta^{x,L} = ((w^{l+1})^T \delta^{x,l+1}) \odot \sigma'(z^{x,L})\).
+3. Gradient descent: For each \(l = L, L-1, ..., 2\) update the weights according to the rule \(w^l \rightarrow w^l - \frac{\eta}{m}\sum_x \delta^{x,l}(a^{x,l-1})^T\), and the biases according to the rule \(b^l \rightarrow b^l - \frac{\eta}{m}\sum_x \delta^{x,l}\).
 
 
 ** speed of backprop

@@ -8,6 +8,12 @@ toc = "true"
 - "workhorse of learning in neural networks"
 - at the heart of it is an expression that tells us how quickly the cost function changes when we change the weights and biases.
 
+#+BEGIN_CENTER
+#+ATTR_HTML: :class lateximage :width 700px :id activations
+#+CAPTION: activation diagram of a single neuron in matrix notation
+[[{{< cwd >}}activations.svg]]
+#+END_CENTER
+
 ** notation
 - \(w_{jk}^l\){{< mnote "we go from the l\(^{th}\) neuron to the \((l-1)^{th}\) as opposed to going forward because this way \ref{eq:vec_ac} can be written as \(wa\) and not \(aw^T\)" >}} means the weight of the j\(^{th}\) neuron in layer \(l\) to the k\(^{th}\) neuron in the previous layer 
   - similarly for \(b_j^l\) we say it is the j\(^{th}\) bias in the l\(^{th}\) layer
@@ -48,15 +54,13 @@ it's just the element-wise multiplication of vectors.
 implementing back-prop with this operator tends to be quite fast. (faster than matrix multiplication at times).
 
 ** four fundamental equations.
-\(\require{tcolorbox}\)
-\begin{tcolorbox}
-\begin{align}
-\delta^L &= \nabla_a C \odot \sigma'(z^L) \label{eq:bp1}\\
-\delta^l &= ((w^{l+1}^T \delta^{l^1})) \odot \sigma'(z^l) \label{eq:bp2}\\
-\cfrac{\partial C}{\partial b_j^l} &= \delta_j^l \label{eq:bp3}\\
-\cfrac{\partial C}{\partial w_{jk}^l} &= a_k^{l-1} \delta_j^l \label{eq:bp4}\\
-\end{align}
-\end{tcolorbox}
+\[\require{bbox}\require{color}\definecolor{myred}{RGB}{128,0,0}
+\fcolorbox{red}{lightblue}{$\begin{align}
+\color{myred}{\boldsymbol{\delta^L}} &\color{myred}{\boldsymbol{= \nabla_a C \odot \sigma'(z^L)}} \label{eq:bp1}\\
+\color{myred}{\boldsymbol{\delta^l}} &\color{myred}{\boldsymbol{= ((w^{l+1})^T \delta^{l+1}) \odot \sigma'(z^l)}} \label{eq:bp2}\\
+\color{myred}{\boldsymbol{\cfrac{\partial C}{\partial b_j^l}}} &\color{myred}{\boldsymbol{= \delta_j^l}} \label{eq:bp3}\\
+\color{myred}{\boldsymbol{\cfrac{\partial C}{\partial w_{jk}^l}}} &\color{myred}{\boldsymbol{= a_k^{l-1} \delta_j^l}} \label{eq:bp4}
+\end{align}$}\]
 
 where:
 - \(\delta_j^l = \cfrac{\partial C}{\partial z_j^l}\) is the error of neuron j in layer l.
@@ -85,7 +89,11 @@ note that *saturation* means that the neuron has *low* or *high* activations (cl
 - as such it is possible to use backprop to train *deep neural nets*.
 
 
-** activation diagram of a single neuron in matrix notation
+
+** fig code                                                        :noexport:
+
+(add-to-list 'org-latex-packages-alist '("outline" "contour" t))
+(shell-command "which inkscape")
 
 \begin{tikzpicture}[x=2.7cm,y=1.6cm]
   % Define colors
@@ -199,4 +207,37 @@ note that *saturation* means that the neuron has *low* or *high* activations (cl
   
 \end{tikzpicture}
 
-(add-to-list 'org-latex-packages-alist '("" "contour" t))
+
+*** colorbox and empheq control
+
+\(\require{color}\colorbox{yellow}{$\sigma$}\)
+\(\require{empheq}\)
+\(\newcommand{\boxedeq}[1]{\begin{empheq}[box={\fboxsep=6pt\fbox}]{align*}#1\end{empheq}}\)
+\(\newcommand{\coloredeq}[1]{\begin{empheq}[box=\colorbox{red}]{align*}#1\end{empheq}}\)
+
+\[\colorbox{lightblue}{$\begin{align}
+\delta^L &= \nabla_a C \odot \sigma'(z^L) \label{eq:bp1}\\
+\delta^l &= ((w^{l+1})^T \delta^{l+1}) \odot \sigma'(z^l) \label{eq:bp2}\\
+\cfrac{\partial C}{\partial b_j^l} &= \delta_j^l \label{eq:bp3}\\
+\cfrac{\partial C}{\partial w_{jk}^l} &= a_k^{l-1} \delta_j^l \label{eq:bp4}\\
+\end{align}$}\]
+
+**** numbered, bad align. can change gather to align.
+
+\[\fcolorbox{red}{lightblue}{$\begin{gather}
+\delta^L &= \nabla_a C \odot \sigma'(z^L)\label{eq:bp1}\\
+\delta^l &= ((w^{l+1})^T \delta^{l+1}) \odot \sigma'(z^l)\label{eq:bp2}\\
+\cfrac{\partial C}{\partial b_j^l} &= \delta_j^l\label{eq:bp3}\\
+\cfrac{\partial C}{\partial w_{jk}^l} &= a_k^{l-1} \delta_j^l\label{eq:bp4}
+\end{gather}$}\]
+
+like so:
+
+\[\fcolorbox{red}{lightblue}{$\begin{align}
+\delta^L &= \nabla_a C \odot \sigma'(z^L)\\
+\delta^l &= ((w^{l+1})^T \delta^{l+1}) \odot \sigma'(z^l)\\
+\cfrac{\partial C}{\partial b_j^l} &= \delta_j^l\\
+\cfrac{\partial C}{\partial w_{jk}^l} &= a_k^{l-1} \delta_j^l
+\end{align}$}\]
+
+

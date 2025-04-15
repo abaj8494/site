@@ -4,11 +4,11 @@
   <link
     rel="stylesheet"
     type="text/css"
-    href="{{ "/code/boxjax/public/fonts.css" | relURL }}"
+    href="{{ "/js/tikzjax/fonts.css" | relURL }}"
   />
 
   <!-- Load TikZJax JavaScript -->
-  <script src="{{ "/code/boxjax/public/tikzjax.js" | relURL }}"></script>
+  <script src="{{ "/js/tikzjax/tikzjax.js" | relURL }}"></script>
 
   <!-- Standard TikZJax initialization -->
   <script>
@@ -19,16 +19,16 @@
         window
           .BoxJax(document)
           .then(() => {
-            console.log("TikZJax (BoxJax fork) initialized successfully.");
+            console.log("TikZJax official initialized successfully.");
           })
           .catch((error) => {
             console.error(
-              "TikZJax (BoxJax fork) initialization failed:",
+              "TikZJax official initialization failed:",
               error,
             );
           });
       } catch (e) {
-        console.error("Error calling BoxJax:", e);
+        console.error("Error calling TikZJax:", e);
       }
     });
   </script>

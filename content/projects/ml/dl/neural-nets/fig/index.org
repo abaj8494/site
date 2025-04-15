@@ -162,6 +162,52 @@ ax.set_title('tanh function')
 plt.savefig('tanh.svg', format='svg')
 #+end_src
 
+** DONE diff sigmoid
+CLOSED: [2025-04-15 Tue 12:07]
+:LOGBOOK:
+- State "DONE"       from              [2025-04-15 Tue 12:07]
+:END:
+
+#+BEGIN_CENTER
+#+ATTR_HTML: :width 1000px :class lateximage
+#+CAPTION: diff sigmoid
+[[{{< cwd >}}sigmoid_prime.svg]]
+#+END_CENTER
+
+*** code
+
+{{< collapse-local folded="true" >}}
+
+#+begin_src jupyter-python :session nielsen-fig
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Define sigmoid and its derivative
+def sigmoid(z):
+    return 1 / (1 + np.exp(-z))
+
+def sigmoid_prime(z):
+    s = sigmoid(z)
+    return s * (1 - s)
+
+# z values
+z = np.arange(-5, 5, 0.1)
+s_prime = sigmoid_prime(z)
+
+# Plot
+fig = plt.figure()
+ax = fig.add_subplot(111)
+ax.plot(z, s_prime)
+ax.set_ylim([0.0, 0.3])
+ax.set_xlim([-5, 5])
+ax.grid(True)
+ax.set_xlabel('z')
+ax.set_title('Derivative of the sigmoid function')
+
+plt.savefig('sigmoid_prime.svg', format='svg')
+#+end_src
+
+
 ** DONE valley
 CLOSED: [2025-04-12 Sat 17:50]
 :LOGBOOK:

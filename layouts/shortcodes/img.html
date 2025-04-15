@@ -1,0 +1,9 @@
+{{ $name := .Get 0 }}
+{{ $filename := (printf "%s" $name) }}
+{{ $caption := replace $filename ".svg" "" }}
+
+#+BEGIN_CENTER
+#+ATTR_HTML: :class lateximage :width 700px :id {{ $caption }}
+#+CAPTION: {{ $caption }}
+[[{{< cwd >}}{{ $filename }}]]
+#+END_CENTER
