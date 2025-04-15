@@ -7,7 +7,7 @@ clocal = "true"
 tags = ["cnn", "theano", "relu", "dropout", "regularisation", "overfitting", "augmented-data"]
 +++
 
-{{ < tikz > }}
+{{< tikz >}}
 
 
 \begin{tikzpicture}[x=1.6cm,y=1.1cm]
@@ -106,7 +106,7 @@ tags = ["cnn", "theano", "relu", "dropout", "regularisation", "overfitting", "au
   \node[above=3,align=center,mygreen!60!black] at (N1-1.90) {input\\[-0.2em]layer};
   \node[above=3,align=center,myred!60!black] at (N\totalLayers-1.90) {output\\[-0.2em]layer};
 \end{tikzpicture}
-{{ < /tikz > }}
+{{< /tikz >}}
 
 
 * notes
@@ -120,7 +120,7 @@ tags = ["cnn", "theano", "relu", "dropout", "regularisation", "overfitting", "au
   1. the creation of maps that learn a feature, i.e. a feature map
   2. a subset of the input image (28x28), say 5x5 is weighted and added to a bias to create a single node of the feature map. these weights and biases remain the same for each new 5x5 subset computation from the original input image
      - hence /shared weights/. this relates to the feature maps being invariant to where that feature occurs in the input image 
-  3. we discard the positional information with *pooling*{{< mnote "variants are available; max pooling, L2 pooling, etc" >}}, because the relative position of a feature is more important than the absolute location of that feature
+  3. we discard the positional information with *pooling* {{< mnote "variants are available; max pooling, L2 pooling, etc" >}}, because the relative position of a feature is more important than the absolute location of that feature
 - the "local receptive field" slides over by a "stride-length"
   - BTW, we can use validation data to choose the stride length that gives the best performance!
 - for the \(j\), \(k\)-th hidden neuron the output is:

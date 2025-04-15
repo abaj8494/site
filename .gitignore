@@ -168,3 +168,5 @@ backup/
 *.pdf
 
 /static/code/tikzjax/
+*.wasm
+*.gz

@@ -23,7 +23,7 @@ a famous series of papers (Johan Håstad's 2012 paper) showed that computing the
 
 thus, deep circuits can be intrinsically much more powerful than shallow circuits.
 
-{{ <tikz> }}
+{{< tikz >}}
 \begin{tikzpicture}[x=4.7cm,y=1.6cm]
   % Define colors
   \colorlet{myred}{red!80!black}
@@ -82,14 +82,10 @@ thus, deep circuits can be intrinsically much more powerful than shallow circuit
     }
   }
   
-  % Add labels
-  \node[above=5,align=center,mygreen!60!black] at (N1-1.90) {input\\[-0.2em]layer};
-  \node[above=2,align=center,myblue!60!black] at (N3-1.90) {output layer};
-
 \end{tikzpicture}
-{{ </tikz> }}
+{{< /tikz >}}
 
-{{ < tikz > }}
+{{< tikz >}}
 
 \begin{tikzpicture}[x=2.3cm,y=1.0cm]
   % Define colors if not already defined
@@ -164,7 +160,7 @@ thus, deep circuits can be intrinsically much more powerful than shallow circuit
   }
 \end{tikzpicture}
 
-{{ < /tikz >}}
+{{< /tikz >}}
 
 
 note that in the second architecture, we can delegate tasks to each neuron: learning a particular edge / feature, and then having these grainy filters refine across more hidden layers.
@@ -181,7 +177,7 @@ now that we are sold on the conceptual and theoretical benefits of *deep neural 
 - when earlier hidden layers are learning much slower than later hidden layers.
 - the speed of learning across epochs:
 
-{{ < img "training_speed_2_layers.png" >}}
+{{< img "training_speed_2_layers.png" >}}
 
 ** exploding gradients
 
