@@ -4,7 +4,7 @@ mathjax = "true"
 date = "2025-04-15"
 toc = "true"
 clocal = "true"
-tags = ["vanishing-exploding", "gradients", relu", "dropout", "regularisation", "overfitting", "augmented-data"]
+tags = ["vanishing-exploding", "gradients", "relu", "dropout", "regularisation", "overfitting", "augmented-data"]
 +++
 
 - given the findings of the previous chapter (universality), why would we concern ourselves with learning /deep neural nets/?
@@ -198,7 +198,6 @@ we can investigate the *cause of the problem* by solving for \(\frac{\partial C}
     \end{equation}
 
 {{< tikz >}}
-
 \begin{tikzpicture}[>=stealth, every node/.style={circle, draw, minimum size=1cm}]
   % Input node
   \node (n0) at (0,0) {$x_1$};
@@ -219,11 +218,10 @@ we can investigate the *cause of the problem* by solving for \(\frac{\partial C}
   \draw[->] (n3) -- ++(2,0) node[right, draw=none,circle=none] {$C$};
 
 \end{tikzpicture}
+{{< /tikz >}}
 
-{{ < /tikz > }}
 
-
-{{ < tikz > }}
+{{< tikz >}}
 \begin{tikzpicture}
 \begin{axis}[
     width=12cm, height=8cm,
@@ -248,7 +246,7 @@ we can investigate the *cause of the problem* by solving for \(\frac{\partial C}
 \end{axis}
 \end{tikzpicture}
 
-{{ < /tikz > }}
+{{< /tikz >}}
 
 clearly here the maximum is at \(\cfrac{1}{4}\). as such initialising the weights with mean 0 and standard deviation = 1, taking the products of many such terms < 0.25 will cause the gradients to decrease *exponentially*!
 
@@ -256,7 +254,7 @@ clearly here the maximum is at \(\cfrac{1}{4}\). as such initialising the weight
   1. choose all the weights in the network to be large
   2. choose the biases such that \(\sigma'(z_j)\) terms are not too small.
 
-{{ < img "exploding-grad.gif" > }}
+{{< img "exploding-grad.gif" >}}
 
 ---
 

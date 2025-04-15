@@ -2,8 +2,8 @@
 {{ $filename := (printf "%s" $name) }}
 {{ $caption := replace $filename ".svg" "" }}
 
-#+BEGIN_CENTER
-#+ATTR_HTML: :class lateximage :width 700px :id {{ $caption }}
-#+CAPTION: {{ $caption }}
-[[{{< cwd >}}{{ $filename }}]]
-#+END_CENTER
+{{ printf "#+BEGIN_CENTER" }}
+{{ printf "#+ATTR_HTML: :class lateximage :width 700px :id %s" $caption }}
+{{ printf "#+CAPTION: %s" $caption }}
+{{ printf "[[%%s%%s]]" (site.BaseURL | relURL) $filename }}
+{{ printf "#+END_CENTER" }}

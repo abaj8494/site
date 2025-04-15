@@ -1,4 +1,7 @@
 <!-- layouts/shortcodes/tikz.html -->
+{{ printf "#+BEGIN_EXPORT html" }}
 <script type="text/tikz">
 {{ .Inner }}
 </script>
+{{ printf "#+END_EXPORT" }}
+
