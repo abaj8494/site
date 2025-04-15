@@ -1,6 +1,7 @@
 +++
 title = "chapter 6: deep learning"
 mathjax = "true"
+tikzjax = "true"
 date = "2025-04-14"
 toc = "true"
 clocal = "true"

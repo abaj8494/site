@@ -118,10 +118,8 @@ document.addEventListener("DOMContentLoaded", function () {
     marginNotesContainer.appendChild(marginNoteElement);
 
     // Trigger MathJax/KaTeX processing for the new content
-    if (window.MathJax) {
-      MathJax.typesetPromise([marginNoteElement]).catch((err) =>
-        console.log("MathJax typeset error:", err),
-      );
+    if (window.MathJax && window.MathJax.Hub) {
+      MathJax.Hub.Queue(["Typeset", MathJax.Hub, marginNoteElement]);
     } else if (window.renderMathInElement) {
       renderMathInElement(marginNoteElement);
     }
