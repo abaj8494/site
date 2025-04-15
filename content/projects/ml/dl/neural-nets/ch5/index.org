@@ -1,6 +1,7 @@
 +++
 title = "chapter 5: why are deep neural networks hard to train?"
 mathjax = "true"
+tikzjax = "true"
 date = "2025-04-15"
 toc = "true"
 clocal = "true"
@@ -190,12 +191,38 @@ now that we are sold on the conceptual and theoretical benefits of *deep neural 
 
 it turns out both of the above are just due to the *instability* of gradients themselves.
 
-we can investigate the *cause of the problem* by solving for \(\frac{\partial C}}{\partial b_1}\).
+we can investigate the *cause of the problem* by solving for \(\frac{\partial C}{\partial b_1}\).
   - the exact expression of this gradient depends on the structure of the network, but one thing that will remain identical is the dependence of this gradient on all prior gradients:
 
     \begin{equation}
     \frac{\partial C}{\partial b_1} = \sigma'(z_1)w_2\sigma'(z_2)w_3\sigma'(z_3)w_4\sigma'(z_4)\frac{\partial C}{\partial a_4}
     \end{equation}
+
+
+#+BEGIN_EXPORT html
+<script type="text/tikz">
+\begin{tikzpicture}[>=stealth, every node/.style={circle, draw, minimum size=1cm}]
+  % Input node
+  \node (n0) at (0,0) {$x_1$};
+
+  % Hidden layer nodes
+  \foreach \i in {1,2,3} {
+    \node (n\i) at (\i*2.5, 0) {$b_{\i}$};
+  }
+
+  % Connections and weight labels (plain text, no circles)
+  \foreach \i/\w in {0/2,1/3,2/4} {
+    \pgfmathtruncatemacro{\j}{\i+1}
+    \draw[->] (n\i) -- (n\j) 
+      node[midway, above, draw=none, fill=none, circle=none] {$w_{\w}$};
+  }
+
+  % Output arrow to C
+  \draw[->] (n3) -- ++(2,0) node[right, draw=none,circle=none] {$C$};
+
+\end{tikzpicture}
+</script>
+#+END_EXPORT
 
 {{< tikz >}}
 \begin{tikzpicture}[>=stealth, every node/.style={circle, draw, minimum size=1cm}]
@@ -221,7 +248,9 @@ we can investigate the *cause of the problem* by solving for \(\frac{\partial C}
 {{< /tikz >}}
 
 
-{{< tikz >}}
+
+#+BEGIN_EXPORT html
+<script type="text/tikz">
 \begin{tikzpicture}
 \begin{axis}[
     width=12cm, height=8cm,
@@ -245,8 +274,9 @@ we can investigate the *cause of the problem* by solving for \(\frac{\partial C}
     \addplot[mark=*, only marks, mark size=3pt] coordinates {(0,0.25)};
 \end{axis}
 \end{tikzpicture}
+</script>
+#+END_EXPORT
 
-{{< /tikz >}}
 
 clearly here the maximum is at \(\cfrac{1}{4}\). as such initialising the weights with mean 0 and standard deviation = 1, taking the products of many such terms < 0.25 will cause the gradients to decrease *exponentially*!
 
