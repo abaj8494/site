@@ -229,7 +229,7 @@ net = Network([
 >>> net.SGD(training_data, 60, mini_batch_size, 0.1, validation_data, test_data)
 #+end_src
 
-#+RESULTS
+#+RESULTS:
 Epoch 59: validation accuracy 98.94%
 Finished training network.
 Best validation accuracy of 98.94% obtained at iteration 259999
@@ -257,11 +257,11 @@ CLOSED: [2025-04-14 Mon 14:34]
   net.SGD(training_data, 60, mini_batch_size, 0.03, validation_data, test_data, lmbda=0.1)
 #+end_src
 
-#+RESULTS
-Epoch 59: validation accuracy 99.12%
-Finished training network.
-Best validation accuracy of 99.13% obtained at iteration 199999
-Corresponding test accuracy of 99.19%
+#+RESULTS:
+:Epoch 59: validation accuracy 99.12%
+:Finished training network.
+:Best validation accuracy of 99.13% obtained at iteration 199999
+:Corresponding test accuracy of 99.19%
 
 
 ** DONE augment training data:
@@ -288,7 +288,7 @@ minor but significant! move each image 1 pixel up/down/left/right
   net.SGD(expanded_training_data, 60, mini_batch_size, 0.03, validation_data, test_data, lmbda=0.1)
 #+end_src
 
-#+RESULTS
+#+RESULTS:
 Epoch 59: validation accuracy 99.39%
 Finished training network.
 Best validation accuracy of 99.40% obtained at iteration 1449999
@@ -299,7 +299,11 @@ Corresponding test accuracy of 99.36%
 #+INCLUDE: "/code/10khrs-ai-ml-dl/learning/nielsen-dl/expand_mnist.py" src python
 #+CAPTION: expand_mnist.py
 
-** TODO dropout (regularisation)
+** DONE dropout (regularisation)
+CLOSED: [2025-04-16 Wed 21:01]
+:LOGBOOK:
+- State "DONE"       from "TODO"       [2025-04-16 Wed 21:01]
+:END:
 
 #+begin_src python
      net = Network([
@@ -315,6 +319,13 @@ Corresponding test accuracy of 99.36%
      ], mini_batch_size)
      >>> net.SGD(expanded_training_data, 40, mini_batch_size, 0.03, validation_data, test_data, lmbda=0.1)
 #+end_src
+
+#+RESULTS:
+Epoch 39: validation accuracy 99.54%
+Finished training network.
+Best validation accuracy of 99.62% obtained at iteration 874999
+Corresponding test accuracy of 99.60%
+
 
 * discussion
 

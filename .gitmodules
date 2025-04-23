@@ -31,3 +31,6 @@
 [submodule "static/code/icons"]
 	path = static/code/icons
 	url = https://github.com/abaj8494/icons
+[submodule "static/code/knights-tour"]
+	path = static/code/knights-tour
+	url = https://github.com/abaj8494/knights-tour

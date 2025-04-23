@@ -1,6 +1,7 @@
 +++
 title = "chapter 4: a visual proof that neural nets can compute any function"
 mathjax = "true"
+tikzjax = "true"
 date = "2025-04-15"
 toc = "true"
 clocal = "true"
