@@ -2,6 +2,7 @@
 title = "chapter 2: how the backpropagation algorithm works"
 mathjax = "true"
 toc = "true"
+date = "2025-04-03"
 +++
 
 - the algorithm was introduced in the 1970s, but its importance wasn't fully appreciated until the famous 1986 paper by David Rumelhart, Geoffrey Hinton, and Ronald Williams.

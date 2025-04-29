@@ -1,3 +1,4 @@
 +++
 title = "Dynamic Programming"
+tags = ["memoisation", "big-oh", "tabulation"]
 +++

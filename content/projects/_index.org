@@ -4,7 +4,6 @@ toc = "true"
 math = "true"
 +++
 
-
 #+BEGIN_QUOTE
 Knowledge is a paradox. The more one understand, the more one realises the vastness of his ignorance.
 
@@ -45,20 +44,18 @@ You may also view the entire =tag= taxonomy [[/tags][here]].
 - c++ project?
 
 
-
 ** [[/projects/ccs][Classical Computer Science]]
 :PROPERTIES:
 :CUSTOM_ID: classical-cs
 :END:
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/memory][Memory]] {{< tags-inline "projects/ccs/memory" >}}
-  - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/csp/connect4][Connect 4]] {{< tags-inline "projects/csp/connect4" >}}
 - @@html:<input type="checkbox" class="refactor"/>@@ [[/projects/ccs/comp-complexity][Computational Complexity]] {{< tags-inline "projects/ccs/comp-complexity" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/networking][Internet Networks]] {{< tags-inline "projects/ccs/networking" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/databases][Databases]] {{< tags-inline "projects/ccs/databases" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/linux][Linux]] {{< tags-inline "projects/ccs/linux" >}}
   - @@html:<input type="checkbox" checked class="archived"/>@@ [[/projects/ccs/linux/vim][Vim]] {{< tags-inline "projects/ccs/linux/vim" >}}
   - @@html:<input type="checkbox" checked class="archived"/>@@ [[/projects/ccs/linux/shell][Shell]] {{< tags-inline "projects/ccs/linux/shell" >}}
-  - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/linux/gdb][GDB]] {{< tags-inline "projects/ccs/linux/gdb" >}}
+  - @@html:<input type="checkbox" checked class="done"/>@@ [[/projects/ccs/linux/gdb][GDB]] {{< tags-inline "projects/ccs/linux/gdb" >}}
   - @@html:<input type="checkbox" checked class="done"/>@@ [[/projects/ccs/linux/emacs][Emacs]] {{< tags-inline "projects/ccs/linux/emacs" >}}
   - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/linux/regex][RegEx]] {{< tags-inline "projects/ccs/linux/regex" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/vc][Version Control]] {{< tags-inline "projects/ccs/vc" >}}
@@ -67,8 +64,6 @@ You may also view the entire =tag= taxonomy [[/tags][here]].
 :PROPERTIES:
 :CUSTOM_ID: data-algs
 :END:
-- @@html:<input type="checkbox" checked class="refactor"/>@@ [[/projects/csp/peg-solitaire][Peg Solitaire]] {{< tags-inline "projects/csp/peg-solitaire" >}}
-- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/csp/banagrams-solver][Banagrams Solver]] {{< tags-inline "projects/csp/banagrams" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/data-algs/advanced][Advanced Algorithms]] {{< tags-inline "projects/ccs/data-algs/advanced" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/data-algs/leetcode][Leetcode]] {{< tags-inline "projects/ccs/data-algs/leetcode" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/data-algs/sorting][Sorting]] {{< tags-inline "projects/ccs/data-algs/sorting" >}}
@@ -88,7 +83,7 @@ You may also view the entire =tag= taxonomy [[/tags][here]].
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/paradigms/linear][Linear]] {{< tags-inline "projects/ccs/programming/paradigms/linear" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/paradigms/quadratic][Quadratic]] {{< tags-inline "projects/ccs/programming/paradigms/quadratic" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/paradigms/integer][Integer]] {{< tags-inline "projects/ccs/programming/paradigms/integer" >}}
-- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/paradigms/dynamic][Dynamic]] {{< tags-inline "projects/ccs/programming/paradigms/dynamic" >}}
+- @@html:<input type="checkbox" class="nothing"/>@@ [[https://github.com/abaj8494/dynamic-programming][Dynamic]] {{< tags-inline "projects/ccs/programming/paradigms/dynamic" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/paradigms/object-oriented][Object-oriented]] {{< tags-inline "projects/ccs/programming/paradigms/object-oriented" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/paradigms/functional][Functional]] {{< tags-inline "projects/ccs/programming/paradigms/functional" >}}
 
@@ -100,6 +95,7 @@ You may also view the entire =tag= taxonomy [[/tags][here]].
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/languages/lua][Lua]] {{< tags-inline "projects/ccs/programming/languages/lua" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/languages/go][Go]] {{< tags-inline "projects/ccs/programming/languages/go" >}}
 - @@html:<input type="checkbox" class="done"/>@@ [[/projects/ccs/programming/languages/c][C]] {{< tags-inline "projects/ccs/programming/languages/c" >}}
+- @@html:<input type="checkbox" class="edit"/>@@ [[https://github.com/abaj8494/100-days-js][Javascript]] {{< tags-inline "projects/ccs/programming/languages/javascript" >}}
 
   
 **** [[/projects/ccs/programming/libraries][Libraries]]
@@ -124,16 +120,23 @@ You may also view the entire =tag= taxonomy [[/tags][here]].
 :CUSTOM_ID: computer-science-projects
 :END:
 - @@html:<input type="checkbox" checked class="archived"/>@@ [[/projects/csp/bytelocker][File Encrypter (Bytelocker)]] {{< tags-inline "projects/csp/bytelocker" >}}
+- @@html:<input type="checkbox" checked class="archived"/>@@ [[/projects/csp/connect4][Connect 4]] {{< tags-inline "projects/csp/connect4" >}}
+- @@html:<input type="checkbox" checked class="archived"/>@@ [[/projects/csp/peg-solitaire][Peg Solitaire]] {{< tags-inline "projects/csp/peg-solitaire" >}}
+- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/csp/banagrams-solver][Banagrams Solver]] {{< tags-inline "projects/csp/banagrams" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/csp/lan-messenger][LAN Messenger]] {{< tags-inline "projects/csp/lan-messenger" >}}
 - @@html:<input type="checkbox" checked class="done"/>@@ [[/projects/csp/bookbot][Bookbot]] {{< tags-inline "projects/csp/bookbot" >}}
 
   
-*** Games                                                          :noexport:
+*** Games
+:PROPERTIES:
+:CUSTOM_ID: games
+:END:
 
 #+BEGIN_CENTER
 #+ATTR_HTML: :class lateximage :style "display: block; border: none;"
-@@html:<a href="[[https://abaj.games]]" style="display: inline-block; border: none;"><img width="500" src="{{< cwd >}}games.svg" style="display: block; border: none;"></a>@@
+@@html:<a href="[[https://arcade.abaj.ai]]" style="display: inline-block; border: none;"><img width="500" src="{{< cwd >}}games.svg" style="display: block; border: none;"></a>@@
 #+END_CENTER
+
 
 *** Raspberry Pi
 
@@ -151,7 +154,9 @@ For the longest time I kept these projects private, but now after a half decade 
 :CUSTOM_ID: ethics
 :END:
 
-- @@html:<input type="checkbox" class="edit"/>@@ [[/projects/ai/ethics/gpt3][Value Sensitive Design of GPT3 Series]] {{< tags-inline "projects/ai/ethics/gpt3" >}}
+- @@html:<input type="checkbox" checked class="archived"/>@@ [[/doc/essays/kantian.pdf][Kantian and Automated Ethics]] {{< tags-inline "projects/ai/ethics/kantian" >}}
+- @@html:<input type="checkbox" checked class="archived"/>@@ [[/doc/essays/gpt3.pdf][Value Sensitive Design of GPT3 Series]] {{< tags-inline "projects/ai/ethics/gpt3" >}}
+- @@html:<input type="checkbox" checked class="archived"/>@@ [[/doc/essays/saq.pdf][XAI, Principlism, MetaEthics, ADM, AWS]] {{< tags-inline "projects/ai/ethics/saq" >}}
 
 *** [[/projects/ai/adv-search][Adversarial Searching]]
 :PROPERTIES:

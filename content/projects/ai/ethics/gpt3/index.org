@@ -1,12 +1,10 @@
 +++
 title = "The Value Sensitive Design of GPT 3"
-tags = ["chatgpt", "ethics", "value-sensitive-design"]
-toc = "true"
-math = "true"
+tags = ["chatgpt", "ethics", "value-sensitive-design", "hcai", "principlism"]
 bibFile = "projects/ai/ethics/cs4920grp.json"
 +++
 
-* Conclusion
+* Conclusion                                                       :noexport:
 
 We believe that the ChatGPT technology should be adopted as long as the underlying model is greater than or equal to InstructGPT and regular independent ethical audits are performed. 
 
@@ -130,7 +128,7 @@ They are advocating for convergence to a Chatbot that can coexist and assimilate
   Researchers can apply for up to $1,000 of OpenAI API credits to support their work.
 #+END_SRC
 
-* Conclusion
+* Conclusion                                                       :noexport:
 
 For now, we are delighted to track a largely Value Sensitive Design by OpenAI and illustrate the push and pull amongst competitors and stakeholders. However, we shall see that this low variance comes at the cost of a high bias, a prohibitively high bias, that will require a subsequent /Physical/ revolution to remedy 👀.
 

@@ -4,4 +4,5 @@ categories = ["projects", "cs"]
 tags = ["assembly", "mips"]
 +++
 
-* TODO
+#+INCLUDE: "/code/csp/mips/connect_four.s" src asm
+

@@ -2,6 +2,7 @@
 title = "chapter 1: using neural networks to recognise handwritten digits"
 math = "true"
 toc = "true"
+date = "2025-04-02"
 +++
 
 ** notes
