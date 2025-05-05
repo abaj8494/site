@@ -34,3 +34,6 @@
 [submodule "static/code/knights-tour"]
 	path = static/code/knights-tour
 	url = https://github.com/abaj8494/knights-tour
+[submodule "static/code/gol"]
+	path = static/code/gol
+	url = https://github.com/abaj8494/gol

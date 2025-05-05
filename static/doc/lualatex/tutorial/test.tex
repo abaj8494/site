@@ -1,0 +1,37 @@
+\newwrite\luadebug
+\immediate\openout\luadebug luadebug.lua
+\AtEndDocument{\immediate\closeout\luadebug}
+\newcommand\directluadebug{\immediate\write\luadebug}
+
+\LuaCodeDebugOn
+
+\documentclass{article}
+
+\usepackage{fontspec} % always include
+\usepackage{luacode} % required for luatexescapestring
+\begin{document}
+
+\section{Direct Lua}
+$\directlua{tex.sprint(math.pi)}$
+$\directluadebug{tex.sprint(math.pi)}$
+
+% manuel pegourie-gonnard instructs that the cleanest luacode is that which is 
+% included as a file
+\directlua{dofile("my-lua-functions.lua")}
+\newcommand*{\greatmacro}[2]{%
+  \directlua{tex.print(my_great_function("\luatexluaescapestring{#1}", #2))}}
+
+
+\greatmacro{hello}{6}
+
+\section{LuaCode}
+
+\luaexec{texio.write_nl("line one\string\nline two")}
+
+\begin{luacode}
+a = "\\" -- a contains a single backslash
+b = [[\\]] -- b contains two backslashes
+c = "\\\\" -- c contains two backslashes too
+\end{luacode}
+
+\end{document}

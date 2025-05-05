@@ -134,7 +134,7 @@ You may also view the entire =tag= taxonomy [[/tags][here]].
 
 #+BEGIN_CENTER
 #+ATTR_HTML: :class lateximage :style "display: block; border: none;"
-@@html:<a href="[[https://arcade.abaj.ai]]" style="display: inline-block; border: none;"><img width="500" src="{{< cwd >}}games.svg" style="display: block; border: none;"></a>@@
+@@html:<a href="https://arcade.abaj.ai" style="display: inline-block; border: none;"><img width="222" src="{{< cwd >}}games.svg" style="display: block; border: none;"></a>@@
 #+END_CENTER
 
 
@@ -292,7 +292,7 @@ These methods can be adapted for _regression_, but they are more well suited to 
 
 #+BEGIN_CENTER
 #+ATTR_HTML: :class lateximage :style "display: block; border: none;"
-@@html:<a href="https://abaj.ai/projects/mathematics/icons" style="display: inline-block; border: none;"><img width="222" src="{{< cwd >}}games.svg" style="display: block; border: none;"></a>@@
+@@html:<a href="https://abaj.ai/projects/mathematics/icons" style="display: inline-block; border: none;"><img width="222" src="{{< cwd >}}abs_hsv.svg" style="display: block; border: none;"></a>@@
 #+END_CENTER
 
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/mathematics/discrete][Discrete]] {{< tags-inline "projects/mathematics/discrete" >}}

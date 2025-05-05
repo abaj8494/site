@@ -14169,9 +14169,9 @@ z
    <rect x="0" y="0" width="277.2" height="277.2"/>
   </clipPath>
  </defs>
-  <text font-family="serif" font-size="48" fill="black">
+  <text font-family="serif" font-size="28" fill="black">
     <textPath href="#arcPath" startOffset="50%" text-anchor="middle">
-      icons!
+      arcade.abaj.ai
     </textPath>
   </text>
 </svg>
