@@ -124,6 +124,7 @@ You may also view the entire =tag= taxonomy [[/tags][here]].
 - @@html:<input type="checkbox" checked class="archived"/>@@ [[/projects/csp/peg-solitaire][Peg Solitaire]] {{< tags-inline "projects/csp/peg-solitaire" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/csp/banagrams-solver][Banagrams Solver]] {{< tags-inline "projects/csp/banagrams" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/csp/lan-messenger][LAN Messenger]] {{< tags-inline "projects/csp/lan-messenger" >}}
+- @@html:<input type="checkbox" checked class="archived"/>@@ [[/projects/csp/kits19][Kidney Segmentation]] {{< tags-inline "projects/csp/kits19" >}}
 - @@html:<input type="checkbox" checked class="done"/>@@ [[/projects/csp/bookbot][Bookbot]] {{< tags-inline "projects/csp/bookbot" >}}
 
   
@@ -134,7 +135,7 @@ You may also view the entire =tag= taxonomy [[/tags][here]].
 
 #+BEGIN_CENTER
 #+ATTR_HTML: :class lateximage :style "display: block; border: none;"
-@@html:<a href="https://arcade.abaj.ai" style="display: inline-block; border: none;"><img width="111" src="{{< cwd >}}games.svg" style="display: block; border: none;"></a>@@
+@@html:<a href="https://arcade.abaj.ai" style="display: inline-block; border: none;"><img width="222" src="{{< cwd >}}games.svg" style="display: block; border: none;"></a>@@
 #+END_CENTER
 
 
@@ -292,7 +293,7 @@ These methods can be adapted for _regression_, but they are more well suited to 
 
 #+BEGIN_CENTER
 #+ATTR_HTML: :class lateximage :style "display: block; border: none;"
-@@html:<a href="https://abaj.ai/projects/mathematics/icons" style="display: inline-block; border: none;"><img width="111" src="{{< cwd >}}abs_hsv.svg" style="display: block; border: none;"></a>@@
+@@html:<a href="https://abaj.ai/projects/mathematics/icons" style="display: inline-block; border: none;"><img width="222" src="{{< cwd >}}abs_hsv.svg" style="display: block; border: none;"></a>@@
 #+END_CENTER
 
 

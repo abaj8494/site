@@ -1,0 +1,4 @@
++++
+title = "Functions"
+tags = ["elementary", "non-elementary", "discontinuous", "algebraic", "transcendental"]
++++

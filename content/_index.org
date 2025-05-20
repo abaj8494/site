@@ -1,5 +1,5 @@
 +++
-title = "(*A*)ayush (*Baj*)aj's (*A*)rchived (*I*)ntellect"
+title = "(*A*)ayush (*Baj*)aj's (*A*)ugmenting (*I*)nfrastructure"
 layout = "single"
 clocal = "true"
 +++
@@ -9,7 +9,7 @@ clocal = "true"
                                                                                         --- Chuck Palahniuk
 #+END_QUOTE
 
-Originally the *AI* suffix _stood_ for @@html:<span style="font-variant: small-caps;">archived intellect</span@@, however these days it has concretised to becoming an *Augmenting Infrastructure* --- a place from which to branch out in many directions.
+Originally the *AI* suffix stood for @@html:<span style="font-variant: small-caps;">archived intellect</span>@@, however these days it has concretised to becoming an *Augmenting Infrastructure* --- a place from which to branch out in many directions.
 
 Within this site you will find self-contained material in the form of [[{{< ref "projects" >}}][project posts]] and [[{{< ref "blog" >}}][blog posts]], but also external links [fn:7] to other work I have done on the Internet; GitHub, ArXiV, YouTube, etc.
 
@@ -40,7 +40,7 @@ The top right menubar will serve as your main interface to the site. Within it a
 
 If you are visiting in a professional capacity then [[https://github.com/abaj8494][my github]] will give you a better indication of the production-quality code I write.
 
-This site is the spine of my intellect, and is powered by Emacs @@html:<img src="https://abaj.ai/about/emacs.svg" width="20" height="20">@@. It allows me to practise [[{{<ref "/blog/literate-programming">}}][Literate Programming]] and [[{{< ref "projects/ml/dl/neural-nets" >}}][Typeset Mathematics]] beautifully.
+This site is the spine of my intellect, and is powered by Emacs @@html:<img src="https://abaj.ai/about/emacs.svg" width="20" height="20" class="lateximage" style="vertical-align: -5px;">@@. It allows me to practise [[{{<ref "/blog/literate-programming">}}][Literate Programming]] and [[{{< ref "projects/ml/dl/neural-nets" >}}][Typeset Mathematics]] beautifully.
 
 You may also be interested in the [[{{< ref "projects" >}}][projects]] section of this site which tracks my Quest of Conquering Mathematics and Computer Science.
 

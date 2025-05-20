@@ -12,9 +12,11 @@
     {{ end }}
 
     {{ with .email }}
-      <div class="jr-basics__email">{{ . }}</div>
+    <div class="jr-basics__email">
+      <a href="mailto:{{ . }}">{{ . }}</a>
+    </div>
     {{ end }}
-
+    
     {{ with .phone }}
       <div class="jr-basics__phone">{{ . }}</div>
     {{ end }}
