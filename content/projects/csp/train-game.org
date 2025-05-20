@@ -8,7 +8,7 @@ This is just Python write up of a game that we used to play (and I still do), as
 Given a series of 4 numbers (the train carriage identifier), we were tasked with constructing the number 10 using mathematical operations.
 
 Say our carriage number was:
-\[\require{bbox}\bbox[lightblue,5px,border:2px solid red]{\color{#800000}{ 6325 }}}\]
+\[\require{bbox}\bbox[lightblue,5px,border:2px solid red]{\color{#800000}{ 6325 }}\]
 
 Then one valid configuration would be \(6-3+2+5\) which equals 10.
 

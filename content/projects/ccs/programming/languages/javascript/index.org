@@ -1,0 +1,16 @@
++++
+title = "Javascript"
+tags = ["weakly-typed", "scripting", "front-end", "canvas", "fun"]
++++
+
+This site is running so much AI generated Javascript that you would puke as soon as you opened the browser console.
+
+At least the functionality is there though.
+
+I have been chipping away at learning the language, the first 10 days were supremely productive, and I intend to continue.
+
+#+ATTR_HTML: :width 50%
+#+CAPTION: Unavoidably, I learned HTML and CSS too.
+[[{{< cwd >}}car.png]]
+
+The [[https://github.com/abaj8494/100-days-js][repo]] contains the rest of the information.

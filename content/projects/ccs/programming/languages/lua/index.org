@@ -1,4 +1,88 @@
 +++
 title = "Lua"
-tags = ["embedded"]
+tags = ["embedded", "interpreted", "dynamically-typed", "tables", "garbage-collection"]
 +++
+
+LuaLateX and NeoVim use Lua. So do thousands of embedded systems. It is a language worth learning for sure. Here is a beautiful N-Queens solution:
+
+#+BEGIN_SRC Lua
+N = 25 -- board size
+
+-- check whether position (n, c) is free from attacks
+function isplaceok (a, n, c)
+    for i = 1, n - 1 do
+        if (a[i] == c) or                    -- cumulative column
+                (a[i] - i == c - n) or       -- ↘ diagonal (cumulative)
+                (a[i] + i == c + n) then     -- ↙ diagonal (cumulative)
+            return false
+        end
+    end
+    return true
+end
+
+-- print a board
+function printsolution (a)
+    for i = 1, N do         -- for each row
+        for j = 1, N do     -- and for each column
+            -- write "X" or "-" plus a space
+            io.write(a[i] == j and "X" or "-", " ")
+        end
+        io.write("\n")
+    end
+    io.write("\n")
+end
+
+-- add to board 'a' all queens from 'n' to 'N'
+function addqueen (a, n)
+    if n > N then           -- all queens have been placed?
+        printsolution(a)
+        return true
+    else    -- try to place n-th quen
+        for c = 1, N do
+            if isplaceok(a, n, c) then
+                a[n] = c    -- place n-th queen at column 'c'
+                if addqueen(a, n + 1) then
+                    return true
+                end
+            end
+        end
+    end
+end
+
+addqueen({},1)
+
+--[[
+this code is really quite confusing.
+
+firstly it uses backtracking, secondly the table data structure is non-trivial.
+the notation a[n] == c, checks if there is a queen at co-ordinate (n,c).
+
+it works by not using subarrays, and just indexing the column of each queen!
+
+the recursion is fine, the base case exists at the start of the addqueen function, and we
+loop through all the rows, adding queens where you can, and then backtracking through the
+tree when we've ended up in a non-solvable situation.
+
+the confusion for me arose in the isplaceok function, where I thought we would loop over
+the entire NxN board; how naive! instead if we are considering the nth queen, we have only
+placed 1..n-1 queens, and only need to check those squares!
+
+finally, the crux of the magic is in 
+
+        if (a[i] == c) or                    -- cumulative column
+                (a[i] - 1 == c - n) or       -- ↘ diagonal (cumulative)
+                (a[i] + 1 == c + n) then     -- ↙ diagonal (cumulative)
+
+where it took me some time to understand that the checks were cumulative and that indeed
+the indexing wizardry checked the cumulative column / diagonal / anti-diagonal.
+
+note that there are 92 solutions to the 8x8 problem.
+
+furthermore, the alternatives are the brute-force approach, where 8^8 boards are spawned and we need to check all column / diagonal and anti-diagonal violations.
+
+there is also the permutation approach where you can just eliminate the row and col the queen was placed on and then continue your permutations for the n-1 sized square board. this avoids some cases by construction.
+
+the true brute-force approach is O(N^N), whilst permutation is O(N!) and lastly backtracking is O(N!) worst case (but this is much better in practice).
+--]]
+#+END_SRC
+

@@ -1,6 +1,6 @@
 +++
 title = "C: The Programming Language"
-tags = ["c"]
+tags = ["pointers", "statically-typed", "fast", "memory-management"]
 layout = "custom-list"
 +++
 

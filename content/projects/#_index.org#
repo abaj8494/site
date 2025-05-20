@@ -93,7 +93,7 @@ You may also view the entire =tag= taxonomy [[/tags][here]].
 :END:
 - @@html:<input type="checkbox" class="edit"/>@@ [[/projects/ccs/programming/languages/python][Python]] {{< tags-inline "projects/ccs/programming/languages/python" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/languages/lua][Lua]] {{< tags-inline "projects/ccs/programming/languages/lua" >}}
-- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/languages/go][Go]] {{< tags-inline "projects/ccs/programming/languages/go" >}}
+- @@html:<input type="checkbox" class="nothing"/>@@ [[https://github.com/abaj8494/100-days-go][Go]] {{< tags-inline "projects/ccs/programming/languages/go" >}}
 - @@html:<input type="checkbox" class="done"/>@@ [[/projects/ccs/programming/languages/c][C]] {{< tags-inline "projects/ccs/programming/languages/c" >}}
 - @@html:<input type="checkbox" class="edit"/>@@ [[https://github.com/abaj8494/100-days-js][Javascript]] {{< tags-inline "projects/ccs/programming/languages/javascript" >}}
 

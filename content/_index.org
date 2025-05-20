@@ -9,19 +9,15 @@ clocal = "true"
                                                                                         --- Chuck Palahniuk
 #+END_QUOTE
 
-The AI could equally as well have stood for Artificial Intelligence.
+Originally the *AI* suffix _stood_ for @@html:<span style="font-variant: small-caps;">archived intellect</span@@, however these days it has concretised to becoming an *Augmenting Infrastructure* --- a place from which to branch out in many directions.
 
-But that would be a little less /historical/. This site is a way for me to
-consolidate everything I know[fn:6]. My explorations and discoveries are orated, not for the benefit of strangers, but rather for that of my future-self.[fn:1]
-
+Within this site you will find self-contained material in the form of [[{{< ref "projects" >}}][project posts]] and [[{{< ref "blog" >}}][blog posts]], but also external links [fn:7] to other work I have done on the Internet; GitHub, ArXiV, YouTube, etc.
 
 * Scope
 
 {{< collapse-local folded="true" >}}
 
-Psychology, Biology, Machine Learning and Mathematics; this site is a
-virtual acreage. Much in the same way that many things happen on a
-farm, many things are happening here.
+Psychology, Biology, Machine Learning and Mathematics; this site is a virtual acreage. 
 
 The breadth of scope does not imply you have entered a circus, but rather alludes to the nonlinearity of knowledge and its structure as a network[fn:2] [fn:3].
 
@@ -37,32 +33,25 @@ The content of this current site is more rigorous and deliberate.
 
 * @@html:<h2 id="nav-heading"><span class="nav-text">Navigation</span></h2><svg id="arrow-svg"></svg>@@
 
-@@html:<font color="orange"><span style="font-variant: small-caps;">This site looks MUCH better on Desktop. And slightly moreso in <a href="#" id="darkModeTextToggle" data-popup="ignore" aria-label="Toggle dark mode">dark mode</a>.</span></font>@@
+@@html:<font color="orange"><span style="font-variant: small-caps;">The site looks MUCH better on Desktop. And slightly moreso in <a href="#" id="darkModeTextToggle" data-popup="ignore" aria-label="Toggle dark mode">dark mode</a>.</span></font>@@
 The top right menubar will serve as your main interface to the site. Within it are links to other pages, but at the highest level, every webpage can be discovered through these root nodes.
-
-Furthermore, any links leading [[https://www.youtube.com/watch?v=dQw4w9WgXcQ][out]] of this site are proceeded with a =↗=, whilst those [[#nav-heading][within]] are not.
-
 
 * Portfolio
 
-If you are visiting in a professional capacity then
-[[https://github.com/abaj8494][my github]] will give you a better indication of the production-quality
-code I write.
+If you are visiting in a professional capacity then [[https://github.com/abaj8494][my github]] will give you a better indication of the production-quality code I write.
 
-This site humanises me and allows me to practise [[{{<ref "/blog/literate-programming">}}][Literate Programming]]
+This site is the spine of my intellect, and is powered by Emacs @@html:<img src="https://abaj.ai/about/emacs.svg" width="20" height="20">@@. It allows me to practise [[{{<ref "/blog/literate-programming">}}][Literate Programming]] and [[{{< ref "projects/ml/dl/neural-nets" >}}][Typeset Mathematics]] beautifully.
 
-You may be interested in the [[{{< ref "projects" >}}][projects]] section of this site which outlines every[fn:4] major project I have undertaken.
+You may also be interested in the [[{{< ref "projects" >}}][projects]] section of this site which tracks my Quest of Conquering Mathematics and Computer Science.
 
-Furthermore, here is my [[/about/cv][CV]].[fn:5]
+A web CV can be found [[/about/cv][here]].[fn:5]
 
 * Footnotes
+[fn:7] any links leading [[https://www.youtube.com/watch?v=dQw4w9WgXcQ][out]] of this site are proceeded with a =↗=, whilst those [[#nav-heading][within]] are not.
 
-[fn:6] cautiously, we recite Socrates' mantra: "I am the wisest man alive, for I know one thing, and that is that I know nothing at all".
 [fn:5] you may also navigate there serendipitously via the [[about]] page.
 
-[fn:4] academically interesting 
 [fn:3] See [[https://roamresearch.com][Roam Research]]
 
 [fn:2] In Mung Chiang's sense of the word; see [[/projects/textbook-slns/networked-life][Networked Life: Money, Friends and Bytes]]
 
-[fn:1] see the blog on [[/blog/memory][The Nature of (Human) Memory]] 

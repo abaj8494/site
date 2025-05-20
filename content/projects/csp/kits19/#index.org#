@@ -3,3 +3,4 @@ title = "KiTS19 Grand Challenge: Kidney and Kidney Tumour Segmentation"
 categories = ["ai", "ml", "dl", "supervised"]
 tags = ["unet", "nnunet", "medical", "semantic-segmentation", "segmentation"]
 +++
+
