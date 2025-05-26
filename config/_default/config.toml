@@ -1,7 +1,7 @@
 baseURL = "https://abaj.ai"
 copyright = "© 2025 Aayush Bajaj"
-title = "Aayush Bajaj's Archived Intellect"
-description = "This site contains Aayush Bajaj's Archived Intellect. The content is largely mathematical imbued with code throughout. You will also find prose and art in this garden."
+title = "Aayush Bajaj's Augmenting Infrastructure"
+description = "This is the Augmenting Infrastructure of Aayush Bajaj. Powered by Emacs, the content herein is mathematical, scientific and aesthetic; both in the divine and phenomenal sense of the word."
 pagination.pagerSize = 10
 enableRobotsTXT = true
 enableGitInfo = true

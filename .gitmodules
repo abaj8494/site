@@ -37,3 +37,6 @@
 [submodule "static/code/gol"]
 	path = static/code/gol
 	url = https://github.com/abaj8494/gol
+[submodule "static/code/keychron"]
+	path = static/code/keychron
+	url = https://github.com/abaj8494/keychron

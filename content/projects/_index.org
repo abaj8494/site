@@ -190,18 +190,21 @@ As such, my interests lie in *theory* giving rise to *applications*. Not vice-ve
 :CUSTOM_ID: datasets
 :END:
 The following are all tags, but visiting them provides contextual / historical information on the dataset as well as back-links to the models which have solved these problems.
+
+Furthermore, many of the tags point you to the [[https://github.com/abaj8494/10khrs-ai-ml-dl][Monolithic 10,000 hours AI, ML, DL]] repo. As such, the @@html:<font color="orange">README@@ therein provides useful information as well as a [[https://github.com/abaj8494/10hrs-ai-ml-dl#scoreboard][scoreboard]] that maintains my accuracies on the below datasets :D
+
 - @@html:<input type="checkbox" checked class="done"/>@@ [[/tags/mnist][MNIST]] {{< tags-inline "tags/mnist" >}}
-- @@html:<input type="checkbox" class="nothing"/>@@ [[/tags/kmnist][KMNIST]] {{< tags-inline "tags/kmnist" >}}
-- @@html:<input type="checkbox" class="nothing"/>@@ [[/tags/fmnist][FMNIST]] {{< tags-inline "tags/fmnist" >}}
-- @@html:<input type="checkbox" class="nothing"/>@@ [[/tags/cifar][CIFAR]] {{< tags-inline "tags/cifar" >}}
-- @@html:<input type="checkbox" class="nothing"/>@@ [[/tags/iris][IRIS]] {{< tags-inline "tags/iris" >}}
+- @@html:<input type="checkbox" checked class="archived"/>@@ [[/tags/kmnist][KMNIST]] {{< tags-inline "tags/kmnist" >}}
+- @@html:<input type="checkbox" checked class="done"/>@@ [[/tags/fmnist][FMNIST]] {{< tags-inline "tags/fmnist" >}}
+- @@html:<input type="checkbox" checked class="done"/>@@ [[/tags/cifar][CIFAR]] {{< tags-inline "tags/cifar" >}}
+- @@html:<input type="checkbox" cheched class="done"/>@@ [[/tags/iris][IRIS]] {{< tags-inline "tags/iris" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/tags/imagenet][ImageNet]] {{< tags-inline "tags/imagenet" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/tags/california-housing][California Housing]] {{< tags-inline "tags/california-housing" >}}
-- @@html:<input type="checkbox" class="nothing"/>@@ [[/tags/wine-quality][Wine Quality]] {{< tags-inline "tags/wine-quality" >}}
+- @@html:<input type="checkbox" class="edit"/>@@ [[/tags/wine-quality][Wine Quality]] {{< tags-inline "tags/wine-quality" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/tags/imdb-reviews][IMDB Reviews]] {{< tags-inline "tags/imdb-reviews" >}}
-- @@html:<input type="checkbox" class="nothing"/>@@ [[/tags/pima-indians][Pima Indians Diabetes]] {{< tags-inline "tags/pima-indians" >}}
-- @@html:<input type="checkbox" class="nothing"/>@@ [[/tags/life-expectancy][WHO Life Expectancy]] {{< tags-inline "tags/life-expectancy" >}}
-- @@html:<input type="checkbox" class="nothing"/>@@ [[/tags/titanic][Titanic Deaths]] {{< tags-inline "tags/titanic" >}}
+- @@html:<input type="checkbox" checked class="done"/>@@ [[/tags/pima-indians][Pima Indians Diabetes]] {{< tags-inline "tags/pima-indians" >}}
+- @@html:<input type="checkbox" checked class="done"/>@@ [[/tags/life-expectancy][WHO Life Expectancy]] {{< tags-inline "tags/life-expectancy" >}}
+- @@html:<input type="checkbox" checked class="done"/>@@ [[/tags/titanic][Titanic Deaths]] {{< tags-inline "tags/titanic" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/tags/kdd-cup][KDD Cup 1999]] {{< tags-inline "tags/kdd-cup" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/tags/digits][Digits]] {{< tags-inline "tags/digits" >}}
 

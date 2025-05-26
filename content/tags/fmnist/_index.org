@@ -4,4 +4,26 @@ categories = ["ai", "ml", "supervised"]
 tags = ["classification", "multiclass", "random-forest", "mnist"]
 +++
 
-link to mnist
+https://github.com/abaj8494/10khrs-ai-ml-dl/blob/main/problems/4-deep-learning/cnn/fmnist.ipynb
+
+* History
+
+** Abstract
+Fashion-MNIST is a modern drop-in replacement for MNIST. Released by Zalando Research in 2017, it packs 70 000 tiny grayscale images of apparel—sneakers, shirts, coats—into a lightweight benchmark. Its familiar format keeps setup trivial, while richer visuals pose a tougher challenge.
+
+** Origins
+Zalando’s quality-control cameras captured millions of 96 × 96 product shots. Han Xiao et al. down-sampled these to 28 × 28, grouped them into ten balanced classes, and open-sourced the result. The idea: upgrade MNIST difficulty without touching loaders or evaluation scripts.
+
+** From Digits to Duds
+Digits look alike; CNNs now exceed 99.7 % accuracy, offering little headroom. Clothes introduce texture, deformation, and subtle inter-class overlap, dropping baselines below 90 %. By swapping only pixel data and preserving the gzipped uint8 files, Fashion-MNIST raises the ceiling while keeping APIs identical.
+
+** Spec Sheet
+
+- Train / Test: 60 000 / 10 000 images
+- Classes: T-shirt/top, trouser, pullover, dress, coat, sandal, shirt, sneaker, bag, ankle-boot
+- Resolution: 28 × 28 px, 1 channel, 0–255 grayscale
+
+** Ongoing Relevance
+
+Fashion-MNIST powers tutorials, quick papers, and embedded demos where CIFAR-10 or ImageNet would be overkill. It underpins research on adversarial robustness, quantization, federated learning, and tiny-ML hardware. Tougher sets exist—STL-10, CIFAR-100, TinyImageNet—but Fashion-MNIST remains the rapid sanity check for new vision pipelines: the “next-gen drosophila” of machine learning.
+

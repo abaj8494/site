@@ -2,3 +2,5 @@
 title = "K-Nearest Neighbours"
 tags = ["non-parametric"]
 +++
+
+https://github.com/abaj8494/10khrs-ai-ml-dl/blob/main/projects/interview/knn-scratch.ipynb

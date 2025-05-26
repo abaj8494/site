@@ -1,6 +1,6 @@
 +++
 title = "Feedforward Deep Neural Networks"
-tags = ["feedforward", "deep", "back-prop", "grad-descent", "regularisation", "neural-nets", "cnn"]
+tags = ["feedforward", "deep", "back-prop", "grad-descent", "regularisation", "neural-nets", "cnn", "mnist"]
 author = ["Michael Neilsen", "Aayush Bajaj"]
 layout = "custom-list"
 mathjax = "true"

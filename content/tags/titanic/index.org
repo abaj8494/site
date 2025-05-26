@@ -4,4 +4,4 @@ categories = ["ai", "ml", "supervised"]
 tags = ["logistic-regression", "binary-classification", "classification", "kaggle"]
 +++
 
-Might not actually be Kaggle, please check.
+https://github.com/abaj8494/10khrs-ai-ml-dl/blob/main/problems/1-supervised-learning/classification/binary/titanic-non-parametric.ipynb

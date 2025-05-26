@@ -1,7 +1,8 @@
 +++
 title = "CIFAR: Canadian Institute For Advanced Research"
 categories = ["ai", "ml", "supervised", "images"]
-tags = ["classification", "image", "cnn"]
+tags = ["classification", "image", "cnn", "multi-class"]
 +++
 
+https://github.com/abaj8494/10khrs-ai-ml-dl/blob/main/problems/4-deep-learning/cnn/cifar10.ipynb
 

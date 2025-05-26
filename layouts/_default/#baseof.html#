@@ -1,0 +1,31 @@
+<!doctype html>
+<script src="{{ "js/sticky-header.js" | relURL }}"></script>
+{{ if .Params.clocal }}
+  <script src="{{ "js/collapsible-local.js" | relURL }}"></script>
+{{ end }}
+<html
+  lang="{{ .Site.Language.Lang | default "en" }}"
+  data-theme="{{ .Param "defaultTheme" | default "dark" }}"
+>
+  {{ partial "head/head.html" . }}
+  <body>
+    <div class="layout">
+      {{ partial "header.html" . }}
+      <main>
+        <!-- Left Sidebar -->
+        {{ partial "left-sidebar.html" . }}
+
+
+        <!-- Main Content -->
+        <div class="content">
+          {{ block "main" . }}{{ end }}
+        </div>
+
+        <!-- Right Sidebar -->
+        {{ partial "sidebar.html" . }}
+      </main>
+      {{ partial "footer.html" . }}
+    </div>
+    {{ partial "tikzjax.html" . }}
+  </body>
+</html>

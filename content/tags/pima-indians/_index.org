@@ -3,3 +3,6 @@ title = "Pima Indians Diabetes"
 categories = ["ai", "ml", "supervised"]
 tags = ["decision-tree"]
 +++
+
+https://github.com/abaj8494/10khrs-ai-ml-dl/blob/main/problems/1-supervised-learning/classification/binary/pima-indians.ipynb
+
