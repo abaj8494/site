@@ -170,3 +170,5 @@ backup/
 /static/code/tikzjax/
 *.wasm
 *.gz
+
+*~

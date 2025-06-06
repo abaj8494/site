@@ -1,7 +1,0 @@
-+++
-title = "Linear Regression"
-+++
-
-This is a page for closed-form and approximation methods to the Linear Regression problem.
-
-The derivation will take the form of assuming a normal distribution on the conditional expectation \[\mathcal{E}[Y|X=x]\].

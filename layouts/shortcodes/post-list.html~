@@ -1,2 +1,0 @@
-{{/* layouts/shortcodes/post-list.html */}}
-{{ partial "post-list.html" . }}

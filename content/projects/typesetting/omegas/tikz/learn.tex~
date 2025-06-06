@@ -1,5 +1,0 @@
-\documentclass[tikz,border=1pt]{standalone}
-
-\begin{document}
-\tikz \draw (-1.5, 0) -- (1.5, 1);
-\end{document}
