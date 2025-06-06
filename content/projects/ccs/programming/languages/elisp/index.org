@@ -86,7 +86,43 @@ you can byte-compile emacs lisp! extension is =.elc=.
 
 ** 2. Practising Evaluation
 
+Whenever you give an editing command to Emacs Lisp, such as the command
+to move the cursor or to scroll the screen, you are evaluating an
+expression, the first element of which is a function.  This is how Emacs
+works.
+
+In Lisp, ‘nil’ is also used to mean "false" and is a synonym for the empty list, '()'.
+
+#+BEGIN_SRC lisp
+(concat "this buffer is called " (buffer-name) " with file-name " (buffer-file-name))
+#+END_SRC
+
+buffer != file.
+
+#+BEGIN_SRC lisp
+  (current-buffer)
+  (other-buffer) ; that which you cannot see
+  (switch-to-buffer (other-buffer))
+  (buffer-size) ;3766
+  (point) ;3696
+  (point-min)
+  (- (point-max) (point-min)) ; == (buffer-size)
+#+END_SRC
+
 ** 3. Writing Defuns
+
+Let me re-emphasize this: when you write code in Emacs Lisp, you do
+not distinguish between the use of functions written in C and the use of
+functions written in Emacs Lisp.  The difference is irrelevant.
+
+#+BEGIN_SRC lisp
+  (defun multiply-by-seven (number) ; interactive
+    "multiplies a number by seven" ;seen when you call this with `C-h f`
+    (interactive "p") ; "p" means pass the prefix argument to the function.
+    (message "The result is %d" (* 7 number)))
+  (multiply-by-seven 6)
+#+END_SRC
+(mark-whole-buffer)
 
 ** 4. Buffer Walk Through
 
