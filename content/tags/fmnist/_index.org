@@ -4,7 +4,7 @@ categories = ["ai", "ml", "supervised"]
 tags = ["classification", "multiclass", "random-forest", "mnist"]
 +++
 
-https://github.com/abaj8494/10khrs-ai-ml-dl/blob/main/problems/4-deep-learning/cnn/fmnist.ipynb
+[[https://github.com/abaj8494/10khrs-ai-ml-dl/blob/main/problems/4-deep-learning/cnn/fmnist.ipynb][10khrs-repo]]
 
 * History
 

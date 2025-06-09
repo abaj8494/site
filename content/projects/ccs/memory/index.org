@@ -3,4 +3,106 @@ title = "Memory"
 tags = ["notes", "stack-pointer", "registers", "cache", "L1", "L2", "stack", "heap"]
 +++
 
+Honestly, the diagrams that I wish to reproduce already exist [[https://azeria-labs.com/writing-arm-assembly-part-1/][here]]. Currently this page is in construction and probably will be until I finish my Doctorate.
+
+#+BEGIN_QUOTE
+“Memory is the mother of all wisdom."
+--- Aeschylus
+#+END_QUOTE
+
+* Babbage's Big Brain
+
+* Memory as a Hierarchy — Not a Monolith
+:PROPERTIES:
+:CUSTOM_ID: mem-hierarchy
+:END:
+
+Hierarchy exists for two intertwined reasons:
+
+1. **Physics** – Smaller structures are faster and nearer to ALUs but hold less data; larger structures store more but are farther away and thus slower.
+2. **Economics** – Fast memory costs disproportionately more per byte.
+
+An efficient system arranges *multiple* layers so that
+> the majority of accesses hit the *small, fast* part,
+> while the *bulk* of bytes reside in the *large, cheap* part.
+
+* The Register File – Your Fastest Scratchpad
+Modern x86-64 cores provide 16 – 32 architectural registers
+(`%rax`, `%rbx`, …) plus special purpose ones
+(program counter **PC/IP**, stack pointer **%rsp**, etc.).
+Access is single-cycle and **superscalar** execution renames physical
+registers to squeeze out more parallelism.
+
+_Practical take-away_: keep **live data** small and in registers;
+compilers often need help via `restrict`, `const`, or `register` hints.
+
+* Caches: The Illusion of Speed
+
+**Locality** (temporal & spatial) is the hinge on which caches swing.
+
+| Level | Typical Size | Line / Block | Hit ≈ cycles | Miss goes to |
+|-------+--------------+--------------+--------------+--------------|
+| L1d   | 32 – 64 KiB  | 64 B         | 3–5          | L2           |
+| L2    | 256 KiB–2 MiB| 64 B         | 10–15        | L3           |
+| L3    | 4 – 64 MiB (shared) | 64 B | 30–50        | DRAM         |
+
+Policies  
+- **Write-back** keeps writes local until eviction  
+- **Replacement** often PLRU or variants, not true LRU  
+- **Coherence** (MESI, MOESI) keeps multi-core views in sync
+
+Compiler flags like `-O3 -march=native` align loops, unroll, vectorise,
+and prefetch to exploit these caches.
+
+* Main Memory – DRAM, Rows and Banks
+Dynamic RAM stores bits as charge in capacitors that must be **refreshed**
+(~64 ms).  
+It is organised into channels → DIMMs → ranks → banks → rows → columns.
+Parallelism across banks hides activate/precharge delays.
+
+💡 **Row buffer hits** are the DRAM analogue of a cache hit.
+
+* Virtual Memory and the Page Table
+Every process uses a *flat* 64-bit address space,
+translated by hardware page table walkers into physical frames.
+
+- Typical page = 4 KiB; huge pages = 2 MiB or 1 GiB
+- **TLB** (Translation Look-aside Buffer) caches recent mappings  
+  – a miss costs ≳ 30 cycles even before DRAM latency.
+
+`mmap`, `malloc`, stacks and shared libraries are simply
+differently-protected regions in that same virtual space.
+
+* Stack vs Heap – Two Growth Patterns
+| Property          | Stack                      | Heap                         |
+|-------------------+----------------------------+------------------------------|
+| Lifespan          | Automatic (scope-bound)    | Manual / GC                  |
+| Growth direction  | Down in x86-64             | Up (allocator-dependent)     |
+| Allocation cost   | 1 instruction (`sub rsp`)  | `malloc` – usually `O(1)` average, but slower |
+| Typical use-case  | Local variables, return PCs| Dynamic data structures      |
+
+* Anatomy of a Function Call
+
+The **stack pointer** moves just once per call entry/exit.
+High-performance code keeps frames shallow to stay inside L1.
+
+* CPU vs GPU Memory — Different Beasts
+Where CPUs favour *latency*, GPUs are built for *throughput*.
+
+| Aspect              |  CPU                                   |  GPU                                             |
+|---------------------+----------------------------------------+--------------------------------------------------|
+| Core count          | 8 – 64 “fat” cores                     | Hundreds–thousands of “thin” cores               |
+| L1/L2 size per SM   | 32–64 KiB (data)                       | 64–128 KiB split **shared mem / cache**          |
+| Global memory       | DDR4/5, ~50–100 GB/s                  | GDDR6/HBM ≈ 0.5–1 TB/s                           |
+| Access granularity  | 64-byte lines                          | 32-byte **warps**; coalescing crucial            |
+| Cache coherence     | Hardware-coherent within socket        | Often manual (CUDA `__syncthreads`, barriers)    |
+| Host interaction    | Unified virtual mem (recent)           | PCIe/ NVLink latency, explicit copies still common |
+
+**Key GPU concepts**
+
+*Warp divergence* – Threads in a warp that take different branches stall others.  
+*Shared memory* – Programmer-managed scratchpad; think “user-controlled L1”.  
+*Memory coalescing* – Adjacent threads should access adjacent addresses.
+
+
 

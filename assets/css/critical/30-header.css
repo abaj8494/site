@@ -293,7 +293,7 @@ nav#menu {
 .sticky-header {
   position: sticky;
   top: 0px; /* Sticks to the top of the viewport */
-  z-index: 10; /* Ensures the header is above other elements */
+  z-index: 20; /* Ensures the header is above other elements */
   /*background-color: var(--bg1); /* Optional: Set a background color */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow */
   transition: transform 0.3s ease-in-out; /* Add smooth transition */

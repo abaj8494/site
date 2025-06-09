@@ -10,9 +10,9 @@ math = "true"
 The Computational Zoo is far more subtle and complex than I thought it was.
 
 #+CAPTION: Computational Zoo
-#+ATTR_HTML: :id zoo
+#+ATTR_HTML: :id zoo :class latex-image
 #+BEGIN_CENTER
-[[zoo.svg]]
+[[{{< cwd >}}zoo.svg]]
 #+END_CENTER
 
 It contains P, NP (+complete), EXP, NP-hard, CO-NP (+complete), PSPACE, BPP, BQP, EXPSPACE, 2-EXP, halting problem, decidable, etc!
@@ -95,7 +95,46 @@ It contains P, NP (+complete), EXP, NP-hard, CO-NP (+complete), PSPACE, BPP, BQP
 :CUSTOM_ID: big-oh
 :END:
 
-TODO
+Big-Oh ( \(O\) ) gives an *upper bound* on how an algorithm’s resource
+consumption grows with input size \(n\).
+
+#+ATTR_HTML: :id big-oh-def
+**Definition.**  
+A function \(f(n)\) is *\(O(g(n))\)* iff  
+\[
+\exists\,c>0,\; \exists\,n_0\ge 1 \; \text{s.t.}\;
+          0\le f(n)\le c\,g(n)\quad\forall\,n\ge n_0 .
+\]
+
+*Intuition:* beyond some threshold \(n_0\), \(g(n)\) dominates \(f(n)\)
+up to a constant factor \(c\).
+
+**Basic properties**
+
+1. **Transitivity** If \(f=O(g)\) and \(g=O(h)\) then \(f=O(h)\).
+2. **Additive dominance** \(f(n)+g(n)=O(\max\{f,g\})\).
+3. **Multiplicative constants vanish** \(c\,f(n)=O(f(n))\) for any
+   fixed \(c>0\).
+4. **Log–power rule** \(\log^k n = O(n^\varepsilon)\) for any
+   \(\varepsilon>0\).
+
+**Common growth rates**
+
+| Class              | Asymptotic form         | Typical example                         |
+|--------------------+-------------------------+-----------------------------------------|
+| Constant           | \(O(1)\)               | Hash-table lookup                       |
+| Logarithmic        | \(O(\log n)\)          | Binary search                           |
+| Poly-logarithmic   | \(O(\log^k n)\)        | Balanced-tree ops                       |
+| Linear             | \(O(n)\)               | Scanning an array                       |
+| Linearithmic       | \(O(n\log n)\)         | Mergesort / Heapsort                    |
+| Quadratic          | \(O(n^2)\)             | Naïve string matching                   |
+| Polynomial         | \(O(n^k)\)             | Gaussian elimination (\(k\!\approx\!3\))|
+| Exponential        | \(O(2^{n})\)           | Subset-sum brute force                  |
+| Factorial          | \(O(n!)\)              | Travelling-Salesman brute force         |
+
+A rigorous handle on \(O(\cdot)\) lets us *classify* problems into the
+complexity classes sketched in the Zoo diagram above.
+
 
 * NP-Hard and NP-Complete
 
@@ -103,7 +142,44 @@ TODO
 If \(P=NP\), then the world would be a profoundly different place than we usually assume it to be. There would be no special value in 'creative leaps', no fundamental gap between /solving/ a problem and /recognising the solution/ once it's found. Everyone that could appreciate a symphony would be Mozart, everyone who could follow a step-by-step argument would be Gauss"-Scott Aaronson
 #+END_QUOTE
 
-TODO main diagram.
+#+CAPTION: Relationship between P, NP, NP-Complete and NP-Hard
+#+ATTR_HTML: :id npc-venn
+#+BEGIN_EXPORT html
+<script type="text/tikz">
+\begin{tikzpicture}[scale=0.9, every text node part/.style={align=center}]
+  % universe
+  \fill[gray!10] (-5,-3.7) rectangle (5,3.7);
+  \node at (-4.3,3.2) {\small {\bf Decision problems}};
+
+  % P circle
+  \filldraw[fill=green!25, draw=black, thick] (-1,0) circle (1.9);
+  \node at (-1,0) {{\Large \(\mathbf{P}\)}};
+
+  % NP circle
+  \filldraw[fill=yellow!25, draw=black, thick] (1,0) circle (2.6);
+  \node at (1,0.2) {{\Large \(\mathbf{NP}\)}};
+
+  % NP-complete lens
+  \begin{scope}
+    \clip (-1,0) circle (1.9);
+    \clip (1,0) circle (2.6);
+    \fill[red!40] (0,0) ellipse (2 and 2.2);
+  \end{scope}
+  \node at (0,1.9) {\(\mathbf{NP\!\text{-}C}\)};
+
+  % NP-hard region (right)
+  \filldraw[fill=red!10, draw=none] (3.6,-2.9) rectangle (5,2.9);
+  \node[rotate=90] at (4.7,0) {\(\mathbf{NP\!\text{-}Hard}\) \\ (decision \& optimisation)};
+
+  % labels
+  \node[below] at (-2.4,-1.8) {Poly-time};
+  \node[below] at (0,-2.5) {Non-det.\ poly-time};
+  \draw[dashed] (-0.2,-3.1) -- (-0.2,3.1);
+  \node at (3.8,3.2) {\small Not known in NP};
+\end{tikzpicture}
+</script>
+#+END_EXPORT
+
 
 This topic usually concludes a course on algorithms, and for good reason.
 
@@ -201,8 +277,17 @@ A couple notable examples of such NP-hard problems which eventually become part 
 4. Primality Testing
 5. Graph Isomorphisms
 
+#+CAPTION: Famous problems once thought hard but proved to be in P
+#+ATTR_HTML: :class poly-success
+| Problem                               | Breakthrough result                    | Year |
+|---------------------------------------+----------------------------------------+------|
+| Primality Testing                     | AKS deterministic \(O(\log^{7.5} n)\) | 2002 |
+| Linear Programming                    | Khachiyan ellipsoid (poly-time), then |
+|                                       | interior-point \(O(n^{3.5}L)\)        | 1979 |
+| Maximum Flow                          | Edmonds–Karp \(O(VE^2)\);             |
+|                                       | Dinic \(O(V^2E)\); modern \(O(E\sqrt V)\)| 1972–2022 |
+| Perfect Matching in Bipartite Graphs  | Hungarian algorithm \(O(V^3)\)        | 1955 |
 
-TODO Graphic
 
 ** NP-Hard
 

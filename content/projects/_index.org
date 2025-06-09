@@ -191,7 +191,7 @@ As such, my interests lie in *theory* giving rise to *applications*. Not vice-ve
 :END:
 The following are all tags, but visiting them provides contextual / historical information on the dataset as well as back-links to the models which have solved these problems.
 
-Furthermore, many of the tags point you to the [[https://github.com/abaj8494/10khrs-ai-ml-dl][Monolithic 10,000 hours AI, ML, DL]] repo. As such, the @@html:<font color="orange">README@@ therein provides useful information as well as a [[https://github.com/abaj8494/10hrs-ai-ml-dl#scoreboard][scoreboard]] that maintains my accuracies on the below datasets :D
+Furthermore, many of the tags point you to the [[https://github.com/abaj8494/10khrs-ai-ml-dl][Monolithic 10,000 hours AI, ML, DL]] repo. As such, the @@html:<font color="orange">README</font>@@ therein provides useful information as well as a [[https://github.com/abaj8494/10hrs-ai-ml-dl#scoreboard][scoreboard]] that maintains my accuracies on the below datasets :D
 
 - @@html:<input type="checkbox" checked class="done"/>@@ [[/tags/mnist][MNIST]] {{< tags-inline "tags/mnist" >}}
 - @@html:<input type="checkbox" checked class="archived"/>@@ [[/tags/kmnist][KMNIST]] {{< tags-inline "tags/kmnist" >}}

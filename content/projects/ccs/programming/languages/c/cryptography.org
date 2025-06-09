@@ -5,7 +5,7 @@ toc = "true"
 clocal = "true"
 +++
 
-#+PROPERTY: dest /Users/aayushbajaj/Documents/new-site/static/code/ccs/programming/languages/100-days-python/mastery/
+#+PROPERTY: dest /Users/aayushbajaj/Documents/new-site/static/code/ccs/programming/languages/c/
 
 * Caesar
 

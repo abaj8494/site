@@ -7,7 +7,7 @@ clocal = "true"
 
 * preamble                                                         :noexport:
 
-#+PROPERTY: dest /Users/aayushbajaj/Documents/new-site/static/code/ccs/programming/c/
+#+PROPERTY: dest /Users/aayushbajaj/Documents/new-site/static/code/ccs/programming/languages/c/
 
 #+begin_src emacs-lisp
 (setq ndk/tangle-dir (org-entry-get nil "dest" t))
