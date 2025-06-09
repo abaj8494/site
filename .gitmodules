@@ -40,9 +40,6 @@
 [submodule "static/code/keychron"]
 	path = static/code/keychron
 	url = https://github.com/abaj8494/keychron
-[submodule "static/code/static/code/100-days-js"]
-	path = static/code/static/code/100-days-js
-	url = https://github.com/abaj8494/100-days-js
 [submodule "static/code/static/code/bananagrams"]
 	path = static/code/bananagrams
 	url = https://github.com/abaj8494/bananagrams
