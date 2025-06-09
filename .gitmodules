@@ -46,3 +46,12 @@
 [submodule "static/code/adv-algorithms"]
 	path = static/code/adv-algorithms
 	url = https://github.com/abaj8494/adv-algorithms
+[submodule "static/code/hashi"]
+	path = static/code/hashi
+	url = https://github.com/abaj8494/hashi
+[submodule "static/code/shrine"]
+	path = static/code/shrine
+	url = https://github.com/abaj8494/shrine
+[submodule "static/doc/math"]
+	path = static/doc/math
+	url = https://github.com/abaj8494/math
