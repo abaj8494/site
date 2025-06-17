@@ -55,3 +55,6 @@
 [submodule "static/doc/math"]
 	path = static/doc/math
 	url = https://github.com/abaj8494/math
+[submodule "static/code/bytelocker"]
+	path = static/code/bytelocker
+	url = https://github.com/abaj8494/bytelocker
