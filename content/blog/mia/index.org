@@ -1,5 +1,6 @@
 +++
 title = "Queen Mia ⚰️"
+toc = "true"
 +++
 
 * Tribunal
@@ -10,7 +11,7 @@ Papa's sorry that you're gone, so is [[https://abaj.ai/blog/phillip][Phillip]], 
 We were all shocked and saddened deeply. We grieved and still do.
 
 You made it into Papa's arm, and Mama's leg, we got ink.
-
+^
 I see you every-time I brush my teeth.
 
 * Recount

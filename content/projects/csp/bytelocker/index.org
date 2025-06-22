@@ -2,6 +2,7 @@
 title = "Bytelocker in C"
 tags = ["encryption", "cipher", "c", "file-locker"]
 author = "Actually Me"
+toc = "true"
 +++
 
 I loved locking up folders as a kid on the Windows 7 computers using /batch/ scripts I didn't understand.
