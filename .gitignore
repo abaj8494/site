@@ -3,6 +3,7 @@
 
 ### Hugo ###
 # Generated files by hugo
+/scratch/
 /public/
 /resources/_gen/
 /assets/jsconfig.json
