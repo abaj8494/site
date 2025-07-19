@@ -2,12 +2,9 @@
  * Global Scroll Handler
  * Controls header and sidebar visibility on scroll
  */
-console.log("[Scroll Handler] Initializing...");
 
 // Wait for DOM to be ready
 document.addEventListener("DOMContentLoaded", function () {
-  console.log("[Scroll Handler] DOM loaded");
-
   // Variables for scroll handling
   let isScrolling;
   let lastScrollTop = 0;
@@ -27,26 +24,13 @@ document.addEventListener("DOMContentLoaded", function () {
       const sidebarTree = document.querySelector(".sidebar-tree");
       const marginNotesContainer = document.querySelector(".margin-notes");
 
-      // Debug log element presence
-      if (!header) console.log("[Scroll Handler] Warning: No header found");
-      if (!sidebarTree)
-        console.log("[Scroll Handler] Warning: No sidebar-tree found");
-      if (!marginNotesContainer)
-        console.log("[Scroll Handler] Warning: No margin-notes found");
-
       // Clear any existing timer
       window.clearTimeout(isScrolling);
-
-      // Log current scroll position
-      console.log(
-        `[Scroll Handler] Scroll position: ${st}, direction: ${st > lastScrollTop ? "DOWN" : "UP"}`,
-      );
 
       // Hide margin notes while scrolling
       if (marginNotesContainer && !notesHidden) {
         marginNotesContainer.classList.add("hidden");
         notesHidden = true;
-        console.log("[Scroll Handler] Hiding margin notes");
       }
 
       // Fade elements based on scroll direction
@@ -55,24 +39,20 @@ document.addEventListener("DOMContentLoaded", function () {
         if (header) {
           header.classList.add("fade-out");
           header.classList.add("scrolled"); // Keep for backward compatibility
-          console.log("[Scroll Handler] Hiding header");
         }
 
         if (sidebarTree) {
           sidebarTree.classList.add("fade-out");
-          console.log("[Scroll Handler] Hiding sidebar-tree");
         }
       } else if (st < lastScrollTop) {
         // Scrolling UP - show elements
         if (header) {
           header.classList.remove("fade-out");
           header.classList.remove("scrolled");
-          console.log("[Scroll Handler] Showing header");
         }
 
         if (sidebarTree) {
           sidebarTree.classList.remove("fade-out");
-          console.log("[Scroll Handler] Showing sidebar-tree");
         }
       }
 
@@ -81,17 +61,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Set a timeout to run after scrolling ends
       isScrolling = setTimeout(() => {
-        console.log("[Scroll Handler] Scrolling has stopped");
         // Show margin notes when scrolling stops
         if (marginNotesContainer && notesHidden) {
           marginNotesContainer.classList.remove("hidden");
           notesHidden = false;
-          console.log("[Scroll Handler] Showing margin notes");
         }
       }, 500);
     },
     { passive: true },
   );
-
-  console.log("[Scroll Handler] Setup complete");
 });

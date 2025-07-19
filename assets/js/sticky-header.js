@@ -1,7 +1,4 @@
 // This script is deprecated - using the new scroll-handler.js script instead
-console.log(
-  "[Sticky Header] This script is deprecated. Using scroll-handler.js instead.",
-);
 
 // Commented out to prevent conflicts
 /*
@@ -51,7 +48,7 @@ window.addEventListener(
 
     // Set a timeout to run after scrolling ends
     isScrolling = setTimeout(() => {
-      // Nothing to do when scrolling stops for header/sidebar
+      // Optional: add functionality here after scroll stops
     }, 500);
   },
   { passive: true },

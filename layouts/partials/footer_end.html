@@ -2,19 +2,6 @@
   Add custom HTML at the end of <body>
 -->
 
-<!-- Debug info for margin notes -->
-<script>
-  console.log("[Margin Notes] Footer loaded");
-  console.log(
-    "[Margin Notes] Margin notes in document:",
-    document.querySelectorAll(".margin-note").length,
-  );
-  console.log(
-    "[Margin Notes] Container exists:",
-    document.getElementById("margin-notes-container") !== null,
-  );
-</script>
-
 <!-- Load margin notes JavaScript -->
 {{ $marginNotesJS := resources.Get "js/margin-notes.js" | js.Build }}
 {{ if hugo.IsProduction }}
@@ -26,6 +13,3 @@
 {{ else }}
   <script src="{{ $marginNotesJS.RelPermalink }}"></script>
 {{ end }}
-<script>
-  console.log("[Margin Notes] Script loaded from asset pipeline");
-</script>

@@ -1,0 +1,374 @@
+/* Popup system for link previews */
+:root {
+  /* Variables for popup dimensions */
+  --popup-max-width: 640px;
+  --popup-max-height: 480px;
+  --popup-min-width: 320px;
+  --popup-min-height: 120px;
+  --popup-border-width: 3px;
+  --popup-title-bar-height: 1.5rem;
+
+  /* Using site color variables for theming, but with explicit values */
+  --popup-background-light: #ffffff;
+  --popup-background-dark: #1d2021;
+  --popup-foreground-light: #282828;
+  --popup-foreground-dark: #fbf1c7;
+  --popup-border-color: var(--accent);
+  --popup-shadow-color: rgba(0, 0, 0, 0.3);
+  --popup-scrollbar-thumb-color: var(--accent);
+  --popup-scrollbar-thumb-hover-color: var(--accent-hover);
+}
+
+[data-theme="light"] {
+  --popup-background: var(--popup-background-light);
+  --popup-foreground: var(--popup-foreground-light);
+}
+
+[data-theme="dark"] {
+  --popup-background: var(--popup-background-dark);
+  --popup-foreground: var(--popup-foreground-dark);
+  --popup-shadow-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Container for popups, covers the entire viewport */
+.popup-container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Let clicks pass through the container by default */
+  z-index: 9999;
+}
+
+.popup-container > * {
+  pointer-events: auto; /* Enable interacting with actual popups */
+}
+
+/* Main popup styling */
+.popup {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+
+  min-width: var(--popup-min-width);
+  min-height: var(--popup-min-height);
+  max-width: var(--popup-max-width);
+  max-height: var(--popup-max-height);
+
+  background-color: var(--popup-background);
+  border: var(--popup-border-width) double var(--popup-border-color);
+  box-shadow: 1px 2px 8px 0 var(--popup-shadow-color);
+
+  z-index: 1;
+  opacity: 1;
+  transition:
+    opacity 0.2s ease-out,
+    transform 0.2s ease-out;
+}
+
+[data-theme="dark"] .popup,
+:root[data-theme="dark"] .popup {
+  /* Dark theme styles are handled through CSS variables */
+}
+
+/* Title bar for popups */
+.popup-title-bar {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  height: var(--popup-title-bar-height);
+  padding: 0 0.5rem;
+  background-color: var(--popup-border-color);
+  color: var(--popup-background);
+  font-size: 0.85rem;
+  font-weight: bold;
+  cursor: grab;
+  user-select: none;
+}
+
+.popup.dragging .popup-title-bar {
+  cursor: grabbing;
+}
+
+/* Title text */
+.popup-title-bar-title {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+  margin: 0 0.5rem;
+  color: var(--popup-background);
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.popup-title-bar-title:hover {
+  text-decoration: underline;
+}
+
+/* Button container */
+.popup-title-bar-buttons {
+  display: flex;
+  gap: 0.25rem;
+  justify-content: flex-end;
+}
+
+/* Title bar buttons */
+.popup-title-bar-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.2rem;
+  height: 1.2rem;
+  border: none;
+  border-radius: 3px;
+  background: transparent;
+  color: var(--popup-background);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.popup-title-bar-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .popup-title-bar-button,
+:root[data-theme="dark"] .popup-title-bar-button {
+  color: var(--popup-background);
+}
+
+[data-theme="dark"] .popup-title-bar-button:hover,
+:root[data-theme="dark"] .popup-title-bar-button:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* Scrollable content area */
+.popframe-scroll-view {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  overscroll-behavior: none;
+  position: relative;
+}
+
+/* Scrollbar styling (WebKit/Blink) */
+.popframe-scroll-view::-webkit-scrollbar {
+  width: 12px;
+}
+
+.popframe-scroll-view::-webkit-scrollbar-thumb {
+  background-color: var(--popup-scrollbar-thumb-color);
+  border-radius: 6px;
+  border: 3px solid var(--popup-background);
+}
+
+.popframe-scroll-view::-webkit-scrollbar-thumb:hover {
+  background-color: var(--popup-scrollbar-thumb-hover-color);
+}
+
+/* Scrollbar styling (Firefox) */
+.popframe-scroll-view {
+  scrollbar-color: var(--popup-scrollbar-thumb-color) var(--popup-background);
+  scrollbar-width: thin;
+}
+
+.popframe-scroll-view:hover {
+  scrollbar-color: var(--popup-scrollbar-thumb-hover-color)
+    var(--popup-background);
+}
+
+/* Actual content container */
+.popframe-content-view {
+  padding: 0.7rem;
+  background-color: var(--popup-background);
+  color: var(--popup-foreground);
+}
+
+/* Popup content styling */
+.popup .popup-content {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.popup .popup-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.popup .popup-body {
+  margin: 0;
+}
+
+.popup .popup-body img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Handle various header sizes in popup content */
+.popup .popup-body h1 {
+  font-size: 1.2rem;
+}
+
+.popup .popup-body h2 {
+  font-size: 1.1rem;
+}
+
+.popup .popup-body h3 {
+  font-size: 1rem;
+}
+
+.popup .popup-body h4,
+.popup .popup-body h5,
+.popup .popup-body h6 {
+  font-size: 0.9rem;
+}
+
+/* Error state */
+.popup-error {
+  padding: 1rem;
+  color: #b71c1c;
+  text-align: center;
+}
+
+/* Button/control icons */
+.popup-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  position: relative;
+}
+
+.popup-icon.close::before {
+  content: "×";
+}
+
+.popup-icon.maximize::before {
+  content: "⤢";
+}
+
+.popup-icon.restore::before {
+  content: "⤓";
+}
+
+.popup-icon.pin::before {
+  content: "📌";
+  font-size: 0.8em;
+}
+
+/* State modifier classes */
+.popup.pinned {
+  /* Styles for pinned popup */
+  box-shadow: 0 0 0 2px var(--popup-border-color);
+}
+
+.popup.dragging {
+  cursor: grabbing;
+  opacity: 0.8;
+}
+
+.popup.resizing {
+  cursor: nwse-resize;
+}
+
+.popup.zoomed {
+  position: fixed;
+  left: 2rem !important;
+  right: 2rem !important;
+  top: 2rem !important;
+  bottom: 2rem !important;
+  width: auto !important;
+  height: auto !important;
+  max-width: none !important;
+  max-height: none !important;
+}
+
+.popup.zoomed.full {
+  left: 0 !important;
+  right: 0 !important;
+  top: 0 !important;
+  bottom: 0 !important;
+}
+
+/* Left-side zoom */
+.popup.zoomed.left {
+  right: 50% !important;
+  left: 0 !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  border-right: var(--popup-border-width) solid var(--popup-border-color);
+}
+
+/* Right-side zoom */
+.popup.zoomed.right {
+  left: 50% !important;
+  right: 0 !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  border-left: var(--popup-border-width) solid var(--popup-border-color);
+}
+
+/* Links that can open popups */
+a.popup-open {
+  position: relative;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-decoration-thickness: from-font;
+}
+
+/* Classes to disable popups */
+.no-popup,
+.no-popup * {
+  pointer-events: none !important;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .popup {
+    left: 5% !important;
+    right: 5% !important;
+    width: 90% !important;
+  }
+
+  .popframe-scroll-view {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .popup .popup-body {
+    font-size: 0.95rem;
+  }
+}
+
+/* Add rules to hide sidebar elements within popups */
+.popup .sidebar,
+.popup .sidebar-tree,
+.popup [class*="sidebar"],
+.popup .layout > header,
+.popup footer {
+  display: none !important;
+}
+
+/* Add styles for external link previews */
+.external-link-preview {
+  text-align: center;
+}
+
+.external-favicon {
+  max-width: 32px;
+  max-height: 32px;
+  margin-bottom: 10px;
+}
+
+.external-link-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--popup-background);
+  border-radius: 4px;
+}

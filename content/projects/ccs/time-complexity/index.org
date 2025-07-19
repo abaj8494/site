@@ -1,0 +1,6 @@
++++
+title = "Time Complexity"
+tags = ["np-complete", "polynomial-time", "np-hard"]
++++
+
+explained!

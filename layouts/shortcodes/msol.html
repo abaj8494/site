@@ -1,0 +1,46 @@
+<!-- Mathematical Solution shortcode -->
+<div class="math-solution">
+  <div class="math-solution-header">
+    <strong>Solution</strong>
+  </div>
+  <div class="math-solution-content">
+    {{ .Inner | markdownify }}
+  </div>
+</div>
+
+<style>
+  .math-solution {
+    margin: 1rem 0;
+    padding: 1rem;
+    border: 1px solid var(--bg3, #d4d4d4);
+    border-left: 3px solid var(--info, #6c757d);
+    background: var(--bg0, #ffffff);
+    border-radius: 4px;
+  }
+
+  .math-solution-header {
+    font-weight: bold;
+    color: var(--info, #6c757d);
+    margin-bottom: 0.5rem;
+    font-family: var(--font-serif);
+  }
+
+  .math-solution-content {
+    color: var(--fg, #333);
+    line-height: 1.6;
+  }
+
+  .math-solution-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Dark theme support */
+  [data-theme="dark"] .math-solution {
+    border-color: var(--bg3, #555);
+    background: var(--bg0, #1a1a1a);
+  }
+
+  [data-theme="dark"] .math-solution-content {
+    color: var(--fg, #e5e5e5);
+  }
+</style>

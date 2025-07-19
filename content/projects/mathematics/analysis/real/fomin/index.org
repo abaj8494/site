@@ -9,6 +9,9 @@ date = 2025-07-20T02:42:32+11:00
 
 * Set Theory
 
+{{< collapse-local folded="true" >}}
+
+
 ** Sets and Functions
 
 {{< mprob >}} Prove that if $A\cup B = A$ and $A \cap B = A$, then $A = B$.
@@ -26,46 +29,67 @@ date = 2025-07-20T02:42:32+11:00
 {{< msol >}}
 {{< /msol >}}
 
-{{< mprob >}} Prove that
-{{< subprob >}}$(A-B)\cap C = (A\cap C) - (B\cap C)$
-{{< /subprob >}}
-{{< subsol >}}
-{{< /subsol >}}
-{{< subprob >}}$A\Delta B = (A\cup B) - (A\cap B)$
-{{< /subprob >}}
-{{< subsol >}}
-{{< /subsol >}}
+{{< mprob >}}
+Prove that
 {{< /mprob >}}
 
+{{< subprob >}}
+$(A-B)\cap C = (A\cap C) - (B\cap C)$
+{{< /subprob >}}
+
+{{< subsol >}}
+{{< /subsol >}}
+
+{{< subprob >}}
+$A\Delta B = (A\cup B) - (A\cap B)$
+{{< /subprob >}}
+
+{{< subsol >}}
+{{< /subsol >}}
+
 {{< mprob >}} Prove that
-\[\Big \cup_\alpha A_alpha - \Big \cup_\alpha B_\alpha \subset \Big \cup (A_\alpha - B_alpha)\]
+\[\bigcup_\alpha A_\alpha - \bigcup_\alpha B_\alpha \subset \bigcup (A_\alpha - B_\alpha)\]
 {{< /mprob >}}
 {{< msol >}}
 {{< /msol >}}
 
-{{< mprob >}} Let $A_n$ be the set of all positive integers divisible by $n$. Find the sets
-{{< subprob >}}\[\cup_{n=2}^\infty A_n\]
-{{< /subprob >}}
-{{< subsol >}}
-{{< /subsol >}}
-{{< subprob >}}\[\cap_{n=2}^\infty A_n\]
-{{< /subprob >}}
-{{< subsol >}}
-{{< /subsol >}}
+{{< mprob >}}
+Let $A_n$ be the set of all positive integers divisible by $n$. Find the sets
 {{< /mprob >}}
 
-{{< mprob >}} Find
-{{< subprob >}}\[\cup_{n=1}^\infty [a+\frac{1}{n}, b-\frac{1}{n}]\]
+{{< subprob >}}
+\[\bigcup_{n=2}^\infty A_n\]
 {{< /subprob >}}
+
 {{< subsol >}}
 {{< /subsol >}}
-{{< subprob >}}\[\cap_{n=1}^\infty [a-\frac{1}{n}, b+\frac{1}{n}]\]
+
+{{< subprob >}}
+\[\bigcap_{n=2}^\infty A_n\]
 {{< /subprob >}}
+
 {{< subsol >}}
 {{< /subsol >}}
+
+{{< mprob >}}
+Find
 {{< /mprob >}}
 
-{{< mprob >}} Let $A_\alpha$ be the set of points lying on the curve \[y = \frac{1}{x^\alpha}\quad(0<x<\infty).\] What is \(\cap_{\alpha\geq 1} A_\alpha\)?
+{{< subprob >}}
+\[\bigcup_{n=1}^\infty [a+\frac{1}{n}, b-\frac{1}{n}]\]
+{{< /subprob >}}
+
+{{< subsol >}}
+{{< /subsol >}}
+
+{{< subprob >}}
+\[\bigcap_{n=1}^\infty [a-\frac{1}{n}, b+\frac{1}{n}]\]
+{{< /subprob >}}
+
+{{< subsol >}}
+{{< /subsol >}}
+
+{{< mprob >}} Let $A_\alpha$ be the set of points lying on the curve \[y = \frac{1}{x^\alpha}\quad(0<x<\infty).\] What is \(\bigcap_{\alpha\geq 1} A_\alpha\)?
 {{< /mprob >}}
 {{< msol >}}
 {{< /msol >}}
@@ -80,24 +104,37 @@ date = 2025-07-20T02:42:32+11:00
 {{< msol >}}
 {{< /msol >}}
 
-{{< mprob >}} Give an example of a binary relation which is
-{{< subprob >}} Reflexive and symmetric, but not transitive
-{{< /subprob >}}
-{{< subsol >}}
-{{< /subsol >}}
-{{< subprob >}} Reflexive, but neither symmetric nor transitive
-{{< /subprob >}}
-{{< subsol >}}
-{{< /subsol >}}
-{{< subprob >}} Symmetric, but neither reflexive nor transitive
-{{< /subprob >}}
-{{< subsol >}}
-{{< /subsol >}}
-{{< subprob >}} Transitive, but neither reflexive nor symmetric
-{{< /subprob >}}
-{{< subsol >}}
-{{< /subsol >}}
+{{< mprob >}}
+Give an example of a binary relation which is
 {{< /mprob >}}
+
+{{< subprob >}}
+Reflexive and symmetric, but not transitive
+{{< /subprob >}}
+
+{{< subsol >}}
+{{< /subsol >}}
+
+{{< subprob >}}
+Reflexive, but neither symmetric nor transitive
+{{< /subprob >}}
+
+{{< subsol >}}
+{{< /subsol >}}
+
+{{< subprob >}}
+Symmetric, but neither reflexive nor transitive
+{{< /subprob >}}
+
+{{< subsol >}}
+{{< /subsol >}}
+
+{{< subprob >}}
+Transitive, but neither reflexive nor symmetric
+{{< /subprob >}}
+
+{{< subsol >}}
+{{< /subsol >}}
 
 ** Equivalence of Sets. The Power of a Set
 
@@ -106,6 +143,8 @@ date = 2025-07-20T02:42:32+11:00
 ** Systems of Sets
 
 * Metric Spaces
+
+{{< collapse-local folded="true" >}}
 
 ** Basic Concepts
 
@@ -116,6 +155,9 @@ date = 2025-07-20T02:42:32+11:00
 ** Contraction Mappings
 
 * Topological Spaces
+
+{{< collapse-local folded="true" >}}
+
 
 ** Basic Concepts
 

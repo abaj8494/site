@@ -1,0 +1,200 @@
+<!-- Mathematical Sub-Problem shortcode -->
+<div class="math-subproblem">
+  <div class="math-subproblem-header">
+    <strong>(<span class="subproblem-counter"></span>)</strong>
+  </div>
+  <div class="math-subproblem-content">
+    {{ .Inner | markdownify }}
+  </div>
+</div>
+
+<style>
+  .math-subproblem {
+    margin: 0.75rem 0 0.5rem 2rem;
+    padding: 0;
+    background: transparent;
+    border: none;
+  }
+
+  .math-subproblem-header {
+    font-weight: bold;
+    color: var(--accent, #dc3545);
+    margin-bottom: 0.25rem;
+    font-family: var(--font-serif);
+    display: inline;
+  }
+
+  .math-subproblem-content {
+    color: var(--fg, #333);
+    line-height: 1.6;
+    display: inline;
+    margin-left: 0.5rem;
+  }
+
+  .math-subproblem-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Dark theme support */
+  [data-theme="dark"] .math-subproblem-content {
+    color: var(--fg, #e5e5e5);
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Wait for page to fully load
+    setTimeout(function () {
+      // Process each problem individually to ensure proper grouping and styling
+      var problems = document.querySelectorAll(".math-problem");
+
+      problems.forEach(function (problem, problemIndex) {
+        var subElements = [];
+        var nextElement = problem.nextElementSibling;
+        var subCounter = 0;
+
+        // Scan much more aggressively for sub-elements, looking beyond immediate siblings
+        var scanCount = 0;
+        var maxScanElements = 50; // Scan up to 50 elements ahead
+
+        while (nextElement && scanCount < maxScanElements) {
+          scanCount++;
+
+          // Skip whitespace text nodes
+          if (
+            nextElement.nodeType === 3 &&
+            nextElement.textContent.trim() === ""
+          ) {
+            nextElement = nextElement.nextElementSibling;
+            continue;
+          }
+
+          // Skip style and script elements (shortcode artifacts)
+          if (
+            nextElement.tagName &&
+            (nextElement.tagName.toLowerCase() === "style" ||
+              nextElement.tagName.toLowerCase() === "script")
+          ) {
+            nextElement = nextElement.nextElementSibling;
+            continue;
+          }
+
+          // Skip empty paragraphs (Hugo artifacts)
+          if (
+            nextElement.tagName &&
+            nextElement.tagName.toLowerCase() === "p" &&
+            (!nextElement.textContent || nextElement.textContent.trim() === "")
+          ) {
+            nextElement = nextElement.nextElementSibling;
+            continue;
+          }
+
+          // If it's a sub-element, collect it
+          if (
+            nextElement &&
+            nextElement.classList &&
+            (nextElement.classList.contains("math-subproblem") ||
+              nextElement.classList.contains("math-subsolution"))
+          ) {
+            subElements.push(nextElement);
+            nextElement = nextElement.nextElementSibling;
+          } else if (
+            nextElement &&
+            nextElement.classList &&
+            nextElement.classList.contains("math-solution")
+          ) {
+            // Skip regular math-solution elements and keep looking
+            nextElement = nextElement.nextElementSibling;
+            continue;
+          } else if (
+            nextElement &&
+            nextElement.classList &&
+            nextElement.classList.contains("math-problem")
+          ) {
+            // Hit another problem - stop if we found sub-elements, otherwise continue briefly
+            if (subElements.length > 0) {
+              break;
+            } else {
+              break;
+            }
+          } else {
+            // Hit some other element - continue scanning for now
+            nextElement = nextElement.nextElementSibling;
+            continue;
+          }
+        }
+
+        // Process this problem's sub-elements
+        if (subElements.length > 0) {
+          // Style the problem to connect visually
+          problem.style.borderBottomLeftRadius = "0";
+          problem.style.borderBottomRightRadius = "0";
+          problem.style.borderBottom = "1px solid var(--bg2, #e5e5e5)";
+          problem.style.marginBottom = "0";
+
+          // Instead of just styling, physically move sub-elements into the parent problem
+
+          subElements.forEach(function (element, index) {
+            // Remove the element from its current position
+            var elementClone = element.cloneNode(true);
+            element.parentNode.removeChild(element);
+
+            // Handle numbering first
+            if (elementClone.classList.contains("math-subproblem")) {
+              var counter = elementClone.querySelector(".subproblem-counter");
+
+              if (counter) {
+                var letter = String.fromCharCode(97 + subCounter); // a, b, c...
+                counter.textContent = letter;
+                subCounter++;
+              }
+            } else if (elementClone.classList.contains("math-subsolution")) {
+              var counter = elementClone.querySelector(".subsolution-counter");
+
+              if (counter) {
+                // Use same letter as the previous sub-problem
+                var letter = String.fromCharCode(
+                  97 + Math.max(0, subCounter - 1),
+                );
+                counter.textContent = letter;
+              }
+            }
+
+            // Clear all existing styles and apply new ones for seamless integration
+            elementClone.style.cssText = "";
+            elementClone.style.setProperty(
+              "background",
+              "transparent",
+              "important",
+            );
+            elementClone.style.setProperty("border", "none", "important");
+            elementClone.style.setProperty("margin", "0", "important");
+            elementClone.style.setProperty("padding", "0.5rem 0", "important");
+            elementClone.style.setProperty(
+              "margin-left",
+              "1.5rem",
+              "important",
+            );
+
+            // Add subtle visual separation for sub-problems only
+            if (elementClone.classList.contains("math-subproblem")) {
+              elementClone.style.setProperty(
+                "border-top",
+                "1px solid var(--bg2, #e5e5e5)",
+                "important",
+              );
+              elementClone.style.setProperty(
+                "padding-top",
+                "0.75rem",
+                "important",
+              );
+            }
+
+            // Append directly to the parent problem element
+            problem.appendChild(elementClone);
+          });
+        }
+      });
+    }, 200);
+  });
+</script>

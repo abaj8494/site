@@ -1,11 +1,8 @@
 /**
  * Margin Notes - For displaying notes in the left sidebar
  */
-console.log("[Margin Notes] Script loading...");
 
 document.addEventListener("DOMContentLoaded", function () {
-  console.log("[Margin Notes] DOM loaded, initializing...");
-
   // Detect if this is likely a mobile device requesting desktop site
   function detectDesktopModeOnMobile() {
     // Check if this is likely a mobile device
@@ -23,32 +20,18 @@ document.addEventListener("DOMContentLoaded", function () {
     const isDesktopMode =
       isMobileBrowser && isWideViewport && physicalWidth < 1024;
 
-    console.log(
-      `[Margin Notes] Device detection: Mobile browser: ${isMobileBrowser}, Viewport width: ${window.innerWidth}, Physical width: ${physicalWidth}, Desktop mode: ${isDesktopMode}`,
-    );
-
     return isDesktopMode;
   }
 
   // Apply desktop view class if needed
   if (detectDesktopModeOnMobile()) {
     document.documentElement.classList.add("desktop-view");
-    console.log(
-      "[Margin Notes] Desktop view on mobile detected, applying special styling",
-    );
   }
 
   // Find all margin notes in the document
   const marginNotes = document.querySelectorAll(".margin-note");
   const marginNotesContainer = document.getElementById(
     "margin-notes-container",
-  );
-
-  console.log(
-    `[Margin Notes] Found ${marginNotes.length} margin notes in document`,
-  );
-  console.log(
-    `[Margin Notes] Container exists: ${marginNotesContainer !== null}`,
   );
 
   // Track previous window width to detect changes that might indicate desktop mode toggle
@@ -60,20 +43,10 @@ document.addEventListener("DOMContentLoaded", function () {
     debounce(function () {
       // If width changed significantly, check for desktop mode again
       if (Math.abs(window.innerWidth - previousWidth) > 200) {
-        console.log(
-          `[Margin Notes] Window width changed from ${previousWidth} to ${window.innerWidth}, checking desktop mode`,
-        );
-
         if (detectDesktopModeOnMobile()) {
           document.documentElement.classList.add("desktop-view");
-          console.log(
-            "[Margin Notes] Desktop view on mobile detected after resize",
-          );
         } else {
           document.documentElement.classList.remove("desktop-view");
-          console.log(
-            "[Margin Notes] Standard view mode detected after resize",
-          );
         }
 
         // Update positions in case display mode changed
@@ -84,7 +57,6 @@ document.addEventListener("DOMContentLoaded", function () {
   );
 
   if (!marginNotesContainer || marginNotes.length === 0) {
-    console.warn("[Margin Notes] No container or notes found, exiting");
     return;
   }
 
@@ -102,10 +74,6 @@ document.addEventListener("DOMContentLoaded", function () {
   marginNotes.forEach((note, index) => {
     const noteContent = note.getAttribute("data-note");
     if (!noteContent) return;
-
-    console.log(
-      `[Margin Notes] Processing note ${index}: "${noteContent.substring(0, 30)}${noteContent.length > 30 ? "..." : ""}"`,
-    );
 
     // Create a unique ID for this note
     const noteId = `margin-note-${index}`;
@@ -132,7 +100,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Add hover event to the note itself
     note.addEventListener("mouseenter", () => {
-      console.log(`[Margin Notes] Hovering note ${index}`);
       // Show margin notes if they were hidden
       if (notesHidden) {
         showMarginNotes();
@@ -150,7 +117,6 @@ document.addEventListener("DOMContentLoaded", function () {
     if (indicator) {
       // Add click event for pulsation
       indicator.addEventListener("click", (e) => {
-        console.log(`[Margin Notes] Clicked indicator for note ${index}`);
         // Show margin notes if they were hidden
         showMarginNotes();
         // Add pulsate class to create pulsation effect
@@ -170,7 +136,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Keep hover event as well
       indicator.addEventListener("mouseenter", (e) => {
-        console.log(`[Margin Notes] Hovering indicator for note ${index}`);
         // Always show margin notes when hovering over indicator
         showMarginNotes();
         marginNoteElement.classList.add("active");
@@ -199,7 +164,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Update positions after images and other resources load
   window.addEventListener("load", function () {
-    console.log("[Margin Notes] Window loaded, updating positions");
     updateAllNotePositions();
   });
 
@@ -207,7 +171,6 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener(
     "resize",
     debounce(() => {
-      console.log("[Margin Notes] Window resized, updating positions");
       updateAllNotePositions();
     }, 150),
   );
@@ -226,7 +189,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Set a timeout to run after scrolling ends
       isScrolling = setTimeout(() => {
-        console.log("[Margin Notes] Scrolling has stopped");
         // Show margin notes when scrolling stops
         if (notesHidden) {
           showMarginNotes();
@@ -243,7 +205,6 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!notesHidden) {
       marginNotesContainer.classList.add("hidden");
       notesHidden = true;
-      console.log("[Margin Notes] Notes hidden");
     }
   }
 
@@ -254,7 +215,6 @@ document.addEventListener("DOMContentLoaded", function () {
     if (notesHidden) {
       marginNotesContainer.classList.remove("hidden");
       notesHidden = false;
-      console.log("[Margin Notes] Notes shown");
 
       // Force recalculation of margin note positions
       updateAllNotePositions();
@@ -286,9 +246,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // If mobile but not desktop view, don't position - it will be fixed at bottom
     if (isMobile && !isDesktopView) {
-      console.log(
-        `[Margin Notes] Mobile view detected for ${reference.id}, not positioning vertically`,
-      );
       return;
     }
 
@@ -299,21 +256,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Calculate position accounting for scroll
     const topPosition = refRect.top - containerRect.top;
-    console.log(
-      `[Margin Notes] Positioning note ${reference.id} at top: ${topPosition}px`,
-    );
-
-    // Debug info
-    console.log("[Margin Notes] Reference rect:", {
-      top: refRect.top,
-      left: refRect.left,
-      height: refRect.height,
-    });
-    console.log("[Margin Notes] Container rect:", {
-      top: containerRect.top,
-      left: containerRect.left,
-      height: containerRect.height,
-    });
 
     // Adjust for potential overlap with previous notes
     let adjustedTop = topPosition;
@@ -335,9 +277,6 @@ document.addEventListener("DOMContentLoaded", function () {
       ) {
         // Position it below the sibling note
         adjustedTop = siblingBottom + noteSpacing;
-        console.log(
-          `[Margin Notes] Adjusted position for ${reference.id} due to overlap: ${adjustedTop}px`,
-        );
       }
     });
 
@@ -358,6 +297,4 @@ document.addEventListener("DOMContentLoaded", function () {
       timeout = setTimeout(() => func.apply(context, args), wait);
     };
   }
-
-  console.log("[Margin Notes] Initialization complete");
 });

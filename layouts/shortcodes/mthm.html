@@ -1,0 +1,91 @@
+<!-- Mathematical Theorem shortcode -->
+{{ $theoremName := .Get 0 }}
+<div class="math-theorem">
+  <div class="math-theorem-header">
+    <strong>Theorem</strong>
+    <span class="theorem-counter"></span>
+    {{ if $theoremName }}
+      <span class="theorem-name">({{ $theoremName }})</span>
+    {{ end }}
+  </div>
+  <div class="math-theorem-content">
+    {{ .Inner | markdownify }}
+  </div>
+</div>
+
+<style>
+  .math-theorem {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    border: 2px solid var(--bg2, #e5e5e5);
+    border-left: 4px solid #fe8d59; /* Orange highlight */
+    background: var(--bg1, #f8f9fa);
+    border-radius: 4px;
+    position: relative;
+    font-family: var(--font-serif);
+  }
+
+  .math-theorem-header {
+    font-weight: bold;
+    color: #fe8d59; /* Orange header text */
+    margin-bottom: 0.75rem;
+    font-family: var(--font-serif);
+    font-size: 1rem;
+  }
+
+  .math-theorem-header .theorem-counter {
+    margin-left: 0.25rem;
+  }
+
+  .math-theorem-header .theorem-name {
+    font-weight: normal;
+    font-style: italic;
+    color: var(--fg, #333);
+    margin-left: 0.25rem;
+  }
+
+  .math-theorem-content {
+    color: var(--fg, #333);
+    line-height: 1.6;
+  }
+
+  .math-theorem-content p:first-child {
+    margin-top: 0;
+  }
+
+  .math-theorem-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Dark theme support */
+  [data-theme="dark"] .math-theorem {
+    border-color: var(--bg2, #555);
+    background: var(--bg1, #1a1a1a);
+    border-left-color: #fe8d59; /* Keep orange highlight in dark mode */
+  }
+
+  [data-theme="dark"] .math-theorem-header {
+    color: #fe8d59; /* Keep orange header in dark mode */
+  }
+
+  [data-theme="dark"] .math-theorem-header .theorem-name {
+    color: var(--fg, #e5e5e5);
+  }
+
+  [data-theme="dark"] .math-theorem-content {
+    color: var(--fg, #e5e5e5);
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Auto-number theorems
+    var theorems = document.querySelectorAll(".math-theorem");
+    theorems.forEach(function (theorem, index) {
+      var counter = theorem.querySelector(".theorem-counter");
+      if (counter) {
+        counter.textContent = index + 1;
+      }
+    });
+  });
+</script>

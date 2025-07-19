@@ -20,11 +20,11 @@ It seems that High-School children ([[https://www.reddit.com/r/math/comments/7q5
 #+BEGIN_CENTER
 #+HTML: <div style="display: flex; align-items: center; justify-content: center; gap: 20px;">
 #+HTML:   <div style="text-align: center; display: flex; flex-direction: column; align-items: center;">
-#+HTML:   <a href="https://abaj.ai/projects/mathematics/analysis/real/baby-rudin"><img width="250px" class="lateximage" src="{{< cwd >}}baby-rudin.jpg"><div class="caption">Baby Rudin</div></a>
+#+HTML:   <a href="{{< cwd >}}/fomin"><img width="250px" class="lateximage" src="{{< cwd >}}fomin.jpg"><div class="caption">Fomin</div></a>
 #+HTML:   </div>
-#+HTML:   <div style="font-size: 2em; display: flex; align-items: center;">→</div>
+#+HTML:   <div style="font-size: 2em; display: flex; align-items: center;"> </div>
 #+HTML:   <div style="text-align: center; display: flex; flex-direction: column; align-items: center;">
-#+HTML:   <a href="https://abaj.ai/projects/mathematics/analysis/real/fomin"><img width="250px" class="lateximage" src="{{< cwd >}}fomin.jpg"><div class="caption">Fomin</div></a>
+#+HTML:   <a href="{{< cwd >}}/baby-rudin"><img width="250px" class="lateximage" src="{{< cwd >}}baby-rudin.jpg"><div class="caption">Baby Rudin</div></a>
 #+HTML:   </div>
 #+HTML: </div>
 #+END_CENTER

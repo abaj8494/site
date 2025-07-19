@@ -1,35 +1,3 @@
 <!-- Popup functionality -->
 <link rel="stylesheet" href="/css/popup.css" />
 <script src="/js/popup.js" defer></script>
-
-<!-- Debug script to verify popup initialization -->
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    console.log(
-      "%c📋 popup-scripts.html loaded and running",
-      "color: purple; font-weight: bold",
-    );
-
-    // Check if popup.js is loaded after a short delay
-    setTimeout(() => {
-      if (window.Popups) {
-        console.log(
-          "%c✅ Popup system detected in global scope",
-          "color: green; font-weight: bold",
-        );
-      } else {
-        console.warn(
-          "%c❌ Popup system not found in global scope!",
-          "color: red; font-weight: bold",
-        );
-        console.log("Attempting to verify if script element exists:");
-        const scriptElement = document.querySelector('script[src*="popup.js"]');
-        console.log(
-          scriptElement
-            ? "✅ popup.js script tag found in DOM"
-            : "❌ popup.js script tag not found in DOM",
-        );
-      }
-    }, 1000);
-  });
-</script>

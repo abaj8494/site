@@ -1,34 +1,22 @@
-<!-- layouts/partials/tikzjax.html -->
-{{ if or .Params.tikzjax .Site.Params.tikzjax }}
-  <!-- Link TikZJax CSS -->
-  <link
-    rel="stylesheet"
-    type="text/css"
-    href="{{ "https://tikzjax.com/v1/fonts.css" }}"
-  />
+<!-- tikzjax.html -->
+{{ if .Site.Params.tikzjax }}
+  <link rel="stylesheet" type="text/css" href="/js/tikzjax/tikzjax.css" />
+  <script src="/js/tikzjax/tikzjax.js"></script>
 
-  <!-- Load TikZJax JavaScript -->
-  <script src="{{ "https://tikzjax.com/v1/tikzjax.js" }}"></script>
-
-  <!-- Standard TikZJax initialization -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      // Basic initialization targeting default script tags
-      // You might need to adjust selectors if your .org file uses different types
-      try {
-        window
-          .BoxJax(document)
-          .then(() => {
-            console.log("TikZJax official initialized successfully.");
-          })
-          .catch((error) => {
-            console.error(
-              "TikZJax official initialization failed:",
-              error,
-            );
-          });
-      } catch (e) {
-        console.error("Error calling TikZJax:", e);
+      // Check if TikZJax is loaded successfully
+      if (typeof window.tikzjax !== "undefined") {
+        // Process TikZ diagrams immediately after DOM is loaded
+        if (typeof window.tikzjax.process === "function") {
+          window.tikzjax.process();
+        } else {
+          // For older versions or different TikZJax implementations
+          // Force re-processing after a slight delay
+          setTimeout(() => {
+            window.tikzjax.process();
+          }, 100);
+        }
       }
     });
   </script>

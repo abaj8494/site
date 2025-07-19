@@ -1,0 +1,8 @@
++++
+title = "chapter 2: how the backpropagation algorithm works"
+math = "true"
+toc = "true"
++++
+
+
+

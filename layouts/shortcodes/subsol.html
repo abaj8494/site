@@ -1,0 +1,45 @@
+<!-- Mathematical Sub-Solution shortcode -->
+<div class="math-subsolution">
+  <div class="math-subsolution-header">
+    <strong>Solution (<span class="subsolution-counter"></span>):</strong>
+  </div>
+  <div class="math-subsolution-content">
+    {{ .Inner | markdownify }}
+  </div>
+</div>
+
+<style>
+  .math-subsolution {
+    margin: 0.5rem 0 0.5rem 3rem;
+    padding: 0;
+    background: transparent;
+    border: none;
+  }
+
+  .math-subsolution-header {
+    font-weight: bold;
+    color: var(--info, #6c757d);
+    margin-bottom: 0.25rem;
+    font-family: var(--font-serif);
+    font-size: 0.9rem;
+  }
+
+  .math-subsolution-content {
+    color: var(--fg, #333);
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
+
+  .math-subsolution-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Dark theme support */
+  [data-theme="dark"] .math-subsolution-content {
+    color: var(--fg, #e5e5e5);
+  }
+
+  [data-theme="dark"] .math-subsolution-header {
+    color: var(--info, #9ca3af);
+  }
+</style>
