@@ -1,7 +1,7 @@
 baseURL = "https://abaj.ai"
 copyright = "© 2025 Aayush Bajaj"
 title = "Aayush Bajaj's Augmenting Infrastructure"
-description = "This is the Augmenting Infrastructure of Aayush Bajaj. Powered by Emacs, the content herein is mathematical, scientific and aesthetic; both in the divine and phenomenal sense of the word."
+description = "This knowledge garden is my Augmenting Infrastructure. It is the spindle of my knowledge and a chronicle of self-actualisation."
 pagination.pagerSize = 10
 enableRobotsTXT = true
 enableGitInfo = true

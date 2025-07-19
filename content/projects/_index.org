@@ -212,7 +212,7 @@ Furthermore, many of the tags point you to the [[https://github.com/abaj8494/10k
 :PROPERTIES:
 :CUSTOM_ID: theory
 :END:
-- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ml/theory/backprop][Backpropagation]] {{< tags-inline "projects/ml/theory/backprop" >}}
+- @@html:<input type="checkbox" checked class="refactor"/>@@ [[/projects/ml/theory/backprop][Backpropagation]] {{< tags-inline "projects/ml/theory/backprop" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ml/theory/cross-val][Cross Validation]] {{< tags-inline "projects/ml/theory/cross-val" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ml/theory/no-free-lunch][No Free Lunch Theorem]] {{< tags-inline "projects/ml/theory/no-free-lunch" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ml/theory/curse-dim][Curse of Dimensionality]] {{< tags-inline "projects/ml/theory/curse-dim" >}}
@@ -220,6 +220,7 @@ Furthermore, many of the tags point you to the [[https://github.com/abaj8494/10k
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ml/theory/perf-metrics][Performance Metrics]] {{< tags-inline "projects/ml/theory/perf-metrics" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ml/theory/loss-fns][Loss Functions]] {{< tags-inline "projects/ml/theory/loss-fns" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ml/theory/kernel-methods][Kernel Methods]] {{< tags-inline "projects/ml/theory/kernel-methods" >}}
+- @@html:<input type="checkbox" checked class="archived"/>@@ [[/projects/ml/theory/optimisers][Optimisers]] {{< tags-inline "projects/ml/theory/optimisers" >}}
 
 *** [[/projects/ml/supervised][Supervised Learning]]
 :PROPERTIES:

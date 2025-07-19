@@ -58,3 +58,6 @@
 [submodule "static/code/bytelocker"]
 	path = static/code/bytelocker
 	url = https://github.com/abaj8494/bytelocker
+[submodule "static/code/computer-vision"]
+	path = static/code/computer-vision
+	url = https://github.com/abaj8494/computer-vision

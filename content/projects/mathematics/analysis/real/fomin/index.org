@@ -1,0 +1,125 @@
++++
+title = "Introductory Real Analysis"
+toc = "true"
+math = "true"
+tags = ["solutions","textbook","math", "analysis"]
+clocal = "true"
+date = 2025-07-20T02:42:32+11:00
++++
+
+* Set Theory
+
+** Sets and Functions
+
+{{< mprob >}} Prove that if $A\cup B = A$ and $A \cap B = A$, then $A = B$.
+{{< /mprob >}}
+{{< msol >}}
+{{< /msol >}}
+
+{{< mprob >}} Show that in general $(A-B)\cup B \neq A$.
+{{< /mprob >}}
+{{< msol >}}
+{{< /msol >}}
+
+{{< mprob >}} Let $A = {2,4,...,2n,...}$ and $B = {3,6,...,3n,...}$. Find $A\cap B$ and $A-B$
+{{< /mprob >}}
+{{< msol >}}
+{{< /msol >}}
+
+{{< mprob >}} Prove that
+{{< subprob >}}$(A-B)\cap C = (A\cap C) - (B\cap C)$
+{{< /subprob >}}
+{{< subsol >}}
+{{< /subsol >}}
+{{< subprob >}}$A\Delta B = (A\cup B) - (A\cap B)$
+{{< /subprob >}}
+{{< subsol >}}
+{{< /subsol >}}
+{{< /mprob >}}
+
+{{< mprob >}} Prove that
+\[\Big \cup_\alpha A_alpha - \Big \cup_\alpha B_\alpha \subset \Big \cup (A_\alpha - B_alpha)\]
+{{< /mprob >}}
+{{< msol >}}
+{{< /msol >}}
+
+{{< mprob >}} Let $A_n$ be the set of all positive integers divisible by $n$. Find the sets
+{{< subprob >}}\[\cup_{n=2}^\infty A_n\]
+{{< /subprob >}}
+{{< subsol >}}
+{{< /subsol >}}
+{{< subprob >}}\[\cap_{n=2}^\infty A_n\]
+{{< /subprob >}}
+{{< subsol >}}
+{{< /subsol >}}
+{{< /mprob >}}
+
+{{< mprob >}} Find
+{{< subprob >}}\[\cup_{n=1}^\infty [a+\frac{1}{n}, b-\frac{1}{n}]\]
+{{< /subprob >}}
+{{< subsol >}}
+{{< /subsol >}}
+{{< subprob >}}\[\cap_{n=1}^\infty [a-\frac{1}{n}, b+\frac{1}{n}]\]
+{{< /subprob >}}
+{{< subsol >}}
+{{< /subsol >}}
+{{< /mprob >}}
+
+{{< mprob >}} Let $A_\alpha$ be the set of points lying on the curve \[y = \frac{1}{x^\alpha}\quad(0<x<\infty).\] What is \(\cap_{\alpha\geq 1} A_\alpha\)?
+{{< /mprob >}}
+{{< msol >}}
+{{< /msol >}}
+
+{{< mprob >}} Let $y = f(x) = <x>$ for all real x, where $<x>$ is the fractional part of $x$. Prove that every closed interval of length 1 has the same image under $f$. What is this image? Is $f$ one-to-one? What is the preimage of the interval $\frac{1}{4}\leq y\leq\frac{3}{4}$? Partition the real line into classes of points with the same image.
+{{< /mprob >}}
+{{< msol >}}
+{{< /msol >}}
+
+{{< mprob >}} Given a set $M$, let $\mathfrak{R}$ be the set of all ordered pairs on the form $(a,a)$ with $a\in M$, and let $a R b$ if and only if $(a,b)\in\mathfrak{R}$. Interpret the relation $R$.
+{{< /mprob >}}
+{{< msol >}}
+{{< /msol >}}
+
+{{< mprob >}} Give an example of a binary relation which is
+{{< subprob >}} Reflexive and symmetric, but not transitive
+{{< /subprob >}}
+{{< subsol >}}
+{{< /subsol >}}
+{{< subprob >}} Reflexive, but neither symmetric nor transitive
+{{< /subprob >}}
+{{< subsol >}}
+{{< /subsol >}}
+{{< subprob >}} Symmetric, but neither reflexive nor transitive
+{{< /subprob >}}
+{{< subsol >}}
+{{< /subsol >}}
+{{< subprob >}} Transitive, but neither reflexive nor symmetric
+{{< /subprob >}}
+{{< subsol >}}
+{{< /subsol >}}
+{{< /mprob >}}
+
+** Equivalence of Sets. The Power of a Set
+
+** Ordered Sets and Ordinal Numbers
+
+** Systems of Sets
+
+* Metric Spaces
+
+** Basic Concepts
+
+** Convergence. Open and Closed Sets
+
+** Complete Metric Spaces
+
+** Contraction Mappings
+
+* Topological Spaces
+
+** Basic Concepts
+
+** Compactness
+
+** Real Functions on Metric and Topological Spaces
+

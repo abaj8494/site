@@ -1,0 +1,92 @@
++++
+title = "Real Analysis"
+tags = ["limits", "continuity", "topology"]
+toc = "true"
+math = "true"
+clocal = "true"
+date = 2025-07-20T02:16:32+11:00
++++
+
+I am finding Real Analysis to be more difficult than any other mathematics that I have studied before. I can seem to verify the truth of statements because they /seem/ right; but I am having a difficult time producing rigorous and correct proofs.
+
+It seems that High-School children ([[https://www.reddit.com/r/math/comments/7q5ckm/anyone_have_challenging_real_analysis_problems/][on the internet]]) are able to self-study Fomin with success. Bitterly, we remind ourselves:
+
+#+BEGIN_QUOTE
+"Comparison is the thief of Joy"---Theodore Roosevelt (probably)
+#+END_QUOTE
+
+* Exercises
+
+#+BEGIN_CENTER
+#+HTML: <div style="display: flex; align-items: center; justify-content: center; gap: 20px;">
+#+HTML:   <div style="text-align: center; display: flex; flex-direction: column; align-items: center;">
+#+HTML:   <a href="https://abaj.ai/projects/mathematics/analysis/real/baby-rudin"><img width="250px" class="lateximage" src="{{< cwd >}}baby-rudin.jpg"><div class="caption">Baby Rudin</div></a>
+#+HTML:   </div>
+#+HTML:   <div style="font-size: 2em; display: flex; align-items: center;">→</div>
+#+HTML:   <div style="text-align: center; display: flex; flex-direction: column; align-items: center;">
+#+HTML:   <a href="https://abaj.ai/projects/mathematics/analysis/real/fomin"><img width="250px" class="lateximage" src="{{< cwd >}}fomin.jpg"><div class="caption">Fomin</div></a>
+#+HTML:   </div>
+#+HTML: </div>
+#+END_CENTER
+
+* Results
+
+** Set Theory
+{{< collapse-local folded="true" >}}
+
+{{< mdef "Axiom of Choice (AC)" >}}
+A Cartesian product of non-empty sets is non-empty.
+{{< /mdef >}}
+
+{{< mdef "Function" >}}\(f: A\rightarrow B\)
+\[f \subseteq A \times B \iff \forall x \in A, \exists !y \in B \text{s.t} (x,y) \in f\]
+{{< /mdef >}}
+
+{{< mdef "Injective (one-to-one)" >}}\(f: A\hookrightarrow B\)
+\[\forall x_1, x_2 \in A, f(x_1) = f(x_2) \implies x_1 = x_2 \]
+{{< /mdef >}}
+
+{{< mdef "Surjective (onto)" >}}\(f: A\twoheadrightarrow B\)
+\[\forall y \in B, \exists x \in A \mid f(x) = y\]
+{{< /mdef >}}
+
+{{< mdef "Bijective" >}}(injective *and* surjective)
+\[\forall y \in B, \exists !x \in A \mid f(x) = y\]
+{{< /mdef >}}
+
+{{< mdef "Cardinality" >}}
+We say that two sets $A$ and $B$ have the same cardinality if there is a *bijection* $f: A\rightarrow B$; we then write $A\sim B$, which is the same as $|A| = |B|$.
+
+Also, if there is an *injective* function $f:A\rightarrow B$, we say $|A|\leq |B|$. Or, equivalently, a *surjection* from $f: B\rightarrow A$.
+{{< /mdef >}}
+
+{{< mthm "Cantor" >}}
+Let $S$ be any set, and let $\mathcal{P}(S)$ be its power set. Then $S \not\sim \mathcal{P}(S)$.
+{{< /mthm >}}
+
+{{< mthm "Schroeder-Bernstein" >}}
+Let $A$ and $B$ be sets, and suppose that there exist injective functions $f:A\rightarrow B$ and $g: B\rightarrow A$. Then there exists a bijective function $h:A\rightarrow B$.
+{{< /mthm >}}
+
+{{< mdef "Finiteness" >}}
+A set $S$ is finite $|S| = {1,\ldots,n}$, for some $n\in\mathbb{N}$. Otherwise $S$ is infinite.
+{{< /mdef >}}
+
+{{< mdef "Dedekind-finite" >}}
+A set $S$ is Dedekind-infinite if there is a bijection from $S$ to a proper subset of itself. Otherwise $S$ is Dedekind-finite.
+{{< /mdef >}}
+
+{{< mdef "Countability" >}}
+We say that a set $S$ is countable if $|S| \leq |\mathbb{N}|$. Otherwise $S$ is uncountable. If $S$ is countable and infinite we say that $S$ is countably infinite.
+{{< /mdef >}}
+
+** Metric Spaces
+{{< collapse-local folded="true" >}}
+
+** Sequences and Series of Functions
+{{< collapse-local folded="true" >}}
+
+** Topological Spaces
+{{< collapse-local folded="true" >}}
+
+*** Compactness
