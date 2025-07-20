@@ -60,16 +60,17 @@ document.addEventListener("keydown", (e) => {
     document: {
       id: "id",
       index: [
-        { field: "title" },
-        { field: "tags" },
-        { field: "content" },
+        "title",
+        "tags", 
+        "content",
+        "filename",
         {
           field: "date",
           tokenize: "strict",
           encode: false,
         },
       ],
-      store: ["title", "summary", "date", "permalink"],
+      store: ["title", "summary", "date", "permalink", "filename"],
     },
   });
 
@@ -88,8 +89,7 @@ document.addEventListener("keydown", (e) => {
     // Run search
     const maxResultsCount = {{ $.Site.Params.flexsearch.maxResultsCount | default 5 }};
     const searchText = this.value;
-    const searchResults = index.search({
-      query: searchText,
+    const searchResults = index.search(searchText, {
       limit: maxResultsCount,
       enrich: true,
     });
@@ -126,7 +126,18 @@ document.addEventListener("keydown", (e) => {
       suggestion.appendChild(title);
 
       const summary = document.createElement("div");
-      summary.textContent = searchResult.summary;
+      // Truncate summary if it's still too long after server-side processing
+      const maxSummaryLength = 200;
+      let displaySummary = searchResult.summary.length > maxSummaryLength 
+        ? searchResult.summary.substring(0, maxSummaryLength - 3) + "..."
+        : searchResult.summary;
+      
+      // Add filename if it exists and is not empty
+      if (searchResult.filename && searchResult.filename.trim() !== "") {
+        displaySummary += ` • ${searchResult.filename}`;
+      }
+      
+      summary.textContent = displaySummary;
       summary.classList.add("search__suggestion-summary");
       suggestion.appendChild(summary);
 

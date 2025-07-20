@@ -1,6 +1,0 @@
-+++
-title = "MinGPT"
-tags = ["andrej-karpathy", "llm", "scratch"]
-+++
-
-ttt

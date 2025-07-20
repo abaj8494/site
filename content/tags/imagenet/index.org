@@ -1,8 +1,0 @@
-+++
-title = "Image NET"
-categories = ["ai", "ml", "supervised", "images"]
-tags = ["classification", "resnet-50"]
-+++
-
-
-

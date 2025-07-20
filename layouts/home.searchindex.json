@@ -1,6 +1,15 @@
 {{- $pages := where .Site.Pages "Section" "in" .Site.Params.mainSections -}}
 {{- $searchIndex := slice -}}
 {{- range $index, $element := $pages -}}
+  {{- $cleanContent := .Plain | replaceRE `\\\([^)]*\\\)` "" | replaceRE `\\\[[^\]]*\\\]` "" | replaceRE `\\begin\{[^}]*\}[^\\]*\\end\{[^}]*\}` "" | replaceRE `\$[^$]*\$` "" | replaceRE `\\[a-zA-Z]+\{[^}]*\}` "" | replaceRE `[{}\\$]` "" | replaceRE `\s+` " " | strings.TrimSpace -}}
+  {{- $cleanSummary := .Summary | plainify | replaceRE `\\\([^)]*\\\)` "" | replaceRE `\\\[[^\]]*\\\]` "" | replaceRE `\\begin\{[^}]*\}[^\\]*\\end\{[^}]*\}` "" | replaceRE `\$[^$]*\$` "" | replaceRE `\\[a-zA-Z]+\{[^}]*\}` "" | replaceRE `[{}\\$]` "" | replaceRE `\s+` " " | strings.TrimSpace -}}
+  {{- if gt (len $cleanSummary) 150 -}}
+    {{- $cleanSummary = printf "%s..." (substr $cleanSummary 0 147) -}}
+  {{- end -}}
+  {{- $filename := "" -}}
+  {{- with .File -}}
+    {{- $filename = .Path -}}
+  {{- end -}}
   {{- $searchIndex = $searchIndex | append 
     (dict 
       "id" $index
@@ -8,8 +17,9 @@
       "date" (.Date.Format "2006-01-02")
       "permalink" .RelPermalink
       "tags" (.Params.tags | default slice)
-      "content" .Plain
-      "summary" (.Summary | plainify)
+      "content" $cleanContent
+      "summary" $cleanSummary
+      "filename" $filename
     )
   -}}
 {{- end -}}

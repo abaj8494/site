@@ -4,5 +4,4 @@ categories = ["ai", "ml", "supervised"]
 tags = ["classification", "multiclass", "cnn", "svm"]
 +++
 
-[[https://github.com/abaj8494/10khrs-ai-ml-dl/blob/main/projects/monster-svm/all-features.py][10khrs-repo]]
-
+#+INCLUDE: "/code/10khrs-ai-ml-dl/projects/monster-svm/all-features.py" src python

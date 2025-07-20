@@ -3,3 +3,5 @@ title = "Wine Quality"
 categories = ["ai", "ml", "supervised"]
 tags = ["ensembles", "gradient-boosting"]
 +++
+
+{{< embed-notebook "/code/10khrs-ai-ml-dl/problems/1-supervised-learning/classification/multiclass/wine.html" >}}

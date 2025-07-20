@@ -2,9 +2,14 @@
 title = "Fashion MNIST"
 categories = ["ai", "ml", "supervised"]
 tags = ["classification", "multiclass", "random-forest", "mnist"]
+clocal = "true"
+toc = "true"
 +++
 
-[[https://github.com/abaj8494/10khrs-ai-ml-dl/blob/main/problems/4-deep-learning/cnn/fmnist.ipynb][10khrs-repo]]
+* Embedded Notebook
+
+{{< collapse-local folded="true" >}}
+{{< embed-notebook "/code/10khrs-ai-ml-dl/problems/4-deep-learning/cnn/fmnist.html" >}}
 
 * History
 

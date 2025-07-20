@@ -5,8 +5,14 @@ tags = ["classification", "logistic-regression", "softmax", "lecun", "cnn", "ran
 toc = "true"
 math = "true"
 layout = "custom-list"
+clocal = "true"
 +++
 #+PROPERTY: header-args :tangle "~/Documents/site/static/code/10k-hrs-ml/PORTFOLIO/1-supervised-learning/classification/mnist.py"
+
+* An Embedded Notebook
+
+{{< collapse-local folded="true" >}}
+{{< embed-notebook "/code/10khrs-ai-ml-dl/problems/4-deep-learning/mlp/mnist.html" >}}
 
 * History
 

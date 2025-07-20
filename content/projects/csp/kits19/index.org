@@ -2,11 +2,11 @@
 title = "KiTS19 Grand Challenge: Kidney and Kidney Tumour Segmentation"
 categories = ["ai", "ml", "dl", "supervised"]
 tags = ["unet", "nnunet", "medical", "semantic-segmentation", "segmentation"]
+clocal = "true"
 +++
 
 We attempted this challenge as part of our Deep Learning and Neural Networks Major Project.
 
-The notebook can be found at [[/code/10khrs-ai-ml-dl/projects/kits19/report.html]], which contains implementation details of U-Net, SamNet, VGG-Net and nnU-Net.
 
 #+BEGIN_CENTER
 #+ATTR_HTML: :width 300px
@@ -20,13 +20,27 @@ The notebook can be found at [[/code/10khrs-ai-ml-dl/projects/kits19/report.html
 [[/code/10khrs-ai-ml-dl/projects/kits19/sagittal.gif]]
 #+END_CENTER
 
-The corresponding report, containing a literature review along with other scientific details is embedded below:
+
+* Notebook
+
+{{< collapse-local folded="true" >}}
+
+Implementation details of U-Net, SamNet, VGG-Net and nnU-Net:
+{{< embed-notebook "/code/10khrs-ai-ml-dl/projects/kits19/report.html" >}}
+
+
+* Report
+{{< collapse-local folded="true" >}}
+
+The corresponding report contains a literature review along with other scientific details. We were restricted in length here, but not in the notebook above.
 
 {{< embed-pdf url="/code/10khrs-ai-ml-dl/projects/kits19/report.pdf" hidePaginator="true">}}
 
-We scored 97% as a group in this university project, but nonetheless, I was disappointed with my Mean Sørensen–Dice score of just 0.79151. As such, I continued to train progressively more powerful 3D models on the Volumetric CT scans with a HPC [fn:1].
+As a group, we scored 97% (assignment score) in this university project, but nonetheless, I was disappointed with my Mean Sørensen–Dice score of just 0.79151. As such, I continued to train progressively more powerful 3D models on the Volumetric CT scans with a HPC [fn:1].
 
 Eventually I improved my Mean Kidney Tumor Dice Score to 0.8950 by January and 0.9129 by April. In the end my Kidney Segmentation capabilities were exceptionally good at 0.9786, however the "Kidney Tumour" segmentation score of 0.8472 anchored my final mean score.
+
+* Result:
 
 #+CAPTION: more details, along with the leaderboards can be at the [[https://kits19.grand-challenge.org/evaluation/challenge/leaderboard/][GrandChallenge]] posting.
 [[/code/10khrs-ai-ml-dl/projects/kits19/results.png]]

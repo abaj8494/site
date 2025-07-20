@@ -33,6 +33,30 @@ video {
   max-width: 100%;
 }
 
+iframe {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--bg1);
+  background-color: var(--bg);
+}
+
+iframe.jupyter-notebook {
+  aspect-ratio: 8.5 / 11;
+}
+
+@media (max-width: 649px) {
+  iframe.jupyter-notebook {
+    aspect-ratio: 3 / 5;
+  }
+}
+
+.notebook-embed-wrapper {
+  margin: 2rem 0;
+  border-radius: 0.2rem;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
 figure {
   display: inline-block;
 }

@@ -3,3 +3,5 @@ title = "Email SPAM Classifier"
 categories = ["supervised"]
 tags = ["classification", "naive-bayes"]
 +++
+
+{{< embed-notebook "/code/10khrs-ai-ml-dl/problems/1-supervised-learning/classification/binary/spam-nb.html" >}}

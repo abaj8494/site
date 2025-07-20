@@ -1,0 +1,11 @@
+{{- $path := .Get 0 -}}
+{{- $title := .Get "title" | default "Jupyter Notebook" -}}
+<div class="notebook-embed-wrapper">
+  <iframe
+    src="{{ $path }}"
+    width="100%"
+    class="jupyter-notebook"
+    title="{{ $title }}"
+    loading="lazy"
+  ></iframe>
+</div>

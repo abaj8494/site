@@ -284,3 +284,4 @@ Transitive, but neither reflexive nor symmetric
   \node at (0,-2.2) {\(A \Delta B = (A - B) \cup (B - A)\)};
 \end{tikzpicture}
 {{< /tikz >}}
+

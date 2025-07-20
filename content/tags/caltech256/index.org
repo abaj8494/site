@@ -1,0 +1,9 @@
++++
+title = "Caltech 256"
+categories = ["ai", "ml", "supervised", "images"]
+tags = ["classification", "resnet-50", "transfer-learning"]
++++
+
+{{< embed-notebook "/code/10khrs-ai-ml-dl/problems/3-transfer-learning/resnet50.html" >}}
+
+
