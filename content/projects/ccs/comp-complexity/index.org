@@ -9,9 +9,9 @@ math = "true"
 
 The Computational Zoo is far more subtle and complex than I thought it was.
 
-#+CAPTION: Computational Zoo
-#+ATTR_HTML: :id zoo :class latex-image
 #+BEGIN_CENTER
+#+CAPTION: Computational Zoo
+#+ATTR_HTML: :id zoo :class lateximage
 [[{{< cwd >}}zoo.svg]]
 #+END_CENTER
 

@@ -98,7 +98,7 @@ b_l \rightarrow b_l' &= b_l - \frac{\eta}{m}\sum_j\cfrac{\partial C_{x_j}}{\part
 
 * implementation
 
-#+INCLUDE: "/code/10khrs-ai-ml-dl/learning/nielsen-dl/ch1-network.py" src python
+#+INCLUDE: "/code/10khrs-ai-ml-dl/learning/nielsen-dl/network.py" src python
 
 #+INCLUDE: "/code/10khrs-ai-ml-dl/learning/nielsen-dl/mnist_loader.py" src python
 

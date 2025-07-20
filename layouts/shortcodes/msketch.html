@@ -1,0 +1,60 @@
+<!-- Mathematical Sketch shortcode -->
+{{ $sketchName := .Get 0 }}
+<div class="math-sketch">
+  <div class="math-sketch-header">
+    <strong>Sketch</strong>
+    {{ if $sketchName }}
+      <span class="sketch-name">({{ $sketchName }})</span>
+    {{ end }}
+  </div>
+  <div class="math-sketch-content">
+    {{ .Inner | .Page.RenderString }}
+  </div>
+</div>
+
+<style>
+  .math-sketch {
+    margin: 1rem 0;
+    padding: 1rem;
+    border: 1px solid var(--bg3, #d4d4d4);
+    border-left: 3px solid var(--warning, #f39c12);
+    background: var(--bg0, #ffffff);
+    border-radius: 4px;
+  }
+
+  .math-sketch-header {
+    font-weight: bold;
+    color: var(--warning, #f39c12);
+    margin-bottom: 0.5rem;
+    font-family: var(--font-serif);
+  }
+
+  .sketch-name {
+    color: var(--fg, #333);
+    font-weight: normal;
+    margin-left: 0.25rem;
+  }
+
+  .math-sketch-content {
+    color: var(--fg, #333);
+    line-height: 1.6;
+  }
+
+  .math-sketch-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Dark theme support */
+  [data-theme="dark"] .math-sketch {
+    border-color: var(--bg3, #555);
+    background: var(--bg0, #1a1a1a);
+  }
+
+  [data-theme="dark"] .sketch-name {
+    color: var(--fg, #e5e5e5);
+  }
+
+  [data-theme="dark"] .math-sketch-content {
+    color: var(--fg, #e5e5e5);
+  }
+</style>

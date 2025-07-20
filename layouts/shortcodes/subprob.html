@@ -1,10 +1,14 @@
 <!-- Mathematical Sub-Problem shortcode -->
+{{ $subprobName := .Get 0 }}
 <div class="math-subproblem">
   <div class="math-subproblem-header">
     <strong>(<span class="subproblem-counter"></span>)</strong>
+    {{ if $subprobName }}
+      <span class="subproblem-name">({{ $subprobName }})</span>
+    {{ end }}
   </div>
   <div class="math-subproblem-content">
-    {{ .Inner | markdownify }}
+    {{ .Inner | .Page.RenderString }}
   </div>
 </div>
 
@@ -24,6 +28,12 @@
     display: inline;
   }
 
+  .subproblem-name {
+    color: var(--fg, #333);
+    font-weight: normal;
+    margin-left: 0.25rem;
+  }
+
   .math-subproblem-content {
     color: var(--fg, #333);
     line-height: 1.6;
@@ -37,6 +47,10 @@
 
   /* Dark theme support */
   [data-theme="dark"] .math-subproblem-content {
+    color: var(--fg, #e5e5e5);
+  }
+
+  [data-theme="dark"] .subproblem-name {
     color: var(--fg, #e5e5e5);
   }
 </style>
@@ -135,22 +149,19 @@
           // Instead of just styling, physically move sub-elements into the parent problem
 
           subElements.forEach(function (element, index) {
-            // Remove the element from its current position
-            var elementClone = element.cloneNode(true);
+            // Remove element from current position but don't clone - just move it
             element.parentNode.removeChild(element);
 
-            // Handle numbering first
-            if (elementClone.classList.contains("math-subproblem")) {
-              var counter = elementClone.querySelector(".subproblem-counter");
-
+            // Handle numbering directly on the original element
+            if (element.classList.contains("math-subproblem")) {
+              var counter = element.querySelector(".subproblem-counter");
               if (counter) {
                 var letter = String.fromCharCode(97 + subCounter); // a, b, c...
                 counter.textContent = letter;
                 subCounter++;
               }
-            } else if (elementClone.classList.contains("math-subsolution")) {
-              var counter = elementClone.querySelector(".subsolution-counter");
-
+            } else if (element.classList.contains("math-subsolution")) {
+              var counter = element.querySelector(".subsolution-counter");
               if (counter) {
                 // Use same letter as the previous sub-problem
                 var letter = String.fromCharCode(
@@ -161,37 +172,25 @@
             }
 
             // Clear all existing styles and apply new ones for seamless integration
-            elementClone.style.cssText = "";
-            elementClone.style.setProperty(
-              "background",
-              "transparent",
-              "important",
-            );
-            elementClone.style.setProperty("border", "none", "important");
-            elementClone.style.setProperty("margin", "0", "important");
-            elementClone.style.setProperty("padding", "0.5rem 0", "important");
-            elementClone.style.setProperty(
-              "margin-left",
-              "1.5rem",
-              "important",
-            );
+            element.style.cssText = "";
+            element.style.setProperty("background", "transparent", "important");
+            element.style.setProperty("border", "none", "important");
+            element.style.setProperty("margin", "0", "important");
+            element.style.setProperty("padding", "0.5rem 0", "important");
+            element.style.setProperty("margin-left", "1.5rem", "important");
 
             // Add subtle visual separation for sub-problems only
-            if (elementClone.classList.contains("math-subproblem")) {
-              elementClone.style.setProperty(
+            if (element.classList.contains("math-subproblem")) {
+              element.style.setProperty(
                 "border-top",
                 "1px solid var(--bg2, #e5e5e5)",
                 "important",
               );
-              elementClone.style.setProperty(
-                "padding-top",
-                "0.75rem",
-                "important",
-              );
+              element.style.setProperty("padding-top", "0.75rem", "important");
             }
 
-            // Append directly to the parent problem element
-            problem.appendChild(elementClone);
+            // Append the original element directly to the parent problem
+            problem.appendChild(element);
           });
         }
       });

@@ -4,7 +4,7 @@
     <strong>Solution</strong>
   </div>
   <div class="math-solution-content">
-    {{ .Inner | markdownify }}
+    {{ .Inner | .Page.RenderString }}
   </div>
 </div>
 

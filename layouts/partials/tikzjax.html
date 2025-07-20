@@ -1,23 +1,5 @@
 <!-- tikzjax.html -->
-{{ if .Site.Params.tikzjax }}
-  <link rel="stylesheet" type="text/css" href="/js/tikzjax/tikzjax.css" />
+{{ if or .Params.tikzjax .Site.Params.tikzjax }}
+  <link rel="stylesheet" type="text/css" href="/js/tikzjax/fonts.css" />
   <script src="/js/tikzjax/tikzjax.js"></script>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      // Check if TikZJax is loaded successfully
-      if (typeof window.tikzjax !== "undefined") {
-        // Process TikZ diagrams immediately after DOM is loaded
-        if (typeof window.tikzjax.process === "function") {
-          window.tikzjax.process();
-        } else {
-          // For older versions or different TikZJax implementations
-          // Force re-processing after a slight delay
-          setTimeout(() => {
-            window.tikzjax.process();
-          }, 100);
-        }
-      }
-    });
-  </script>
 {{ end }}

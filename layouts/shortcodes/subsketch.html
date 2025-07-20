@@ -1,0 +1,69 @@
+<!-- Mathematical Sub-Sketch shortcode -->
+{{ $sketchName := .Get 0 }}
+<div class="math-subsketch">
+  <div class="math-subsketch-header">
+    <strong>Sketch (<span class="subsketch-counter"></span>):</strong>
+    {{ if $sketchName }}
+      <span class="subsketch-name">({{ $sketchName }})</span>
+    {{ end }}
+  </div>
+  <div class="math-subsketch-content">
+    {{ .Inner | .Page.RenderString }}
+  </div>
+</div>
+
+<style>
+  .math-subsketch {
+    margin: 0.5rem 0 0.5rem 3rem;
+    padding: 0;
+    background: transparent;
+    border: none;
+  }
+
+  .math-subsketch-header {
+    font-weight: bold;
+    color: var(--warning, #f39c12);
+    margin-bottom: 0.25rem;
+    font-family: var(--font-serif);
+    font-size: 0.9rem;
+  }
+
+  .subsketch-name {
+    color: var(--fg, #333);
+    font-weight: normal;
+    margin-left: 0.25rem;
+  }
+
+  .math-subsketch-content {
+    color: var(--fg, #333);
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
+
+  .math-subsketch-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Dark theme support */
+  [data-theme="dark"] .math-subsketch-content {
+    color: var(--fg, #e5e5e5);
+  }
+
+  [data-theme="dark"] .math-subsketch-header {
+    color: var(--warning, #f39c12);
+  }
+
+  [data-theme="dark"] .subsketch-name {
+    color: var(--fg, #e5e5e5);
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Auto-numbering for sub-sketches
+    var subsketches = document.querySelectorAll(".subsketch-counter");
+    subsketches.forEach(function (counter, index) {
+      counter.textContent = String.fromCharCode(97 + index); // a, b, c, etc.
+    });
+  });
+</script>

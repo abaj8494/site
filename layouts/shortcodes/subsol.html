@@ -4,7 +4,7 @@
     <strong>Solution (<span class="subsolution-counter"></span>):</strong>
   </div>
   <div class="math-subsolution-content">
-    {{ .Inner | markdownify }}
+    {{ .Inner | .Page.RenderString }}
   </div>
 </div>
 

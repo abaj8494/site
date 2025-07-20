@@ -61,3 +61,6 @@
 [submodule "static/code/100-days-js"]
 	path = static/code/100-days-js
 	url = https://github.com/abaj8494/100-days-js
+[submodule "static/code/tools"]
+	path = static/code/tools
+	url = https://github.com/abaj8494/tools

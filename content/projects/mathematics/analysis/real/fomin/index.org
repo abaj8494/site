@@ -4,8 +4,11 @@ toc = "true"
 math = "true"
 tags = ["solutions","textbook","math", "analysis"]
 clocal = "true"
+tikzjax = "true"
 date = 2025-07-20T02:42:32+11:00
 +++
+
+#+MACRO: tikz #+BEGIN_EXPORT html@@html:<script type="text/tikz">@@$1@@html:</script>@@#+END_EXPORT
 
 * Set Theory
 
@@ -17,20 +20,33 @@ date = 2025-07-20T02:42:32+11:00
 {{< mprob >}} Prove that if $A\cup B = A$ and $A \cap B = A$, then $A = B$.
 {{< /mprob >}}
 {{< msol >}}
+To show $A=B$, show $A\subseteq B$ and $B\subseteq A$. Suppose $x\in B$, then we know by definition that $x\in (A\cup B)$ if $x\in B$ or $x\in A$. Which then implies that $x\in A$ from rule 1. Thus $B\subseteq A$.
+
+Now suppose $x\in A$ which implies $x\in (A\cap B)$ (rule 2). The definition of this *means* that $x\in A$ and $x\in B$. $\therefore x\in A \implies x\in B$, i.e. $A\subseteq B$, so $A=B$.
+
 {{< /msol >}}
 
 {{< mprob >}} Show that in general $(A-B)\cup B \neq A$.
 {{< /mprob >}}
 {{< msol >}}
+This only holds for $B\subseteq A$. We proceed by counterexample.
+
+Let $A={1,2}, B={3,4}$. Then $(A-B) = {1,2}$ and $(A-B)\cup B = {1,2,3,4} \neq {1,2}$.
 {{< /msol >}}
 
 {{< mprob >}} Let $A = {2,4,...,2n,...}$ and $B = {3,6,...,3n,...}$. Find $A\cap B$ and $A-B$
 {{< /mprob >}}
 {{< msol >}}
+$$
+A\cap B = {6n \mid n\in \mathbb{N}}
+$$
+$$
+A - B = {2n \mid n\in \mathbb{N}, 2n \not\in {6m \mid m\in \mathbb{N}}}
+$$
 {{< /msol >}}
 
 {{< mprob >}}
-Prove that
+Prove that:
 {{< /mprob >}}
 
 {{< subprob >}}
@@ -38,13 +54,79 @@ $(A-B)\cap C = (A\cap C) - (B\cap C)$
 {{< /subprob >}}
 
 {{< subsol >}}
+Let $x\in (A-B)\cap C$. 
+Then:
+- $x\in A - B \implies x \in A $ and $x\not \in B$
+- $x\in C$
+So:
+- $x \in A \cap C$
+- Since $x\in C$ and $x\not\in B$, it follows that $x\not\in B \cap C$
+Therefore $x\in (A\cap C)- (B\cap C)$
+
 {{< /subsol >}}
 
-{{< subprob >}}
+{{< subprob "Symmetric Difference" >}}
 $A\Delta B = (A\cup B) - (A\cap B)$
 {{< /subprob >}}
 
 {{< subsol >}}
+Let $x\in A \Delta B$.
+Then: 
+- $x\in A-B \implies x\in A$ and $x\not\in B$
+OR:
+- $x\in B-A \implies x\in B$ and $x\not\in A$
+So 
+- $x\in A$ or $x \in B \implies x\in (A\cup B)$
+- $x \not \in (A\cap B) \implies x\in (A\cap B)^c$
+Therefore
+\[x\in(A\cup B) \cap (A\cap B)^c
+=(A\cup B)- (A\cap B)\]
+
+#+BEGIN_EXPORT html
+<style>
+hr {
+  border: 1px solid black; /* You can adjust the thickness (2px) */
+  width: 100%; /* Or specify a percentage or fixed width */
+  margin: 20px 0; /* Add some margin for spacing */
+  background-color: black
+}
+</style>
+<hr>
+<center>
+<script type="text/tikz">
+\begin{tikzpicture}
+  % Define colors
+  \definecolor{AColor}{RGB}{100, 150, 255}
+  \definecolor{BColor}{RGB}{255, 100, 150}
+  
+  % Draw A - B (left crescent)
+  \begin{scope}
+    \clip (-1,0) circle (1.6cm);
+    \fill[AColor] (-1,0) circle (1.6cm);
+    \fill[white] (1,0) circle (1.6cm);
+  \end{scope}
+  
+  % Draw B - A (right crescent)
+  \begin{scope}
+    \clip (1,0) circle (1.6cm);
+    \fill[BColor] (1,0) circle (1.6cm);
+    \fill[white] (-1,0) circle (1.6cm);
+  \end{scope}
+  
+  % Draw circle borders
+  \draw[thick] (-1,0) circle (1.6cm);
+  \draw[thick] (1,0) circle (1.6cm);
+  
+  % Labels
+  \node at (-1,0) {\(A\)};
+  \node at (1,0) {\(B\)};
+  
+    % Title
+  \node at (0,-2.2) {\(A \Delta B = (A - B) \cup (B - A)\)};
+\end{tikzpicture}
+</script>
+</center>
+#+END_EXPORT
 {{< /subsol >}}
 
 {{< mprob >}} Prove that
@@ -165,3 +247,40 @@ Transitive, but neither reflexive nor symmetric
 
 ** Real Functions on Metric and Topological Spaces
 
+* TikZ Debug Section
+
+**Testing different TikZ approaches:**
+
+1. Direct TikZ (should work):
+{{< tikz >}}
+\begin{tikzpicture}
+  % Define colors
+  \definecolor{AColor}{RGB}{100, 150, 255}
+  \definecolor{BColor}{RGB}{255, 100, 150}
+  
+  % Draw A - B (left crescent)
+  \begin{scope}
+    \clip (-1,0) circle (1.2cm);
+    \fill[AColor] (-1,0) circle (1.2cm);
+    \fill[white] (1,0) circle (1.2cm);
+  \end{scope}
+  
+  % Draw B - A (right crescent)
+  \begin{scope}
+    \clip (1,0) circle (1.2cm);
+    \fill[BColor] (1,0) circle (1.2cm);
+    \fill[white] (-1,0) circle (1.2cm);
+  \end{scope}
+  
+  % Draw circle borders
+  \draw[thick] (-1,0) circle (1.2cm);
+  \draw[thick] (1,0) circle (1.2cm);
+  
+  % Labels
+  \node at (-1.8,0) {\(A\)};
+  \node at (1.8,0) {\(B\)};
+  
+  % Title
+  \node at (0,-2.2) {\(A \Delta B = (A - B) \cup (B - A)\)};
+\end{tikzpicture}
+{{< /tikz >}}
