@@ -39,11 +39,11 @@ A Cartesian product of non-empty sets is non-empty.
 {{< /mdef >}}
 
 {{< mdef "Function" >}}\(f: A\rightarrow B\)
-\[f \subseteq A \times B \iff \forall x \in A, \exists !y \in B \text{s.t} (x,y) \in f\]
+\[f \subseteq A \times B \iff \forall x \in A,\; \exists !y \in B | (x,y) \in f\]
 {{< /mdef >}}
 
 {{< mdef "Injective (one-to-one)" >}}\(f: A\hookrightarrow B\)
-\[\forall x_1, x_2 \in A, f(x_1) = f(x_2) \implies x_1 = x_2 \]
+\[\forall x_1, x_2 \in A,\; f(x_1) = f(x_2) \implies x_1 = x_2 \]
 {{< /mdef >}}
 
 {{< mdef "Surjective (onto)" >}}\(f: A\twoheadrightarrow B\)
@@ -51,7 +51,7 @@ A Cartesian product of non-empty sets is non-empty.
 {{< /mdef >}}
 
 {{< mdef "Bijective" >}}(injective *and* surjective)
-\[\forall y \in B, \exists !x \in A \mid f(x) = y\]
+\[\forall y \in B,\; \exists !x \in A \mid f(x) = y\]
 {{< /mdef >}}
 
 {{< mdef "Cardinality" >}}
