@@ -110,18 +110,15 @@
             (nextElement.classList.contains("math-subproblem") ||
               nextElement.classList.contains("math-subsolution") ||
               nextElement.classList.contains("math-subanswer") ||
-              nextElement.classList.contains("math-solution"))
+              nextElement.classList.contains("math-subhint") ||
+              nextElement.classList.contains("math-subsketch") ||
+              nextElement.classList.contains("math-solution") ||
+              nextElement.classList.contains("math-answer") ||
+              nextElement.classList.contains("math-hint") ||
+              nextElement.classList.contains("math-sketch"))
           ) {
             subElements.push(nextElement);
             nextElement = nextElement.nextElementSibling;
-          } else if (
-            nextElement &&
-            nextElement.classList &&
-            nextElement.classList.contains("math-answer")
-          ) {
-            // Skip regular math-answer elements and keep looking
-            nextElement = nextElement.nextElementSibling;
-            continue;
           } else if (
             nextElement &&
             nextElement.classList &&
@@ -162,13 +159,27 @@
                 counter.textContent = letter;
                 subCounter++;
               }
+            } else if (element.classList.contains("math-subsketch")) {
+              var counter = element.querySelector(".subsketch-counter");
+              if (counter) {
+                var letter = String.fromCharCode(97 + subCounter); // a, b, c...
+                counter.textContent = letter;
+                subCounter++;
+              }
             } else if (
               element.classList.contains("math-subsolution") ||
-              element.classList.contains("math-subanswer")
+              element.classList.contains("math-subanswer") ||
+              element.classList.contains("math-subhint")
             ) {
-              // No counter needed since subsolutions/subanswers don't show numbering
+              // No counter needed since subsolutions/subanswers/subhints don't show numbering
             } else if (element.classList.contains("math-solution")) {
               // Main solutions don't need numbering
+            } else if (element.classList.contains("math-answer")) {
+              // Main answers don't need numbering
+            } else if (element.classList.contains("math-hint")) {
+              // Main hints don't need numbering
+            } else if (element.classList.contains("math-sketch")) {
+              // Main sketches don't need numbering
             }
 
             // Clear all existing styles and apply new ones for seamless integration
@@ -196,13 +207,208 @@
                 "1px solid var(--bg2, #e5e5e5)",
                 "important",
               );
+            } else if (element.classList.contains("math-answer")) {
+              // Main answers need special handling to maintain their appearance
+              element.style.setProperty("margin", "1rem 0 0 0", "important");
+              element.style.setProperty("padding", "1rem", "important");
+              element.style.setProperty(
+                "border-top",
+                "1px solid var(--bg2, #e5e5e5)",
+                "important",
+              );
+            } else if (element.classList.contains("math-hint")) {
+              // Main hints need special handling to maintain their appearance
+              element.style.setProperty("margin", "1rem 0 0 0", "important");
+              element.style.setProperty("padding", "1rem", "important");
+              element.style.setProperty(
+                "border-top",
+                "1px solid var(--bg2, #e5e5e5)",
+                "important",
+              );
+            } else if (element.classList.contains("math-sketch")) {
+              // Main sketches need special handling to maintain their appearance
+              element.style.setProperty("margin", "1rem 0 0 0", "important");
+              element.style.setProperty("padding", "1rem", "important");
+              element.style.setProperty(
+                "border-top",
+                "1px solid var(--bg2, #e5e5e5)",
+                "important",
+              );
             }
 
             // Append the original element directly to the parent problem
             problem.appendChild(element);
           });
+
+          // After moving all elements, re-initialize any shortcode functionality
+          setTimeout(() => {
+            reinitializeMovedContent(problem);
+          }, 50);
         }
       });
     }, 200);
+
+    // Function to re-initialize content that has been moved
+    function reinitializeMovedContent(container) {
+      // Re-initialize margin notes for moved content
+      reinitializeMarginNotes(container);
+
+      // Re-initialize any other shortcode functionality as needed
+      // (can be extended for other shortcodes)
+    }
+
+    // Function to re-initialize margin notes within a container
+    function reinitializeMarginNotes(container) {
+      // Check if margin notes are disabled
+      if (window.marginNotesDisabled) {
+        return;
+      }
+
+      const marginNotesContainer = document.getElementById(
+        "margin-notes-container",
+      );
+      if (!marginNotesContainer) {
+        return;
+      }
+
+      // Find all margin notes within the moved container
+      const movedMarginNotes = container.querySelectorAll(".margin-note");
+      if (movedMarginNotes.length === 0) {
+        return;
+      }
+
+      // Process each moved margin note
+      movedMarginNotes.forEach((note, index) => {
+        const noteContent = note.getAttribute("data-note");
+        if (!noteContent) {
+          return;
+        }
+
+        // Force re-initialization of this specific margin note
+        // by triggering the same logic as the original margin-notes.js
+
+        // Create a unique ID for this note if it doesn't exist
+        let noteId = note.getAttribute("id");
+        if (!noteId) {
+          noteId = `margin-note-moved-${Date.now()}-${index}`;
+          note.setAttribute("id", noteId);
+        }
+
+        // Check if margin note element already exists for this note
+        let marginNoteElement = marginNotesContainer.querySelector(
+          `[data-for="${noteId}"]`,
+        );
+
+        if (!marginNoteElement) {
+          // Create the margin note element in the sidebar only if it doesn't exist
+          marginNoteElement = document.createElement("div");
+          marginNoteElement.className = "margin-note-item";
+          marginNoteElement.innerHTML = noteContent;
+          marginNotesContainer.appendChild(marginNoteElement);
+        }
+
+        // Position the margin note
+        positionMarginNote(note, marginNoteElement);
+        marginNoteElement.setAttribute("data-for", noteId);
+
+        // Remove any existing event listeners first, then set up new ones
+        setupMarginNoteEvents(note, marginNoteElement);
+      });
+    }
+
+    // Function to set up margin note event handlers
+    function setupMarginNoteEvents(note, marginNoteElement) {
+      // Remove ALL existing event listeners by cloning the note element
+      const newNote = note.cloneNode(true);
+      note.parentNode.replaceChild(newNote, note);
+
+      // Set up hover events for the NEW note
+      newNote.addEventListener("mouseenter", () => {
+        marginNoteElement.classList.add("active");
+        newNote.classList.add("active");
+      });
+
+      newNote.addEventListener("mouseleave", () => {
+        marginNoteElement.classList.remove("active");
+        newNote.classList.remove("active");
+      });
+
+      // Set up hover events for the margin note element
+      marginNoteElement.addEventListener("mouseenter", () => {
+        newNote.classList.add("active");
+        marginNoteElement.classList.add("active");
+      });
+
+      marginNoteElement.addEventListener("mouseleave", () => {
+        newNote.classList.remove("active");
+        marginNoteElement.classList.remove("active");
+      });
+
+      // Set up click events for the indicator - this is the crucial part
+      const indicator = newNote.querySelector(".margin-note-indicator");
+      if (indicator) {
+        indicator.addEventListener("click", (e) => {
+          // Toggle the entire margin notes system
+          if (typeof window.toggleMarginNotes === "function") {
+            window.toggleMarginNotes();
+          }
+
+          e.preventDefault();
+          e.stopPropagation();
+        });
+
+        // Make sure it's clickable
+        indicator.style.cursor = "pointer";
+        indicator.style.userSelect = "none";
+        indicator.style.pointerEvents = "auto";
+
+        // Also add hover event to indicator specifically
+        indicator.addEventListener("mouseenter", (e) => {
+          const marginNotesContainer = document.getElementById(
+            "margin-notes-container",
+          );
+          if (
+            marginNotesContainer &&
+            marginNotesContainer.classList.contains("hidden")
+          ) {
+            marginNotesContainer.classList.remove("hidden");
+          }
+          marginNoteElement.classList.add("active");
+          newNote.classList.add("active");
+          e.stopPropagation();
+        });
+      }
+    }
+
+    // Function to position a margin note (improved version)
+    function positionMarginNote(reference, marginNote) {
+      const marginNotesContainer = document.getElementById(
+        "margin-notes-container",
+      );
+      if (!marginNotesContainer) return;
+
+      // Check if we're on mobile view
+      const isMobile = window.innerWidth <= 1024;
+      const isDesktopView =
+        document.documentElement.classList.contains("desktop-view");
+
+      if (isMobile && !isDesktopView) {
+        return; // Don't position on mobile
+      }
+
+      // Use the same positioning logic as the original margin-notes.js
+      const refRect = reference.getBoundingClientRect();
+      const containerRect = marginNotesContainer.getBoundingClientRect();
+
+      // Calculate position accounting for scroll AND the container's position
+      // Add a small offset to align better with the text baseline
+      const topPosition =
+        refRect.top - containerRect.top + marginNotesContainer.scrollTop + 8;
+
+      // Position the margin note
+      marginNote.style.position = "absolute";
+      marginNote.style.top = `${topPosition}px`;
+      marginNote.setAttribute("data-for", reference.id);
+    }
   });
 </script>

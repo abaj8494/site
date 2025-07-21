@@ -3,6 +3,12 @@
  */
 
 document.addEventListener("DOMContentLoaded", function () {
+  // Set global flag to indicate margin notes system is being initialized
+  window.marginNotesInitialized = true;
+
+  // Global margin notes state
+  window.marginNotesDisabled = false;
+
   // Detect if this is likely a mobile device requesting desktop site
   function detectDesktopModeOnMobile() {
     // Check if this is likely a mobile device
@@ -86,10 +92,14 @@ document.addEventListener("DOMContentLoaded", function () {
     marginNotesContainer.appendChild(marginNoteElement);
 
     // Trigger MathJax/KaTeX processing for the new content
-    if (window.MathJax && window.MathJax.Hub) {
-      MathJax.Hub.Queue(["Typeset", MathJax.Hub, marginNoteElement]);
-    } else if (window.renderMathInElement) {
-      renderMathInElement(marginNoteElement);
+    if (typeof window.MathJax !== "undefined" && window.MathJax.Hub) {
+      window.MathJax.Hub.Queue([
+        "Typeset",
+        window.MathJax.Hub,
+        marginNoteElement,
+      ]);
+    } else if (typeof window.renderMathInElement !== "undefined") {
+      window.renderMathInElement(marginNoteElement);
     }
 
     // Position the margin note to align with its reference
@@ -115,24 +125,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Add specific hover event to the indicator symbol
     if (indicator) {
-      // Add click event for pulsation
+      // Add click event to toggle margin notes system
       indicator.addEventListener("click", (e) => {
-        // Show margin notes if they were hidden
-        showMarginNotes();
-        // Add pulsate class to create pulsation effect
-        marginNoteElement.classList.add("pulsate");
-        marginNoteElement.classList.add("active");
-        note.classList.add("active");
-
-        // Remove pulsate class after animation completes
-        setTimeout(() => {
-          marginNoteElement.classList.remove("pulsate");
-        }, 1000);
+        // Toggle the entire margin notes system
+        toggleMarginNotes();
 
         // Prevent default behavior and stop propagation
         e.preventDefault();
         e.stopPropagation();
       });
+
+      // Test if the element is actually clickable
+      indicator.style.cursor = "pointer";
+      indicator.style.userSelect = "none";
 
       // Keep hover event as well
       indicator.addEventListener("mouseenter", (e) => {
@@ -284,6 +289,68 @@ document.addEventListener("DOMContentLoaded", function () {
     marginNote.style.top = `${adjustedTop}px`;
     marginNote.setAttribute("data-for", reference.id);
   }
+
+  /**
+   * Toggle margin notes on/off
+   */
+  function toggleMarginNotes() {
+    window.marginNotesDisabled = !window.marginNotesDisabled;
+    const marginNotesContainer = document.getElementById(
+      "margin-notes-container",
+    );
+    const allMarginNotes = document.querySelectorAll(".margin-note");
+
+    if (window.marginNotesDisabled) {
+      // Disable margin notes
+      if (marginNotesContainer) {
+        marginNotesContainer.style.display = "none";
+      }
+
+      // Turn margin note indicators red
+      allMarginNotes.forEach((note) => {
+        note.classList.add("disabled");
+        // Change the entire note styling to red
+        note.style.borderBottomColor = "#ff6b6b";
+        note.style.color = "#ff6b6b";
+        note.style.backgroundColor = "rgba(255, 107, 107, 0.1)";
+
+        const indicator = note.querySelector(".margin-note-indicator");
+        if (indicator) {
+          indicator.style.color = "#ff6b6b";
+        }
+      });
+    } else {
+      // Enable margin notes
+      if (marginNotesContainer) {
+        marginNotesContainer.style.display = "";
+      }
+
+      // Restore normal margin note indicators
+      allMarginNotes.forEach((note) => {
+        note.classList.remove("disabled");
+        // Restore original blue styling
+        note.style.borderBottomColor = "";
+        note.style.color = "";
+        note.style.backgroundColor = "";
+
+        const indicator = note.querySelector(".margin-note-indicator");
+        if (indicator) {
+          indicator.style.color = "";
+        }
+      });
+    }
+  }
+
+  // Add keyboard shortcut to toggle margin notes (Ctrl+M)
+  document.addEventListener("keydown", function (e) {
+    if (e.ctrlKey && e.key === "m") {
+      e.preventDefault();
+      toggleMarginNotes();
+    }
+  });
+
+  // Make toggle function globally available
+  window.toggleMarginNotes = toggleMarginNotes;
 
   /**
    * Debounce function to limit frequent calls

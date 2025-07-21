@@ -1,0 +1,50 @@
+<!-- Mathematical Hint shortcode -->
+<div class="math-hint">
+  <div class="math-hint-header">
+    <strong>Hint</strong>
+  </div>
+  <div class="math-hint-content">
+    {{ .Inner | .Page.RenderString }}
+  </div>
+</div>
+
+<style>
+  .math-hint {
+    margin: 1rem 0;
+    padding: 1rem;
+    border: 1px solid var(--bg3, #d4d4d4);
+    border-left: 3px solid var(--primary, #007bff);
+    background: var(--bg0, #ffffff);
+    border-radius: 4px;
+  }
+
+  .math-hint-header {
+    font-weight: bold;
+    color: var(--primary, #007bff);
+    margin-bottom: 0.5rem;
+    font-family: var(--font-serif);
+  }
+
+  .math-hint-content {
+    color: var(--fg, #333);
+    line-height: 1.6;
+  }
+
+  .math-hint-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Dark theme support */
+  [data-theme="dark"] .math-hint {
+    border-color: var(--bg3, #555);
+    background: var(--bg0, #1a1a1a);
+  }
+
+  [data-theme="dark"] .math-hint-content {
+    color: var(--fg, #e5e5e5);
+  }
+
+  [data-theme="dark"] .math-hint-header {
+    color: var(--primary, #4dabf7);
+  }
+</style>

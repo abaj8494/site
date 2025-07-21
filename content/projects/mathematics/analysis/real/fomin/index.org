@@ -152,7 +152,7 @@ Let $A_n$ be the set of all positive integers divisible by $n$. Find the sets
 {{< /subprob >}}
 
 {{< subans >}}
-\[\mathbb{N}-{1}\]
+\[\mathbb{N}-\set{1}\]
 {{< /subans >}}
 
 {{< subprob >}}
@@ -171,25 +171,40 @@ Find
 \[\bigcup_{n=1}^\infty [a+\frac{1}{n}, b-\frac{1}{n}]\]
 {{< /subprob >}}
 
-{{< subsol >}}
-{{< /subsol >}}
-
+{{< subans >}}
+\[(a,b)\]
+{{< /subans >}}
+{{< subhint >}}
+the key observation is that $[2,1] = \varnothing$ by definition of the interval.
+{{< /subhint >}}
 {{< subprob >}}
 \[\bigcap_{n=1}^\infty [a-\frac{1}{n}, b+\frac{1}{n}]\]
 {{< /subprob >}}
 
-{{< subsol >}}
-{{< /subsol >}}
+{{< subans >}}
+\[[a,b]\]
+{{< /subans >}}
 
 {{< mprob >}} Let $A_\alpha$ be the set of points lying on the curve \[y = \frac{1}{x^\alpha}\quad(0<x<\infty).\] What is \(\bigcap_{\alpha\geq 1} A_\alpha\)?
 {{< /mprob >}}
-{{< msol >}}
-{{< /msol >}}
+{{< mans >}}
+\[\set{(1,1)}\]
+{{< /mans >}}
+{{< mhint >}}/set of points/, not y-points{{< /mhint >}}
 
-{{< mprob >}} Let $y = f(x) = <x>$ for all real x, where $<x>$ is the fractional part of $x$. Prove that every closed interval of length 1 has the same image under $f$. What is this image? Is $f$ one-to-one? What is the preimage of the interval $\frac{1}{4}\leq y\leq\frac{3}{4}$? Partition the real line into classes of points with the same image.
+{{< mprob >}} Let $y = f(x) = \langle x \rangle$ for all real x, where $\langle x \rangle$ is the fractional part of $x$. Prove that every closed interval of length 1 has the same image under $f$. What is this image? Is $f$ one-to-one? What is the preimage of the interval $\frac{1}{4}\leq y\leq\frac{3}{4}$? Partition the real line into classes of points with the same image.
 {{< /mprob >}}
-{{< msol >}}
-{{< /msol >}}
+{{< msketch >}}
+Start with $I=\set{a,a+1}$, i.e. an arbitrary set of length 1. Then notice that you can subtract $a$ wlog @@html:<span class="margin-note" data-note="without loss of generality"> <span class="margin-note-indicator">⊕</span> </span>@@, and now we are tasked to find $\set{\langle x \rangle : x\in [0,1]}$. Furthermore, we know that $\langle x \rangle = x - \lfloor x \rfloor $ with $\langle 0 \rangle = 0 = \langle 1 \rangle$, whereby the image of the the closed interval only sweeps the half-open interval $[0,1)$.
+
+$f$ cannot be one-to-one because of the periodicity; many real numbers have the same fractional parts.
+
+The pre-image of $\frac{1}{4} \leq y \leq \frac{3}{4}$ is the interval $$ \bigcup_{n\in\mathbb{Z}} \left [\frac{1}{4} + n, \frac{3}{4} + n \right ]$$ because $x\in \mathbb{R} $.
+
+Finally, we can express \[\mathbb{R} = \bigsqcup_{r\in [0,1)} \set{x\in \mathbb{R} : \langle x \rangle = r } \]
+
+as the disjoint union of all the numbers which have the same fractional parts; i.e. the same images.
+{{< /msketch >}}
 
 {{< mprob >}} Given a set $M$, let $\mathfrak{R}$ be the set of all ordered pairs on the form $(a,a)$ with $a\in M$, and let $a R b$ if and only if $(a,b)\in\mathfrak{R}$. Interpret the relation $R$.
 {{< /mprob >}}
@@ -294,4 +309,5 @@ Transitive, but neither reflexive nor symmetric
   \node at (0,-2.2) {\(A \Delta B = (A - B) \cup (B - A)\)};
 \end{tikzpicture}
 {{< /tikz >}}
+
 

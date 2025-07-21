@@ -57,13 +57,3 @@
     color: var(--fg, #e5e5e5);
   }
 </style>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    // Auto-numbering for sub-sketches
-    var subsketches = document.querySelectorAll(".subsketch-counter");
-    subsketches.forEach(function (counter, index) {
-      counter.textContent = String.fromCharCode(97 + index); // a, b, c, etc.
-    });
-  });
-</script>

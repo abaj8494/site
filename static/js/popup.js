@@ -12,7 +12,7 @@ window.Popups = {
     hoverDelay: 450,
     fadeOutDuration: 200,
     maxPopups: 5,
-    debug: true,
+    debug: false,
     minWidth: 320,
     minHeight: 120,
     initialPositionMargin: 20,
@@ -74,11 +74,6 @@ window.Popups = {
     if (wasDisabled) {
       document.body.setAttribute("data-popups-disabled", "true");
     }
-
-    console.log(
-      `%c🔍 Popup system initialized (${wasDisabled ? "disabled" : "enabled"})`,
-      "color: green; font-weight: bold",
-    );
   },
 
   // Create popup container if it doesn't exist
@@ -134,11 +129,6 @@ window.Popups = {
       if (newDisabledState) {
         this.closeAllNonPinnedPopups();
       }
-
-      console.log(
-        `%c👁 Popups ${newDisabledState ? "disabled" : "enabled"}`,
-        `color: ${newDisabledState ? "red" : "green"}; font-weight: bold`,
-      );
     });
   },
 
@@ -1858,9 +1848,5 @@ window.Popups = {
 
 // Initialize popups when the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", () => {
-  console.log(
-    "%c🔍 DOM loaded, initializing popup system...",
-    "color: blue; font-weight: bold",
-  );
   window.Popups.init();
 });
