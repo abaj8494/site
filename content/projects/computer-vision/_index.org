@@ -1,0 +1,252 @@
++++
+title = "Computer Vision"
+math = "true"
+toc = "true"
+tikzjax = "true"
++++
+
+I think taking a course in a subject that you are interested in is never particularly a bad thing.
+
+This page will exclusively contain what I was taught in COMP9517 for a short while. That is just how it will be.
+
+However, eventually we will morph out of this into the textbook, and subsequently out of that too.
+
+For now, I just want a document to type in that I enjoy typing in!
+
+* Notes
+
+in each of the below topics, there are a number of algorithms and facts that I must know for the final exam.
+
+** Image Formation
+
+- pinhole camera model
+- projective geometry
+  - vanishing lines and points
+  - mathematics: \[x' = -x \frac{f}{z} \] \[ y' = -y \frac{f}{z} \]
+- colour spaces:
+  - RGB: red green blue
+    - strongly correlated channels
+  - HSV: hue saturation value
+    - confounded channels
+  - YCbCr: stand for ??
+    - fast to compute, good for compression. the modern day standard
+    - Y = luminance
+    - Cb = blue colour difference
+    - Cr = red colour difference
+  - L*a*b*: differences in luminance are more perceptually uniform
+    - L* = /lightness/
+    - 
+- quantisation: digitises the image intensity / amplitude values
+
+
+** Image Processing
+
+*** spatial domain
+
+**** point operations
+
+\[T: \mathbb{R} \rightarrow \mathbb{R}\quad g(x,y) =T(f(x,y))\]
+
+- contrast stretching
+- intensity thresholding
+  - automatic: otsu, isodata, multilevel
+- intensity inversion
+- log transformation
+- power transformation
+- piecewise linear transformation
+- piecewise contrast stretching
+- gray-level slicing
+- bit-plane slicing
+- histogram of pixel values
+- histogram-based thresholding "triangle"
+- histogram equalisation
+  - continuous; discrete
+  - constrained
+- histogram matching
+  - continuous, discrete
+- arithmetic and logical operations
+- averaging
+
+**** neighourhood operations
+
+\[T: \mathbb{R^n} \rightarrow \mathbb{R}\quad g(x,y) = T(f(x,y),f(x+1,y),f(x-1,y),...\]
+
+- convolution
+  - linear, shift-invariant
+  - properties:
+    - commutativity \[f_1 * f_2 = f_2 * f_1 \]
+    - associativity \[f_1 * (f_2 * f_3) = (f_1 * f_2) * f_3 \]
+    - distributivity \[f_1 * (f_2 * f_3) = f_1 * f_2 + f_1 * f_3\]
+    - multiplicativity \[a(f_1*f_2) = (a f_1) * f_2 = f_1 * (a f_2) \]
+    - derivation \[(f_1 * f_2)' = f_1'*f_2 = f_1*f_2' \]
+    - theorem \[f_1 * f_2 \iff \hat{f_1} \hat{f_2}\] convolution in spatial domain amounts to multiplication in spectral domain
+- spatial filtering
+- linear shift-invariant operations
+- border problem
+  - padding: add more pixels with value 0
+  - clamping: repeat all border pixel values indefinitely
+  - wrapping: copy pixel values from opposite sides
+  - mirroring: reflect pixel values across borders
+
+***** filtering methods
+
+- uniform filter
+  - smoothing
+- gaussian filter
+  - separable and circularly symmetric; the only such filter
+  - optimal joint localisation in spatial and frequency domain
+  - fourier transform (ft henceforth) is also a Gaussian
+  - n-fold convolution of any low-pass filter converges to a Gaussian
+  - infinitely smooth, so infinite derivatives exist
+  - good at keeping small objects (better than median). it is a smoothing filter.
+- median filter
+  - order-statistic filter
+  - sorts, then takes median
+  - can *eliminate salt and pepper noise* (which are just isolated intensity spikes)
+  - nonlinear filter
+  - better than gaussian at removing small objects
+- smoothing
+  - image blurring, noise reduction
+- differentiation
+  - forward, backward, central difference (finite differences because images are discrete)
+- separability
+  - improves computation efficiency
+  - examples: uniform, prewitt, sobel, gauss
+- pooling
+  - max / min / average
+  - makes image smaller
+  - combines filtering and downsampling in one operation
+
+***** image enhancement
+
+- sharpening
+  - subtract Gaussian filtered from image, then add the produced "high-frequencies" back into the image.
+  - can also use the laplacean: \(\nabla^2 f = f_{xx} + f_{yy} \) by subtracting it from the original image: \[f(x,y) - \nabla^2 f(x,y) \]
+- unsharp masking
+  - ?
+- gradient vector & magnitude
+  - \[\nabla f(x,y) = [f_x(x,y), f_y(x,y)]^T \]
+  - \[||\nabla f(x,y) || = \sqrt{f_x^2(x,y),f_y^2(x,y)} \]
+- edge detection
+  - use laplacean or intensity gradient
+
+*** transform domain
+
+{{< tikz >}}
+\begin{tikzpicture}[%
+        >=stealth,                                % arrow style
+        box/.style={draw,rounded corners=4pt,     % common style for blocks
+                    fill=gray!20,
+                    minimum width=4cm,
+                    minimum height=1.6cm,
+                    align=center},
+        node distance=2.7cm                       % horizontal spacing
+    ]
+
+  % --- nodes ---
+  \node[coordinate] (in) {};                     % entry point
+  \node[box,right=of in]     (fourier) {Fourier\\ transform};
+  \node[box,right=of fourier](filter)  {Frequency\\ filtering};
+  \node[box,right=of filter] (inv)     {Inverse Fourier\\ transform};
+  \node[coordinate,right=of inv] (out) {};       % exit point
+
+  % --- arrows & labels ---
+  \draw[->] (in)     -- (fourier) node[midway,below=4pt] {$f(x,y)$};
+  \draw[->] (fourier) -- (filter) node[midway,below=4pt] {$F(u,v)$};
+  \draw[->] (filter)  -- (inv)    node[midway,below=4pt] {$F(u,v)H(u,v)$};
+  \draw[->] (inv)     -- (out)    node[midway,below=4pt] {$g(x,y)$};
+
+\end{tikzpicture}
+{{< /tikz >}}
+
+- high frequency -> rapidly changing intensities across pixels
+- low frequency -> large scale image structures
+- we process images in the frequency domain by first applying the Fourier transform
+
+**** Fourier Transform
+:PROPERTIES:
+:CUSTOM_ID: fourier-transform
+:END:
+
+- interpretations:
+  - frequencies correspond to patterns
+  - $F(0,0)$ is the total intensity over all pixels of the image
+  - noise (typically) corresponds to fluctuations in the highest frequencies
+  - 
+
+- notation:
+  - $f(x)$ is the spatial input function
+  - $F(u)$ is the Fourier transform
+  - $e^{i\omega x} = \cos(\omega x) + i\sin(\omega x) $
+  - $\omega = 2\pi u$ is radial frequency
+  - $u$ is spatial frequency
+
+- forward fourier transform \[F(u) = \int^\infty_{-\infty} f(x)\; e^{\displaystyle -i 2\pi u x}\,\mathrm{d}x\]
+- inverse fourier transform \[f(x) = \int^\infty_{-\infty} F(u)\; e^{\displaystyle i 2\pi u x}\,\mathrm{d}u\]
+
+- properties:
+| Property        | Spatial             | Frequency                   |
+|-----------------+---------------------+-----------------------------|
+| Superposition   | $f_1(x) + f_2(x)$   | $F_1(u) + F_2(u)$           |
+| Translation     | $f(x-\Delta x)$     | $F(u)e^{-i 2\pi u\Delta x}$ |
+| Convolution     | $f(x)*h(x)$         | $F(u)H(u)$                  |
+| Correlation     | $f(x) \otimes h(x)$ | $F(u)H^*(u)$                |
+| Multiplication  | $f(x)h(x)$          | $F(u)*H(u)$                 |
+| Scaling         | $f(ax)$             | $F(u/a)/a$                  |
+| Differentiation | $f^{(n)}(x)$        | $(i2\pi u)^n F(u)$          |
+
+- 2D:
+  - forward fourier transform \[F(u,v) = \int^\infty_{-\infty}\int^\infty_{-\infty} f(x,y)\; e^{\displaystyle -i 2\pi (ux+vy)}\;\mathrm{d}x\,\mathrm{d}y\]
+  - inverse fourier transform \[f(x,y) = \int^\infty_{-\infty}\int^\infty_{-\infty} F(u,v)\; e^{\displaystyle -i 2\pi (ux+vy)}\;\mathrm{d}u\,\mathrm{d}v\]
+  - $f \leftrightarrow F$: fourier transform pair
+  - $F = R + i I$: real plus imaginary part
+  - $|F| = \sqrt{R^2 + I^2}$: Magnitude
+  - $\phi = \arctan(\frac{I}{R})$: Phase
+
+- Discrete:
+  - forward \[F(u,v) = \sum_{x=0}^{M-1} \sum_{y=0}^{N-1} f(x,y)\;e^{\displaystyle -i 2 \pi (\frac{ux}{M} + \frac{vy}{N})} \] for $u=0... M-1$ and $v = 0... N -1$
+  - inverse \[f(x,y) = \frac{1}{MN} \sum_{u=0}^{M-1} \sum_{v=0}^{N-1} F(u,v)\;e^{\displaystyle i 2\pi (\frac{ux}{M} + \frac{vy}{N})} \] for $x=0... M-1$ and $y = 0... N -1$
+
+**** filtering
+
+- procedure:
+  1. multiply input image $f(x,y)$ by $(-1)^{x+y}$ to ensure centering $F(u,v)$
+  2. compute the transform $F(u,v)$ from image $f(x,y)$ using 2D DFT
+  3. multiply $F(u,v)$ by a centred filter $H(u,v)$ to obtain result $G(u,v)$
+  4. compute the inverse 2D DFT of $G(u,v)$ to obtain the spatial result $g(x,y)$
+  5. take the real component of $g(x,y)$ (imaginary component is zero)
+  6. multiply the result by $(-1)^{x+y}$ to remove the pattern introduced in step 1^^
+
+***** convolution theorem (how does this relate to convolution?)
+
+- filtering in the frequency domain can be computationally more efficient
+- more intuitive in freq dom. i.e:
+  - low-pass = keep low frequencies, but attenuate {{< mnote "reduce the effect of" >}} high frequencies
+  - high-pass = keep high freq, reduce low freq
+  - band-pass = keep frequencies /in a given band/. attenuate the rest
+  - take inverse to get the corresponding spatial filter
+
+
+- notch filtering = opposite of band-pass; attenuates a given range.
+
+- difference of Gaussians is a high-pass
+- gaussian filter = low-pass
+- image pyramids is for multi-resolution
+- approximation = ?
+- reconstruction = ?
+
+
+** Feature Representation
+
+** Pattern Recognition
+
+** Image Segmentation
+
+** Deep Learning
+
+** Motion and Tracking
+
+* homework
+
+- explain the transforms based on the slides.
+- 

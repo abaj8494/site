@@ -130,9 +130,17 @@ hr {
 {{< /subsol >}}
 
 {{< mprob >}} Prove that
-\[\bigcup_\alpha A_\alpha - \bigcup_\alpha B_\alpha \subset \bigcup (A_\alpha - B_\alpha)\]
+\[\bigcup_\alpha A_\alpha - \bigcup_\alpha B_\alpha \subset \bigcup_\alpha\; (A_\alpha - B_\alpha)\]
 {{< /mprob >}}
 {{< msol >}}
+Let $x\in \cup_\alpha A_\alpha - \cup_\alpha B_\alpha$.
+Then:
+- $x\in \cup_\alpha A_\alpha \implies \exists \alpha{}_0: x \in A_\alpha{}_0$
+- $x\not\in \cup_\alpha B_\alpha \implies \forall \alpha : x \not\in B_\alpha$
+So
+- $x\not\in B_\alpha{}_0$
+Hence
+\[x\in A_\alpha{}_0 - B_\alpha{}_0 \subset \bigcup_\alpha\; (A_\alpha - B_\alpha)\]
 {{< /msol >}}
 
 {{< mprob >}}
@@ -143,15 +151,17 @@ Let $A_n$ be the set of all positive integers divisible by $n$. Find the sets
 \[\bigcup_{n=2}^\infty A_n\]
 {{< /subprob >}}
 
-{{< subsol >}}
-{{< /subsol >}}
+{{< subans >}}
+\[\mathbb{N}-{1}\]
+{{< /subans >}}
 
 {{< subprob >}}
 \[\bigcap_{n=2}^\infty A_n\]
 {{< /subprob >}}
 
-{{< subsol >}}
-{{< /subsol >}}
+{{< subans >}}
+\[\varnothing\]
+{{< /subans >}}
 
 {{< mprob >}}
 Find

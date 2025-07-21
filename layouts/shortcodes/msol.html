@@ -16,6 +16,17 @@
     border-left: 3px solid var(--info, #6c757d);
     background: var(--bg0, #ffffff);
     border-radius: 4px;
+    position: relative;
+  }
+
+  .math-solution::after {
+    content: "□";
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    color: var(--info, #6c757d);
+    font-size: 1.4rem;
+    line-height: 1;
   }
 
   .math-solution-header {
@@ -28,6 +39,7 @@
   .math-solution-content {
     color: var(--fg, #333);
     line-height: 1.6;
+    padding-bottom: 1.5rem; /* Add space for the end-of-proof square */
   }
 
   .math-solution-content p:last-child {
@@ -42,5 +54,9 @@
 
   [data-theme="dark"] .math-solution-content {
     color: var(--fg, #e5e5e5);
+  }
+
+  [data-theme="dark"] .math-solution::after {
+    color: var(--info, #9ca3af);
   }
 </style>

@@ -1,7 +1,7 @@
 <!-- Mathematical Sub-Solution shortcode -->
 <div class="math-subsolution">
   <div class="math-subsolution-header">
-    <strong>Solution (<span class="subsolution-counter"></span>):</strong>
+    <strong>Solution:</strong>
   </div>
   <div class="math-subsolution-content">
     {{ .Inner | .Page.RenderString }}
@@ -14,6 +14,17 @@
     padding: 0;
     background: transparent;
     border: none;
+    position: relative;
+  }
+
+  .math-subsolution::after {
+    content: "□";
+    position: absolute;
+    bottom: 0.25rem;
+    right: 0;
+    color: var(--info, #6c757d);
+    font-size: 1.3rem;
+    line-height: 1;
   }
 
   .math-subsolution-header {
@@ -28,6 +39,7 @@
     color: var(--fg, #333);
     line-height: 1.6;
     font-size: 0.95rem;
+    padding-bottom: 1.25rem; /* Add space for the end-of-proof square */
   }
 
   .math-subsolution-content p:last-child {
@@ -40,6 +52,10 @@
   }
 
   [data-theme="dark"] .math-subsolution-header {
+    color: var(--info, #9ca3af);
+  }
+
+  [data-theme="dark"] .math-subsolution::after {
     color: var(--info, #9ca3af);
   }
 </style>

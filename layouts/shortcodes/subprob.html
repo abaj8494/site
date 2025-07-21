@@ -108,16 +108,18 @@
             nextElement &&
             nextElement.classList &&
             (nextElement.classList.contains("math-subproblem") ||
-              nextElement.classList.contains("math-subsolution"))
+              nextElement.classList.contains("math-subsolution") ||
+              nextElement.classList.contains("math-subanswer") ||
+              nextElement.classList.contains("math-solution"))
           ) {
             subElements.push(nextElement);
             nextElement = nextElement.nextElementSibling;
           } else if (
             nextElement &&
             nextElement.classList &&
-            nextElement.classList.contains("math-solution")
+            nextElement.classList.contains("math-answer")
           ) {
-            // Skip regular math-solution elements and keep looking
+            // Skip regular math-answer elements and keep looking
             nextElement = nextElement.nextElementSibling;
             continue;
           } else if (
@@ -160,15 +162,13 @@
                 counter.textContent = letter;
                 subCounter++;
               }
-            } else if (element.classList.contains("math-subsolution")) {
-              var counter = element.querySelector(".subsolution-counter");
-              if (counter) {
-                // Use same letter as the previous sub-problem
-                var letter = String.fromCharCode(
-                  97 + Math.max(0, subCounter - 1),
-                );
-                counter.textContent = letter;
-              }
+            } else if (
+              element.classList.contains("math-subsolution") ||
+              element.classList.contains("math-subanswer")
+            ) {
+              // No counter needed since subsolutions/subanswers don't show numbering
+            } else if (element.classList.contains("math-solution")) {
+              // Main solutions don't need numbering
             }
 
             // Clear all existing styles and apply new ones for seamless integration
@@ -187,6 +187,15 @@
                 "important",
               );
               element.style.setProperty("padding-top", "0.75rem", "important");
+            } else if (element.classList.contains("math-solution")) {
+              // Main solutions need special handling to maintain their appearance
+              element.style.setProperty("margin", "1rem 0 0 0", "important");
+              element.style.setProperty("padding", "1rem", "important");
+              element.style.setProperty(
+                "border-top",
+                "1px solid var(--bg2, #e5e5e5)",
+                "important",
+              );
             }
 
             // Append the original element directly to the parent problem

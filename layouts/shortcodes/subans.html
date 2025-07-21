@@ -1,0 +1,45 @@
+<!-- Mathematical Sub-Answer shortcode -->
+<div class="math-subanswer">
+  <div class="math-subanswer-header">
+    <strong>Answer:</strong>
+  </div>
+  <div class="math-subanswer-content">
+    {{ .Inner | .Page.RenderString }}
+  </div>
+</div>
+
+<style>
+  .math-subanswer {
+    margin: 0.5rem 0 0.5rem 3rem;
+    padding: 0;
+    background: transparent;
+    border: none;
+  }
+
+  .math-subanswer-header {
+    font-weight: bold;
+    color: var(--success, #28a745);
+    margin-bottom: 0.25rem;
+    font-family: var(--font-serif);
+    font-size: 0.9rem;
+  }
+
+  .math-subanswer-content {
+    color: var(--fg, #333);
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
+
+  .math-subanswer-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Dark theme support */
+  [data-theme="dark"] .math-subanswer-content {
+    color: var(--fg, #e5e5e5);
+  }
+
+  [data-theme="dark"] .math-subanswer-header {
+    color: var(--success, #5cb85c);
+  }
+</style>

@@ -2,6 +2,7 @@
 title = "Greetings"
 toc = "true"
 math = "true"
+clocal = "true"
 +++
 
 #+BEGIN_QUOTE
@@ -26,10 +27,9 @@ You may also view the entire =tag= taxonomy [[/tags][here]].
 :PROPERTIES:
 :CUSTOM_ID: project-list
 :END:
-{{< collapse id="projects" folded="false" >}}
 
 #+begin_export html
-<div style="border:1px solid #ccc; padding:10px; width:50%; margin:0 auto; text-align:center;">
+<div style="border:1px solid #ccc; padding:10px; width:100%; margin:0 auto; text-align:center;">
   <input type="checkbox" class="edit"/>
   <a href="/projects/cs-major">What every computer science major should know</a>
   {{< tags-inline "projects/cs-major" >}}
@@ -48,6 +48,7 @@ You may also view the entire =tag= taxonomy [[/tags][here]].
 :PROPERTIES:
 :CUSTOM_ID: classical-cs
 :END:
+{{< collapse-local folded="true" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/memory][Memory]] {{< tags-inline "projects/ccs/memory" >}}
 - @@html:<input type="checkbox" class="refactor"/>@@ [[/projects/ccs/comp-complexity][Computational Complexity]] {{< tags-inline "projects/ccs/comp-complexity" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/networking][Internet Networks]] {{< tags-inline "projects/ccs/networking" >}}
@@ -119,6 +120,7 @@ You may also view the entire =tag= taxonomy [[/tags][here]].
 :PROPERTIES:
 :CUSTOM_ID: computer-science-projects
 :END:
+{{< collapse-local folded="true" >}}
 - @@html:<input type="checkbox" checked class="archived"/>@@ [[/projects/csp/bytelocker][File Encrypter (Bytelocker)]] {{< tags-inline "projects/csp/bytelocker" >}}
 - @@html:<input type="checkbox" checked class="archived"/>@@ [[/projects/csp/connect4][Connect 4]] {{< tags-inline "projects/csp/connect4" >}}
 - @@html:<input type="checkbox" checked class="archived"/>@@ [[/projects/csp/peg-solitaire][Peg Solitaire]] {{< tags-inline "projects/csp/peg-solitaire" >}}
@@ -149,6 +151,7 @@ For the longest time I kept these projects private, but now after a half decade 
 :PROPERTIES:
 :CUSTOM_ID: artificial-intelligence
 :END:
+{{< collapse-local folded="true" >}}
 
 *** [[/projects/ai/ethics][Ethics]]
 :PROPERTIES:
@@ -178,6 +181,7 @@ For the longest time I kept these projects private, but now after a half decade 
 :PROPERTIES:
 :CUSTOM_ID: machine-learning
 :END:
+{{< collapse-local folded="true" >}}
 
 I have thought about this ML hierarchy inasmuch as Aristotle thought about the phylums of flowers.
 
@@ -294,6 +298,7 @@ These methods can be adapted for _regression_, but they are more well suited to 
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ml/reinforcement-learning/q-learning][Q-Learning]] {{< tags-inline "projects/ml/reinforcement-learning/q-learning" >}}
 
 ** [[/projects/mathematics][Mathematics]]
+{{< collapse-local folded="true" >}}
 
 #+BEGIN_CENTER
 #+ATTR_HTML: :class lateximage :style "display: block; border: none;"
@@ -316,10 +321,20 @@ These methods can be adapted for _regression_, but they are more well suited to 
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/mathematics/analysis/real][Real Analysis]] {{< tags-inline "projects/mathematics/analysis/real" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/mathematics/analysis/complex][Complex Analysis]] {{< tags-inline "projects/mathematics/analysis/complex" >}}
 
+** [[/projects/computer-vision][Computer Vision]]
+:PROPERTIES:
+:CUSTOM_ID: computer-vision
+:END:
+{{< collapse-local folded="true" >}}
+
+- in construction
+
 ** [[/projects/bday-problems][N-Bday Problems]]
 :PROPERTIES:
 :CUSTOM_ID: n-bday-problems
 :END:
+{{< collapse-local folded="true" >}}
+
 The compiled PDFs can be found in the above linked heading.
 
 The following links contain the source code and solution sets:
@@ -331,6 +346,8 @@ The following links contain the source code and solution sets:
 :PROPERTIES:
 :CUSTOM_ID: typesetting
 :END:
+{{< collapse-local folded="true" >}}
+
 - @@html:<input type="checkbox" checked class="archived"/>@@ [[/projects/typesetting/font2splines][Font2Splines]] {{< tags-inline "projects/typesetting/font2splines" >}}
 - @@html:<input type="checkbox" checked class="done"/>@@ [[/projects/typesetting/frizzande][Frizzande's F]] {{< tags-inline "projects/typesetting/frizzande" >}}
 - @@html:<input type="checkbox" checked class="done"/>@@ [[/projects/typesetting/omegas][Omegas]] {{< tags-inline "projects/typesetting/omegas" >}}
@@ -340,6 +357,8 @@ The following links contain the source code and solution sets:
 :PROPERTIES:
 :CUSTOM_ID: latex
 :END:
+{{< collapse-local folded="true" >}}
+
 - @@html:<input type="checkbox" checked class="archived"/>@@ [[{{< ref "/projects/latex/poems" >}}][Poems]] {{< tags-inline "projects/latex/poems" >}}
 - @@html:<input type="checkbox" checked class="archived"/>@@ [[{{< ref "/projects/latex/treatises" >}}][Treatises]] {{< tags-inline "projects/latex/treatises" >}}
 - @@html:<input type="checkbox" checked class="archived"/>@@ [[{{< ref "/projects/latex/pocket-rules" >}}][Pocket Frisbee Rules]] {{< tags-inline "projects/latex/pocket-rules" >}}
@@ -350,15 +369,18 @@ The following links contain the source code and solution sets:
 :PROPERTIES:
 :CUSTOM_ID: textbook-slns
 :END:
+{{< collapse-local folded="true" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/textbook-slns/networked-life][Networked Life - Mung Chiang]] {{< tags-inline "projects/textbook-slns/networked-life" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/textbook-slns/homl][Hands on Machine Learning]] {{< tags-inline "projects/textbook-slns/homl" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/textbook-slns/m4ml][Mathematics for Machine Learning]] {{< tags-inline "projects/textbook-slns/m4ml" >}}
+- @@html:<input type="checkbox" checked class="done"/>@@ [[/projects/mathematics/analysis/real/fomin][Introductory Real Analysis]] {{< tags-inline "projects/mathematics/analysis/real/fomin" >}}
 
     
 ** [[/projects/moocs][MOOCs (Massive Open Online Courses)]]        :noexport:
 :PROPERTIES:
 :CUSTOM_ID: moocs-massive-open-online-courses
 :END:
+
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/moocs/cs229][CS229 Stanford]] {{< tags-inline "projects/moocs/cs229" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/moocs/cs230][CS230 Stanford]] {{< tags-inline "projects/moocs/cs230" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/moocs/stat110][STAT110 Harvard]] {{< tags-inline "projects/moocs/stat110" >}}

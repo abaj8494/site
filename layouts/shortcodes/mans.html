@@ -1,0 +1,50 @@
+<!-- Mathematical Answer shortcode -->
+<div class="math-answer">
+  <div class="math-answer-header">
+    <strong>Answer</strong>
+  </div>
+  <div class="math-answer-content">
+    {{ .Inner | .Page.RenderString }}
+  </div>
+</div>
+
+<style>
+  .math-answer {
+    margin: 1rem 0;
+    padding: 1rem;
+    border: 1px solid var(--bg3, #d4d4d4);
+    border-left: 3px solid var(--success, #28a745);
+    background: var(--bg0, #ffffff);
+    border-radius: 4px;
+  }
+
+  .math-answer-header {
+    font-weight: bold;
+    color: var(--success, #28a745);
+    margin-bottom: 0.5rem;
+    font-family: var(--font-serif);
+  }
+
+  .math-answer-content {
+    color: var(--fg, #333);
+    line-height: 1.6;
+  }
+
+  .math-answer-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Dark theme support */
+  [data-theme="dark"] .math-answer {
+    border-color: var(--bg3, #555);
+    background: var(--bg0, #1a1a1a);
+  }
+
+  [data-theme="dark"] .math-answer-content {
+    color: var(--fg, #e5e5e5);
+  }
+
+  [data-theme="dark"] .math-answer-header {
+    color: var(--success, #5cb85c);
+  }
+</style>
