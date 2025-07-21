@@ -6,6 +6,7 @@ tags = ["solutions","textbook","math", "analysis"]
 clocal = "true"
 tikzjax = "true"
 date = 2025-07-20T02:42:32+11:00
+author = "Kolmogorov"
 +++
 
 #+MACRO: tikz #+BEGIN_EXPORT html@@html:<script type="text/tikz">@@$1@@html:</script>@@#+END_EXPORT
@@ -347,43 +348,4 @@ Transitive, but neither reflexive nor symmetric
 ** Compactness
 
 ** Real Functions on Metric and Topological Spaces
-
-* TikZ Debug Section
-
-**Testing different TikZ approaches:**
-
-1. Direct TikZ (should work):
-{{< tikz >}}
-\begin{tikzpicture}
-  % Define colors
-  \definecolor{AColor}{RGB}{100, 150, 255}
-  \definecolor{BColor}{RGB}{255, 100, 150}
-  
-  % Draw A - B (left crescent)
-  \begin{scope}
-    \clip (-1,0) circle (1.2cm);
-    \fill[AColor] (-1,0) circle (1.2cm);
-    \fill[white] (1,0) circle (1.2cm);
-  \end{scope}
-  
-  % Draw B - A (right crescent)
-  \begin{scope}
-    \clip (1,0) circle (1.2cm);
-    \fill[BColor] (1,0) circle (1.2cm);
-    \fill[white] (-1,0) circle (1.2cm);
-  \end{scope}
-  
-  % Draw circle borders
-  \draw[thick] (-1,0) circle (1.2cm);
-  \draw[thick] (1,0) circle (1.2cm);
-  
-  % Labels
-  \node at (-1.8,0) {\(A\)};
-  \node at (1.8,0) {\(B\)};
-  
-  % Title
-  \node at (0,-2.2) {\(A \Delta B = (A - B) \cup (B - A)\)};
-\end{tikzpicture}
-{{< /tikz >}}
-
 

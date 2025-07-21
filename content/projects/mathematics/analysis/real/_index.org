@@ -20,7 +20,7 @@ It seems that High-School children ([[https://www.reddit.com/r/math/comments/7q5
 #+BEGIN_CENTER
 #+HTML: <div style="display: flex; align-items: center; justify-content: center; gap: 20px;">
 #+HTML:   <div style="text-align: center; display: flex; flex-direction: column; align-items: center;">
-#+HTML:   <a href="{{< cwd >}}/fomin"><img width="250px" class="lateximage" src="{{< cwd >}}fomin.jpg"><div class="caption">Fomin</div></a>
+#+HTML:   <a href="{{< cwd >}}/fomin"><img width="250px" class="lateximage" src="{{< cwd >}}fomin.jpg"><div class="caption">Kolmogorov & Fomin</div></a>
 #+HTML:   </div>
 #+HTML:   <div style="font-size: 2em; display: flex; align-items: center;"> </div>
 #+HTML:   <div style="text-align: center; display: flex; flex-direction: column; align-items: center;">
@@ -83,10 +83,621 @@ We say that a set $S$ is countable if $|S| \leq |\mathbb{N}|$. Otherwise $S$ is 
 ** Metric Spaces
 {{< collapse-local folded="true" >}}
 
+{{< mdef "Limit" >}}
+$\displaystyle\lim_{x \rightarrow a} f(x) = b$ means that "for any number $\varepsilon > 0$, there is a number $\delta(\varepsilon)$ such that $|f(x)-b| < \varepsilon$ whenever $|x-a|<\delta$"
+{{< /mdef >}}
+
+{{< mdef "Metric Space" >}}
+A metric space is a pair $(X,d)$, where $X$ is a (non-empty) set and $d: X \times X \rightarrow [0,\infty)$ is a function, such that the following conditions hold for all $x,y,z \in X$:
+1. $d(x,y) = 0 \iff x=y$
+2. $d(x,y) = d(y,x)$
+3. $d(x,y) + d(y,z) \geq d(x,z)\quad$ (triangle inequality)
+{{< /mdef >}}
+
+{{< mdef "Sequence" >}}
+A sequence in a set $X$ is a function from $\mathbb{Z}^+$ to $X$. \[\set{x_n}^\infty_{n=0}\]
+{{< /mdef >}}
+{{< mrem >}}
+$\set{x_n}^\infty_{n=0} \subset \mathbb{R}$ converges to a limit $x\in \mathbb{R}$ if for every $\epsilon > 0$, there is a $K(\epsilon)\in \mathbb{N}$ such that $|x_n - x| < \epsilon $ whenever $n > K(\epsilon)$.
+{{< /mrem >}}
+
+
+{{< mthm >}}
+A sequence in a *metric space* can have at most one limit
+{{< /mthm >}}
+
+{{< mdef "Function Continuity" >}}
+A function $f: \mathbb{R} \rightarrow \mathbb{R}$ is continuous if for every $x\in \mathbb{R}$ and every $\epsilon > 0$, there is a $\delta(x, \epsilon) > 0$ such that $|f(y) - f(x)| < \epsilon$ whenever $|y-x|<\delta(x,\epsilon)$.
+{{< /mdef >}}
+
+{{< mdef "Epsilon-Ball" >}}
+For a point $x$ in a metric space $(X,d)$ and a number $\epsilon > 0$, define the $\epsilon$-ball \[B(x,\epsilon) = \set{y\in X: d(y,x) < \epsilon}\]
+{{< /mdef >}}
+
+{{< mdef "Interior / Boundary" >}}
+Let $(X,d)$ be a metric space, and consider $Y\subseteq X$. Define the *interior* \[\mathrm{Int}(Y) = \set{y \in Y: \exists \epsilon > 0\text{ such that }B(y,\epsilon)\subseteq Y} \]
+
+Define the *boundary*: \[\mathrm{Bd}(Y) = X \backslash (\mathrm{Int}(Y)\cup \mathrm{Int}(Y^c))\]
+{{< /mdef >}}
+
+{{< mdef >}}A subset $Y$ in $(X,d)$ is open if $Y=\mathrm{Int}(Y)${{< /mdef >}}
+
+{{< mdef >}}A subset $Y$ in $(X,d)$ is closed if $Y^c$ is open.{{< /mdef >}}
+
+{{< mlemm >}}Let $(X,d)$ be a metric space, and let $Y\subseteq X$. Then $\mathrm{Int}(\mathrm{Int}(Y)) = \mathrm{Int}(Y)$.
+{{< /mlemm >}}
+
+{{< mcoro >}}For a subset $Y$ of a metric space $(X,d)$, the set $\mathrm{Int}(Y)$ is open. {{< /mcoro >}}
+
+{{< mdef "Closure" >}} The *closure* of $Y$ is $\mathrm{Cl}(Y) = \mathrm{Int}(Y) \sqcup \mathrm{Bd}(Y)$.{{< /mdef >}}
+
+{{< mdef "Dense" >}} $Y$ is *dense* if $\mathrm{Cl}(Y) = X${{< /mdef >}}
+
+{{< mdef "Neighbourhood" >}} Let $(X,d)$ be a metric space. An _open neighbourhood_ of a point $x\in X$ is an open set $V\subseteq X$ such that $x\in V$. A _neighbourhood_ of $x$ is a set $U\subseteq X$ such that there is an open neighbourhood $V$ of $x$ with $V\subseteq U$.
+{{< /mdef >}}
+
+{{< mdef "Topology" >}}The set of open sets in a metric space $X$ is called the /topology/ of $X$. \[\tau = \mathcal{O}(X)\]{{< /mdef >}}
+
+{{< mthm "Intersections and Unions" >}}
+Let $(X,d)$ be a metric space. The topology has the following properties:
+1. $\varnothing, X \in \mathcal{O}(X)$
+2. If $\set{V_i}_{i\in I} \subseteq \mathcal{O}(X)$, then $\displaystyle \bigcup_{i\in I} V_i \in \mathcal{O}(X)$. @@html:<span class="margin-note" data-note="the union of open sets is open"> <span class="margin-note-indicator">⊕</span> </span>@@
+3. If $V_1, V_2 \in \mathcal{O}(X)$, then $V_1 \cap V_2 \in \mathcal{O}(X)$ @@html: <span class="margin-note" data-note="a <strong>finite</strong> intersection of open sets is open"> <span class="margin-note-indicator">⊕</span> </span>@@
+{{< /mthm >}}
+
+{{< mdef "The pre-image of every open set is open" >}}
+Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces. A function $f:X\rightarrow Y$ is /continuous/ if for every $V\in \mathcal{O}(Y)$ we have $f^{-1}(V)\in\mathcal{O}(X)$.
+{{< /mdef >}}
+
+
+{{< mthm "Composition of Continuous Functions" >}}
+Let $(X,d_X)$, $(Y,d_Y)$ and $(Z,d_Z)$ be metric spaces.  
+If $f:X\to Y$ and $g:Y\to Z$ are continuous, then the composition  
+\[
+g\circ f:X\longrightarrow Z,\qquad x\mapsto g\left (f(x)\right ),
+\]
+is continuous.
+{{< /mthm >}}
+
+{{< mlemm >}}
+Let $(X,d)$ be a metric space and $\varnothing\ne Y\subseteq X$.  
+The following statements are equivalent:
+1. $\forall x\in X$ there exists $R(x)>0$ with $Y\subseteq B(x,R(x))$;  
+2. $\exists\,y\in Y$ and $R>0$ with $Y\subseteq B(y,R)$;  
+3. $\exists\,R>0$ such that $d(y_1,y_2)<R$ for every $y_1,y_2\in Y$.
+{{< /mlemm >}}
+
+{{< mdef "Bounded Subset" >}}
+A subset $Y\subseteq X$ satisfying the equivalent conditions above is *bounded*.  
+(If $Y=X$, we say the metric space itself is bounded.)
+{{< /mdef >}}
+
+{{< mdef "Cauchy Sequence" >}}
+A sequence $\{x_n\}_{n=0}^\infty$ in a metric space $(X,d)$ is *Cauchy* if  
+\[
+\forall\varepsilon>0\;\exists K(\varepsilon)\in\mathbb N\;:\;
+d(x_m,x_n)<\varepsilon\quad\text{whenever }m,n>K(\varepsilon).
+\]
+{{< /mdef >}}
+
+{{< mdef "Complete Metric Space" >}}
+A metric space $(X,d)$ is *complete* if every Cauchy sequence in $X$ converges to a point of $X$.
+{{< /mdef >}}
+
+{{< mthm "Closed Subsets of Complete Spaces" >}}
+Let $(X,d)$ be complete and $Y\subseteq X$ with the sub‑space metric.  
+Then $Y$ is complete iff $Y$ is closed in $X$.
+{{< /mthm >}}
+
+{{< mthm "Completeness of $\,C[0,1]\,$ with $d_\infty$" >}}
+The metric space $\bigl(C[0,1],d_\infty\bigr)$ is complete.
+{{< /mthm >}}
+
+{{< mdef "Equivalent Cauchy Sequences" >}}
+Two Cauchy sequences $\{a_n\}$ and $\{b_n\}$ in $(X,d)$ are **equivalent** if  
+\[
+\lim_{n\to\infty} d(a_n,b_n)=0.
+\]
+{{< /mdef >}}
+
+{{< mdef "Completion of a Metric Space" >}}
+Let $\overline X$ be the set of equivalence classes of Cauchy sequences in $X$.  
+For classes $[a_n]$ and $[b_n]$ define  
+\[
+\overline d\bigl([a_n],[b_n]\bigr)\;=\;\lim_{n\to\infty} d(a_n,b_n).
+\]
+Then $(\overline X,\overline d)$ is called the *completion* of $X$.
+{{< /mdef >}}
+
+{{< mthm "Properties of the Completion" >}}
+Let $(X,d)$ be any metric space.
+1. $(\overline X,\overline d)$ is complete.  
+2. The embedding $i:X\to\overline X$, $x\mapsto$ constant sequence $[x,x,\dots]$, is an isometry and $i(X)$ is dense in $\overline X$.  
+3. The completion is unique: if $j:X\to Y$ is an isometric embedding into a complete $Y$ with dense image, then there is a unique bijective isometry $f:Y\to\overline X$ satisfying $f\circ j=i$.
+{{< /mthm >}}
+
+{{< mdef "Norm" >}}
+For a vector space $V$ (over $\mathbb R$ or $\mathbb C$), a *norm* is a map  
+\[
+\|\cdot\|:V\to[0,\infty)
+\]
+such that for all $x,y\in V$ and $\lambda\in\mathbb R\text{ or }\mathbb C$:  
+1. $\|x\|=0\iff x=0$;  
+2. $\|\lambda x\|=|\lambda|\,\|x\|$;  
+3. $\|x+y\|\le\|x\|+\|y\|$.
+{{< /mdef >}}
+
+{{< mthm "Norm ⇒ Metric" >}}
+If $(V,\|\cdot\|)$ is a normed space, then  
+\[
+d_{\|\cdot\|}(x,y)=\|x-y\|,\qquad x,y\in V,
+\]
+defines a metric on $V$.
+{{< /mthm >}}
+
+{{< mdef "Banach Space" >}}
+A *Banach space* is a normed vector space that is complete in the metric induced by its norm.
+{{< /mdef >}}
+
+{{< mthm "Completeness of $\ell^p$" >}}
+For every $p\in[1,\infty)$ the space  
+\[
+\ell^p=\Bigl\{\,\{x_n\}_{n=1}^\infty\subset\mathbb R:\;
+\sum_{n=1}^{\infty}|x_n|^{\,p}<\infty\Bigr\},
+\]
+with norm $\|x\|_p=\bigl(\sum_{n}|x_n|^{\,p}\bigr)^{1/p}$, is a Banach space.
+{{< /mthm >}}
+
+{{< mdef "Inner Product Space" >}}
+An *inner product space* is a vector space $V$ together with  
+$\langle\cdot,\cdot\rangle:V\times V\to\mathbb R\text{ or }\mathbb C$ satisfying  
+1. $\langle x,x\rangle>0$ for $x\ne0$;  
+2. $\langle x,y\rangle=\langle y,x\rangle$;  
+3. $\langle x+\lambda y,z\rangle=\langle x,z\rangle+\lambda\langle y,z\rangle$.
+{{< /mdef >}}
+
+{{< mdef "Hilbert Space" >}}
+A *Hilbert space* is a complete inner product space.
+{{< /mdef >}}
+
+{{< mdef "Contraction" >}}
+A map $f:(X,d)\to(X,d)$ is a *contraction* if  
+$\exists\,c\in(0,1)$ such that $d \left (f(x),f(y)\right )\le c\,d(x,y)$ for all $x,y\in X$.
+{{< /mdef >}}
+
+{{< mlemm >}}
+If $f$ is a contraction on $(X,d)$ and $x_0\in X$, the sequence defined recursively by  
+$x_{n+1}=f(x_n)$ is Cauchy.
+{{< /mlemm >}}
+
+{{< mthm "Contraction Mapping (The Banach Fixed‑Point Theorem)" >}}
+Let $(X,d)$ be complete and $f:X\to X$ a contraction.  
+Then $f$ has a unique fixed point $x^\ast=f(x^\ast)$, and for any $x_0\in X$ the iteration $x_{n+1}=f(x_n)$ converges to $x^\ast$.
+{{< /mthm >}}
+
+{{< mdef "Lipschitz Continuous Function" >}}
+For $X\subseteq\mathbb R$, a function $f:X\to\mathbb R$ is *Lipschitz continuous* if  
+$\exists K>0$ such that $|f(x)-f(y)|\le K|x-y|$ for all $x,y\in X$.  
+Such a constant $K$ is called a *Lipschitz constant* for $f$.
+{{< /mdef >}}
+
+{{< mdef "Lipschitz in the Second Variable" >}}
+For $X\subseteq\mathbb R^{\,2}$, a function $f:X\to\mathbb R$ is *Lipschitz continuous in the second variable* if  
+$\exists K>0$ such that  
+\[|f(x,y_1)-f(x,y_2)|\le K\,|y_1-y_2|\quad\forall (x,y_1),(x,y_2)\in X.\]
+{{< /mdef >}}
+
+{{< mthm "Picard–Lindelöf (The Cauchy–Lipschitz Existence Theorem)" >}}
+Let $g$ be continuous on a neighbourhood of $(a,b)\in\mathbb R^{\,2}$ and Lipschitz in its second variable.  
+Then there exists an interval about $x=a$ on which the initial‑value problem  
+\[
+y' = g(x,y),\qquad y(a)=b,
+\]
+has a *unique* solution.
+{{< /mthm >}}
+
+
+
 ** Sequences and Series of Functions
 {{< collapse-local folded="true" >}}
+
+{{< mdef "Convergence of a Numerical Sequence" >}}
+A sequence of numbers $\{x_n\}_{n=1}^{\infty}\subset\mathbb{R}$ *converges* to $x$ if  
+for every $\varepsilon>0$ there exists $K(\varepsilon)\in\mathbb{N}$ such that  
+\[|x_n-x|<\varepsilon\quad\text{whenever }n\ge K(\varepsilon).\]
+{{< /mdef >}}
+
+{{< mdef "Pointwise Convergence" >}}
+A sequence of functions $f_n:X\to\mathbb{R}$ *converges pointwise* to $f$ if  
+for every $x\in X$ and every $\varepsilon>0$ there exists $K(x,\varepsilon)\in\mathbb{N}$ such that  
+\[|f_n(x)-f(x)|<\varepsilon\quad\text{whenever }n\ge K(x,\varepsilon).\]
+{{< /mdef >}}
+
+{{< mdef "Uniform Convergence" >}}
+A sequence of functions $f_n:X\to\mathbb{R}$ *converges uniformly* to $f$ if  
+for every $\varepsilon>0$ there exists $K(\varepsilon)\in\mathbb{N}$ such that  
+\[|f_n(x)-f(x)|<\varepsilon\quad\text{for all }x\in X\text{ whenever }n\ge K(\varepsilon).\]
+{{< /mdef >}}
+
+{{< mdef "Uniform Norm" >}}
+Let $B(X,\mathbb{R})$ be the set of bounded real‑valued functions on $X$.  
+The *uniform norm* is defined by  
+\[\|f\|_\infty=\sup_{x\in X}|f(x)|.\]
+{{< /mdef >}}
+
+{{< mthm >}}
+$\bigl(B(X,\mathbb{R}),\|\cdot\|_\infty\bigr)$ is a Banach space.
+{{< /mthm >}}
+
+{{< mrem >}}
+If $E$ is a Banach space, then $B(X,E)$ (bounded $E$‑valued functions on $X$) is Banach with the uniform norm, and if $X$ is a metric space so is $C_b(X,E)$.
+{{< /mrem >}}
+
+{{< mdef "$L^p$ Convergence of Functions" >}}
+Let $f_n:[a,b]\to\mathbb{R}$ be Riemann‑integrable and $p\ge1$.  
+We say $f_n\to f$ in $L^p$ if  
+\[
+\lim_{n\to\infty}\int_a^b |f_n(x)-f(x)|^p\,dx=0.
+\]
+{{< /mdef >}}
+
+{{< mthm "Absolute Convergence Implies Convergence (Banach‑Valued Series)" >}}
+Let $E$ be a Banach space and $\{x_n\}_{n=0}^{\infty}\subset E$.  
+If the series of norms $\sum_{n=0}^{\infty}\|x_n\|$ converges, then the series $\sum_{n=0}^{\infty}x_n$ converges in $E$.
+{{< /mthm >}}
+
+{{< mcoro "Weierstrass M‑Test" >}}
+Let $f_n:X\to\mathbb{R}$ and let $M_n\ge0$ satisfy $|f_n(x)|\le M_n$ for all $x\in X$.  
+If $\sum_{n=0}^{\infty}M_n$ converges, then the series $\sum_{n=0}^{\infty}f_n(x)$ converges *uniformly* on $X$.
+{{< /mcoro >}}
+
+{{< mthm >}}
+Let $f_n\in C[a,b]$ with $f_n\to f$ uniformly. Then  
+\[
+\int_a^b f_n(x)\,dx\;\longrightarrow\;\int_a^b f(x)\,dx .
+\]
+{{< /mthm >}}
+
+{{< mthm >}}
+Let $f_n\in C[a,b]$ be differentiable on $(a,b)$ with continuous, bounded derivatives $f_n'$.  
+If $f_n\to f$ uniformly and $f_n'\to g$ uniformly on $(a,b)$, then $f$ is differentiable on $(a,b)$ and $f'=g$.
+{{< /mthm >}}
+
+{{< mcoro >}}
+If $\sum_{n=0}^{\infty}f_n$ and $\sum_{n=0}^{\infty}f_n'$ both converge uniformly on $(a,b)$, then the limit function is differentiable and  
+\[
+\left(\sum_{n=0}^{\infty}f_n\right)'=\sum_{n=0}^{\infty}f_n'.
+\]
+{{< /mcoro >}}
+
+{{< mdef "Radius of Convergence" >}}
+For a power series $\sum_{n=0}^{\infty}a_n x^n$ let  
+\[
+b=\limsup_{n\to\infty}|a_n|^{1/n},\qquad R=\frac1b\,(R\in[0,\infty]).
+\]
+The number $R$ is the *radius of convergence*.  
+(If $b=0$ we set $R=\infty$, while if $b=\infty$ we set $R=0$.)
+{{< /mdef >}}
+
+{{< mthm "Cauchy–Hadamard" >}}
+With the notation above the power series converges absolutely when $|x|<R$ and diverges when $|x|>R$.
+{{< /mthm >}}
+
+{{< mcoro >}}
+The term‑wise derivative $\sum_{n=1}^{\infty}n\,a_n x^{n-1}$ has the same radius of convergence $R$.
+{{< /mcoro >}}
+
+{{< mthm >}}
+If $\sum_{n=0}^{\infty}a_n x^n$ has radius of convergence $R>0$, then it is differentiable on $(-R,R)$ and  
+\[
+\frac{d}{dx}\left(\sum_{n=0}^{\infty}a_n x^n\right)=\sum_{n=1}^{\infty}n\,a_n x^{n-1}.
+\]
+{{< /mthm >}}
+
 
 ** Topological Spaces
 {{< collapse-local folded="true" >}}
 
-*** Compactness
+{{< mdef "Topological Space" >}}
+A *topological space* is a pair \(\left( X ,\tau \right)\), where \(X\) is a set and \(\tau\subseteq\mathcal{P}\!\left( X \right)\) satisfies  
+1. \(\varnothing , X \in \tau\);  
+2. if \(\{V_i\}_{i\in I}\subseteq\tau\) then \(\bigcup_{i\in I} V_i \in \tau\);  
+3. if \(V_1,V_2\in\tau\) then \(V_1\cap V_2\in\tau\).  
+The sets in \(\tau\) are *open*; their complements are *closed*.
+{{< /mdef >}}
+
+{{< mdef "Subspace Topology" >}}
+For a topological space \(\left( X ,\tau \right)\) and \(Y\subseteq X\), the *subspace topology* on \(Y\) is  
+\[
+\tau\!\mid_Y=\{V\cap Y : V\in\tau\}.
+\]
+{{< /mdef >}}
+
+{{< mdef "Closed Set" >}}
+In \(\left( X ,\tau \right)\) a subset \(C\subseteq X\) is *closed* if \(X\setminus C\in\tau\).
+{{< /mdef >}}
+
+{{< mdef "Neighbourhood and Interior" >}}
+Let \(\left( X ,\tau \right)\) be a topological space.  
+- An *open neighbourhood* of \(x\in X\) is a set \(V\in\tau\) with \(x\in V\).  
+  A *neighbourhood* of \(x\) is any set containing an open neighbourhood of \(x\).  
+- For \(Y\subseteq X\) the *interior* is  
+\[
+\operatorname{Int}\left( Y \right)=\{y\in Y : \exists V\in\tau,\; y\in V\subseteq Y\}.
+\]
+{{< /mdef >}}
+
+{{< mcoro >}}
+For any \(Y\subseteq X\) the set \(\operatorname{Int}\left( Y \right)\) is open.
+{{< /mcoro >}}
+
+{{< mdef "Boundary and Closure" >}}
+For \(Y\subseteq X\) set  
+\[
+\operatorname{Bd}\left( Y \right)=X\setminus\!\left( \operatorname{Int}\left( Y \right)\cup\operatorname{Int}\left( X\setminus Y \right) \right),\qquad
+\operatorname{Cl}\left( Y \right)=\operatorname{Int}\left( Y \right)\cup\operatorname{Bd}\left( Y \right).
+\]
+{{< /mdef >}}
+
+{{< mdef "Sequence Convergence (Topological)" >}}
+A sequence \(\{x_n\}_{n=1}^{\infty}\subseteq X\) *converges* to \(x\in X\) if for every \(V\in\tau\) with \(x\in V\) there exists \(K(V)\in\mathbb{N}\) such that \(x_n\in V\) whenever \(n\ge K(V)\).
+{{< /mdef >}}
+
+{{< mdef "Continuous Function (Topological)" >}}
+For topological spaces \(\left( X ,\tau_X \right)\) and \(\left( Y ,\tau_Y \right)\), a function \(f:X\to Y\) is *continuous* if \(f^{-1}\!\left( V \right)\in\tau_X\) for every \(V\in\tau_Y\).
+{{< /mdef >}}
+
+{{< mthm "Composition of Continuous Functions" >}}
+If \(f:X\to Y\) and \(g:Y\to Z\) are continuous, then \(g\circ f:X\to Z\) is continuous.
+{{< /mthm >}}
+
+{{< mdef "Hausdorff Space" >}}
+A topological space is *Hausdorff* if for every distinct \(x,y\in X\) there exist disjoint neighbourhoods \(V\in\operatorname{Nbhd}\!\left( x \right)\) and \(U\in\operatorname{Nbhd}\!\left( y \right)\).
+{{< /mdef >}}
+
+{{< mdef "Base and Local Base" >}}
+Let \(\left( X ,\tau \right)\) be a topological space.  
+- A *base* \( \mathcal{B}\subseteq\tau \) satisfies: every \(V\in\tau\) can be written \(V=\bigcup_{i\in I} B_i\) with \(B_i\in\mathcal{B}\).  
+- A *local base* at \(x\in X\) is a collection \(\mathcal{L}_x\subseteq\tau\) of neighbourhoods of \(x\) such that for every neighbourhood \(U\) of \(x\) there is \(V\in\mathcal{L}_x\) with \(V\subseteq U\).
+{{< /mdef >}}
+
+{{< mthm "Base Criterion" >}}
+Let \(X\) be a set and \(\mathcal{B}\subseteq\mathcal{P}\!\left( X \right)\).  
+Define \(\tau=\{V\subseteq X : V\text{ is a union of sets in }\mathcal{B}\}\).  
+Then \(\tau\) is a topology *iff*  
+1. \(\bigcup_{B\in\mathcal{B}} B = X\);  
+2. for every \(B_1,B_2\in\mathcal{B}\) and \(x\in B_1\cap B_2\) there exists \(B\in\mathcal{B}\) with \(x\in B\subseteq B_1\cap B_2\).
+{{< /mthm >}}
+
+{{< mdef "Subbase" >}}
+Given \(S\subseteq\mathcal{P}\!\left( X \right)\), let \(\mathcal{B}\) be the set of all finite intersections of elements of \(S\) (including \(X\)).  
+The topology generated by \(S\) is \(\tau\!\left( S \right)=\{V\subseteq X : V\text{ is a union of sets in }\mathcal{B}\}\).  
+The collection \(S\) is a *subbase* for \(\tau\!\left( S \right)\).
+{{< /mdef >}}
+
+{{< mdef "First and Second Countable" >}}
+A space is *first countable* if every point has a countable local base.  
+It is *second countable* if it possesses a countable base.
+{{< /mdef >}}
+
+{{< mdef "Separable Space" >}}
+A topological space is *separable* if it contains a countable dense subset.
+{{< /mdef >}}
+
+{{< mthm >}}
+In a *first countable* space \(\left( X ,\tau \right)\) a subset \(Y\subseteq X\) is closed *iff* whenever a sequence in \(Y\) converges, its limit lies in \(Y\).
+{{< /mthm >}}
+
+{{< mdef "Directed Set" >}}
+A *directed set* is a set \(\Lambda\) with a relation \(\le\) such that  
+1. \(i\le i\) for all \(i\in\Lambda\);  
+2. \(i\le j\le k\Rightarrow i\le k\);  
+3. for \(i,j\in\Lambda\) there exists \(m\in\Lambda\) with \(i\le m\) and \(j\le m\).
+{{< /mdef >}}
+
+{{< mdef "Net" >}}
+A *net* in \(X\) is a function \(\Lambda\to X\) where \(\Lambda\) is directed; we write \(\{x_\lambda\}_{\lambda\in\Lambda}\).
+{{< /mdef >}}
+
+{{< mdef "Net Convergence" >}}
+A net \(\{x_\lambda\}\) *converges* to \(x\in X\) if for every neighbourhood \(V\) of \(x\) there exists \(\alpha\in\Lambda\) such that \(x_\lambda\in V\) whenever \(\lambda\ge\alpha\).
+{{< /mdef >}}
+
+{{< mthm >}}
+A subset \(Y\subseteq X\) is closed *iff* it contains the limits of all nets in \(Y\) that converge in \(X\).
+{{< /mthm >}}
+
+{{< mdef "Coarser and Finer Topologies" >}}
+For topologies \(\tau\subseteq\sigma\) on the same set \(X\), \(\tau\) is *coarser* and \(\sigma\) is *finer*.
+{{< /mdef >}}
+
+{{< mdef "Homeomorphism" >}}
+A bijection \(f:X\to Y\) between topological spaces is a *homeomorphism* if both \(f\) and \(f^{-1}\) are continuous.  
+Spaces that admit a homeomorphism are *homeomorphic*.
+{{< /mdef >}}
+
+{{< mdef "Connected Space" >}}
+A space \(\left( X ,\tau \right)\) is *connected* if it cannot be written as the union of two disjoint non‑empty open sets.  
+A subset \(Y\subseteq X\) is connected in the subspace topology.
+{{< /mdef >}}
+
+{{< mthm "Connected Image" >}}
+If \(f:X\to Y\) is continuous and \(X\) is connected, then \(f\!\left( X \right)\) is connected.
+{{< /mthm >}}
+
+{{< mlemm >}}
+Let \(\{W_i\}_{i\in I}\) be connected subsets of \(X\) with \(\bigcap_{i\in I} W_i\neq\varnothing\). Then \(\bigcup_{i\in I} W_i\) is connected.
+{{< /mlemm >}}
+
+{{< mdef "Path‑Connected Space" >}}
+A space is *path‑connected* if for all \(x,y\in X\) there exists a continuous map \(f:[0,1]\to X\) with \(f(0)=x\) and \(f(1)=y\).
+{{< /mdef >}}
+
+{{< mthm >}}
+Path‑connected \(\Rightarrow\) connected.
+{{< /mthm >}}
+
+{{< mdef "Product Topology" >}}
+For topological spaces \(\left( X ,\tau_X \right)\) and \(\left( Y ,\tau_Y \right)\) the *product topology* on \(X\times Y\) is generated by the base \(\{U\times V : U\in\tau_X,\; V\in\tau_Y\}\).
+{{< /mdef >}}
+
+{{< mdef "Box Topology" >}}
+Given \(\{(X_i,\tau_i)\}_{i\in I}\), the *box topology* on \(\prod_{i\in I} X_i\) has base  
+\[
+\left\{ \prod_{i\in I} U_i : U_i\in\tau_i\text{ for every }i\in I \right\}.
+\]
+{{< /mdef >}}
+
+
+** Compactness
+
+{{< mdef "Compact Space" >}}
+A topological space \(\left( X ,\tau \right)\) is *compact* if for every open cover  
+\[
+X \;=\;\bigcup_{i\in I} V_i ,\qquad V_i\in\tau ,
+\]
+there exists a finite sub‑cover \(V_{i_1},\ldots,V_{i_n}\) with  
+\[
+X \;=\;\bigcup_{k=1}^{n} V_{i_k}.
+\]
+A subset \(Y\subseteq X\) is compact when it is compact in the subspace topology.
+{{< /mdef >}}
+
+{{< mthm >}}
+The interval \([0,1]\) is compact.
+{{< /mthm >}}
+
+{{< mthm >}}
+If \(\left( X ,\tau_X \right)\) and \(\left( Y ,\tau_Y \right)\) are compact, then \(X\times Y\) is compact  
+(with the product topology).
+{{< /mthm >}}
+
+{{< mcoro >}}
+Rectangles of the form \([a,b]^n\subset\mathbb{R}^n\) are compact.
+{{< /mcoro >}}
+
+{{< mthm "Heine–Borel" >}}
+A subset \(X\subset\mathbb{R}^n\) is compact *iff* it is closed and bounded.
+{{< /mthm >}}
+
+{{< mthm "Bolzano–Weierstrass" >}}
+Every bounded sequence of real numbers has a convergent subsequence.
+{{< /mthm >}}
+
+{{< mlemm >}}
+Every sequence of real numbers possesses a monotone subsequence.
+{{< /mlemm >}}
+
+{{< mcoro >}}
+Every bounded sequence in \(\mathbb{R}^n\) has a convergent subsequence.
+{{< /mcoro >}}
+
+{{< mdef "Sequentially Compact" >}}
+A space \(\left( X ,\tau \right)\) is *sequentially compact* if every sequence in \(X\) has a convergent subsequence.  
+The notion for subsets uses the subspace topology.
+{{< /mdef >}}
+
+{{< mthm >}}
+For \(X\subset\mathbb{R}^n\) the following are equivalent:  
+1. \(X\) is compact;  
+2. \(X\) is sequentially compact;  
+3. \(X\) is closed and bounded.
+{{< /mthm >}}
+
+{{< mthm >}}
+If \(f:X\to Y\) is continuous and \(X\) is compact, then \(f\!\left( X \right)\) is compact.
+{{< /mthm >}}
+
+{{< mcoro "Min‑Max Theorem" >}}
+A continuous function \(f:[a,b]\to\mathbb{R}\) attains its maximum and minimum.
+{{< /mcoro >}}
+
+{{< mdef "Uniform Continuity" >}}
+For metric spaces \(\left( X ,d_X \right)\) and \(\left( Y ,d_Y \right)\) a function \(f:X\to Y\) is *uniformly continuous* if  
+\[
+\forall\varepsilon>0\;\exists\delta(\varepsilon)>0\text{ such that }d_Y\!\left( f(x),f(x') \right)<\varepsilon
+\text{ whenever }d_X\!\left( x,x' \right)<\delta(\varepsilon).
+\]
+{{< /mdef >}}
+
+{{< mthm >}}
+If \(\left( X ,d \right)\) is compact and \(f:X\to\mathbb{R}\) is continuous, then \(f\) is uniformly continuous.
+{{< /mthm >}}
+
+{{< mdef "Totally Bounded" >}}
+A metric space \(\left( X ,d \right)\) is *totally bounded* if for every \(\varepsilon>0\) there exist points  
+\(x_1,\ldots,x_n\in X\) such that  
+\[
+X \;=\;\bigcup_{k=1}^{n} B\!\left( x_k,\varepsilon \right).
+\]
+{{< /mdef >}}
+
+{{< mthm >}}
+For a metric space \(\left( X ,d \right)\) the following are equivalent:  
+1. \(X\) is compact;  
+2. \(X\) is sequentially compact;  
+3. \(X\) is complete and totally bounded.
+{{< /mthm >}}
+
+{{< mdef "Equicontinuity" >}}
+Let \(\left( X ,d_X \right)\), \(\left( Y ,d_Y \right)\) be metric spaces and \(S\subset C\!\left( X ,Y \right)\).  
+- *Pointwise equicontinuous*:  
+  \(\forall x\in X,\;\forall\varepsilon>0,\;\exists\delta(x,\varepsilon)>0\) such that  
+  \(d_Y\!\left( f(x),f(x') \right)<\varepsilon\) for every \(f\in S\) whenever \(d_X\!\left( x,x' \right)<\delta(x,\varepsilon)\).  
+- *Uniformly equicontinuous*:  
+  \(\forall\varepsilon>0,\;\exists\delta(\varepsilon)>0\) satisfying the same inequality for all \(x,x'\in X\) and all \(f\in S\).
+{{< /mdef >}}
+
+{{< mthm >}}
+If \(X\) is compact, a family \(S\subset C\!\left( X ,Y \right)\) is pointwise equicontinuous *iff* it is uniformly equicontinuous.
+{{< /mthm >}}
+
+{{< mthm "Arzelà–Ascoli" >}}
+A bounded subset of \(\left( C[0,1],\|\cdot\|_\infty \right)\) is totally bounded *iff* it is equicontinuous.
+{{< /mthm >}}
+
+{{< mcoro >}}
+A subset of \(\left( C[0,1],\|\cdot\|_\infty \right)\) is compact *iff* it is closed, bounded and equicontinuous.
+{{< /mcoro >}}
+
+{{< mcoro >}}
+Every uniformly bounded, equicontinuous sequence of functions on \([a,b]\) has a uniformly convergent subsequence.
+{{< /mcoro >}}
+
+{{< mthm "Weierstrass Approximation" >}}
+For any continuous function \(f\) on \([a,b]\) and \(\varepsilon>0\) there exists a polynomial \(p\) with  
+\[
+\|f-p\|_\infty<\varepsilon .
+\]
+{{< /mthm >}}
+
+{{< mdef "Algebra of Functions" >}}
+A set \(A\subset F\!\left( X ,k \right)\) (functions from \(X\) to a field \(k\)) is an *algebra* if it is a vector space under pointwise operations and closed under pointwise multiplication.  
+It is *unital* when it contains the constant function \(1\).
+{{< /mdef >}}
+
+{{< mthm "Urysohn’s Lemma" >}}
+If \(X\) is a compact Hausdorff space, then \(C\!\left( X ,\mathbb{R} \right)\) separates points of \(X\).
+{{< /mthm >}}
+
+{{< mthm "Stone–Weierstrass" >}}
+Let \(X\) be a compact Hausdorff space and \(A\subset C\!\left( X ,\mathbb{R} \right)\) a unital sub‑algebra.  
+Then \(A\) is dense in \(C\!\left( X ,\mathbb{R} \right)\) (with \(\|\cdot\|_\infty\)) *iff* \(A\) separates points.
+{{< /mthm >}}
+
+{{< mthm "Stone–Weierstrass (Complex Version)" >}}
+Let \(X\) be compact Hausdorff and \(A\subset C\!\left( X ,\mathbb{C} \right)\) a unital *‑sub‑algebra (closed under complex conjugation).  
+Then \(A\) is dense in \(C\!\left( X ,\mathbb{C} \right)\) *iff* it separates points.
+{{< /mthm >}}
+
+{{< mthm "Tychonoff" >}}
+The product \(\prod_{i\in I} X_i\) of any family of compact spaces is compact in the product topology.
+{{< /mthm >}}
+
+{{< mthm "Banach–Alaoglu (Hilbert Case)" >}}
+Let \(H\) be a Hilbert space. The closed unit ball  
+\[
+\{x\in H : \|x\|\le1\}
+\]
+is compact in the weak topology.
+{{< /mthm >}}

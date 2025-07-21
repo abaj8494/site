@@ -1,0 +1,88 @@
+<!-- Mathematical Proposition shortcode -->
+{{ $propositionName := .Get 0 }}
+<div class="math-proposition">
+  <div class="math-proposition-header">
+    <strong>Proposition</strong>
+    <span class="proposition-counter"></span>
+    {{ if $propositionName }}
+      <span class="proposition-name">({{ $propositionName }})</span>
+    {{ end }}
+  </div>
+  <div class="math-proposition-content">
+    {{ .Inner | .Page.RenderString }}
+  </div>
+</div>
+
+<style>
+  .math-proposition {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    border: 2px solid var(--bg2, #e5e5e5);
+    border-left: 4px solid #e83e8c; /* Pink highlight */
+    background: var(--bg1, #f8f9fa);
+    border-radius: 4px;
+    position: relative;
+    font-family: var(--font-serif);
+  }
+
+  .math-proposition-header {
+    font-weight: bold;
+    color: #e83e8c; /* Pink header text */
+    margin-bottom: 0.75rem;
+    font-family: var(--font-serif);
+    font-size: 1rem;
+  }
+
+  .math-proposition-header .proposition-counter {
+    margin-left: 0.25rem;
+  }
+
+  .math-proposition-header .proposition-name {
+    font-weight: normal;
+    font-style: italic;
+    color: var(--fg, #333);
+    margin-left: 0.25rem;
+  }
+
+  .math-proposition-content {
+    color: var(--fg, #333);
+    line-height: 1.6;
+  }
+
+  .math-proposition-content p:first-child {
+    margin-top: 0;
+  }
+
+  .math-proposition-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Dark theme support */
+  [data-theme="dark"] .math-proposition {
+    border-color: var(--bg2, #555);
+    background: var(--bg1, #1a1a1a);
+    border-left-color: #f1a6cd; /* Lighter pink for dark mode */
+  }
+
+  [data-theme="dark"] .math-proposition-header {
+    color: #f1a6cd; /* Lighter pink header in dark mode */
+  }
+
+  [data-theme="dark"] .math-proposition-header .proposition-name {
+    color: var(--fg, #e5e5e5);
+  }
+
+  [data-theme="dark"] .math-proposition-content {
+    color: var(--fg, #e5e5e5);
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Auto-numbering for propositions
+    var propositions = document.querySelectorAll(".proposition-counter");
+    propositions.forEach(function (counter, index) {
+      counter.textContent = " " + (index + 1);
+    });
+  });
+</script>

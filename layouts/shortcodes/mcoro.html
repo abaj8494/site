@@ -1,0 +1,88 @@
+<!-- Mathematical Corollary shortcode -->
+{{ $corollaryName := .Get 0 }}
+<div class="math-corollary">
+  <div class="math-corollary-header">
+    <strong>Corollary</strong>
+    <span class="corollary-counter"></span>
+    {{ if $corollaryName }}
+      <span class="corollary-name">({{ $corollaryName }})</span>
+    {{ end }}
+  </div>
+  <div class="math-corollary-content">
+    {{ .Inner | .Page.RenderString }}
+  </div>
+</div>
+
+<style>
+  .math-corollary {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    border: 2px solid var(--bg2, #e5e5e5);
+    border-left: 4px solid #6610f2; /* Indigo highlight */
+    background: var(--bg1, #f8f9fa);
+    border-radius: 4px;
+    position: relative;
+    font-family: var(--font-serif);
+  }
+
+  .math-corollary-header {
+    font-weight: bold;
+    color: #6610f2; /* Indigo header text */
+    margin-bottom: 0.75rem;
+    font-family: var(--font-serif);
+    font-size: 1rem;
+  }
+
+  .math-corollary-header .corollary-counter {
+    margin-left: 0.25rem;
+  }
+
+  .math-corollary-header .corollary-name {
+    font-weight: normal;
+    font-style: italic;
+    color: var(--fg, #333);
+    margin-left: 0.25rem;
+  }
+
+  .math-corollary-content {
+    color: var(--fg, #333);
+    line-height: 1.6;
+  }
+
+  .math-corollary-content p:first-child {
+    margin-top: 0;
+  }
+
+  .math-corollary-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Dark theme support */
+  [data-theme="dark"] .math-corollary {
+    border-color: var(--bg2, #555);
+    background: var(--bg1, #1a1a1a);
+    border-left-color: #7952b3; /* Slightly lighter indigo for dark mode */
+  }
+
+  [data-theme="dark"] .math-corollary-header {
+    color: #7952b3; /* Lighter indigo header in dark mode */
+  }
+
+  [data-theme="dark"] .math-corollary-header .corollary-name {
+    color: var(--fg, #e5e5e5);
+  }
+
+  [data-theme="dark"] .math-corollary-content {
+    color: var(--fg, #e5e5e5);
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Auto-numbering for corollaries
+    var corollaries = document.querySelectorAll(".corollary-counter");
+    corollaries.forEach(function (counter, index) {
+      counter.textContent = " " + (index + 1);
+    });
+  });
+</script>

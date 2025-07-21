@@ -1,0 +1,197 @@
+<!-- Mathematical Remark shortcode -->
+{{ $remarkName := .Get 0 }}
+<div class="math-remark">
+  <div class="math-remark-header">
+    <strong>Remark</strong>
+    <span class="remark-counter"></span>
+    {{ if $remarkName }}
+      <span class="remark-name">({{ $remarkName }})</span>
+    {{ end }}
+  </div>
+  <div class="math-remark-content">
+    {{ .Inner | .Page.RenderString }}
+  </div>
+</div>
+
+<style>
+  .math-remark {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    border: 2px solid var(--bg2, #e5e5e5);
+    border-left: 4px solid #8e44ad; /* Purple highlight */
+    background: var(--bg1, #f8f9fa);
+    border-radius: 4px;
+    position: relative;
+    font-family: var(--font-serif);
+  }
+
+  .math-remark-header {
+    font-weight: bold;
+    color: #8e44ad; /* Purple header text */
+    margin-bottom: 0.75rem;
+    font-family: var(--font-serif);
+    font-size: 1rem;
+  }
+
+  .math-remark-header .remark-counter {
+    margin-left: 0.25rem;
+  }
+
+  .math-remark-header .remark-name {
+    font-weight: normal;
+    font-style: italic;
+    color: var(--fg, #333);
+    margin-left: 0.25rem;
+  }
+
+  .math-remark-content {
+    color: var(--fg, #333);
+    line-height: 1.6;
+  }
+
+  .math-remark-content p:first-child {
+    margin-top: 0;
+  }
+
+  .math-remark-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Dark theme support */
+  [data-theme="dark"] .math-remark {
+    border-color: var(--bg2, #555);
+    background: var(--bg1, #1a1a1a);
+    border-left-color: #9b59b6; /* Slightly lighter purple for dark mode */
+  }
+
+  [data-theme="dark"] .math-remark-header {
+    color: #9b59b6; /* Lighter purple header in dark mode */
+  }
+
+  [data-theme="dark"] .math-remark-header .remark-name {
+    color: var(--fg, #e5e5e5);
+  }
+
+  [data-theme="dark"] .math-remark-content {
+    color: var(--fg, #e5e5e5);
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Wait for page to fully load
+    setTimeout(function () {
+      // Process each remark to move it into the mathematical environment above it
+      var remarks = document.querySelectorAll(".math-remark");
+
+      remarks.forEach(function (remark, index) {
+        var parentEnvironment = null;
+        var previousElement = remark.previousElementSibling;
+        var scanCount = 0;
+        var maxScanElements = 20; // Scan up to 20 elements backwards
+
+        // Look backwards for a mathematical environment
+        while (previousElement && scanCount < maxScanElements) {
+          scanCount++;
+
+          // Skip whitespace text nodes
+          if (
+            previousElement.nodeType === 3 &&
+            previousElement.textContent.trim() === ""
+          ) {
+            previousElement = previousElement.previousElementSibling;
+            continue;
+          }
+
+          // Skip style and script elements (shortcode artifacts)
+          if (
+            previousElement.tagName &&
+            (previousElement.tagName.toLowerCase() === "style" ||
+              previousElement.tagName.toLowerCase() === "script")
+          ) {
+            previousElement = previousElement.previousElementSibling;
+            continue;
+          }
+
+          // Skip empty paragraphs (Hugo artifacts)
+          if (
+            previousElement.tagName &&
+            previousElement.tagName.toLowerCase() === "p" &&
+            (!previousElement.textContent ||
+              previousElement.textContent.trim() === "")
+          ) {
+            previousElement = previousElement.previousElementSibling;
+            continue;
+          }
+
+          // Check if we found a mathematical environment
+          if (
+            previousElement &&
+            previousElement.classList &&
+            (previousElement.classList.contains("math-definition") ||
+              previousElement.classList.contains("math-theorem") ||
+              previousElement.classList.contains("math-problem") ||
+              previousElement.classList.contains("math-lemma") ||
+              previousElement.classList.contains("math-corollary") ||
+              previousElement.classList.contains("math-proposition") ||
+              previousElement.classList.contains("math-example"))
+          ) {
+            parentEnvironment = previousElement;
+            break;
+          } else {
+            // Continue scanning backwards
+            previousElement = previousElement.previousElementSibling;
+          }
+        }
+
+        // If we found a parent environment, move the remark into it
+        if (parentEnvironment) {
+          // Remove remark from current position
+          remark.parentNode.removeChild(remark);
+
+          // Style the parent environment to connect visually
+          parentEnvironment.style.borderBottomLeftRadius = "0";
+          parentEnvironment.style.borderBottomRightRadius = "0";
+          parentEnvironment.style.borderBottom =
+            "1px solid var(--bg2, #e5e5e5)";
+          parentEnvironment.style.marginBottom = "0";
+
+          // Clear existing styles and apply new ones for integration
+          remark.style.cssText = "";
+          remark.style.setProperty("background", "transparent", "important");
+          remark.style.setProperty("border", "none", "important");
+          remark.style.setProperty("margin", "1rem 0 0 0", "important");
+          remark.style.setProperty("padding", "0.75rem 1rem", "important");
+          remark.style.setProperty(
+            "border-top",
+            "1px solid var(--bg2, #e5e5e5)",
+            "important",
+          );
+          remark.style.setProperty("border-radius", "0", "important");
+
+          // Adjust header styling for integration
+          var header = remark.querySelector(".math-remark-header");
+          if (header) {
+            header.style.setProperty("margin-bottom", "0.5rem", "important");
+            header.style.setProperty("font-size", "0.9rem", "important");
+          }
+
+          // Adjust content styling
+          var content = remark.querySelector(".math-remark-content");
+          if (content) {
+            content.style.setProperty("font-size", "0.95rem", "important");
+          }
+
+          // Append the remark to the parent environment
+          parentEnvironment.appendChild(remark);
+        }
+      });
+
+      // Auto-numbering for remarks (after movement)
+      var remarkCounters = document.querySelectorAll(".remark-counter");
+      remarkCounters.forEach(function (counter, index) {
+        counter.textContent = " " + (index + 1);
+      });
+    }, 100); // Small delay to ensure DOM is fully rendered
+  });
+</script>
