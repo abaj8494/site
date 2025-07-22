@@ -238,6 +238,192 @@ in each of the below topics, there are a number of algorithms and facts that I m
 
 ** Feature Representation
 
+- image features are *vectors* that are a compact representation of images. i.e. blobs, edges, corners, etc.
+- more efficient and robust way to represent images. also useful for further processing: object detection, image segmentation, classification, retrieval, stitching and object tracking.
+- note that pixel values are _highly redundant_ and victim to light intensity, colour, angle changes, camera orientation
+- we wish for features to be: reproducible, salient and compact (aka robust, descriptive, efficient)
+
+*** colour features
+
+- colour is easy to compute
+- invariant to image scaling, translation, rotation
+  
+**** colour histogram
+
+(TODO add image demo?)
+- represent the global distribution of pixel colours in an image
+- step 1: construct a histogram for each colour channel (R, G, B)
+- step 2: concatenate the histogrames (vectors) of all channels as the final feature vector.
+  
+**** colour moments
+
+- moments based representation of colour distributions
+- gives a feature vector of only 9 elements (for RGB)
+- lower representation capability than above histogram
+
+*** texture features
+
+- visual characteristics and appearance of objects
+- a powerful discriminating feature for identifying visual patterns
+- encodes properties of structural homogeneity beyond colour or intensity
+
+**** haralick features
+
+- array of statistical descriptors of image patterns
+- captures spatial relationship between neighbouring pixels
+- step 1: construct the gray-level co-occurence matrix (GLCM) - representing the frequency of peixel intensity pairs occurring at a specific offset and direction
+- step 2: compute the Haralick feature descriptors from the GLCM - that summarises texture information (how pixel intensities are spatially related)
+- often used in practice due to their simplicity and interpretability.
+  
+***** glcm method
+
+- TODO not sure of best explanation
+
+***** haralick descriptors
+
+- TODO seems tacky and long.
+
+**** local binary patterns
+
+- describe the spatial structure of local image texture
+algorithm:
+  - divide the image into cells of $N\times N$ pixels ($N=16$ or $N=32$)
+  - compare each pixel in a given cell to each of its 8 neighbouring pixels
+  - if the neighbour's value is *greater than or equal to* the centre, write 1; otherwise write 0.
+  - this gives an 8-digit binary pattern per pixel, representing a value in the range $0...255$
+  - count the number of times each 8-digit binary number occurs in the cell
+  - this gives a 256-bin histogram (also known as the LBP feature vector)
+  - combine the histograms of all cells of the given image
+  - this gives the image-level LBP feature descriptor
+
+TODO insert example
+
+- LBP can be multiresolution and rotation-invariant
+  - in the case of multiresolution, you vary the distance between the centre pixel and neighbouring pixels and vary the number of neighbouring pixels
+  - for rotation-invariance: vary the way of constructing the 8-digit binary number by performing bitwise shift to derive the smallest number
+    - note: not all patterns have 8-shifted variants (i.e. 11001100 has only 4)
+    - reduces LPB feature dimension from 256 to 36
+
+**** scale-invariant feature transform
+
+- describes texture in a localised region around a *keypoint*
+- invariant to scaling, rotation, shift.
+- robust to affine distortion and illumination changes
+
+***** algorithm
+- Scale-Space Extrema Detection: find maxima/minima in DoG images across scales
+- Keypoint Localisation: discard low-contrast keypoints and eliminate edge responses
+- Orientation Assignment: achieve rotation invariance by orientation assignment (make histogram of local gradient vectors) {{< mnote "i forgot this step in the lab" >}}
+- Keypoint Descriptor: compute gradient orientation histograms
+
+***** descriptor matching
+nearest neighbour distance ratio (NNDR) \[NNDR = \frac{d_1}{d_2} = \frac{||D_a -D_B||}{||D_A-D_C||}\]
+  - distance $d_1$ is to the first nearest neighbour
+  - distance $d_2$ is to the second nearest neighbour
+  - nearest neighbours in 128D feature space
+  - reject matches with NNDR > 0.8
+
+- translation and rotation are *rigid transformations*
+- scaling, affine, perspective are *nonrigid transformations*
+- TODO optional: add matrices
+
+***** fitting and alignment
+- Least Squares (LS) fitting of corresponding keypoints $(x_i,x_i')$
+  - find parameters $p$ that minimise the squared error E \[E = \sum_i ||T(\mathbf{x_i); \mathbf{p) - \mathbf{x_i'}||^2\]
+- RANdom SAmple Consensus (RANSAC) fitting
+  - least-squares is *hampered by outliers*
+  - better use a subset of the data and check inlier agreement
+  - RANSAC does this in an iterative way to find the optimum
+  - algorithm:
+    1. sample (randomly) the number of points required to fit the model
+    2. solve for the model parameters using the samples
+    3. score by the fraction of inliers within a preset threshold of the model
+    - repeat 1-3 until the best model is found with high confidence
+
+- TODO practise problem on solving the "transformation" given matched points A and B.
+
+*** feature encoding
+
+- Bag-of-Words (BoW) takes variable number of local image features and encodes them into a fixed-dimensional histogram. it works in general, but for SIFT too.
+- Algorithm:
+  - extract local SIFT keypoint descriptors from training images
+  - create the "vocabulary" from the set of SIFT keypoint descriptors
+    - use K-means clustering
+      - partitions the training data into $k$ categories
+      - algorithm:
+	- initialise: $k$ cluster centres (randomly)
+	- iterate:
+	  1. assign data (feature vectors) to the closest cluster (Euclidean distance)
+	  2. update cluster centres as the mean of the data samples in each cluster
+	- terminate:
+	  - when converged or the number of iterations reaches the maximum
+  - this vocabulary represents the categories of local descriptors
+  - cluster centres are the "visual words" in this "vocabulary" used to represent an image
+  - each local feature descriptor is assigned to one visual word with the smallest distance
+  - compute the number of local image feature descriptors assigned to each visual word
+  - concatenate the numbers into a vector which is the "BoW" representation of the image
+
+- local features (that BoW takes in) can be LBP, SURF, BRIEF, ORB
+  - BoW in turn can be replaced with VLAD, Fisher Vector
+
+*** shape features
+
+- essential characteristic of material objects
+- typically extracted after image segmentation
+- can be used to identify and classify objects
+- challenges
+  - invariant to rigid transformations
+  - tolerant to non-rigid deformations
+
+**** basic shape features
+
+- net area; principal axes; convex area
+- convexity, concavity; convex hull {{< mnote "recall that this is the smallest bounding box around the object that is also convex" >}}; convex deficiency (set difference between the convex hull and the object)
+- compactness; circularity
+  - ^inversely related
+  - compactness: ratio of the area of a circle with the same perimeter as the object to the area of the object
+  - circularity: ratio of $4\pi$ times the area of an object to the second power of its perimeter ($4\pi A/p^=1$ for a circle)
+- elongation; eccentricity
+  - elongation: ratio between the length and width of the object's bounding box
+  - eccentricity: ratio of the length of the minor axis to the length of the major axis
+
+**** boundary descriptors (TODO)
+
+- chain code descriptor
+- local curvature descriptor
+- global curvature descriptors:
+  - total bending energy $B=\oint_C K^2\; \mathrm{d}s$
+  - total absolute curvature $K=\oint_C |K(s)|\;\mathrm{d}s$
+- radial distance descriptor
+
+**** shape context
+
+- is a point-wise local feature descriptor
+  - pick $n$ points $p_i$ on the contour of a shape
+  - for each point, create a radial coordinate system centred at this point and compute a histogram $h_i$ based on the relative coordinates of the other $n-1$ points
+  - this is the shape context of $p_i$
+- e.g. shape matching ALGORITHM TODO; TODO graphic
+
+**** histogram of oriented gradients (HoG)
+
+- describes the distributions of gradient orientations in localised areas
+- does not require initial segmentation
+- algorithm:
+  1. calculate the gradient vector at each pixel
+     - gradient magnitude
+     - gradient orientation
+  2. construct the gradient histogram of all pixels in a cell
+     - divide orientations into $N$ bins (typically $N=9$ bins evenly splitting 180 degrees)
+     - assign the gradient magnitude of each pixel to the bin corresponding to its orientation
+  3. generate detection-window level HOG descriptor
+     - concatenate cell histograms
+     - block-normalise cell histograms
+      
+sliding window ? TODO
+
+- use-case: detecting humans in images.
+
+
 ** Pattern Recognition
 
 ** Image Segmentation
@@ -249,4 +435,4 @@ in each of the below topics, there are a number of algorithms and facts that I m
 * homework
 
 - explain the transforms based on the slides.
-- 
+- Image Features: Shape Matching Algorithm; Descriptors
