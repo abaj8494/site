@@ -329,7 +329,7 @@ nearest neighbour distance ratio (NNDR) \[NNDR = \frac{d_1}{d_2} = \frac{||D_a -
 
 ***** fitting and alignment
 - Least Squares (LS) fitting of corresponding keypoints $(x_i,x_i')$
-  - find parameters $p$ that minimise the squared error E \[E = \sum_i ||T(\mathbf{x_i); \mathbf{p) - \mathbf{x_i'}||^2\]
+  - find parameters $p$ that minimise the squared error E \[E = \sum_i ||T(\mathbf{x}_\mathbf{i}); \mathbf{p) - \mathbf{x}_\mathbf{i}'}||^2\]
 - RANdom SAmple Consensus (RANSAC) fitting
   - least-squares is *hampered by outliers*
   - better use a subset of the data and check inlier agreement
@@ -423,8 +423,238 @@ sliding window ? TODO
 
 - use-case: detecting humans in images.
 
-
 ** Pattern Recognition
+
+- automatically recognise patterns and regularities in data.
+  - object recognition; text classif; speech recognition; event detection; recommender systems
+
+- the different learning paradigms:
+  - supervised learning
+  - unsupervised learning
+  - semi-supervised learning
+    - uses labelled and unlabelled data
+  - weakly supervised learning
+    - noisy / limited / imprecise supervision signals in learning
+  
+*** concepts
+
+- *objects*: identifiable physical entities of which images are taken
+- *regions*: correspond to objects after image segmentation
+- *classes*: disjoint subsets of objects sharing common features
+- *labels*: associated with objects and indicate to which class they belong
+- *classification*:process of assigning labels to ojbects based on features
+- *classifiers*: algorithms / methods performing the classication task
+- *patterns*: are regularities in object features and are used by classifiers
+
+- *pre-processing*: aims to enhance images for further processing
+- *feature extraction*: reduces the data by measuring certain properties
+- *feature descriptors*: aims to keep only the most descriptive features
+- *models*: are (mathematical or statistical) descriptions of classes
+- *training samples*: objects with known labels used to build models
+- *cost*: consequence of making an incorrect decision / assignment
+- *decision boundary*: demarcation between regions in feature space
+
+
+*** supervised learning
+
+**** classification
+
+***** nearest class mean
+
+- like k-means but without the iteration
+- would depend strongly on initialised parameters
+- algorithm:
+  - training: given training sample pairs ${(x_1,y_1),(x_2,y_2),...,(x_n,y_n)}$, the centrodi for each class $k$ is obtained as \[\mu_k = \frac{1}{|c_k|}\sum_{x_i\in c_k}x_i\]
+  - testing: each unknown object with feature vector $x$ is classified at class $k$ if $x$ is closer to the centroid of class $k$ than to any other class centroid
+- works well when classes are compact and far from each other
+- cannot handle outliers and noisy data well
+- no good for complex classes (multimodal, non-spherical)
+    
+***** k-nearest neighbours
+
+- euclidean distance used for continuous variables
+- hamming distance for discrete variables
+- decision surfaces are non-linear
+- cons:
+  - slow for big datasets (non-parametric)
+  - needs homogeneous feature types and scales
+  - number of variables $>> \implies$ curse of dimensionality
+  - hyper-parameter tuning of $k$ can be annoying
+
+***** bayesian decision theory
+
+- introduces /prior/ knowledge
+- assigns class to which it most likely belongs based on observed features
+- assume the following to be known: {{<mnote "to be learned from data or assigned" >}}
+  - prior probability $p(c_i)$ for each class $c_i$
+  - class conditional distribution $p((x|c_i)$
+- compute the posterior probability $p(c_i|x)$ as follows:
+  - if all the classes are disjoint, by Bayes Rule, the posterior probabilities are given by \[p(c_i|x) = \frac{p(x|c_i)p(c_i)}{p(x)}\]
+    \boxed{\[p(x,c_i) = p(x|c_i)p(c_i) = p(c_i|x)p(x)\]\[p(x) = \sum_j p(x,c_j) = \sum_j p(x|c_j) p(c_j)\]}
+- the bayesian decision rule is: $c=\mathrm{arg}\max_i (p(x|c_i))$
+  - which is equivalent to \[c=\mathrm{arg}\max_i (p(x|c_i)p(c_i))\]
+    \[c(c_i|x) = \frac{p(x|c_i)p(c_i)}{p(x)}\propto p(x|c_i)p(c_i)\]
+
+- unusually, in the running example: uniform priced fish $\implies$ we should maximise the posterior probability and prices unequal $\implies$ we should minimise the loss.
+
+- pros:
+  - simple and efficient
+  - considers uncertainties
+  - permits new information updates
+- cons:
+  - struggles with complex data relationships
+  - choice of priors can be subjective
+
+***** decision trees
+
+- nominal data = categorical
+- *entropy*: of a set of events $y = \set{y_1,y_2,...,y_n}$ is: \[H(y) = \sum_{i=1}^n -p(y_i) \log_2(p(y_i))\] where $p(y_i)$ is the probability of event $y_i$
+  - may be viewed as the average uncertainty of the information source
+    - $H=0$ means source has no uncertainty
+    - $H>0$ if the source information is uncertain
+- algorithm:
+  1. select a feature to place at the node
+  2. make one branch for each possible value (nominal) or range(numerical)
+  3. for each branch node, repeat steps 1 and 2 using only those samples that actually reach the branch
+  4. when all samples at a node have the same classifiaciton (or label), stop growing that part of the tree
+
+- *information gain*: \[IG(S,F) = H(S) - H(S|f)\]
+  - \[IG(S,f) = \mathrm{Entropy}(S) - \sum_{f_a\in \mathrm{values}(f)}\frac{|S_{fa}|}{S}\mathrm{Entropy}(S_{fa})\]
+  - use the feature with highest information gain to split on
+
+- pros:
+  - interpretable
+  - numerical, categorical data
+  - robust to outliers and missing values
+  - feature selection (helps determine the more important features)
+
+- cons:
+  - overfitting
+  - greedy algorithm
+ 
+***** ensemble learning, random forests
+
+- training:
+  1. let $N$ be number of training instances and $M$ the number of features
+  2. sample $N$ instances at random with replacement from the original data
+  3. at each node select $m << M$ features at /random/ and split on the best feature
+  4. grow each tree to the largest extent possible (no pruning)
+  5. repeat $B$ times. keep the value of $m$ constant during the forest growing
+
+- testing:
+  1. push a new sample down a tree and assign the label of the terminal node it ends up in
+  2. iterate over all trees in the ensemble to get $B$ predictions for the sample
+  3. report the majority vote of all trees as the random forest prediction
+
+- error rate depends on 2 factors:
+  1. correlation between any two trees in the forest.
+     - increased correlation increases the forest error rate; uncorrelated trees lead to better generalisation
+  2. strength of each individual tree in the forest
+     - strong tree has low error rate
+     - increasing the strength of individual trees decreases the forest error rate
+- selecting parameter $m$:
+  - reducing $m$ reduces both the correlation and the strength
+  - increasing $m$ increases both the correlation and the strength
+  - somewhere in between is an "optimal" range
+
+- pros:
+  - high accuracy
+  - efficient and effective on large datasets
+  - can handle thousands of input features without feature selection
+  - handles missing values
+- cons:
+  - less interpretable than an individual decision tree
+
+***** linear classification
+
+- \[f(x) = W^T x+ b\]
+
+***** support vector machines
+
+- maximise margin - the distance to the closest sample
+- primal (hard-margin)
+  \[\begin{equation}
+  \min_{\mathbf{w},b} \frac{1}{2} ||\mathbf{w}||^2_2\\
+  \text{s.t.}\quad y_i(\mathbf{w}^T\mathbf{x}_i + b) \geq 1, \quad \forall i
+  \end{equation}\]
+- distance between a point to a hyperplane
+  \[d = \frac{|\mathbf{w}^T\mathbf{x}'+b|}{||\mathbf{w}||_2}\]
+- soft-margin primal \[\begin{equation}
+  \min_{\mathbf{w},b} \frac{1}{2} ||\mathbf{w}||^2_2 + C \sum_i \xi_i\\
+  \text{s.t.}\quad y_i(\mathbf{w}^T\mathbf{x}_i + b) \geq 1-\xi_i, \quad \forall i \\
+  \xi_i \geq 0
+  \end{equation}\]
+  - small $C$: more tolerance on miss-classified samples for larger margin
+  - large $C$: focus on avoiding mistakes at the expense of smaller margin
+  - $C$ to infinity means going back to the hard margin SVM
+  - still a quadratic programming optimisation problem
+
+- pros:
+  - effective in high-dimensional feature spaces
+  - effective when number of features is larger than the training data size
+  - good whenn classes are separable
+  - works well when data is sparse
+  - can be extended to non-linear with the kernel trick
+- cons:
+  - does not perform well for overlapping classes
+  - hyperparameter tuning
+  
+
+***** multiclass classification
+
+- one versus rest: builds one classifier for one class versus the rest and assigns a test sample to the class that has the highest confidence score
+- one versus one: builds one classifier for every pair of classes and assigns a test sample to the class that has the highest number of predictions
+
+***** classification performance metrics
+
+****** ROC curve
+
+- receiver operating curve
+- relates the false positive to the true positive rate
+- generally, false alarms go up with attempts to correctly detect higher percentages of known objects
+- AUC (area under the ROC) summarises the overall performance
+
+****** Confusion Matrix
+
+- matrix whose entry $(i,j)$ records the number of times an object of class $i$ was classified as class $j$
+- diagonal entries indicate success
+- reproduce the binary classification matrix TODO
+
+****** Precision vs. Recall
+
+- \[\text{accuracy} = \frac{\text{TP}+\text{TN}}{\text{TP}+\text{TN}+\text{FP}+\text{FN}} \quad \left ( \frac{\text{correct}}{\text{total}} \right)\]
+- Precision
+- Recall
+- F1 Score
+- others? TODO
+
+**** regression
+
+***** linear regression
+
+- \[f(x) = xW\]
+
+***** least-squares regression
+
+- \[\text{RSS}(W) = \sum_{i=1}[y_i-f(x_i)]^2 = (Y-XW)^T(Y-XW)\]
+- $\hat{W} = \text{arg}\min_w \text{RSS}(W) = (X^TX)^{-1}X^TY$
+
+***** regression performance evaluation
+
+\[\text{RMSE} = \sqrt{\frac{1}{N}\sum_{i=1}^N (y_i - \hat{y_i})^2}
+  - represents the standard deviation of the ppredicted values from the observed values
+\[\text{MAE} = \frac{1}{N}\sum_{i=1}^N |y_i - \hat{y_i}|\]
+  - represents the average of the absolute differences between the predicted and observed values
+  - RMSE penalises big differences between predicted values and observed values more heavily.
+
+\[R^2 = 1 - \frac{\sum_{i=1}^N(y_i-\hat{y_i})^2}{\sum_{i=1}^N (y_i - \bar{y})^2}
+  - indicates how well the selected features explain the output variable
+  - tends to always increase by adding extra features
+
+normalisation: \[\frac{x-x_\text{min}}{x_\text{max} - x_\text{min}}\]
+
+cross validation: data is split into $k$ subsets (folds) and at each iteration we keep one fold out for testing and use the rest for training.
+  - this is repeated $K$ times until all folds have been used once as the test set.
 
 ** Image Segmentation
 
