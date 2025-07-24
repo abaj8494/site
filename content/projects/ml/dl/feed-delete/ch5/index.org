@@ -1,2 +1,0 @@
-* chapter 5: why are deep neural networks hard to train?
-

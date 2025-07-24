@@ -7,7 +7,7 @@ toc = "true"
 
 I loved locking up folders as a kid on the Windows 7 computers using /batch/ scripts I didn't understand.
 
-#+begin_quote
+#+begin_src markdown
 # Welcome to the bytelocker!
 
 This is a small program written in C to help me consolidate by understanding of `FILE` streams, *bitwise operations* and *memory representations* of data. 
@@ -40,7 +40,7 @@ here pressing capital E in normal mode will encrypt the file.
 
 ### Demo
 ![](img/demo.gif)
-#+end_quote
+#+end_src
 
 tl;dr this used to be a standalone repo.
 

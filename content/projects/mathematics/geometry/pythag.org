@@ -1,5 +1,5 @@
 +++
-title = "Proof of the Pythogorean Theorem"
+title = "Proof of the Pythagorean Theorem"
 math = "true"
 tikzjax = "true"
 +++
@@ -15,7 +15,7 @@ Consider two squares, each of side length \(a + b\). We can place four congruent
 #+BEGIN_EXPORT html
 <center>
 <script type="text/tikz">
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=3]
     % First Square
     \draw (0,0) -- (5,0) -- (5,5) -- (0,5) -- cycle;
     

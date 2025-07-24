@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Define target selectors for your navigation links.
     const targets = [
-      { selector: 'nav#menu a[href="/projects/"]' },
+      { selector: 'nav#menu a[href="/work/"]' },
       { selector: 'nav#menu a[href="/words/"]' },
       { selector: 'nav#menu a[href="/blog/"]' },
       { selector: 'nav#menu a[href="/about/"]' },

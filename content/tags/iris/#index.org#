@@ -1,7 +1,0 @@
-+++
-title = "Iris: Flower Dataset"
-categories = ["ai", "ml", "supervised"]
-tags = ["classification", "multiclass", "cnn", "svm"]
-+++
-
-#+INCLUDE: "/code/10khrs-ai-ml-dl/projects/monster-svm/all-features.py" src python

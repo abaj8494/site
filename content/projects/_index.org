@@ -305,6 +305,7 @@ These methods can be adapted for _regression_, but they are more well suited to 
 #+END_CENTER
 
 
+- @@html:<input type="checkbox" class="edit"/>@@ [[/work/mathematics/geometry][Geometry]] {{< tags-inline "work/mathematics/geometry" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/mathematics/discrete/logic][Logic]] {{< tags-inline "projects/mathematics/discrete/logic" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/mathematics/discrete/graph-theory][Graph Theory]] {{< tags-inline "projects/mathematics/discrete/graph-theory" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/mathematics/discrete/number-theory][Number Theory]] {{< tags-inline "projects/mathematics/discrete/number-theory" >}}

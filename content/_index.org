@@ -42,7 +42,7 @@ If you are visiting in a professional capacity then [[https://github.com/abaj849
 
 This site is the spine of my intellect, and is powered by Emacs @@html:<img src="https://abaj.ai/about/emacs.svg" width="20" height="20" class="lateximage" style="vertical-align: -5px;">@@. It allows me to practise [[{{<ref "/blog/literate-programming">}}][Literate Programming]] and [[{{< ref "projects/ml/dl/feedforward" >}}][Typeset Mathematics]] beautifully.
 
-You may also be interested in the [[{{< ref "work/csp" >}}][projects]] section of this site which tracks my Quest of Conquering Mathematics and Computer Science.
+You may also be interested in the [[{{< ref "projects/csp" >}}][projects]] section of this site which tracks my Quest of Conquering Mathematics and Computer Science.
 
 A web CV can be found [[/about/cv][here]].[fn:5]
 

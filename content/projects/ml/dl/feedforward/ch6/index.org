@@ -296,7 +296,7 @@ Corresponding test accuracy of 99.36%
 
 *** expand_mnist code
 
-#+INCLUDE: "/code/10khrs-ai-ml-dl/learning/nielsen-dl/expand_mnist.py" src python
+#+INCLUDE: "/code/10khrs-ai-ml-dl/learning/nielsen-dl/authors/src/expand_mnist.py" src python
 #+CAPTION: expand_mnist.py
 
 ** DONE dropout (regularisation)
