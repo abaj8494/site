@@ -490,7 +490,7 @@ sliding window ? TODO
   - class conditional distribution $p((x|c_i)$
 - compute the posterior probability $p(c_i|x)$ as follows:
   - if all the classes are disjoint, by Bayes Rule, the posterior probabilities are given by \[p(c_i|x) = \frac{p(x|c_i)p(c_i)}{p(x)}\]
-    \boxed{\[p(x,c_i) = p(x|c_i)p(c_i) = p(c_i|x)p(x)\]\[p(x) = \sum_j p(x,c_j) = \sum_j p(x|c_j) p(c_j)\]}
+    \[\boxed{\begin{align}p(x,c_i) &= p(x|c_i)p(c_i) = p(c_i|x)p(x) \\ p(x) &= \sum_j p(x,c_j) = \sum_j p(x|c_j) p(c_j)}\]
 - the bayesian decision rule is: $c=\mathrm{arg}\max_i (p(x|c_i))$
   - which is equivalent to \[c=\mathrm{arg}\max_i (p(x|c_i)p(c_i))\]
     \[c(c_i|x) = \frac{p(x|c_i)p(c_i)}{p(x)}\propto p(x|c_i)p(c_i)\]
@@ -641,13 +641,13 @@ sliding window ? TODO
 
 ***** regression performance evaluation
 
-\[\text{RMSE} = \sqrt{\frac{1}{N}\sum_{i=1}^N (y_i - \hat{y_i})^2}
+\[\text{RMSE} = \sqrt{\frac{1}{N}\sum_{i=1}^N (y_i - \hat{y_i})^2}\]
   - represents the standard deviation of the ppredicted values from the observed values
 \[\text{MAE} = \frac{1}{N}\sum_{i=1}^N |y_i - \hat{y_i}|\]
   - represents the average of the absolute differences between the predicted and observed values
   - RMSE penalises big differences between predicted values and observed values more heavily.
 
-\[R^2 = 1 - \frac{\sum_{i=1}^N(y_i-\hat{y_i})^2}{\sum_{i=1}^N (y_i - \bar{y})^2}
+\[R^2 = 1 - \frac{\sum_{i=1}^N(y_i-\hat{y_i})^2}{\sum_{i=1}^N (y_i - \bar{y})^2}\]
   - indicates how well the selected features explain the output variable
   - tends to always increase by adding extra features
 
@@ -658,6 +658,292 @@ cross validation: data is split into $k$ subsets (folds) and at each iteration w
 
 ** Image Segmentation
 
+*** basic segmentation
+
+**** thresholding
+- works fine if regions have sufficiently different intensity distributions
+- *problematic* if regions have overlapping intensity distributions
+
+**** k-means
+- may work if the number of clusters is known /a priori/
+- problematic if not
+
+**** feature-based pixel classification
+- extract a patch around each pixel and compute its features
+- classify each pixel based on its features using a trained classifier
+
+*** advanced segmentation
+
+**** region splitting * and merging
+- recursively split the whole image into pieces based on local statistics
+- recursively merge pieces together (in a hierarchical fashion)
+- combine splitting and merging sequentially
+
+***** connectivity
+- 4-connectivity in 2d
+- 8-connectivity in 2d
+- 3d: 6-connected, 18, 26
+
+- connected components labelling algorithm:
+  - first pass:
+    1. check each pixel (top left to bottom right)
+    2. if an object pixel, check its neighbours ($N_4$ or $N_8$)
+    3. if no neighbours have labels, assign a new label
+    4. if neighbours do have labels, assign the smallest
+    5. record label equivalences while assigning
+  - second pass
+    1. check each pixel
+    2. replace each label with its smallest equivalent
+    3. all background pixels default to the zero label
+
+- merging by region growing:
+  - define a similarity measure
+  - start from one seed pixel for the region
+  - add neighbouring pixels to the region if they are similar
+  - repeat previous step until no more pixels are similar
+    
+**** watershed segmentation
+
+- based on the analogy of immersion of a topographic surface
+- meyer's flooding algorithm:
+  1. choose a set of markers to start the flooding
+     - i.e. local minima. give each a different label
+  2. put neighbouring pixels of each marker into a priority queue
+     - a pixel with more similar gray value has higher priority
+  3. pop the pixel with the highest priority level from the queue. if the neighbours of the popped pixel that have already been labelled all have the same label, then give the pixel that same label. put all non-labelled neighbours that have never been in the queue into the queue
+  4. repeat step 3 until the queue is empty
+
+- preprocessing:
+  - invert the image or compute edges if needed to get local minima markers
+    
+- images often have many local minima, leading to heavy oversegmentation
+- preprocessing (image smoothing) may be needed to reduce false minima
+- postprocessing (basin merging) may be needed to reduce fragmentation
+- many different implementations and pre/postprocessing criteria exist
+- it is possible to start from user-defined markers instead of local minima
+
+**** maximally stable extremal regions
+
+- try multiple thresholds and analyse the shape of the connected components
+- select regions with virtually constant shape over many thresholds
+
+**** mean shifting
+
+- seeks stationary points (peaks / modes) in a density function
+- attempts to find all possible cluster centers in feature space
+- does not require knowing the number of clusters a priori
+- is a variant of iterative steepest-ascent method
+
+- algorithm:
+  1. initialise a random seed point $x$ and window $N$
+
+  2. calculate the mean (centre of gravity) $m(x)$ within $N$ \[m(x)=\frac{\sum_{x_i\in N(x)} K(x_i-x)x_i}{\sum_{x_i\in N(x)} K(x_i-x)}\qquad K(x) = \exp(-|x|^2)\]
+     \[\text{Mean (centre of gravity)}\qqquad\text{Kernel (weight function)}\]
+  3. shift the search window to the mean
+  4. repeat step 2 until convergence
+
+- advantages:
+  - model-free (does not assume any prior shape on data clusters)
+  - has just a single parameter (window size)
+  - finds variable number of modes (clusters)
+  - robust to outliers
+- limitations:
+  - computationally expensive (need to shift many windows)
+  - output depends on window size parameter value
+  - window size (bandwidth) selection is not trivial
+  - does not scale well with dimensionality of feature space
+
+**** superpixel segmentation
+
+- improves efficiency:
+  - group similar pixels into a superpixel
+  - superpixels together are an oversegmentation of the image
+  - ultimate segmentation (classification, mergingg) performed on superpixels
+
+- simple linear iterative clustering (SLIC)
+  - popular superpixel generation algorithm
+  - preserves object boundaries, is fast and memory efficient
+  - algorithm:
+    1. initialise cluster centres $C_j$ on pixel grid with step size $S$
+
+    2. move $C_j$ to position in $3\times 3$ window with smallest gradient
+
+    3. compute distance $D_{ij}$ for each pixel $i$ in $2S\times 2S$ window around $C_j$
+
+    4. assign each pixel $i$ to the cluster $C_j$ with smallest distance $D_{ij}$
+
+    5. recompute cluster centres as mean colour and position of pixels in $C_j$
+
+    6. iterate (go to step 3) until the residual error is small
+       \[\begin{align}
+       D &= \sqrt{\frac{d_{\text{lab}^2}}{m^2} + \frac{d_{xy}^2}{S^2}}\quad\text{(weight $m$ controls influence of colour over spatial distance)}\\
+       d_\text{lab} &= \sqrt{(l_j-l_i)^2 + (a_j-a_i)^2 + (b_j-b_i)^2}\quad\text{(distance in CIELAB space)}\\
+       d_{xy}=\sqrt{(x_j-x_i)^2+(y_j-y_i)^2}\quad\text{(distance in pixel space)}  \]   
+
+**** conditional random field
+
+- superpixels provide a basis for further segmentation
+  - determine spatial relationship between the superpixels
+  - compute similarities between superpixels
+  - group superpixels to form larger segments
+
+- conditional random field (CRF) approach
+  - a probabilistic graphical model that encodes the relationships between observations (i.e. superpixels) and constructs a consistent interpretation (i.e. a segmentation) for a set of data (i.e. an image)
+
+- nodes: superpixels (value based on features of superpixels)
+- edges: adjacency (value based on similarity between superpixels)
+- formulated as an energy minimisaion problem: \(E(s,c) = \sum_i \psi (s_i,c_i) \sum_{ij}\Psi (s_i, s_j)\)
+  - unary potentials $\psi$:
+    - data term based on graph node values
+    - computes the cost of superpixel $s_i$ belonging to class $c_i$
+    - a lower cost means a higher likelihood of $s_i$ belonging to $c_i$
+    - can be obtained via superpixel classification
+  - pairwise potentials $\Psi$:
+    - smoothness term based on graph edge values
+    - computes a cost of neighbourhood consistency
+    - a cost is assigned if adjacent superpixels are assigned to different classes
+    - higher similarity results in a lower cost (0 if assigned to the same class)
+- graph cutting by min-cut / max-flow algorithm
+
+**** active contour segmentation (snakes method)
+
+- a contour-based approach to object segmentation
+- aims to locate object boundaries in images by curve fitting
+- represents the curve by set of control points and interpolation
+- iteratively moves the control points to fit the curve to the object
+- uses image, smoothness and user-guidance forces along curve
+
+- a.k.a snakes:
+  - smoothly follows high intensity gradients at the object boundary
+  - bridges areas of noise or missing gradients using smooth interpolation
+
+- missing gradient problem?
+  
+**** level-set segmentation
+
+- active contours / snakes are *parametric* models
+  - explicit representations of the object boundaries
+  - typically requires manual interaction to initialise the curve
+  - it is challenging to change the topology of the curve as it evolves
+  - curve reparametrisation may be required for big shape changes
+- level-set methods have become more popular alternatives
+  - implicit representations of the object boundaries
+  - boundaries defined by the zero-set of a higher dimensional function
+  - level-set function evolves to make the zero-set fit and track objects
+  - easily accommodates topological changes in object shape
+  - computationally more demanding than active contours
+
+- representation:
+  - define an initial 3D level-set function
+  - zero-level plane represents the 2D shape
+  - iteratively deform the function to fit the shape
+
+*** evaluation
+
+**** pixel classification
+
+- segmented object pixels: $S$
+
+- true object pixels: $T$
+
+- true positives: $TP = S \cup T$
+  - pixels correctly segmented as object
+
+- true negatives: $TN = S^c\cup T^c$
+  - pixels correctl segmented as background
+
+- false positives: $FP=S\cap T^c$
+  - pixels incorrectly segmented as object
+
+- false negatives: $FN=S^c \cap T$
+  - pixels incorrectly segmented as background
+
+**** quantitative evaluation metrics
+    
+- sensitivity (= true-positive rate)
+  - fraction of the true object that is correctly segmented \[\text{TPR} = \frac{\text{TP}}{\text{TP}+\text{FN}}\]
+
+- specificity (= true-negative rate)
+  - fraction of the true background that is correctly segmented \[\text{TNR} = \frac{\text{TN}}{\text{TN}+\text{FP}}\]
+
+- precision (= positive predictive value)
+  - fraction of the segmented object that is correctly segmented \[\text{P} = \frac{\text{TP}}{\text{TP}+\text{FP}}\]
+- F-measure (= harmonic mean of precision and recall)
+  \[\text{F1} = \frac{2\text{RP}}{\text{R}+\text{P}}\]
+- recall (= sensitivity)
+  - fraction of the true object that is correctly segmented
+    \[\text{R} = \frac{\text{TP}}{\text{TP}+\text{FN}}\]
+
+- Jaccard similarity coefficient (JSC)
+  - intersection over union (IoU) = correctly segmented fraction of the union of the segmented object and the true object \[\text{JSC} = \frac{S\cap T}{S\cup T} = \frac{\text{TP}}{\text{FP}+\text{TP}+\text{FN}}\]
+- Dice similarity coefficient (DSC)
+  - correctly segmented fraction of the segmented object set joined with the true object set  \[\text{DSC} = \frac{2|S\cap T|}{|S|\cup |T|} = \frac{2\text{TP}}{\text{FP}+2\text{TP}+\text{FN}}\]
+
+**** receiver operating characteristics
+
+- plots the true-positive rate (sensitivity) versus the false positive rate (one minus the specificity) of a method as a function of its free parameters
+
+- auc
+  - higher is better.
+  - ranges from 0.0 to 1.0. can technically go negative, but maybe just invert your work at that point.
+
+*** morphology
+
+- nonlinear, set‑theoretic post/pre‑processing to clean noise, split/merge objects, fill holes, extract shapes, measure distances. 
+
+** basic set ops
+   - translation \(A_c = \{\,x + c \mid x \in A\,\}\)
+   - reflection \(A^{r} = \{\, -x \mid x \in A\,\}\)
+   - complement \(A^{c} = \{\,x \mid x \not\in A\,\}\)
+   - union \(A \cup B = \{\,x \mid x \in A \text{ or } x \in B\,\}\)
+   - intersection \(A \cap B = \{\,x \mid x \in A \text{ and } x \in B\,\}\)
+   - difference \(A - B = \{\,x \mid x \in A \text{ and } x \not\in B\,\}\)
+   - size \(|A|\) = number of elements
+
+** binary morphology (thresholded imgs)
+*** core tools
+    - dilation \(I \oplus S = \{\,x \mid (S^{r})_x \cap I \neq \varnothing\,\}\)
+    - erosion \(I \ominus S = \{\,x \mid S_x \subseteq I\,\}\)
+    - default struct elem: symmetric \(3 \times 3\); use decomposition / iteration for bigger ones
+*** compound tweaks
+    - opening \(I \circ S = (I \ominus S)\, \oplus S\) -> drops tiny foreground blobs
+    - closing \(I \bullet S = (I \oplus S)\, \ominus S\) -> fills tiny background gaps
+*** edges & outlines
+    - morph gradient \((I \oplus S) - (I \ominus S)\) -> outer + inner edge
+    - 1‑px outline \((I \oplus S) - I\)
+*** reconstruction tricks
+    - keep chosen objs: repeatedly dilate marker inside mask until no change
+    - kill boundary objs: marker = border; reconstruct; subtract result
+    - fill holes: work on complement, reconstruct from border, then take complement back
+*** shape analysis
+    - distance transform: count erosion steps per pixel
+    - ultimate erosion: local maxima of dist map -> object centres
+    - ultimate dilation (no‑merge) -> voronoi tessellation
+    - skeleton: iterative thinning that keeps connectivity
+*** n‑d notes
+    - swap \(3 \times 3\) for \(3 \times 3 \times 3\) voxels, etc.; everything generalises
+
+** grey‑scale morphology (pre‑process)
+*** umbra view
+    - treat an \(n\)-d image as an \((n+1)\)-d binary volume under its surface
+*** core ops (flat \(S\))
+    - dilation \(I \oplus S = \max_{p \in S}\, I(x - p)\)
+    - erosion \(I \ominus S = \min_{p \in S}\, I(x + p)\)
+*** filters
+    - opening / closing: size‑selective smoothing (remove bright / dark specks)
+    - morph gradient \(D - E\); outer / inner variants give one‑sided edges
+    - laplacian \(D + E - 2I\)
+    - white top‑hat \(I - (I \circ S)\) (bright peaks)
+    - black top‑hat \((I \bullet S) - I\) (dark wells)
+
+** cheat‑sheet
+   - binary morphology (post‑seg): hole fill, contour, split touchers, shape & dist
+   - grey morphology (pre‑seg): kill noise & shading, emphasise structures
+
+** todo
+   - tikz: struct elem, opening/closing demo, voronoi, skeleton
+   - org‑babel python: distance‑transform example
+ 
 ** Deep Learning
 
 ** Motion and Tracking

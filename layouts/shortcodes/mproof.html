@@ -1,0 +1,89 @@
+<!-- Mathematical Proof shortcode -->
+{{ $proofName := .Get 0 }}
+<div class="math-proof">
+  <div class="math-proof-header">
+    <strong>Proof</strong>
+    {{ if $proofName }}
+      <span class="proof-name">({{ $proofName }})</span>
+    {{ end }}
+  </div>
+  <div class="math-proof-content">
+    {{ .Inner | .Page.RenderString }}
+  </div>
+</div>
+
+<style>
+  .math-proof {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    border: 2px solid var(--bg2, #e5e5e5);
+    border-left: 4px solid #8b4513; /* Saddle brown highlight */
+    background: var(--bg1, #f8f9fa);
+    border-radius: 4px;
+    position: relative;
+    font-family: var(--font-serif);
+  }
+
+  .math-proof::after {
+    content: "∎";
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.75rem;
+    color: #8b4513;
+    font-size: 1.2rem;
+    line-height: 1;
+    font-weight: bold;
+  }
+
+  .math-proof-header {
+    font-weight: bold;
+    color: #8b4513; /* Saddle brown header text */
+    margin-bottom: 0.75rem;
+    font-family: var(--font-serif);
+    font-size: 1rem;
+  }
+
+  .math-proof-header .proof-name {
+    font-weight: normal;
+    font-style: italic;
+    color: var(--fg, #333);
+    margin-left: 0.25rem;
+  }
+
+  .math-proof-content {
+    color: var(--fg, #333);
+    line-height: 1.6;
+    padding-bottom: 1.5rem; /* Add space for the QED symbol */
+  }
+
+  .math-proof-content p:first-child {
+    margin-top: 0;
+  }
+
+  .math-proof-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Dark theme support */
+  [data-theme="dark"] .math-proof {
+    border-color: var(--bg2, #555);
+    background: var(--bg1, #1a1a1a);
+    border-left-color: #cd853f; /* Sandy brown for dark mode */
+  }
+
+  [data-theme="dark"] .math-proof::after {
+    color: #cd853f; /* Sandy brown QED symbol in dark mode */
+  }
+
+  [data-theme="dark"] .math-proof-header {
+    color: #cd853f; /* Sandy brown header in dark mode */
+  }
+
+  [data-theme="dark"] .math-proof-header .proof-name {
+    color: var(--fg, #e5e5e5);
+  }
+
+  [data-theme="dark"] .math-proof-content {
+    color: var(--fg, #e5e5e5);
+  }
+</style>

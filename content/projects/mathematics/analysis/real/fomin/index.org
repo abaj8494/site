@@ -9,8 +9,6 @@ date = 2025-07-20T02:42:32+11:00
 author = "Kolmogorov"
 +++
 
-#+MACRO: tikz #+BEGIN_EXPORT html@@html:<script type="text/tikz">@@$1@@html:</script>@@#+END_EXPORT
-
 * Set Theory
 
 {{< collapse-local folded="true" >}}
@@ -322,9 +320,138 @@ Transitive, but neither reflexive nor symmetric
 
 ** Equivalence of Sets. The Power of a Set
 
+{{< mprob >}}Prove that a set with an uncountable subset is itself uncountable.{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}Let $M$ be any infinite set and $A$ any countable set. Show that $M \sim M\cup A$.{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}Prove that each of the following sets is countable.{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< subprob >}}The set of all numbers with two distinct decimal expansions (e.g.\ $0.5000\ldots$ and $0.4999\ldots$).{{< /subprob >}}
+{{< subsol >}}{{< /subsol >}}
+
+{{< subprob >}}The set of all rational points in the plane (points whose coordinates are both rational).{{< /subprob >}}
+{{< subsol >}}{{< /subsol >}}
+
+{{< subprob >}}The set of all rational intervals (intervals with rational end‑points).{{< /subprob >}}
+{{< subsol >}}{{< /subsol >}}
+
+{{< subprob >}}The set of all polynomials with rational coefficients.{{< /subprob >}}
+{{< subsol >}}{{< /subsol >}}
+
+{{< mprob >}}A real number $a$ is called *algebraic* if it is a root of some polynomial with rational coefficients. Prove that the set of all algebraic numbers is countable.{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}Show that there exist uncountably many transcendental numbers. *Hint:* combine the previous problem with Theorem 5.{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}Let $M$ be any set.  
+Prove that the set of *all* real‑valued functions on $M$ has power strictly larger than $|M|$.  
+(In particular, the set of all real functions on $[0,1]$ has power $> \mathfrak c$.){{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}Give an indirect proof that the intervals $[a,b]$, $(a,b)$, $[a,b)$ and $(a,b]$ are all equivalent as sets.{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}Show that the union of finitely or countably many sets of power $\mathfrak c$ again has power $\mathfrak c$.{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}Prove that each of the following sets has the power of the continuum.{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< subprob >}}The set of all infinite sequences of positive integers.{{< /subprob >}}
+{{< subsol >}}{{< /subsol >}}
+
+{{< subprob >}}The set of all ordered $n$‑tuples of real numbers (for any fixed $n\ge 1$).{{< /subprob >}}
+{{< subsol >}}{{< /subsol >}}
+
+{{< subprob >}}The set of all infinite sequences of real numbers.{{< /subprob >}}
+{{< subsol >}}{{< /subsol >}}
+
+{{< mprob >}}Explain the paradox in the notion *“the set of all sets that are not members of themselves.”*  
+*Hint:* Is this set a member of itself?{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
 ** Ordered Sets and Ordinal Numbers
 
+{{< mprob >}}Exhibit both a partial ordering and a simple (linear) ordering of the set of all complex numbers.{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}For the power‑set $\mathcal P(X)$ ordered by inclusion, identify its minimal and maximal elements.{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}A partially ordered set $M$ is called *directed* if for every $a,b\in M$ there exists $c\in M$ with $a<c$ and $b<c$.  
+Determine whether the partially ordered sets in Examples 1–4 of §3.1 are directed.{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}Show that the set $\mathcal P(X)$ with inclusion is a lattice: every pair has a greatest lower bound and a least upper bound.{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}Prove that an order‑preserving surjection of one ordered set onto another is automatically an isomorphism.{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}Prove that *ordered* sums and products are associative, i.e.  
+$$(M_1+M_2)+M_3\cong M_1+(M_2+M_3), \qquad (M_1\cdot M_2)\cdot M_3\cong M_1\cdot(M_2\cdot M_3).$${{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}Construct well‑ordered sets with ordinals  
+$\omega+n,\;\omega+\omega,\;(\omega+\omega)+n,\;\omega+\omega+\omega,\ldots$  
+and show they are all countable.{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}Construct well‑ordered sets with ordinals  
+$\omega\cdot n,\;\omega^{2},\;\omega^{2}\cdot\omega^{3},\ldots$  
+and show they are all countable.{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}Verify the equalities  
+$\omega+\omega=\omega\cdot 2,\quad \omega+\omega+\omega=\omega\cdot 3,\ldots${{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}Prove that, for any ordinal $\alpha$, the set $W(\alpha)=\{\beta:\beta<\alpha\}$ is well‑ordered.{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}Show that every non‑empty set of ordinals is well‑ordered.{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}Let $M$ be the set of all ordinals that index (are order‑types of) countable well‑ordered sets.  
+Prove that $M$ itself is uncountable.{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}Let $\kappa$ be the power of the set $M$ in the preceding problem.  
+Prove that there is no cardinal $m$ with $\alep_0 < m < \kappa$.{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
 ** Systems of Sets
+
+{{< mprob >}}Let $X$ be an uncountable set and let $\mathcal R$ be the ring consisting of all finite subsets of $X$ together with their complements. Is $\mathcal R$ a $\sigma$‑ring?{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}Are open intervals in $\mathbb R$ Borel sets?{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}
+Let $y = f(x)$ be a function defined on a set $M$ and taking values in a set $N$.
+Let $\mathcal{J}$ be a system of subsets of $M$, and write
+\[f(\mathcal{J}) = \{\,f(A)\mid A\in\mathcal{J}\,\}.\]
+Let $\mathcal{P}$ be a system of subsets of $N$, and write
+\[f^{-1}(\mathcal{P}) = \{\,f^{-1}(B)\mid B\in\mathcal{P}\,\}.\]
+Prove:
+{{< /mprob >}}
+
+{{< subprob >}}(a) If $\mathcal{P}$ is a ring, then $f^{-1}(\mathcal{P})$ is a ring.{{< /subprob >}}
+{{< subsol >}}{{< /subsol >}}
+
+{{< subprob >}}(b) If $\mathcal{P}$ is an algebra, then $f^{-1}(\mathcal{P})$ is an algebra.{{< /subprob >}}
+{{< subsol >}}{{< /subsol >}}
+
+{{< subprob >}}(c) If $\mathcal{P}$ is a $\sigma$‑algebra (Borel algebra), then $f^{-1}(\mathcal{P})$ is a $\sigma$‑algebra.{{< /subprob >}}
+{{< subsol >}}{{< /subsol >}}
+
+{{< subprob >}}(d) Which of the assertions (a)–(c) remain true if we replace $\mathcal{P}$ by $\mathcal{J}$ and $f^{-1}$ by $f$ (i.e.\ work with images instead of pre‑images)?{{< /subprob >}}
+{{< subsol >}}{{< /subsol >}}
 
 * Metric Spaces
 
@@ -332,11 +459,191 @@ Transitive, but neither reflexive nor symmetric
 
 ** Basic Concepts
 
+{{< mprob >}}
+Let $(X,p)$ be a metric space. Prove that  
+1. $\lvert p(x,z)-p(y,u)\rvert\le p(x,y)+p(z,u)$ for all $x,y,z,u\in X$;  
+2. $\lvert p(x,z)-p(y,z)\rvert\le p(x,y)$ for all $x,y,z\in X$.
+{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}
+Verify the identity  
+\[
+\Bigl(\sum_{k=1}^{n}a_k b_k\Bigr)^2
+=\frac12\sum_{k,j=1}^{n}\bigl(a_k^2 b_j^2+a_j^2 b_k^2-(a_k b_j-a_j b_k)^2\bigr)
+\]  
+and use it to deduce the Cauchy–Schwarz inequality
+\[
+\Bigl|\sum_{k=1}^{n}a_k b_k\Bigr|
+\le\Bigl(\sum_{k=1}^{n}a_k^{\,2}\Bigr)^{1/2}
+      \Bigl(\sum_{k=1}^{n}b_k^{\,2}\Bigr)^{1/2}.
+\]
+{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}
+Show that for square‑integrable functions $f,g$ on $[a,b]$  
+\[
+\Bigl|\int_{a}^{b}f(t)g(t)\,dt\Bigr|
+\le
+\Bigl(\int_{a}^{b}f(t)^2\,dt\Bigr)^{1/2}
+\Bigl(\int_{a}^{b}g(t)^2\,dt\Bigr)^{1/2}.
+\]
+{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}
+Give an explicit example showing that Minkowski’s inequality
+fails for the functional  
+\[
+\|x\|_p=\Bigl(\sum_{k=1}^{n}|x_k|^{p}\Bigr)^{1/p}
+\]
+when $0<p<1$.
+{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}
+Prove the limiting relation  
+\[
+\lim_{p\to\infty}\Bigl(\sum_{k=1}^{n}|x_k-y_k|^{p}\Bigr)^{1/p}
+=\max_{1\le k\le n}|x_k-y_k|,
+\]
+that is, the $\ell^\infty$ metric is the limit of the $\ell^p$ metrics as $p\to\infty$.
+{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}
+Using the Cauchy–Schwarz inequality for integrals, derive Hölder’s
+inequality: for $p,q>1$, $\tfrac1p+\tfrac1q=1$,  
+\[
+\int_a^b |f(t)g(t)|\,dt
+\le
+\Bigl(\int_a^b |f(t)|^{\,p}\,dt\Bigr)^{1/p}
+\Bigl(\int_a^b |g(t)|^{\,q}\,dt\Bigr)^{1/q}.
+\]
+{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}
+Deduce Minkowski’s integral inequality from Hölder’s inequality:
+\[
+\Bigl(\int_a^b |f+g|^{\,p}\Bigr)^{1/p}
+\le
+\Bigl(\int_a^b |f|^{\,p}\Bigr)^{1/p}
++
+\Bigl(\int_a^b |g|^{\,p}\Bigr)^{1/p},
+\qquad p\ge1.
+\]
+{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}
+Construct an explicit isometry between the metric spaces
+$(C[0,1],\|\cdot\|_\infty)$ and $(C[1,2],\|\cdot\|_\infty)$.
+{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
 ** Convergence. Open and Closed Sets
+
+{{< mprob >}}Give an example of a metric space \(R\) and two open spheres \(S(x,r_1)\) and \(S(y,r_2)\) with \(S(x,r_1)\subset S(y,r_2)\) although \(r_1>r_2\).{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}Prove that every contact point of a set \(M\) is either a limit point of \(M\) or an isolated point of \(M\).{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}Show that if \(x_n\to x,\;y_n\to y\) then \(p(x_n,y_n)\to p(x,y)\).{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}Let \(f:X\to Y\) be a mapping between metric spaces.  Prove that \(f\) is continuous at \(x_0\) iff \(f(x_n)\to f(x_0)\) whenever \(x_n\to x_0\).{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}a) Show that the closure \([M]\) of a set \(M\) is closed.  
+b) Prove that \([M]\) is the smallest closed set that contains \(M\).{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}Is an infinite union of closed sets necessarily closed?  Is an infinite intersection of open sets necessarily open?  Give counter‑examples.{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}Prove directly that the point \( \tfrac13\) belongs to the Cantor set although it is not an end–point removed in the construction.{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}Let \(F\) be the Cantor set.  
+a) Show that the points with only 0’s and 2’s in their ternary expansion are dense in \(F\).  
+b) Show that the set \(\{t_1+t_2 : t_1,t_2\in F\}\) equals \([0,2]\).{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}For a subset \(A\) of a metric space \(R\) and \(x\in R\) define \(p(A,x)=\inf_{a\in A}p(a,x)\).  
+Prove:  
+a) \(p(A,x)=0\) for \(x\in A\), but not conversely;  
+b) \(p(A,x)\) is continuous in \(x\);  
+c) \(p(A,x)=0\) iff \(x\) is a contact point of \(A\);  
+d) \([A]=A\cup\{x:p(A,x)=0\}\).{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}For subsets \(A,B\subset R\) set \(p(A,B)=\inf_{a\in A,b\in B}p(a,b)\).  Show that \(p(A,B)=0\) when \(A\cap B\neq\varnothing\), but the converse can fail.{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}Let \(M_K\) be the set of functions \(f\in C[a,b]\) satisfying a Lipschitz condition \(|f(t_1)-f(t_2)|\le K|t_1-t_2|\).  
+a) Show \(M_K\) is closed and equals the closure of the differentiable functions with \(|f'|\le K\).  
+b) Show \(M=\bigcup_{K>0}M_K\) is not closed.  
+c) Show the closure of \(M\) is all of \(C[a,b]\).{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
 
 ** Complete Metric Spaces
 
+{{< mprob >}}Prove that the limit of a uniformly convergent sequence of continuous functions on \([a,b]\) is continuous.{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}Show that the sequence space \(m\) in Example 9 (p. 41) is complete.{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}If \(\{S_n\}\) is a nested sequence of closed spheres in a complete space with radii tending to 0, prove the intersection contains exactly one point.{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}Let \(\{A_n\}\) be a nested sequence of closed sets with \(\lim_{n\to\infty} d(A_n)=0\).  Show \(\bigcap_{n=1}^\infty A_n\neq\varnothing\).{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}Show that the union of finitely many bounded sets is bounded.{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}Give a complete metric space \(R\) and a nested sequence of closed sets whose intersection is empty.  Explain why this does not contradict the previous problem.{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}Prove that a subspace of a complete metric space is complete iff it is closed.{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}Show that the real line with distance \(p(x,y)=|\arctan x-\arctan y|\) is incomplete.{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}Give an example of a complete metric space homeomorphic to an incomplete one.{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}Finish constructing the real numbers from Cauchy sequences of rationals by defining arithmetic operations as suggested on p. 65.{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
 ** Contraction Mappings
+
+{{< mprob >}}Let \(A\) be a contraction of a complete metric space \(R\).  Prove \(A\) has a unique fixed point (Fixed‑Point Theorem).{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}In \(\mathbb{R}^n\) with the Euclidean metric, show that every contraction mapping is uniformly continuous.{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}Let \(A:R\to R\) be a contraction.  Prove that the iterates \(x_{n+1}=A x_n\) converge to the fixed point for any initial \(x_0\in R\).{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}If \(A\) and \(B\) are commuting contractions on a complete space, show they have a common fixed point.{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}Let \(K\) be a compact metric space and \(A:K\to K\) satisfy \(p(Ax,Ay)<p(x,y)\) for \(x\neq y\).  Prove \(A\) has a unique fixed point.{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}Show that if \(\{f_n\}\subset C(K)\) is increasing and converges point‑wise to a continuous limit on a compact \(K\), then the convergence is uniform (Dini).{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}Define convergence of curves via an equicontinuous parametrization.  Prove every sequence of curves of uniformly bounded length in a compact space has a convergent subsequence.{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
 
 * Topological Spaces
 
@@ -345,7 +652,132 @@ Transitive, but neither reflexive nor symmetric
 
 ** Basic Concepts
 
+{{< mprob >}}
+A subset $G$ of a topological space $T$ is open *iff*
+every $x\in G$ has a neighbourhood contained in $G$.
+{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}
+For any $M\subseteq T$ show that  
+1. $[M]=M$ *iff* $M$ is closed;  
+2. $[M]$ is the smallest closed set containing $M$;  
+3. the closure operator satisfies Kuratowski’s axioms.
+{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}
+Let $\mathcal P(T)$ be the set of all topologies on a fixed set $X$, ordered by
+inclusion.  Does this poset have maximal and minimal elements?  Identify them.
+{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}
+Can two distinct topologies on the same set induce the
+*same* relative topology on some subset $A$?
+{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}
+Take $X=\{a,b,c\}$, $A=\{a,b\}$, $B=\{b,c\}$ and
+$\mathcal B=\{\varnothing,X,A,B\}$.  Is $\mathcal B$ a base for a topology on $X$?
+{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}
+If $M$ is an uncountable subset of a topological space
+with a countable base, prove that some point of $M$ is a limit point of $M$.
+{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}
+Show that the space in Example 4 (p. 79) is connected.
+{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}
+Prove that second‑countability implies first‑countability.
+{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}
+Give an example of a space that is first‑countable but *not* second‑countable.
+{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}
+Let $\tau$ be the system consisting of $\varnothing$ and every subset of
+$X=[0,1]$ obtained by deleting a finite or countable set of points.
+Show that $(X,\tau)$ is  
+- not first‑countable,  
+- not second‑countable,  
+- a $T_1$ space but *not* Hausdorff.
+{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}
+In the space above, describe all convergent sequences and show that
+$M=(0,1]$ has $0$ as a contact point but contains no sequence converging to $0$.
+{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}
+Prove the converse of Theorem 8: a space is $T_1$
+iff every finite subset is closed.
+{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}
+(*Urysohn’s lemma*)  In a normal space $T$ with disjoint closed sets
+$F_1,F_2$, show that there is a continuous $f:T\to[0,1]$
+with $f=0$ on $F_1$ and $f=1$ on $F_2$.
+{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}
+A $T_1$ space is *completely regular* if for every closed set $F$ and
+point $x_0\notin F$ there exists a continuous $f:T\to[0,1]$
+with $f(x_0)=0$ and $f=1$ on $F$.  Prove that every completely regular
+$T_1$ space is Hausdorff.
+{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
 ** Compactness
+
+{{< mprob >}}Let \(M\subset R\) be totally bounded.  Show the \(\varepsilon\)-nets in the definition can be chosen inside \(M\).{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}Prove that every totally bounded metric space is separable.{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}If \(M\subset C[a,b]\) is bounded, prove that \(\{F(x)=\int_a^x f(t)\,dt : f\in M\}\) is compact.{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}For compacta \(X,Y\) show that \(C_{X Y}\), the space of continuous maps \(X\to Y\) with the uniform metric, is itself compact iff it is equicontinuous (Arzelà‑Ascoli).{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
 
 ** Real Functions on Metric and Topological Spaces
 
+{{< mprob >}}Prove that the oscillation functions \(f_*(x)\) and \(f^*(x)\) are, respectively, lower and upper semicontinuous, and that \(f\) is continuous at \(x_0\) iff \(f_*(x_0)=f^*(x_0)\).{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}Let \(K\) be a compact metric space and \(A:K\to K\) satisfy \(p(Ax,Ay)<p(x,y)\) for \(x\ne y\).  Prove \(A\) has a unique fixed point (reconcile with Problem 1, p. 76).{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}Show that if \(\{f_n\}\subset C(K)\) is monotone increasing and converges to a continuous limit, then the convergence is uniform (Dini’s theorem).{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}Define the length functional \(L(f)\) on curves \(p=f(t)\) in a metric space.  Prove \(L(f)\) is lower semicontinuous on \(C([0,1],R)\).{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}Given a curve \(T\) of finite length \(S\) and parameter \(t\), re‑parametrize by arc‑length \(s\) and prove \(p(g(s_1),g(s_2))\le |s_1-s_2|\).{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}Show that any sequence of curves of length \(\le M\) in a compact metric space has a convergent subsequence.{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}Prove that among all curves of finite length joining two points in a compact space there exists one of least length.{{< /mprob >}}
+{{< msol >}}{{< /msol >}}
+
+{{< mprob >}}Define a metric on the set of curves in \(R\) by \(d(T_1,T_2)=\sup_{t\in[0,1]}p(f_1(t),f_2(t))\).  Investigate completeness and compactness properties of this space.{{< /mprob >}}
+{{< msol >}}{{< /msol >}}

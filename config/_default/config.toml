@@ -58,7 +58,7 @@ ignoreFiles = ["/code/bookshelf/doc/fontsel/.*"]
   author = "Aayush Bajaj"
   subtitle = ""
   description = "A full-time tinkerer"
-  mainSections = ['projects', 'blog']
+  mainSections = ['work', 'blog']
   [params.logo]
     text = "ai"
     url = "/"
@@ -126,9 +126,9 @@ ignoreFiles = ["/code/bookshelf/doc/fontsel/.*"]
 
 [menu]
   [[menu.main]]
-    identifier = "projects"
-    name = "projects"
-    url = "/projects/"
+    identifier = "work"
+    name = "work"
+    url = "/work/"
     weight = 10
   [[menu.main]]
     identifier = "words"

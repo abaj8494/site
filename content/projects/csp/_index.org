@@ -1,5 +1,6 @@
 +++
-title = "Csp"
+title = "CSP = Computer Science Projects"
 date = "2024-12-15T11:22:38+11:00"
+layout = "custom-list"
 +++
 

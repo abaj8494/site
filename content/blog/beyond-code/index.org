@@ -45,7 +45,7 @@ My principle reasoning for choosing the Computer Science portion of the degree w
 to finally obtain a formal education in computer science from the bit level of abstraction
 #+END_QUOTE
 
-Of course, at the time I only had the first half of the previous clause: /to obtain a formal education in computers/, but to those of us who have taken a few CS courses, the PC is nothing but a masterful machine of subsequent abstractions.
+Of course, at the time I only had the first half of the above clause: /to obtain a formal education in computers/, but to those of us who have taken a few CS courses, the PC is nothing but a masterful machine of subsequent abstractions.
 
 Real reflections on the content of my course and the insulation wiring that surrounded the degree can be found in the corresponding [[/blog/ugrad-unsw][blog post]].
 

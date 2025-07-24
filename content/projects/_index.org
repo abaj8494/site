@@ -11,7 +11,7 @@ Knowledge is a paradox. The more one understand, the more one realises the vastn
 ---Viktor (Arcane, Season 2)
 #+END_QUOTE
 
-You have stepped onto the stickiest page of this site, here sit *all* of my projects.
+You have stepped onto the stickiest page of this site, this is a hierarchical exploration of Mathematics and Computer Science.
 
 The legend is as follows:
 - @@html:<input type="checkbox" checked class="archived"/>@@ *Archived.*
@@ -19,7 +19,7 @@ The legend is as follows:
 - @@html:<input type="checkbox" class="edit"/>@@ *Editing;* code written, ideas fleshed out - prose needs to be reworked.
 - @@html:<input type="checkbox" class="refactor"/>@@ *Refactor;* initial code included, but contains bugs, is incorrect or needs better Design Patterns.
 - @@html:<input type="checkbox" class="nothing"/>@@ *Nothing*. All I have is the seedling of an idea.
-*Note:* The unticked projects _do not_ come with /any/ warranty. You may be mislead; @@html:<font color="#0071c5">\(\mathfrak{hic\,\,sunt\,\,dracones}\)</font>@@.
+*Note:* The unticked projects _do not_ come with warranty. You may be mislead; @@html:<font color="#0071c5">\(\mathfrak{hic\,\,sunt\,\,dracones}\)</font>@@.
   
 You may also view the entire =tag= taxonomy [[/tags][here]].
 
@@ -35,7 +35,6 @@ You may also view the entire =tag= taxonomy [[/tags][here]].
   {{< tags-inline "projects/cs-major" >}}
 </div>
 #+end_export
-
 
 
 ** Quant                                                           :noexport:
