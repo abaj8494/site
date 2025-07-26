@@ -5,6 +5,8 @@ toc = "true"
 tikzjax = "true"
 +++
 
+{{< collapse folded="false" >}}
+
 I think taking a course in a subject that you are interested in is never particularly a bad thing.
 
 This page will exclusively contain what I was taught in COMP9517 for a short while. That is just how it will be.
@@ -943,8 +945,107 @@ cross validation: data is split into $k$ subsets (folds) and at each iteration w
 ** todo
    - tikz: struct elem, opening/closing demo, voronoi, skeleton
    - org‑babel python: distance‑transform example
- 
+
 ** Deep Learning
+
+*** stepping stones
+   - linear model: \( \hat y = W x + b \)
+   - multilayer perceptron adds hidden layers and nonlinear activation \( \phi \)
+   - convolution shares weights in space, giving sparse connections and translation invariance
+   - parameter count per conv: \( (k\_h \, k\_w \, c\_{in} + 1) \, c\_{out} \)
+
+*** core cnn layers
+   - conv: kernel \(k\_h \times k\_w\), stride \(s\), pad \(p\)
+     - output height \(h\_{out} = 1 + \frac{h + 2p - k\_h}{s}\)
+   - pooling: max or average, reduces resolution
+   - batch norm: \( \hat x = (x-\mu)/\sqrt{\sigma^{2}+\epsilon} \) then scale and shift
+   - activation: sigmoid, tanh, ReLU (default), leaky ReLU, ELU, GELU
+   - dropout: zero units with prob \(1-p\) at train time
+   - transposed conv and unpooling learnable upsampling
+   - dilated conv increases receptive field without extra weights
+
+*** data sets
+   - mnist 28x28 digits, 60k train
+   - cifar‑10 32x32 rgb, 50k train
+   - imagenet 224x224 crops, 1.3m train, 1000 classes
+   - coco detection / segmentation, 80 classes
+
+*** landmark architectures
+**** lenet‑5 1989
+    - 2 conv + subsample then 3 fully connected
+**** alexnet 2012
+    - 5 conv + 3 fc, relu, lrn, dropout, heavy data aug
+**** vgg‑16 2014
+    - stacks of 3x3 conv, about 144m params
+**** inception (googlenet) 2014
+    - parallel 1x1, 3x3, 5x5, pool paths then concat
+**** resnet 2015
+    - residual block \(y = F(x) + x\), allows 50+ layers
+**** senet 2017
+    - squeeze‑excitation channel reweighting
+**** densenet 2017
+    - dense block concatenates all previous features
+**** efficientnet 2019
+    - compound scaling of depth, width, resolution
+**** vision transformer 2020
+    - image patches to tokens, pure self‑attention
+**** convnext 2022
+    - convnet with transformer design cues (patchify stem, layer norm)
+
+*** training workflow
+   - split data 70 train / 10 val / 20 test, avoid leakage
+   - loss
+     - classification: softmax cross‑entropy \(L = -\sum y\log p\)
+     - detection: add smooth‑L1 bbox term
+     - seg: dice or cross‑entropy
+   - metrics
+     - classification
+       - accuracy \( (tp+tn)/(tp+tn+fp+fn) \)
+       - precision \( tp/(tp+fp) \)
+       - recall \( tp/(tp+fn) \)
+       - f1 \( 2pr/(p+r) \)
+     - segmentation (nested list)
+       - dice \( 2|x\cap y|/(|x|+|y|) \)
+       - iou (jaccard) \( |x\cap y|/|x\cup y| \)
+       - mean iou = average over classes
+     - detection
+       - mAP, AP, precision‑recall curve
+   - optimisers
+     - sgd, momentum, nesterov, adagrad, adadelta, adam, rmsprop
+   - schedules: step, cosine, one‑cycle
+   - overfit cures
+     - more data, early stop, data aug, weight decay, dropout, batch norm
+
+*** transfer learning
+   - load imagenet pretrained weights
+   - freeze feature extractor, replace task head
+   - fine tune later layers with small learning rate
+
+*** object detection families
+   - two stage: r‑cnn, fast, faster (adds rpn)
+   - one stage: ssd, yolo, retinanet (focal loss)
+
+*** segmentation architectures
+   - fcn converts classification net to pixel output, uses skip fusion
+   - u‑net encoder decoder with skip concat
+     - variants: attention u‑net, resunet, transunet
+   - mask r‑cnn adds mask branch on faster r‑cnn
+
+*** fully convolutional means
+   - all layers are convolutional (or up‑convolution) so network outputs a spatial map whose size scales with input instead of a fixed vector
+
+*** practical checklist
+   - verify layer dimensions with formula above
+   - start from pretrained backbone, freeze then unfreeze
+   - augment: crop, flip, rotate, color jitter, cutout
+   - use mixed precision to save memory
+   - accumulate gradients for larger effective batch
+   - track train and val curves; stop when val loss stops improving {{< mnote "(\"early stopping\")" >}}
+
+*** exam practice
+   - key benefit of cnns over anns for images: automatically learn hierarchical features
+   - transfer learning with cnns: use a pretrained model then fine tune it
+   - purpose of convolutional layers: apply learned kernels (dot product) at every spatial location to extract local patterns
 
 ** Motion and Tracking
 

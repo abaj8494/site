@@ -15,7 +15,7 @@ Consider two squares, each of side length \(a + b\). We can place four congruent
 #+BEGIN_EXPORT html
 <center>
 <script type="text/tikz">
-\begin{tikzpicture}[scale=3]
+\begin{tikzpicture}[scale=2]
     % First Square
     \draw (0,0) -- (5,0) -- (5,5) -- (0,5) -- cycle;
     
