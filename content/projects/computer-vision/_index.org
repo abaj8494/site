@@ -893,7 +893,7 @@ cross validation: data is split into $k$ subsets (folds) and at each iteration w
 
 - nonlinear, set‑theoretic post/pre‑processing to clean noise, split/merge objects, fill holes, extract shapes, measure distances. 
 
-** basic set ops
+*** basic set ops
    - translation \(A_c = \{\,x + c \mid x \in A\,\}\)
    - reflection \(A^{r} = \{\, -x \mid x \in A\,\}\)
    - complement \(A^{c} = \{\,x \mid x \not\in A\,\}\)
@@ -902,47 +902,47 @@ cross validation: data is split into $k$ subsets (folds) and at each iteration w
    - difference \(A - B = \{\,x \mid x \in A \text{ and } x \not\in B\,\}\)
    - size \(|A|\) = number of elements
 
-** binary morphology (thresholded imgs)
-*** core tools
+*** binary morphology (thresholded imgs)
+**** core tools
     - dilation \(I \oplus S = \{\,x \mid (S^{r})_x \cap I \neq \varnothing\,\}\)
     - erosion \(I \ominus S = \{\,x \mid S_x \subseteq I\,\}\)
     - default struct elem: symmetric \(3 \times 3\); use decomposition / iteration for bigger ones
-*** compound tweaks
+**** compound tweaks
     - opening \(I \circ S = (I \ominus S)\, \oplus S\) -> drops tiny foreground blobs
     - closing \(I \bullet S = (I \oplus S)\, \ominus S\) -> fills tiny background gaps
-*** edges & outlines
+**** edges & outlines
     - morph gradient \((I \oplus S) - (I \ominus S)\) -> outer + inner edge
     - 1‑px outline \((I \oplus S) - I\)
-*** reconstruction tricks
+**** reconstruction tricks
     - keep chosen objs: repeatedly dilate marker inside mask until no change
     - kill boundary objs: marker = border; reconstruct; subtract result
     - fill holes: work on complement, reconstruct from border, then take complement back
-*** shape analysis
+**** shape analysis
     - distance transform: count erosion steps per pixel
     - ultimate erosion: local maxima of dist map -> object centres
     - ultimate dilation (no‑merge) -> voronoi tessellation
     - skeleton: iterative thinning that keeps connectivity
-*** n‑d notes
+**** n‑d notes
     - swap \(3 \times 3\) for \(3 \times 3 \times 3\) voxels, etc.; everything generalises
 
-** grey‑scale morphology (pre‑process)
-*** umbra view
+*** grey‑scale morphology (pre‑process)
+**** umbra view
     - treat an \(n\)-d image as an \((n+1)\)-d binary volume under its surface
-*** core ops (flat \(S\))
+**** core ops (flat \(S\))
     - dilation \(I \oplus S = \max_{p \in S}\, I(x - p)\)
     - erosion \(I \ominus S = \min_{p \in S}\, I(x + p)\)
-*** filters
+**** filters
     - opening / closing: size‑selective smoothing (remove bright / dark specks)
     - morph gradient \(D - E\); outer / inner variants give one‑sided edges
     - laplacian \(D + E - 2I\)
     - white top‑hat \(I - (I \circ S)\) (bright peaks)
     - black top‑hat \((I \bullet S) - I\) (dark wells)
 
-** cheat‑sheet
+*** cheat‑sheet
    - binary morphology (post‑seg): hole fill, contour, split touchers, shape & dist
    - grey morphology (pre‑seg): kill noise & shading, emphasise structures
 
-** todo
+*** todo
    - tikz: struct elem, opening/closing demo, voronoi, skeleton
    - org‑babel python: distance‑transform example
 
