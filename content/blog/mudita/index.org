@@ -1,0 +1,50 @@
++++
+title = "Mudita"
+tags = ["sanskrit"]
++++
+
+#+BEGIN_CENTER
+#+ATTR_HTML: :width 160px :class lateximage
+#+CAPTION: an _infinite_ sum of *rational* numbers is equal to an irrational number
+\[ \sum_{k=0}^{\infty} \frac{1}{k^2} = \frac{\pi^2}{6} \]
+#+END_CENTER
+
+Here lies the Sanskrit word Mudita.
+
+The word is defined as sympathetic joy; an antithesis of the words envy and jealousy.
+
+It emerges from the Pali Canon which religiously and philosophically lie beside the Buddhist teachings.
+
+It is one of the four Brahmavihārās:
+1. Mettā – loving-kindness
+2. Karunā – compassion
+3. Mudita – sympathetic joy
+4. Upekkhā – equanimity
+
+In contemporary terms, it's like being genuinely happy for someone else without wanting anything for yourself.
+
+* Noto Sans Devanagari
+
+#+BEGIN_EXPORT html
+<!-- Noto Sans Devanagari from Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari&display=swap" rel="stylesheet">
+
+<!-- Siddhanta: self-hosted -->
+<style>
+@font-face {
+  font-family: 'Siddhanta';
+  src: url('/fonts/Siddhanta.ttf') format('truetype'); /* adjust path */
+}
+.mudita-noto {
+  font-family: 'Noto Sans Devanagari', sans-serif;
+  font-size: 3rem;
+}
+.mudita-siddhanta {
+  font-family: 'Siddhanta', serif;
+  font-size: 3rem;
+}
+</style>
+
+<div class="mudita-noto">मुदिता</div>
+<div class="mudita-siddhanta">मुदिता</div>
+#+END_EXPORT
