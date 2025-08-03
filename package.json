@@ -58,8 +58,6 @@
     "eslint": "^9.16.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
-    "husky": "^9.1.7",
-    "lint-staged": "^15.2.11",
     "markdownlint-cli": "^0.43.0",
     "postcss": "^8.4.49",
     "postcss-cli": "^11.0.0",
@@ -80,11 +78,6 @@
     "theme"
   ],
   "license": "MIT",
-  "lint-staged": {
-    "*.css": "stylelint --fix --allow-empty-input",
-    "*.js": "eslint --cache --fix",
-    "*.md": "markdownlint --fix"
-  },
   "main": "index.js",
   "name": "hugo-theme-gruvbox",
   "repository": {
@@ -95,8 +88,7 @@
     "lint": "npm run lint:css && npm run lint:js && npm run lint:md",
     "lint:css": "stylelint --fix **/*.css",
     "lint:js": "eslint --fix .",
-    "lint:md": "markdownlint --fix **/*.md",
-    "prepare": "husky"
+    "lint:md": "markdownlint --fix **/*.md"
   },
   "version": "1.0.0"
 }
