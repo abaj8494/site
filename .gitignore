@@ -173,3 +173,4 @@ backup/
 *.gz
 
 *~
+Miniconda*.sh
