@@ -89,7 +89,8 @@ document.addEventListener("keydown", (e) => {
     // Run search
     const maxResultsCount = {{ $.Site.Params.flexsearch.maxResultsCount | default 5 }};
     const searchText = this.value;
-    const searchResults = index.search(searchText, {
+    const searchResults = index.search({
+      query: searchText,
       limit: maxResultsCount,
       enrich: true,
     });

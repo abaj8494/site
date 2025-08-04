@@ -161,6 +161,17 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+  // Check if there are any folded headings on the page and disable all margin notes if so
+  const collapsedSections = document.querySelectorAll(
+    ".collapsible-content:not(.show)",
+  );
+  if (collapsedSections.length > 0) {
+    // There are collapsed sections, so disable all margin notes
+    if (!window.marginNotesDisabled) {
+      toggleMarginNotes(); // Use the existing Ctrl-M mechanism
+    }
+  }
+
   // Ensure the sticky header doesn't affect the margin notes container
   // by adding a class to exempt it from sticky-header effects
   if (marginNotesContainer.parentElement) {
@@ -349,8 +360,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Make toggle function globally available
+  // Make functions globally available
   window.toggleMarginNotes = toggleMarginNotes;
+  window.updateAllNotePositions = updateAllNotePositions;
 
   /**
    * Debounce function to limit frequent calls

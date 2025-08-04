@@ -11,5 +11,6 @@
   },
   "emmet.includeLanguages": {
     "postcss": "css"
-  }
+  },
+  "makefile.configureOnOpen": false
 }

@@ -58,7 +58,7 @@ ignoreFiles = ["/code/bookshelf/doc/fontsel/.*"]
   author = "Aayush Bajaj"
   subtitle = ""
   description = "A full-time tinkerer"
-  mainSections = ['work', 'blog']
+  mainSections = ['work', 'blog', 'projects']
   [params.logo]
     text = "ai"
     url = "/"

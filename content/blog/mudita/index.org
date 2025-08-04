@@ -6,7 +6,6 @@ toc = "true"
 +++
 
 #+BEGIN_CENTER
-#+ATTR_HTML: :width 160px :class lateximage
 #+CAPTION: an _infinite_ sum of *rational* numbers is equal to an /irrational/ number
 \[\Huge \sum_{k=1}^{\infty} \frac{1}{k^2} = \frac{\pi^2}{6} \]
 #+END_CENTER
@@ -23,7 +22,7 @@ It is one of the Four Brahmavihārās:
 3. Mudita – sympathetic joy
 4. Upekkhā – equanimity
 
-* Noto Sans Devanagari
+** Noto Sans Devanagari
 
 #+BEGIN_EXPORT html
 <!-- Noto Sans Devanagari from Google Fonts -->
@@ -75,7 +74,7 @@ It is one of the Four Brahmavihārās:
 </center>
 #+END_EXPORT
 
-* Siddhanta
+** Siddhanta
 
 #+BEGIN_EXPORT html
 <center>
@@ -83,31 +82,31 @@ It is one of the Four Brahmavihārās:
 </center>
 #+END_EXPORT
 
-* Kohinoor Devanagari
+** Kohinoor Devanagari
 #+BEGIN_EXPORT html
 <center>
 <div style="font-size: 3rem;">मुदिता</div>
 </center>
 #+END_EXPORT
 
-* Sarasvati
+** Sarasvati
 #+BEGIN_EXPORT html
 <center>
-<div style="mudita-sarasvati">मुदिता</div>
+<div class="mudita-sarasvati">मुदिता</div>
 </center>
 #+END_EXPORT
 
-* Lohit Devanagari
+** Lohit Devanagari
 #+BEGIN_EXPORT html
 <center>
 <div class="mudita-lohit">मुदिता</div>
 </center>
 #+END_EXPORT
 
-* Chandas
+** Chandas
 #+BEGIN_EXPORT html
 <center>
-<div style="mudita-chandas">मुदिता</div>
+<div class="mudita-chandas">मुदिता</div>
 </center>
 #+END_EXPORT
 

@@ -160,12 +160,22 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
+    // Handle initial margin notes state
+    if (isFolded && window.toggleMarginNotesInSection) {
+      window.toggleMarginNotesInSection(content, false); // false means section is collapsed
+    }
+
     // Add click event to the toggle button
     button.addEventListener("click", () => {
       const isExpanded = button.getAttribute("aria-expanded") === "true";
       button.setAttribute("aria-expanded", !isExpanded);
       button.textContent = isExpanded ? "▶" : "▼";
       content.classList.toggle("show");
+
+      // Toggle margin notes within this collapsible section
+      if (window.toggleMarginNotesInSection) {
+        window.toggleMarginNotesInSection(content, !isExpanded);
+      }
 
       // Save state to localStorage
       toggleStates[toggleId] = !isExpanded;

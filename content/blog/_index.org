@@ -1,6 +1,7 @@
 +++
 title = "the rabbit hole:"
 layout = "custom-list"
+math = "true"
 +++
 
 * welcome
