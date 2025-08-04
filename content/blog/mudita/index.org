@@ -13,11 +13,11 @@ toc = "true"
 
 Here lies the Sanskrit word Mudita.
 
-The word is defined as sympathetic joy, in antithesis of the words @@html:<span style="color:orange">envy</span>@@ and @@html:<span style="color:blue">jealousy</span>@@.
+The word is defined as sympathetic joy, an antithesis to the words @@html:<span style="color:orange">envy</span>@@ and @@html:<span style="color:blue">jealousy</span>@@.
 
 It emerges from the Pāli Canon which religiously and philosophically lie beside the Buddhist teachings.
 
-It is one of the four Brahmavihārās:
+It is one of the Four Brahmavihārās:
 1. Mettā – loving-kindness
 2. Karunā – compassion
 3. Mudita – sympathetic joy
@@ -29,13 +29,38 @@ It is one of the four Brahmavihārās:
 <!-- Noto Sans Devanagari from Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari&display=swap" rel="stylesheet">
 
-
 <!-- Siddhanta: self-hosted -->
 <style>
 @font-face {
   font-family: 'Siddhanta';
   src: url('/fonts/siddhanta.ttf') format('truetype'); /* adjust path */
 }
+
+@font-face {
+  font-family: 'Lohit';
+  src: url('/fonts/lohit.ttf') format('truetype'); /* adjust path */
+}
+
+@font-face {
+  font-family: 'Sarasvati';
+  src: url('/fonts/sarasvati.ttf') format('truetype'); /* adjust path */
+}
+
+.mudita-lohit {
+  font-family: 'Lohit', serif;
+  font-size: 3rem;
+}
+
+.mudita-sarasvati {
+  font-family: 'Sarasvati', serif;
+  font-size: 3rem;
+}
+
+.mudita-chandas {
+  font-family: 'Chandas', serif;
+  font-size: 3rem;
+}
+
 .mudita-noto {
   font-family: 'Noto Sans Devanagari', sans-serif;
   font-size: 3rem;
@@ -64,3 +89,26 @@ It is one of the four Brahmavihārās:
 <div style="font-size: 3rem;">मुदिता</div>
 </center>
 #+END_EXPORT
+
+* Sarasvati
+#+BEGIN_EXPORT html
+<center>
+<div style="mudita-sarasvati">मुदिता</div>
+</center>
+#+END_EXPORT
+
+* Lohit Devanagari
+#+BEGIN_EXPORT html
+<center>
+<div class="mudita-lohit">मुदिता</div>
+</center>
+#+END_EXPORT
+
+* Chandas
+#+BEGIN_EXPORT html
+<center>
+<div style="mudita-chandas">मुदिता</div>
+</center>
+#+END_EXPORT
+
+
