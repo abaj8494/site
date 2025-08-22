@@ -20,7 +20,7 @@ Then one valid configuration would be \(6-3+2+5\) which equals 10.
 ** iframe
 
 #+BEGIN_EXPORT html
-<iframe src="https://abaj8494.github.io/sydney-train-game/" width="100%"></iframe>
+<iframe src="https://abaj8494.github.io/sydney-train-game/" width="100%" height="500px"></iframe>
 #+END_EXPORT
 
 
