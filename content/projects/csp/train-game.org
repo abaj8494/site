@@ -1,430 +1,108 @@
 +++
 title = "Train Game, Get 10"
 mathjax = "true"
+toc = "true"
 +++
 
-This is just Python write up of a game that we used to play (and I still do), as a child on the NSW trains:
+Here lies an embedded iframe of my /typescript/ implementation of the Sydney Trains "Make 10" game.
 
-Given a series of 4 numbers (the train carriage identifier), we were tasked with constructing the number 10 using mathematical operations.
+We use a recursive dfs on all parenthesised permutations. See the [[https://github.com/abaj8494/sydney-train-game][README]] file for more details.
+
+** rules
+
+Given a series of 4 numbers (the train carriage identifier), we mentally tasked with constructing the number 10 using mathematical operations.
 
 Say our carriage number was:
 \[\require{bbox}\bbox[lightblue,5px,border:2px solid red]{\color{#800000}{ 6325 }}\]
 
 Then one valid configuration would be \(6-3+2+5\) which equals 10.
 
-Today I am going to write some Python code to replicate this functionality and test 4 digit sequences that can make 10 using permutations of =+-x/^%!=.
+** iframe
 
-I shall opt to perform computations in that order to minimise time-complexity and also floating point errors.
-
-#+begin_src jupyter-python :session train
-  carriage_num = 6325
-  operations = '+-x/^%!'
-  from itertools import permutations
-  permuted_ops = list(permutations(operations, 3))
-  print(len(permuted_ops)) # expected 210=5040/24=7!/4!
-
-  def check_10(car, permuted_ops):
-      for p in permuted_ops:
-	  if round(car[0] p[0] car[1] p[1] car[2] p[2] car[3]) == 10:
-	      return car
-#+end_src
-
-#+RESULTS:
-: 210
+#+BEGIN_HTML
+<iframe src="[[https://abaj8494.github.io/sydney-train-game/]]" width="100%"></iframe>
+#+END_HTML
 
 
-#+begin_src jupyter-python :session train
-carriage_num = 6325
-operations = '+-*/^%!'  # All operations including factorial, exponentiation, modulo
-from itertools import permutations
-import math
+** implementation (algorithm)
 
-permuted_ops = list(permutations(operations, 3))
-print(len(permuted_ops))  # Should be 210 (7P3)
+note that we are only using binary operators (plus, minus, divide, subtract and power).
 
-def check_10(car, permuted_ops):
-    car_str = str(car)
-    
-    for p in permuted_ops:
-        # Skip cases with division by zero
-        if (p[0] == '/' and car_str[1] == '0') or \
-           (p[1] == '/' and car_str[2] == '0') or \
-           (p[2] == '/' and car_str[3] == '0'):
-            continue
-            
-        # Skip factorial of zero or negative numbers
-        if (p[0] == '!' and int(car_str[0]) <= 0) or \
-           (p[1] == '!' and int(car_str[1]) <= 0) or \
-           (p[2] == '!' and int(car_str[2]) <= 0) or \
-           (p[0] != '!' and p[1] == '!' and int(car_str[1]) <= 0) or \
-           (p[1] != '!' and p[2] == '!' and int(car_str[2]) <= 0):
-            continue
-        
-        # Convert string to expression that can be evaluated
-        expression = ""
-        result = None
-        
-        try:
-            # Create a proper expression with our custom operators
-            # We'll build this step by step
-            a, b, c, d = int(car_str[0]), int(car_str[1]), int(car_str[2]), int(car_str[3])
-            
-            # Apply first operator
-            if p[0] == '+':
-                temp1 = a + b
-            elif p[0] == '-':
-                temp1 = a - b
-            elif p[0] == '*':
-                temp1 = a * b
-            elif p[0] == '/':
-                temp1 = a / b
-            elif p[0] == '^':
-                temp1 = a ** b
-            elif p[0] == '%':
-                temp1 = a % b
-            elif p[0] == '!':
-                temp1 = math.factorial(a)
-                # After applying factorial to a, we need to apply the next operator to this result and b
-                if p[1] == '+':
-                    temp2 = temp1 + b
-                elif p[1] == '-':
-                    temp2 = temp1 - b
-                elif p[1] == '*':
-                    temp2 = temp1 * b
-                elif p[1] == '/':
-                    temp2 = temp1 / b
-                elif p[1] == '^':
-                    temp2 = temp1 ** b
-                elif p[1] == '%':
-                    temp2 = temp1 % b
-                elif p[1] == '!':
-                    temp2 = math.factorial(b)
-                    
-                # Now apply the third operator to temp2 and c
-                if p[2] == '+':
-                    result = temp2 + c
-                elif p[2] == '-':
-                    result = temp2 - c
-                elif p[2] == '*':
-                    result = temp2 * c
-                elif p[2] == '/':
-                    if c == 0:
-                        continue
-                    result = temp2 / c
-                elif p[2] == '^':
-                    result = temp2 ** c
-                elif p[2] == '%':
-                    if c == 0:
-                        continue
-                    result = temp2 % c
-                elif p[2] == '!':
-                    if temp2 < 0 or type(temp2) != int:
-                        continue
-                    result = math.factorial(int(temp2))
-                
-                # We need to still include d in the calculation
-                result = result + d
-                expression = f"{a}! {p[1]} {b} {p[2]} {c} + {d}"
-                
-                if round(result) == 10:
-                    return expression, result
-                continue
-            
-            # Apply second operator
-            if p[1] == '+':
-                temp2 = temp1 + c
-            elif p[1] == '-':
-                temp2 = temp1 - c
-            elif p[1] == '*':
-                temp2 = temp1 * c
-            elif p[1] == '/':
-                temp2 = temp1 / c
-            elif p[1] == '^':
-                temp2 = temp1 ** c
-            elif p[1] == '%':
-                temp2 = temp1 % c
-            elif p[1] == '!':
-                if temp1 < 0 or not type(temp1) == int:
-                    continue
-                temp2 = math.factorial(int(temp1))
-                
-            # Apply third operator
-            if p[2] == '+':
-                result = temp2 + d
-            elif p[2] == '-':
-                result = temp2 - d
-            elif p[2] == '*':
-                result = temp2 * d
-            elif p[2] == '/':
-                result = temp2 / d
-            elif p[2] == '^':
-                result = temp2 ** d
-            elif p[2] == '%':
-                result = temp2 % d
-            elif p[2] == '!':
-                if temp2 < 0 or type(temp2) != int:
-                    continue
-                result = math.factorial(int(temp2))
-            
-            # Build expression string for output
-            if p[0] != '!':
-                part1 = f"{a} {p[0]} {b}"
-            else:
-                part1 = f"{a}!"
-                
-            if p[1] != '!':
-                part2 = f"{part1} {p[1]} {c}"
-            else:
-                part2 = f"({part1})!"
-                
-            if p[2] != '!':
-                expression = f"{part2} {p[2]} {d}"
-            else:
-                expression = f"({part2})!"
-            
-            # Check if result rounded equals 10
-            if round(result) == 10:
-                return expression, result
-                
-        except (ValueError, ZeroDivisionError, OverflowError):
-            # Handle any errors (large factorials, etc.)
-            continue
-    
-    return None
+skipping factorials and roots simplifies our implementation and forgoes the building of a proper expression parser / ast {{< mnote "abstract syntax tree" >}}
 
-# Test with the carriage number
-result = check_10(carriage_num, permuted_ops)
-if result:
-    print(f"Found: {result[0]} = {result[1]} (rounds to 10)")
-else:
-    print("No solution found")
+#+begin_src typescript
+export type Op = '+' | '-' | '*' | '/' | '^';
+
+type Node = { 
+  val: number;
+  expr: string;
+}
+
+// epsilon for division
+const EPS = 1e-9;
+
+
+// in-order solver: keep digits in order, vary parethesis and ops
+export function solveToTen(digits: number[], target=10, ops: ReadonlyArray<Op> = ['+','-','*','/']): string[] {
+  const start: Node[] = digits.map((d)=> ({val: d, expr: `${d}` })); // populate from func args
+  const allowed = new Set(ops);
+  const seen = new Set <string>();
+
+  function safePow(a: number, b: number): number | null {
+    // keep it real and bounded
+    if (!Number.isFinite(a) || !Number.isFinite(b)) return null; // float
+    if (Math.abs(b) > 9) return null; // too large
+    if (a < 0 && Math.abs(b - Math.trunc(b)) > EPS) return null; // too small
+    const out = a ** b; // ^ is xor in js / ts; duh
+    if (!Number.isFinite(out) || Math.abs(out) > 1e9) return null;
+    return out;
+  }
+
+  function combine(a: Node, b: Node): Node[] {
+    const out: Node[] = [];
+    if (allowed.has('+')) out.push( { val: a.val + b.val, expr: `(${a.expr}+${b.expr})` });
+    if (allowed.has('-')) out.push( { val: a.val - b.val, expr: `(${a.expr}-${b.expr})` });
+    if (allowed.has('*')) out.push( { val: a.val * b.val, expr: `(${a.expr}*${b.expr})` });
+    if (allowed.has('/')) if (Math.abs(b.val)>EPS) out.push({val:a.val/b.val, expr:`(${a.expr}/${b.expr})`});
+    if (allowed.has('^')) {
+      const p = safePow(a.val, b.val);
+      if (p != null) out.push({ val: p, expr: `(${a.expr}^${b.expr})` }); // note internal data structure is ^ display.
+    }
+    return out;
+  }
+
+  function rec(nodes: Node[]) {
+    if (nodes.length === 1) {
+      if (Math.abs(nodes[0].val - target) < EPS) {
+        // drop outermost parethesis:
+        seen.add(nodes[0].expr.replace(/^\((.*)\)$/, '$1'));
+        /**
+         *     /    start
+         *     ^    anchors to beginning of string
+         *     \(   matches the ( literal
+         *     (.*) capturing group; matches any char >=0 times.
+         *     \)   matches ) literal 
+         *     $    anchors to end of string
+         *     /    end of exp.
+         *     $1   first and only capturing group.
+         **/
+      }
+    return;
+    }
+  // combine any adjacent pair. enumerates all in-order parenthesisations.
+    for (let i = 0; i < nodes.length - 1; i++) { // tries every adjacent pair loop
+      const a = nodes[i], b = nodes[i + 1]; // sliding window adjacent pair combine
+      for (const nxt of combine(a, b)) { // pushes allowable ops into Node[]. checks ops loop
+        const nextNodes = nodes.slice(0, i).concat(nxt, nodes.slice(i+2));
+        rec(nextNodes);
+      }
+    }
+  }
+  rec(start);
+  return Array.from(seen).sort();
+}
 
 #+end_src
 
-#+RESULTS:
-: 210
-: Found: 6 % 3 + 2 * 5 = 10 (rounds to 10)
-
-however this code is disgusting and Claude suggests constructing a "proper expression parser"
-
-
-
-
-#+begin_src jupyter-python :session train :tangle parser.py
-from itertools import permutations
-import math
-
-class ExpressionEvaluator:
-    def __init__(self):
-        # Define operations and their implementations
-        self.operations = {
-            '+': lambda x, y: x + y,
-            '-': lambda x, y: x - y,
-            '*': lambda x, y: x * y,
-            '/': lambda x, y: x / y if y != 0 else float('inf'),
-            '^': lambda x, y: x ** y,
-            '%': lambda x, y: x % y if y != 0 else float('inf'),
-            '!': lambda x: math.factorial(int(x)) if x >= 0 and isinstance(x, int) else float('inf')
-        }
-        
-        # Define which operations are binary and which are unary
-        self.binary_ops = {'+', '-', '*', '/', '^', '%'}
-        self.unary_ops = {'!'}
-        
-        # Define precedence of operations (higher number = higher precedence)
-        self.precedence = {
-            '+': 1,
-            '-': 1,
-            '*': 2,
-            '/': 2,
-            '%': 2,
-            '^': 3,
-            '!': 4  # Highest precedence for factorial
-        }
-    
-    def evaluate_expression(self, tokens):
-        """
-        Evaluate a tokenized expression using proper operator precedence.
-        This is a simplified implementation of the shunting yard algorithm.
-        """
-        # Stack for values
-        values = []
-        # Stack for operators
-        operators = []
-        
-        i = 0
-        while i < len(tokens):
-            token = tokens[i]
-            
-            # If token is a number, push to values stack
-            if isinstance(token, (int, float)):
-                values.append(token)
-            
-            # If token is an opening parenthesis, push to operators stack
-            elif token == '(':
-                operators.append(token)
-            
-            # If token is a closing parenthesis, process until matching opening parenthesis
-            elif token == ')':
-                while operators and operators[-1] != '(':
-                    self._apply_operation(values, operators)
-                
-                # Remove the opening parenthesis
-                if operators and operators[-1] == '(':
-                    operators.pop()
-                
-            # If token is an operator
-            elif token in self.operations:
-                # For unary operators (factorial)
-                if token in self.unary_ops:
-                    # Apply factorial directly to the last value
-                    if values:
-                        val = values.pop()
-                        try:
-                            values.append(self.operations[token](val))
-                        except (ValueError, OverflowError):
-                            return float('inf')  # Signal invalid result
-                
-                # For binary operators
-                else:
-                    # Process operators with higher or equal precedence
-                    while (operators and operators[-1] != '(' and 
-                           operators[-1] in self.operations and
-                           self.precedence.get(operators[-1], 0) >= self.precedence.get(token, 0)):
-                        self._apply_operation(values, operators)
-                    
-                    # Push current operator to stack
-                    operators.append(token)
-            
-            i += 1
-        
-        # Process remaining operators
-        while operators:
-            self._apply_operation(values, operators)
-        
-        # If everything went well, only one value should remain
-        return values[0] if values else float('inf')
-    
-    def _apply_operation(self, values, operators):
-        """Apply the top operator to the values in the stack."""
-        if not operators:
-            return
-            
-        op = operators.pop()
-        
-        # Skip opening parenthesis
-        if op == '(':
-            return
-            
-        # Apply factorial (unary operator)
-        if op == '!':
-            if values:
-                val = values.pop()
-                try:
-                    values.append(self.operations[op](val))
-                except (ValueError, OverflowError):
-                    values.append(float('inf'))
-        # Apply binary operators
-        else:
-            if len(values) >= 2:
-                b = values.pop()
-                a = values.pop()
-                try:
-                    values.append(self.operations[op](a, b))
-                except (ZeroDivisionError, ValueError, OverflowError):
-                    values.append(float('inf'))
-    
-    def tokenize_expression(self, expr_str):
-        """Convert an expression string to tokens."""
-        tokens = []
-        i = 0
-        while i < len(expr_str):
-            c = expr_str[i]
-            
-            # Handle numbers
-            if c.isdigit():
-                num = 0
-                while i < len(expr_str) and expr_str[i].isdigit():
-                    num = num * 10 + int(expr_str[i])
-                    i += 1
-                tokens.append(num)
-                continue
-            
-            # Handle operators and parentheses
-            elif c in self.operations or c in '()':
-                tokens.append(c)
-            
-            # Skip whitespace
-            elif c.isspace():
-                pass
-            
-            i += 1
-            
-        return tokens
-    
-    def format_expression(self, digits, ops):
-        """
-        Format an expression using the given digits and operations.
-        Returns a tuple of (formatted expression string, token list).
-        """
-        # Initialize with the first digit
-        expr_str = str(digits[0])
-        tokens = [digits[0]]
-        
-        for i, op in enumerate(ops):
-            if op in self.binary_ops:
-                # For binary operators, add the operator and next digit
-                expr_str += f" {op} {digits[i+1]}"
-                tokens.extend([op, digits[i+1]])
-            elif op == '!':
-                # For factorial, apply to the previous term
-                expr_str += op
-                # Insert factorial after the last number in tokens
-                tokens.insert(len(tokens), op)
-        
-        return expr_str, tokens
-
-def check_10(carriage_num, operations, target=10):
-    evaluator = ExpressionEvaluator()
-    
-    # Get all digits from the carriage number
-    digits = [int(d) for d in str(carriage_num)]
-    
-    # Get all permutations of operations
-    op_permutations = list(permutations(operations, 3))
-    print(f"Testing {len(op_permutations)} operation permutations")
-    
-    results = []
-    
-    for ops in op_permutations:
-        # Format the expression with these operations
-        expr_str, tokens = evaluator.format_expression(digits, ops)
-        
-        # Evaluate the expression
-        result = evaluator.evaluate_expression(tokens)
-        
-        # Check if the result rounds to our target
-        if not math.isinf(result) and round(result) == target:
-            results.append((expr_str, result))
-    
-    return results
-
-# Test with the carriage number
-carriage_num = 1234
-operations = '+-*/^%!'
-
-results = check_10(carriage_num, operations)
-
-if results:
-    print(f"Found {len(results)} solutions:")
-    for expr, val in results:
-        print(f"{expr} = {val} (rounds to 10)")
-else:
-    print("No solution found")
-#+end_src
-
-#+RESULTS:
-: Testing 210 operation permutations
-: No solution found
 
 

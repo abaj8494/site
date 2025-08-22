@@ -319,8 +319,9 @@ These methods can be adapted for _regression_, but they are more well suited to 
   - @@html:<input type="checkbox" checked class="done"/>@@ [[/doc/math/calculus/de/main.pdf][Differential Equations]] {{< tags-inline "projects/mathematics/calculus/diff-eqns" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/mathematics/linear-algebra][Linear Algebra]] {{< tags-inline "projects/mathematics/linear-algebra" >}}
 - @@html:<input type="checkbox" checked class="done"/>@@ [[/doc/math/optimisation/optim.pdf][Optimisation]] {{< tags-inline "projects/mathematics/optimisation" >}}
-- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/mathematics/probability][Probability]] {{< tags-inline "projects/mathematics/probability" >}}
-- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/mathematics/analysis/real][Real Analysis]] {{< tags-inline "projects/mathematics/analysis/real" >}}
+- @@html:<input type="checkbox" checked class="done"/>@@ [[/projects/mathematics/probability][Probability]] {{< tags-inline "projects/mathematics/probability" >}}
+- @@html:<input type="checkbox" checked class="done"/>@@ [[/projects/mathematics/statistics][Statistics]] {{< tags-inline "projects/mathematics/statistics" >}}
+- @@html:<input type="checkbox" checked class="done"/>@@ [[/projects/mathematics/analysis/real][Real Analysis]] {{< tags-inline "projects/mathematics/analysis/real" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/mathematics/analysis/complex][Complex Analysis]] {{< tags-inline "projects/mathematics/analysis/complex" >}}
 
 ** [[/projects/computer-vision][Computer Vision]]

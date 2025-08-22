@@ -3,7 +3,9 @@ title = "Languages"
 layout = "custom-list"
 +++
 
-<iframe src="https://norvig.com/21-days.html"></iframe>
+#+BEGIN_HTML
+<iframe src="https://norvig.com/21-days.html" width="100%"></iframe>
+#+END_HTML
 
 #+BEGIN_QUOTE
 "A language that doesn't affect the way you think about programming, is not worth knowing"
