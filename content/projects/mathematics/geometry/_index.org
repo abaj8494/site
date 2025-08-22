@@ -1,3 +1,5 @@
 +++
-title = "Let no-one ignorant of geometry enter here"
+title = "ἀγεωμέτρητοσ μηδεὶσ εἰσίτω"
 +++
+
+let no-one ignorant of geometry enter here

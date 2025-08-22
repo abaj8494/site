@@ -1,24 +1,6 @@
 +++
 title = "Mathematics"
+layout = "custom-list"
 +++
 
-* Definitions
-Predicate
-Corollary
-Theorem
-Proposition
-Antecedent
-Supposition
 
-
-* Theories
-- set
-- decision
-- game theory
-
-
-* Algebras
-- boolean
-- cylindrical
-- sigma
-- 

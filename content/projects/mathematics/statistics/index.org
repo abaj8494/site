@@ -1,18 +1,305 @@
 +++
 title = "Statistics"
+toc = "true"
+math = "true"
+tikzjax = "true"
+clocal = "true"
+date = 2025-08-22T02:22:32+11:00
 tags = ["mean", "variance", "inference", "regression", "estimators"]
 +++
 
-Topics
-Descriptive Statistics (Mean, Median, Variance)
-Inferential Statistics (Hypothesis Testing, Confidence Intervals)
-Regression & Estimation
-Maximum Likelihood Estimation (MLE)
-Bayesian Statistics & Inference
-Important Theorems
-Gauss-Markov Theorem (Best Linear Unbiased Estimator)
-Likelihood Ratio Test Theorem
-Cramér-Rao Bound (MLE)
-Fisher’s Theorem (Sufficiency)
-Chi-Square & t-Distributions
-Neyman-Pearson Lemma
+This page pairs well with [[/projects/mathematics/probability][Probability]].
+
+** Statistical Inference
+{{< collapse-local folded="true" >}}
+
+{{< mdef "Random Sample & Model" >}}
+Let \(X=(X_1,\ldots,X_n)\) be i.i.d. from a parametric family \(\{F_\theta:\theta\in\Theta\subset\mathbb{R}^p\}\).  
+The parameter \(\theta\) is unknown; inference uses the randomness of \(X\) to learn about \(\theta\).  
+{{< /mdef >}}
+
+{{< mdef "Estimator / Estimate" >}}
+An *estimator* of \(\theta\) is any statistic \(T_n=T(X)\). Its (random) distribution is the *sampling distribution*; a realised value is an *estimate*.
+{{< /mdef >}}
+
+{{< mdef "Bias, Variance & Standard Error" >}}
+\(\mathrm{Bias}(T_n)=\mathbb{E}_\theta[T_n]-\theta.\)  
+\(\mathrm{Var}(T_n)=\mathbb{E}_\theta[(T_n-\mathbb{E}_\theta T_n)^2]\).  
+The *standard error* is \(\mathrm{se}(T_n)=\sqrt{\mathrm{Var}(T_n)}\). 
+{{< /mdef >}}
+
+{{< mdef "Mean Squared Error (MSE)" >}}
+\(\mathrm{MSE}(T_n)=\mathbb{E}_\theta[(T_n-\theta)^2]=\mathrm{Var}(T_n)+\mathrm{Bias}(T_n)^2.\) 
+{{< /mdef >}}
+
+{{< mdef "Consistency" >}}
+\(T_n\) is *consistent* for \(\theta\) if \(T_n \xrightarrow{P} \theta\) as \(n\to\infty\).  
+(LLN and Continuous Mapping are the typical engines behind this.)
+{{< /mdef >}}
+
+{{< mdef "Fisher Information" >}}
+For a regular model with pdf/pmf \(f_\theta\), the (per-observation) Fisher information is  
+\[I(\theta)=\mathrm{Var}_\theta\!\left[\dfrac{\partial}{\partial\theta}\log f_\theta(X)\right] = -\mathbb{E}_\theta\!\left[\dfrac{\partial^2}{\partial\theta^2}\log f_\theta(X)\right].\]  
+{{< /mdef >}}
+
+{{< mthm "Cramér–Rao Lower Bound (CRLB)" >}}
+Under regularity conditions, any unbiased estimator \(T_n\) of a scalar function \(g(\theta)\) satisfies  
+\[
+\mathrm{Var}_\theta(T_n)\ \ge\ \frac{\big(g'(\theta)\big)^2}{n\,I(\theta)}.
+\]
+Hence \(1/(nI(\theta))\) is the information-limited variance bound for unbiased estimation of \(\theta\) (i.e. \(g(\theta)=\theta\)).
+{{< /mthm >}}
+
+{{< mrem >}}
+As \(n\) grows, asymptotics (LLN/CLT) typically dominate finite-sample quirks; large-sample normal approximations are the workhorse of practical inference. 
+{{< /mrem >}}
+
+
+
+** Estimation Methods
+{{< collapse-local folded="true" >}}
+
+{{< mdef "Method of Moments (MoM)" >}}
+Suppose \(\theta=(\theta_1,\ldots,\theta_p)\) can be written as
+\[
+\theta_k=\beta_k\big(\mathbb{E}(X),\mathbb{E}(X^2),\ldots,\mathbb{E}(X^K)\big),\quad k=1,\ldots,p,
+\]
+for continuous \(\beta_k\) and finite moments up to order \(2K\). Replace expectations by sample moments to get \(\widehat\theta_k=\beta_k(\widehat M_1,\ldots,\widehat M_K)\). Under these conditions the MoM estimator is *consistent*.  
+{{< /mdef >}}
+
+{{< mthm "MoM Consistency (sketch)" >}}
+If \(\mathrm{Var}(X^k)<\infty\) for \(k\le K\), then \(\widehat M_k \xrightarrow{P}\mathbb{E}(X^k)\) by the LLN; continuity of \(\beta_k\) gives \(\widehat\theta_k\xrightarrow{P}\theta_k\) by the Continuous Mapping Theorem. 
+{{< /mthm >}}
+
+{{< mrem "MoM Example: Rayleigh" >}}
+For \(f_\theta(x)=2\theta x e^{-\theta x^2}\,1_{\{x\ge0\}}\), \(\mathbb{E}(X)=\frac{\sqrt{\pi}}{2\sqrt{\theta}}\), so the MoM estimator is 
+\[
+\widehat\theta_{\text{MoM}}=\frac{\pi}{4}\,\overline X^{\, -2}.
+\]
+Its asymptotic distribution follows by CLT and Delta Method. 
+{{< /mrem >}}
+
+{{< mdef "Maximum Likelihood (MLE)" >}}
+For i.i.d. \(X_1,\dots,X_n\), the *likelihood* is \(L_X(\theta)=\prod_{i=1}^n f_\theta(X_i)\) (discrete: product of pmf’s).  
+The *MLE* is \(\widehat\theta=\arg\max_{\theta\in\Theta}L_X(\theta)\).  
+Equivalently, maximise the *log-likelihood* \(\ell_X(\theta)=\sum_{i=1}^n\log f_\theta(X_i)\).  
+{{< /mdef >}}
+
+{{< mrem "Score Equation" >}}
+Interior maxima solve the *score equation*: \(\partial \ell_X(\theta)/\partial\theta=0\).
+{{< /mrem >}}
+
+{{< mthm "Asymptotic Normality of the MLE" >}}
+Under standard regularity and \(0<I(\theta)<\infty\),
+\[
+\sqrt{n\,I(\theta)}\big(\widehat\theta-\theta\big)\ \xrightarrow{d}\ \mathcal{N}(0,1),
+\]
+so \(\widehat\theta \approx \mathcal{N}\!\left(\theta,\,[nI(\theta)]^{-1}\right)\) for large \(n\).  
+Consequently, MLEs are asymptotically unbiased and efficient (achieve the CRLB). 
+{{< /mthm >}}
+
+{{< mrem "MLE Example: Bernoulli(\(\pi\))" >}}
+\(\ell(\pi)=\big(\sum X_i\big)\log\pi+(n-\sum X_i)\log(1-\pi)\Rightarrow \widehat\pi=\frac{1}{n}\sum X_i.\)  
+{{< /mrem >}}
+
+{{< mthm "Normal Sample: \(\chi^2\) and \(t\) Facts" >}}
+Let \(X_1,\ldots,X_n\stackrel{\text{iid}}{\sim}N(\mu,\sigma^2)\), \(\overline X=\frac1n\sum X_i\), and \(S^2=\frac1{n-1}\sum (X_i-\overline X)^2\). Then
+\[
+\frac{\overline X-\mu}{S/\sqrt{n}}\ \sim\ t_{n-1},\qquad
+\frac{(n-1)S^2}{\sigma^2}\ \sim\ \chi^2_{\,n-1}.
+\]
+{{< /mthm >}}
+
+{{< mdef "Fisher Score & Information (sample)" >}}
+Score: \(S_n(\theta)=\ell'_n(\theta)\). Fisher information: \(I_n(\theta)=-\mathbb E_\theta[\ell''_n(\theta)]\). Properties: \(\mathbb E_\theta[S_n(\theta)]=0\), \(\mathrm{Var}_\theta(S_n(\theta))=I_n(\theta)\).
+{{< /mdef >}}
+
+{{< mthm "Asymptotic Variance of the MLE" >}}
+For the MLE \(\hat\theta_n\), \(I_n(\theta)\,\mathrm{Var}_\theta(\hat\theta_n)\ \xrightarrow{P}\ 1\). Equivalently, \(\mathrm{se}(\hat\theta_n)\approx I_n(\theta)^{-1/2}\).
+{{< /mthm >}}
+
+{{< mthm "Delta Method" >}}
+If \(\sqrt{n}\,(\hat\theta-\theta)\Rightarrow N(0,\sigma^2)\) and \(g'(\theta)\neq0\), then
+\[
+\sqrt{n}\,\frac{g(\hat\theta)-g(\theta)}{\sigma\,g'(\theta)}\ \Rightarrow\ N(0,1).
+\]
+{{< /mthm >}}
+
+{{< mthm "Extended Delta Method" >}}
+If \(g'(\theta)=0\) but \(g^{(k)}(\theta)\neq0\) for the smallest \(k\ge2\), then
+\[
+\frac{g(\hat\theta)-g(\theta)}{(\sigma/\sqrt{n})^{k}}\ \Rightarrow\ \frac{1}{k!}\,g^{(k)}(\theta)\,Z^{k},\quad Z\sim N(0,1).
+\]
+{{< /mthm >}}
+
+{{< mthm "Multivariate Fisher Information & Delta" >}}
+For \(\boldsymbol\theta\in\mathbb R^{p}\), \(I_n(\boldsymbol\theta)=-\mathbb E[H_{\boldsymbol\theta}\ell_n]\) (Hessian). If \(\hat{\boldsymbol\theta}\) is the MLE and \(g:\mathbb R^{p}\to\mathbb R\) is differentiable, then
+\[
+\frac{g(\hat{\boldsymbol\theta})-g(\boldsymbol\theta)}{\ \sqrt{\nabla g(\hat{\boldsymbol\theta})^{\!\top} I_n(\hat{\boldsymbol\theta})^{-1}\nabla g(\hat{\boldsymbol\theta})}\ }\ \Rightarrow\ N(0,1).
+\]
+{{< /mthm >}}
+
+
+** Confidence Intervals
+{{< collapse-local folded="true" >}}
+
+{{< mdef "Confidence Interval (CI)" >}}
+A *\(100(1-\alpha)\%\)* confidence interval for \(\theta\) is a random interval \(C_\alpha(X)\) such that  
+\(\mathbb{P}_\theta\!\big(\theta\in C_\alpha(X)\big)=1-\alpha\).  The probability is over the sample \(X\); the parameter is fixed.
+{{< /mdef >}}
+
+{{< mdef "CI via Pivot / Asymptotics" >}}
+If a statistic \(T_n=T_n(X,\theta)\) has known/null distribution independent of \(\theta\), use its quantiles.  
+More generally, if \(T_n\approx\mathcal{N}(0,1)\) for large \(n\), then a two-sided \(100(1-\alpha)\%\) CI is
+\[
+\widehat\theta\ \pm\ z_{\alpha/2}\,\mathrm{se}(\widehat\theta),
+\]
+with \(z_{\alpha/2}\) the standard normal quantile. 
+{{< /mdef >}}
+
+{{< mrem "Normal Mean (\(\sigma\) known)" >}}
+If \(X_i\stackrel{\text{iid}}{\sim}\mathcal{N}(\mu,\sigma^2)\) with known \(\sigma\), then
+\[
+\frac{\overline X-\mu}{\sigma/\sqrt{n}}\sim\mathcal{N}(0,1)\quad\Rightarrow\quad
+\mu\in\Big[\ \overline X\ \pm\ z_{\alpha/2}\,\frac{\sigma}{\sqrt{n}}\ \Big].
+\]
+(Quantiles \(z_{0.95}=1.645\), \(z_{0.975}=1.96\), \(z_{0.995}=2.575\).)  
+{{< /mrem >}}
+
+{{< mrem "Wald CI from MLE" >}}
+From \(\widehat\theta\approx\mathcal{N}\!\big(\theta,[nI(\theta)]^{-1}\big)\),
+\[
+\theta\in\Big[\ \widehat\theta\ \pm\ z_{\alpha/2}\ \sqrt{\tfrac{1}{nI(\widehat\theta)}}\ \Big]
+\]
+is an approximate \(100(1-\alpha)\%\) CI. 
+{{< /mrem >}}
+
+{{< mrem "Visual: central \(1-\alpha\) mass under \(N(0,1)\)" >}}
+#+BEGIN_EXPORT html
+<center>
+<script type="text/tikz">
+\begin{tikzpicture}[scale=1.15]
+  % axes
+  \draw[->] (-3.5,0) -- (3.5,0) node[right] {$z$};
+  % standard normal curve
+  \draw[domain=-3.5:3.5,samples=200] plot (\x,{1/sqrt(2*pi)*exp(-(\x*\x)/2)});
+  % quantiles
+  \def\za{1.96}
+  \draw[dashed] (-\za,0) -- (-\za,{1/sqrt(2*pi)*exp(-(\za*\za)/2)}) node[above] {$-z_{\alpha/2}$};
+  \draw[dashed] ( \za,0) -- ( \za,{1/sqrt(2*pi)*exp(-(\za*\za)/2)}) node[above] {$z_{\alpha/2}$};
+  % shading central area
+  \begin{scope}
+    \clip (-\za,0) rectangle (\za,2);
+    \fill[opacity=0.2] (-3.5,0) -- plot[domain=-3.5:3.5] (\x,{1/sqrt(2*pi)*exp(-(\x*\x)/2)}) -- (3.5,0) -- cycle;
+  \end{scope}
+  \node at (0,0.2) {$1-\alpha$};
+\end{tikzpicture}
+</script>
+</center>
+#+END_EXPORT
+{{< /mrem >}}
+
+{{< mrem "t-CI for a Normal Mean (\(\sigma\) unknown)" >}}
+If \(X_i\sim N(\mu,\sigma^2)\) with unknown \(\sigma\), then a \(100(1-\alpha)\%\) CI for \(\mu\) is
+\[
+\overline X\ \pm\ t_{n-1,\,1-\alpha/2}\,\frac{S}{\sqrt{n}},
+\]
+where \(t_{n-1,\,1-\alpha/2}\) is the upper \((1-\alpha/2)\)-quantile of \(t_{n-1}\).
+{{< /mrem >}}
+
+
+** Hypothesis Testing
+{{< collapse-local folded="true" >}}
+
+{{< mdef "Hypotheses & Test" >}}
+We formalise a claim about \(\theta\) as
+\[
+H_0:\theta\in\Theta_0 \quad\text{vs}\quad H_1:\theta\in\Theta_1,
+\]
+choose a statistic \(S(X)\) and *reject* \(H_0\) when \(S(X)\) falls in a *critical region* \(C\). 
+{{< /mdef >}}
+
+{{< mdef "Type I Error, Significance" >}}
+Type I error: rejecting \(H_0\) when \(H_0\) is true. Its probability \(\alpha=\mathbb{P}_\theta(S\in C)\) (for \(\theta\in\Theta_0\)) is the *significance level*.  
+{{< /mdef >}}
+
+{{< mdef "Type II Error & Power" >}}
+Type II error: failing to reject \(H_0\) when \(H_1\) is true; probability \(\beta(\theta)\) (for \(\theta\in\Theta_1\)).  
+The *power function* is \(\pi(\theta)=1-\beta(\theta)=\mathbb{P}_\theta(S\in C)\) for \(\theta\in\Theta_1\).  
+{{< /mdef >}}
+
+{{< mdef "p-value" >}}
+For observed \(x\), the *p-value* is the smallest \(\alpha\) for which \(x\) lies in a level-\(\alpha\) rejection region (equivalently, the tail probability under \(H_0\) of outcomes as or more extreme than \(x\)).  
+{{< /mdef >}}
+
+{{< mrem "Z-test for a Normal Mean (σ known)" >}}
+With \(X_i\stackrel{\text{iid}}{\sim}\mathcal{N}(\mu,\sigma^2)\), test \(H_0:\mu=\mu_0\) using  
+\[
+Z=\frac{\overline X-\mu_0}{\sigma/\sqrt{n}}\sim\mathcal{N}(0,1)\ \text{ under }H_0.
+\]
+Reject for \(|Z|>z_{\alpha/2}\) (two-sided); report \(p=2\{1-\Phi(|z_{\text{obs}}|)\}\).  
+{{< /mrem >}}
+
+{{< mrem "Visual: \(\alpha\) vs \(\beta\)" >}}
+#+BEGIN_EXPORT html
+<center>
+<script type="text/tikz">
+\begin{tikzpicture}[scale=1.1]
+  % axes
+  \draw[->] (-3.5,0) -- (5.5,0) node[right] {$s$};
+  % two normal curves (null centered at 0, alternative at 2)
+  \draw[domain=-3.5:5.5,samples=200] plot (\x,{1/sqrt(2*pi)*exp(-(\x*\x)/2)}) node[above right] {};
+  \draw[domain=-3.5:5.5,samples=200] plot (\x,{1/sqrt(2*pi)*exp(-((\x-2)^2)/2)}) node[above right] {};
+  % critical value c (right-tail test)
+  \def\c{1.2816} % ~ z_{0.90} as an example cutoff
+  \draw[dashed] (\c,0) -- (\c,{1/sqrt(2*pi)*exp(-(\c*\c)/2)}) node[above] {$c_\alpha$};
+  % shade alpha under H0 (right tail)
+  \begin{scope}
+    \clip (\c,0) rectangle (5.5,2);
+    \fill[opacity=0.20] (-3.5,0) -- plot[domain=-3.5:5.5] (\x,{1/sqrt(2*pi)*exp(-(\x*\x)/2)}) -- (5.5,0) -- cycle;
+  \end{scope}
+  \node[below] at (4.5,0.05) {$\alpha$};
+  % shade beta under H1 (left of cutoff)
+  \begin{scope}
+    \clip (-3.5,0) rectangle (\c,2);
+    \fill[opacity=0.20] (-3.5,0) -- plot[domain=-3.5:5.5] (\x,{1/sqrt(2*pi)*exp(-((\x-2)^2)/2)}) -- (\c,0) -- cycle;
+  \end{scope}
+  \node[below] at (0.2,0.05) {$\beta$};
+  % labels H0/H1 peaks
+  \node at (0,0.42) {$H_0$};
+  \node at (2,0.42) {$H_1$};
+\end{tikzpicture}
+</script>
+</center>
+#+END_EXPORT
+{{< /mrem >}}
+
+{{< mrem "t-tests for a Normal Mean (\(\sigma\) unknown)" >}}
+Test \(H_0:\mu=\mu_0\) with
+\[
+T=\frac{\overline X-\mu_0}{S/\sqrt{n}}\ \sim\ t_{n-1}\ (H_0).
+\]
+Right-tail: reject if \(T>t_{1-\alpha,n-1}\); left-tail: \(T<t_{\alpha,n-1}\); two-sided: \(|T|>t_{1-\alpha/2,n-1}\).  
+p-values use the corresponding \(t_{n-1}\) tails; two-sided \(p=2\{1-F_{t_{n-1}}(|t_{\mathrm{obs}}|)\}\).
+{{< /mrem >}}
+
+{{< mdef "Wald Test (general)" >}}
+For parameter \(\theta\) with MLE \(\hat\theta\) and \(\widehat{\mathrm{se}}(\hat\theta)\),
+\[
+W=\frac{\hat\theta-\theta_0}{\widehat{\mathrm{se}}(\hat\theta)}\ \approx\ N(0,1).
+\]
+Right-tail: reject \(H_0:\theta\le\theta_0\) if \(W>z_{1-\alpha}\); left-tail: \(W<z_{\alpha}\); two-sided: \(|W|>z_{1-\alpha/2}\).
+{{< /mdef >}}
+
+{{< mdef "Generalised Likelihood Ratio Test (GLRT)" >}}
+For \(H_0:\theta\in\Theta_0\) vs \(H_1:\theta\in\Theta\setminus\Theta_0\),
+\[
+\Lambda(x)=\frac{\sup_{\theta\in\Theta_0}L(\theta)}{\sup_{\theta\in\Theta}L(\theta)},\qquad
+\text{reject for small }\Lambda.
+\]
+Critical constant chosen to give size \(\alpha\).
+{{< /mdef >}}
+
+{{< mdef "Power and Size" >}}
+Power \(\pi(\theta)=\mathbb P_\theta(\text{reject }H_0)\). Size (significance) \(\alpha\) satisfies \(\displaystyle \sup_{\theta\in\Theta_0}\pi(\theta)\le \alpha\).
+{{< /mdef >}}

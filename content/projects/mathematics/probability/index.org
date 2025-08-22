@@ -1,19 +1,582 @@
 +++
 title = "Probability"
+toc = "true"
+math = "true"
+tikzjax = "true"
+clocal = "true"
+date = 2025-08-22T02:16:32+11:00
 tags = ["expectation", "random-variables", "distribution", "frequentist", "bayesian"]
 +++
 
-Topics
-Axioms of Probability (Kolmogorov)
-Random Variables & Distributions
-Expectation & Variance
-Bayesian Probability
-Stochastic Processes & Markov Chains
-Important Theorems
-Kolmogorov’s Axioms
-Law of Large Numbers (Weak & Strong)
-Central Limit Theorem (CLT)
-Bayes’ Theorem
-Markov & Chebyshev Inequalities
+This page pairs well with [[/projects/mathematics/statistics][Statistics]].
+
+** Elements of Probability Theory
+{{< collapse-local folded="true" >}}
+
+{{< mdef "Random Experiment, Sample Space, Events" >}}
+A *random experiment* has uncertain outcomes.  
+The *sample space* $S$ is the set of all possible outcomes.  
+An *event* $E$ is a subset of $S$. The *certain* event is $S$; the *impossible* event is $\varnothing$.
+{{< /mdef >}}
+
+{{< mdef "Probability Measure (Kolmogorov Axioms)" >}}
+A probability space $(S,\mathcal{F},P)$ consists of a sample space $S$, a $\sigma$-algebra $\mathcal{F}\subseteq 2^S$, and a function $P:\mathcal{F}\to[0,1]$ such that:
+1. $P(\varnothing)=0$, $P(S)=1$;
+2. $P(E)\ge 0$ for all $E\in\mathcal{F}$;
+3. (*$\sigma$-additivity*) For any countable family of pairwise disjoint events $\{E_i\}$,  
+   $P\!\left(\bigcup_i E_i\right)=\sum_i P(E_i)$.
+{{< /mdef >}}
+
+{{< mthm "Additive Law of Probability" >}}
+For any events $E_1,E_2$,
+\[
+P(E_1\cup E_2)=P(E_1)+P(E_2)-P(E_1\cap E_2).
+\]
+More generally,
+\[
+P\!\left(\bigcup_{i=1}^n E_i\right)=\sum_i P(E_i)-\sum_{i<j}P(E_i\cap E_j)+\cdots+(-1)^{n-1}P\!\left(\bigcap_{i=1}^n E_i\right).
+\]
+{{< /mthm >}}
+
+{{< mdef "Conditional Probability" >}}
+If $P(F)>0$, define
+\[
+P(E\mid F)=\frac{P(E\cap F)}{P(F)}.
+\]
+Equivalently, $P(E\cap F)=P(E\mid F)P(F)$.
+{{< /mdef >}}
+
+{{< mthm "Multiplicative Law" >}}
+For any events $E_1,\dots,E_n$ with $P(E_1\cap\cdots\cap E_{k-1})>0$ for each $k$,
+\[
+P\!\left(\bigcap_{k=1}^n E_k\right)=\prod_{k=1}^n P\!\left(E_k\mid \bigcap_{j<k}E_j\right).
+\]
+{{< /mthm >}}
+
+{{< mthm "Law of Total Probability" >}}
+If $\{B_i\}_{i\in I}$ is a (finite or countable) partition of $S$ with $P(B_i)>0$, then for any event $A$,
+\[
+P(A)=\sum_{i\in I} P(A\mid B_i)P(B_i).
+\]
+{{< /mthm >}}
+
+{{< mthm "Bayes' Rule" >}}
+Given a partition $\{B_i\}$ with $P(B_i)>0$ and any event $A$ with $P(A)>0$,
+\[
+P(B_i\mid A)=\frac{P(A\mid B_i)P(B_i)}{\sum_j P(A\mid B_j)P(B_j)}.
+\]
+{{< /mthm >}}
+
+{{< mdef "Independence" >}}
+Events $E$ and $F$ are *independent* if $P(E\cap F)=P(E)P(F)$ (equivalently, if $P(F)>0$, then $P(E\mid F)=P(E)$).  
+A family $\{E_i\}$ is *pairwise independent* if each pair is independent; it is *mutually independent* if
+\[
+P\!\left(\bigcap_{i\in J} E_i\right)=\prod_{i\in J}P(E_i)\quad\text{for every finite }J.
+\]
+{{< /mdef >}}
+
+{{< mthm "Markov's Inequality" >}}
+If $X\ge 0$ and $a>0$, then
+\[
+\mathbb P(X\ge a)\le \frac{\mathbb E[X]}{a}.
+\]
+{{< /mthm >}}
+
+{{< mthm "Chebyshev's Inequality" >}}
+If $\mathbb E[X]=\mu$ and $\operatorname{Var}(X)=\sigma^2<\infty$, then for any $k>0$,
+\[
+\mathbb P\!\big(|X-\mu|>k\sigma\big)\le \frac{1}{k^2}.
+\]
+{{< /mthm >}}
+
+{{< mthm "Jensen's Inequality" >}}
+If $h$ is convex and $X$ is integrable, then
+\[
+h\!\big(\mathbb E[X]\big)\le \mathbb E\!\big[h(X)\big].
+\]
+(Equality iff $h$ is affine on the support of $X$ or $X$ is degenerate.)
+{{< /mthm >}}
+
+
+
+** Random Variables
+{{< collapse-local folded="true" >}}
+
+{{< mdef "Random Variable" >}}
+A (real-valued) *random variable* is a measurable function $X:S\to\mathbb{R}$.  
+We distinguish $X$ (the variable), a realised value $x=\text{generic number}$, and the observed $\,\hat{x}=X(\hat{\omega})$.
+{{< /mdef >}}
+
+{{< mdef "Cumulative Distribution Function (CDF)" >}}
+The CDF of $X$ is
+\[
+F_X(x)=P(X\le x),\quad x\in\mathbb{R}.
+\]
+Key properties:
+
+1) non-decreasing;
+2) right-continuous;
+3) $\lim_{x\to-\infty}F_X(x)=0$;
+4) $\lim_{x\to+\infty}F_X(x)=1$.
+
+$F_X$ completely characterises the distribution.
+{{< /mdef >}}
+
+{{< mdef "Discrete Random Variable and PMF" >}}
+$X$ is *discrete* if $F_X$ is a step function with (at most) countably many jumps at $\{x_k\}$.  
+The *probability mass function* (pmf) is $p_X(x)=P(X=x)$, with $\sum_{k}p_X(x_k)=1$ and
+\[
+F_X(x)=\sum_{x_k\le x} p_X(x_k),\qquad p_X(x_k)=F_X(x_k)-F_X(x_k^-).
+\]
+{{< /mdef >}}
+
+{{< mdef "Continuous Random Variable and PDF" >}}
+$X$ is *continuous* if $F_X$ is continuous (hence $P(X=x)=0$ for all $x$).  
+A *probability density function* (pdf) $f_X$ satisfies
+\[
+P(X\in A)=\int_A f_X(x)\,dx,\qquad
+F_X(x)=\int_{-\infty}^x f_X(y)\,dy,\quad\text{and}\quad f_X(x)=\frac{d}{dx}F_X(x)
+\]
+(where differentiable), with $f_X\ge 0$ and $\int_\mathbb{R} f_X=1$.
+{{< /mdef >}}
+
+{{< mdef "Expectation" >}}
+For a r.v. $X$ with CDF $F_X$,
+\[\mathbb{E}[X]=\int_{-\infty}^{\infty} x\,dF_X(x)
+=\begin{cases}\displaystyle \sum_{x\in S_X} x\,p_X(x), & \text{(discrete)}\\[0.5em]
+\displaystyle \int_{S_X} x\,f_X(x)\,dx, & \text{(continuous).}\end{cases}\]
+
+*Linearity*: $\mathbb{E}[aX+b]=a\,\mathbb{E}[X]+b$.
+
+*Existence*: $\mathbb{E}[X]$ is finite iff $\mathbb{E}[|X|]<\infty$.
+{{< /mdef >}}
+
+{{< mdef "Moments and Variance" >}}
+The $k$-th (raw) moment: $\mathbb{E}[X^k]$.  
+The $k$-th *central* moment: $\mathbb{E}[(X-\mu)^k]$ with $\mu=\mathbb{E}[X]$.  
+The *variance* is the 2nd central moment:
+\[
+\operatorname{Var}(X)=\mathbb{E}\!\left[(X-\mu)^2\right]\ge 0,\quad
+\sigma=\sqrt{\operatorname{Var}(X)}.
+\]
+Useful identities:
+\[
+\operatorname{Var}(X)=\mathbb{E}[X^2]-(\mathbb{E}[X])^2,\qquad
+\operatorname{Var}(aX+b)=a^2\,\operatorname{Var}(X).
+\]
+{{< /mdef >}}
+
+{{< mdef "Moment Generating Function (MGF)" >}}
+For a r.v.\ $X$, the moment generating function is $M_X(u)=\mathbb E[e^{uX}]$ (where finite near $u=0$).  
+If it exists, then $M_X^{(n)}(0)=\mathbb E[X^n]$.  
+Key facts: (i) Uniqueness — $M_X=M_Y$ implies $X\overset{d}=Y$; (ii) Independence — for independent $X,Y$,
+\[
+M_{X+Y}(u)=M_X(u)\,M_Y(u).
+\]
+{{< /mdef >}}
+
+{{< mdef "Quantiles and QQ-Plots" >}}
+For continuous $X$, the $100k\%$ quantile is $Q_X(k)=F_X^{-1}(k)$, $0<k<1$.  
+A *QQ-plot* compares sample order statistics $\{x_{(k)}\}$ to theoretical quantiles $\{F^{-1}(p_k)\}$ (e.g.\ $p_k=(k-0.5)/n$); points should lie roughly on a straight line if the model fits.
+
+
+#+BEGIN_EXPORT html
+<center>
+<script type="text/tikz">
+\begin{tikzpicture}[x=4.2cm,y=4.2cm]
+  % axes
+  \draw[->] (0,0) -- (1.1,0) node[below] {theoretical};
+  \draw[->] (0,0) -- (0,1.1) node[left] {sample};
+  % 45-degree line
+  \draw[dashed] (0,0) -- (1,1);
+  % points (slightly jittered around y=x)
+  \foreach \t/\s in {0.1/0.12, 0.2/0.18, 0.3/0.31, 0.4/0.41, 0.5/0.52,
+                     0.6/0.60, 0.7/0.68, 0.8/0.82, 0.9/0.88}{
+    \fill ( \t, \s ) circle (0.01);
+  }
+\end{tikzpicture}
+</script>
+</center>
+#+END_EXPORT
+{{< /mdef >}}
+
+{{< mthm "Weak Law of Large Numbers (WLLN)" >}}
+If $X_1,X_2,\dots$ are i.i.d.\ with $\mathbb E[X_i]=\mu$ and $\operatorname{Var}(X_i)=\sigma^2<\infty$, then for every $\varepsilon>0$,
+\[
+\lim_{n\to\infty}\mathbb P\!\left(\big|\,\overline X_n-\mu\,\big|\ge \varepsilon\right)=0,
+\]
+i.e.\ $\overline X_n \xrightarrow{\ \mathbb P\ } \mu$.
+{{< /mthm >}}
+
+{{< mthm "Strong Law of Large Numbers (SLLN)" >}}
+Under the same conditions,
+\[
+\mathbb P\!\left(\lim_{n\to\infty}\overline X_n=\mu\right)=1,
+\]
+i.e.\ $\overline X_n \xrightarrow{\ \mathrm{a.s.}\ } \mu$.
+{{< /mthm >}}
+
+{{< mthm "Central Limit Theorem (CLT)" >}}
+If $X_1,\dots,X_n$ are i.i.d.\ with mean $\mu$ and variance $0<\sigma^2<\infty$, then
+\[
+Z_n=\sqrt{n}\,\frac{\overline X_n-\mu}{\sigma}\ \xRightarrow[n\to\infty]{d}\ N(0,1),
+\]
+equivalently $\ \mathbb P(Z_n\le z)\to \Phi(z)\ $ for all $z\in\mathbb R$.
+{{< /mthm >}}
+
+{{< mdef "Modes of Convergence" >}}
+\(X_n \xrightarrow{\text{a.s.}} X \;\Rightarrow\; X_n \xrightarrow{P} X \;\Rightarrow\; X_n \xrightarrow{d} X.\)  
+Definitions:  
+- In distribution: \(F_{X_n}(x)\to F_X(x)\) at continuity points of \(F_X\).  
+- In probability: \(\forall\varepsilon>0,\ \mathbb P(|X_n-X|>\varepsilon)\to0.\)  
+- Almost surely: \(\mathbb P(\lim_{n\to\infty}X_n=X)=1.\)
+{{< /mdef >}}
+
+{{< mrem "Normal Approximation to Binomial" >}}
+If \(X\sim\mathrm{Bin}(n,p)\), then \(\dfrac{X-np}{\sqrt{np(1-p)}}\Rightarrow N(0,1)\) as \(n\to\infty\).
+{{< /mrem >}}
+
+
+** Random Vectors
+{{< collapse-local folded="true" >}}
+
+{{< mdef "Random Vector and Joint Distribution" >}}
+A *random vector* $(X_1,\dots,X_n):S\to\mathbb{R}^n$ has *joint distribution*.  
+For $(X_1,X_2)$, the *joint CDF* is
+\[
+F_{X_1X_2}(x_1,x_2)=P(X_1\le x_1,\,X_2\le x_2),
+\]
+with: non-decreasing in each coordinate, right-continuous, and limits  
+$F_{X_1X_2}(+\infty,+\infty)=1$, $F_{X_1X_2}(x_1,-\infty)=F_{X_1X_2}(-\infty,x_2)=0$.
+{{< /mdef >}}
+
+{{< mdef "Marginals and Independence" >}}
+*Marginals*: $F_{X_1}(x_1)=\lim_{x_2\to +\infty}F_{X_1X_2}(x_1,x_2)$ (and symmetrically for $X_2$).
+
+*Independence*: $X_1$ and $X_2$ are independent iff $F_{X_1X_2}(x_1,x_2)=F_{X_1}(x_1)F_{X_2}(x_2)$ for all $(x_1,x_2)$  
+(equivalently, $p_{X_1X_2}=p_{X_1}p_{X_2}$ in discrete case; $f_{X_1X_2}=f_{X_1}f_{X_2}$ in continuous case).
+{{< /mdef >}}
+
+{{< mdef "Expectation of Functions (LOTUS for vectors)" >}}
+For $g:\mathbb{R}^2\to\mathbb{R}$,
+\[\mathbb{E}[g(X_1,X_2)]=
+\begin{cases}\displaystyle \sum_{x_1,x_2} g(x_1,x_2)\,p_{X_1X_2}(x_1,x_2), & \text{(discrete)}\\[0.5em]
+\displaystyle \iint g(x_1,x_2)\,f_{X_1X_2}(x_1,x_2)\,dx_2\,dx_1, & \text{(continuous).}\end{cases}\]
+
+In particular, $\mathbb{E}[aX_1+bX_2]=a\,\mathbb{E}[X_1]+b\,\mathbb{E}[X_2]$.
+{{< /mdef >}}
+
+{{< mdef "Covariance and Correlation" >}}
+Let $\mu_k=\mathbb{E}[X_k]$. The *covariance* is
+\[
+\operatorname{Cov}(X_1,X_2)=\mathbb{E}[(X_1-\mu_1)(X_2-\mu_2)],
+\]
+and the *correlation coefficient* is
+\[
+\rho(X_1,X_2)=\frac{\operatorname{Cov}(X_1,X_2)}{\sqrt{\operatorname{Var}(X_1)\operatorname{Var}(X_2)}}\in[-1,1].
+\]
+If $X_1\perp X_2$, then $\operatorname{Cov}(X_1,X_2)=0$, and
+\[
+\operatorname{Var}(X_1+X_2)=\operatorname{Var}(X_1)+\operatorname{Var}(X_2).
+\]
+{{< /mdef >}}
+
+{{< mdef "Mean Vector, Covariance Matrix, Linear Transforms" >}}
+For $X=(X_1,\dots,X_n)^\top$, define the *mean vector*
+\[
+\mu_X=\mathbb{E}[X]=\big(\mathbb{E}[X_1],\dots,\mathbb{E}[X_n]\big)^\top,
+\]
+and the *covariance matrix* $\Sigma_X=\operatorname{Cov}(X)$ with $(i,j)$ entry $\operatorname{Cov}(X_i,X_j)$.  
+If $Y=AX+b$ with constant matrix $A$ and vector $b$, then
+\[
+\mathbb{E}[Y]=A\,\mu_X+b,\qquad \operatorname{Cov}(Y)=A\,\Sigma_X\,A^\top.
+\]
+{{< /mdef >}}
+
+{{< mdef "Conditional Density and Conditional Expectation" >}}
+For continuous $(X,Y)$ with joint pdf $f_{X,Y}$ and marginal $f_Y(y)>0$,
+\[
+f_{X\mid Y}(x\mid y)=\frac{f_{X,Y}(x,y)}{f_Y(y)}.
+\]
+Then
+\[
+\mathbb E[g(X)\mid Y=y]=\int g(x)\,f_{X\mid Y}(x\mid y)\,dx.
+\]
+(Discrete analogues use pmfs and sums.)
+{{< /mdef >}}
+
+{{< mdef "Bivariate Normal" >}}
+$(X_1,X_2)$ is *Gaussian* with mean $\mu=(\mu_1,\mu_2)$ and covariance $V$ if
+\[
+f(x)=\frac{1}{2\pi \sqrt{\det V}}
+\exp\!\Big(-\tfrac12\,(x-\mu)^\top V^{-1}(x-\mu)\Big).
+\]
+{{< /mdef >}}
+
+
+
+** Common Distributions
+{{< collapse-local folded="true" >}}
+
+{{< mdef "Continuous Uniform" >}}
+If \(X\sim U[\alpha,\beta]\) with \(\alpha<\beta\), then
+\[
+f_X(x)=\frac{1}{\beta-\alpha}\;1_{\{\alpha\le x\le\beta\}},\qquad
+F_X(x)=\frac{x-\alpha}{\beta-\alpha}\ (x\in[\alpha,\beta]),
+\]
+\[
+\mathbb E[X]=\frac{\alpha+\beta}{2},\quad
+\mathrm{Var}(X)=\frac{(\beta-\alpha)^2}{12}.
+\]
+For any \(a<b\subseteq[\alpha,\beta]\): \(\mathbb P(a<X<b)=\frac{b-a}{\beta-\alpha}\).
+{{< /mdef >}} 
+
+{{< mdef "Standard Uniform \(U[0,1]\)" >}}
+\[f_U(u)=1_{[0,1]}(u),\quad F_U(u)=\begin{cases}0,&u<0\\u,&0\le u\le 1\\1,&u>1\end{cases}\]
+\(\mathbb E[U]=\tfrac12,\ \mathrm{Var}(U)=\tfrac1{12}\).
+{{< /mdef >}}
+
+{{< mdef "Bernoulli" >}}
+A Bernoulli r.v. \(X\sim \mathrm{Bern}(\pi)\) takes values in \(\{0,1\}\) with
+\(\mathbb P(X=1)=\pi,\ \mathbb P(X=0)=1-\pi\).
+
+Moments: \(\mathbb E[X]=\pi,\ \mathrm{Var}(X)=\pi(1-\pi)\).
+
+mgf: \(\varphi_X(s)=(1-\pi)+\pi e^{s}\).
+
+#+BEGIN_EXPORT html
+<center>
+<script type="text/tikz">
+\begin{tikzpicture}[x=2cm,y=3cm]
+  % axes
+  \draw[->] (-0.2,0) -- (1.3,0) node[below] {$x$};
+  \draw[->] (0,-0.05) -- (0,1.05) node[left] {$p_X(x)$};
+  % bars for pi=0.5
+  \filldraw[gray!30] ( -0.1,0) rectangle ( 0.1,1.0/2);
+  \filldraw[gray!60] (  0.9,0) rectangle ( 1.1,1.0/2);
+  \node[below] at (0,0) {$0$};
+  \node[below] at (1,0) {$1$};
+  \node[left]  at (-0.1,0.5) {$1-\pi$};
+  \node[right] at (1.1,0.5) {$\pi$};
+  \draw (0,0) -- (0,0.5);
+  \draw (1,0) -- (1,0.5);
+\end{tikzpicture}
+</script>
+</center>
+#+END_EXPORT
+{{< /mdef >}} 
+
+
+{{< mdef "Binomial" >}}
+If \(X=\sum_{i=1}^n X_i\) with \(X_i\overset{\text{i.i.d.}}{\sim}\mathrm{Bern}(\pi)\), then
+\[
+X\sim \mathrm{Bin}(n,\pi),\quad
+\mathbb P(X=x)=\binom{n}{x}\pi^x(1-\pi)^{n-x},\ x=0,\dots,n.
+\]
+\(\mathbb E[X]=n\pi,\quad \mathrm{Var}(X)=n\pi(1-\pi),\quad
+\varphi_X(s)=[(1-\pi)+\pi e^s]^{n}\).
+(Reproductive property: \(X_1\sim\mathrm{Bin}(n_1,\pi)\),
+\(X_2\sim\mathrm{Bin}(n_2,\pi)\) independent \(\Rightarrow\ X_1+X_2\sim\mathrm{Bin}(n_1+n_2,\pi)\).)
+{{< /mdef >}} 
+
+{{< mdef "Geometric" >}}
+Given i.i.d. Bernoulli trials with success prob. \(\pi\), let
+\(X=\min\{i\in\mathbb N: X_i=1\}\) (trials until first success).
+Then \(X\sim\mathrm{Geo}(\pi)\) on \(\{1,2,\ldots\}\) with
+\[
+\mathbb P(X=x)=(1-\pi)^{x-1}\pi,\qquad
+F_X(x)=1-(1-\pi)^{\lfloor x\rfloor}.
+\]
+(Memoryless: \(\mathbb P(X=m+n\mid X>m)=(1-\pi)^{n-1}\pi=\mathbb P(X=n)\).)
+{{< /mdef >}} 
+
+{{< mdef "Poisson" >}}
+\(X\sim \mathrm{Pois}(\lambda)\) on \(\{0,1,\dots\}\) has pmf
+\[
+\mathbb P(X=x)=e^{-\lambda}\frac{\lambda^{x}}{x!}.
+\]
+\(\mathbb E[X]=\lambda,\ \mathrm{Var}(X)=\lambda,\ \varphi_X(s)=\exp\{\lambda(e^{s}-1)\}\).
+Reproductive: if \(X_i\sim \mathrm{Pois}(\lambda_i)\) independent then
+\(\sum_i X_i\sim \mathrm{Pois}(\sum_i\lambda_i)\).
+Extension (Poisson process): number of events in \([0,t]\) is
+\(N_t\sim \mathrm{Pois}(\lambda t)\).
+{{< /mdef >}} 
+
+{{< mdef "Exponential" >}}
+If interarrival times of a Poisson process have rate \(\lambda>0\),
+then \(T\sim \mathrm{Exp}(\lambda)\) with cdf/pedf
+\[
+F_T(t)=1-e^{-\lambda t}\ (t\ge0),\qquad
+f_T(t)=\lambda e^{-\lambda t}\ 1_{\{t\ge 0\}}.
+\]
+
+#+BEGIN_EXPORT html
+<center>
+<script type="text/tikz">
+\begin{tikzpicture}[x=0.9cm,y=3.2cm]
+  \draw[->] (-0.2,0) -- (8,0) node[below] {$t$};
+  \draw[->] (0,-0.05) -- (0,1.05) node[left] {$f_T(t)$};
+  \draw[smooth,domain=0:7,samples=100] plot (\x,{exp(-0.5*\x)*0.5});
+  \node at (5.8,0.25) {$\lambda=0.5$};
+\end{tikzpicture}
+</script>
+</center>
+#+END_EXPORT
+{{< /mdef >}} 
+
+
+{{< mdef "Gamma" >}}
+For shape \(k>0\) and rate \(\lambda>0\),
+\[
+X\sim \mathrm{Gamma}(k,\lambda)\quad\Longleftrightarrow\quad
+f_X(x)=\frac{\lambda e^{-\lambda x}(\lambda x)^{k-1}}{\Gamma(k)}\,1_{\{x>0\}}.
+\]
+If \(T_i\overset{\text{i.i.d.}}{\sim}\mathrm{Exp}(\lambda)\) then
+\(\sum_{i=1}^{n}T_i\sim \mathrm{Gamma}(n,\lambda)\).
+{{< /mdef >}}  
+
+{{< mdef "Normal / Gaussian" >}}
+Standard normal: \(Z\sim N(0,1)\) with
+\[
+\varphi(z)=\frac{1}{\sqrt{2\pi}}e^{-z^2/2},\quad \Phi(z)=\int_{-\infty}^{z}\varphi(u)\,du.
+\]
+General normal: \(X\sim N(\mu,\sigma^2)\) has
+\[
+f(x)=\frac{1}{\sqrt{2\pi}\,\sigma}\exp\!\left(-\frac{(x-\mu)^2}{2\sigma^2}\right).
+\]
+Standardisation: \(Z=(X-\mu)/\sigma\sim N(0,1)\).
+
+#+BEGIN_EXPORT html
+<center>
+<script type="text/tikz">
+\begin{tikzpicture}[x=0.9cm,y=2.6cm]
+  \draw[->] (-4,0) -- (4.2,0) node[below] {$x$};
+  \draw[->] (0,-0.05) -- (0,1.1) node[left] {$\varphi(x)$};
+  \draw[smooth,domain=-3.5:3.5,samples=200] plot (\x,{exp(-\x*\x/2)/2.5066});
+  \node at (0,1.05) {$N(0,1)$};
+\end{tikzpicture}
+</script>
+</center>
+#+END_EXPORT
+{{< /mdef >}} 
+
+{{< mdef "Hypergeometric" >}}
+If a population has $N$ items with $m$ successes and $N-m$ failures, and we draw $n$ *without replacement*, then $X\sim\mathrm{Hyp}(n,m,N)$ with
+\[
+\mathbb P(X=x)=\frac{\binom{m}{x}\binom{N-m}{n-x}}{\binom{N}{n}},\qquad x=0,1,\dots,n,
+\]
+and $\ \mathbb E[X]=\frac{mn}{N}$.
+{{< /mdef >}}
+
+{{< mdef "Beta" >}}
+For $\alpha,\beta>0$, $X\sim\mathrm{Beta}(\alpha,\beta)$ on $(0,1)$ with
+\[
+f(x)=\frac{x^{\alpha-1}(1-x)^{\beta-1}}{B(\alpha,\beta)},\qquad
+B(\alpha,\beta)=\int_0^1 t^{\alpha-1}(1-t)^{\beta-1}\,dt.
+\]
+{{< /mdef >}}
+
+** Transformations of Random Variables
+{{< collapse-local folded="true" >}}
+
+{{< mdef "Monotone Transformation (Continuous)" >}}
+If \(Y=\phi(X)\) with \(\phi\) strictly monotone and differentiable,
+\[
+f_Y(y)=f_X\!\big(\phi^{-1}(y)\big)\,\Big|\big(\phi^{-1}\big)'(y)\Big|
+= f_X\!\big(\phi^{-1}(y)\big)\,\left|\frac{1}{\phi'(\phi^{-1}(y))}\right|.
+\]
+(From \(F_Y\) by cases ↑/↓ and the inverse-function theorem.)
+{{< /mdef >}} 
+
+{{< mdef "Linear Transformation (Univariate)" >}}
+If \(Y=aX+b\) with \(a\neq0\) and \(X\) continuous,
+\[
+f_Y(y)=\frac{1}{|a|}\,f_X\!\left(\frac{y-b}{a}\right).
+\]
+{{< /mdef >}}
+
+{{< mdef "General (Piecewise-Monotone) Transformation" >}}
+If \(\phi\) is piecewise monotone with inverse branches \(\{\phi_k^{-1}:J_k\to I_k\}\),
+\[
+f_Y(y)=\sum_k f_X\!\big(\phi_k^{-1}(y)\big)\,
+\Big|\big(\phi_k^{-1}\big)'(y)\Big|\;1_{\{y\in J_k\}}.
+\]
+(Useful e.g. \(Y=Z^2\) with \(Z\sim N(0,1)\Rightarrow Y\sim\chi^2_1\).)
+{{< /mdef >}}
+
+{{< mdef "Change of Variables (Bivariate)" >}}
+If \(Y=\phi(X)\) where \(X=(X_1,X_2)\), \(Y=(Y_1,Y_2)\), \(\phi\) is one-to-one
+and differentiable with inverse \(\psi=\phi^{-1}\), then with Jacobian
+\(J(y)=\det\big[\partial \psi_i/\partial y_j\big]\),
+\[
+f_Y(y)=f_X\!\big(\psi(y)\big)\,|J(y)|.
+\]
+
+
+#+BEGIN_EXPORT html
+<center>
+<script type="text/tikz">
+\begin{tikzpicture}[scale=1.0]
+  % Left: x-plane rectangle
+  \draw (-0.2,-0.2) rectangle (2.2,1.2);
+  \draw (0,0) grid (2,1);
+  \node at (1,-0.5) {domain in $x$};
+  % Arrow
+  \draw[->,thick] (2.5,0.5) -- (3.5,0.5) node[midway, above] {$y=\phi(x)$};
+  % Right: transformed parallelogram
+  \begin{scope}[shift={(4.2,-0.1)}]
+    \draw (0,0) -- (2.2,0.3) -- (2.6,1.3) -- (0.4,1.0) -- cycle;
+    \foreach \i in {0,0.5,...,2}{\draw (\i,0) -- ++(0.6,1.0);}
+    \foreach \j in {0,0.25,...,1}{\draw (0,\j) -- ++(2.2,0.3);}
+  \end{scope}
+  \node at (5.5,-0.5) {image in $y$ ($|J|$ scales area)};
+\end{tikzpicture}
+</script>
+</center>
+#+END_EXPORT
+{{< /mdef >}}
+
+{{< mthm "Convolution: Sum of Independent Variables" >}}
+If \(X_1\perp\!\!\!\perp X_2\):
+- **Discrete:** \(p_{X_1+X_2}(y)=\displaystyle\sum_{x} p_{X_1}(y-x)\,p_{X_2}(x)\).
+- **Continuous:** \(f_{X_1+X_2}(y)=\displaystyle\int f_{X_1}(y-x)\,f_{X_2}(x)\,dx\).
+{{< /mthm >}} 
+
+{{< mthm "Min of Independent Exponentials" >}}
+If \(T_i\sim\mathrm{Exp}(\lambda_i)\) independent,
+\[
+\min_i T_i\ \sim\ \mathrm{Exp}\!\Big(\sum_i\lambda_i\Big),\qquad
+\mathbb P\{\operatorname*{argmin}=j\}=\frac{\lambda_j}{\sum_i\lambda_i}.
+\]
+{{< /mthm >}} 
+
+{{< mthm "Sum of i.i.d. Exponentials \(\Rightarrow\) Gamma" >}}
+If \(T_1,\dots,T_n\overset{\text{i.i.d.}}{\sim}\mathrm{Exp}(\lambda)\), then
+\(\sum_{i=1}^{n}T_i\sim\mathrm{Gamma}(n,\lambda)\).
+{{< /mthm >}} 
+
+{{< mdef "Log-Normal via Monotone Transform" >}}
+If \(Z\sim N(0,1)\) and \(Y=e^{Z}\), then
+\[
+f_Y(y)=\frac{1}{y\sqrt{2\pi}}\exp\!\left(-\frac{(\log y)^2}{2}\right),\quad y>0.
+\]
+{{< /mdef >}} 
+
+{{< mdef "Chi-Square from Squaring a Normal" >}}
+If \(Z\sim N(0,1)\) and \(Y=Z^2\), then \(Y\sim\chi^2_1\) with
+\[
+f_Y(y)=\frac{1}{\sqrt{2\pi\,y}}\,e^{-y/2},\quad y>0.
+\]
+(Non-monotone transform handled by two branches \(Z=\pm\sqrt{y}\).)
+{{< /mdef >}}
+
+{{< mthm "Probability Integral Transform" >}}
+If \(F_X\) is strictly increasing and \(U=F_X(X)\), then \(U\sim U(0,1)\).
+{{< /mthm >}}
+
+
+** todo
+
 Borel-Cantelli Lemma
 Martingale Convergence Theorem
+

@@ -47,7 +47,7 @@ You may also be interested in the [[{{< ref "projects/csp" >}}][projects]] secti
 A web CV can be found [[/about/cv][here]].[fn:5]
 
 * Footnotes
-[fn:7] any links leading [[https://www.youtube.com/watch?v=dQw4w9WgXcQ][out]] of this site are proceeded with a =↗=, whilst those [[#nav-heading][within]] are not.
+[fn:7] any links leading [[https://www.youtube.com/watch?v=dQw4w9WgXcQ][out]] of this site are proceeded with a =↗=, whilst those [[{{< ref "words#the-shelf" >}}][within]] are not.
 
 [fn:5] you may also navigate there serendipitously via the [[about]] page.
 
