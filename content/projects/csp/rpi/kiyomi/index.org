@@ -1,5 +1,5 @@
 +++
-name = "RaspiOS Raspberry Pi3"
+title = "RaspiOS Raspberry Pi3"
 tags = ["debian", "minidlna", "rtorrent"]
 +++
 

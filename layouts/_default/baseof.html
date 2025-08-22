@@ -3,6 +3,9 @@
 {{ if .Params.clocal }}
   <script src="{{ "js/collapsible-local.js" | relURL }}"></script>
 {{ end }}
+{{ if or .Params.clocal (findRE "{{<\\s*collapse" .RawContent) }}
+  <script src="{{ "js/global-collapse-toggle.js" | relURL }}"></script>
+{{ end }}
 <html
   lang="{{ .Site.Language.Lang | default "en" }}"
   data-theme="{{ .Param "defaultTheme" | default "dark" }}"

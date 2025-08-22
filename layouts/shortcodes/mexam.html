@@ -1,0 +1,198 @@
+<!-- Mathematical Example shortcode -->
+{{ $exampleName := .Get 0 }}
+<div class="math-example">
+  <div class="math-example-header">
+    <strong>Example</strong>
+    <span class="example-counter"></span>
+    {{ if $exampleName }}
+      <span class="example-name">({{ $exampleName }})</span>
+    {{ end }}
+  </div>
+  <div class="math-example-content">
+    {{ .Inner | .Page.RenderString }}
+  </div>
+</div>
+
+<style>
+  .math-example {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    border: 2px solid var(--bg2, #e5e5e5);
+    border-left: 4px solid #28a745; /* Green highlight */
+    background: var(--bg1, #f8f9fa);
+    border-radius: 4px;
+    position: relative;
+    font-family: var(--font-serif);
+  }
+
+  .math-example-header {
+    font-weight: bold;
+    color: #28a745; /* Green header text */
+    margin-bottom: 0.75rem;
+    font-family: var(--font-serif);
+    font-size: 1rem;
+  }
+
+  .math-example-header .example-counter {
+    margin-left: 0.25rem;
+  }
+
+  .math-example-header .example-name {
+    font-weight: normal;
+    font-style: italic;
+    color: var(--fg, #333);
+    margin-left: 0.25rem;
+  }
+
+  .math-example-content {
+    color: var(--fg, #333);
+    line-height: 1.6;
+  }
+
+  .math-example-content p:first-child {
+    margin-top: 0;
+  }
+
+  .math-example-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Dark theme support */
+  [data-theme="dark"] .math-example {
+    border-color: var(--bg2, #555);
+    background: var(--bg1, #1a1a1a);
+    border-left-color: #34ce57; /* Lighter green for dark mode */
+  }
+
+  [data-theme="dark"] .math-example-header {
+    color: #34ce57; /* Lighter green header in dark mode */
+  }
+
+  [data-theme="dark"] .math-example-header .example-name {
+    color: var(--fg, #e5e5e5);
+  }
+
+  [data-theme="dark"] .math-example-content {
+    color: var(--fg, #e5e5e5);
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Wait for page to fully load
+    setTimeout(function () {
+      // Process each example to move it into the mathematical environment above it
+      var examples = document.querySelectorAll(".math-example");
+
+      examples.forEach(function (example, index) {
+        var parentEnvironment = null;
+        var previousElement = example.previousElementSibling;
+        var scanCount = 0;
+        var maxScanElements = 20; // Scan up to 20 elements backwards
+
+        // Look backwards for a mathematical environment
+        while (previousElement && scanCount < maxScanElements) {
+          scanCount++;
+
+          // Skip whitespace text nodes
+          if (
+            previousElement.nodeType === 3 &&
+            previousElement.textContent.trim() === ""
+          ) {
+            previousElement = previousElement.previousElementSibling;
+            continue;
+          }
+
+          // Skip style and script elements (shortcode artifacts)
+          if (
+            previousElement.tagName &&
+            (previousElement.tagName.toLowerCase() === "style" ||
+              previousElement.tagName.toLowerCase() === "script")
+          ) {
+            previousElement = previousElement.previousElementSibling;
+            continue;
+          }
+
+          // Skip empty paragraphs (Hugo artifacts)
+          if (
+            previousElement.tagName &&
+            previousElement.tagName.toLowerCase() === "p" &&
+            (!previousElement.textContent ||
+              previousElement.textContent.trim() === "")
+          ) {
+            previousElement = previousElement.previousElementSibling;
+            continue;
+          }
+
+          // Check if we found a mathematical environment
+          if (
+            previousElement &&
+            previousElement.classList &&
+            (previousElement.classList.contains("math-definition") ||
+              previousElement.classList.contains("math-theorem") ||
+              previousElement.classList.contains("math-problem") ||
+              previousElement.classList.contains("math-lemma") ||
+              previousElement.classList.contains("math-corollary") ||
+              previousElement.classList.contains("math-proposition") ||
+              previousElement.classList.contains("math-proof") ||
+              previousElement.classList.contains("math-remark"))
+          ) {
+            parentEnvironment = previousElement;
+            break;
+          } else {
+            // Continue scanning backwards
+            previousElement = previousElement.previousElementSibling;
+          }
+        }
+
+        // If we found a parent environment, move the example into it
+        if (parentEnvironment) {
+          // Remove example from current position
+          example.parentNode.removeChild(example);
+
+          // Style the parent environment to connect visually
+          parentEnvironment.style.borderBottomLeftRadius = "0";
+          parentEnvironment.style.borderBottomRightRadius = "0";
+          parentEnvironment.style.borderBottom =
+            "1px solid var(--bg2, #e5e5e5)";
+          parentEnvironment.style.marginBottom = "0";
+
+          // Clear existing styles and apply new ones for integration
+          example.style.cssText = "";
+          example.style.setProperty("background", "transparent", "important");
+          example.style.setProperty("border", "none", "important");
+          example.style.setProperty("margin", "1rem 0 0 0", "important");
+          example.style.setProperty("padding", "0.75rem 1rem", "important");
+          example.style.setProperty(
+            "border-top",
+            "1px solid var(--bg2, #e5e5e5)",
+            "important",
+          );
+          example.style.setProperty("border-radius", "0", "important");
+
+          // Adjust header styling for integration
+          var header = example.querySelector(".math-example-header");
+          if (header) {
+            header.style.setProperty("margin-bottom", "0.5rem", "important");
+            header.style.setProperty("font-size", "0.9rem", "important");
+          }
+
+          // Adjust content styling
+          var content = example.querySelector(".math-example-content");
+          if (content) {
+            content.style.setProperty("font-size", "0.95rem", "important");
+          }
+
+          // Append the example to the parent environment
+          parentEnvironment.appendChild(example);
+        }
+      });
+
+      // Auto-numbering for examples (after movement)
+      var exampleCounters = document.querySelectorAll(".example-counter");
+      exampleCounters.forEach(function (counter, index) {
+        counter.textContent = " " + (index + 1);
+      });
+    }, 100); // Small delay to ensure DOM is fully rendered
+  });
+</script>

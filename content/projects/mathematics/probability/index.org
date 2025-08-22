@@ -449,11 +449,11 @@ Standardisation: \(Z=(X-\mu)/\sigma\sim N(0,1)\).
 #+BEGIN_EXPORT html
 <center>
 <script type="text/tikz">
-\begin{tikzpicture}[x=0.9cm,y=2.6cm]
+\begin{tikzpicture}[x=1.9cm,y=2.6cm]
   \draw[->] (-4,0) -- (4.2,0) node[below] {$x$};
   \draw[->] (0,-0.05) -- (0,1.1) node[left] {$\varphi(x)$};
   \draw[smooth,domain=-3.5:3.5,samples=200] plot (\x,{exp(-\x*\x/2)/2.5066});
-  \node at (0,1.05) {$N(0,1)$};
+  \node at (1,1.05) {$N(0,1)$};
 \end{tikzpicture}
 </script>
 </center>
@@ -577,6 +577,6 @@ If \(F_X\) is strictly increasing and \(U=F_X(X)\), then \(U\sim U(0,1)\).
 
 ** todo
 
-Borel-Cantelli Lemma
-Martingale Convergence Theorem
+- Borel-Cantelli Lemma
+- Martingale Convergence Theorem
 

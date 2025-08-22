@@ -26,6 +26,18 @@
     <div id="search__suggestions" class="search__suggestions--hidden"></div>
   </div>
 
+  {{ if or .Params.clocal (findRE "{{<\\s*collapse" .RawContent) }}
+    <button
+      id="global-collapse-toggle"
+      class="global-collapse-toggle"
+      aria-label="Toggle all sections"
+      title="Expand/Collapse All"
+    >
+      ▶
+    </button>
+  {{ end }}
+
+
   <nav id="menu">
     <ul class="menu--horizontal">
       {{ range $.Site.Menus.main }}

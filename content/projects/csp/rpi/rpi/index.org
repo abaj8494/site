@@ -1,5 +1,5 @@
 +++
-name = "Manjaro Raspberry Pi 4"
+title = "Manjaro Raspberry Pi 4"
 tags = ["ncmpcpp", "mpd", "mopidy", "cd", "tmux", "arch"]
 +++
 

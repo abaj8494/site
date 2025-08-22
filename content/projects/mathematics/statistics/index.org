@@ -71,13 +71,13 @@ for continuous \(\beta_k\) and finite moments up to order \(2K\). Replace expect
 If \(\mathrm{Var}(X^k)<\infty\) for \(k\le K\), then \(\widehat M_k \xrightarrow{P}\mathbb{E}(X^k)\) by the LLN; continuity of \(\beta_k\) gives \(\widehat\theta_k\xrightarrow{P}\theta_k\) by the Continuous Mapping Theorem. 
 {{< /mthm >}}
 
-{{< mrem "MoM Example: Rayleigh" >}}
-For \(f_\theta(x)=2\theta x e^{-\theta x^2}\,1_{\{x\ge0\}}\), \(\mathbb{E}(X)=\frac{\sqrt{\pi}}{2\sqrt{\theta}}\), so the MoM estimator is 
+{{< mexam "Rayleigh" >}}
+For \(f_\theta(x)=2\theta x e^{-\theta x^2}\,1_{\{x\ge0\}}\), we have \(\mathbb{E}(X)=\frac{\sqrt{\pi}}{2\sqrt{\theta}}\), so the MoM estimator is 
 \[
 \widehat\theta_{\text{MoM}}=\frac{\pi}{4}\,\overline X^{\, -2}.
 \]
-Its asymptotic distribution follows by CLT and Delta Method. 
-{{< /mrem >}}
+Its asymptotic distribution follows by the CLT and Delta Method. 
+{{< /mexam >}}
 
 {{< mdef "Maximum Likelihood (MLE)" >}}
 For i.i.d. \(X_1,\dots,X_n\), the *likelihood* is \(L_X(\theta)=\prod_{i=1}^n f_\theta(X_i)\) (discrete: product of pmf’s).  
@@ -98,9 +98,9 @@ so \(\widehat\theta \approx \mathcal{N}\!\left(\theta,\,[nI(\theta)]^{-1}\right)
 Consequently, MLEs are asymptotically unbiased and efficient (achieve the CRLB). 
 {{< /mthm >}}
 
-{{< mrem "MLE Example: Bernoulli(\(\pi\))" >}}
+{{< mexam "Bernoulli(\(\,\pi\))" >}}
 \(\ell(\pi)=\big(\sum X_i\big)\log\pi+(n-\sum X_i)\log(1-\pi)\Rightarrow \widehat\pi=\frac{1}{n}\sum X_i.\)  
-{{< /mrem >}}
+{{< /mexam >}}
 
 {{< mthm "Normal Sample: \(\chi^2\) and \(t\) Facts" >}}
 Let \(X_1,\ldots,X_n\stackrel{\text{iid}}{\sim}N(\mu,\sigma^2)\), \(\overline X=\frac1n\sum X_i\), and \(S^2=\frac1{n-1}\sum (X_i-\overline X)^2\). Then
@@ -178,7 +178,7 @@ is an approximate \(100(1-\alpha)\%\) CI.
 #+BEGIN_EXPORT html
 <center>
 <script type="text/tikz">
-\begin{tikzpicture}[scale=1.15]
+\begin{tikzpicture}[scale=2.15]
   % axes
   \draw[->] (-3.5,0) -- (3.5,0) node[right] {$z$};
   % standard normal curve
@@ -244,7 +244,7 @@ Reject for \(|Z|>z_{\alpha/2}\) (two-sided); report \(p=2\{1-\Phi(|z_{\text{obs}
 #+BEGIN_EXPORT html
 <center>
 <script type="text/tikz">
-\begin{tikzpicture}[scale=1.1]
+\begin{tikzpicture}[scale=2.1]
   % axes
   \draw[->] (-3.5,0) -- (5.5,0) node[right] {$s$};
   % two normal curves (null centered at 0, alternative at 2)
@@ -252,7 +252,7 @@ Reject for \(|Z|>z_{\alpha/2}\) (two-sided); report \(p=2\{1-\Phi(|z_{\text{obs}
   \draw[domain=-3.5:5.5,samples=200] plot (\x,{1/sqrt(2*pi)*exp(-((\x-2)^2)/2)}) node[above right] {};
   % critical value c (right-tail test)
   \def\c{1.2816} % ~ z_{0.90} as an example cutoff
-  \draw[dashed] (\c,0) -- (\c,{1/sqrt(2*pi)*exp(-(\c*\c)/2)}) node[above] {$c_\alpha$};
+  \draw[dashed] (\c,0) -- (\c,{1/sqrt(2*pi)*exp(-(\c*\c)/2)}) node[above] at (\c,0.3) {$c_\alpha$};
   % shade alpha under H0 (right tail)
   \begin{scope}
     \clip (\c,0) rectangle (5.5,2);
@@ -266,8 +266,8 @@ Reject for \(|Z|>z_{\alpha/2}\) (two-sided); report \(p=2\{1-\Phi(|z_{\text{obs}
   \end{scope}
   \node[below] at (0.2,0.05) {$\beta$};
   % labels H0/H1 peaks
-  \node at (0,0.42) {$H_0$};
-  \node at (2,0.42) {$H_1$};
+  \node at (0,0.52) {$H_0$};
+  \node at (2,0.52) {$H_1$};
 \end{tikzpicture}
 </script>
 </center>
