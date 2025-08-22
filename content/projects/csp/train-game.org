@@ -1,5 +1,5 @@
 +++
-title = "Train Game, Get 10"
+title = "Sydney Train Game; Get 10"
 mathjax = "true"
 toc = "true"
 +++
@@ -19,9 +19,9 @@ Then one valid configuration would be \(6-3+2+5\) which equals 10.
 
 ** iframe
 
-#+BEGIN_HTML
-<iframe src="[[https://abaj8494.github.io/sydney-train-game/]]" width="100%"></iframe>
-#+END_HTML
+#+BEGIN_EXPORT html
+<iframe src="https://abaj8494.github.io/sydney-train-game/" width="100%"></iframe>
+#+END_EXPORT
 
 
 ** implementation (algorithm)
