@@ -2,6 +2,7 @@
 title = "Sydney Train Game; Get 10"
 mathjax = "true"
 toc = "true"
+clocal = "true"
 +++
 
 Here lies an embedded iframe of my /typescript/ implementation of the Sydney Trains "Make 10" game.
@@ -9,6 +10,8 @@ Here lies an embedded iframe of my /typescript/ implementation of the Sydney Tra
 We use a recursive dfs on all parenthesised permutations. See the [[https://github.com/abaj8494/sydney-train-game][README]] file for more details.
 
 ** rules
+
+{{< collapse-local folded="true" >}}
 
 Given a series of 4 numbers (the train carriage identifier), we mentally tasked with constructing the number 10 using mathematical operations.
 
@@ -19,12 +22,16 @@ Then one valid configuration would be \(6-3+2+5\) which equals 10.
 
 ** iframe
 
+{{< collapse-local folded="true" >}}
+
 #+BEGIN_EXPORT html
 <iframe src="https://abaj8494.github.io/sydney-train-game/" width="100%" height="500px"></iframe>
 #+END_EXPORT
 
 
 ** implementation (algorithm)
+
+{{< collapse-local folded="true" >}}
 
 note that we are only using binary operators (plus, minus, divide, subtract and power).
 
