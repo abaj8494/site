@@ -29,15 +29,16 @@ in each of the below topics, there are a number of algorithms and facts that I m
   - RGB: red green blue
     - strongly correlated channels
   - HSV: hue saturation value
-    - confounded channels
-  - YCbCr: stand for ??
+    - hue and saturation are confounded channels
+  - YCbCr
     - fast to compute, good for compression. the modern day standard
     - Y = luminance
     - Cb = blue colour difference
     - Cr = red colour difference
   - L*a*b*: differences in luminance are more perceptually uniform
     - L* = /lightness/
-    - 
+    - a* = green to red spectrum (negative to positive)
+    - b* = blue to yellow spectrum (negative to positive)
 - quantisation: digitises the image intensity / amplitude values
 
 
@@ -49,25 +50,61 @@ in each of the below topics, there are a number of algorithms and facts that I m
 
 \[T: \mathbb{R} \rightarrow \mathbb{R}\quad g(x,y) =T(f(x,y))\]
 
-- contrast stretching
-- intensity thresholding
-  - automatic: otsu, isodata, multilevel
-- intensity inversion
-- log transformation
-- power transformation
-- piecewise linear transformation
-- piecewise contrast stretching
-- gray-level slicing
-- bit-plane slicing
-- histogram of pixel values
-- histogram-based thresholding "triangle"
-- histogram equalisation
-  - continuous; discrete
-  - constrained
-- histogram matching
-  - continuous, discrete
-- arithmetic and logical operations
-- averaging
+- *contrast stretching*: linearly maps input intensity range to full output range \[g(x,y) = \frac{f(x,y) - f_{min}}{f_{max} - f_{min}} \times 255\]
+  - enhances contrast when image uses only part of available intensity range
+
+- *intensity thresholding*: converts grayscale to binary \[g(x,y) = \begin{cases} 255 & \text{if } f(x,y) \geq T \\ 0 & \text{otherwise} \end{cases}\]
+  - automatic methods:
+    - *Otsu*: maximises between-class variance to find optimal threshold
+    - *Isodata*: iteratively refines threshold based on class means
+    - *multilevel*: extends to multiple thresholds for multi-class segmentation
+
+- *intensity inversion*: creates photographic negative \[g(x,y) = L - 1 - f(x,y)\] where \(L\) is number of intensity levels
+
+- *log transformation*: compresses high intensities, expands low ones \[g(x,y) = c \log(1 + f(x,y))\]
+  - useful for displaying images with wide dynamic range (e.g., Fourier spectra)
+
+- *power transformation* (gamma correction): \[g(x,y) = c \cdot f(x,y)^\gamma\]
+  - \(\gamma < 1\): brightens image (expands dark regions)
+  - \(\gamma > 1\): darkens image (compresses dark regions)
+  - \(\gamma = 1\): linear (no change)
+
+- *piecewise linear transformation*: different linear functions for different intensity ranges
+  - allows precise control over specific intensity intervals
+
+- *piecewise contrast stretching*: applies contrast stretching to specific intensity ranges while leaving others unchanged
+
+- *gray-level slicing*: highlights specific intensity range
+  - with background: \[g(x,y) = \begin{cases} 255 & \text{if } A \leq f(x,y) \leq B \\ f(x,y) & \text{otherwise} \end{cases}\]
+  - without background: binary output for range \([A,B]\)
+
+- *bit-plane slicing*: extracts specific bit planes to analyze contribution of each bit to image appearance
+  - higher-order bits contain most visual information
+  - lower-order bits often contain noise
+
+- *histogram of pixel values*: shows frequency distribution of intensity levels
+  - dark image: histogram concentrated on left
+  - bright image: histogram concentrated on right
+  - high contrast: histogram spread across full range
+
+- *histogram-based thresholding "triangle"*: finds threshold by fitting triangle to histogram and locating point of maximum distance
+
+- *histogram equalisation*: redistributes intensities to achieve uniform histogram
+  - continuous: \[g = T(f) = \int_0^f p_r(w) dw\]
+  - discrete: \[g_k = \sum_{j=0}^k \frac{n_j}{n} \times (L-1)\]
+  - constrained: limits enhancement to prevent over-amplification of noise
+
+- *histogram matching*: transforms image histogram to match target histogram shape
+  - continuous: find \(T_1^{-1}(T_2(z))\) where \(T_1, T_2\) are CDFs
+  - discrete: use lookup table mapping
+
+- *arithmetic operations*: addition, subtraction, multiplication, division between images
+  - useful for image enhancement, noise reduction, change detection
+
+- *logical operations*: AND, OR, NOT operations on binary images
+  - fundamental for morphological operations and region manipulation
+
+- *averaging*: reduces noise by averaging multiple images of same scene \[\bar{g}(x,y) = \frac{1}{K} \sum_{i=1}^K f_i(x,y)\]
 
 **** neighourhood operations
 
@@ -125,7 +162,16 @@ in each of the below topics, there are a number of algorithms and facts that I m
   - subtract Gaussian filtered from image, then add the produced "high-frequencies" back into the image.
   - can also use the laplacean: \(\nabla^2 f = f_{xx} + f_{yy} \) by subtracting it from the original image: \[f(x,y) - \nabla^2 f(x,y) \]
 - unsharp masking
-  - ?
+  - a classical sharpening technique that enhances edges by subtracting a blurred version from the original
+  - algorithm:
+    1. create blurred version: \(f_{blur} = f * G_\sigma\) (Gaussian blur)
+    2. create mask: \(f_{mask} = f - f_{blur}\) (high-frequency components)
+    3. add scaled mask back: \(f_{sharp} = f + k \cdot f_{mask}\) where \(k\) is sharpening strength
+  - combined formula: \(f_{sharp} = f + k(f - f * G_\sigma)\)
+  - controls:
+    - radius: size of Gaussian blur (larger = affects broader features)
+    - amount: strength multiplier \(k\) (higher = more sharpening)
+    - threshold: minimum contrast required before sharpening is applied
 - gradient vector & magnitude
   - \[\nabla f(x,y) = [f_x(x,y), f_y(x,y)]^T \]
   - \[||\nabla f(x,y) || = \sqrt{f_x^2(x,y),f_y^2(x,y)} \]
@@ -174,7 +220,6 @@ in each of the below topics, there are a number of algorithms and facts that I m
   - frequencies correspond to patterns
   - $F(0,0)$ is the total intensity over all pixels of the image
   - noise (typically) corresponds to fluctuations in the highest frequencies
-  - 
 
 - notation:
   - $f(x)$ is the spatial input function
@@ -234,8 +279,15 @@ in each of the below topics, there are a number of algorithms and facts that I m
 - difference of Gaussians is a high-pass
 - gaussian filter = low-pass
 - image pyramids is for multi-resolution
-- approximation = ?
-- reconstruction = ?
+- approximation = the process of creating coarser resolution levels by successive filtering and downsampling
+  - Gaussian pyramid: \(G_l = \text{DOWNSAMPLE}(G_{l-1} * g)\) where \(g\) is Gaussian kernel
+  - Laplacian pyramid: \(L_l = G_l - \text{EXPAND}(G_{l+1})\) (difference between levels)
+  - captures image information at different scales for efficient processing
+- reconstruction = the process of rebuilding higher resolution from coarser levels
+  - for Gaussian: simple upsampling and interpolation
+  - for Laplacian: \(G_l = L_l + \text{EXPAND}(G_{l+1})\) (recursive reconstruction)
+  - perfect reconstruction possible with proper filter design
+  - applications: compression, blending, texture analysis, feature detection
 
 
 ** Feature Representation
@@ -252,10 +304,23 @@ in each of the below topics, there are a number of algorithms and facts that I m
   
 **** colour histogram
 
-(TODO add image demo?)
 - represent the global distribution of pixel colours in an image
-- step 1: construct a histogram for each colour channel (R, G, B)
-- step 2: concatenate the histogrames (vectors) of all channels as the final feature vector.
+- algorithm:
+  - step 1: quantize each color channel into bins (e.g., 256 levels → 32 bins)
+  - step 2: construct a histogram for each colour channel (R, G, B)
+  - step 3: concatenate the histograms (vectors) of all channels as the final feature vector
+- example: 32 bins per channel → 32×3 = 96-dimensional feature vector
+- properties:
+  - translation invariant: moving objects doesn't change histogram
+  - rotation invariant: rotating image doesn't change color distribution  
+  - scale invariant: resizing preserves relative color frequencies
+  - not robust to illumination changes
+- variations:
+  - HSV histograms: often more perceptually meaningful
+  - 3D color histograms: joint RGB distribution (higher dimensional)
+  - normalized histograms: divide by total pixels for scale invariance
+- applications: image retrieval, object recognition, scene classification
+- limitations: loses spatial information, sensitive to lighting conditions
   
 **** colour moments
 
@@ -279,11 +344,62 @@ in each of the below topics, there are a number of algorithms and facts that I m
   
 ***** glcm method
 
-- TODO not sure of best explanation
+- Gray-Level Co-occurrence Matrix construction:
+  - step 1: convert image to grayscale and quantize intensity levels (typically 8-256 levels)
+  - step 2: define spatial relationship parameters:
+    - distance \(d\): pixel separation (commonly 1, 2, 4, 8)
+    - angle \(\theta\): direction (0°, 45°, 90°, 135°)
+  - step 3: count co-occurrences of intensity pairs \((i,j)\) at distance \(d\) in direction \(\theta\)
+  - step 4: normalize by total number of pixel pairs to get probabilities \(P(i,j|d,\theta)\)
+- GLCM properties:
+  - symmetric if considering both directions: \(P(i,j) = P(j,i)\)
+  - size: \(N \times N\) where \(N\) is number of gray levels
+  - multiple GLCMs computed for different \(d\) and \(\theta\) values
+- interpretation:
+  - diagonal elements: pixels with same intensity at specified distance
+  - off-diagonal: pixels with different intensities
+  - concentrated near diagonal: homogeneous texture
+  - spread throughout matrix: heterogeneous texture
 
 ***** haralick descriptors
 
-- TODO seems tacky and long.
+- 14 statistical measures computed from GLCM \(P(i,j)\):
+
+1. *Angular Second Moment (Energy)*: \(\sum_i \sum_j P(i,j)^2\)
+   - measures texture uniformity; high for homogeneous textures
+
+2. *Contrast*: \(\sum_i \sum_j (i-j)^2 P(i,j)\)
+   - measures local intensity variation; high for high-contrast textures
+
+3. *Correlation*: \(\frac{\sum_i \sum_j (i-\mu_i)(j-\mu_j)P(i,j)}{\sigma_i \sigma_j}\)
+   - measures linear dependency of gray levels; high for linear structures
+
+4. *Variance*: \(\sum_i (i-\mu)^2 \sum_j P(i,j)\)
+   - measures spread of intensity distribution
+
+5. *Inverse Difference Moment (Homogeneity)*: \(\sum_i \sum_j \frac{P(i,j)}{1+(i-j)^2}\)
+   - measures texture homogeneity; high for similar gray levels
+
+6. *Sum Average*: \(\sum_{k=2}^{2N} k \cdot P_{x+y}(k)\)
+   - where \(P_{x+y}(k) = \sum_{i+j=k} P(i,j)\)
+
+7. *Sum Entropy*: \(-\sum_{k=2}^{2N} P_{x+y}(k) \log P_{x+y}(k)\)
+
+8. *Sum Variance*: \(\sum_{k=2}^{2N} (k - \text{Sum Average})^2 P_{x+y}(k)\)
+
+9. *Entropy*: \(-\sum_i \sum_j P(i,j) \log P(i,j)\)
+   - measures randomness; high for random textures
+
+10. *Difference Variance*: variance of \(P_{x-y}\)
+
+11. *Difference Entropy*: \(-\sum_{k=0}^{N-1} P_{x-y}(k) \log P_{x-y}(k)\)
+
+12. *Information Measures of Correlation (1 & 2)*: based on mutual information
+
+13. *Maximum Correlation Coefficient*: second largest eigenvalue of \(Q\)
+
+- typical usage: compute subset (contrast, correlation, energy, homogeneity) for efficiency
+- combine descriptors from multiple directions and distances for rotation/scale invariance
 
 **** local binary patterns
 
@@ -298,7 +414,14 @@ algorithm:
   - combine the histograms of all cells of the given image
   - this gives the image-level LBP feature descriptor
 
-TODO insert example
+*Example*: Consider a 3×3 neighborhood with center pixel value 45:
+| 41 | 52 | 39 |
+| 48 | 45 | 51 |  →  Binary pattern: 10011001₂ = 153₁₀
+| 46 | 43 | 50 |
+- Compare each neighbor to center (45): 41<45→0, 52≥45→1, 39<45→0, etc.
+- Read clockwise from top-left: 01001100₂
+- Rotate to get minimum: 00110010₂ = 50₁₀ (for rotation invariance)
+- This pixel contributes +1 to bin 50 in the histogram
 
 - LBP can be multiresolution and rotation-invariant
   - in the case of multiresolution, you vary the distance between the centre pixel and neighbouring pixels and vary the number of neighbouring pixels
@@ -327,7 +450,18 @@ nearest neighbour distance ratio (NNDR) \[NNDR = \frac{d_1}{d_2} = \frac{||D_a -
 
 - translation and rotation are *rigid transformations*
 - scaling, affine, perspective are *nonrigid transformations*
-- TODO optional: add matrices
+
+*Transformation matrices*:
+- *Translation*: \[\begin{bmatrix} x' \\ y' \\ 1 \end{bmatrix} = \begin{bmatrix} 1 & 0 & t_x \\ 0 & 1 & t_y \\ 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} x \\ y \\ 1 \end{bmatrix}\]
+
+- *Rotation*: \[\begin{bmatrix} x' \\ y' \\ 1 \end{bmatrix} = \begin{bmatrix} \cos\theta & -\sin\theta & 0 \\ \sin\theta & \cos\theta & 0 \\ 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} x \\ y \\ 1 \end{bmatrix}\]
+
+- *Scaling*: \[\begin{bmatrix} x' \\ y' \\ 1 \end{bmatrix} = \begin{bmatrix} s_x & 0 & 0 \\ 0 & s_y & 0 \\ 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} x \\ y \\ 1 \end{bmatrix}\]
+
+- *Affine* (6 DOF): \[\begin{bmatrix} x' \\ y' \\ 1 \end{bmatrix} = \begin{bmatrix} a & b & t_x \\ c & d & t_y \\ 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} x \\ y \\ 1 \end{bmatrix}\]
+
+- *Perspective/Homography* (8 DOF): \[\begin{bmatrix} x' \\ y' \\ w' \end{bmatrix} = \begin{bmatrix} h_{11} & h_{12} & h_{13} \\ h_{21} & h_{22} & h_{23} \\ h_{31} & h_{32} & h_{33} \end{bmatrix} \begin{bmatrix} x \\ y \\ 1 \end{bmatrix}\]
+  where \((x', y') = (x'/w', y'/w')\)
 
 ***** fitting and alignment
 - Least Squares (LS) fitting of corresponding keypoints $(x_i,x_i')$
@@ -389,14 +523,35 @@ nearest neighbour distance ratio (NNDR) \[NNDR = \frac{d_1}{d_2} = \frac{||D_a -
   - elongation: ratio between the length and width of the object's bounding box
   - eccentricity: ratio of the length of the minor axis to the length of the major axis
 
-**** boundary descriptors (TODO)
+**** boundary descriptors
 
-- chain code descriptor
-- local curvature descriptor
-- global curvature descriptors:
-  - total bending energy $B=\oint_C K^2\; \mathrm{d}s$
-  - total absolute curvature $K=\oint_C |K(s)|\;\mathrm{d}s$
-- radial distance descriptor
+Describe object shape using boundary/contour information:
+
+- *chain code descriptor*
+  - represents boundary as sequence of directional codes
+  - 4-connected: codes {0,1,2,3} for right, down, left, up
+  - 8-connected: codes {0,1,2,3,4,5,6,7} for 8 directions
+  - properties: translation invariant, rotation/scale dependent
+  - normalization: start from same relative position, compute difference chain code
+
+- *local curvature descriptor*
+  - measures rate of change of tangent direction along boundary
+  - discrete curvature: \(k(i) = \angle(\mathbf{v}_{i-1}, \mathbf{v}_{i+1})\) where \(\mathbf{v}_i\) is tangent vector
+  - captures local shape properties: corners (high curvature), straight segments (low curvature)
+  - can be smoothed to reduce noise effects
+
+- *global curvature descriptors*:
+  - *total bending energy*: \(B=\oint_C \kappa^2(s)\; \mathrm{d}s\) measures overall "bendiness"
+  - *total absolute curvature*: \(K=\oint_C |\kappa(s)|\;\mathrm{d}s\) measures total shape complexity
+  - both are invariant to rigid transformations
+  - sensitive to boundary noise, require smoothing
+
+- *radial distance descriptor*
+  - distance from centroid to boundary points: \(r(\theta) = ||\mathbf{p}(\theta) - \mathbf{c}||\)
+  - creates 1D signature function from 2D shape
+  - invariant to translation, rotation can be handled by circular shift
+  - Fourier descriptors: apply FFT to \(r(\theta)\) for compact representation
+  - limitations: fails for non-star-shaped objects (multiple intersections per ray)
 
 **** shape context
 
@@ -404,7 +559,49 @@ nearest neighbour distance ratio (NNDR) \[NNDR = \frac{d_1}{d_2} = \frac{||D_a -
   - pick $n$ points $p_i$ on the contour of a shape
   - for each point, create a radial coordinate system centred at this point and compute a histogram $h_i$ based on the relative coordinates of the other $n-1$ points
   - this is the shape context of $p_i$
-- e.g. shape matching ALGORITHM TODO; TODO graphic
+
+*Shape matching algorithm*:
+1. Extract $n$ points from each shape's contour (typically $n=100-200$)
+2. Compute shape context histogram for each point:
+   - use log-polar coordinate system: $k$ radial bins, $l$ angular bins
+   - typical values: $k=5$, $l=12$ → 60-dimensional histogram per point
+3. Find correspondence between points using Hungarian algorithm:
+   - cost matrix: $C_{ij} = \frac{1}{2}\sum_{k=1}^K \frac{[h_i(k) - h_j(k)]^2}{h_i(k) + h_j(k)}$ (chi-squared distance)
+4. Estimate transformation (affine/TPS) from corresponding points
+5. Compute shape distance as sum of matching costs + transformation cost
+
+{{< tikz >}}
+\begin{tikzpicture}[scale=0.8]
+  % Shape context diagram
+  \coordinate (center) at (0,0);
+  
+  % Draw radial bins
+  \foreach \r in {1,2,3} {
+    \draw[gray!50] (center) circle (\r);
+  }
+  
+  % Draw angular bins
+  \foreach \angle in {0,30,60,90,120,150,180,210,240,270,300,330} {
+    \draw[gray!50] (center) -- (\angle:3);
+  }
+  
+  % Draw some sample points
+  \foreach \point in {(0.5,0.3), (1.2,0.8), (-0.7,1.5), (-1.8,0.2), (-1.2,-1.1), (0.3,-2.1), (1.7,-0.9), (2.2,1.3)} {
+    \fill[red] \point circle (0.05);
+  }
+  
+  % Highlight center point
+  \fill[blue] (center) circle (0.08);
+  \node[below] at (center) {$p_i$};
+  
+  % Add labels
+  \node[right] at (3.2,0) {Angular bins: 12};
+  \node[above] at (0,3.2) {Radial bins: 5};
+  
+  \node[above] at (0,4) {\textbf{Shape Context Histogram}};
+  
+\end{tikzpicture}
+{{< /tikz >}}
 
 **** histogram of oriented gradients (HoG)
 
@@ -420,8 +617,22 @@ nearest neighbour distance ratio (NNDR) \[NNDR = \frac{d_1}{d_2} = \frac{||D_a -
   3. generate detection-window level HOG descriptor
      - concatenate cell histograms
      - block-normalise cell histograms
-      
-sliding window ? TODO
+
+*Sliding window detection*:
+- HOG features are computed for a fixed-size detection window (e.g., 64×128 pixels for human detection)
+- slide this window across the entire image at multiple scales and positions
+- at each position, extract HOG descriptor and classify using trained SVM
+- algorithm:
+  1. create image pyramid (multiple scales) to detect objects of different sizes
+  2. for each scale level:
+     - slide detection window across image (typically with 8-pixel stride)
+     - compute HOG descriptor for each window position
+     - classify using trained classifier (e.g., SVM)
+  3. apply non-maximum suppression to remove duplicate detections
+- computational optimization: 
+  - compute gradients once for entire image
+  - reuse cell histograms between overlapping windows
+  - integral histograms for fast block normalization
 
 - use-case: detecting humans in images.
 
@@ -492,7 +703,7 @@ sliding window ? TODO
   - class conditional distribution $p((x|c_i)$
 - compute the posterior probability $p(c_i|x)$ as follows:
   - if all the classes are disjoint, by Bayes Rule, the posterior probabilities are given by \[p(c_i|x) = \frac{p(x|c_i)p(c_i)}{p(x)}\]
-    \[\boxed{\begin{align}p(x,c_i) &= p(x|c_i)p(c_i) = p(c_i|x)p(x) \\ p(x) &= \sum_j p(x,c_j) = \sum_j p(x|c_j) p(c_j)}\]
+    \[\boxed{\begin{align}p(x,c_i) &= p(x|c_i)p(c_i) = p(c_i|x)p(x) \\ p(x) &= \sum_j p(x,c_j) = \sum_j p(x|c_j) p(c_j)\end{align}}\]
 - the bayesian decision rule is: $c=\mathrm{arg}\max_i (p(x|c_i))$
   - which is equivalent to \[c=\mathrm{arg}\max_i (p(x|c_i)p(c_i))\]
     \[c(c_i|x) = \frac{p(x|c_i)p(c_i)}{p(x)}\propto p(x|c_i)p(c_i)\]
@@ -625,10 +836,13 @@ sliding window ? TODO
 ****** Precision vs. Recall
 
 - \[\text{accuracy} = \frac{\text{TP}+\text{TN}}{\text{TP}+\text{TN}+\text{FP}+\text{FN}} \quad \left ( \frac{\text{correct}}{\text{total}} \right)\]
-- Precision
-- Recall
-- F1 Score
-- others? TODO
+- precision (= positive predictive value)
+  - fraction of the segmented object that is correctly segmented \[\text{P} = \frac{\text{TP}}{\text{TP}+\text{FP}}\]
+- F-measure (= harmonic mean of precision and recall)
+  \[\text{F1} = \frac{2\text{RP}}{\text{R}+\text{P}}\]
+- recall (= sensitivity)
+  - fraction of the true object that is correctly segmented
+    \[\text{R} = \frac{\text{TP}}{\text{TP}+\text{FN}}\]
 
 **** regression
 
@@ -740,7 +954,7 @@ cross validation: data is split into $k$ subsets (folds) and at each iteration w
   1. initialise a random seed point $x$ and window $N$
 
   2. calculate the mean (centre of gravity) $m(x)$ within $N$ \[m(x)=\frac{\sum_{x_i\in N(x)} K(x_i-x)x_i}{\sum_{x_i\in N(x)} K(x_i-x)}\qquad K(x) = \exp(-|x|^2)\]
-     \[\text{Mean (centre of gravity)}\qqquad\text{Kernel (weight function)}\]
+     \[\text{Mean (centre of gravity)}\qquad\text{Kernel (weight function)}\]
   3. shift the search window to the mean
   4. repeat step 2 until convergence
 
@@ -777,10 +991,10 @@ cross validation: data is split into $k$ subsets (folds) and at each iteration w
     5. recompute cluster centres as mean colour and position of pixels in $C_j$
 
     6. iterate (go to step 3) until the residual error is small
-       \[\begin{align}
+       \[\begin{align*}
        D &= \sqrt{\frac{d_{\text{lab}^2}}{m^2} + \frac{d_{xy}^2}{S^2}}\quad\text{(weight $m$ controls influence of colour over spatial distance)}\\
        d_\text{lab} &= \sqrt{(l_j-l_i)^2 + (a_j-a_i)^2 + (b_j-b_i)^2}\quad\text{(distance in CIELAB space)}\\
-       d_{xy}=\sqrt{(x_j-x_i)^2+(y_j-y_i)^2}\quad\text{(distance in pixel space)}  \]   
+       d_{xy}&=\sqrt{(x_j-x_i)^2+(y_j-y_i)^2}\quad\text{(distance in pixel space)} \end{align*}\]   
 
 **** conditional random field
 
@@ -942,9 +1156,144 @@ cross validation: data is split into $k$ subsets (folds) and at each iteration w
    - binary morphology (post‑seg): hole fill, contour, split touchers, shape & dist
    - grey morphology (pre‑seg): kill noise & shading, emphasise structures
 
-*** todo
-   - tikz: struct elem, opening/closing demo, voronoi, skeleton
-   - org‑babel python: distance‑transform example
+*** morphological operations diagrams
+
+{{< tikz >}}
+\begin{tikzpicture}[scale=0.6]
+  % Original shape
+  \begin{scope}[shift={(0,0)}]
+    \fill[blue!30] (0,0) rectangle (3,2);
+    \fill[blue!30] (1,2) rectangle (2,4);
+    \node[below] at (1.5,-0.3) {Original};
+  \end{scope}
+  
+  % Structuring element
+  \begin{scope}[shift={(5,1)}]
+    \draw[thick] (0,0) rectangle (1,1);
+    \fill[red!50] (0.5,0.5) circle (0.1);
+    \node[below] at (0.5,-0.3) {SE (3x3)};
+  \end{scope}
+  
+  % Dilation
+  \begin{scope}[shift={(8,0)}]
+    \fill[blue!30] (-0.5,-0.5) rectangle (3.5,2.5);
+    \fill[blue!30] (0.5,2) rectangle (2.5,4.5);
+    \draw[red, thick] (-0.5,-0.5) rectangle (3.5,2.5);
+    \draw[red, thick] (0.5,2) rectangle (2.5,4.5);
+    \node[below] at (1.5,-0.8) {Dilation};
+  \end{scope}
+  
+  % Erosion
+  \begin{scope}[shift={(12,0)}]
+    \fill[blue!30] (0.5,0.5) rectangle (2.5,1.5);
+    \fill[blue!30] (1.25,1.5) rectangle (1.75,3.5);
+    \node[below] at (1.5,-0.3) {Erosion};
+  \end{scope}
+  
+  % Opening
+  \begin{scope}[shift={(0,-10)}]
+    \fill[blue!30] (0.5,0.5) rectangle (2.5,1.5);
+    \fill[blue!30] (1,2) rectangle (2,4);
+    \node[below] at (1.5,-0.3) {Opening};
+    \node[above] at (1.5,4.3) {(Erosion + Dilation)};
+  \end{scope}
+  
+  % Closing
+  \begin{scope}[shift={(8,-10)}]
+    \fill[blue!30] (0,0) rectangle (3,2);
+    \fill[blue!30] (0.75,2) rectangle (2.25,4);
+    \node[below] at (1.5,-0.3) {Closing};
+    \node[above] at (1.5,4.3) {(Dilation + Erosion)};
+  \end{scope}
+  
+\end{tikzpicture}
+{{< /tikz >}}
+
+*Structuring elements examples*:
+
+{{< tikz >}}
+\begin{tikzpicture}[scale=0.4]
+  % 3x3 square
+  \begin{scope}[shift={(0,0)}]
+    \draw[step=1] (0,0) grid (3,3);
+    \foreach \x in {0,1,2} \foreach \y in {0,1,2} {
+      \fill[red!50] (\x+0.5, \y+0.5) circle (0.2);
+    }
+    \fill[blue] (1.5,1.5) circle (0.3);
+    \node[below] at (1.5,-0.5) {3x3 Square};
+  \end{scope}
+  
+  % Cross
+  \begin{scope}[shift={(5,0)}]
+    \draw[step=1] (0,0) grid (3,3);
+    \fill[red!50] (1.5,0.5) circle (0.2);
+    \fill[red!50] (0.5,1.5) circle (0.2);
+    \fill[blue] (1.5,1.5) circle (0.3);
+    \fill[red!50] (2.5,1.5) circle (0.2);
+    \fill[red!50] (1.5,2.5) circle (0.2);
+    \node[below] at (1.5,-0.5) {Cross (4-conn)};
+  \end{scope}
+  
+  % Diamond
+  \begin{scope}[shift={(10,0)}]
+    \draw[step=1] (0,0) grid (5,5);
+    \fill[red!50] (2.5,0.5) circle (0.2);
+    \fill[red!50] (1.5,1.5) circle (0.2);
+    \fill[red!50] (2.5,1.5) circle (0.2);
+    \fill[red!50] (3.5,1.5) circle (0.2);
+    \fill[red!50] (0.5,2.5) circle (0.2);
+    \fill[red!50] (1.5,2.5) circle (0.2);
+    \fill[blue] (2.5,2.5) circle (0.3);
+    \fill[red!50] (3.5,2.5) circle (0.2);
+    \fill[red!50] (4.5,2.5) circle (0.2);
+    \fill[red!50] (1.5,3.5) circle (0.2);
+    \fill[red!50] (2.5,3.5) circle (0.2);
+    \fill[red!50] (3.5,3.5) circle (0.2);
+    \fill[red!50] (2.5,4.5) circle (0.2);
+    \node[below] at (2.5,-0.5) {Diamond};
+  \end{scope}
+  
+\end{tikzpicture}
+{{< /tikz >}}
+
+*Distance transform and skeleton*:
+
+{{< tikz >}}
+\begin{tikzpicture}[scale=0.5]
+  % Original binary image
+  \begin{scope}[shift={(0,0)}]
+    \draw[step=1] (0,0) grid (8,6);
+    % Draw binary shape
+    \foreach \pos in {(2,2), (3,2), (4,2), (5,2), (2,3), (3,3), (4,3), (5,3), (3,4), (4,4)} {
+      \fill[black] \pos rectangle ++(1,1);
+    }
+    \node[below] at (4,-0.5) {Binary Image};
+  \end{scope}
+  
+  % Distance transform
+  \begin{scope}[shift={(10,0)}]
+    \draw[step=1] (0,0) grid (8,6);
+    % Distance values (simplified)
+    \node at (2.5,2.5) {1};
+    \node at (3.5,2.5) {2};
+    \node at (4.5,2.5) {2};
+    \node at (5.5,2.5) {1};
+    \node at (2.5,3.5) {1};
+    \node at (3.5,3.5) {2};
+    \node at (4.5,3.5) {2};
+    \node at (5.5,3.5) {1};
+    \node at (3.5,4.5) {1};
+    \node at (4.5,4.5) {1};
+    % Skeleton points
+    \fill[red] (3.5,3.5) circle (0.1);
+    \fill[red] (4.5,3.5) circle (0.1);
+    \draw[red, thick] (3.5,3.5) -- (4.5,3.5);
+    \node[below] at (4,-0.5) {Distance Transform};
+    \node[above] at (4,6.5) {+ Skeleton (red)};
+  \end{scope}
+  
+\end{tikzpicture}
+{{< /tikz >}}
 
 ** Deep Learning
 
@@ -1049,7 +1398,136 @@ cross validation: data is split into $k$ subsets (folds) and at each iteration w
 
 ** Motion and Tracking
 
-* homework
+- add a time axis to everything above (3D = 2D + t)
+- two problem families:
+  - motion estimation (what moved, by how much?) → change detection; sparse; dense
+  - object tracking (which object is where over time?) → state-space inference
 
-- explain the transforms based on the slides.
-- Image Features: Shape Matching Algorithm; Descriptors
+*** scenarios
+
+- still camera → constant background; single or multiple moving objects
+- moving camera → coherent scene motion + possible independently moving objects
+- common uses: surveillance, gait/action recognition, HCI (gaze/gesture), traffic, robotics
+
+*** change detection (background / frame differencing)
+
+- goal: detect pixels that changed between frames
+- simplest model: subtract a static “empty scene” background
+  - step 1: acquire background image \(B(x,y)\)
+  - step 2: compute difference \(D_t(x,y)=|I_t(x,y)-B(x,y)|\) (or \(I_t-I_{t-\Delta t}\))
+  - step 3: threshold \(D_t>\tau\) to get a binary mask; post-process:
+    - connected-components; remove tiny blobs (noise)
+    - morphological closing (small disk) to fuse nearby regions
+  - step 4: output mask + bounding boxes of changed regions
+- caveats: camera jitter, lighting changes, shadows → use smoothing, adaptive backgrounds, illumination-invariant cues
+
+*** sparse motion estimation (template matching around interest points)
+
+- detect “interesting” points (corners/ridges/edges or learned keypoints)
+  - examples: Canny (edges), Hessian (ridges), Harris (corners), SIFT, CNN features
+  - simple “interest operator”: take a window \(w\!\times\!w\) at \((r,c)\); compute variances along horizontal/vertical/diagonals; mark point if \(\min\{v_h,v_v,v_{d1},v_{d2}\}\ge t\)
+- track each point by local search at \(t+\Delta t\)
+  - take template \(T\subset I_t\) around the point; search a region \(R\subset I_{t+\Delta t}\) for best match
+  - similarity measures:
+    - cross-correlation (maximise) \(\mathrm{CC}(\Delta x,\Delta y)=\sum\limits_{(x,y)\in T} I_t(x,y)\;I_{t+\Delta t}(x+\Delta x,y+\Delta y)\)
+    - SAD (minimise) \(\mathrm{SAD}=\sum\limits_{(x,y)\in T}\!\left|I_t-I_{t+\Delta t}\right|\)
+    - SSD (minimise) \(\mathrm{SSD}=\sum\limits_{(x,y)\in T}\!\left(I_t-I_{t+\Delta t}\right)^2\)
+    - mutual information (maximise) \(\mathrm{MI}(A,B)=\sum_a\sum_b P_{AB}(a,b)\log_2\!\frac{P_{AB}(a,b)}{P_A(a)P_B(b)}\)
+- practicalities:
+  - choose patch size \(w\) and search radius by expected motion
+  - use image pyramids for large displacements; normalise intensity; reject low-contrast patches
+
+*** dense motion estimation (optical flow)
+
+- assumptions (local, over \(\Delta t\))
+  - brightness constancy: \(f(x+\Delta x,y+\Delta y,t+\Delta t)=f(x,y,t)\)
+  - small motion: first-order Taylor expansion suffices
+  - local coherence: neighbouring pixels share similar velocity
+- derivation (spatio-temporal gradient):
+  \[
+  f_x\Delta x+f_y\Delta y+f_t\Delta t\approx 0
+  \;\Rightarrow\;
+  f_x v_x+f_y v_y = -f_t
+  \;\;\text{with}\;\; v_x=\tfrac{\Delta x}{\Delta t},\; v_y=\tfrac{\Delta y}{\Delta t}
+  \]
+  - optical-flow constraint: one equation, two unknowns → aperture problem {{< mnote "need extra constraints" >}}
+- Lucas–Kanade (local least-squares)
+  - assume constant \((v_x,v_y)\) in a small window; stack \(n\) pixels \(p_i\):
+    \[
+    \begin{bmatrix}f_x(p_1)&f_y(p_1)\\ \vdots&\vdots\\ f_x(p_n)&f_y(p_n)\end{bmatrix}
+    \!\begin{bmatrix}v_x\\ v_y\end{bmatrix}
+    =
+    -\begin{bmatrix}f_t(p_1)\\ \vdots\\ f_t(p_n)\end{bmatrix},
+    \quad
+    \mathbf{v}=(A^\top A)^{-1}A^\top \mathbf{b}
+    \]
+  - works best at corners (good conditioning of \(A^\top A\)); poor on flat regions/edges
+- (global alternative) Horn–Schunck (add smoothness): minimise \(\iint (f_x v_x+f_y v_y+f_t)^2+\alpha^2(\|\nabla v_x\|^2+\|\nabla v_y\|^2)\,dx\,dy\)
+- engineering notes:
+  - compute derivatives after Gaussian smoothing; multiscale pyramids for large motion
+  - handle outliers/occlusion with robust losses and consistency checks (forward/backward flow)
+
+*** object tracking (state-space / Bayesian view)
+
+- goal: infer object state \(X_i\) from image-derived measurements \(Y_i\) over time
+  - state may include position, velocity, acceleration, size/shape, intensity/colour, …
+- hidden Markov assumptions
+  - Markov dynamics: \(P(X_i|X_{0:i-1})=P(X_i|X_{i-1})\)
+  - memoryless observations: \(P(Y_i|X_{0:i},Y_{0:i-1})=P(Y_i|X_i)\)
+- recursive filtering
+  - prediction: \(P(X_i|Y_{0:i-1})=\int P(X_i|X_{i-1})\,P(X_{i-1}|Y_{0:i-1})\,dX_{i-1}\)
+  - correction: \(P(X_i|Y_{0:i})\propto P(Y_i|X_i)\,P(X_i|Y_{0:i-1})\)
+  - estimators: EAP \( \hat x_i=\int x\,P(X_i|Y_{0:i})\,dx\); MAP \( \hat x_i=\arg\max_x P(X_i|Y_{0:i})\)
+- association: decide which detections at time \(i\) belong to which tracks (gating, nearest-neighbour, Hungarian) {{< mnote "multi-target adds identity management" >}}
+
+**** Kalman filter (linear-Gaussian)
+
+- models: \(x_i=A x_{i-1}+q_{i-1},\; q\sim\mathcal{N}(0,Q)\); \(\;y_i=H x_i+r_i,\; r\sim\mathcal{N}(0,R)\)
+- predict:
+  - \(\hat x_i^- = A \hat x_{i-1}\)
+  - \(P_i^- = A P_{i-1}A^\top + Q\)
+- update:
+  - \(K_i = P_i^- H^\top (H P_i^- H^\top + R)^{-1}\)
+  - \(\hat x_i = \hat x_i^- + K_i(y_i - H\hat x_i^-)\)
+  - \(P_i = (I-K_i H)P_i^-\)
+- notes:
+  - constant-velocity \(A\) is standard; extend state for acceleration/size
+  - optimal under linear-Gaussian assumptions; very fast
+
+**** particle filter (nonlinear / non-Gaussian)
+
+- represent posterior by weighted samples \(\{(s_i^{(n)},\pi_i^{(n)})\}_{n=1}^N\)
+  - propagate: \(s_i^{(n)}\sim P(X_i|X_{i-1}=s_{i-1}^{(n)})\)
+  - weight: \(\pi_i^{(n)} \propto \pi_{i-1}^{(n)}\,P(Y_i|X_i=s_i^{(n)})\); normalise
+  - resample to avoid degeneracy; estimate \(\hat x_i=\sum_n \pi_i^{(n)} s_i^{(n)}\)
+- aliases: SMC, bootstrap filter, CONDENSATION
+- strengths: handles multimodal posteriors, nonlinear dynamics/measurements
+
+**** multi-target tracking (sketch)
+
+- mixture of single-target posteriors: \(P(X|Y)=\sum_{n=1}^N w_n\,P_n(X|Y)\)
+- practicalities: track birth/death, occlusion handling, identity switches; cost grows with targets → use gating + efficient assignment
+
+*** trajectory analysis (MSD etc.)
+
+- positions along a track: \(p_1,\dots,p_N\); lag \(t\)
+  - displacement: \(d_{i,t}=\|p_{i+t}-p_i\|\)
+  - mean squared displacement:
+    \[
+    \mathrm{MSD}(t)=\frac{1}{N-t}\sum_{i=1}^{N-t}\! \|p_{i+t}-p_i\|^2
+    \]
+- motion regimes:
+  - normal diffusion: \(\mathrm{MSD}(t)=c\,D\,t\)
+  - directed + diffusion: \(\mathrm{MSD}(t)=c\,D\,t+v^2 t^2\)
+  - anomalous: \(\mathrm{MSD}(t)=c\,D\,t^\alpha\) with \(0<\alpha<1\) (subdiffusive)
+  - constants: \(c=4\) in 2D, \(c=6\) in 3D
+
+*** practical checklist
+
+- pre-processing: denoise; stabilise camera or estimate global motion first
+- choose windows/scales to match expected motion; pyramid for large displacements
+- use corners for LK flow/KLT tracking; avoid low-texture regions
+- illumination changes: normalise patches; prefer gradient-based costs or MI
+- evaluation: detection-level (precision/recall), tracking-level (IDF1, MOTA/MOTP), flow EPE
+
+
