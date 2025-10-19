@@ -1,20 +1,25 @@
----
-title: "My Undergraduate Computer Science Degree"
-date: 2024-12-13T19:34:45+11:00
----
++++
+title = "My Undergraduate Computer Science Degree"
+tags = ["ugrad", "unsw", "university", "computer-science", "mathematics", "japanese", "review"]
+clocal = "true"
+date = "2025-10-18T20:28:45+11:00"
+toc = "true"
++++
 
-#UNSW #undergraduate
+** Summary
 
-This 
+It took me 1,577 days to complete my undergraduate degree in Computer Science.
 
-	 1. Programming Fundamentals (tag, unsw?)
-	 2. Computer System Fundamentals
-	 3. Software Engineering Fundamentals
-	 4. Object Oriented Design & Programming
-	 5. Data Structures and Algorithms
-	 6. Computer Science Project
-	 7. Profession Ethics & Issues
-	 8. Algorithm Design & Analysis
-	 9. Computer Networks
-	 10. Operating Systems
-	 11. Database Systems
+{{< embed-pdf url="/doc/certs/testamur.pdf" hidePaginator="true">}}
+
+Overall, I think the degree was worthwhile and satiated my desire to obtain an understanding of /Computers from the bit-level/.
+
+A succinct table of the courses I took along with their corresponding marks can be found [[/about/cv][here]].
+
+Overall, my favourite courses were [[/projects/mathematics/analysis/real/][Real Analysis]], Professional Issues & Ethics and [[/projects/ml][Machine Learning]].
+
+** Sequentially
+
+This section is a slower burn written for the sake of completeness and retrospection. It documents my experience in every course as I remember it.
+
+TODO

@@ -1,4 +1,0 @@
-+++
-title = "Advanced Algorithms"
-tags = ["pagerank", "dpc", "collaborative-filtering", "game-theory", "bayesian", "networks", "internet"]
-+++

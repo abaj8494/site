@@ -1,0 +1,23 @@
++++
+title = "Data Structures"
+layout = "custom-list"
++++
+
+** Primitive Types
+
+** Arrays
+
+** Strings
+
+** Linked Lists
+
+** Stacks & Queues
+
+** Binary Trees
+
+** Heaps
+
+** Hash Tables
+
+** Graphs
+

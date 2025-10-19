@@ -50,8 +50,8 @@ You may also view the entire =tag= taxonomy [[/tags][here]].
 :CUSTOM_ID: classical-cs
 :END:
 {{< collapse-local folded="true" >}}
-- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/memory][Memory]] {{< tags-inline "projects/ccs/memory" >}}
-- @@html:<input type="checkbox" class="refactor"/>@@ [[/projects/ccs/comp-complexity][Computational Complexity]] {{< tags-inline "projects/ccs/comp-complexity" >}}
+- @@html:<input type="checkbox" class="done"/>@@ [[/projects/ccs/memory][Memory]] {{< tags-inline "projects/ccs/memory" >}}
+- @@html:<input type="checkbox" class="done"/>@@ [[/projects/ccs/comp-complexity][Computational Complexity]] {{< tags-inline "projects/ccs/comp-complexity" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/networking][Internet Networks]] {{< tags-inline "projects/ccs/networking" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/databases][Databases]] {{< tags-inline "projects/ccs/databases" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/linux][Linux]] {{< tags-inline "projects/ccs/linux" >}}
@@ -66,14 +66,13 @@ You may also view the entire =tag= taxonomy [[/tags][here]].
 :PROPERTIES:
 :CUSTOM_ID: data-algs
 :END:
-- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/data-algs/advanced][Advanced Algorithms]] {{< tags-inline "projects/ccs/data-algs/advanced" >}}
-- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/data-algs/leetcode][Leetcode]] {{< tags-inline "projects/ccs/data-algs/leetcode" >}}
-- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/data-algs/sorting][Sorting]] {{< tags-inline "projects/ccs/data-algs/sorting" >}}
-- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/data-algs/searching][Searching]] {{< tags-inline "projects/ccs/data-algs/searching" >}}
-- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/data-algs/graph][Graph]] {{< tags-inline "projects/ccs/data-algs/graph" >}}
+- @@html:<input type="checkbox" class="edit"/>@@ [[/projects/ccs/data-algs/advanced][Advanced Algorithms]] {{< tags-inline "projects/ccs/dsa/advanced" >}}
+- @@html:<input type="checkbox" class="refactor"/>@@ [[/projects/ccs/dsa/classical][Classical Algorithms]] {{< tags-inline "projects/ccs/dsa/classical" >}}
+- @@html:<input type="checkbox" class="refactor"/>@@ [[/projects/ccs/dsa/structures][Data Structures]] {{< tags-inline "projects/ccs/dsa/data-structures" >}}
+- @@html:<input type="checkbox" class="edit"/>@@ [[https://github.com/abaj8494/leetcode][Leetcode]] {{< tags-inline "projects/ccs/dsa/" >}}
 
 
-*** [[/projects/ccs/programming][Programming]]
+*** [[/projects/ccs/programming][Programming:]]
 :PROPERTIES:
 :CUSTOM_ID: programming
 :END:
@@ -93,11 +92,13 @@ You may also view the entire =tag= taxonomy [[/tags][here]].
 :PROPERTIES:
 :CUSTOM_ID: languages
 :END:
-- @@html:<input type="checkbox" class="edit"/>@@ [[/projects/ccs/programming/languages/python][Python]] {{< tags-inline "projects/ccs/programming/languages/python" >}}
+- @@html:<input type="checkbox" class="done"/>@@ [[/projects/ccs/programming/languages/python][Python]] {{< tags-inline "projects/ccs/programming/languages/python" >}}
+- @@html:<input type="checkbox" class="edit"/>@@ [[/projects/ccs/programming/languages/java][Java]] {{< tags-inline "projects/ccs/programming/languages/java" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/languages/lua][Lua]] {{< tags-inline "projects/ccs/programming/languages/lua" >}}
-- @@html:<input type="checkbox" class="nothing"/>@@ [[https://github.com/abaj8494/100-days-go][Go]] {{< tags-inline "projects/ccs/programming/languages/go" >}}
+- @@html:<input type="checkbox" class="edit"/>@@ [[https://github.com/abaj8494/100-days-go][Go]] {{< tags-inline "projects/ccs/programming/languages/go" >}}
 - @@html:<input type="checkbox" class="done"/>@@ [[/projects/ccs/programming/languages/c][C]] {{< tags-inline "projects/ccs/programming/languages/c" >}}
-- @@html:<input type="checkbox" class="edit"/>@@ [[https://github.com/abaj8494/100-days-js][Javascript]] {{< tags-inline "projects/ccs/programming/languages/javascript" >}}
+- @@html:<input type="checkbox" class="refactor"/>@@ [[https://github.com/abaj8494/100-days-js][Javascript]] {{< tags-inline "projects/ccs/programming/languages/javascript" >}}
+- @@html:<input type="checkbox" class="edit"/>@@ [[/projects/ccs/programming/languages/elisp][Elisp]] {{< tags-inline "projects/ccs/programming/languages/elisp" >}}
 
   
 **** [[/projects/ccs/programming/libraries][Libraries]]

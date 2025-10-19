@@ -4,7 +4,7 @@
     "label": "Power Programmer",
     "image": "../../monke.webp",
     "email": "j@abaj.ai",
-      "summary": "Monkey read, monkey think, monkey make.",
+    "summary": "Monkey read, monkey think, monkey make.",
     "location": {
       "city": "Sydney",
       "region": "Australia"
@@ -26,39 +26,108 @@
   },
   "projects": [
     {
-     "name": "Abaj.ai Website",
-	"description": "Aayush Bajaj's Archived Intellect. Contains a CS degree, Masters in Statistics and the intellectual spinoffs in between.",
+      "name": "Abaj.ai Website",
+      "description": "Aayush Bajaj's Augmenting Infrastructure. Contains a CS degree, Masters in Statistics and the intellectual spinoffs in between.",
       "startDate": "2024-12-21",
       "highlights": [
-          "Revisited all of the labs of all my AI courses at uni, and worked through many Deep Learning textbooks. Organised my CS, Math notes and trampolined off all this knowledge to solve my own novel problems with the power of ML."
+        "Revisited all of the labs of all my AI courses at uni, and worked through many Deep Learning textbooks. Organised my CS, Math notes and trampolined off all this knowledge to solve my own novel problems with the power of ML.",
+        "Publishes technical essays, interactive demos, and project documentation."
       ],
-	"roles": ["Programmer", "Tinkerer", "Mathematician"],
-	"keywords": ["emacs", "orgmode", "zettelkasten", "jupyter", "anaconda"],
-	"url": "https://abaj.ai/projects"
+      "roles": ["Programmer", "Tinkerer", "Mathematician"],
+      "keywords": ["emacs", "orgmode", "zettelkasten", "jupyter", "anaconda"],
+      "url": "https://abaj.ai/projects"
     },
-      {
-	  "name": "Biomedical Semantic Segmentation",
-     "description": "Successfully created Kidney and Kidney Tumour masks from 3D Volumetric CT scans",
-	  "startDate": "2024-10-01",
-	  "endDate": "2024-11-19",
-      "highlights": [
-          "Implemented 2D, 3D state of the art semantic segmentation architectures, along with conducting a thorough literature review and experimentation with transfer learning models across the term-long project. Ultimately, obtained full-marks with a class-leading Mean Sorensen Dice score of 78."
-      ],
-	  "roles": ["Deep Learning Scientist", "SCRUM Master"],
-	  "keywords": ["nnUNet", "vnet", "unet", "samnet", "gpu", "python", "jupyter", "HPC", "group-project"],
-	  "url": "https://abaj.ai/projects/dl/kits19"
-      },
     {
-     "name": "Medical Software WebApp",
-     "description": "Contract work to rebuild Best Practice Software Desktop program as a remotely deployed webapp",
-     "startDate": "2024-09-15",
-     "endDate": "2024-11-17",
-     "highlights": [
-	    "Scored a High-Distinction in this term-long project"
-     ],
-	"roles": ["Backend Developer"],
-	"keywords": ["full-stack","group-project", "python", "typescript", "front-end", "testing", "CI/CD", "docker"],
-     "entity": "Alpha-Cure Medical Centre"
+      "name": "Biomedical Semantic Segmentation",
+      "description": "Successfully created Kidney and Kidney Tumour masks from 3D Volumetric CT scans",
+      "startDate": "2024-10-01",
+      "endDate": "2024-11-19",
+      "highlights": [
+        "Implemented 2D, 3D state of the art semantic segmentation architectures, along with conducting a thorough literature review and experimentation with transfer learning models across the term-long project. Ultimately, obtained full-marks with a class-leading Mean Sorensen Dice score of 78.",
+        "Reproduced nnU-Net pipeline end-to-end and published a concise technical write-up.",
+        "Ranked #57 on the official KiTS19 leaderboard."
+      ],
+      "roles": ["Deep Learning Scientist", "SCRUM Master"],
+      "keywords": ["nnUNet", "vnet", "unet", "samnet", "gpu", "python", "jupyter", "HPC", "group-project"],
+      "url": "https://abaj.ai/projects/dl/kits19"
+    },
+    {
+      "name": "Medical Software WebApp",
+      "description": "Contract work to rebuild Best Practice Software Desktop program as a remotely deployed webapp",
+      "startDate": "2024-09-15",
+      "endDate": "2024-11-17",
+      "highlights": [
+        "Scored a High-Distinction in this term-long project"
+      ],
+      "roles": ["Backend Developer"],
+      "keywords": ["full-stack", "group-project", "python", "typescript", "front-end", "testing", "CI/CD", "docker"],
+      "entity": "Alpha-Cure Medical Centre"
+    },
+    {
+      "name": "BookBot",
+      "description": "Conversational Q&A over classic books with retrieval and semantic search.",
+      "highlights": [
+        "OAuth2/JWT auth; vector search using embeddings in pgvector.",
+        "Persistent block storage with caching and live processing status.",
+        "Interactive grid of books with custom SVG covers; usage caps and Stripe tiering."
+      ],
+      "roles": ["Full-Stack Developer"],
+      "keywords": ["React", "TypeScript", "Node", "Express", "PostgreSQL", "pgvector", "WebSockets", "Stripe"],
+      "url": "https://bots.abaj.ai"
+    },
+    {
+      "name": "Mathematical Tools",
+      "description": "Suite of 23 math calculators and converters served by a compact Go API.",
+      "highlights": [
+        "Go REST API powering number theory, statistics, algebra, linear algebra, and unit/base converters.",
+        "Static frontend with responsive grid; deployed behind Nginx with a systemd service and HTTPS."
+      ],
+      "roles": ["Backend Developer", "Frontend Developer"],
+      "keywords": ["Go", "Vanilla JS", "Nginx", "systemd", "HTTPS"],
+      "url": "https://tools.abaj.ai"
+    },
+    {
+      "name": "Bytelocker.nvim",
+      "description": "Neovim plugin for quick buffer/region encryption and decryption.",
+      "highlights": [
+        "Lightweight commands and sensible defaults to encrypt/decrypt without leaving the editor.",
+        "README examples and cross-posting to encourage adoption."
+      ],
+      "roles": ["Plugin Author"],
+      "keywords": ["Lua", "Neovim"],
+      "url": "https://github.com/abaj8494/bytelocker.nvim"
+    },
+    {
+      "name": "10,000 Hours of ML",
+      "description": "Monorepo of self-contained Jupyter notebooks exploring CV, RL, and NLP.",
+      "highlights": [
+        "Version-controlled experiments and interview problems.",
+        "Clear, reproducible notebooks with references."
+      ],
+      "roles": ["Researcher"],
+      "keywords": ["Jupyter", "Machine Learning"],
+      "url": "https://github.com/abaj8494/10khrs-ai-ml-dl"
+    },
+    {
+      "name": "Sydney Train Game Solver",
+      "description": "Constraint-solving visualizer for a transport-themed puzzle.",
+      "roles": ["Programmer"],
+      "keywords": ["JavaScript", "Algorithms", "Visualization"],
+      "url": "https://abaj.ai/projects/csp/train-game/"
+    },
+    {
+      "name": "Shrine",
+      "description": "Minimal static mini-site exploring design and interactions.",
+      "roles": ["Developer"],
+      "keywords": ["HTML", "CSS", "JavaScript"],
+      "url": "https://abaj8494.github.io/shrine/"
+    },
+    {
+      "name": "Game of Life",
+      "description": "Web implementation of Conway’s Game of Life with UI controls.",
+      "roles": ["Developer"],
+      "keywords": ["JavaScript"],
+      "url": "https://abaj8494.github.io/gol/"
     }
   ],
   "education": [
@@ -70,35 +139,38 @@
       "startDate": "2021-02-19",
       "endDate": "2025-12-12",
       "score": "65.0",
-      "courses": ["MT1131 - Mathematics 1A",
-		  "MT1141 - Mathematics 1B",
-		  "MT1081 - Discrete Mathematics",
-		  "MT2501 - Linear Algebra",
-		  "MT2011 - Several Variable Calculus",
-		  "MT2521 - Complex Analysis",
-		  "MT2121 - Differential Equations",
-		  "MT3161 - Optimisation",
-		  "MT2901 - Higher Theory of Statistics",
-		  "MT3611 - Higher Algebra",
-		  "CS1151 - Programming Fundamentals",
-		  "CS1531 - Software Fundamentals",
-		  "CS2521 - Data Structures and Algorithms",
-		  "CS1521 - Computer Systems Fundamentals",
-		  "CS2511 - O-O Design & Programming",
-		  "CS3121 - Algorithm Design",
-		  "CS3231 - Operating Systems",
-		  "CS3311 - Database Systems",
-		  "CS3331 - Computer Networks & Applications",
-		  "CS3411 - Artificial Intelligence",
-		  "CS9417 - Machine Learning & Data Mining",
-		  "CS9444 - Deep Learning & Neural Networks",
-		  "CS3900 - Computer Science Project",
-		  "CS4920 - Professional Issues and Ethics",
-		  "CS9517 - Computer Vision",
-		  "AR1630 - Japanese 1A",
-		  "AR1631 - Japanese 1B",
-		  "AR2630 - Japanese 2A"
-		 ]
+      "courses": [
+        "MT1131 - (53) Mathematics 1A",
+        "MT1231 - (63) Mathematics 1B",
+        "MT1081 - (63) Discrete Mathematics",
+        "MT2501 - (66) Linear Algebra",
+        "MT2011 - (61) Several Variable Calculus",
+        "MT2521 - (48) Complex Analysis",
+        "MT2121 - (80) Differential Equations",
+        "MT3161 - (67) Optimization",
+        "MT2901 - (65) Higher Theory of Statistics",
+        "MT3611 - (70) Higher Analysis",
+        "CS1511 - (85) Programming Fundamentals",
+        "CS1531 - (77) Software Eng Fundamentals",
+        "CS2521 - (61) Data Structures and Algorithms",
+        "CS1521 - (72) Computer Systems Fundamentals",
+        "CS2511 - (76) O-O Design & Programming",
+        "CS3121 - (51) Algorithms & Programming Tech",
+        "CS3231 - (61) Operating Systems",
+        "CS3311 - (42) Database Systems",
+        "CS3331 - (54) Computer Networks & Applications",
+        "CS3411 - (65) Artificial Intelligence",
+        "CS9417 - (64) Machine Learning & Data Mining",
+        "CS9444 - (74) Neural Networks, Deep Learning",
+        "CS3900 - (86) Computer Science Project",
+        "CS4920 - (CM) Professional Issues and Ethics",
+        "CS9517 - (73) Computer Vision",
+        "AR1630 - (71) Japanese 1",
+        "AR1631 - (55) Japanese 2",
+        "CM1140 - (75) Financial Management",
+        "CM1180 - (69) Value Creation",
+        "GN1021 - (61) World Religions"
+      ]
     },
     {
       "institution": "University of New South Wales",
@@ -108,38 +180,37 @@
       "startDate": "2026-02-19",
       "endDate": "2028-12-12",
       "score": "85.0",
-      "courses": ["AR2631 - Japanese 2B",
-		  "CS2041 - Shell Construction: Techniques and Tools",
-		  "CS9418 - Advanced Statistical Methods for Machine Learning",
-		  "MT5960 - Bayesian Inference and Computation",
-		  "MT5905 - Statistical Inference",
-		  "MT5835 - Advanced Stochastic Processes",
-		  "MT5825 - Measure, Integration and Probability",
-		  "FI5513 - Investments & Portfolio Selection",
-		  "MT5171 - Linear and Discrete Optimisation Modelling",
-		  "MT5806 - Applied Regression Analysis",
-		  "MT5845 - Time Series"
-		 ]
+      "courses": [
+        "CS6713 - Natural Language Processing",
+        "CS9418 - Advanced Statistical Methods for Machine Learning",
+        "MT5960 - Bayesian Inference and Computation",
+        "MT5905 - Statistical Inference",
+        "MT5835 - Advanced Stochastic Processes",
+        "MT5825 - Measure, Integration and Probability",
+        "MT5806 - Applied Regression Analysis",
+        "MT5845 - Time Series",
+        "MT5605 - Functional Analysis",
+        "MT5706 - Higher Algebra"
+      ]
     }
   ],
-  "work": [
-  ],
+  "work": [],
   "skills": [
     {
       "name": "Deep Learning",
       "level": "Novice",
-	"keywords": ["Python", "Numpy", "Pytorch", "Matplotlib"]
+      "keywords": ["Python", "Numpy", "Pytorch", "Matplotlib"]
     },
-      {
-	  "name": "Linux",
-	  "level": "Pro",
-	  "keywords": ["shell", "git", "regex", "emacs", "vim"]
-      },
-      {
-	  "name": "Typing",
-	  "level": "Amateur",
-	  "keywords": ["dvorak", "110wpm"]
-      }
+    {
+      "name": "Linux",
+      "level": "Pro",
+      "keywords": ["shell", "git", "regex", "emacs", "vim"]
+    },
+    {
+      "name": "Typing",
+      "level": "Amateur",
+      "keywords": ["dvorak", "110wpm"]
+    }
   ],
   "interests": [
     {
@@ -155,7 +226,6 @@
       "keywords": ["Ultimate Frisbee", "motorcycles"]
     }
   ],
-
   "volunteer": [
     {
       "organization": "Vinnies",
@@ -167,7 +237,6 @@
       "highlights": ["stacking / drowning in lots non-academic books!"]
     }
   ],
-  
   "references": [],
   "languages": [
     {

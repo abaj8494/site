@@ -3,7 +3,7 @@ title = "Queen Mia ⚰️"
 toc = "true"
 +++
 
-* Tribute
+** Tribute
 My beautiful, sweet sweet Mia.
 
 Papa's sorry that you're gone, so is [[https://abaj.ai/blog/phillip][Phillip]], and especially is Mama.
@@ -14,7 +14,7 @@ You made it into Papa's arm, and Mama's leg, we got ink.
 
 I see you every-time I brush my teeth.
 
-* Recount
+** Recount
 
 - Mia was born at my parent's house.
 - She had 4 litter-mates.
@@ -33,7 +33,7 @@ I see you every-time I brush my teeth.
 [[{{< cwd >}}banana-mia.jpeg]]
 #+END_CENTER
 
-* Pre-mortem prose:
+** Pre-mortem prose:
 
 Mia is a good cat. Very tame. She's been following me around since she was a blue-eyed baby:
 
@@ -60,7 +60,7 @@ All things considered, she is a faithful cat that follows me around and responds
 She also sleeps /alot/ 😅
 #+END_CENTER
 
-* Postface
+** Postface
 
 Mia was originally named 作能神亜 after a particular Lady. She died at the untimely age of 25; a fortunate correspondence with Beatrice Portinari; _amor fati_.
 
@@ -68,6 +68,6 @@ Mia was originally named 作能神亜 after a particular Lady. She died at the u
 
 We love you, and we miss you, and we will never forget you.
 
-* Footnotes
+** Footnotes
 
 [fn:1] we strongly believe this to be the case by the autoposy performed by Kiyomi and I.

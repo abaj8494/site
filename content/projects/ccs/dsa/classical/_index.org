@@ -1,0 +1,26 @@
++++
+title = "Classical Algorithms"
+categories = ["computer-science"]
+tags = ["problem-solving", "technical-interview", "graph", "search", "sort"]
+layout = "custom-list"
++++
+
+
+** Searching
+
+** Sorting
+
+** Recursion
+
+** Divide and Conquer
+
+** Greedy Algorithms
+
+** Dynamic Programming
+
+** Linear Programming
+
+** Graph
+
+
+
