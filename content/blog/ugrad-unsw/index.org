@@ -10,7 +10,7 @@ toc = "true"
 
 It took me 1,577 days to complete my undergraduate degree in Computer Science.
 
-{{< embed-pdf url="/doc/certs/testamur.pdf" hidePaginator="true">}}
+{{< embed-pdf url="/doc/certs/ugrad/testamur.pdf" hidePaginator="true">}}
 
 Overall, I think the degree was worthwhile and satiated my desire to obtain an understanding of /Computers from the bit-level/.
 

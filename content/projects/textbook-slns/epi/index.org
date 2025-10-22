@@ -1,0 +1,122 @@
++++
+title = "Elements of Programming Interviews (in Java)
+toc = "true"
++++
+
+{{< collapse folded="true" >}}
+
+
+** chapter 4: primitive types
+
+
+*** theory
+
+#+begin_src java :results output
+    public static short countBits(int x) {
+	    short numBits = 0;
+	    while (x != 0) {
+		    numBits += (x & 1);
+		    x >>>= 1;
+	    }
+	    return numBits;
+    }
+    public static void main(String[] args) {
+	System.out.println(countBits(15));
+    }
+#+end_src
+
+#+RESULTS:
+: 4
+
+
+#+begin_src java :results output
+  public static void main(String[] args) {
+      System.out.println(6&4);
+      System.out.println(1|2);
+      System.out.println(8>>1);
+      System.out.println(-16>>>2);
+      System.out.println(1<<10);
+      System.out.println(~0);
+  }
+#+end_src
+
+#+RESULTS:
+: 4
+: 3
+: 4
+: 1073741820
+: 1024
+: -1
+
+
+#+begin_src java :results output
+  public static void main(String[] args) {
+      System.out.println(Integer.MIN_VALUE);
+      System.out.println(Float.MAX_VALUE);
+      System.out.println(Double.SIZE);
+      System.out.println(Boolean.TRUE);
+  }
+#+end_src
+
+#+RESULTS:
+: -2147483648
+: 3.4028235E38
+: 64
+: true
+
+#+begin_src java :results output
+  public static void main(String[] args) {
+      System.out.println(Double.valueOf("1.23"));
+      System.out.println(Boolean.valueOf(true));
+      System.out.println(Integer.parseInt("42"));
+      System.out.println(Float.toString(-1.23F));
+  }
+#+end_src
+
+#+RESULTS:
+: 1.23
+: true
+: 42
+: -1.23
+
+
+#+begin_src java :results output
+  import static java.lang.Math.*;
+  public static void main(String[] args) {
+      System.out.println(abs(-34.5));
+      System.out.println(ceil(2.17));
+      System.out.println(floor(-34.5));
+      System.out.println(min(-3,4.5));
+      System.out.println(max(-3,4.5));
+      System.out.println(pow(2.71,3.14));
+      System.out.println(sqrt(225));
+  }
+#+end_src
+
+#+RESULTS:
+: 34.5
+: 3.0
+: -35.0
+: -3.0
+: 4.5
+: 22.883559193263366
+: 15.0
+
+#+begin_src java :results output
+  public static void main(String[] args) {
+      char x = '6';
+      System.out.println(Character.getNumericValue(x));
+      System.out.println(x - '0');
+      System.out.println(String.valueOf(123));
+  }
+#+end_src
+
+#+RESULTS:
+: 6
+: 6
+: 123
+
+TODO: random methods nextInt, nextBoolean
+
+**** 4.1 parity
+
