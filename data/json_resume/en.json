@@ -30,18 +30,18 @@
       "description": "Aayush Bajaj's Augmenting Infrastructure. Contains a CS degree, Masters in Statistics and the intellectual spinoffs in between.",
       "startDate": "2024-12-21",
       "highlights": [
-        "Revisited all of the labs of all my AI courses at uni, and worked through many Deep Learning textbooks. Organised my CS, Math notes and trampolined off all this knowledge to solve my own novel problems with the power of ML.",
-        "Publishes technical essays, interactive demos, and project documentation."
+        "A mature pipeline that is frictionless to use and collectively impactful.",
+        "Exponential benefits from developing a critical mass of prose and code."
       ],
       "roles": ["Programmer", "Tinkerer", "Mathematician"],
-      "keywords": ["emacs", "orgmode", "zettelkasten", "jupyter", "anaconda"],
+      "keywords": ["emacs", "orgmode", "zettelkasten", "jupyter", "conda"],
       "url": "https://abaj.ai/projects"
     },
     {
       "name": "Biomedical Semantic Segmentation",
       "description": "Successfully created Kidney and Kidney Tumour masks from 3D Volumetric CT scans",
       "startDate": "2024-10-01",
-      "endDate": "2024-11-19",
+      "endDate": "2025-06-19",
       "highlights": [
         "Implemented 2D, 3D state of the art semantic segmentation architectures, along with conducting a thorough literature review and experimentation with transfer learning models across the term-long project. Ultimately, obtained full-marks with a class-leading Mean Sorensen Dice score of 78.",
         "Reproduced nnU-Net pipeline end-to-end and published a concise technical write-up.",
@@ -77,7 +77,7 @@
     },
     {
       "name": "Mathematical Tools",
-      "description": "Suite of 23 math calculators and converters served by a compact Go API.",
+      "description": "Suite of math calculators and converters served by a compact Go API.",
       "highlights": [
         "Go REST API powering number theory, statistics, algebra, linear algebra, and unit/base converters.",
         "Static frontend with responsive grid; deployed behind Nginx with a systemd service and HTTPS."
@@ -88,10 +88,10 @@
     },
     {
       "name": "Bytelocker.nvim",
-      "description": "Neovim plugin for quick buffer/region encryption and decryption.",
+      "description": "Neovim plugin for quick buffer/region encryption and decryption. Third refactor of a university project.",
       "highlights": [
-        "Lightweight commands and sensible defaults to encrypt/decrypt without leaving the editor.",
-        "README examples and cross-posting to encourage adoption."
+        "Excellent region level and full-file encryption bound to a keypress.",
+        "Good documentation with modern Nvim plugin practises; moderately customisable."
       ],
       "roles": ["Plugin Author"],
       "keywords": ["Lua", "Neovim"],
@@ -99,10 +99,10 @@
     },
     {
       "name": "10,000 Hours of ML",
-      "description": "Monorepo of self-contained Jupyter notebooks exploring CV, RL, and NLP.",
+      "description": "Monorepo of self-contained Jupyter notebooks exploring AI, ML, CV, RL, and NLP.",
       "highlights": [
         "Version-controlled experiments and interview problems.",
-        "Clear, reproducible notebooks with references."
+        "Implementations for a wide variety of architectures and algorithms"
       ],
       "roles": ["Researcher"],
       "keywords": ["Jupyter", "Machine Learning"],
@@ -110,21 +110,43 @@
     },
     {
       "name": "Sydney Train Game Solver",
-      "description": "Constraint-solving visualizer for a transport-themed puzzle.",
+      "description": "Recursive DFS solver with Vanilla JS Canvas visualisation.",
+      "highlights": [
+        "Crash course in Typescript by way of an overdue project",
+        "Now embedded as an IFrame on this site. Github Pages hosts the static version too."
+      ],
       "roles": ["Programmer"],
-      "keywords": ["JavaScript", "Algorithms", "Visualization"],
+      "keywords": ["JavaScript", "Algorithms", "Binary-operators"],
       "url": "https://abaj.ai/projects/csp/train-game/"
     },
     {
       "name": "Shrine",
-      "description": "Minimal static mini-site exploring design and interactions.",
+      "description": "Images and other metadata of the greatest people that ever lived affixed to a timeline",
+      "highlights": [
+        "Built in Svelte for experience with the tech-stack",
+        "Clicking on the name pops up the images. Ages are calculated from JSON backend"
+      ],
       "roles": ["Developer"],
-      "keywords": ["HTML", "CSS", "JavaScript"],
+      "keywords": ["Svelte", "CSS", "JavaScript"],
       "url": "https://abaj8494.github.io/shrine/"
     },
     {
+      "name": "Math Map",
+      "description": "3-Space Map of all of Mathematics. Contains High School, Undergraduate, Postgraduate and Research level mathematics topics as floating 'TCG' (trading card game) cards with Pan, Zoom, Rotate functionality.",
+      "highlights": [
+        "Built in Svelte, augmenting the codebase and colourscheme from another static-site (Shrine).",
+        "JSON data structure as backend, prerequisites visualised as floating arrows. Clickable with contributor and topic search functionalities."
+      ],
+      "roles": ["Developer"],
+      "keywords": ["Svelte", "CSS", "JavaScript", "Three.js"],
+      "url": "https://abaj8494.github.io/math-map/"
+    },
+    {
       "name": "Game of Life",
-      "description": "Web implementation of Conway’s Game of Life with UI controls.",
+      "description": "Minimal JS Canvas implementation of Conway’s Game of Life.",
+      "highlights": [
+        "Heatmap variant included"
+      ],
       "roles": ["Developer"],
       "keywords": ["JavaScript"],
       "url": "https://abaj8494.github.io/gol/"
@@ -181,6 +203,7 @@
       "endDate": "2028-12-12",
       "score": "85.0",
       "courses": [
+        "MT3431 - Number Theory",
         "CS6713 - Natural Language Processing",
         "CS9418 - Advanced Statistical Methods for Machine Learning",
         "MT5960 - Bayesian Inference and Computation",
@@ -198,17 +221,17 @@
   "skills": [
     {
       "name": "Deep Learning",
-      "level": "Novice",
+      "level": "Pro",
       "keywords": ["Python", "Numpy", "Pytorch", "Matplotlib"]
     },
     {
       "name": "Linux",
-      "level": "Pro",
+      "level": "Proficient",
       "keywords": ["shell", "git", "regex", "emacs", "vim"]
     },
     {
       "name": "Typing",
-      "level": "Amateur",
+      "level": "Acceptable",
       "keywords": ["dvorak", "110wpm"]
     }
   ],
@@ -253,5 +276,19 @@
     }
   ],
   "awards": [],
-  "publications": []
+  "publications": [],
+  "certificates": [
+    {
+      "name": "F2F Barista Skills Training",
+      "issuer": "TCP Training Pty Ltd (RTO 91118)",
+      "date": "2025-10-21",
+      "url": "https://abaj.ai/certs/tcp.pdf"
+    },
+    {
+      "name": "HLTAID011/010/009 — Provide First Aid, BELS, CPR",
+      "issuer": "Australian Training Institute",
+      "date": "2024-09-06",
+      "url": "https://abaj.ai/certs/first-aid.pdf"
+    }
+  ]
 }
