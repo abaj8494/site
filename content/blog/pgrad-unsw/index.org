@@ -5,6 +5,71 @@ clocal = "true"
 toc = "true"
 +++
 
+
+#+BEGIN_EXPORT html
+<script>
+  // Only apply the expanded table styles when directly viewing the papers page
+  (function() {
+    // Check if we are on the papers page directly (not included from elsewhere)
+    // This works because window.location.pathname will be the actual URL being viewed
+    if (window.location.pathname === "/blog/pgrad-unsw/" || 
+        window.location.pathname === "/blog/pgrad-unsw") {
+      
+      // Create a style element
+      var styleEl = document.createElement('style');
+      
+      // Set the CSS content
+      styleEl.textContent = `
+        /* Force table to extend into sidebar space */
+        .bibtex2html {
+          position: relative;
+          width: 100%;
+          overflow: visible !important;
+        }
+        
+        .bibtex2html table {
+          width: calc(100% + 300px) !important;
+          max-width: none !important;
+          margin-right: -300px !important;
+          position: relative;
+          z-index: 1;
+          border-collapse: collapse;
+        }
+        
+        /* Ensure containers don't clip the expanded table */
+        .main-content, 
+        .content, 
+        .content-container, 
+        .grid-container, 
+        main, 
+        article, 
+        .wrapper, 
+        .container, 
+        .page-content, 
+        .post-content, 
+        .page {
+          overflow: visible !important;
+          position: relative;
+        }
+        
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+          .bibtex2html table {
+            width: 100% !important;
+            max-width: 100% !important;
+            margin-right: 0 !important;
+          }
+        }
+      `;
+      
+      // Add the style element to the document head
+      document.head.appendChild(styleEl);
+    }
+  })();
+</script>
+<div class="bibtex2html">
+#+END_EXPORT
+
 |-----+-------------+---------------------------------------------------------+---------+---------------+------+----------+----------+---------------------------------------------------------------------------------|
 |   # | Course Code | Title                                                   | Offered | Prerequisites | Term | Type     | Textbook | Notes                                                                           |
 |-----+-------------+---------------------------------------------------------+---------+---------------+------+----------+----------+---------------------------------------------------------------------------------|
@@ -23,3 +88,6 @@ toc = "true"
 | 14. | MATH5925    | Project (12uoc)                                         | T1,2,3  | 36UoC         | 28T2 | Core     | na       |                                                                                 |
 |-----+-------------+---------------------------------------------------------+---------+---------------+------+----------+----------+---------------------------------------------------------------------------------|
 
+#+BEGIN_EXPORT html
+</div>
+#+END_EXPORT
