@@ -6,8 +6,7 @@ layout = "single"
 toc = "true"
 +++
 
-{{< collapse folded="false" >}}
-
+{{< collapse id="library" folded="false">}}
 
 These are all the books that I own / have owned in the past. I have not read them all, neither will I ever be able to.
 
