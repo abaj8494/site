@@ -21,13 +21,13 @@ toc = "true"
       // Set the CSS content
       styleEl.textContent = `
         /* Force table to extend into sidebar space */
-        .bibtex2html {
+        .bibtex2html-block {
           position: relative;
           width: 100%;
           overflow: visible !important;
         }
         
-        .bibtex2html table {
+        .bibtex2html-block table {
           width: calc(100% + 200px) !important;
           max-width: none !important;
           margin-right: -300px !important;
@@ -67,6 +67,9 @@ toc = "true"
     }
   })();
 </script>
+#+END_EXPORT
+
+
 #+begin_bibtex2html
 |-----+-------------+---------------------------------------------------------+---------+---------------+------+----------+----------+---------------------------------------------------------------------------------|
 |   # | Course Code | Title                                                   | Offered | Prerequisites | Term | Type     | Textbook | Notes                                                                           |
