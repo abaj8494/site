@@ -4,7 +4,10 @@ displayTitle = "<input type=\"checkbox\" class=\"done\" style=\"transform: scale
 tags = ["sharpen"]
 +++
 
+#+OPTIONS: todo:nil
+
 {{< collapse id="mastery-python" lvl="3" >}}
+
 #+begin_export html
 <aside class="custom-toc">
 <nav>
@@ -22,35 +25,7 @@ Source: https://www.w3resource.com/python-exercises/python_100_exercises_with_so
 
 ** preamble                                                        :noexport:
 
-#+PROPERTY: LOG_INTO_DRAWER t      ; put all logs into :LOGBOOK:
-#+OPTIONS: d:nil p:nil             ; do not export drawers or property drawers
-;; (optional) keep TODO/DONE in headings (default). If you wanted to hide them:
-;; #+OPTIONS: todo:nil
-
 #+PROPERTY: dest /Users/aayushbajaj/Documents/new-site/static/code/ccs/programming/languages/100-days-python/mastery/
-#+OPTIONS: todo:nil d:nil p:nil
-
-(defun ab/wrap-logs-into-logbook ()
-  "Wrap standalone CLOSED/State/CLOCK lines under a heading into a :LOGBOOK: drawer."
-  (interactive)
-  (require 'org-element)
-  (save-excursion
-    (goto-char (point-min))
-    (while (re-search-forward
-            "^\\(CLOSED:.*\\|[ \t]*- State .*\\|[ \t]*CLOCK:.*\\)$" nil t)
-      (let* ((ctx (org-element-context))
-             (in-drawer (org-element-lineage ctx '(drawer property-drawer) t)))
-        (unless in-drawer
-          (beginning-of-line)
-          (let ((start (point)))
-            ;; grab the contiguous block of log lines
-            (while (looking-at
-                    "^\\(CLOSED:.*\\|[ \t]*- State .*\\|[ \t]*CLOCK:.*\\)$")
-              (forward-line 1))
-            (let ((end (point)))
-              (goto-char start) (insert ":LOGBOOK:\n")
-              (goto-char end)   (insert ":END:\n"))))))))
-
 
 #+begin_src emacs-lisp
 (setq ndk/tangle-dir (org-entry-get nil "dest" t))
@@ -66,18 +41,17 @@ Source: https://www.w3resource.com/python-exercises/python_100_exercises_with_so
 #+RESULTS:
 | ndk/org-babel-tangle-rename |
 
-
 ** DONE Exercise 1:
-:LOGBOOK:
-CLOSED: [2025-03-10 Mon 13:32]
-- State "DONE"       from "TODO"       [2025-03-10 Mon 13:32]
+:PROPERTIES:
+:CLOSED: [2025-10-27 Mon 16:16]
+:note: - State "DONE" from "TODO" [2025-10-27 Mon 16:16]
 :END:
 
 Create a list with values ranging from 0 to 9.
 
 *** soln
 
-list's take in iterators
+lists take in iterators
 #+begin_src jupyter-python :session mast-python :tangle q01.py
   #my_list = [i for i in range(10)]
   my_list = list(range(10))
@@ -89,11 +63,9 @@ list's take in iterators
 | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
 
 ** DONE Exercise 2:
-:LOGBOOK:
-CLOSED: [2025-03-10 M:END:
-on 13:32]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-10 Mon 13:32]
+:PROPERTIES:
+:CLOSED: [2025-03-10 Mon 13:32]
+:note: - State "DONE" from "TODO" [2025-03-10 Mon 13:32]
 :END:
 
 Convert a list of integers to a list of strings.
@@ -112,12 +84,11 @@ map returns an iterator. it applies fn to an iterator with iterable args.
 | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
 
 ** DONE Exercise 3:
-:LOGBOOK:
-CLOSED: [2025-03-10 M:END:
-on 13:32]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-10 Mon 13:32]
+:PROPERTIES:
+:CLOSED: [2025-10-27 Mon 12:55]
+:note: - State "DONE" from "TODO" [2025-10-27 Mon 12:55]
 :END:
+
 
 Multiply all elements in a list by 2.
 
@@ -138,11 +109,9 @@ also, unusually I could not find any documentation on lambda expressions in the 
 
 
 ** DONE Exercise 4:
-:LOGBOOK:
-CLOSED: [2025-03-10 M:END:
-on 13:32]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-10 Mon 13:32]
+:PROPERTIES:
+:CLOSED: [2025-10-27 Mon 12:55]
+:note: - State "DONE" from "TODO" [2025-10-27 Mon 12:55]
 :END:
 
 Extract all odd numbers from a list of integers.
@@ -163,11 +132,9 @@ the modulo 2 case would equal 1 whenever an odd number was given. we're spitting
 | 1 | 3 | 5 | 7 | 9 | 11 | 13 | 15 | 17 | 19 |
 
 ** DONE Exercise 5:
-:LOGBOOK:
-CLOSED: [2025-03-10 M:END:
-on 13:32]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-10 Mon 13:32]
+:PROPERTIES:
+:CLOSED: [2025-03-10 Mon 13:32]
+:note: - State "DONE" from "TODO" [2025-03-10 Mon 13:32]
 :END:
 
 Replace all odd numbers in a list with -1.
@@ -187,11 +154,9 @@ note that the ternary operator syntax is different to C/Java.
 | 0 | -1 | 2 | -1 | 4 | -1 | 6 | -1 | 8 | -1 | 10 | -1 | 12 | -1 | 14 | -1 | 16 | -1 | 18 | -1 |
 
 ** DONE Exercise 6:
-:LOGBOOK:
-CLOSED: [2025-03-11 T:END:
-ue 12:55]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-11 Tue 12:55]
+:PROPERTIES:
+:CLOSED: [2025-03-11 Tue 12:55]
+:note: - State "DONE" from "TODO" [2025-03-11 Tue 12:55]
 :END:
 
 Convert a list of integers to a list of booleans where all non-zero values become True.
@@ -211,11 +176,9 @@ note that in Python, true is actually =True= and false, =False=.
 | False | True | True | True | True | True | True | True | True | True | True | True | True | True | True |
 
 ** DONE Exercise 7:
-:LOGBOOK:
-CLOSED: [2025-03-11 T:END:
-ue 12:55]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-11 Tue 12:55]
+:PROPERTIES:
+:CLOSED: [2025-03-11 Tue 12:55]
+:note: - State "DONE" from "TODO" [2025-03-11 Tue 12:55]
 :END:
 
 Replace all even numbers in a list with their negative.
@@ -230,11 +193,9 @@ Replace all even numbers in a list with their negative.
 | 0 | 1 | -2 | 3 | -4 | 5 | -6 | 7 | -8 | 9 | -10 | 11 | -12 | 13 | -14 |
 
 ** DONE Exercise 8:
-:LOGBOOK:
-CLOSED: [2025-03-11 T:END:
-ue 12:55]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-11 Tue 12:55]
+:PROPERTIES:
+:CLOSED: [2025-03-11 Tue 12:55]
+:note: - State "DONE" from "TODO" [2025-03-11 Tue 12:55]
 :END:
 
 Create a 3x3 list of lists with random values and normalize it.
@@ -277,11 +238,9 @@ also I used numpy to skip a list comprehension.
 :  [1.         0.33333333 1.         0.33333333 0.16666667 0.16666667]]
 
 ** DONE Exercise 9:
-:LOGBOOK:
-CLOSED: [2025-03-11 T:END:
-ue 12:55]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-11 Tue 12:55]
+:PROPERTIES:
+:CLOSED: [2025-03-11 Tue 12:55]
+:note: - State "DONE" from "TODO" [2025-03-11 Tue 12:55]
 :END:
 
 Calculate the sum of the diagonal elements of a 3x3 matrix (list of lists).
@@ -297,11 +256,9 @@ Calculate the sum of the diagonal elements of a 3x3 matrix (list of lists).
 : 3.3333333333333335
 
 ** DONE Exercise 10:
-:LOGBOOK:
-CLOSED: [2025-03-11 T:END:
-ue 12:55]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-11 Tue 12:55]
+:PROPERTIES:
+:CLOSED: [2025-03-11 Tue 12:55]
+:note: - State "DONE" from "TODO" [2025-03-11 Tue 12:55]
 :END:
 
 Find the indices of non-zero elements in a list.
@@ -322,11 +279,9 @@ fk that was hard.
 | 0 | 1 | 2 | 3 | 4 | 6 | 7 | 8 |
 
 ** DONE Exercise 11:
-:LOGBOOK:
-CLOSED: [2025-03-12 W:END:
-ed 11:15]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-12 Wed 11:15]
+:PROPERTIES:
+:CLOSED: [2025-03-12 Wed 11:15]
+:note: - State "DONE" from "TODO" [2025-03-12 Wed 11:15]
 :END:
 
 Reverse a list.
@@ -415,12 +370,9 @@ ultimately, if you want a non-shallow copy you must use deepcopy
 : still stable: [[6, 1], [7, 2], [8, 3]]
 
 ** DONE Exercise 12:
-:LOGBOOK:
-CLOSED: [2025-03-12 W:END:
-ed 11:15]
-:LOGBOOK:
-- State "DONE"       from "DONE"       [2025-03-12 Wed 11:15]
-- State "DONE"       from              [2025-03-12 Wed 11:15]
+:PROPERTIES:
+:CLOSED: [2025-03-12 Wed 11:15]
+:note: - State "DONE" from "TODO" [2025-03-12 Wed 11:15]
 :END:
 
 Create a 3x3 identity matrix as a list of lists.
@@ -436,11 +388,9 @@ Create a 3x3 identity matrix as a list of lists.
 :  [0. 0. 1.]]
 
 ** DONE Exercise 13:
-:LOGBOOK:
-CLOSED: [2025-03-12 W:END:
-ed 11:15]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-12 Wed 11:15]
+:PROPERTIES:
+:CLOSED: [2025-03-12 Wed 11:15]
+:note: - State "DONE" from "TODO" [2025-03-12 Wed 11:15]
 :END:
 
 Reshape a 1D list to a 2D list with 2 rows.
@@ -469,11 +419,9 @@ terrific, well done!
 : [[0, 1, 2, 3, 4, 5], [6, 7, 8, 9, 10, 11]]
 
 ** DONE Exercise 14:
-:LOGBOOK:
-CLOSED: [2025-03-12 W:END:
-ed 11:15]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-12 Wed 11:15]
+:PROPERTIES:
+:CLOSED: [2025-03-12 Wed 11:15]
+:note: - State "DONE" from "TODO" [2025-03-12 Wed 11:15]
 :END:
 
 Stack two lists vertically.
@@ -489,11 +437,9 @@ Stack two lists vertically.
 : [[3, 2, 1, 0], [0, 1, 2, 3]]
 
 ** DONE Exercise 15:
-:LOGBOOK:
-CLOSED: [2025-03-12 W:END:
-ed 11:15]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-12 Wed 11:15]
+:PROPERTIES:
+:CLOSED: [2025-03-12 Wed 11:15]
+:note: - State "DONE" from "TODO" [2025-03-12 Wed 11:15]
 :END:
 
 Get the common items between two lists.
@@ -525,11 +471,9 @@ that's okay, it's not much different to find the duplicates; we can use the =int
 : [0, 1, 2, 3]
 
 ** DONE Exercise 16:
-:LOGBOOK:
-CLOSED: [2025-03-13 T:END:
-hu 15:41]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-13 Thu 15:41]
+:PROPERTIES:
+:CLOSED: [2025-03-13 Thu 15:41]
+:note: - State "DONE" from "TODO" [2025-03-13 Thu 15:41]
 :END:
 
 Create a 5x5 list of lists with row values ranging from 0 to 4.
@@ -606,11 +550,9 @@ print(f"NumPy approach:              {time2:.6f} seconds")
 
 
 ** DONE Exercise 17:
-:LOGBOOK:
-CLOSED: [2025-03-13 T:END:
-hu 15:41]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-13 Thu 15:41]
+:PROPERTIES:
+:CLOSED: [2025-03-13 Thu 15:41]
+:note: - State "DONE" from "TODO" [2025-03-13 Thu 15:41]
 :END:
 
 Find the index of the maximum value in a list.
@@ -640,11 +582,9 @@ numpy.amax(l)
 : 4
 
 ** DONE Exercise 18:
-:LOGBOOK:
-CLOSED: [2025-03-13 T:END:
-hu 15:41]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-13 Thu 15:41]
+:PROPERTIES:
+:CLOSED: [2025-03-13 Thu 15:41]
+:note: - State "DONE" from "TODO" [2025-03-13 Thu 15:41]
 :END:
 
 Normalize the values in a list between 0 and 1.
@@ -677,11 +617,9 @@ we can do it nakedly with the =math= library and implement softmax, which is def
 :  0.6326975 ]
 
 ** DONE Exercise 19:
-:LOGBOOK:
-CLOSED: [2025-03-13 T:END:
-hu 15:41]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-13 Thu 15:41]
+:PROPERTIES:
+:CLOSED: [2025-03-13 Thu 15:41]
+:note: - State "DONE" from "TODO" [2025-03-13 Thu 15:41]
 :END:
 
 Calculate the dot product of two lists.
@@ -702,11 +640,9 @@ Calculate the dot product of two lists.
 : 246
 
 ** DONE Exercise 20:
-:LOGBOOK:
-CLOSED: [2025-03-13 T:END:
-hu 15:41]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-13 Thu 15:41]
+:PROPERTIES:
+:CLOSED: [2025-03-13 Thu 15:41]
+:note: - State "DONE" from "TODO" [2025-03-13 Thu 15:41]
 :END:
 
 Count the number of elements in a list within a specific range.
@@ -721,11 +657,9 @@ Count the number of elements in a list within a specific range.
 : 3
 
 ** DONE Exercise 21:
-:LOGBOOK:
-CLOSED: [2025-03-13 T:END:
-hu 15:46]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-13 Thu 15:46]
+:PROPERTIES:
+:CLOSED: [2025-03-13 Thu 15:46]
+:note: - State "DONE" from "TODO" [2025-03-13 Thu 15:46]
 :END:
 
 Find the mean of each row in a 2D list.
@@ -748,11 +682,9 @@ Find the mean of each row in a 2D list.
 | 2.0 | 4.5 | 3.0 |
 
 ** DONE Exercise 22:
-:LOGBOOK:
-CLOSED: [2025-03-18 T:END:
-ue 09:51]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-18 Tue 09:51]
+:PROPERTIES:
+:CLOSED: [2025-03-18 Tue 09:51]
+:note: - State "DONE" from "TODO" [2025-03-18 Tue 09:51]
 :END:
 
 Create a random 4x4 list of lists and extract the diagonal elements.
@@ -774,11 +706,9 @@ Create a random 4x4 list of lists and extract the diagonal elements.
 :END:
 
 ** DONE Exercise 23:
-:LOGBOOK:
-CLOSED: [2025-03-18 T:END:
-ue 09:53]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-18 Tue 09:53]
+:PROPERTIES:
+:CLOSED: [2025-03-18 Tue 09:53]
+:note: - State "DONE" from "TODO" [2025-03-18 Tue 09:53]
 :END:
 
 Count the number of occurrences of a specific value in a list.
@@ -792,11 +722,9 @@ range_list.count(4)
 : 1
 
 ** DONE Exercise 24:
-:LOGBOOK:
-CLOSED: [2025-03-18 T:END:
-ue 09:53]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-18 Tue 09:53]
+:PROPERTIES:
+:CLOSED: [2025-03-18 Tue 09:53]
+:note: - State "DONE" from "TODO" [2025-03-18 Tue 09:53]
 :END:
 
 Replace all values in a list with the mean of the list.
@@ -811,11 +739,9 @@ Replace all values in a list with the mean of the list.
 : [2.5, 2.5, 2.5, 2.5, 2.5, 2.5]
 
 ** DONE Exercise 25:
-:LOGBOOK:
-CLOSED: [2025-03-18 T:END:
-ue 09:53]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-18 Tue 09:53]
+:PROPERTIES:
+:CLOSED: [2025-03-18 Tue 09:53]
+:note: - State "DONE" from "TODO" [2025-03-18 Tue 09:53]
 :END:
 
 Find the indices of the maximum and minimum values in a list.
@@ -842,11 +768,9 @@ you of course also have the numpy method, however that requires the overhead of 
 : 5
 
 ** DONE Exercise 26:
-:LOGBOOK:
-CLOSED: [2025-03-18 T:END:
-ue 09:53]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-18 Tue 09:53]
+:PROPERTIES:
+:CLOSED: [2025-03-18 Tue 09:53]
+:note: - State "DONE" from "TODO" [2025-03-18 Tue 09:53]
 :END:
 
 Create a 2D list with 1 on the border and 0 inside.
@@ -865,11 +789,9 @@ Create a 2D list with 1 on the border and 0 inside.
 :  [1. 1. 1.]]
 
 ** DONE Exercise 27:
-:LOGBOOK:
-CLOSED: [2025-03-18 T:END:
-ue 09:53]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-18 Tue 09:53]
+:PROPERTIES:
+:CLOSED: [2025-03-18 Tue 09:53]
+:note: - State "DONE" from "TODO" [2025-03-18 Tue 09:53]
 :END:
 
 Find the unique values and their counts in a list.
@@ -889,11 +811,9 @@ Find the unique values and their counts in a list.
 : [0, 1, 2, 3, 4, 5, 6]
 
 ** DONE Exercise 28:
-:LOGBOOK:
-CLOSED: [2025-03-18 T:END:
-ue 09:53]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-18 Tue 09:53]
+:PROPERTIES:
+:CLOSED: [2025-03-18 Tue 09:53]
+:note: - State "DONE" from "TODO" [2025-03-18 Tue 09:53]
 :END:
 
 Create a 3x3 list of lists with values ranging from 0 to 8.
@@ -908,11 +828,9 @@ Create a 3x3 list of lists with values ranging from 0 to 8.
 : [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
 
 ** DONE Exercise 29:
-:LOGBOOK:
-CLOSED: [2025-03-18 T:END:
-ue 09:54]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-18 Tue 09:54]
+:PROPERTIES:
+:CLOSED: [2025-03-18 Tue 09:54]
+:note: - State "DONE" from "TODO" [2025-03-18 Tue 09:54]
 :END:
 
 Calculate the exponential of all elements in a list.
@@ -928,11 +846,9 @@ Calculate the exponential of all elements in a list.
 : [1.0, 2.718281828459045, 7.38905609893065, 20.085536923187668, 54.598150033144236, 148.4131591025766, 403.4287934927351, 1096.6331584284585, 2980.9579870417283]
 
 ** DONE Exercise 30:
-:LOGBOOK:
-CLOSED: [2025-03-18 T:END:
-ue 09:54]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-18 Tue 09:54]
+:PROPERTIES:
+:CLOSED: [2025-03-18 Tue 09:54]
+:note: - State "DONE" from "TODO" [2025-03-18 Tue 09:54]
 :END:
 
 Swap two rows in a 2D list.
@@ -950,11 +866,9 @@ Swap two rows in a 2D list.
 : [[4, 2, 3, 4], [2, 2, 2, 0], [1, 1, 1, 3], [2, 0, 4, 2]]
 
 ** DONE Exercise 31:
-:LOGBOOK:
-CLOSED: [2025-03-18 T:END:
-ue 10:05]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-18 Tue 10:05]
+:PROPERTIES:
+:CLOSED: [2025-03-18 Tue 10:05]
+:note: - State "DONE" from "TODO" [2025-03-18 Tue 10:05]
 :END:
 
 Create a random 3x3 list of lists and replace all values greater than 0.5 with 1 and all others with 0.
@@ -971,11 +885,9 @@ Create a random 3x3 list of lists and replace all values greater than 0.5 with 1
 : [[0, 1, 0], [1, 1, 0], [0, 1, 0]]
 
 ** DONE Exercise 32:
-:LOGBOOK:
-CLOSED: [2025-03-18 T:END:
-ue 10:17]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-18 Tue 10:17]
+:PROPERTIES:
+:CLOSED: [2025-03-18 Tue 10:17]
+:note: - State "DONE" from "TODO" [2025-03-18 Tue 10:17]
 :END:
 
 Find the indices of the top N maximum values in a list.
@@ -992,11 +904,9 @@ Find the indices of the top N maximum values in a list.
 
 
 ** DONE Exercise 33:
-:LOGBOOK:
-CLOSED: [2025-03-19 W:END:
-ed 21:15]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-19 Wed 21:15]
+:PROPERTIES:
+:CLOSED: [2025-03-19 Wed 21:15]
+:note: - State "DONE" from "TODO" [2025-03-19 Wed 21:15]
 :END:
 
 Calculate the mean of each column in a 2D list.
@@ -1025,11 +935,9 @@ Calculate the mean of each column in a 2D list.
 
 
 ** DONE Exercise 34:
-:LOGBOOK:
-CLOSED: [2025-03-19 W:END:
-ed 21:15]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-19 Wed 21:15]
+:PROPERTIES:
+:CLOSED: [2025-03-19 Wed 21:15]
+:note: - State "DONE" from "TODO" [2025-03-19 Wed 21:15]
 :END:
 
 Normalize the values in each column of a 2D list.
@@ -1058,11 +966,9 @@ Normalize the values in each column of a 2D list.
 2. if you are going to use huge lambda functions, at least indent them and split them across multiple lines.
 
 ** DONE Exercise 35:
-:LOGBOOK:
-CLOSED: [2025-03-19 W:END:
-ed 21:15]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-19 Wed 21:15]
+:PROPERTIES:
+:CLOSED: [2025-03-19 Wed 21:15]
+:note: - State "DONE" from "TODO" [2025-03-19 Wed 21:15]
 :END:
 
 Concatenate two lists.
@@ -1080,11 +986,9 @@ Concatenate two lists.
 : [0, 1, 2, 3, 4, 'a', 'b', 'string']
 
 ** DONE Exercise 36:
-:LOGBOOK:
-CLOSED: [2025-03-19 W:END:
-ed 21:37]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-19 Wed 21:37]
+:PROPERTIES:
+:CLOSED: [2025-03-19 Wed 21:37]
+:note: - State "DONE" from "TODO" [2025-03-19 Wed 21:37]
 :END:
 
 Create a 2D list with random values and sort each row.
@@ -1102,11 +1006,9 @@ Create a 2D list with random values and sort each row.
 : [[0, 3, 3], [2, 2, 3], [0, 3, 3]]
 
 ** DONE Exercise 37:
-:LOGBOOK:
-CLOSED: [2025-03-19 W:END:
-ed 21:37]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-19 Wed 21:37]
+:PROPERTIES:
+:CLOSED: [2025-03-19 Wed 21:37]
+:note: - State "DONE" from "TODO" [2025-03-19 Wed 21:37]
 :END:
 
 Check if all elements in a list are non-zero.
@@ -1146,11 +1048,9 @@ Check if all elements in a list are non-zero.
 : True
 
 ** DONE Exercise 38:
-:LOGBOOK:
-CLOSED: [2025-03-25 T:END:
-ue 00:53]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-25 Tue 00:53]
+:PROPERTIES:
+:CLOSED: [2025-03-25 Tue 00:53]
+:note: - State "DONE" from "TODO" [2025-03-25 Tue 00:53]
 :END:
 
 Find the indices of the maximum value in each row of a 2D list.
@@ -1170,11 +1070,9 @@ Find the indices of the maximum value in each row of a 2D list.
 : [2, 2, 1]
 
 ** DONE Exercise 39:
-:LOGBOOK:
-CLOSED: [2025-03-25 T:END:
-ue 00:53]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-25 Tue 00:53]
+:PROPERTIES:
+:CLOSED: [2025-03-25 Tue 00:53]
+:note: - State "DONE" from "TODO" [2025-03-25 Tue 00:53]
 :END:
 
 Create a 2D list and replace all nan values with the mean of the list.
@@ -1191,11 +1089,9 @@ Create a 2D list and replace all nan values with the mean of the list.
 *** output
 
 ** DONE Exercise 40:
-:LOGBOOK:
-CLOSED: [2025-03-25 T:END:
-ue 00:53]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-25 Tue 00:53]
+:PROPERTIES:
+:CLOSED: [2025-03-25 Tue 00:53]
+:note: - State "DONE" from "TODO" [2025-03-25 Tue 00:53]
 :END:
 
 Calculate the mean of each row in a 2D list ignoring nan values.
@@ -1247,11 +1143,9 @@ furthermore, to sum across elements in an unknown dimensional array, with each o
 then for when only the existence of the digit matters, you can use =sum(1 for i in x if not math.nan(i))= as above.
 
 ** DONE Exercise 41:
-:LOGBOOK:
-CLOSED: [2025-03-26 W:END:
-ed 20:50]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-26 Wed 20:50]
+:PROPERTIES:
+:CLOSED: [2025-03-26 Wed 20:50]
+:note: - State "DONE" from "TODO" [2025-03-26 Wed 20:50]
 :END:
 
 Compute the sum of diagonal elements in a 2D list.
@@ -1272,11 +1166,9 @@ Compute the sum of diagonal elements in a 2D list.
 : 62
 
 ** DONE Exercise 42:
-:LOGBOOK:
-CLOSED: [2025-03-26 W:END:
-ed 20:49]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-26 Wed 20:49]
+:PROPERTIES:
+:CLOSED: [2025-03-26 Wed 20:49]
+:note: - State "DONE" from "TODO" [2025-03-26 Wed 20:49]
 :END:
 
 Convert radians to degrees for each element in a list.
@@ -1294,11 +1186,9 @@ Convert radians to degrees for each element in a list.
 : [57.29577951308232, 114.59155902616465, 28.64788975654116, 14.32394487827058]
 
 ** DONE Exercise 43:
-:LOGBOOK:
-CLOSED: [2025-03-26 W:END:
-ed 20:49]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-26 Wed 20:49]
+:PROPERTIES:
+:CLOSED: [2025-03-26 Wed 20:49]
+:note: - State "DONE" from "TODO" [2025-03-26 Wed 20:49]
 :END:
 
 Calculate the pairwise Euclidean distance between two lists.
@@ -1316,11 +1206,9 @@ Calculate the pairwise Euclidean distance between two lists.
 : [1, 1, 1.5, 2.75]
 
 ** DONE Exercise 44:
-:LOGBOOK:
-CLOSED: [2025-03-26 W:END:
-ed 20:49]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-26 Wed 20:49]
+:PROPERTIES:
+:CLOSED: [2025-03-26 Wed 20:49]
+:note: - State "DONE" from "TODO" [2025-03-26 Wed 20:49]
 :END:
 
 Create a list and set the values between the 25th and 75th percentile to 0.
@@ -1351,11 +1239,9 @@ Create a list and set the values between the 25th and 75th percentile to 0.
 : [10, 0, 0, 0, 50]
 
 ** DONE Exercise 45:
-:LOGBOOK:
-CLOSED: [2025-03-26 W:END:
-ed 20:49]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-26 Wed 20:49]
+:PROPERTIES:
+:CLOSED: [2025-03-26 Wed 20:49]
+:note: - State "DONE" from "TODO" [2025-03-26 Wed 20:49]
 :END:
 
 Calculate the element-wise square of the difference between two lists.
@@ -1373,11 +1259,9 @@ Calculate the element-wise square of the difference between two lists.
 : [1, 1, 2.25, 7.5625]
 
 ** DONE Exercise 46:
-:LOGBOOK:
-CLOSED: [2025-03-26 W:END:
-ed 20:52]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-26 Wed 20:52]
+:PROPERTIES:
+:CLOSED: [2025-03-26 Wed 20:52]
+:note: - State "DONE" from "TODO" [2025-03-26 Wed 20:52]
 :END:
 
 Replace all even numbers in a list with the next odd number.
@@ -1393,11 +1277,9 @@ Replace all even numbers in a list with the next odd number.
 : [1, 1, 3, 3, 5, 5, 7, 7, 9, 9]
 
 ** DONE Exercise 47:
-:LOGBOOK:
-CLOSED: [2025-03-26 W:END:
-ed 22:06]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-26 Wed 22:06]
+:PROPERTIES:
+:CLOSED: [2025-03-26 Wed 22:06]
+:note: - State "DONE" from "TODO" [2025-03-26 Wed 22:06]
 :END:
 
 Create a 2D list and normalize each column by its range.
@@ -1436,11 +1318,9 @@ print(normalized_matrix)
 #+END_SRC
 
 ** DONE Exercise 48:
-:LOGBOOK:
-CLOSED: [2025-03-26 W:END:
-ed 22:06]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-26 Wed 22:06]
+:PROPERTIES:
+:CLOSED: [2025-03-26 Wed 22:06]
+:note: - State "DONE" from "TODO" [2025-03-26 Wed 22:06]
 :END:
 
 Compute the cumulative sum of elements along a given axis in a 2D list.
@@ -1470,11 +1350,9 @@ Compute the cumulative sum of elements along a given axis in a 2D list.
 : [[3, 7, 8, 14, 21, 23, 24, 25, 25, 31], [8, 12, 12, 15, 23, 31, 36, 40, 42, 43], [4, 7, 7, 17, 21, 25, 28, 30, 34, 38], [10, 15, 16, 25, 30, 40, 46, 54, 57, 59]]
 
 ** DONE Exercise 49:
-:LOGBOOK:
-CLOSED: [2025-03-26 W:END:
-ed 22:05]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-26 Wed 22:05]
+:PROPERTIES:
+:CLOSED: [2025-03-26 Wed 22:05]
+:note: - State "DONE" from "TODO" [2025-03-26 Wed 22:05]
 :END:
 
 Check if any element in a list is non-zero.
@@ -1490,11 +1368,9 @@ Check if any element in a list is non-zero.
 : [[3, 4, 1, 6, 7, 2, 1, 1, 0, 6], [8, 4, 0, 3, 8, 8, 5, 4, 2, 1], [4, 3, 0, 10, 4, 4, 3, 2, 4, 4], [10, 5, 1, 9, 5, 10, 6, 8, 3, 2]]
 
 ** DONE Exercise 50:
-:LOGBOOK:
-CLOSED: [2025-03-26 W:END:
-ed 22:05]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-26 Wed 22:05]
+:PROPERTIES:
+:CLOSED: [2025-03-26 Wed 22:05]
+:note: - State "DONE" from "TODO" [2025-03-26 Wed 22:05]
 :END:
 
 Create a 2D list with random integers and replace all values greater than a certain threshold with that threshold.
@@ -1509,11 +1385,9 @@ Create a 2D list with random integers and replace all values greater than a cert
 : [[3, 4, 1, 5, 5, 2, 1, 1, 0, 5], [5, 4, 0, 3, 5, 5, 5, 4, 2, 1], [4, 3, 0, 5, 4, 4, 3, 2, 4, 4], [5, 5, 1, 5, 5, 5, 5, 5, 3, 2]]
 
 ** DONE Exercise 51:
-:LOGBOOK:
-CLOSED: [2025-03-30 S:END:
-un 22:58]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-30 Sun 22:58]
+:PROPERTIES:
+:CLOSED: [2025-03-30 Sun 22:58]
+:note: - State "DONE" from "TODO" [2025-03-30 Sun 22:58]
 :END:
 
 Find the median of a list of numbers.
@@ -1534,11 +1408,9 @@ Find the median of a list of numbers.
 : 2
 
 ** DONE Exercise 52:
-:LOGBOOK:
-CLOSED: [2025-03-30 S:END:
-un 22:58]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-30 Sun 22:58]
+:PROPERTIES:
+:CLOSED: [2025-03-30 Sun 22:58]
+:note: - State "DONE" from "TODO" [2025-03-30 Sun 22:58]
 :END:
 
 Convert a list of numbers to a list of their logarithms.
@@ -1555,11 +1427,9 @@ Convert a list of numbers to a list of their logarithms.
 : [1.6094379124341003, 1.6094379124341003, 0.6931471805599453, 1.6094379124341003, 1.0986122886681098]
 
 ** DONE Exercise 53:
-:LOGBOOK:
-CLOSED: [2025-03-30 S:END:
-un 22:58]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-30 Sun 22:58]
+:PROPERTIES:
+:CLOSED: [2025-03-30 Sun 22:58]
+:note: - State "DONE" from "TODO" [2025-03-30 Sun 22:58]
 :END:
 
 Find the mode of a list of numbers.
@@ -1586,11 +1456,9 @@ disclaimer: this implementation does not deal with *multiple* most often occurri
 : 1
 
 ** DONE Exercise 54:
-:LOGBOOK:
-CLOSED: [2025-03-30 S:END:
-un 22:58]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-30 Sun 22:58]
+:PROPERTIES:
+:CLOSED: [2025-03-30 Sun 22:58]
+:note: - State "DONE" from "TODO" [2025-03-30 Sun 22:58]
 :END:
 
 Flatten a list of lists.
@@ -1615,11 +1483,9 @@ Flatten a list of lists.
 : [4, 0, 1, 2, 2, 0, 4, 0, 3, 0, 0, 0, 3, 4, 1, 4, 1, 3, 4, 1, 0, 4, 0, 4]
 
 ** DONE Exercise 55:
-:LOGBOOK:
-CLOSED: [2025-03-30 S:END:
-un 22:58]
-:LOGBOOK:
-- State "DONE"       from              [2025-03-30 Sun 22:58]
+:PROPERTIES:
+:CLOSED: [2025-03-30 Sun 22:58]
+:note: - State "DONE" from "TODO" [2025-03-30 Sun 22:58]
 :END:
 
 Transpose a 2D list.
@@ -1636,11 +1502,9 @@ Transpose a 2D list.
 : [[2, 0, 0], [0, 0, 3], [4, 0, 0], [3, 0, 3]]
 
 ** DONE Exercise 56:
-:LOGBOOK:
-CLOSED: [2025-04-02 W:END:
-ed 00:44]
-:LOGBOOK:
-- State "DONE"       from              [2025-04-02 Wed 00:44]
+:PROPERTIES:
+:CLOSED: [2025-04-02 Wed 00:44]
+:note: - State "DONE" from "TODO" [2025-04-02 Wed 00:44]
 :END:
 
 Remove duplicates from a list while preserving order.
@@ -1659,11 +1523,9 @@ Remove duplicates from a list while preserving order.
 : [5, 3, 2, 4, 1]
 
 ** DONE Exercise 57:
-:LOGBOOK:
-CLOSED: [2025-04-02 W:END:
-ed 00:44]
-:LOGBOOK:
-- State "DONE"       from              [2025-04-02 Wed 00:44]
+:PROPERTIES:
+:CLOSED: [2025-04-02 Wed 00:44]
+:note: - State "DONE" from "TODO" [2025-04-02 Wed 00:44]
 :END:
 
 Find the intersection of two lists.
@@ -1682,11 +1544,9 @@ Find the intersection of two lists.
 : {1, 2, 3, 5}
 
 ** DONE Exercise 58:
-:LOGBOOK:
-CLOSED: [2025-04-02 W:END:
-ed 00:44]
-:LOGBOOK:
-- State "DONE"       from              [2025-04-02 Wed 00:44]
+:PROPERTIES:
+:CLOSED: [2025-04-02 Wed 00:44]
+:note: - State "DONE" from "TODO" [2025-04-02 Wed 00:44]
 :END:
 
 Merge two dictionaries.
@@ -1705,11 +1565,9 @@ Merge two dictionaries.
 : {'a': 1, 'c': 6, 'd': 6, 'r': 2, 'l': 3}
 
 ** DONE Exercise 59:
-:LOGBOOK:
-CLOSED: [2025-04-02 W:END:
-ed 00:44]
-:LOGBOOK:
-- State "DONE"       from              [2025-04-02 Wed 00:44]
+:PROPERTIES:
+:CLOSED: [2025-04-02 Wed 00:44]
+:note: - State "DONE" from "TODO" [2025-04-02 Wed 00:44]
 :END:
 
 Sort a list of dictionaries by a key.
@@ -1733,11 +1591,9 @@ this is actually *not* what the question asked for. they asked for sorting on a 
 : [{'name': 'Alice', 'age': 10}, {'name': 'Bob', 'age': 15}, {'name': 'Charlie', 'age': 20}]
 
 ** DONE Exercise 60:
-:LOGBOOK:
-CLOSED: [2025-04-02 W:END:
-ed 00:44]
-:LOGBOOK:
-- State "DONE"       from              [2025-04-02 Wed 00:44]
+:PROPERTIES:
+:CLOSED: [2025-04-02 Wed 00:44]
+:note: - State "DONE" from "TODO" [2025-04-02 Wed 00:44]
 :END:
 
 Filter a dictionary based on its values.
@@ -1754,11 +1610,9 @@ Filter a dictionary based on its values.
 : {'b': 2, 'c': 3}
 
 ** DONE Exercise 61:
-:LOGBOOK:
-CLOSED: [2025-04-03 T:END:
-hu 21:30]
-:LOGBOOK:
-- State "DONE"       from              [2025-04-03 Thu 21:30]
+:PROPERTIES:
+:CLOSED: [2025-04-03 Thu 21:30]
+:note: - State "DONE" from "TODO" [2025-04-03 Thu 21:30]
 :END:
 
 Create a dictionary from two lists.
@@ -1776,11 +1630,9 @@ Create a dictionary from two lists.
 : {'a': 1, 'b': 2, 'c': 3, 'd': 4}
 
 ** DONE Exercise 62:
-:LOGBOOK:
-CLOSED: [2025-04-03 T:END:
-hu 21:30]
-:LOGBOOK:
-- State "DONE"       from              [2025-04-03 Thu 21:30]
+:PROPERTIES:
+:CLOSED: [2025-04-03 Thu 21:30]
+:note: - State "DONE" from "TODO" [2025-04-03 Thu 21:30]
 :END:
 
 Find the maximum value in a dictionary.
@@ -1799,11 +1651,9 @@ Find the maximum value in a dictionary.
 : 4
 
 ** DONE Exercise 63:
-:LOGBOOK:
-CLOSED: [2025-04-03 T:END:
-hu 21:30]
-:LOGBOOK:
-- State "DONE"       from              [2025-04-03 Thu 21:30]
+:PROPERTIES:
+:CLOSED: [2025-04-03 Thu 21:30]
+:note: - State "DONE" from "TODO" [2025-04-03 Thu 21:30]
 :END:
 
 Invert a dictionary (swap keys and values).
@@ -1819,11 +1669,9 @@ Invert a dictionary (swap keys and values).
 : {1: 'a', 2: 'b', 3: 'c', 4: 'd'}
 
 ** DONE Exercise 64:
-:LOGBOOK:
-CLOSED: [2025-04-03 T:END:
-hu 21:30]
-:LOGBOOK:
-- State "DONE"       from              [2025-04-03 Thu 21:30]
+:PROPERTIES:
+:CLOSED: [2025-04-03 Thu 21:30]
+:note: - State "DONE" from "TODO" [2025-04-03 Thu 21:30]
 :END:
 
 Create a dictionary with a default value.
@@ -1841,11 +1689,9 @@ Create a dictionary with a default value.
 : {'x': 5, 'y': 5, 'z': 5}
 
 ** DONE Exercise 65:
-:LOGBOOK:
-CLOSED: [2025-04-03 T:END:
-hu 21:30]
-:LOGBOOK:
-- State "DONE"       from              [2025-04-03 Thu 21:30]
+:PROPERTIES:
+:CLOSED: [2025-04-03 Thu 21:30]
+:note: - State "DONE" from "TODO" [2025-04-03 Thu 21:30]
 :END:
 
 Convert a dictionary to a list of tuples.
@@ -1879,11 +1725,9 @@ Convert a dictionary to a list of tuples.
 : 0.034710833337157965
 
 ** DONE Exercise 66:
-:LOGBOOK:
-CLOSED: [2025-04-03 T:END:
-hu 21:30]
-:LOGBOOK:
-- State "DONE"       from              [2025-04-03 Thu 21:30]
+:PROPERTIES:
+:CLOSED: [2025-04-03 Thu 21:30]
+:note: - State "DONE" from "TODO" [2025-04-03 Thu 21:30]
 :END:
 
 Find the length of the longest string in a list.
@@ -1901,11 +1745,9 @@ Find the length of the longest string in a list.
 : hitroadige
 
 ** DONE Exercise 67:
-:LOGBOOK:
-CLOSED: [2025-04-03 T:END:
-hu 21:30]
-:LOGBOOK:
-- State "DONE"       from              [2025-04-03 Thu 21:30]
+:PROPERTIES:
+:CLOSED: [2025-04-03 Thu 21:30]
+:note: - State "DONE" from "TODO" [2025-04-03 Thu 21:30]
 :END:
 
 Reverse the words in a sentence.
@@ -1922,11 +1764,9 @@ Reverse the words in a sentence.
 : course this fail might I god, my oh
 
 ** DONE Exercise 68:
-:LOGBOOK:
-CLOSED: [2025-04-03 T:END:
-hu 21:30]
-:LOGBOOK:
-- State "DONE"       from              [2025-04-03 Thu 21:30]
+:PROPERTIES:
+:CLOSED: [2025-04-03 Thu 21:30]
+:note: - State "DONE" from "TODO" [2025-04-03 Thu 21:30]
 :END:
 
 Check if a string is a palindrome.
@@ -1944,11 +1784,9 @@ Check if a string is a palindrome.
 : True
 
 ** DONE Exercise 69:
-:LOGBOOK:
-CLOSED: [2025-04-03 T:END:
-hu 21:30]
-:LOGBOOK:
-- State "DONE"       from              [2025-04-03 Thu 21:30]
+:PROPERTIES:
+:CLOSED: [2025-04-03 Thu 21:30]
+:note: - State "DONE" from "TODO" [2025-04-03 Thu 21:30]
 :END:
 
 Remove punctuation from a string.
@@ -1965,11 +1803,9 @@ Remove punctuation from a string.
 : remove punc punk
 
 ** DONE Exercise 70:
-:LOGBOOK:
-CLOSED: [2025-04-03 T:END:
-hu 21:30]
-:LOGBOOK:
-- State "DONE"       from              [2025-04-03 Thu 21:30]
+:PROPERTIES:
+:CLOSED: [2025-04-03 Thu 21:30]
+:note: - State "DONE" from "TODO" [2025-04-03 Thu 21:30]
 :END:
 
 Count the occurrences of each character in a string.
@@ -1987,11 +1823,9 @@ Count the occurrences of each character in a string.
 : [('f', 1), ('y', 1), ('l', 1), ('d', 1), ('r', 1), ('u', 1), (',', 1), ('I', 1), ('a', 1), ('c', 1), ('e', 1), ('g', 2), ('s', 2), ('m', 2), ('t', 2), ('h', 3), ('i', 3), ('o', 3), (' ', 7)]
 
 ** DONE Exercise 71:
-:LOGBOOK:
-CLOSED: [2025-04-07 M:END:
-on 09:08]
-:LOGBOOK:
-- State "DONE"       from              [2025-04-07 Mon 09:08]
+:PROPERTIES:
+:CLOSED: [2025-04-07 Mon 09:08]
+:note: - State "DONE" from "TODO" [2025-04-07 Mon 09:08]
 :END:
 
 Find the longest common prefix among a list of strings.
@@ -2021,11 +1855,9 @@ Find the longest common prefix among a list of strings.
 : fl
 
 ** DONE Exercise 72:
-:LOGBOOK:
-CLOSED: [2025-04-07 M:END:
-on 09:09]
-:LOGBOOK:
-- State "DONE"       from              [2025-04-07 Mon 09:09]
+:PROPERTIES:
+:CLOSED: [2025-04-07 Mon 09:09]
+:note: - State "DONE" from "TODO" [2025-04-07 Mon 09:09]
 :END:
 
 Convert a string to a list of characters.
@@ -2046,11 +1878,9 @@ Convert a string to a list of characters.
 
 
 ** DONE Exercise 73:
-:LOGBOOK:
-CLOSED: [2025-04-07 M:END:
-on 09:09]
-:LOGBOOK:
-- State "DONE"       from              [2025-04-07 Mon 09:09]
+:PROPERTIES:
+:CLOSED: [2025-04-07 Mon 09:09]
+:note: - State "DONE" from "TODO" [2025-04-07 Mon 09:09]
 :END:
 
 Generate a list of random integers.
@@ -2069,11 +1899,9 @@ Generate a list of random integers.
 
 
 ** DONE Exercise 74:
-:LOGBOOK:
-CLOSED: [2025-04-07 M:END:
-on 09:09]
-:LOGBOOK:
-- State "DONE"       from              [2025-04-07 Mon 09:09]
+:PROPERTIES:
+:CLOSED: [2025-04-07 Mon 09:09]
+:note: - State "DONE" from "TODO" [2025-04-07 Mon 09:09]
 :END:
 
 Shuffle a list.
@@ -2090,7 +1918,11 @@ Shuffle a list.
 : [0, 0, 1, 4, 5]
 
 
-** Exercise 75:
+** DONE Exercise 75:
+:PROPERTIES:
+:CLOSED: [2025-04-07 Mon 09:09]
+:note: - State "DONE" from "TODO" [2025-04-07 Mon 09:09]
+:END:
 
 Generate a random password of a given length.
 
@@ -2109,11 +1941,9 @@ Generate a random password of a given length.
 : JWjgzD1C
 
 ** DONE Exercise 76:
-:LOGBOOK:
-CLOSED: [2025-04-07 M:END:
-on 09:52]
-:LOGBOOK:
-- State "DONE"       from              [2025-04-07 Mon 09:52]
+:PROPERTIES:
+:CLOSED: [2025-04-07 Mon 09:52]
+:note: - State "DONE" from "TODO" [2025-04-07 Mon 09:52]
 :END:
 
 Calculate the factorial of a number.
@@ -2139,11 +1969,9 @@ Calculate the factorial of a number.
 
 
 ** DONE Exercise 77:
-:LOGBOOK:
-CLOSED: [2025-04-07 M:END:
-on 09:52]
-:LOGBOOK:
-- State "DONE"       from              [2025-04-07 Mon 09:52]
+:PROPERTIES:
+:CLOSED: [2025-04-07 Mon 09:52]
+:note: - State "DONE" from "TODO" [2025-04-07 Mon 09:52]
 :END:
 
 Calculate the Fibonacci sequence up to a given number of terms.
@@ -2176,11 +2004,9 @@ Calculate the Fibonacci sequence up to a given number of terms.
 
 
 ** DONE Exercise 78:
-:LOGBOOK:
-CLOSED: [2025-04-07 M:END:
-on 09:52]
-:LOGBOOK:
-- State "DONE"       from              [2025-04-07 Mon 09:52]
+:PROPERTIES:
+:CLOSED: [2025-04-07 Mon 09:52]
+:note: - State "DONE" from "TODO" [2025-04-07 Mon 09:52]
 :END:
 
 Check if a number is prime.
@@ -2224,11 +2050,9 @@ Check if a number is prime.
 #+end_example
 
 ** DONE Exercise 79:
-:LOGBOOK:
-CLOSED: [2025-04-07 M:END:
-on 09:52]
-:LOGBOOK:
-- State "DONE"       from              [2025-04-07 Mon 09:52]
+:PROPERTIES:
+:CLOSED: [2025-04-07 Mon 09:52]
+:note: - State "DONE" from "TODO" [2025-04-07 Mon 09:52]
 :END:
 
 Find the greatest common divisor (GCD) of two numbers.
@@ -2254,11 +2078,9 @@ Find the greatest common divisor (GCD) of two numbers.
 
 
 ** DONE Exercise 80:
-:LOGBOOK:
-CLOSED: [2025-04-07 M:END:
-on 09:52]
-:LOGBOOK:
-- State "DONE"       from              [2025-04-07 Mon 09:52]
+:PROPERTIES:
+:CLOSED: [2025-04-07 Mon 09:52]
+:note: - State "DONE" from "TODO" [2025-04-07 Mon 09:52]
 :END:
 
 Find the least common multiple (LCM) of two numbers.
@@ -2283,11 +2105,9 @@ Find the least common multiple (LCM) of two numbers.
 
 
 ** DONE Exercise 81:
-:LOGBOOK:
-CLOSED: [2025-04-08 T:END:
-ue 06:11]
-:LOGBOOK:
-- State "DONE"       from              [2025-04-08 Tue 06:11]
+:PROPERTIES:
+:CLOSED: [2025-04-08 Tue 06:11]
+:note: - State "DONE" from "TODO" [2025-04-08 Tue 06:11]
 :END:
 
 Sort a list of tuples by the second element.
@@ -2306,11 +2126,9 @@ Sort a list of tuples by the second element.
 
 
 ** DONE Exercise 82:
-:LOGBOOK:
-CLOSED: [2025-04-08 T:END:
-ue 06:11]
-:LOGBOOK:
-- State "DONE"       from              [2025-04-08 Tue 06:11]
+:PROPERTIES:
+:CLOSED: [2025-04-08 Tue 06:11]
+:note: - State "DONE" from "TODO" [2025-04-08 Tue 06:11]
 :END:
 
 Find the second largest number in a list.
@@ -2327,11 +2145,9 @@ Find the second largest number in a list.
 
 
 ** DONE Exercise 83:
-:LOGBOOK:
-CLOSED: [2025-04-08 T:END:
-ue 06:11]
-:LOGBOOK:
-- State "DONE"       from              [2025-04-08 Tue 06:11]
+:PROPERTIES:
+:CLOSED: [2025-04-08 Tue 06:11]
+:note: - State "DONE" from "TODO" [2025-04-08 Tue 06:11]
 :END:
 
 Check if a list is a palindrome.
@@ -2354,11 +2170,9 @@ Check if a list is a palindrome.
 : False
 
 ** DONE Exercise 84:
-:LOGBOOK:
-CLOSED: [2025-04-08 T:END:
-ue 06:11]
-:LOGBOOK:
-- State "DONE"       from              [2025-04-08 Tue 06:11]
+:PROPERTIES:
+:CLOSED: [2025-04-08 Tue 06:11]
+:note: - State "DONE" from "TODO" [2025-04-08 Tue 06:11]
 :END:
 
 Find the sum of the digits of a number.
@@ -2382,11 +2196,9 @@ Find the sum of the digits of a number.
 
 
 ** DONE Exercise 85:
-:LOGBOOK:
-CLOSED: [2025-04-08 T:END:
-ue 06:11]
-:LOGBOOK:
-- State "DONE"       from              [2025-04-08 Tue 06:11]
+:PROPERTIES:
+:CLOSED: [2025-04-08 Tue 06:11]
+:note: - State "DONE" from "TODO" [2025-04-08 Tue 06:11]
 :END:
 
 Find the product of the digits of a number.
@@ -2409,11 +2221,9 @@ Find the product of the digits of a number.
 
 
 ** DONE Exercise 86:
-:LOGBOOK:
-CLOSED: [2025-04-08 T:END:
-ue 06:11]
-:LOGBOOK:
-- State "DONE"       from              [2025-04-08 Tue 06:11]
+:PROPERTIES:
+:CLOSED: [2025-04-08 Tue 06:11]
+:note: - State "DONE" from "TODO" [2025-04-08 Tue 06:11]
 :END:
 
 Check if a string is a valid number.
@@ -2434,11 +2244,9 @@ Check if a string is a valid number.
 
 
 ** DONE Exercise 87:
-:LOGBOOK:
-CLOSED: [2025-04-08 T:END:
-ue 06:11]
-:LOGBOOK:
-- State "DONE"       from              [2025-04-08 Tue 06:11]
+:PROPERTIES:
+:CLOSED: [2025-04-08 Tue 06:11]
+:note: - State "DONE" from "TODO" [2025-04-08 Tue 06:11]
 :END:
 
 Find the length of the longest word in a sentence.
@@ -2460,11 +2268,9 @@ Find the length of the longest word in a sentence.
 
 
 ** DONE Exercise 88:
-:LOGBOOK:
-CLOSED: [2025-04-08 T:END:
-ue 06:11]
-:LOGBOOK:
-- State "DONE"       from              [2025-04-08 Tue 06:11]
+:PROPERTIES:
+:CLOSED: [2025-04-08 Tue 06:11]
+:note: - State "DONE" from "TODO" [2025-04-08 Tue 06:11]
 :END:
 
 Convert a list of tuples to a dictionary.
@@ -2482,11 +2288,9 @@ Convert a list of tuples to a dictionary.
 
 
 ** DONE Exercise 89:
-:LOGBOOK:
-CLOSED: [2025-04-08 T:END:
-ue 06:11]
-:LOGBOOK:
-- State "DONE"       from              [2025-04-08 Tue 06:11]
+:PROPERTIES:
+:CLOSED: [2025-04-08 Tue 06:11]
+:note: - State "DONE" from "TODO" [2025-04-08 Tue 06:11]
 :END:
 
 Filter a list of dictionaries based on a key value.
@@ -2504,11 +2308,9 @@ Filter a list of dictionaries based on a key value.
 
 
 ** DONE Exercise 90:
-:LOGBOOK:
-CLOSED: [2025-04-10 T:END:
-hu 18:31]
-:LOGBOOK:
-- State "DONE"       from              [2025-04-10 Thu 18:31]
+:PROPERTIES:
+:CLOSED: [2025-04-10 Thu 18:31]
+:note: - State "DONE" from "TODO" [2025-04-10 Thu 18:31]
 :END:
 
 Sort a list of tuples by multiple keys.
@@ -2530,11 +2332,9 @@ note also that you can get an =IndexError= if the lambda func within sorted is a
 
 
 ** DONE Exercise 91:
-:LOGBOOK:
-CLOSED: [2025-04-10 T:END:
-hu 18:31]
-:LOGBOOK:
-- State "DONE"       from              [2025-04-10 Thu 18:31]
+:PROPERTIES:
+:CLOSED: [2025-04-10 Thu 18:31]
+:note: - State "DONE" from "TODO" [2025-04-10 Thu 18:31]
 :END:
 
 Merge two lists into a dictionary, using one as keys and the other as values.
@@ -2552,11 +2352,9 @@ Merge two lists into a dictionary, using one as keys and the other as values.
 : {'jonah': 14, 'sarah': 21, 'cupcake': 33}
 
 ** DONE Exercise 92:
-:LOGBOOK:
-CLOSED: [2025-04-10 T:END:
-hu 18:31]
-:LOGBOOK:
-- State "DONE"       from              [2025-04-10 Thu 18:31]
+:PROPERTIES:
+:CLOSED: [2025-04-10 Thu 18:31]
+:note: - State "DONE" from "TODO" [2025-04-10 Thu 18:31]
 :END:
 
 Create a dictionary with keys as numbers and values as their squares.
@@ -2574,11 +2372,9 @@ Create a dictionary with keys as numbers and values as their squares.
 
 
 ** DONE Exercise 93:
-:LOGBOOK:
-CLOSED: [2025-04-10 T:END:
-hu 18:31]
-:LOGBOOK:
-- State "DONE"       from              [2025-04-10 Thu 18:31]
+:PROPERTIES:
+:CLOSED: [2025-04-10 Thu 18:31]
+:note: - State "DONE" from "TODO" [2025-04-10 Thu 18:31]
 :END:
 
 Check if two strings are anagrams.
@@ -2600,11 +2396,9 @@ I may have glimpsed at the solution, it's quite clean
 
 
 ** DONE Exercise 94:
-:LOGBOOK:
-CLOSED: [2025-04-10 T:END:
-hu 18:31]
-:LOGBOOK:
-- State "DONE"       from              [2025-04-10 Thu 18:31]
+:PROPERTIES:
+:CLOSED: [2025-04-10 Thu 18:31]
+:note: - State "DONE" from "TODO" [2025-04-10 Thu 18:31]
 :END:
 
 Count the number of vowels in a string.
@@ -2621,11 +2415,9 @@ Count the number of vowels in a string.
 
 
 ** DONE Exercise 95:
-:LOGBOOK:
-CLOSED: [2025-04-10 T:END:
-hu 18:31]
-:LOGBOOK:
-- State "DONE"       from              [2025-04-10 Thu 18:31]
+:PROPERTIES:
+:CLOSED: [2025-04-10 Thu 18:31]
+:note: - State "DONE" from "TODO" [2025-04-10 Thu 18:31]
 :END:
 
 Check if a string contains only digits.
@@ -2648,11 +2440,9 @@ Check if a string contains only digits.
 : False
 
 ** DONE Exercise 96:
-:LOGBOOK:
-CLOSED: [2025-04-10 T:END:
-hu 18:31]
-:LOGBOOK:
-- State "DONE"       from              [2025-04-10 Thu 18:31]
+:PROPERTIES:
+:CLOSED: [2025-04-10 Thu 18:31]
+:note: - State "DONE" from "TODO" [2025-04-10 Thu 18:31]
 :END:
 
 Find the first non-repeated character in a string.
@@ -2674,11 +2464,9 @@ this one is pretty interesting. I've never used the =next= iterator:
 
 
 ** DONE Exercise 97:
-:LOGBOOK:
-CLOSED: [2025-04-10 T:END:
-hu 18:31]
-:LOGBOOK:
-- State "DONE"       from              [2025-04-10 Thu 18:31]
+:PROPERTIES:
+:CLOSED: [2025-04-10 Thu 18:31]
+:note: - State "DONE" from "TODO" [2025-04-10 Thu 18:31]
 :END:
 
 Reverse each word in a sentence.
@@ -2696,11 +2484,9 @@ Reverse each word in a sentence.
 
 
 ** DONE Exercise 98:
-:LOGBOOK:
-CLOSED: [2025-04-10 T:END:
-hu 18:31]
-:LOGBOOK:
-- State "DONE"       from              [2025-04-10 Thu 18:31]
+:PROPERTIES:
+:CLOSED: [2025-04-10 Thu 18:31]
+:note: - State "DONE" from "TODO" [2025-04-10 Thu 18:31]
 :END:
 
 Generate a list of Fibonacci numbers up to a given number.
@@ -2734,11 +2520,9 @@ Generate a list of Fibonacci numbers up to a given number.
 
 
 ** DONE Exercise 99:
-:LOGBOOK:
-CLOSED: [2025-04-10 T:END:
-hu 18:31]
-:LOGBOOK:
-- State "DONE"       from              [2025-04-10 Thu 18:31]
+:PROPERTIES:
+:CLOSED: [2025-04-10 Thu 18:31]
+:note: - State "DONE" from "TODO" [2025-04-10 Thu 18:31]
 :END:
 
 Remove all whitespaces from a string.
@@ -2758,12 +2542,11 @@ Remove all whitespaces from a string.
 : 
 
 
+
 ** DONE Exercise 100:
-:LOGBOOK:
-CLOSED: [2025-04-10 T:END:
-hu 18:31]
-:LOGBOOK:
-- State "DONE"       from              [2025-04-10 Thu 18:31]
+:PROPERTIES:
+:CLOSED: [2025-04-10 Thu 18:31]
+:note: - State "DONE" from "TODO" [2025-04-10 Thu 18:31]
 :END:
 
 Replace all occurrences of a substring in a string.

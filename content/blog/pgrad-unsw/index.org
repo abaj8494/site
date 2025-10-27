@@ -28,7 +28,7 @@ toc = "true"
         }
         
         .bibtex2html-block table {
-          width: calc(100% + 200px) !important;
+          width: calc(100% + 300px) !important;
           max-width: none !important;
           margin-right: -300px !important;
           position: relative;

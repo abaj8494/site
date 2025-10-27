@@ -1,0 +1,14 @@
+#+TODO: TODO DONE CUSTOM
+#+EXCLUDE_TAGS: noexport custom_noexport
+#+OPTIONS: d:nil p:nil
+
+#+OPTIONS: todo:nil
+
+#+PROPERTY: LOG_INTO_DRAWER PROPERTIES
+#+PROPERTY: EXPORT_OPTIONS todo:nil
+
+#+OPTIONS: d:(not "LOGBOOK")
+
+#+OPTIONS: d:nil p:nil
+
+#+OPTIONS: todo:nil

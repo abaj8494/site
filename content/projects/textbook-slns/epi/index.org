@@ -3,10 +3,28 @@ title = "Elements of Programming Interviews (in Java)"
 toc = "true"
 +++
 
+
+** DONE try
+:PROPERTIES:
+:CLOSED: [2025-10-27 Mon 16:03]
+:note: - State "DONE" from "" [2025-10-27 Mon 16:03]
+:END:
+
+
+
 {{< collapse folded="true" >}}
 
+** DONE try
+:PROPERTIES:
+:CLOSED: [2025-10-27 Mon 16:03]
+:note: - State "DONE" from "" [2025-10-27 Mon 16:03]
+:note: - Note taken on [2025-10-27 Mon 16:03] \\
+:note: try
+:END:
 
-** chapter 4: primitive types
+
+
+** TODO chapter 4: primitive types
 
 
 *** theory
