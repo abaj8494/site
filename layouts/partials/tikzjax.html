@@ -3,3 +3,7 @@
   <link rel="stylesheet" type="text/css" href="/js/tikzjax/fonts.css" />
   <script src="/js/tikzjax/tikzjax.js"></script>
 {{ end }}
+{{ if or .Params.tikzajax .Site.Params.tikzajax }}
+  <link rel="stylesheet" type="text/css" href="/code/tikzjax/output/fonts.css" />
+  <script src="/code/tikzjax/output/tikzjax.js"></script>
+{{ end }}  

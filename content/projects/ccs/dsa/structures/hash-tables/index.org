@@ -1,18 +1,29 @@
 +++
 title = "Hash Tables"
+tikzajax = "true"
+toc = "true"
 +++
 
-{{< tikz >}}
-\begin{tikzpicture} [nodes={minimum width=0.8cm, minimum height=0.8cm},
-         row sep=-\pgflinewidth, column sep=-\pgflinewidth]
-   \matrix (hash)[matrix of nodes, nodes={draw, anchor=center}]
-         {
-       Key1 & Value1 \\
-       Key2 & Value2 \\
-       Key3 & Value3 \\
-    };
+{{< tikztwo >}}
+\begin{document}
+\begin{tikzpicture}
+    % Define node style
+    \tikzset{cell/.style={draw, minimum width=1.8cm, minimum height=1.8cm, anchor=north west}}
+    
+    % Row 1
+    \node[cell] (key1) at (0,0) {Key1};
+    \node[cell] (val1) at (1.8,0) {Value1};
+    
+    % Row 2
+    \node[cell] (key2) at (0,-1.8) {Key2};
+    \node[cell] (val2) at (1.8,-1.8) {Value2};
+    
+    % Row 3
+    \node[cell] (key3) at (0,-3.6) {Key3};
+    \node[cell] (val3) at (1.8,-3.6) {Value3};
 \end{tikzpicture}
-{{< /tikz >}}
+\end{document}
+{{< /tikztwo >}}
 
 A =map= maintains insertion order.
 

@@ -1,10 +1,17 @@
 +++
 title = "Heaps"
+tikzajax = "true"
+toc = "true"
 +++
 
 ** structure
 
-{{< tikz >}}
+{{< tikztwo >}}
+\usetikzlibrary{arrows,positioning, calc}
+\tikzstyle{vertex}=[draw,fill=black!15,circle,minimum size=18pt,inner sep=0pt]
+
+
+\begin{document}
 \begin{tikzpicture}[very thick,level/.style={sibling distance=70mm/#1}]
 \node [vertex] (r){$-4$}
   child {
@@ -39,6 +46,6 @@ title = "Heaps"
     }
   };
 \end{tikzpicture}
-{{< /tikz >}}
-
+\end{document}
+{{< /tikztwo >}}
 

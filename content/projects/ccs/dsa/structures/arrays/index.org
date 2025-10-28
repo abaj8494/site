@@ -1,21 +1,27 @@
 +++
 title = "Arrays"
+tikzajax = "true"
 +++
 
-{{< tikz >}}
-\begin{tikzpicture} [nodes in empty cells,
-      nodes={minimum width=0.5cm, minimum height=0.5cm},
-      row sep=-\pgflinewidth, column sep=-\pgflinewidth]
-      border/.style={draw}
-    
-      \matrix(vector)[matrix of nodes,
-          row 1/.style={nodes={draw=none, minimum width=0.3cm}},
-          nodes={draw}]
-      {
-          \tiny{0} & \tiny{1} & \tiny{2} & \tiny{3}\\
-          $a_{0}$ & $a_{1}$ & $a_{2}$ & $a_{3}$\\
-      };
+{{< tikztwo >}}
+\usetikzlibrary{shapes.multipart, calc}
+
+\begin{document}
+\begin{tikzpicture}[xscale=5,yscale=5,transform shape, array/.style={rectangle split,rectangle split horizontal, rectangle split parts=#1,draw, anchor=center}]
+\node[array=5] (a) {
+\nodepart{one}d
+\nodepart{two}
+\nodepart{three}c
+\nodepart{four}c
+\nodepart{five}b
+};
+\node[color=gray, anchor=north, yshift=-0.5] at (a.one)   {\tiny $0$};
+\node[color=gray, anchor=north, yshift=-2] at (a.two)   {\tiny $1$};
+\node[color=gray, anchor=north, yshift=-2] at (a.three) {\tiny $2$};
+\node[color=gray, anchor=north, yshift=-2] at (a.four)  {\tiny $3$};
+\node[color=gray, anchor=north, yshift=-0.5] at (a.five)  {\tiny $4$};
 \end{tikzpicture}
-{{< /tikz >}}
+\end{document}
+{{< /tikztwo >}}
 
 
