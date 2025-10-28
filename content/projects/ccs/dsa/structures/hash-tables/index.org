@@ -1,0 +1,18 @@
++++
+title = "Hash Tables"
++++
+
+{{< tikz >}}
+\begin{tikzpicture} [nodes={minimum width=0.8cm, minimum height=0.8cm},
+         row sep=-\pgflinewidth, column sep=-\pgflinewidth]
+   \matrix (hash)[matrix of nodes, nodes={draw, anchor=center}]
+         {
+       Key1 & Value1 \\
+       Key2 & Value2 \\
+       Key3 & Value3 \\
+    };
+\end{tikzpicture}
+{{< /tikz >}}
+
+A =map= maintains insertion order.
+

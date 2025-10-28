@@ -4,6 +4,8 @@ tags = ["pagerank", "dpc", "collaborative-filtering", "game-theory", "bayesian",
 toc = "true"
 +++
 
+{{< collapse id="adv-algs" folded="false" >}}
+
 The content here-in has been influenced by [[/projects/textbook-slns/networked-life][Mung Chiang's Networked Life]] and Introduction to Algorithms by CLRS.
 
 ** Graph, Network

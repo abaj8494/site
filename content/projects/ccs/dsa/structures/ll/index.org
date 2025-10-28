@@ -1,0 +1,31 @@
++++
+title = "Linked Lists"
++++
+
+{{< tikz >}}
+\begin{tikzpicture}[draw, minimum width=1cm, minimum height=0.5cm]
+    \node[draw] (in) at (-1,2) {};
+    \node[draw] (out) at (1,-2) {};
+    \matrix (queue)[matrix of nodes, nodes={draw, nodes={draw}}, nodes in empty cells]
+    {
+       \\ \\ \\ \\
+    };
+
+    \draw[-latex] (0.25,-1) .. controls (0.25,-1.25) and (1,-1.25) .. (out.north);
+    \draw[-latex] (in.south) .. controls (-1, 1.5) and (-0.25,1.5) .. (-0.25,1);
+\end{tikzpicture}
+{{< /tikz >}}
+
+
+** tradeoffs
+
+non-contiguous use of memory is an advantage in terms of finding more memory for nodes, but is also a disadvantage in terms of *traversal*.
+
+
+** singly linked list
+
+*** time complexity of operations
+
+
+
+** 

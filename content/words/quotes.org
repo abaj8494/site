@@ -22,3 +22,8 @@ Here are quotes that I have collected, but have nowhere else to place purposeful
 #+BEGIN_QUOTE
 "One day I will find the right words and they will be simple"-Jack Kerouac
 #+END_QUOTE
+
+#+BEGIN_QUOTE
+Omnia vincit amor: et nos cedamus amori
+Love conquers all; let us, too, yield to love
+#+END_QUOTE

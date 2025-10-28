@@ -67,3 +67,6 @@
 [submodule "static/code/sydney-train-game"]
 	path = static/code/sydney-train-game
 	url = https://github.com/abaj8494/sydney-train-game
+[submodule "static/code/tikzjax"]
+	path = static/code/tikzjax
+	url = https://github.com/abaj8494/tikzjax

@@ -1,26 +1,9 @@
 +++
 title = "Classical Algorithms"
 categories = ["computer-science"]
-tags = ["problem-solving", "technical-interview", "graph", "search", "sort"]
+tags = ["bit-manipulation", "2-pointer", "prefix-sum", "backtracking", "greedy", "memoisation"]
 layout = "custom-list"
 +++
-
-
-** Searching
-
-** Sorting
-
-** Recursion
-
-** Divide and Conquer
-
-** Greedy Algorithms
-
-** Dynamic Programming
-
-** Linear Programming
-
-** Graph
 
 
 

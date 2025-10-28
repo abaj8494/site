@@ -1,4 +1,5 @@
 +++
 title = "Data Structures & Algorithms"
 tags = ["trees", "graphs", "arrays", "sliding-window", "dp", "lp", "bst", "greedy", "randomised", "sorting", "searching"]
+layout = "custom-list"
 +++

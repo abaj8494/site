@@ -4,26 +4,19 @@ categories = ["computer-science"]
 tags = ["big-oh", "stable", "online", "parallel"]
 +++
 
+** Insertion Sort
 
-** O(n^2) Searches
+** Selection Sort
 
-*** Insertion Sort
+** Quicksort
 
-*** Selection Sort
+worst-case space: O(1)
+worst-case time: O(n^2)
 
-*** etc
+** Merge Sort
 
-** O(n log(n)) Searches
+** Bucket Sort
 
-*** Merge Sort
+** Bubblesort
 
-** O(n) Searches
-
-*** Bucket Sort
-
-
-** To classify
-
-*** Bubblesort
-
-*** Bogosort
+** Bogosort
