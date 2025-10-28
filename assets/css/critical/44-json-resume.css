@@ -73,3 +73,38 @@
 .jr-basics__profile-icon {
   padding: 0 0.75rem;
 }
+
+/* Layout the inner meta block as a 2-row grid */
+.jr__item .jr__item-meta {
+  display: grid;
+  grid-template-columns: 1fr auto; /* name | date */
+  grid-template-areas:
+    "name date"
+    "issuer issuer"; /* issuer full width below */
+  column-gap: 0.75rem;
+  row-gap: 0.25rem;
+  align-items: baseline;
+}
+
+/* Map elements to grid areas */
+.jr-certificates__name {
+  grid-area: name;
+  font-weight: 600;
+  line-height: 1.25;
+}
+.jr-certificates__date {
+  grid-area: date;
+  white-space: nowrap;
+  color: #666;
+}
+.jr-certificates__issuer {
+  grid-area: issuer;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+/* Optional: item spacing/visual separation */
+.jr__item.jr-certificates__item {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid hsl(0 0% 92%);
+}

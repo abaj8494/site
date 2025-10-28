@@ -3,31 +3,20 @@ title = "Elements of Programming Interviews (in Java)"
 toc = "true"
 +++
 
-
-** DONE try
-:PROPERTIES:
-:CLOSED: [2025-10-27 Mon 16:03]
-:note: - State "DONE" from "" [2025-10-27 Mon 16:03]
-:END:
+#+OPTIONS: todo:nil
 
 
-
-{{< collapse folded="true" >}}
-
-** DONE try
-:PROPERTIES:
-:CLOSED: [2025-10-27 Mon 16:03]
-:note: - State "DONE" from "" [2025-10-27 Mon 16:03]
-:note: - Note taken on [2025-10-27 Mon 16:03] \\
-:note: try
-:END:
-
+{{< collapse folded="false" >}}
 
 
 ** TODO chapter 4: primitive types
 
 
-*** theory
+*** DONE theory
+:PROPERTIES:
+:CLOSED: [2025-10-28 Tue 13:27]
+:note: - State "DONE" from "TODO" [2025-10-28 Tue 13:27]
+:END:
 
 #+begin_src java :results output
     public static short countBits(int x) {
@@ -136,5 +125,6 @@ toc = "true"
 
 TODO: random methods nextInt, nextBoolean
 
-**** 4.1 parity
+*** 4.1 parity
 
+*** 

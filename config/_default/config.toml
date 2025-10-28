@@ -83,7 +83,8 @@ lastmod = [':git', ':fileModTime']
       "toml",
       "yaml",
       "docker",
-      "git"
+      "git",
+      "java"
     ]
     plugins = [
       "normalize-whitespace",
