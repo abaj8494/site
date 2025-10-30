@@ -816,7 +816,6 @@ and then the short few that I have found of my own accord:
 1. tries
 2. heaps
 3. priority queue (of which heap seems to be a form of)
-4. 
 
 
 
@@ -930,3 +929,7 @@ and then the short few that I have found of my own accord:
 \end{tikzpicture}
 \end{document}
 {{< /tikztwo >}}
+
+*** representations
+
+adjacency matrix, linked lists
