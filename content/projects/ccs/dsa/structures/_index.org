@@ -12,6 +12,127 @@ I am actually thinking of collapsing all of the nested files / folders that each
 
 The inspiration is my computer vision [[/projects/computer-vision][notes]].
 
+** primitives
+
+*** schematic/s
+
+#+BEGIN_CENTER
+#+CAPTION: ieee 754 floating point representation
+{{< tikztwo >}}
+\usetikzlibrary{shapes.multipart, calc, decorations.pathreplacing}
+
+\begin{document}
+\begin{tikzpicture}[scale=2.2,transform shape,array/.style={rectangle split,rectangle split horizontal, rectangle split parts=#1,draw, anchor=center, rectangle split part fill={blue!20, green!20, blue!20!green!90}}]
+\node[array=3] (a) {
+\nodepart{one}0
+\nodepart{two}01001100
+\nodepart{three}01001111000000001111111
+};
+
+\draw [decoration={brace,raise=2pt},decorate] ($(a.two) + (-0.13,+0.35)$) --  node[above=3pt]{Exponent (8 bit)}($(a.three) + (-0.13,+0.35)$);
+\draw [decoration={brace,mirror,raise=2pt},decorate] ($(a.three) + (-0.13,-0.14)$) --  node[below=3pt]{Mantissa (23 bit)}(a.south east);
+\draw [decoration={brace,mirror,raise=2pt},decorate] ($(a.one) + (-0.13,-0.14)$) --  node[below=3pt]{Sign (1 bit)}($(a.two) + (-0.13,-0.15)$);
+\end{tikzpicture}
+\end{document}
+{{< /tikztwo >}}
+#+END_CENTER
+
+#+BEGIN_CENTER
+#+CAPTION: two's complement for a 4 bit value
+{{< tikztwo >}}
+\usetikzlibrary{shadows}  % Used library shadows of the tikz package
+\begin{document}
+\begin{tikzpicture}[scale=1.5,transform shape,
+     auto,                % some style definitions of the elements follow
+     node distance = 0cm, % used in this picture
+     bin/.style    = {rectangle, fill=white, text=black},
+     dec/.style    = {draw=none, text=black},
+    circ/.style    = {circle, top color=white, bottom color=blue!50,
+    draw=blue, very thin, minimum size=5.25cm, drop shadow={opacity=0.5}}
+  ]
+  % draw a grid in the background
+  \draw[step=1,gray,thin] (-4,-4) grid (4,4);
+  \node[circ] (center) at (0,0)  {};
+  \node[font=\sffamily]   (4bit)   at (0,.5) {4 bit};
+
+  % Simply hand calculated angles for the positions of the bit values
+  %varound the circle
+
+  \foreach \angle / \bits in {%
+      0/0000, 22.5/0001, 45/0010, 67.5/0011, 90/0100, 112.5/0101,
+    135/0110, 157.5/0111, 180/1000, 202.5/1001, 225/1010, 247.5/1011,
+    270/1100, 292.5/1101, 315/1110, 337.5/1111}
+    \draw (\angle:3.25cm) node [bin, font=\ttfamily] {\bits};
+
+  \draw[fill=red, opacity=.25]
+    (-4,-4) -- (-4cm,.8cm) -- (4cm,-0.7cm) -- (4cm,-4cm) -- cycle;
+
+  % Simply hand calculated angles for the positions of
+  % the decimal values around the circle
+
+  \foreach \angle / \dez in {%
+    0/0, 22.5/1, 45/2, 67.5/3, 90/4, 112.5/5, 135/6, 157.5/7, 180/-8,
+    202.5/-7, 225/-6, 247.5/-5, 270/-4, 292.5/-3, 315/-2, 337.5/-1}
+    \draw (\angle:2.25cm) node [dec, font=\sffamily] {\dez};
+
+  \foreach \angle / \bits in {%
+      0/0000, 22.5/0001, 45/0010, 67.5/0011, 90/0100, 112.5/0101,
+    135/0110, 157.5/0111, 180/1000, 202.5/1001, 225/1010, 247.5/1011,
+    270/1100, 292.5/1101, 315/1110, 337.5/1111}
+    \draw (\angle:3.25cm) node [bin, fill=none, font=\ttfamily] {\bits};
+\end{tikzpicture}
+\end{document}
+{{< /tikztwo >}}
+#+END_CENTER
+
+*** python
+
+|------------+-----------------|
+| type       | example         |
+|------------+-----------------|
+| =int=      | 32              |
+| =float=    | 3.2             |
+| =complex=  | (3+2j)          |
+| =bool=     | False           |
+| =str=      | "Hello World!"  |
+| =bytes=    | b'\x00\x00\x00' |
+| =NoneType= | None            |
+|------------+-----------------|
+
+
+*** java
+
+|-----------+--------------------------------------------+----------------------------------+------------------------|
+| type      |                                size (bits) | description                      | usage                  |
+|-----------+--------------------------------------------+----------------------------------+------------------------|
+| =byte=    |                                          8 | -128 to 127                      | =byte b = 100;=        |
+| =short=   |                                         16 | -32,768 to 32,767                | =short s = 1000;=      |
+| =int=     |                                         32 | -$2^{31}$ to $2^{31}-1$          | =int i = 12345;=       |
+| =long=    |                                         64 | -$2^{63}$ to $2^{63}-1$          | =long l = 123456789L;= |
+| =float=   |                                         32 | single-precision floating number | =float f = 3.14f;=     |
+| =double=  |                                         64 | double-precision floating number | =double d = 3.14159;=  |
+| =char=    |                                         16 | single 16-bit unicode character  | =char c = 'A';=        |
+| =boolean= | 1bit or 1byte{{< mnote "JVM dependent" >}} | =true= or =false=                | =boolan flag = true;=  |
+|-----------+--------------------------------------------+----------------------------------+------------------------|
+
+
+*** c
+
+|---------------+-------------------------------+--------------------------------------------+------------------------------------------|
+| type          | size (bits)                   | description                                | usage                                    |
+|---------------+-------------------------------+--------------------------------------------+------------------------------------------|
+| =char=        | typically 8                   | character type (smallest addressable unit) | =char c = 'A';=                          |
+| =short=       | typically 16                  | short integer                              | =short s = 1000;=                        |
+| =int=         | typically 32                  | integer number                             | =int i = 42;=                            |
+| =long=        | typically 32 or 64            | long integer                               | =long l = 123456L;=                      |
+| =long long=   | typically $\geq$64            | extended-precision integer                 | =long long ll = 123456789LL;=            |
+| =float=       | typically 32                  | single-precision floating number           | =float f = 3.14f;=                       |
+| =double=      | typically 64                  | double-precision floating number           | =double d = 3.14159;=                    |
+| =long double= | $\geq$80 (platform-dependent) | extended-precision floating number         | =long double ld = 3.141592653589793L;=   |
+| =_Bool=       | typically 8                   | boolean value (true or false, since C99)   | =_Bool flag = 1;= or =bool flag = true;= |
+| =void=        | —                             | represents “no value” or “no type”         | =void functionName();=                   |
+|---------------+-------------------------------+--------------------------------------------+------------------------------------------|
+
 ** arrays
 
 *** schematic
@@ -234,11 +355,28 @@ with respect to the asymptotics of operations, the doubly linked list provides n
 non-contiguous use of memory is an advantage in terms of finding more memory for nodes, but is also a disadvantage in terms of *traversal*.
 
 
-** strings
+*** strings
+:PROPERTIES:
+:CUSTOM_ID: strings
+:END:
+
+strings really are just /special cases/ of arrays. but because their operations vary so wildly from the usual array operations:
+- concatenation
+- joining
+- comparison
+- splitting
+- searching for substrings
+
+it makes sense for this topic to have its own little nook.
+
+this page is not about algorithms, and so there is nothing really novel to add here at the moment, but a number of clever algorithms will relate back to this heading.
 
 ** stacks & queues
 
 *** stack
+:PROPERTIES:
+:CUSTOM_ID: stack
+:END:
 
 **** schematic
 {{< tikztwo >}}
@@ -277,7 +415,10 @@ as expected:
 - the advantage comes from *inserting* into the stack which always takes constant time
 - and *deletion* costs constant time. this is the use-case for this data structure anyhow
 
+
 *** queue
+
+**** schematic
 
 {{< tikztwo >}}
 \usetikzlibrary{shapes.multipart}
@@ -299,6 +440,22 @@ as expected:
 \end{document}
 {{< /tikztwo >}}
 
+
+**** time complexity
+
+|---------+------------------+------------------+------------------+------------------|
+|         | Access           | Search           | Insertion        | Deletion         |
+|---------+------------------+------------------+------------------+------------------|
+| Average | $\mathcal{O}(n)$ | $\mathcal{O}(n)$ | $\mathcal{O}(1)$ | $\mathcal{O}(1)$ |
+| Worst   | .                | .                | .                | .                |
+|---------+------------------+------------------+------------------+------------------|
+
+this is the same as the [[#stack][stack]]:
+- underlying implementation details would be identical, so *access* behaviour wouldn't change
+- neither would *search* functionality
+- only the location of *insertion*
+- and location of *deletion* would change
+
 **** double ended queue (deque)
 
 this is an interesting data structure. at first I thought it was short for /dequeue/, but it is not. instead this structure is pronounced "deck", and is a list with 2 pointers:
@@ -316,8 +473,6 @@ this is an interesting data structure. at first I thought it was short for /dequ
 ]
 
 % Title
-\node[font=\Large\bfseries] at (3, 2.5) {Double-Ended Queue (Deque)};
-
 % Draw the deque elements
 \node[box] (n1) at (0,0) {12};
 \node[box, right=of n1] (n2) {7};
@@ -339,8 +494,8 @@ this is an interesting data structure. at first I thought it was short for /dequ
 
 % Bidirectional arrow showing deque concept
 \draw[{Stealth[length=3mm]}-{Stealth[length=3mm]}, thick, green!60!black] 
-    ([yshift=-2.5cm]n1.south) -- ([yshift=-2.5cm]n5.south) 
-    node[midway, below=8mm, font=\small\bfseries, green!60!black] {Operations allowed at both ends};
+    ([yshift=-3.0cm]n1.south) -- ([yshift=-3.0cm]n5.south) 
+    node[midway, below=5mm, font=\small\bfseries, green!60!black] {Operations allowed at both ends};
 
 \end{tikzpicture}
 \end{document}
@@ -348,9 +503,379 @@ this is an interesting data structure. at first I thought it was short for /dequ
 
 
 ** hash tables
+A =map= maintains insertion order.
+
+*** schematic
+
+{{< tikztwo >}}
+\begin{document}
+\begin{tikzpicture}
+    % Define node style
+    \tikzset{cell/.style={draw, minimum width=1.8cm, minimum height=1.8cm, anchor=north west}}
+    
+    % Row 1
+    \node[cell] (key1) at (0,0) {Key1};
+    \node[cell] (val1) at (1.8,0) {Value1};
+    
+    % Row 2
+    \node[cell] (key2) at (0,-1.8) {Key2};
+    \node[cell] (val2) at (1.8,-1.8) {Value2};
+    
+    % Row 3
+    \node[cell] (key3) at (0,-3.6) {Key3};
+    \node[cell] (val3) at (1.8,-3.6) {Value3};
+\end{tikzpicture}
+\end{document}
+{{< /tikztwo >}}
+
+
+
+
+
+*** time complexity
+
+
+|---------+--------+------------------+------------------+------------------|
+|         | Access | Search           | Insertion        | Deletion         |
+|---------+--------+------------------+------------------+------------------|
+| Average | n/a    | $\mathcal{O}(1)$ | $\mathcal{O}(1)$ | $\mathcal{O}(1)$ |
+| Worst   | .      | $\mathcal{O}(n)$ | $\mathcal{O}(n)$ | $\mathcal{O}(n)$ |
+|---------+--------+------------------+------------------+------------------|
+
+obviously the time-complexity depends on the data structure and the way in which it is implemented from an atomic operations point of view.
+
+having said this, hash-tables are sort of a mystery to me at the moment. they have varying implementations and even then I need to study each to understand what the associated compute would look like for each method.
+
+for now I have just copied down what was given at [[bigocheatsheet.com]]
 
 ** trees
 
+*** schematic
+
+{{< tikztwo >}}
+\begin{document}
+\begin{tikzpicture}[scale=2,transform shape,level distance=1.3cm,
+   level 1/.style={sibling distance=3cm, level distance=1cm},
+   level 2/.style={sibling distance=1.5cm, level distance=0.8cm}]
+\node {Root}
+   child {node {Child}
+   child {node {Node}}
+   child {node {Node}}
+}
+child {node {Level 2}
+   child {node {Level 3}}
+   child {node {Level 3}}
+};
+\end{tikzpicture}
+\end{document}
+{{< /tikztwo >}}
+
+
+*** Binary Search Tree
+
+**** schematic
+
+{{< tikztwo >}}
+\usetikzlibrary{arrows,positioning, calc}
+\tikzstyle{vertex}=[draw,fill=black!15,circle,minimum size=20pt,inner sep=0pt]
+
+\begin{document}
+\begin{tikzpicture}[scale=2,transform shape,very thick,level/.style={sibling distance=60mm/#1}]
+\node [vertex] (r){$17$}
+  child {
+    node [vertex] (a) {$19$}
+    child {
+      node [vertex] {$20$}
+      child {
+        node [vertex] {$-3$}
+        child {node [vertex] {$17$}}
+        child {node [vertex] {$5$}}
+      }
+      child {node [vertex] {$6$}}
+    }
+    child {
+      node [vertex] {$3$}
+      child {node [vertex] {$7$}}
+      child {node [vertex] {$2$}}
+    }
+  }
+  child {
+    node [vertex] {$9$}
+    child {
+      node [vertex] {$8$}
+      child {node [vertex] {$2$}}
+    }
+    child {
+      node [vertex] {$11$}
+      child {node [vertex] {$17$}}
+      child {node [vertex] {$-4$}}
+    }
+  };
+\end{tikzpicture}
+\end{document}
+{{< /tikztwo >}}
+
+*** Red Black Trees
+
+**** schematic
+
+{{< tikztwo >}}
+\usetikzlibrary{arrows}
+\tikzset{
+  treenode/.style = {align=center, inner sep=0pt, text centered,
+    font=\sffamily},
+  arn_n/.style = {treenode, circle, white, font=\sffamily\bfseries, draw=black,
+    fill=black, text width=1.5em},% arbre rouge noir, noeud noir
+  arn_r/.style = {treenode, circle, red, draw=red, 
+    text width=1.5em, very thick},% arbre rouge noir, noeud rouge
+  arn_x/.style = {treenode, rectangle, draw=black,
+    minimum width=0.5em, minimum height=0.5em}% arbre rouge noir, nil
+}
+
+\begin{document}
+\begin{tikzpicture}[scale=2,transform shape,->,>=stealth',level/.style={sibling distance = 5cm/#1,
+  level distance = 1.5cm}] 
+\node [arn_n] {33}
+    child{ node [arn_r] {15} 
+            child{ node [arn_n] {10} 
+            	child{ node [arn_r] {5} edge from parent node[above left]
+                         {$x$}} %for a named pointer
+							child{ node [arn_x] {}}
+            }
+            child{ node [arn_n] {20}
+							child{ node [arn_r] {18}}
+							child{ node [arn_x] {}}
+            }                            
+    }
+    child{ node [arn_r] {47}
+            child{ node [arn_n] {38} 
+							child{ node [arn_r] {36}}
+							child{ node [arn_r] {39}}
+            }
+            child{ node [arn_n] {51}
+							child{ node [arn_r] {49}}
+							child{ node [arn_x] {}}
+            }
+		}
+; 
+\end{tikzpicture}
+\end{document}
+{{< /tikztwo >}}
+
+#+CAPTION: another red black tree
+{{< tikztwo >}}
+\usetikzlibrary{trees,arrows,positioning, calc}
+\tikzstyle{redVertex}  =[draw,fill=red,     circle,minimum size=18pt,inner sep=0pt, text=white]
+\tikzstyle{blackVertex}=[draw,fill=black,   circle,minimum size=18pt,inner sep=0pt, text=white]
+\tikzstyle{nil}        =[draw,fill=black,rectangle,minimum size=18pt,inner sep=0pt, text=white]
+
+\begin{document}
+\begin{tikzpicture}[scale=1.5,transform shape,font=\sffamily,very thick,level/.style={sibling distance=80mm/#1}]
+\node [blackVertex] (r){8}
+  child {
+    node [blackVertex] {3}
+    child {
+      node [redVertex] {2}
+      child {
+        node [blackVertex] {-3}
+        child {
+            node [redVertex] {-4}
+            child {node [nil] {NIL}}
+            child {node [nil] {NIL}}
+        }
+      }
+      child {
+        node [blackVertex] {2}
+        child {node [nil] {NIL}}
+        child {node [nil] {NIL}}
+      }
+    }
+    child {
+      node [blackVertex] {6}
+      child {
+        node [redVertex] {5}
+        child {node [nil] {NIL}}
+        child {node [nil] {NIL}}
+      }
+      child {
+        node [redVertex] {7}
+        child {node [nil] {NIL}}
+        child {node [nil] {NIL}}
+      }
+    }
+  }
+  child {
+    node [blackVertex] {17}
+    child {
+      node [blackVertex] {9}
+      child {
+        node [redVertex] {11}
+        child {node [nil] {NIL}}
+        child {node [nil] {NIL}}
+      }
+    }
+    child {
+      node [redVertex] {19}
+      child {
+        node [blackVertex] {17}
+        child {
+          node [redVertex] {17}
+          child {node [nil] {NIL}}
+          child {node [nil] {NIL}}
+        }
+      }
+      child {
+        node [blackVertex] {20}
+        child {node [nil] {NIL}}
+        child {node [nil] {NIL}}
+      }
+    }
+  };
+\end{tikzpicture}
+\end{document}
+{{< /tikztwo >}}
+
+
+
+#+CAPTION: small rb tree
+{{< tikztwo >}}
+\usetikzlibrary{trees,arrows,positioning, calc}
+\tikzstyle{redVertex}  =[draw,fill=red,     circle,minimum size=18pt,inner sep=0pt, text=white]
+\tikzstyle{blackVertex}=[draw,fill=black,   circle,minimum size=18pt,inner sep=0pt, text=white]
+\tikzstyle{nil}        =[draw,fill=black,rectangle,minimum size=18pt,inner sep=0pt, text=white]
+
+\begin{document}
+\begin{tikzpicture}[scale=2,transform shape,font=\sffamily,very thick,level/.style={sibling distance=80mm/#1}]
+\node [blackVertex] (r){2}
+      child {
+        node [blackVertex] {1}
+        child {node [nil] {NIL}}
+        child {node [nil] {NIL}}
+      }
+      child {
+        node [blackVertex] {3}
+        child {node [nil] {NIL}}
+        child {node [nil] {NIL}}
+      };
+\end{tikzpicture}
+\end{document}
+{{< /tikztwo >}}
+
+
+
+*** AVL Trees
+
+Is a binary search tree that is /height balanced/; for each node $x$, the heights of the lef and right subtrees of $x$ differ by at most 1.
+
+To implement such a tree, maintain an extra attribute $h$ in each node such that $x.h$ is the height of node $x$.
+
+
 ** heaps
 
+*** schematic
+
+{{< tikztwo >}}
+\usetikzlibrary{arrows,positioning, calc}
+\tikzstyle{vertex}=[draw,fill=black!15,circle,minimum size=18pt,inner sep=0pt]
+
+
+\begin{document}
+\begin{tikzpicture}[scale=2,transform shape,very thick,level/.style={sibling distance=70mm/#1}]
+\node [vertex] (r){$-4$}
+  child {
+    node [vertex] (a) {$2$}
+    child {
+      node [vertex] {$5$}
+      child {
+        node [vertex] {$6$}
+        child {node [vertex] {$20$}}
+      }
+      child {
+        node [vertex] {$9$}
+      }
+    }
+    child {
+      node [vertex] {$3$}
+      child {node [vertex] {$19$}}
+      child {node [vertex] {$7$}}
+    }
+  }
+  child {
+    node [vertex] {$-3$}
+    child {
+      node [vertex] {$8$}
+      child {node [vertex] {$17$}}
+      child {node [vertex] {$17$}}
+    }
+    child {
+      node [vertex] {$2$}
+      child {node [vertex] {$11$}}
+      child {node [vertex] {$17$}}
+    }
+  };
+\end{tikzpicture}
+\end{document}
+{{< /tikztwo >}}
+
+
+
 ** graphs
+
+*** schematic
+
+{{< tikztwo >}}
+\begin{document}
+\begin{tikzpicture}[scale=2,transform shape]
+     \tikzstyle{node_style} = [circle,draw=black]
+     \tikzstyle{edge_style} = [draw=black]
+     \node[node_style] (v1) at (-2,2) {2};
+     \node[node_style] (v2) at (2,2) {3};
+     \node[node_style] (v3) at (4,0) {6};
+     \node[node_style] (v4) at (2,-2) {4};
+     \node[node_style] (v5) at (-2,-2) {5};
+     \node[node_style] (v6) at (-4,0) {1};
+     \draw[edge_style]  (v1) edge (v2);
+     \draw[edge_style]  (v2) edge (v3);
+     \draw[edge_style]  (v3) edge (v4);
+     \draw[edge_style]  (v4) edge (v5);
+     \draw[edge_style]  (v5) edge (v6);
+     \draw[edge_style]  (v6) edge (v1);
+     \draw[edge_style]  (v5) edge (v1);
+     \draw[edge_style]  (v5) edge (v2);
+     \draw[edge_style]  (v4) edge (v2);
+\end{tikzpicture}
+\end{document}
+{{< /tikztwo >}}
+
+
+{{< tikztwo >}}
+\usetikzlibrary{arrows,positioning, calc}
+\tikzstyle{vertex}=[draw,fill=black!15,circle,minimum size=20pt,inner sep=0pt]
+\tikzstyle{selected edge} = [draw,line width=5pt,-,red!50]
+
+\begin{document}
+\pgfdeclarelayer{background}
+\pgfsetlayers{background,main}
+
+\begin{tikzpicture}  [scale=2,transform shape]
+  \node (a)[vertex] at (0,2) {a};
+  \node (b)[vertex] at (1,1) {b};
+  \node (c)[vertex] at (3,2) {c};
+  \node (d)[vertex] at (4,1) {d};
+  \node (e)[vertex] at (2,0) {e};
+  \node (f)[vertex] at (1,3) {f};
+  \node (g)[vertex] at (5,3) {g};
+  \node (h)[vertex] at (0,1) {h};
+
+  \foreach \from/\to in {a/f,f/g,h/b,b/c,c/d,d/e,e/b,f/c}
+    \draw (\from) -- (\to);
+
+  \begin{pgfonlayer}{background}
+    \draw (b.center) edge[selected edge] (c.center);
+    \draw (c.center) edge[selected edge] (d.center);
+    \draw (d.center) edge[selected edge] (e.center);
+    \draw (e.center) edge[selected edge] (b.center);
+  \end{pgfonlayer}
+\end{tikzpicture}
+\end{document}
+{{< /tikztwo >}}

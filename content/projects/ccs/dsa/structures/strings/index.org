@@ -1,6 +1,0 @@
-+++
-title = "Strings"
-+++
-
-cache i guess
-push!

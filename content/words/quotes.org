@@ -27,3 +27,37 @@ Here are quotes that I have collected, but have nowhere else to place purposeful
 Omnia vincit amor: et nos cedamus amori
 Love conquers all; let us, too, yield to love
 #+END_QUOTE
+
+#+BEGIN_QUOTE
+It's not that I'm so smart, it's just that I stay with problems longer.
+--- Albert Einstein
+#+END_QUOTE
+
+
+#+BEGIN_QUOTE
+Before everything else, getting ready is the secret of success.
+---H. Ford
+#+END_QUOTE
+
+#+BEGIN_QUOTE
+The essence of strategy is choosing what not to do.
+--- M.E. Porter
+#+END_QUOTE
+
+#+BEGIN_QUOTE
+If you know both yourself and your enemy, you can win numerous battles without jeopardy.
+---Sun Tzu
+#+END_QUOTE
+
+#+BEGIN_QUOTE
+Representation is the essence of programming.
+--- F.P. Brooks, 1975
+#+END_QUOTE
+
+#+BEGIN_QUOTE
+The machine can alter the scanned symbol and its behavior is in part determined by that symbol, but the symbols on the tape elsewhere do not affect the behavior of the machine.
+---"Intelligent Machinery,"
+A.M.Turing, 1948
+#+END_QUOTE
+
+

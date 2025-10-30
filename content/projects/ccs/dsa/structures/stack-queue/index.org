@@ -1,6 +1,0 @@
-+++
-title = "Stacks and Queues"
-tikzajax = "true"
-toc = "true"
-+++
-
