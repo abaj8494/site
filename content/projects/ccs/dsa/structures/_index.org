@@ -465,7 +465,7 @@ this is an interesting data structure. at first I thought it was short for /dequ
 \usetikzlibrary{arrows.meta, positioning, shapes.geometric}
 
 \begin{document}
-\begin{tikzpicture}[
+\begin{tikzpicture}[scale=2,transform shape,
     node distance=0mm,
     box/.style={rectangle, draw=blue!60, fill=blue!10, thick, minimum width=1.2cm, minimum height=1cm},
     arrow/.style={-{Stealth[length=3mm]}, thick, red!70},
@@ -615,6 +615,22 @@ child {node {Level 2}
 \end{document}
 {{< /tikztwo >}}
 
+
+**** time complexity
+
+|---------+------------------------+------------------------+------------------------+------------------------|
+|         | Access                 | Search                 | Insertion              | Deletion               |
+|---------+------------------------+------------------------+------------------------+------------------------|
+| Average | $\mathcal{O}(\log(n))$ | $\mathcal{O}(\log(n))$ | $\mathcal{O}(\log(n))$ | $\mathcal{O}(\log(n))$ |
+| Worst   | $\mathcal{O}(n)$       | $\mathcal{O}(n)$       | $\mathcal{O}(n)$       | $\mathcal{O}(n)$       |
+|---------+------------------------+------------------------+------------------------+------------------------|
+
+naturally, this table warrants explanation. though currently I have none.
+
+I can reconcile average complexity of search to take log n steps, but I wonder why worst case is not the same.
+
+I wonder if insertion causes a total rebalancing to occur. is a Binary Search Tree even balanced?
+
 *** Red Black Trees
 
 **** schematic
@@ -763,11 +779,46 @@ child {node {Level 2}
 
 
 
+**** time complexity
+
+|---------+------------------------+------------------------+------------------------+------------------------|
+|         | Access                 | Search                 | Insertion              | Deletion               |
+|---------+------------------------+------------------------+------------------------+------------------------|
+| Average | $\mathcal{O}(\log(n))$ | $\mathcal{O}(\log(n))$ | $\mathcal{O}(\log(n))$ | $\mathcal{O}(\log(n))$ |
+| Worst   | $\mathcal{O}(\log(n))$ | $\mathcal{O}(\log(n))$ | $\mathcal{O}(\log(n))$ | $\mathcal{O}(\log(n))$ |
+|---------+------------------------+------------------------+------------------------+------------------------|
+
+I've just copied these down from [[bigocheatsheet.com]] blindly to close that tab and be done with it for now.
+
 *** AVL Trees
 
 Is a binary search tree that is /height balanced/; for each node $x$, the heights of the lef and right subtrees of $x$ differ by at most 1.
 
 To implement such a tree, maintain an extra attribute $h$ in each node such that $x.h$ is the height of node $x$.
+
+|---------+------------------------+------------------------+------------------------+------------------------|
+|         | Access                 | Search                 | Insertion              | Deletion               |
+|---------+------------------------+------------------------+------------------------+------------------------|
+| Average | $\mathcal{O}(\log(n))$ | $\mathcal{O}(\log(n))$ | $\mathcal{O}(\log(n))$ | $\mathcal{O}(\log(n))$ |
+| Worst   | $\mathcal{O}(\log(n))$ | $\mathcal{O}(\log(n))$ | $\mathcal{O}(\log(n))$ | $\mathcal{O}(\log(n))$ |
+|---------+------------------------+------------------------+------------------------+------------------------|
+
+same thing as above, here. I've just copied the time-complexities down without understanding them.
+
+I also worry about the additional 5 'data-structures':
+1. skip lists
+2. cartesian tree
+3. b-tree (this one makes sense)
+4. splay tree
+5. kd tree
+
+and then the short few that I have found of my own accord:
+1. tries
+2. heaps
+3. priority queue (of which heap seems to be a form of)
+4. 
+
+
 
 
 ** heaps
