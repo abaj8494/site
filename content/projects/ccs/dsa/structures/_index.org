@@ -1,6 +1,356 @@
 +++
 title = "Data Structures"
 tags = ["primitive", "arrays", "strings", "linked-lists", "stacks", "queues", "hash-tables", "trees", "heaps", "graphs"]
-layout = "custom-list"
+tikzajax = "true"
+toc = "true"
+math = "true"
 +++
 
+{{< collapse id="data-structures" folded="false" >}}
+
+I am actually thinking of collapsing all of the nested files / folders that each represent a data structure into this one huge document. This way I can see everything all at once laid out in front of me and make use of the **toggling** feature of this site along with the floating /table of contents/ and margin-notes!
+
+The inspiration is my computer vision [[/projects/computer-vision][notes]].
+
+** arrays
+
+*** schematic
+
+{{< tikztwo >}}
+\usetikzlibrary{shapes.multipart, calc}
+
+\begin{document}
+\begin{tikzpicture}[xscale=5,yscale=5,transform shape, array/.style={rectangle split,rectangle split horizontal, rectangle split parts=#1,draw, anchor=center}]
+\node[array=5] (a) {
+\nodepart{one}d
+\nodepart{two}
+\nodepart{three}c
+\nodepart{four}c
+\nodepart{five}b
+};
+\node[color=gray, anchor=north, yshift=-0.5] at (a.one)   {\tiny $0$};
+\node[color=gray, anchor=north, yshift=-2] at (a.two)   {\tiny $1$};
+\node[color=gray, anchor=north, yshift=-2] at (a.three) {\tiny $2$};
+\node[color=gray, anchor=north, yshift=-2] at (a.four)  {\tiny $3$};
+\node[color=gray, anchor=north, yshift=-0.5] at (a.five)  {\tiny $4$};
+\end{tikzpicture}
+\end{document}
+{{< /tikztwo >}}
+
+*** time complexity
+
+|---------+------------------+------------------+------------------+------------------|
+|         | Access           | Search           | Insertion        | Deletion         |
+|---------+------------------+------------------+------------------+------------------|
+| Average | $\mathcal{O}(1)$ | $\mathcal{O}(n)$ | $\mathcal{O}(n)$ | $\mathcal{O}(n)$ |
+| Worst   | .                | .                | .                | .                |
+|---------+------------------+------------------+------------------+------------------|
+
+explanations are warranted for these. **access** will be thought of as the time complexity required to sequentially access the $k$th item in the data-structure.
+
+to "access" the $k$th item we can index into the array: constant time
+
+*searching* for a particular key is not something we can do intelligently in this contiguous block of memory, so we must check all $n$ items.
+
+insertion would /on average/ take $\dfrac n2$ time, but because we are working with asymptotics, the constant disappears. the worst case is insertion at the front of the array with every subsequent item having to be moved into the $k+1$th position.
+
+deletion follows a similiar argument with worst-case being deletion of the first element, and the average case decaying to the worst-case bounds asymptotically.
+
+
+*** space complexity
+
+this is less of a question when you have a data structure, as opposed to an [[/projects/ccs/dsa/classical][algorithm]], because with $n$ elements you will have to store all of them uniquely. as such for arrays and all data structures on this page {{< mnote "except skip lists" >}} we have $\mathcal{O}(n)$ space complexity.
+
+
+*** operations
+
+naturally, whilst we are considering *access*, *search*, *insertion* and *deletion* operations on this page, an *array* is represented in /Python/ as a list. these lists have the following methods:
+
+| method                 | explanation                                      |
+|------------------------+--------------------------------------------------|
+| =append()=             | adds an element to the /end/ of the list         |
+| =clear()=              | removes all the elements from the list           |
+| =copy()=               | returns a copy of the list                       |
+| =count(arg)=           | returns the number of elements with value of arg |
+| =extend(another_list)= | add the elements of another list to this list    |
+| =index(arg)=           | return index of /first/ element with arg value   |
+| =insert(arg)=          | add element at arg position                      |
+| =pop(arg)=             | remove element at arg position                   |
+| =remove()=             | remove first item with specified value           |
+| =reverse()=            | reverses the order of the list                   |
+| =sort()=               | sorts the list in place. mutates array           |
+
+** linked lists
+
+*** singly linked list
+:PROPERTIES:
+:CUSTOM_ID: singly-ll
+:END:
+
+**** schematic
+{{< tikztwo >}}
+\usetikzlibrary{chains,shapes}
+
+\newcommand{\chainlabel}[2]{\path [<-, draw, shorten >=10pt] (#1) |- node [at end] {#2} ++(-1,1);}
+
+\begin{document}
+\begin{tikzpicture}[scale=2,transform shape,every node/.style={rectangle split, rectangle split parts=2, rectangle split horizontal,minimum height=14pt}, node distance=1em, start chain,
+ every join/.style={->, shorten <=-4.5pt}]
+
+ \node[draw, on chain, join] { 1  };
+ \node[draw, on chain, join] { 7  };
+ \node[draw, on chain, join] { 5  };
+ \node[draw, on chain, join] { 2  };
+ \node[draw, on chain, join] {};
+\chainlabel{chain-1.one north}{head};
+\end{tikzpicture}  
+
+\end{document}
+{{< /tikztwo >}}
+
+
+{{< tikztwo >}}
+\usepackage{tikz}
+\usetikzlibrary{calc,shapes.multipart,chains,arrows}
+
+\tikzset{
+    squarecross/.style={
+        draw, rectangle,minimum size=18pt, fill=orange!80,
+        inner sep=0pt, text=black,
+        path picture = {
+            \draw[black]
+            (path picture bounding box.north west) --
+            (path picture bounding box.south east)
+            (path picture bounding box.south west) --
+            (path picture bounding box.north east);
+        }
+    }
+}
+
+\begin{document}
+\begin{tikzpicture}[scale=2,transform shape,
+        list/.style={
+            very thick, rectangle split,
+            rectangle split parts=2, draw,
+            rectangle split horizontal, minimum size=18pt,
+            inner sep=4pt, text=black,
+            rectangle split part fill={red!20, blue!20}
+        },
+        ->, start chain, very thick
+      ]
+
+  \node[list,on chain] (A) {12};
+  \node[list,on chain] (B) {99};
+  \node[list,on chain] (C) {37};
+  \node[squarecross]   (D) [right=of C] {};
+  \draw[*->] let \p1 = (A.two), \p2 = (A.center) in (\x1,\y2) -- (B);
+  \draw[*->] let \p1 = (B.two), \p2 = (B.center) in (\x1,\y2) -- (C);
+  \draw[*->] let \p1 = (C.two), \p2 = (C.center) in (\x1,\y2) -- (D);
+\end{tikzpicture}
+\end{document}
+{{< /tikztwo >}}
+
+
+**** time complexity
+
+|---------+------------------+------------------+------------------+------------------|
+|         | Access           | Search           | Insertion        | Deletion         |
+|---------+------------------+------------------+------------------+------------------|
+| Average | $\mathcal{O}(n)$ | $\mathcal{O}(n)$ | $\mathcal{O}(1)$ | $\mathcal{O}(1)$ |
+| Worst   | .                | .                | .                | .                |
+|---------+------------------+------------------+------------------+------------------|
+
+once again, explanations are necessary:
+- to access a $k$th item, we need to start at the =head= and make our way to this item; hence $\mathcal{O}(n)$ for *access*
+- same for *search*; even if you know which item you want, there is no way of knowing where it is. you have to traverse from the =head=.
+- the very act of *insertion* will take constant time. if you wish to find a "middle" item and then insert there, the complexity would be $\mathcal{O}(n)$, but here we are decoupling the operations
+- same as above. simply freeing memory / *deleting* a node will take constant time.
+
+*** doubly linked lists
+
+**** schematic
+
+{{< tikztwo >}}
+
+\usetikzlibrary{calc,shapes.multipart,chains,arrows,positioning}
+
+\tikzset{
+    squarecross/.style={
+        draw, rectangle,minimum size=18pt, fill=orange!80,
+        inner sep=0pt, text=black,
+        path picture = {
+            \draw[black]
+            (path picture bounding box.north west) --
+            (path picture bounding box.south east)
+            (path picture bounding box.south west) --
+            (path picture bounding box.north east);
+        }
+    }
+}
+
+\begin{document}
+\begin{tikzpicture}[scale=2,transform shape,
+        list/.style={
+            very thick, rectangle split,
+            rectangle split parts=3, draw,
+            rectangle split horizontal, minimum size=18pt,
+            inner sep=5pt, text=black,
+            rectangle split part fill={blue!20, red!20, blue!20}
+        },
+        ->, start chain, very thick
+      ]
+
+  \node[list,on chain] (A) {\nodepart{second} 12};
+  \node[list,on chain] (B) {\nodepart{second} 99};
+  \node[list,on chain] (C) {\nodepart{second} 37};
+
+  \node[squarecross]   (D) [right=of C] {};
+  \node[squarecross]   (E) [left= of A] {};
+
+  \path[*->] let \p1 = (A.three), \p2 = (A.center) in (\x1,\y2) edge [bend left] ($(B.one)+(0,0.2)$);
+  \path[*->] let \p1 = (B.three), \p2 = (B.center) in (\x1,\y2) edge [bend left] ($(C.one)+(0,0.2)$);
+  \draw[*->] let \p1 = (C.three), \p2 = (C.center) in (\x1,\y2) -- (D);
+
+  \draw[*->] ($(A.one)+(0.2,0.1)$) -- (E);
+  \path[*->] ($(B.one)+(0.1,0.1)$) edge [bend left] ($(A.three)+(0,-0.05)$);
+  \path[*->] ($(C.one)+(0.1,0.1)$) edge [bend left] ($(B.three)+(0,-0.05)$);
+\end{tikzpicture}
+\end{document}
+{{< /tikztwo >}}
+
+**** time complexity
+
+|---------+------------------+------------------+------------------+------------------|
+|         | Access           | Search           | Insertion        | Deletion         |
+|---------+------------------+------------------+------------------+------------------|
+| Average | $\mathcal{O}(n)$ | $\mathcal{O}(n)$ | $\mathcal{O}(1)$ | $\mathcal{O}(1)$ |
+| Worst   | .                | .                | .                | .                |
+|---------+------------------+------------------+------------------+------------------|
+
+with respect to the asymptotics of operations, the doubly linked list provides no advantage over the [[#singly-ll][singly linked list]].
+
+*** tradeoffs
+
+non-contiguous use of memory is an advantage in terms of finding more memory for nodes, but is also a disadvantage in terms of *traversal*.
+
+
+** strings
+
+** stacks & queues
+
+*** stack
+
+**** schematic
+{{< tikztwo >}}
+\usetikzlibrary{shapes.multipart}
+\begin{document}
+\begin{tikzpicture}[scale=2,transform shape,stack/.style={rectangle split, rectangle split parts=#1, draw, anchor=center, minimum width=1cm}]
+    \node[draw, minimum width=1cm, minimum height=0.5cm] (in) at (-1,2) {};
+    \node[draw, minimum width=1cm, minimum height=0.5cm] (out) at (1,2) {};
+    
+    \node[stack=4] (stack) at (0,0.17) {
+        \nodepart{one} 
+        \nodepart{two} 
+        \nodepart{three} 
+        \nodepart{four}
+    };
+
+    \draw[-latex] (0.25,1) .. controls (0.25,1.5) and (1,1.5) .. (out.south);
+    \draw[-latex] (in.south) .. controls (-1,1.5) and (-0.25,1.5) .. (-0.25,1);
+\end{tikzpicture}
+\end{document}
+{{< /tikztwo >}}
+
+
+**** time complexity
+
+|---------+------------------+------------------+------------------+------------------|
+|         | Access           | Search           | Insertion        | Deletion         |
+|---------+------------------+------------------+------------------+------------------|
+| Average | $\mathcal{O}(n)$ | $\mathcal{O}(n)$ | $\mathcal{O}(1)$ | $\mathcal{O}(1)$ |
+| Worst   | .                | .                | .                | .                |
+|---------+------------------+------------------+------------------+------------------|
+
+as expected:
+- random access will take $n$ steps. presumably here we are using a linked list implementation though and so arbitrary accesses will always take (asymptotically) $n$ steps
+- similarly search as in an array or linked list requires $n$ steps
+- the advantage comes from *inserting* into the stack which always takes constant time
+- and *deletion* costs constant time. this is the use-case for this data structure anyhow
+
+*** queue
+
+{{< tikztwo >}}
+\usetikzlibrary{shapes.multipart}
+\begin{document}
+\begin{tikzpicture}[scale=2,transform shape,queue/.style={rectangle split, rectangle split parts=#1, draw, anchor=center, minimum width=1.5cm}]
+    \node[draw, minimum width=1cm, minimum height=0.5cm] (in) at (-2,2) {};
+    \node[draw, minimum width=1cm, minimum height=0.5cm] (out) at (2,-2) {};
+    
+    \node[queue=4] (queue) at (0,0) {
+        \nodepart{one} 
+        \nodepart{two} 
+        \nodepart{three} 
+        \nodepart{four}
+    };
+
+    \draw[-latex] (queue.south) .. controls (0,-1.5) and (2,-1.5) .. (out.north);
+    \draw[-latex] (in.south) .. controls (-2,1.5) and (0,1.5) .. (queue.north);
+\end{tikzpicture}
+\end{document}
+{{< /tikztwo >}}
+
+**** double ended queue (deque)
+
+this is an interesting data structure. at first I thought it was short for /dequeue/, but it is not. instead this structure is pronounced "deck", and is a list with 2 pointers:
+
+{{< tikztwo >}}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning, shapes.geometric}
+
+\begin{document}
+\begin{tikzpicture}[
+    node distance=0mm,
+    box/.style={rectangle, draw=blue!60, fill=blue!10, thick, minimum width=1.2cm, minimum height=1cm},
+    arrow/.style={-{Stealth[length=3mm]}, thick, red!70},
+    label/.style={font=\small\bfseries, red!70}
+]
+
+% Title
+\node[font=\Large\bfseries] at (3, 2.5) {Double-Ended Queue (Deque)};
+
+% Draw the deque elements
+\node[box] (n1) at (0,0) {12};
+\node[box, right=of n1] (n2) {7};
+\node[box, right=of n2] (n3) {23};
+\node[box, right=of n3] (n4) {45};
+\node[box, right=of n4] (n5) {8};
+
+% Front and Rear labels
+\node[below=5mm of n1, font=\small\bfseries, blue!70] {Front};
+\node[below=5mm of n5, font=\small\bfseries, blue!70] {Rear};
+
+% Left side operations (Front)
+\draw[arrow] (n1.north) -- ++(0, 0.8) node[label, above] {pop\_front()};
+\draw[arrow] ([xshift=-3mm]n1.south) -- ++(0, -1.8) node[label, below] {push\_front()};
+
+% Right side operations (Rear)
+\draw[arrow] (n5.north) -- ++(0, 0.8) node[label, above] {pop\_back()};
+\draw[arrow] ([xshift=3mm]n5.south) -- ++(0, -1.8) node[label, below] {push\_back()};
+
+% Bidirectional arrow showing deque concept
+\draw[{Stealth[length=3mm]}-{Stealth[length=3mm]}, thick, green!60!black] 
+    ([yshift=-2.5cm]n1.south) -- ([yshift=-2.5cm]n5.south) 
+    node[midway, below=8mm, font=\small\bfseries, green!60!black] {Operations allowed at both ends};
+
+\end{tikzpicture}
+\end{document}
+{{< /tikztwo >}}
+
+
+** hash tables
+
+** trees
+
+** heaps
+
+** graphs

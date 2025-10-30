@@ -63,7 +63,7 @@ You may also view the entire =tag= taxonomy [[/tags][here]].
   - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/linux/regex][RegEx]] {{< tags-inline "projects/ccs/linux/regex" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/vc][Version Control]] {{< tags-inline "projects/ccs/vc" >}}
 
-*** Data Structures *&* Algorithms
+*** [[/projects/ccs/dsa][Data Structures *&* Algorithms]]
 :PROPERTIES:
 :CUSTOM_ID: data-algs
 :END:
