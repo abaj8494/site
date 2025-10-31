@@ -1,0 +1,1064 @@
++++
+title = "Solutions"
+author = "Aayush Bajaj"
++++
+
+Here lie my implementations and notes for various [[https://leetcode.com][leetcode]] problems. 
+
+{{< collapse folded="false" >}}
+
+** {{< leetcode easy checked >}} 1. Two Sum
+
+#+BEGIN_SRC python
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        table = dict()
+        for i, num in enumerate(nums):
+            if target - num in table.keys():
+                return [i, table[target-num]]
+            table[num] = i
+        return []
+#+END_SRC
+
+
+** {{< leetcode medium checked >}} 2. Add Two Numbers
+
+#+BEGIN_SRC python
+# Definition for singly-linked list.
+#class ListNode:
+#    def __init__(self, val=0, next=None):
+        #self.val = val
+        #self.next = next
+class Solution:
+    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+        # get numbers out:
+        head = l1
+        l1_nums = [] # [2,4,3]
+        while head:
+            l1_nums.append(head.val)
+            head = head.next
+        print("l1_nums:", l1_nums)
+        head = l2
+        l2_nums = [] # [5,6,4]
+        while head:
+            l2_nums.append(head.val)
+            head = head.next
+        print("l2_nums:", l2_nums)
+        # reverse the lists and turn them into ints:
+        if l1_nums is not None:
+            l1_nums = list(reversed(l1_nums))
+        if l2_nums is not None:
+            l2_nums = list(reversed(l2_nums))
+        l1_num = int(''.join(map(str, l1_nums))) #342
+        l2_num = int(''.join(map(str, l2_nums))) #465
+        sum = l1_num + l2_num
+        sum_list = list(map(int, str(sum)))      # [8, 0, 7]
+        #if sum_list is not None:
+        #    sum_list = list(reversed(sum_list))  # [7, 0, 8]
+        print(sum_list)
+
+        # LN(7) <- LN(0) <- LN(8)
+
+        tail = None
+        for i in range(len(sum_list)):
+            next = ListNode(sum_list[i], tail)
+            i = i + 1
+            tail = next
+
+        return tail
+#+END_SRC
+
+** {{< leetcode hard checked >}} 4. Median of Two Sorted Arrays
+
+#+BEGIN_SRC c
+double findMedianSortedArrays(int* nums1, int nums1Size, int* nums2, int nums2Size){
+    int totalSize = nums1Size + nums2Size;
+    int merged[totalSize];
+    int i = 0, j = 0, k = 0;
+
+    while (i < nums1Size && j < nums2Size) {
+        if (nums1[i] < nums2[j]) {
+            merged[k++] = nums1[i++];
+        } else {
+            merged[k++] = nums2[j++];
+        }
+    }
+
+    while (i < nums1Size) {
+        merged[k++] = nums1[i++];
+    }
+
+    while (j < nums2Size) {
+        merged[k++] = nums2[j++];
+    }
+
+    if (totalSize % 2 == 0) {
+        return (double)(merged[totalSize/2] + merged[totalSize/2 - 1])/2;
+    } else {
+        return (double)merged[totalSize/2];
+    }
+}
+
+#+END_SRC
+
+** {{< leetcode medium checked >}} 11. Container With Most Water
+
+#+BEGIN_SRC python
+class Solution:
+    def maxArea(self, height: List[int]) -> int:
+        """
+        sorted_indices = sorted(range(len(height)), 
+                                key=lambda index: height[index], reverse=True)
+        maxArea = 0
+        print(sorted_indices)
+        for i, s in enumerate(sorted_indices):
+            for j, t in enumerate(sorted_indices):
+                if j >= i:
+                    container_height = min(height[s],height[t])
+                    area = abs(s-t) * container_height
+                    if area > maxArea:
+                        maxArea = area
+
+        return maxArea
+
+        # Time Limit Exceeded | 54/65 testcases passed
+        """
+        # two pointer approach
+        maxArea = 0
+        leftPointer = 0
+        rightPointer = len(height)-1
+        while leftPointer != rightPointer:
+            area = min(height[leftPointer],height[rightPointer]) * abs(leftPointer - rightPointer)
+            if area > maxArea:
+                maxArea = area
+            if height[leftPointer] < height[rightPointer]:
+                leftPointer += 1
+            else:
+                rightPointer -= 1
+
+        return maxArea
+#+END_SRC
+
+** {{< leetcode medium checked >}} 15. 3Sum
+
+#+BEGIN_SRC python
+#from itertools import combinations
+"""
+class Solution:
+
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        def twoSum(numbers: List[int], target: int) -> List[List[int]]:
+            res = []
+            if not numbers:
+                return []
+            leftPointer, rightPointer = 0, len(numbers) - 1
+            while leftPointer < rightPointer:
+                status = numbers[leftPointer] + numbers[rightPointer]
+                if status < target:
+                    leftPointer += 1
+                elif status > target:
+                    rightPointer -= 1
+                else:
+                    res.append([leftPointer + 1, rightPointer + 1])
+
+                    # skip duplicates on BOTH sides
+                    lv, rv = numbers[leftPointer], numbers[rightPointer]
+                    while leftPointer < rightPointer and numbers[leftPointer] == lv:
+                        leftPointer += 1
+                    while leftPointer < rightPointer and numbers[rightPointer] == rv:
+                        rightPointer -= 1
+            
+            return res
+        #combinations_of_3 = list(combinations(nums,3))
+        #print(len(combinations_of_3))
+        #out = []
+        #for c in combinations_of_3:
+        #    if sum(c) == 0:
+        #        if sorted(c) not in out:
+        #            out.append(sorted(c))
+        #
+        #return out
+
+        nums.sort()
+        out = []
+        for i,n in enumerate(nums):
+            if n>0:
+                break # sorted, so a positive number means we can never get to 0
+            if i>0 and n == nums[i-1]: # skip if same as previous
+                continue
+            print(nums[i+1:])
+            idxs = twoSum(nums[i+1:], 0-n)
+            if idxs:
+                for idx in idxs: 
+                    out.append([n, nums[i+idx[0]], nums[i+idx[1]]])
+
+        return out
+"""
+
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        def twoSum(numbers: List[int], target: int) -> List[List[int]]:
+            res: List[List[int]] = []
+            if not numbers:
+                return res
+            leftPointer, rightPointer = 0, len(numbers) - 1
+
+            while leftPointer < rightPointer:
+                status = numbers[leftPointer] + numbers[rightPointer]
+                if status < target:
+                    leftPointer += 1
+                elif status > target:
+                    rightPointer -= 1
+                else:
+                    # record (keeping your 1-based indexing)
+                    res.append([leftPointer + 1, rightPointer + 1])
+
+                    # skip duplicates on BOTH sides
+                    lv, rv = numbers[leftPointer], numbers[rightPointer]
+                    while leftPointer < rightPointer and numbers[leftPointer] == lv:
+                        leftPointer += 1
+                    while leftPointer < rightPointer and numbers[rightPointer] == rv:
+                        rightPointer -= 1
+            return res
+
+        nums.sort()
+        out: List[List[int]] = []
+
+        for i, n in enumerate(nums):
+            if n > 0:
+                break  # remaining numbers are positive → no more triplets
+            if i > 0 and n == nums[i - 1]:
+                continue  # skip duplicate anchors
+
+            idxs = twoSum(nums[i + 1:], -n)  # search suffix
+            for l1, r1 in idxs:               # l1/r1 are 1-based within the suffix
+                out.append([n, nums[i + l1], nums[i + r1]])
+
+        return out
+#+END_SRC
+
+** {{< leetcode medium checked >}} 17. 3Sum Closest
+
+#+BEGIN_SRC python
+class Solution:
+
+    def threeSumClosest(self, nums: List[int], target: int) -> int:
+        
+        nums = sorted(nums)
+
+        n = len(nums)
+        closest_sum = 9999999
+
+        for i in range(n):
+            if i > 0 and nums[i] == nums[i-1]:
+                continue
+
+            lo, hi = i + 1, n - 1
+
+            while lo < hi:
+                cur_sum = nums[i] + nums[lo] + nums[hi]
+
+                if abs(cur_sum - target) < abs(closest_sum - target):
+                    closest_sum = cur_sum
+
+                if cur_sum == target:
+                    return cur_sum
+                elif cur_sum < target:
+                    lo += 1
+                else:
+                    hi -= 1
+
+        return closest_sum
+#+END_SRC
+
+** {{< leetcode medium checked >}} 36. Valid Sudoku
+
+#+BEGIN_SRC python
+def checkGroup(group: List[str]) -> bool:
+    print(group)
+    uniques = list(set(group))
+    counts = {s: group.count(s) for s in uniques}
+    del counts['.']
+    print(counts.values())
+    if any(value > 1 for value in counts.values()):
+        print("tripped")
+        return False
+    if any(int(key) > 9 or int(key) < 1 for key in counts.keys()):
+        return False
+    return True
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        # check rows:
+        n = len(board)
+        for row in board:
+            if not checkGroup(row):
+                return False
+        # check columns:
+        for i in range(n):
+            col = [row[i] for row in board]
+            if not checkGroup(col):
+                return False
+        # check grids:
+        for row_offset in range(0,n,3):
+            for col_offset in range(0,n,3):
+                subgrid = []
+                for r in range(row_offset, row_offset + 3):
+                    for c in range(col_offset, col_offset + 3):
+                        subgrid.append(board[r][c])
+                if not checkGroup(subgrid):
+                    return False
+        return True
+#+END_SRC
+
+** {{< leetcode hard checked >}} 41. First Missing Positive
+
+#+BEGIN_SRC python
+class Solution:
+    def firstMissingPositive(self, nums: List[int]) -> int:
+        """shockingly this code is accepted despite the O(nlogn) tc and O(n) sc
+        # will remove this assumption later:
+        nums = sorted(list(set(nums)))
+
+        one = False
+        location = 0
+        for i, num in enumerate(nums):
+            if num == 1:
+                one = True
+                location = i
+
+        if one == False:
+            return 1
+
+        # check subsequent:
+        j = location
+        spi = 1
+        while j < len(nums):
+            if nums[j] == spi:
+                spi += 1
+                j += 1
+                continue
+            return spi
+        return spi
+        """
+
+        # cyclic sort:
+        n = len(nums)
+        
+        # place each positive integer at the respective index within nums
+        for i in range(n):
+            while 1 <= nums[i] <= n and nums[nums[i] - 1] != nums[i]:
+                nums[nums[i] -1], nums[i] = nums[i], nums[nums[i] -1] # swap
+        
+        # linear search for first discrepancy
+        for i in range(n):
+            if nums[i] != i + 1:
+                return i + 1 # returns discrep
+                
+        # or returns n + 1
+        return n + 1
+#+END_SRC
+
+** {{< leetcode hard checked >}} 42. Trapping Rain Water
+
+#+BEGIN_SRC python
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        l_wall = r_wall = 0
+        n = len(height)
+        max_left = [0] * n
+        max_right = [0] * n
+
+        for i in range(n):
+            j = -i - 1
+            max_left[i] = l_wall
+            max_right[j] = r_wall
+            l_wall = max(l_wall, height[i])
+            r_wall = max(r_wall, height[j])
+
+        summ = 0
+        for i in range(n):
+            pot = min(max_left[i], max_right[i])
+            summ += max(0, pot - height[i])
+            
+        return summ
+#+END_SRC
+
+** {{< leetcode medium checked >}} 49. Group Anagrams
+
+#+BEGIN_SRC python
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        """
+        #O(mnlogn) sorting bruteforce
+        print(strs)
+        base = []
+        for string in strs:
+            base.append("".join((sorted(string))))
+
+        print(base)
+        # find indices that are all the same
+        idxs = []
+        marked = []
+        for i, word1 in enumerate(base):
+            i_likes = []
+            for j, word2 in enumerate(base):
+                if word1 == word2 and i <= j and j not in marked:
+                    marked.append(j)
+                    i_likes.append(j)
+            if i_likes:
+                idxs.append(i_likes)
+
+
+        print(idxs)
+        # replace indices with words:
+        ans = []
+        for tup in idxs:
+            sublist = []
+            for idx in tup:
+                sublist.append(strs[idx])
+            ans.append(sublist)
+
+        return ans
+        """
+
+        # hashmap: O(m*n)
+        hash = {}
+        for s in strs:
+
+            count = [0] * 26
+            for c in s:
+                count[ord(c)-ord("a")] += 1
+
+            key = tuple(count)
+            if key in hash:
+                hash[key].append(s)
+            else:
+                hash[key] = [s]
+
+        return list(hash.values())
+#+END_SRC
+
+** {{< leetcode easy checked >}} 88. Merge Sorted Array
+
+#+BEGIN_SRC c
+// function to insert value m at position n in array a by shifting the array
+void insert(int *a, int m, int n, int l) {
+    printf("debug %d %d %d\n", m, n, l);
+    int temp = a[l-1];
+    for(int i=l-1; i>n; i--) {
+        a[i] = a[i-1];
+    }
+    a[0] = temp;
+    a[n] = m;
+}
+
+void merge(int* nums1, int nums1Size, int m, int* nums2, int nums2Size, int n){
+    int p1 = m - 1;
+    int p2 = n - 1;
+
+    for (int p = m + n - 1; p >= 0; p--) {
+        if (p2 < 0) {break;}
+        else {
+            nums1[p] = (p1 >= 0 && nums1[p1] > nums2[p2]) ? nums1[p1--] : nums2[p2--];
+        }
+
+    }
+}
+
+/*
+    int offset = 0;
+    for (int i = 0; i < m; i++) {
+        for (int j = 0 + offset; j < n; j++) {
+            // if less than first element
+            if (i == 0 && nums1[i] >= nums2[j]) {
+                printf("insert start\n");
+                insert(nums1, nums2[j], i, m + n);
+                offset++;
+                break;
+            }
+            // if greater than last element
+            else if (i == m - 1 && nums1[i] <= nums2[j]) {
+                printf("insert end\n");
+                insert(nums1, nums2[j], i, m + n);
+                offset++;
+                break;
+            }
+            else if (nums1[i] <= nums2[j] && (i + 1 < m && nums1[i+1] >= nums2[j])){ // belongs in middle
+                printf("insert middle\n");
+                insert(nums1, nums2[j], i+1, m + n);
+                offset++;
+                break;
+            }
+        }
+    }
+}
+*/
+#+END_SRC
+
+** {{< leetcode medium checked >}} 128. Longest Consecutive Sequence
+
+#+BEGIN_SRC python
+
+
+class Solution:
+    def longestConsecutive(self, nums: List[int]) -> int:
+        numSet = set(nums)  # O(n) average time, O(n) space
+        longest = 0
+        for n in numSet:  # ← iterate uniques to avoid duplicate re-walks
+            # check if it is the start of the sequence
+            if (n - 1) not in numSet:
+                length = 0
+                while (n + length) in numSet:
+                    length += 1
+                longest = max(length, longest)
+        return longest
+#+END_SRC
+
+** {{< leetcode medium checked >}} 151. Reverse Words in a String
+
+#+BEGIN_SRC python
+
+import re
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        splt = re.split('\\s+',s)
+        splt.reverse()
+        return " ".join(splt).strip()
+#+END_SRC
+
+** {{< leetcode medium checked >}} 167. Two Sum II - Input Array Is Sorted
+
+#+BEGIN_SRC python
+class Solution:
+    def twoSum(self, numbers: List[int], target: int) -> List[int]:
+        leftPointer, rightPointer = 0, len(numbers) - 1
+        while leftPointer != rightPointer:
+            status = numbers[leftPointer] + numbers[rightPointer]
+            if status < target:
+                leftPointer += 1
+            elif status > target:
+                rightPointer -= 1
+            else:
+                return [leftPointer+1, rightPointer+1]
+
+        
+        return []
+#+END_SRC
+
+** {{< leetcode easy checked >}} 169. Majority Element
+
+#+BEGIN_SRC python
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        """my naive soln
+            d = {x:nums.count(x) for x in nums}
+            a, b = d.keys(), d.values()
+            max_value = max(b)
+            max_index = list(b).index(max_value)
+            return (list(a)[max_index])
+
+            # o(n^2) because we run o(n) count on each x
+        """
+
+        """
+        candidate = 0
+        count = 0
+        # phase 1: find candidate
+        for num in nums:
+            if count == 0:
+                candidate = num
+            count += (1 if num == candidate else -1)
+
+        return candidate
+        """
+        count = {} # dictionary.
+        res, maxCount = 0, 0
+        
+        for n in nums:
+            count[n] = 1 + count.get(n, 0)
+            res = n if count[n] > maxCount else res
+            maxCount = max(count[n], maxCount)
+
+        return res
+#+END_SRC
+
+** {{< leetcode easy checked >}} 202. Happy Number
+
+#+BEGIN_SRC python
+class Solution:
+    def isHappy(self, n: int) -> bool:
+        """
+        # N is input size, n is number of digits of N
+        visited = set() # O(log n)
+        while n != 1:
+            m = 0
+            if n in visited: # O(1)
+                return False
+            digits = [int(digit) for digit in str(n)] # O(log n)
+            for digit in digits: # O(log n)
+                m += digit*digit
+            visited.add(n)
+            n = m
+        return True
+        
+            
+        """
+        # Time Complexity: O(log n) - number of digits in n
+        # Space Complexity: O(log n) - size of visited set
+        
+        visited: set[int] = set()  # Track numbers we've seen to detect cycles
+        
+        while n not in visited:
+            visited.add(n)
+            
+            if n == 1:
+                return True
+                
+            # Calculate sum of squared digits
+            current_sum: int = 0
+            while n > 0:
+                digit: int = n % 10
+                current_sum += digit * digit
+                n //= 10
+            
+            n = current_sum
+        
+        return False  # We found a cycle, number is not happy
+#+END_SRC
+
+** {{< leetcode easy checked >}} 206. Reverse Linked List
+#+BEGIN_SRC c
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     struct ListNode *next;
+ * };
+ */
+struct ListNode* reverseList(struct ListNode* head){
+    if (head == NULL || head->next == NULL) {
+        return head;
+    }
+
+    struct ListNode *new = NULL;
+    struct ListNode *curr = head;
+    while (curr != NULL) {
+        struct ListNode *tmp = curr->next;
+        curr->next = new;
+        new = curr;
+        curr = tmp;
+    }
+    return new;
+
+}
+#+END_SRC
+
+** {{< leetcode easy checked >}} 217. Contains Duplicate
+#+BEGIN_SRC python
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        return True if len(set(nums)) != len(nums) else False
+#+END_SRC
+
+** {{< leetcode medium checked >}} 238. Product of Array Except Self
+
+#+BEGIN_SRC python
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        """o(n^2)
+        res = [1] * len(nums)
+        for i,num in enumerate(nums):
+            for j in range(len(nums)):
+                res[j] *= (num if i !=j  else 1)
+
+        return res
+        """
+
+        """better code, but still not fast enough
+        # calculate prefix
+        prefix = [0] * (len(nums) + 2)
+        prefix[0], prefix[len(nums)+1] = 1,1
+        for i in range(len(nums)):
+            prefix[i+1] = (nums[i] * prefix[i])
+
+        print(prefix)
+
+        # calculate postfix
+        postfix = [0] * (len(nums) + 2)
+        postfix[0], postfix[len(nums)+1] = 1,1
+        print(postfix)
+        for i in reversed(range(len(nums))):
+            postfix[i+1] = (nums[i] * postfix[i+2])
+
+        print(postfix)
+        # multiply prefix with postfix for each n
+        res = [0] * len(nums)
+        for i in range(len((nums))):
+            print(res)
+            res[i] = prefix[i] * postfix[i+2]
+
+        return res
+        """
+
+        # the issue above was space complexity.
+        # we are going to update the result array for both prefix and postfix
+
+        res = [1] * len(nums)
+        # prefix loop:
+        for i in range(1, len(nums)):
+            res[i] = nums[i-1] * res[i-1]
+
+        postfix = 1
+        for j in reversed(range(len(nums)-1)):
+            postfix *= nums[j+1]
+            res[j] *= postfix
+
+
+        return res
+#+END_SRC
+
+** {{< leetcode hard checked >}} 239. Sliding Window Maximum
+
+#+BEGIN_SRC python
+from collections import deque
+#from typing import List
+class Solution:
+    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        """anki
+        q = deque()
+        left = right = 0
+
+        def slide_right():
+            nonlocal right
+            while q and nums[q[-1]] < nums[right]:
+                q.pop()
+            q.append(right)
+            right += 1
+
+        def slide_left():
+            nonlocal left
+            left += 1
+            if q and left > q[0]:
+                q.popleft()
+
+        result = []
+
+        while right < k:
+            slide_right()
+        result.append(nums[q[0]])
+        
+        while right < len(nums):
+            slide_right()
+            slide_left()
+            result.append(nums[q[0]])
+
+        return result
+        """
+        output = []
+        l = r = 0
+        q = deque()
+        while r < len(nums):
+            while q and nums[q[-1]] < nums[r]:
+                q.pop()
+            q.append(r)
+
+            # remove left val from window
+            if l > q[0]:
+                q.popleft()
+            
+            if (r+1) >= k:
+                output.append(nums[q[0]])
+                l += 1
+            
+            r+= 1
+        return output
+
+
+
+
+        """naive
+        left = 0
+        right = k
+        result = []
+
+        N = len(nums)
+
+        while right <= N:
+            result.append(max(nums[left:right]))
+            left += 1
+            right += 1
+        
+        return result
+        """
+#+END_SRC
+
+** {{< leetcode medium checked >}} 260. Single Number III
+
+#+BEGIN_SRC python
+class Solution:
+    def singleNumber(self, nums: List[int]) -> List[int]:
+        nums_str = str(nums)
+        nums_set = set(nums)
+        ans = []
+        for i in nums_set:
+            if nums_str.count(str(i)) == 1:
+                ans.append(i)
+
+
+        return ans
+#+END_SRC
+
+** {{< leetcode easy checked >}} 268. Missing Number
+#+BEGIN_SRC python
+class Solution:
+    def missingNumber(self, nums: List[int]) -> int:
+        return sum(range(len(nums)+1))-sum(nums)
+#+END_SRC
+
+** {{< leetcode easy checked >}} 338. Counting Bits
+
+#+BEGIN_SRC python
+class Solution:
+    def countBits(self, n: int) -> List[int]:
+        ans = []
+        for i in range(n+1):
+            temp = bin(i)
+            ans.append(str(temp)[2:].count('1'))
+
+        return ans
+#+END_SRC
+
+** {{< leetcode easy checked >}} 338. Counting Bits
+
+#+BEGIN_SRC python
+class Solution:
+    def countBits(self, n: int) -> List[int]:
+        ans = []
+        for i in range(n+1):
+            temp = bin(i)
+            ans.append(str(temp)[2:].count('1'))
+
+        return ans
+#+END_SRC
+
+** {{< leetcode medium checked >}} 347. Top K Frequent Elements
+
+#+BEGIN_SRC python
+def topKFrequent(nums: List[int], k:int) -> List[int]:
+    """
+    d = DefaultDict(int)
+    for item in nums:
+        d[item] += 1
+    l = list(sorted(d.items(), key = lambda x: x[1],reverse=True))
+    return [x[0] for x in l[:k]]
+    """
+    # O(nlogn), dominated by the sorting
+    # O(n)
+
+    ################################### ###################################
+    # O(n) solution via bucket sort:
+    # 1. count frequencies O(n)
+    frequencies = DefaultDict(int) # lookup failures will be populated with a default int of 0
+    for item in nums:
+        frequencies[item] += 1
+
+    n = len(nums)
+
+    # 2. create buckets (index = frequency) O(n)
+    buckets = [[] for _ in range(n+1)]
+    for num, frequency in frequencies.items():
+        buckets[frequency].append(num)
+
+    # 3. collect k most frequent items O(n)
+    result = []
+    while n > -1 and k > 0:
+        if buckets[n]:
+            result.append(buckets[n].pop())
+            k -= 1
+        else:
+            n -= 1
+    return result
+#+END_SRC
+
+** {{< leetcode easy checked >}} 392. Is Subsequence
+
+#+BEGIN_SRC python
+class Solution:
+    def isSubsequence(self, s: str, t: str) -> bool:
+        """reasonably good, but not duplicate resistant code
+        matched = 0
+        str_idx = -1
+        for s_char in s:
+            for curr_idx, t_char in enumerate(t):
+                if s_char == t_char:
+                    if curr_idx > str_idx:
+                        str_idx = curr_idx
+                        matched += 1
+                    else:
+                        return False
+        if matched == len(s):
+            return True
+        return False
+        """
+        matched = 0
+        match_idx = 0
+        for s_char in s:
+            for curr_idx, t_char in enumerate(t[match_idx:]):
+                if s_char == t_char:
+                    matched += 1
+                    match_idx += curr_idx + 1
+                    break
+        if matched == len(s):
+            return True
+        return False
+#+END_SRC
+
+** {{< leetcode medium checked >}} 424. Longest Repeating Character Replacement
+
+#+BEGIN_SRC python
+from collections import defaultdict
+def maxRep(s: str, k: int) -> int:
+    count = defaultdict(int)
+    max_count = 0
+    left = right = 0
+    while right < len(s):
+        count[s[right]] += 1
+        max_count = max(max_count, count[s[right]])
+        right += 1
+        if right - left - max_count > k:
+            count[s[left]] -= 1
+            left += 1
+    return right - left
+#+END_SRC
+
+** {{< leetcode medium checked >}} 438. Find All Anagrams in a String
+
+#+BEGIN_SRC python
+import itertools
+class Solution:
+    def findAnagrams(self, s: str, p: str) -> List[int]:
+        """
+        positions = set()
+        perms = [''.join(q) for q in itertools.permutations(p)]
+
+        for perm in perms:
+            for i in range(len(s)):
+                index = s.find(perm, i)
+                if index == -1:
+                    continue
+                if index not in positions:
+                    positions.add(index)
+                i = index + 1
+        return list(positions)
+        """
+        if len(p) > len(s): return []
+        pCount, sCount = {}, {}
+        for i in range(len(p)):
+            pCount[p[i]] = 1 + pCount.get(p[i],0)
+            sCount[s[i]] = 1 + sCount.get(s[i],0)
+
+        res = [0] if sCount == pCount else []
+        l = 0
+
+        for r in range(len(p), len(s)):
+            sCount[s[r]] = 1 + sCount.get(s[r],0)
+            sCount[s[l]] -= 1
+
+            if sCount[s[l]] == 0:
+                sCount.pop(s[l])
+            l+=1
+            if sCount == pCount:
+                res.append(l)
+        return res
+#+END_SRC
+
+** {{< leetcode easy checked >}} 448. Find All Numbers Disappeared in an Array
+#+BEGIN_SRC python
+class Solution:
+    def findDisappearedNumbers(self, nums: List[int]) -> List[int]:
+        missing = []
+        """
+        hashmap = {}
+        for num in nums:
+            hashmap[num] = 1
+        for i in range(1, len(nums)+1):
+            if i not in hashmap:
+                missing.append(i)
+        return missing
+        """
+        uniques = set(nums)
+        for i in range(1,len(nums)+1):
+            if i not in uniques:
+                missing.append(i)
+        return missing
+#+END_SRC
+
+** {{< leetcode medium checked >}} 567. Permutation in String
+
+#+BEGIN_SRC python
+import itertools
+class Solution:
+    def checkInclusion(self, s1: str, s2: str) -> bool:
+        """
+        if len(s1) == len(s2) and set(s1) != set(s2): return False
+        perms = [''.join(q) for q in itertools.permutations(s1)]
+
+        res = False
+        for perm in perms:
+            print(perm)
+            index = s2.find(perm, 0)
+            if index != -1:
+                res = True
+        return res
+        """
+        n1 = len(s1)
+        n2 = len(s2)
+
+        if n1 > n2:
+            return False
+
+        s1_counts = [0] * 26
+        s2_counts = [0] * 26
+
+
+        for i in range(n1):
+            s1_counts[ord(s1[i])-ord('a')] += 1
+            s2_counts[ord(s2[i])-ord('a')] += 1
+
+        if s1_counts == s2_counts:
+            return True
+
+        for i in range(n1, n2):
+            s2_counts[ord(s2[i]) - ord('a')] += 1
+            s2_counts[ord(s2[i - n1]) - ord('a')] -= 1
+            if s1_counts == s2_counts:
+                return True
+        return False
+#+END_SRC
+
+** {{< leetcode medium checked >}} 647. Palindromic Substrings
+
+#+BEGIN_SRC python
+class Solution:
+    def countSubstrings(self, s: str) -> int:
+        res = 0
+        for i in range(len(s)):
+            res += self.countPali(s, i, i)
+            res += self.countPali(s, i, i+1)
+        return res
+        
+    def countPali(self, s, l, r):
+        res = 0
+        while l >= 0 and r < len(s) and s[l] == s[r]:
+            res += 1
+            l -= 1
+            r += 1
+        return res
+#+END_SRC
+
+
+
+
+
+
+
