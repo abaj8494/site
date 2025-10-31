@@ -2,7 +2,7 @@
 title = "Greetings"
 toc = "true"
 math = "true"
-layout = "single"
+layout = "bare"
 +++
 
 {{< collapse id="projects" folded="false" >}}
@@ -64,14 +64,14 @@ You may also view the entire =tag= taxonomy [[/tags][here]].
   - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/linux/regex][RegEx]] {{< tags-inline "projects/ccs/linux/regex" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/vc][Version Control]] {{< tags-inline "projects/ccs/vc" >}}
 
-*** [[/projects/ccs/dsa][Data Structures *&* Algorithms]]
+*** [[/projects/ccs/dsa][Data Structures & Algorithms]]
 :PROPERTIES:
 :CUSTOM_ID: data-algs
 :END:
 - @@html:<input type="checkbox" class="edit"/>@@ [[/projects/ccs/dsa/advanced][Advanced Algorithms]] {{< tags-inline "projects/ccs/dsa/advanced" >}}
 - @@html:<input type="checkbox" checked class="refactor"/>@@ [[/projects/ccs/dsa/classical][Classical Algorithms]] {{< tags-inline "projects/ccs/dsa/classical" >}}
 - @@html:<input type="checkbox" checked class="refactor"/>@@ [[/projects/ccs/dsa/structures][Data Structures]] {{< tags-inline "projects/ccs/dsa/structures" >}}
-- @@html:<input type="checkbox" class="edit"/>@@ [[https://github.com/abaj8494/leetcode][Leetcode]] {{< tags-inline "projects/ccs/dsa" >}}
+- @@html:<input type="checkbox" class="edit"/>@@ [[/projects/ccs/dsa/leetcode][Leetcode]] {{< tags-inline "projects/ccs/dsa/leetcode" >}}
 
 
 *** [[/projects/ccs/programming][Programming:]]
