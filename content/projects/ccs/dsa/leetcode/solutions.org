@@ -1,6 +1,10 @@
 +++
-title = "Solutions"
+title = "Solutions to Leetcode"
 author = "Aayush Bajaj"
+tags = ["faang", "python", "c"]
+categories = "dsa"
+toc = "true"
+date = "2025-10-21T20:42:32+11:00"
 +++
 
 Here lie my implementations and notes for various [[https://leetcode.com][leetcode]] problems. 

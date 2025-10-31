@@ -6,3 +6,5 @@ toc = "true"
 date = "2025-10-21T20:42:32+11:00"
 +++
 
+{{< collapse folded="true" >}}
+

@@ -31,7 +31,6 @@ publishDate = ["publishDate", "date", ":default"]
       # if the content isn't trustworthy.
       unsafe = true
     [markup.goldmark.parser]
-      attribute = true
       autoHeadingID = true
       autoHeadingIDType = 'blackfriday'
     [markup.goldmark.extensions]
