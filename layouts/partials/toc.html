@@ -1,12 +1,14 @@
-{{with .TableOfContents}}
-    <aside class="toc">
-      <nav>
-        <p class="sidebar__heading">Table Of Contents</p>
-        {{ . }}
-      </nav>
-    </aside>
-    <hr />
+{{ with .TableOfContents }}
+  {{- $raw := . -}}
+  {{- /* Remove shortcode placeholders like HAHAHUGOSHORTCODE3861s0HBHB */ -}}
+  {{- $clean := $raw | replaceRE `HAHAHUGOSHORTCODE[\s\S]*?HBHB` `` -}}
+  {{- /* (Optional) collapse any double-spaces left behind */ -}}
+  {{- $clean = $clean | replaceRE `\s{2,}` ` ` -}}
+  <aside class="toc">
+    <nav>
+      <p class="sidebar__heading">Table Of Contents</p>
+      {{ $clean | safeHTML }}
+    </nav>
+  </aside>
+  <hr />
 {{ end }}
-
-
-    

@@ -130,6 +130,48 @@ input[type="checkbox"].nothing {
   pointer-events: none;
 }
 
+/* Shared checkmark */
+input[type="checkbox"].leet:checked::before {
+  content: "✓";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+  color: black;
+  pointer-events: none;
+}
+
+/* Base look (mirrors your existing style) */
+input[type="checkbox"].leet {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 1px solid black;
+  border-radius: 5px;
+  position: relative;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* LeetCode difficulty colors */
+input[type="checkbox"].leet-easy {
+  background-color: #45c6c2;
+} /* greenish/teal */
+input[type="checkbox"].leet-medium {
+  background-color: #fac31d;
+} /* yellow */
+input[type="checkbox"].leet-hard {
+  background-color: #f5615b;
+} /* red */
+
+/* Optional spacing if you use labels */
+.leet-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 [data-theme="dark"] input[type="checkbox"] {
   border-width: 0px;
 }

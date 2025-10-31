@@ -1,0 +1,97 @@
++++
+title = "Leetcode"
+tags = ["faang", "python"]
+categories = "dsa"
+toc = "true"
+comments = "true"
+date = "2025-10-21T20:42:32+11:00"
++++
+
+Here lie my implementations and notes for various [[https://leetcode.com][leetcode]] problems. 
+
+
+** {{< leetcode easy checked >}} 1. Two Sum
+
+#+BEGIN_SRC python
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        table = dict()
+        for i, num in enumerate(nums):
+            if target - num in table.keys():
+                return [i, table[target-num]]
+            table[num] = i
+        return []
+#+END_SRC
+
+
+** {{< leetcode medium checked >}} 2. Add Two Numbers
+
+** {{< leetcode hard checked >}} 4. Median of Two Sorted Arrays
+
+
+
+** {{< leetcode medium checked >}} 11. Container With Most Water
+
+** {{< leetcode medium checked >}} 15. 3Sum
+
+** {{< leetcode medium checked >}} 17. 3Sum Closest
+
+** {{< leetcode medium checked >}} 36. Valid Sudoku
+
+** {{< leetcode hard checked >}} 41. First Missing Positive
+
+** {{< leetcode hard checked >}} 42. Trapping Rain Water
+
+** {{< leetcode medium checked >}} 49. Group Anagrams
+
+** {{< leetcode easy checked >}} 88. Merge Sorted Array
+
+** {{< leetcode medium checked >}} 128. Longest Consecutive Sequence
+
+** {{< leetcode medium checked >}} 128. Longest Consecutive Sequence
+
+** {{< leetcode medium checked >}} 151. Reverse Words in a String
+
+** {{< leetcode medium checked >}} 167. Two Sum II - Input Array Is Sorted
+
+** {{< leetcode easy checked >}} 169. Majority Element
+
+** {{< leetcode easy checked >}} 202. Happy Number
+
+** {{< leetcode easy checked >}} 206. Reverse Linked List
+
+** {{< leetcode easy checked >}} 217. Contains Duplicate
+
+** {{< leetcode medium checked >}} 238. Product of Array Except Self
+
+** {{< leetcode hard checked >}} 239. Sliding Window Maximum
+
+** {{< leetcode hard checked >}} 239. Sliding Window Maximum
+
+** {{< leetcode medium checked >}} 260. Single Number III
+
+** {{< leetcode easy checked >}} 268. Missing Number
+
+** {{< leetcode easy checked >}} 338. Counting Bits
+
+** {{< leetcode easy checked >}} 338. Counting Bits
+
+** {{< leetcode medium checked >}} 347. Top K Frequent Elements
+
+** {{< leetcode easy checked >}} 392. Is Subsequence
+
+** {{< leetcode medium checked >}} 424. Longest Repeating Character Replacement
+
+** {{< leetcode medium checked >}} 438. Find All Anagrams in a String
+
+** {{< leetcode easy checked >}} 448. Find All Numbers Disappeared in an Array
+
+** {{< leetcode medium checked >}} 567. Permutation in String
+
+** {{< leetcode medium checked >}} 647. Palindromic Substrings
+
+
+
+
+
+

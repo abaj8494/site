@@ -1,0 +1,32 @@
+{{- /* Single, non-paired shortcode: {{< leet easy/medium/hard [checked] [label="..."] >}} */ -}}
+
+{{- $difficulty := "" -}}
+{{- $checked := false -}}
+{{- $label := "" -}}
+
+{{- if .IsNamedParams -}}
+  {{- $difficulty = lower (default "easy" (.Get "difficulty")) -}}
+  {{- $ck := lower (printf "%v" (default "" (.Get "checked"))) -}}
+  {{- $checked = or (eq $ck "true") (eq $ck "checked") (eq $ck "1") (eq $ck "yes") -}}
+  {{- $label = default "" (.Get "label") -}}
+{{- else -}}
+  {{- $difficulty = lower (default "easy" (.Get 0)) -}}
+  {{- $ck := lower (default "" (.Get 1)) -}}
+  {{- $checked = or (eq $ck "checked") (eq $ck "true") (eq $ck "1") (eq $ck "yes") -}}
+  {{- /* No .Inner used; if you need a label, pass label="..." */ -}}
+{{- end -}}
+
+{{- if not (in (slice "easy" "medium" "hard") $difficulty) -}}
+  {{- $difficulty = "easy" -}}
+{{- end -}}
+
+<span class="leet-box">
+  <input
+    type="checkbox"
+    class="leet leet-{{ $difficulty }}"
+    {{ if $checked }}checked{{ end }}
+    aria-label="Difficulty {{ $difficulty }}"
+    disabled
+  >
+  {{- if $label -}}<span class="leet-label">{{ $label }}</span>{{- end -}}
+</span>
