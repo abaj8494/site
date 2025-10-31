@@ -1,6 +1,7 @@
 +++
 title = "Memory"
 tags = ["notes", "stack-pointer", "registers", "cache", "L1", "L2", "stack", "heap"]
+toc = "true"
 +++
 
 Honestly, the diagrams that I wish to reproduce already exist [[https://azeria-labs.com/writing-arm-assembly-part-1/][here]]. Currently this page is in construction and probably will be until I finish my Doctorate.

@@ -1,6 +1,16 @@
 {{ define "main" }}
   <div class="content-section">
-    <h1>{{ .Title | markdownify }}</h1>
+    <div class="post-header">
+      <h1>
+        {{ if .Params.displayTitle }}
+          {{ .Params.displayTitle | safeHTML }}
+        {{ else }}
+          {{ .Title | markdownify }}
+        {{ end }}
+      </h1>
+      <meta name="x-dev-note" content="called list.html">
+      {{ partial "post-date.html" (dict "page" . "pageIndex" 0) }}
+    </div>
     {{ with .Content }}
       <div>{{ . }}</div>
     {{ end }}

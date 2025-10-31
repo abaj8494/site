@@ -1,5 +1,5 @@
 +++
-name = "Typesetting"
+title = "Typesetting"
 math = "true"
 +++
 

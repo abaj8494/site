@@ -8,7 +8,9 @@ enableGitInfo = true
 ignoreFiles = ["/code/bookshelf/doc/fontsel/.*"]
 
 [frontmatter]
-lastmod = [':git', ':fileModTime']
+date      = ["date", "publishDate", ":git", ":filename", ":default"]
+lastmod   = ["lastmod", ":fileModTime", ":git", "date", "publishDate"]
+publishDate = ["publishDate", "date", ":default"]
 
 [build]
   _merge = "none"
@@ -61,7 +63,7 @@ lastmod = [':git', ':fileModTime']
   author = "Aayush Bajaj"
   subtitle = ""
   description = "A full-time tinkerer"
-  mainSections = ['work', 'blog', 'projects']
+  mainSections = ['work', 'words', 'blog', 'about', 'resources']
   [params.logo]
     text = "ai"
     url = "/"

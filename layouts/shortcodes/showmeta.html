@@ -1,0 +1,65 @@
+{{- $p := .Page -}}
+
+
+{{/* ---------- :filename date (safe) ---------- */}}
+{{- $name := "" -}}
+{{- with $p.File -}}
+  {{- if eq .BaseFileName "index" -}}
+    {{- $name = path.Base (path.Clean .Dir) -}}
+  {{- else -}}
+    {{- $name = .BaseFileName -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $mYMD := findRE `\b\d{4}-\d{2}-\d{2}\b` $name -}}
+{{- $mYYYYMMDD := findRE `\b\d{8}\b` $name -}}
+
+{{- $s := newScratch -}}
+{{- with $mYMD -}}
+  {{- $s.Set "dateFromFilename" (time (index . 0)) -}}
+{{- end -}}
+{{- if and (not ($s.Get "dateFromFilename")) (gt (len $mYYYYMMDD) 0) -}}
+  {{- $raw := index $mYYYYMMDD 0 -}}
+  {{- $ds := printf "%s-%s-%s" (substr $raw 0 4) (substr $raw 4 2) (substr $raw 6 2) -}}
+  {{- $s.Set "dateFromFilename" (time $ds) -}}
+{{- end -}}
+{{- $dateFromFilename := $s.Get "dateFromFilename" -}}
+
+<pre>
+=== RESOLVED VALUES (this page) ===
+.Date:        {{ with $p.Date }}{{ . }}{{ else }}&lt;nil&gt;{{ end }}
+.Lastmod:     {{ with $p.Lastmod }}{{ . }}{{ else }}&lt;nil&gt;{{ end }}
+.PublishDate: {{ with $p.PublishDate }}{{ . }}{{ else }}&lt;nil&gt;{{ end }}
+
+=== CANDIDATES BY YOUR PRECEDENCE ===
+
+[ date = ["date","publishDate",":git",":filename",":default"] ]
+- front matter "date":        {{ with $p.Params.date }}{{ . }}{{ else }}&lt;nil&gt;{{ end }}
+- front matter "publishDate": {{ with $p.Params.publishDate }}{{ . }}{{ else }}&lt;nil&gt;{{ end }}
+- :git (AuthorDate):          {{ with $p.GitInfo }}{{ .AuthorDate }}{{ else }}&lt;nil&gt;{{ end }}
+- :filename:                  {{ with $dateFromFilename }}{{ . }}{{ else }}&lt;nil&gt;{{ end }}
+- :default:                   &lt;site build time&gt;
+
+[ lastmod = ["lastmod",":fileModTime",":git","date","publishDate"] ]
+- front matter "lastmod":     {{ with $p.Params.lastmod }}{{ . }}{{ else }}&lt;nil&gt;{{ end }}
+- :fileModTime:               &lt;not exposed in templates&gt;
+- :git (Author|Commit):       {{ with $p.GitInfo }}Author {{ .AuthorDate }} | Commit {{ .CommitDate }}{{ else }}&lt;nil&gt;{{ end }}
+- "date" (front matter):      {{ with $p.Params.date }}{{ . }}{{ else }}&lt;nil&gt;{{ end }}
+- "publishDate" (front matter): {{ with $p.Params.publishDate }}{{ . }}{{ else }}&lt;nil&gt;{{ end }}
+
+[ publishDate = ["publishDate","date",":default"] ]
+- front matter "publishDate": {{ with $p.Params.publishDate }}{{ . }}{{ else }}&lt;nil&gt;{{ end }}
+- front matter "date":        {{ with $p.Params.date }}{{ . }}{{ else }}&lt;nil&gt;{{ end }}
+- :default:                   &lt;site build time&gt;
+
+=== ENV CHECKS ===
+enableGitInfo?  {{ with $p.GitInfo }}likely yes (GitInfo present){{ else }}unknown/disabled (no GitInfo){{ end }}
+File path:       {{ with $p.File }}{{ .Filename }}{{ else }}&lt;no .File&gt;{{ end }}
+Filename parsed: {{ $name }}
+
+Layout:         {{ with $p.Layout }}{{ . }}{{ else }}<auto (not set)>{{ end }}
+Kind:           {{ $p.Kind }}
+Type:           {{ $p.Type }}
+Section:        {{ $p.Section }}
+
+</pre>
