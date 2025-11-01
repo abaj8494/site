@@ -1,6 +1,6 @@
 +++
 title = "What every computer science major should know"
-author = "https://matt.might.net/"
+author = "[[https://matt.might.net]]"
 tags = ["architecture", "networks", "os", "unix", "mathematics", "cryptography", "testing"]
 +++
 
