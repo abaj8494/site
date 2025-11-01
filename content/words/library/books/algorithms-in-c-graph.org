@@ -1,0 +1,7 @@
++++
+title = "Algorithms in C. Part 5: Graph Algorithms"
+[params]
+  edition = "Third"
+tags = "Sedgewick"
++++
+

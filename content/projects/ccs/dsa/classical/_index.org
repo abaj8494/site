@@ -1,12 +1,285 @@
 +++
 title = "Classical Algorithms"
-categories = ["computer-science"]
+categories = ["computer-science", "notes"]
 tags = ["bit-manipulation", "2-pointer", "prefix-sum", "backtracking", "greedy", "memoisation"]
 layout = "custom-list"
+math = "true"
 +++
 
-** time complexities
+** 2 Pointers
+:PROPERTIES:
+:CUSTOM_ID: two-pointers
+:END:
+
+*** schematic
+
+#+BEGIN_CENTER
+#+CAPTION: fast and slow pointers
+[[{{< cwd >}}/2pointers.gif]]
+#+END_CENTER
+
+this paradigm works well on [[/projects/ccs/dsa/structures#arrays][arrays]], reducing the time complexity of some popular problems from $\mathcal{O}(n^2)$ to $\mathcal{O}(n)$.
+
+there are a few flavours of this technique: fast and slow; opposite pointers, but ultimately we do keep track of two indices =left= and =right=. sometimes abbreviated to =l= and =r= in the code.
+
+common problems that this algorithm works well on include:
+- finding cycles in a linked list (fast and slow pointers)
+- finding pairs
+- comparing elements from opposite ends of a data structure
+
+** Sliding Window
+:PROPERTIES:
+:CUSTOM_ID: sliding-window
+:END:
+
+
+this is a special case of the two-pointers strategy [[#two-pointers][above]], and maintains a fixed-window length across the *array*.
+
+it can be used to solve problems of the sort:
+- maximise length of substring
+- maintain sum within a target value
+- [[/projects/ccs/dsa/leetcode/solutions#p3][leetcode problem 3]]
+
+it is often combined with [[/projects/ccs/dsa/structures#hashmaps][hashmaps]] to keep track of the elements within the window
+
+** Binary Search
+:PROPERTIES:
+:CUSTOM_ID: binary-search
+:END:
 
 
 
+** Breadth First Search
+:PROPERTIES:
+:CUSTOM_ID: bfs
+:END:
 
+
+** Backtracking
+:PROPERTIES:
+:CUSTOM_ID: backtracking
+:END:
+
+
+** Dynamic Programming
+:PROPERTIES:
+:CUSTOM_ID: dp
+:END:
+
+
+
+** Depth First Search
+:PROPERTIES:
+:CUSTOM_ID: dfs
+:END:
+
+
+** Heap / Priority Queue
+:PROPERTIES:
+:CUSTOM_ID: heaps
+:END:
+
+
+** Divide and Conquer
+:PROPERTIES:
+:CUSTOM_ID: divide-conquer
+:END:
+
+
+** Trie
+:PROPERTIES:
+:CUSTOM_ID: trie
+:END:
+
+
+this refers to the *data-structure*, but algorithms for *insertion*, *deletion* and *search* can be documented here.
+
+there is also a relation with a /Radix Tree/ which is a compressed version of a trie, but I'm not sure how it all connects.
+
+** Union Find
+:PROPERTIES:
+:CUSTOM_ID: union-find
+:END:
+
+
+again, I am not sure where to draw the line between *data-structure* and *algorithm* here.
+
+it seems that this is a data-structure for handling a collection of "disjoint-sets" and efficiently performs two primary operations:
+- union: merging two sets and;
+- find: determining which set an element belongs to
+
+** Greedy
+:PROPERTIES:
+:CUSTOM_ID: greedy
+:END:
+
+
+
+** Graph
+:PROPERTIES:
+:CUSTOM_ID: graph
+:END:
+
+we have already covered a couple of "graph" algorithms on this page: [[/projects/ccs/dsa/classical#binary-search][binary search]], [[/projects/ccs/dsa/classical#bfs][breadth first search]],  [[/projects/ccs/dsa/classical#dfs][depth first search]]. but there are many more such algorithms:
+- prim
+- kruskal
+- dijkstra
+  #+BEGIN_CENTER
+  #+CAPTION: dijkstra fail
+    {{< tikztwo >}}
+\usetikzlibrary{arrows,positioning, calc}
+\tikzset{
+    %Define standard arrow tip
+    ->,>=stealth',shorten >=1pt,auto,node distance=3cm, very thick,
+    % Define arrow style
+    main node/.style={
+        circle,
+        fill=blue!20,
+        draw,
+        font=\sffamily\Large\bfseries
+    }
+}
+
+\begin{document}
+\begin{tikzpicture}[,]
+
+  \node[main node] (A) {A};
+  \node[main node] (C) [below of=A] {C};
+  \node[main node] (B) [right of=A] {B};
+  \node[main node] (D) [right of=C] {D};
+
+  \path[every node/.style={font=\sffamily\small}]
+    (A) edge node {4} (C)
+        edge node {3} (B)
+    (C) edge node {-2} (B)
+    (B) edge node {1} (D);
+\end{tikzpicture}
+\end{document}
+{{< /tikztwo >}}
+#+END_CENTER
+
+as a matter of fact, [[/tags/sedgewick][Sedgewick]] has an entire volume: [[/words/library/books/algorithms-in-c-graph][Algorithms in C: Graph Algorithms]].
+
+
+** Linear Programming
+
+a "sledgehammer" of the trade according to [[/tags/authors/dasgupta][Dasgupta]]
+
+** Recursion
+
+recursion is probably a concept that deserves at least a small amount of recognition as a concept, and designated place wherein which to place notes.
+
+this algorithmic technique goes hand-in-hand with [[/projects/ccs/dsa/structures#trees][trees]] and [[/projects/ccs/dsa/classical#divide-conquer][divide and conquer]]
+
+** Searching
+
+searching is one of the main concerns of [[#graph][graph algorithms]]: finding a route to a particular vertex or finding the value of a vertex itself.
+
+we have covered [[/projects/ccs/dsa/classical#binary-search][binary search]], [[/projects/ccs/dsa/classical#bfs][breadth first search]] and [[/projects/ccs/dsa/classical#dfs][depth first search]], but we have not yet made notes about:
+- heuristic searches
+- a* star search
+- monte carlo
+
+** Sorting
+
+we have not covered sorting at all on this page, it seems to be one of the less examined topics in [[/projects/ccs/dsa/leetcode][leetcode]]. nonetheless, it is an important and interesting application of the data structures and algorithms we know.
+
+*** time complexities
+
+
+*** Insertion Sort
+
+*** Selection Sort
+
+*** Quicksort
+
+worst-case space: O(1)
+worst-case time: O(n^2)
+
+*** Merge Sort
+
+
+#+BEGIN_CENTER
+{{< tikztwo >}}
+\usepackage{fancybox}
+
+\begin{document}
+\begin{tikzpicture}[level/.style={sibling distance=60mm/#1}]
+\node [circle,draw] (z){$n$}
+  child {node [circle,draw] (a) {$\frac{n}{2}$}
+    child {node [circle,draw] (b) {$\frac{n}{2^2}$}
+      child {node {$\vdots$}
+        child {node [circle,draw] (d) {$\frac{n}{2^k}$}}
+        child {node [circle,draw] (e) {$\frac{n}{2^k}$}}
+      } 
+      child {node {$\vdots$}}
+    }
+    child {node [circle,draw] (g) {$\frac{n}{2^2}$}
+      child {node {$\vdots$}}
+      child {node {$\vdots$}}
+    }
+  }
+  child {node [circle,draw] (j) {$\frac{n}{2}$}
+    child {node [circle,draw] (k) {$\frac{n}{2^2}$}
+      child {node {$\vdots$}}
+      child {node {$\vdots$}}
+    }
+  child {node [circle,draw] (l) {$\frac{n}{2^2}$}
+    child {node {$\vdots$}}
+    child {node (c){$\vdots$}
+      child {node [circle,draw] (o) {$\frac{n}{2^k}$}}
+      child {node [circle,draw] (p) {$\frac{n}{2^k}$}
+        child [grow=right] {node (q) {$=$} edge from parent[draw=none]
+          child [grow=right] {node (q) {$O_{k = \lg n}(n)$} edge from parent[draw=none]
+            child [grow=up] {node (r) {$\vdots$} edge from parent[draw=none]
+              child [grow=up] {node (s) {$O_2(n)$} edge from parent[draw=none]
+                child [grow=up] {node (t) {$O_1(n)$} edge from parent[draw=none]
+                  child [grow=up] {node (u) {$O_0(n)$} edge from parent[draw=none]}
+                }
+              }
+            }
+            child [grow=down] {node (v) {$O(n \cdot \lg n)$}edge from parent[draw=none]}
+          }
+        }
+      }
+    }
+  }
+};
+\path (a) -- (j) node [midway] {+};
+\path (b) -- (g) node [midway] {+};
+\path (k) -- (l) node [midway] {+};
+\path (k) -- (g) node [midway] {+};
+\path (d) -- (e) node [midway] {+};
+\path (o) -- (p) node [midway] {+};
+\path (o) -- (e) node (x) [midway] {$\cdots$}
+  child [grow=down] {
+    node (y) {$O\left(\displaystyle\sum_{i = 0}^k 2^i \cdot \frac{n}{2^i}\right)$}
+    edge from parent[draw=none]
+  };
+\path (q) -- (r) node [midway] {+};
+\path (s) -- (r) node [midway] {+};
+\path (s) -- (t) node [midway] {+};
+\path (s) -- (l) node [midway] {=};
+\path (t) -- (u) node [midway] {+};
+\path (z) -- (u) node [midway] {=};
+\path (j) -- (t) node [midway] {=};
+\path (y) -- (x) node [midway] {$\Downarrow$};
+\path (v) -- (y)
+  node (w) [midway] {$O\left(\displaystyle\sum_{i = 0}^k n\right) = O(k \cdot n)$};
+\path (q) -- (v) node [midway] {=};
+\path (e) -- (x) node [midway] {+};
+\path (o) -- (x) node [midway] {+};
+\path (y) -- (w) node [midway] {$=$};
+\path (v) -- (w) node [midway] {$\Leftrightarrow$};
+\path (r) -- (c) node [midway] {$\cdots$};
+\end{tikzpicture}
+\end{document}
+{{< /tikztwo >}}
+#+END_CENTER
+
+
+*** Bucket Sort
+
+*** Bubblesort
+
+*** Bogosort

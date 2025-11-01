@@ -13,6 +13,10 @@ I am actually thinking of collapsing all of the nested files / folders that each
 The inspiration is my computer vision [[/projects/computer-vision][notes]].
 
 ** primitives
+:PROPERTIES:
+:CUSTOM_ID: primitives
+:END:
+
 
 *** schematic/s
 
@@ -133,7 +137,12 @@ The inspiration is my computer vision [[/projects/computer-vision][notes]].
 | =void=        | —                             | represents “no value” or “no type”         | =void functionName();=                   |
 |---------------+-------------------------------+--------------------------------------------+------------------------------------------|
 
+
 ** arrays
+:PROPERTIES:
+:CUSTOM_ID: arrays
+:END:
+
 
 *** schematic
 
@@ -202,6 +211,10 @@ naturally, whilst we are considering *access*, *search*, *insertion* and *deleti
 | =sort()=               | sorts the list in place. mutates array           |
 
 ** linked lists
+:PROPERTIES:
+:CUSTOM_ID: linked-lists
+:END:
+
 
 *** singly linked list
 :PROPERTIES:
@@ -373,6 +386,7 @@ this page is not about algorithms, and so there is nothing really novel to add h
 
 ** stacks & queues
 
+
 *** stack
 :PROPERTIES:
 :CUSTOM_ID: stack
@@ -417,6 +431,10 @@ as expected:
 
 
 *** queue
+:PROPERTIES:
+:CUSTOM_ID: queue
+:END:
+
 
 **** schematic
 
@@ -457,6 +475,10 @@ this is the same as the [[#stack][stack]]:
 - and location of *deletion* would change
 
 **** double ended queue (deque)
+:PROPERTIES:
+:CUSTOM_ID: deque
+:END:
+
 
 this is an interesting data structure. at first I thought it was short for /dequeue/, but it is not. instead this structure is pronounced "deck", and is a list with 2 pointers:
 
@@ -502,7 +524,11 @@ this is an interesting data structure. at first I thought it was short for /dequ
 {{< /tikztwo >}}
 
 
-** hash tables
+** hash tables / hashmaps
+:PROPERTIES:
+:CUSTOM_ID: hashmaps
+:END:
+
 A =map= maintains insertion order.
 
 *** schematic
@@ -549,6 +575,10 @@ having said this, hash-tables are sort of a mystery to me at the moment. they ha
 for now I have just copied down what was given at [[bigocheatsheet.com]]
 
 ** trees
+:PROPERTIES:
+:CUSTOM_ID: trees
+:END:
+
 
 *** schematic
 
@@ -821,6 +851,10 @@ and then the short few that I have found of my own accord:
 
 
 ** heaps
+:PROPERTIES:
+:CUSTOM_ID: heaps
+:END:
+
 
 *** schematic
 
@@ -870,6 +904,10 @@ and then the short few that I have found of my own accord:
 
 
 ** graphs
+:PROPERTIES:
+:CUSTOM_ID: graphs
+:END:
+
 
 *** schematic
 
