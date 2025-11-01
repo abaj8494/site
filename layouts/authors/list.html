@@ -1,0 +1,14 @@
+{{ define "main" }}
+  <div class="content-section">
+    <h1>Author: {{ .Title }}</h1>
+    <ul class="taxonomy-pages">
+      {{ range .Pages.ByTitle }}
+        <li>
+          <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          {{ with .Params.edition }}<span class="edition">— {{ . }}</span>{{ end }}
+          {{ with .Date }}<span class="date"> ({{ .Format "2006-01-02" }})</span>{{ end }}
+        </li>
+      {{ end }}
+    </ul>
+  </div>
+{{ end }}

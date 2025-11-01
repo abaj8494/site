@@ -1,0 +1,6 @@
++++
+title = "Probabilistic Machine Learning"
+author = "Kevin Murphy"
+layout = "book"
++++
+

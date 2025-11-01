@@ -1,0 +1,23 @@
+{{/* Accept either . (a Page) or (dict "page" <Page>) */}}
+{{- $p := . -}}
+{{- with .page }}{{ $p = . }}{{ end -}}
+
+{{/* --- Edition on its own line (exact text from param) --- */}}
+{{- with $p.Params.edition }}
+  <div class="book-meta__edition">{{ . }} Edition</div>
+{{- end }}
+
+{{/* --- Author line: page param (author/Author) → site.Author.name --- */}}
+{{- $author := "" -}}
+{{- with $p.Params.author }}{{ $author = . }}{{ end -}}
+{{- if not $author -}}{{ with $p.Params.Author }}{{ $author = . }}{{ end }}{{ end -}}
+{{- if not $author -}}{{ with site.Author.name }}{{ $author = . }}{{ end }}{{ end -}}
+{{- if $author }}
+  <div class="book-meta__author">by <span class="post-meta__author">{{ $author }}</span></div>
+{{- end }}
+
+{{/* --- Last Modified on its own line --- */}}
+{{- $lm := $p.Lastmod -}}
+{{- if not $lm.IsZero -}}
+  <div class="book-meta__lastmod">Last Modified: {{ $lm.Format "2006-01-02" }}</div>
+{{- end -}}

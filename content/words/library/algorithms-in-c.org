@@ -1,0 +1,9 @@
++++
+title = "Algorithms in C. Parts 1-4"
+tags = ["authors/sedgewick"]
+layout = "book"
+author = "Sedgewick"
+[params]
+  edition = "Third"
++++
+

@@ -1,7 +1,9 @@
 +++
 title = "Algorithms in C. Part 5: Graph Algorithms"
+tags = ["authors/sedgewick"]
+layout = "book"
+author = "Sedgewick"
 [params]
   edition = "Third"
-tags = "Sedgewick"
 +++
 

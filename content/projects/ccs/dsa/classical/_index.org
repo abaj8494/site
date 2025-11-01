@@ -4,7 +4,10 @@ categories = ["computer-science", "notes"]
 tags = ["bit-manipulation", "2-pointer", "prefix-sum", "backtracking", "greedy", "memoisation"]
 layout = "custom-list"
 math = "true"
+tikzajax = "true"
 +++
+
+{{< collapse id="classical-algorithms" folded="false" >}}
 
 ** 2 Pointers
 :PROPERTIES:
@@ -158,7 +161,7 @@ we have already covered a couple of "graph" algorithms on this page: [[/projects
 {{< /tikztwo >}}
 #+END_CENTER
 
-as a matter of fact, [[/tags/sedgewick][Sedgewick]] has an entire volume: [[/words/library/books/algorithms-in-c-graph][Algorithms in C: Graph Algorithms]].
+
 
 
 ** Linear Programming

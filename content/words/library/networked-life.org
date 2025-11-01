@@ -1,0 +1,6 @@
++++
+title = "Networked Life"
+author = "Mung Chiang"
+layout = "book"
++++
+

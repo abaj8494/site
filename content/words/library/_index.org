@@ -2,32 +2,16 @@
 title = "Library"
 categories = ["fiction", "non-fiction"]
 tags = ["ai", "computer-science", "mathematics", "japanese", "self-help", "literary-canon", "anthropology", "psychology", "comics"]
-layout = "single"
 toc = "true"
+layout = "custom-list"
 +++
 
-{{< collapse id="library" folded="false">}}
+{{< collapse id="library" folded="true">}}
 
 These are all the books that I own / have owned in the past. I have not read them all, neither will I ever be able to.
 
 You walked past the [[/words#the-shelf][rendered SVG]] on your way here.
 
-** tabular
+** tabular :noexport:
 
 #+INCLUDE: "./books-partials.html" export html
-
-
-** books
-
-the below headings act as `init`s for each book in the graph database that this website is:
-
-*** networked life
-
-these books are not in any particular order, but rather just here so that I can give each heading a custom `PROPERTY_ID` in the `emacs` html sense, and then hyperlink to the section on this page.
-
-*** the iliad
-
-*** probabilistic machine learning
-
-*** introduction to topology
-

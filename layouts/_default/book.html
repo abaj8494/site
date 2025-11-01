@@ -1,0 +1,16 @@
+{{ define "main" }}
+  <div class="post-header">
+    <h1>
+      {{ if .Params.displayTitle }}{{ .Params.displayTitle | safeHTML }}
+      {{ else }}{{ .Title | markdownify }}
+      {{ end }}
+    </h1>
+
+    <!-- dev marker: confirms book.html is actually being used -->
+    <meta name="x-dev-note" content="book.html layout engaged">
+
+    {{ partial "book-meta.html" (dict "page" .) }}
+  </div>
+
+  <div class="content">{{ .Content }}</div>
+{{ end }}
