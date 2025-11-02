@@ -18,7 +18,7 @@ The inspiration is my computer vision [[/projects/computer-vision][notes]].
 <style>
   table.ds-table { width: 100%; border-collapse: collapse; table-layout: auto; }
   .ds-table th, .ds-table td { border: 1px solid var(--table-border, #ddd); padding: .5rem .6rem; vertical-align: middle; }
-  .ds-table thead th { background: var(--table-head-bg, #f7f7f7); position: relative; user-select: none; }
+  .ds-table thead th { background: var(--table-head-bg, #ECDBB2); position: relative; user-select: none; }
   .ds-table th[colspan] { text-align: center; }
   .ds-table th[rowspan] { text-align: left; }
 
@@ -42,6 +42,19 @@ The inspiration is my computer vision [[/projects/computer-vision][notes]].
     position: absolute; top: 0; bottom: 0; width: 0; border-right: 2px dashed rgba(0,0,0,.25);
     pointer-events: none;
   }
+
+  /* Complexity chips */
+.ds-table code {
+  display: inline-block;
+  padding: .05rem .35rem;
+  border-radius: .35rem;
+  font-weight: 400;
+  line-height: 1.2;
+  background: var(--chip-bg, transparent);
+  color: #000;               /* all chosen colors read well with black text */
+  border: 1px solid rgba(0,0,0,.08);
+}
+
 </style>
 
 <table class="ds-table" id="ds-table">
@@ -329,7 +342,72 @@ The inspiration is my computer vision [[/projects/computer-vision][notes]].
     // For 1..8, map to leafRow.cell[colIndex-1]
     return leafRow.cells[colIndex - 1];
   }
+  /* ---------- Complexity coloring ---------- */
+  // Your palette:
+  const chipColors = {
+    on2:     '#FF8989', // O(n^2)
+    onlogn:  '#FFC542', // O(n log n)
+    logn:    '#C8EA01', // O(log n)
+    n:       '#FFFF02', // O(n)
+    one:     '#54D002', // O(1)
+    na:      '#ECDBB2'  // N/A
+  };
 
+  // Normalize cell text (handles O/Θ/Ω, LaTeX, entities, whitespace)
+  function normComplexity(text) {
+    let s = (text || '').toLowerCase();
+
+    // strip LaTeX wrappers: \mathcal{O}, \Theta, \Omega, etc.
+    s = s.replace(/\\mathcal\{o\}|\&omicron;|o/g, 'o')
+         .replace(/\\theta|&theta;|θ/g, 'theta')
+         .replace(/\\omega|&omega;|ω/g, 'omega')
+         .replace(/[{}$]/g, '')
+         .replace(/\\log/g, 'log')
+         .replace(/\s+/g, '');
+
+    // Also support HTML entities like &Theta; &Omega;
+    s = s.replace(/&theta;|\\theta/g, 'theta')
+         .replace(/&omega;|\\omega/g, 'omega');
+
+    // Normalize typical variants to a small set
+    // e.g., o(n\log n) -> o(nlogn), theta(n log(n)) -> theta(nlogn)
+    s = s.replace(/log\(?n\)?/g, 'logn');
+
+    // Map to buckets (order matters: test more specific first)
+    if (/n\^?2/.test(s))             return 'on2';
+    if (/nlogn/.test(s))             return 'onlogn';
+    if (/^o?\(?logn\)?|^theta\(logn\)|^omega\(logn\)/.test(s)) return 'logn';
+    if (/^o?\(?n\)?|^theta\(n\)|^omega\(n\)/.test(s))          return 'n';
+    if (/^o?\(?1\)?|^theta\(1\)|^omega\(1\)/.test(s))          return 'one';
+    if (/na|n\/a/.test(s))           return 'na';
+
+    // Unknown forms (e.g., O(n+k), O(nk)) -> leave as-is
+    return null;
+  }
+
+  function applyComplexityColors(root) {
+    root.querySelectorAll('code').forEach(code => {
+      const t = code.textContent || code.innerText || '';
+      const bucket = normComplexity(t);
+      if (!bucket) return;
+      code.style.setProperty('--chip-bg', chipColors[bucket]);
+      code.style.background = chipColors[bucket];
+      code.title = ({
+        on2: 'O(n²)',
+        onlogn: 'O(n log n)',
+        logn: 'O(log n)',
+        n: 'O(n)',
+        one: 'O(1)',
+        na: 'N/A'
+      })[bucket];
+    });
+  }
+
+  // Run once now; re-run after client-side math renderers if you use them dynamically
+  applyComplexityColors(table);
+
+
+  
   // Bind resizers (handles exist on every header cell; their data-col already set for 0..9)
   table.querySelectorAll('.col-resizer').forEach(handle => {
     handle.addEventListener('mousedown', e => {
@@ -424,7 +502,7 @@ The inspiration is my computer vision [[/projects/computer-vision][notes]].
 
 *** python
 
-|------------+-----------------|
+
 | type       | example         |
 |------------+-----------------|
 | =int=      | 32              |
@@ -439,7 +517,7 @@ The inspiration is my computer vision [[/projects/computer-vision][notes]].
 
 *** java
 
-|-----------+--------------------------------------------+----------------------------------+------------------------|
+
 | type      |                                size (bits) | description                      | usage                  |
 |-----------+--------------------------------------------+----------------------------------+------------------------|
 | =byte=    |                                          8 | -128 to 127                      | =byte b = 100;=        |
@@ -455,7 +533,7 @@ The inspiration is my computer vision [[/projects/computer-vision][notes]].
 
 *** c
 
-|---------------+-------------------------------+--------------------------------------------+------------------------------------------|
+
 | type          | size (bits)                   | description                                | usage                                    |
 |---------------+-------------------------------+--------------------------------------------+------------------------------------------|
 | =char=        | typically 8                   | character type (smallest addressable unit) | =char c = 'A';=                          |
@@ -502,7 +580,7 @@ The inspiration is my computer vision [[/projects/computer-vision][notes]].
 
 *** time complexity
 
-|---------+------------------+------------------+------------------+------------------|
+
 |         | Access           | Search           | Insertion        | Deletion         |
 |---------+------------------+------------------+------------------+------------------|
 | Average | $\mathcal{O}(1)$ | $\mathcal{O}(n)$ | $\mathcal{O}(n)$ | $\mathcal{O}(n)$ |
@@ -620,7 +698,7 @@ naturally, whilst we are considering *access*, *search*, *insertion* and *deleti
 
 **** time complexity
 
-|---------+------------------+------------------+------------------+------------------|
+
 |         | Access           | Search           | Insertion        | Deletion         |
 |---------+------------------+------------------+------------------+------------------|
 | Average | $\mathcal{O}(n)$ | $\mathcal{O}(n)$ | $\mathcal{O}(1)$ | $\mathcal{O}(1)$ |
@@ -687,7 +765,7 @@ once again, explanations are necessary:
 
 **** time complexity
 
-|---------+------------------+------------------+------------------+------------------|
+
 |         | Access           | Search           | Insertion        | Deletion         |
 |---------+------------------+------------------+------------------+------------------|
 | Average | $\mathcal{O}(n)$ | $\mathcal{O}(n)$ | $\mathcal{O}(1)$ | $\mathcal{O}(1)$ |
@@ -749,7 +827,7 @@ this page is not about algorithms, and so there is nothing really novel to add h
 
 **** time complexity
 
-|---------+------------------+------------------+------------------+------------------|
+
 |         | Access           | Search           | Insertion        | Deletion         |
 |---------+------------------+------------------+------------------+------------------|
 | Average | $\mathcal{O}(n)$ | $\mathcal{O}(n)$ | $\mathcal{O}(1)$ | $\mathcal{O}(1)$ |
@@ -794,7 +872,7 @@ as expected:
 
 **** time complexity
 
-|---------+------------------+------------------+------------------+------------------|
+
 |         | Access           | Search           | Insertion        | Deletion         |
 |---------+------------------+------------------+------------------+------------------|
 | Average | $\mathcal{O}(n)$ | $\mathcal{O}(n)$ | $\mathcal{O}(1)$ | $\mathcal{O}(1)$ |
@@ -894,7 +972,7 @@ A =map= maintains insertion order.
 *** time complexity
 
 
-|---------+--------+------------------+------------------+------------------|
+
 |         | Access | Search           | Insertion        | Deletion         |
 |---------+--------+------------------+------------------+------------------|
 | Average | n/a    | $\mathcal{O}(1)$ | $\mathcal{O}(1)$ | $\mathcal{O}(1)$ |
@@ -981,7 +1059,7 @@ child {node {Level 2}
 
 **** time complexity
 
-|---------+------------------------+------------------------+------------------------+------------------------|
+
 |         | Access                 | Search                 | Insertion              | Deletion               |
 |---------+------------------------+------------------------+------------------------+------------------------|
 | Average | $\mathcal{O}(\log(n))$ | $\mathcal{O}(\log(n))$ | $\mathcal{O}(\log(n))$ | $\mathcal{O}(\log(n))$ |
@@ -1144,7 +1222,7 @@ I wonder if insertion causes a total rebalancing to occur. is a Binary Search Tr
 
 **** time complexity
 
-|---------+------------------------+------------------------+------------------------+------------------------|
+
 |         | Access                 | Search                 | Insertion              | Deletion               |
 |---------+------------------------+------------------------+------------------------+------------------------|
 | Average | $\mathcal{O}(\log(n))$ | $\mathcal{O}(\log(n))$ | $\mathcal{O}(\log(n))$ | $\mathcal{O}(\log(n))$ |

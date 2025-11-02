@@ -5,17 +5,11 @@ tags = ["interpreted", "dynamically-typed", "readable", "indentation", "oop", "f
 math = "true"
 +++
 
-
-{{< uncollapse id="mastery-python" >}}
-{{< uncollapse id="python-lambda" >}}
-{{< uncollapse id="python-filter" >}}
-{{< uncollapse id="json-python" >}}
-{{< uncollapse id="regex-python" >}}
-{{< uncollapse id="python-adv" >}}
+{{< collapse folded="true" >}}
 
 ** Data Types
 
-|----------+------------------------------------|
+
 | category | types                              |
 |----------+------------------------------------|
 | text     | =str=                              |
@@ -28,12 +22,12 @@ math = "true"
 | none     | =NoneType=                         |
 |----------+------------------------------------|
 
-** Time Complexities
+** Time Complexities [fn:1]
 
 *** lists
 
-|---------------------------------------------------------------------------------------------------------+--------------------|
-| *operation*                                                                                             | *time complexity*  |
+
+| operation                                                                                               | time complexity    |
 |---------------------------------------------------------------------------------------------------------+--------------------|
 | =sequence.append(item)=                                                                                 | $\mathcal{O}(1)$   |
 | =sequence.pop(item)=                                                                                    | $\mathcal{O}(1)$   |
@@ -52,10 +46,10 @@ math = "true"
 |---------------------------------------------------------------------------------------------------------+--------------------|
 
 
-** double-ended queue (deque)
+*** double-ended queue (deque)
 
 
-|-----------------------------+--------------------|
+
 | *operation*                 | *time complexity*  |
 |-----------------------------+--------------------|
 | =queue.append(item)=        | $\mathcal{O}(1)$   |
@@ -69,31 +63,86 @@ math = "true"
 |-----------------------------+--------------------|
 
 
-** dictionary
-
-|-----------------------------+--------------------|
-| *operation*                 | *time complexity*  |
-|-----------------------------+--------------------|
-| =queue.append(item)=        | $\mathcal{O}(1)$   |
-| =queue.pop(item)=           | $\mathcal{O}(1)$   |
-| =queue.appendleft(item)=    | $\mathcal{O}(1)$   |
-| =queue.popleft(item)=       | $\mathcal{O}(1)$   |
-| =item in queue=             | $\mathcal{O}(n)$   |
-| =queue[0]= or =queue[-1]=   | $\mathcal{O}(1)$   |
-| =queue[i]=                  | $\mathcal{O}(n)$   |
-| =for item in queue=         | $\mathcal{O}(n)$   |
-|-----------------------------+--------------------|
-
-** set 
+*** dictionary
 
 
-** counter
+| *operation*                   | *time complexity* |
+|-------------------------------+-------------------|
+| =mapping[key]=value=          | $\mathcal{O}(1)$  |
+| =mapping[key]=                | $\mathcal{O}(1)$  |
+| =mapping.get(key)=            | $\mathcal{O}(1)$  |
+| =mapping.pop(key)=            | $\mathcal{O}(1)$  |
+| =key in mapping=              | $\mathcal{O}(1)$  |
+| =for k, v in mapping.items()= | $\mathcal{O}(n)$  |
+|-------------------------------+-------------------|
+| =next(iter(mapping))=         | $\mathcal{O}(1)$  |
+| =next(reversed(mapping))=     | $\mathcal{O}(1)$  |
+| =value in mapping.values()=   | $\mathcal{O}(n)$  |
+| =mapping.update(iterable)=    | $\mathcal{O}(k)$  |
+|-------------------------------+-------------------|
 
-** heap / priority queue
+*** set
 
-** sorted list
+| *operation*           | *time complexity* |
+|-----------------------+-------------------|
+| =my_set.add(item)=    | $\mathcal{O}(1)$  |
+| =my_set.remove(item)= | $\mathcal{O}(1)$  |
+| =item in my_set=      | $\mathcal{O}(1)$  |
+| =for item in my_set=  | $\mathcal{O}(n)$  |
+|-----------------------+-------------------|
+| =set1 & set2=         | $\mathcal{O}(n)$  |
+| =set1= \vert =set2=   | $\mathcal{O}(n)$  |
+| =set1 ^ set2=         | $\mathcal{O}(n)$  |
+| =set1 - set2=         | $\mathcal{O}(n)$  |
+|-----------------------+-------------------|
 
-** general traversals:
 
-| 
+*** counter
 
+| *operation*                           | *time complexity*        |
+|---------------------------------------+--------------------------|
+| =counter[item]=                       | $\mathcal{O}(1)$         |
+| =counter.pop(item)=                   | $\mathcal{O}(1)$         |
+| =for k, v in counter.items():=        | $\mathcal{O}(n)$         |
+| =for k, v in counter.most_common():=  | $\mathcal{O}(n\log(n))$  |
+| =for k, v in counter.most_common(k):= | $\mathcal{O}(n \log(k))$ |
+|---------------------------------------+--------------------------|
+| =counter.update(iterable)=            | $\mathcal{O}(k)$         |
+| =counter.subtract(iterable)=          | $\mathcal{O}(k)$         |
+| =counter.total()=                     | $\mathcal{O}(n)$         |
+|---------------------------------------+--------------------------|
+
+*** heap / priority queue
+
+| *operation*                      | *time complexity*      |
+|----------------------------------+------------------------|
+| =heapq.heapify(sequence)=        | $\mathcal{O}(n)$       |
+| =heapq.heappop(sequence)=        | $\mathcal{O}(\log(n))$ |
+| =heapq.heappush(sequence, item)= | $\mathcal{O}(\log(n))$ |
+| =sequence[0]=                    | $\mathcal{O}(1)$       |
+|----------------------------------+------------------------|
+
+*** sorted list
+
+| *operation*                            | *time complexity*       |
+|----------------------------------------+-------------------------|
+| =sorted_sequence = sorted(sequence)=   | $\mathcal{O}(n\log(n))$ |
+| =sorted_sequence.index(item)=          | $\mathcal{O}(n)$        |
+| =bisect.bisect(sorted_sequence, item)= | $\mathcal{O}(\log(n))$  |
+| =bisect.insort(sorted_sequence, item)= | $\mathcal{O}(n)$        |
+|----------------------------------------+-------------------------|
+
+*** general traversals:
+
+| *operation*                      | *time complexity*       |
+|----------------------------------+-------------------------|
+| =min(iterable)=                  | $\mathcal{O}(n)$        |
+| =max(iterable)=                  | $\mathcal{O}(n)$        |
+| =sorted(iterable)=               | $\mathcal{O}(n\log(n))$ |
+| =heapq.nsmallest(k, iterable)=   | $\mathcal{O}(n\log(k))$ |
+| =statistics.multimode(iterable)= | $\mathcal{O}(n)$        |
+|----------------------------------+-------------------------|
+
+** Footnotes
+
+[fn:1] information courtesy of [[https://www.pythonmorsels.com/time-complexities/]] 

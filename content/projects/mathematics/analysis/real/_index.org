@@ -15,7 +15,7 @@ It seems that High-School children ([[https://www.reddit.com/r/math/comments/7q5
 "Comparison is the thief of Joy"---Theodore Roosevelt (probably)
 #+END_QUOTE
 
-* Exercises
+** Exercises
 
 #+BEGIN_CENTER
 #+HTML: <div style="display: flex; align-items: center; justify-content: center; gap: 20px;">
@@ -29,9 +29,9 @@ It seems that High-School children ([[https://www.reddit.com/r/math/comments/7q5
 #+HTML: </div>
 #+END_CENTER
 
-* Results
+** Results
 
-** Set Theory
+*** Set Theory
 {{< collapse-local folded="true" >}}
 
 {{< mdef "Axiom of Choice (AC)" >}}
@@ -80,7 +80,7 @@ A set $S$ is Dedekind-infinite if there is a bijection from $S$ to a proper subs
 We say that a set $S$ is countable if $|S| \leq |\mathbb{N}|$. Otherwise $S$ is uncountable. If $S$ is countable and infinite we say that $S$ is countably infinite.
 {{< /mdef >}}
 
-** Metric Spaces
+*** Metric Spaces
 {{< collapse-local folded="true" >}}
 
 {{< mdef "Limit" >}}
@@ -298,7 +298,7 @@ has a *unique* solution.
 
 
 
-** Sequences and Series of Functions
+*** Sequences and Series of Functions
 {{< collapse-local folded="true" >}}
 
 {{< mdef "Convergence of a Numerical Sequence" >}}
@@ -395,7 +395,7 @@ If $\sum_{n=0}^{\infty}a_n x^n$ has radius of convergence $R>0$, then it is diff
 {{< /mthm >}}
 
 
-** Topological Spaces
+*** Topological Spaces
 {{< collapse-local folded="true" >}}
 
 {{< mdef "Topological Space" >}}
@@ -549,7 +549,9 @@ Given \(\{(X_i,\tau_i)\}_{i\in I}\), the *box topology* on \(\prod_{i\in I} X_i\
 {{< /mdef >}}
 
 
-** Compactness
+*** Compactness
+
+{{< collapse-local folded="true" >}}
 
 {{< mdef "Compact Space" >}}
 A topological space \(\left( X ,\tau \right)\) is *compact* if for every open cover  
