@@ -1,28 +1,12 @@
 +++
 title = "The Value Sensitive Design of GPT 3"
 tags = ["chatgpt", "ethics", "value-sensitive-design", "hcai", "principlism"]
-bibFile = "projects/ai/ethics/cs4920grp.json"
+bibFile = "projects/ai/ethics/gpt3/cs4920grp.json"
+toc = "true"
+math = "true"
 +++
 
-* Conclusion                                                       :noexport:
-
-We believe that the ChatGPT technology should be adopted as long as the underlying model is greater than or equal to InstructGPT and regular independent ethical audits are performed. 
-
-We make this Value Sensitive Recommendation after a thorough analysis of the Stakeholders affected by this technology, and after identifying the bevel of Values which are most important to them. We believe that the InstructGPT and above generation models marginally skew the cost-benefit analysis between Stakeholder disadvantages and advantages in favour of ChatGPT.
-
-This marginality is then enlarged by the rapid development of the GPT technology, where a burr is forming on the Advantages side; OpenAI is sufficiently mitigating risks and biases with active efforts to promote RST (Reliable, Safe and Trustworthy) LLMs.
-
-However, oscillating in the trend of Ethical analysis, we posit that this technological transparency can only be believed due to the open-access nature of the GPT-1, 2, 3 and Instruct papers. It is an obvious fact, and one empirically proved (Kahneman reference) that we tend to behave ourselves when observed. As such, we desire Open Access Publications for all LLM's that will affect the stakeholders above (link to section).
-
-Clearly, though the proprietary and competitive nature of these businesses (OpenAI, Google, etc.) enslaves Public Stakeholders by the Private (financial) Stakeholders. As such, realistic limitations will forbid open-access to LLM architectures and thus obscure the realistic efforts OpenAI is making towards Value Alignment, upholding HCAI and maintaining a VSD. 
-
-Finally, we posit the most realistic recommendation; for
-
-Independent Ethical AI Auditors to be contracted and presented with any and all Stakeholder affecting technical reports. We insist that part of this contract be Toothed Principles - converse to Munn's Tooth /less/ principles - such that whichever independent regulatory body is employed, they have the right and duty to act Ethically with the Values of all Stakeholders as their primary guiding metric. Furthermore, we insist that the report of the auditors be publicly published so as to avoid ‘ethics-washing’ (Bietti 2019). Lastly, this Authoritative body must be certified by the ACM.
-
-
-
-* Raison d'être                                                    :noexport:
+** Raison d'être
 The meat content of this page is to be repurposed for an assignment, however the textuality of Emacs fosters my thinking.
 
 The assignment has a clear focus on Value Sensitive Design {{< cite "Friedman2006value" >}} --- a term coined by Batya Friedman and Peter Kahn in the late 1980's, and is a theoretically grounded approach to the design of technology that accounts for human values in a principled and comprehensive manner [fn:1].
@@ -38,13 +22,13 @@ There is mention of a "FATE" framework:
 We must consider the risks / benefits associated with the technology. Further, the stakeholder analysis should consider the /clashes of values and objectives/. Ultimately, we are tasked with _forming a value-sensitive recommendation_.
 
 
-* Outline                                                          :noexport:
+** Outline
 
 Spec: Outline your technology in detail (purpose, scope, needs, benefits) 
 
 Hint: purpose includes specific goals and objectives, scope includes delimiting context and use cases, needs includes design reasons and motivations, benefits can include societal/economic/health/etc.
 
-** Our Scope
+*** Our Scope
 Our technology is the indelible GPT-3{{< mnote "we bastardise an already bastardised phylogeny of models here since GPT-3.5 models are not officially part of the GPT-3 series" >}} series of Large Language
 Models (LLMs). Within this family of models, we apply a Value-Sensitive Design analysis to:
 
@@ -52,31 +36,24 @@ Models (LLMs). Within this family of models, we apply a Value-Sensitive Design a
 - InstructGPT (a subsequent RLHF (Reinforcement Learning Human Feedback) iteration);
 - and finally ChatGPT (a sibling model of InstructGPT without an official corresponding paper).
 
-#+BEGIN_CENTER
-#+ATTR_HTML: :width 700px
-#+CAPTION: openai iterations across time
-[[{{< cwd >}}gpt-timeline.png]]
-#+END_CENTER
-
 We consider the publicly released product at [[https://openai.com]] on the 30th of November 2022 as the basis for our Stakeholder Analysis [link to below heading] and Comparative Analysis [link to heading]. 
 
 #+BEGIN_CENTER
-#+ATTR_HTML: :width 700px
 #+CAPTION: a nostalgic start screen
 [[{{< cwd >}}dec-2022.png]]
 #+END_CENTER
 
-** GPT's Scope and Purpose
+*** GPT's Scope and Purpose
 Ironically, despite the stirred-paint naming schemes of the Language Models themselves, OpenAI's papers have been particularly effective in conveying the principle purposes of the technologies, we permanently establish the following couplings:
 - GPT1 \(\equiv\) Improving Language Understanding by Generative Pre-Training (June 2018)
 - GPT2 \(\equiv\) Language Models are Unsupervised Multitask Learners (February 2019)
 - GPT3 \(\equiv\) Language models are few-shot learners (June 2020)
 - InstructGPT \(\equiv\) Training language models to follow instructions with human feedback (January 2022)
-- ChatGPT \(\equiv\) The Chat bot you see when you log in to [[https://openai.com]].
+- ChatGPT \(equiv\) The Chat bot you see when you log in to [[https://openai.com]].
 
 Thus the _goals_ of ChatGPT become both *academic* and *capitalist*. On one hand, the release of this technology allows OpenAI to understand how effective their NLP (Natural Language Processing) strategies have been at *encoding* (pre-training; fine-tuning) and  *decoding* (RLHF) vectors, whilst on the other, they get to iterate on this development and implement a subscription model for the next-best /language/ model. 
   
-** Needs
+*** Needs
 Ultimately, this product is for humans; whether for the research and developer community, who then recast the underlying API stream into a product for other people, or for other people directly --- curious children, house-cooks, travellers, etc.
 
 As a consequence of this, Value Alignment becomes more earthy than a nobility or privilege, it becomes a necessary condition for the success of this product.
@@ -101,7 +78,7 @@ InstructGPT:
 #+END_SRC
 
 
-** Benefits
+*** Benefits
 
 It would not be an exaggeration to describe the LLM landscape as a _revolution_ on all knowledge work. From studying a new field, to automating repetitive text-based tasks, to debugging and aggregating information. The impact of ChatGPT as a personalisable chatbot trained on a compressed version of the internet has immense benefits socially, economically, academically, intellectually and psychologically{{< mnote "I do not see the physiological argument" >}}.
 
@@ -128,7 +105,7 @@ They are advocating for convergence to a Chatbot that can coexist and assimilate
   Researchers can apply for up to $1,000 of OpenAI API credits to support their work.
 #+END_SRC
 
-* Conclusion                                                       :noexport:
+** Conclusion
 
 For now, we are delighted to track a largely Value Sensitive Design by OpenAI and illustrate the push and pull amongst competitors and stakeholders. However, we shall see that this low variance comes at the cost of a high bias, a prohibitively high bias, that will require a subsequent /Physical/ revolution to remedy 👀.
 
@@ -284,3 +261,26 @@ context token size.
 
 
 ** definitely do not forget to discuss bias
+
+
+
+
+
+* Conclusion                                                       :noexport:
+
+We believe that the ChatGPT technology should be adopted as long as the underlying model is greater than or equal to InstructGPT and regular independent ethical audits are performed. 
+
+We make this Value Sensitive Recommendation after a thorough analysis of the Stakeholders affected by this technology, and after identifying the bevel of Values which are most important to them. We believe that the InstructGPT and above generation models marginally skew the cost-benefit analysis between Stakeholder disadvantages and advantages in favour of ChatGPT.
+
+This marginality is then enlarged by the rapid development of the GPT technology, where a burr is forming on the Advantages side; OpenAI is sufficiently mitigating risks and biases with active efforts to promote RST (Reliable, Safe and Trustworthy) LLMs.
+
+However, oscillating in the trend of Ethical analysis, we posit that this technological transparency can only be believed due to the open-access nature of the GPT-1, 2, 3 and Instruct papers. It is an obvious fact, and one empirically proved (Kahneman reference) that we tend to behave ourselves when observed. As such, we desire Open Access Publications for all LLM's that will affect the stakeholders above (link to section).
+
+Clearly, though the proprietary and competitive nature of these businesses (OpenAI, Google, etc.) enslaves Public Stakeholders by the Private (financial) Stakeholders. As such, realistic limitations will forbid open-access to LLM architectures and thus obscure the realistic efforts OpenAI is making towards Value Alignment, upholding HCAI and maintaining a VSD. 
+
+Finally, we posit the most realistic recommendation; for
+
+Independent Ethical AI Auditors to be contracted and presented with any and all Stakeholder affecting technical reports. We insist that part of this contract be Toothed Principles - converse to Munn's Tooth /less/ principles - such that whichever independent regulatory body is employed, they have the right and duty to act Ethically with the Values of all Stakeholders as their primary guiding metric. Furthermore, we insist that the report of the auditors be publicly published so as to avoid ‘ethics-washing’ (Bietti 2019). Lastly, this Authoritative body must be certified by the ACM.
+
+
+

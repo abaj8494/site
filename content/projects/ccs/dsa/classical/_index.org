@@ -162,6 +162,10 @@ we have already covered a couple of "graph" algorithms on this page: [[/projects
 #+END_CENTER
 
 
+#+BEGIN_CENTER
+#+CAPTION: bellman ford algorithm
+[[{{< cwd >}}/bellman-ford.gif]]
+#+END_CENTER
 
 
 ** Linear Programming
@@ -188,6 +192,173 @@ we have covered [[/projects/ccs/dsa/classical#binary-search][binary search]], [[
 we have not covered sorting at all on this page, it seems to be one of the less examined topics in [[/projects/ccs/dsa/leetcode][leetcode]]. nonetheless, it is an important and interesting application of the data structures and algorithms we know.
 
 *** time complexities
+
+[fn:1]
+
+
+#+begin_export html
+<style>
+  /* Layout: let content decide widths */
+  table.alg-table { width: 100%; border-collapse: collapse; table-layout: auto; }
+  .alg-table th, .alg-table td { border: 1px solid var(--table-border, #ddd); padding: .5rem .6rem; vertical-align: middle; }
+  .alg-table thead th { background: var(--table-head-bg, #f7f7f7); position: relative; }
+  .alg-table th[colspan] { text-align: center; }
+  .alg-table th[rowspan] { text-align: left; }
+  /* Prevent formula wrapping but let algorithm names wrap if needed */
+  .alg-table td:not(.alg-name) { white-space: nowrap; }
+  .alg-table td.alg-name { white-space: normal; }
+
+  /* Sort UI: small dropdown aligned right (optional) */
+  .sort-select { position: absolute; right: .4rem; top: .3rem; font-size: .8rem; }
+
+  /* Click-to-sort affordance (works even without dropdowns) */
+  .sort-click { cursor: pointer; }
+  .sort-click::after { content: " ⇅"; opacity: .5; font-size: .9em; }
+
+  /* Resizer handle on each header */
+  .col-resizer {
+    position: absolute; right: 0; top: 0; width: 6px; height: 100%;
+    cursor: col-resize; user-select: none;
+  }
+  .col-resizer:hover { background: rgba(0,0,0,.08); }
+</style>
+
+<table class="alg-table" id="alg-table">
+  <colgroup>
+    <col style="width: 18%"><!-- Algorithm -->
+    <col span="3"><!-- Time (auto widths) -->
+    <col style="width: 14%"><!-- Space -->
+  </colgroup>
+  <thead>
+    <tr>
+      <th rowspan="2" class="sort-click" data-col="0" data-type="alpha">Algorithm
+        <span class="col-resizer" data-col="0"></span>
+      </th>
+      <th colspan="3">Time</th>
+      <th rowspan="2" class="sort-click" data-col="4" data-type="alpha">Space (worst)
+        <select class="sort-select" data-col="4" data-type="alpha">
+          <option value="">—</option><option value="asc">↑</option><option value="desc">↓</option>
+        </select>
+        <span class="col-resizer" data-col="4"></span>
+      </th>
+    </tr>
+    <tr>
+      <th class="sort-click" data-col="1" data-type="alpha">Best <span class="col-resizer" data-col="1"></span></th>
+      <th class="sort-click" data-col="2" data-type="alpha">Average <span class="col-resizer" data-col="2"></span></th>
+      <th class="sort-click" data-col="3" data-type="alpha">Worst <span class="col-resizer" data-col="3"></span></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td class="alg-name">quicksort</td><td>$\Omega(n\log n)$</td><td>$\Theta(n\log n)$</td><td>$\mathcal{O}(n^2)$</td><td>$\mathcal{O}(\log n)$</td></tr>
+    <tr><td class="alg-name">mergesort</td><td>$\Omega(n\log n)$</td><td>$\Theta(n\log n)$</td><td>$\mathcal{O}(n\log n)$</td><td>$\mathcal{O}(n)$</td></tr>
+    <tr><td class="alg-name">timsort</td><td>$\Omega(n)$</td><td>$\Theta(n\log n)$</td><td>$\mathcal{O}(n\log n)$</td><td>$\mathcal{O}(n)$</td></tr>
+    <tr><td class="alg-name">heap</td><td>$\Omega(n\log n)$</td><td>$\Theta(n\log n)$</td><td>$\mathcal{O}(n\log n)$</td><td>$\mathcal{O}(1)$</td></tr>
+    <tr><td class="alg-name">bubble</td><td>$\Omega(n)$</td><td>$\Theta(n^2)$</td><td>$\mathcal{O}(n^2)$</td><td>$\mathcal{O}(1)$</td></tr>
+    <tr><td class="alg-name">insertion</td><td>$\Omega(n)$</td><td>$\Theta(n^2)$</td><td>$\mathcal{O}(n\log n)$</td><td>$\mathcal{O}(1)$</td></tr>
+    <tr><td class="alg-name">selection</td><td>$\Omega(n^2)$</td><td>$\Theta(n^2)$</td><td>$\mathcal{O}(n^2)$</td><td>$\mathcal{O}(1)$</td></tr>
+    <tr><td class="alg-name">bucket</td><td>$\Omega(n+k)$</td><td>$\Theta(n+k)$</td><td>$\mathcal{O}(n^2)$</td><td>$\mathcal{O}(n)$</td></tr>
+    <tr><td class="alg-name">radix</td><td>$\Omega(nk)$</td><td>$\Theta(nk)$</td><td>$\mathcal{O}(nk)$</td><td>$\mathcal{O}(n+k)$</td></tr>
+  </tbody>
+</table>
+
+<script>
+(function () {
+  const table = document.getElementById('alg-table');
+  const tbody = table.tBodies[0];
+
+  // --- Sorting helpers ---
+  const latexToKey = s => (s || "").replace(/\\[a-zA-Z]+/g,'')
+    .replace(/[{}$]/g,'').replace(/\\/g,'').replace(/\s+/g,' ').trim().toLowerCase();
+
+  function sortBy(col, dir, type='alpha') {
+    const rows = Array.from(tbody.rows);
+    const mul = dir === 'desc' ? -1 : 1;
+    rows.sort((r1, r2) => {
+      let a = r1.cells[col]?.innerText || "";
+      let b = r2.cells[col]?.innerText || "";
+      if (type === 'num') {
+        const na = parseFloat(a.replace(/[^\d.\-eE]/g,'')) || 0;
+        const nb = parseFloat(b.replace(/[^\d.\-eE]/g,'')) || 0;
+        return (na - nb) * mul;
+      } else {
+        a = latexToKey(a); b = latexToKey(b);
+        return a < b ? -1*mul : a > b ? 1*mul : 0;
+      }
+    });
+    rows.forEach(r => tbody.appendChild(r));
+  }
+
+  // Click-to-sort (toggle asc/desc)
+  const state = {}; // col -> 'asc' | 'desc'
+  table.querySelectorAll('.sort-click').forEach(th => {
+    th.addEventListener('click', () => {
+      const col = +th.dataset.col;
+      const type = th.dataset.type || 'alpha';
+      const next = state[col] === 'asc' ? 'desc' : 'asc';
+      state[col] = next;
+      sortBy(col, next, type);
+    });
+  });
+
+  // Dropdown sort (optional UI)
+  table.querySelectorAll('.sort-select').forEach(sel => {
+    sel.addEventListener('change', e => {
+      const col = +sel.dataset.col;
+      const type = sel.dataset.type || 'alpha';
+      if (!sel.value) return;
+      sortBy(col, sel.value, type);
+    });
+  });
+
+  // --- Column resizing (drag handles on THs) ---
+  const colgroup = table.querySelector('colgroup');
+  if (colgroup) {
+    const cols = colgroup.querySelectorAll('col');
+    let active = null, startX = 0, startW = 0;
+
+    function onMove(e) {
+      if (!active) return;
+      const dx = e.clientX - startX;
+      const newW = Math.max(60, startW + dx);
+      cols[active].style.width = newW + 'px';
+    }
+    function onUp() { active = null; document.removeEventListener('mousemove', onMove); }
+
+    table.querySelectorAll('.col-resizer').forEach(handle => {
+      handle.addEventListener('mousedown', e => {
+        const colIdx = +handle.dataset.col;
+        // Ensure a <col> exists for this index
+        if (!cols[colIdx]) return;
+        active = colIdx;
+        startX = e.clientX;
+        // compute current pixel width
+        const cell = table.tHead.querySelectorAll('tr:last-child th')[colIdx] || table.tHead.querySelectorAll('th')[colIdx];
+        startW = (cols[colIdx].offsetWidth || cell.offsetWidth || 120);
+        document.addEventListener('mousemove', onMove);
+        document.addEventListener('mouseup', onUp, { once: true });
+        e.preventDefault();
+      });
+    });
+  }
+})();
+</script>
+#+end_export
+
+
+** org table :noexport:
+|           | time                                                                | space                  |
+| algorithm | best               | average             | worst                    | worst                  |
+| quicksort | $\Omega(n\log(n))$ | $\theta(n \log(n))$ | $\mathcal{O}(n^2)$       | $\mathcal{O}(\log(n))$ |
+| mergesort | $\Omega(n\log(n))$ | $\theta(n \log(n))$ | $\mathcal{O}(n \log(n))$ | $\mathcal{O}(n)$       |
+| timsort   | $\Omega(n)$        | $\theta(n \log(n))$ | $\mathcal{O}(n \log(n))$ | $\mathcal{O}(n)$       |
+| heap      | $\Omega(n\log(n))$ | $\theta(n \log(n))$ | $\mathcal{O}(n \log(n))$ | $\mathcal{O}(1)$       |
+| bubble    | $\Omega(n)$        | $\theta(n^2)$       | $\mathcal{O}(n^2)$       | $\mathcal{O}(1)$       |
+| insertion | $\Omega(n)$        | $\theta(n^2)$       | $\mathcal{O}(n \log(n))$ | $\mathcal{O}(1)$       |
+| selection | $\Omega(n^2)$      | $\theta(n^2)$       | $\mathcal{O}(n^2)$       | $\mathcal{O}(1)$       |
+| bucket    | $\Omega(n+k)$      | $\theta(n+k)$       | $\mathcal{O}(n^2)$       | $\mathcal{O}(n)$       |
+| radix     | $\Omega(nk)$       | $\theta(nk)$        | $\mathcal{O}(nk)$        | $\mathcal{O}(n+k)$     |
+
+
 
 
 *** Insertion Sort
@@ -286,3 +457,9 @@ worst-case time: O(n^2)
 *** Bubblesort
 
 *** Bogosort
+
+** References
+
+** Footnotes
+
+[fn:1] these time complexities, along with a number of others were taken from [[https://bigocheatsheet.com]].

@@ -83,6 +83,24 @@ class Solution:
 :CUSTOM_ID: p3
 :END:
 
+#+BEGIN_SRC python
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        l = r = 0
+        longest_length = r - l
+        counts = collections.defaultdict(int)
+        while r < len(s):
+            if counts[s[r]] == 0:
+                counts[s[r]] += 1
+                r += 1
+            else:
+                counts[s[l]] = 0
+                l += 1
+            longest_length = max(r - l, longest_length)
+
+        return longest_length
+#+END_SRC
+
 
 ** {{< leetcode hard checked >}} 4. Median of Two Sorted Arrays
 :PROPERTIES:

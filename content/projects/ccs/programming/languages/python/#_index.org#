@@ -1,0 +1,32 @@
++++
+title = "Python"
+layout = "custom-list"
+tags = ["interpreted", "dynamically-typed", "readable", "indentation", "oop", "functional", "ml", "scripting"]
++++
+
+** Data Types
+
+|----------+------------------------------------|
+| category | types                              |
+|----------+------------------------------------|
+| text     | =str=                              |
+| numeric  | =int=, =float=, =complex=          |
+| sequence | =list=, =tuple=, =range=           |
+| mapping  | =dict=                             |
+| set      | =set=, =frozenset=                 |
+| boolean  | =bool=                             |
+| binary   | =bytes=, =bytearray=, =memoryview= |
+| none     | =NoneType=                         |
+|----------+------------------------------------|
+
+** Time Complexities
+
+
+
+
+{{< uncollapse id="mastery-python" >}}
+{{< uncollapse id="python-lambda" >}}
+{{< uncollapse id="python-filter" >}}
+{{< uncollapse id="json-python" >}}
+{{< uncollapse id="regex-python" >}}
+{{< uncollapse id="python-adv" >}}
