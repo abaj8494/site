@@ -2,7 +2,16 @@
 title = "Python"
 layout = "custom-list"
 tags = ["interpreted", "dynamically-typed", "readable", "indentation", "oop", "functional", "ml", "scripting"]
+math = "true"
 +++
+
+
+{{< uncollapse id="mastery-python" >}}
+{{< uncollapse id="python-lambda" >}}
+{{< uncollapse id="python-filter" >}}
+{{< uncollapse id="json-python" >}}
+{{< uncollapse id="regex-python" >}}
+{{< uncollapse id="python-adv" >}}
 
 ** Data Types
 
@@ -19,11 +28,72 @@ tags = ["interpreted", "dynamically-typed", "readable", "indentation", "oop", "f
 | none     | =NoneType=                         |
 |----------+------------------------------------|
 
+** Time Complexities
+
+*** lists
+
+|---------------------------------------------------------------------------------------------------------+--------------------|
+| *operation*                                                                                             | *time complexity*  |
+|---------------------------------------------------------------------------------------------------------+--------------------|
+| =sequence.append(item)=                                                                                 | $\mathcal{O}(1)$   |
+| =sequence.pop(item)=                                                                                    | $\mathcal{O}(1)$   |
+| =sequence.insert(0,item)=                                                                               | $\mathcal{O}(n)$   |
+| =sequence.pop(item,0)= {{< mnote "slow because popping at start requires shifting all indices down" >}} | $\mathcal{O}(n)$   |
+| =sequence[index]=                                                                                       | $\mathcal{O}(1)$   |
+| =sequence[index]=value=                                                                                 | $\mathcal{O}(1)$   |
+| =item in sequence=                                                                                      | $\mathcal{O}(n)$   |
+| =len(sequence)=                                                                                         | $\mathcal{O}(1)$   |
+| =sequence.extend(iterable)=                                                                             | $\mathcal{O}(k)$   |
+| =sequence + other_sequence=                                                                             | $\mathcal{O}(n+k)$ |
+| =sequence[index:index+k]=                                                                               | $\mathcal{O}(k)$   |
+| =sequence.index(item)=                                                                                  | $\mathcal{O}(n)$   |
+| =sequence.count(item)=                                                                                  | $\mathcal{O}(n)$   |
+| =for item in sequence:=                                                                                 | $\mathcal{O}(n)$   |
+|---------------------------------------------------------------------------------------------------------+--------------------|
 
 
-{{< uncollapse id="mastery-python" >}}
-{{< uncollapse id="python-lambda" >}}
-{{< uncollapse id="python-filter" >}}
-{{< uncollapse id="json-python" >}}
-{{< uncollapse id="regex-python" >}}
-{{< uncollapse id="python-adv" >}}
+** double-ended queue (deque)
+
+
+|-----------------------------+--------------------|
+| *operation*                 | *time complexity*  |
+|-----------------------------+--------------------|
+| =queue.append(item)=        | $\mathcal{O}(1)$   |
+| =queue.pop(item)=           | $\mathcal{O}(1)$   |
+| =queue.appendleft(item)=    | $\mathcal{O}(1)$   |
+| =queue.popleft(item)=       | $\mathcal{O}(1)$   |
+| =item in queue=             | $\mathcal{O}(n)$   |
+| =queue[0]= or =queue[-1]=   | $\mathcal{O}(1)$   |
+| =queue[i]=                  | $\mathcal{O}(n)$   |
+| =for item in queue=         | $\mathcal{O}(n)$   |
+|-----------------------------+--------------------|
+
+
+** dictionary
+
+|-----------------------------+--------------------|
+| *operation*                 | *time complexity*  |
+|-----------------------------+--------------------|
+| =queue.append(item)=        | $\mathcal{O}(1)$   |
+| =queue.pop(item)=           | $\mathcal{O}(1)$   |
+| =queue.appendleft(item)=    | $\mathcal{O}(1)$   |
+| =queue.popleft(item)=       | $\mathcal{O}(1)$   |
+| =item in queue=             | $\mathcal{O}(n)$   |
+| =queue[0]= or =queue[-1]=   | $\mathcal{O}(1)$   |
+| =queue[i]=                  | $\mathcal{O}(n)$   |
+| =for item in queue=         | $\mathcal{O}(n)$   |
+|-----------------------------+--------------------|
+
+** set 
+
+
+** counter
+
+** heap / priority queue
+
+** sorted list
+
+** general traversals:
+
+| 
+

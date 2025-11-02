@@ -12,6 +12,339 @@ I am actually thinking of collapsing all of the nested files / folders that each
 
 The inspiration is my computer vision [[/projects/computer-vision][notes]].
 
+** at a glance:
+
+#+begin_export html
+<style>
+  table.ds-table { width: 100%; border-collapse: collapse; table-layout: auto; }
+  .ds-table th, .ds-table td { border: 1px solid var(--table-border, #ddd); padding: .5rem .6rem; vertical-align: middle; }
+  .ds-table thead th { background: var(--table-head-bg, #f7f7f7); position: relative; user-select: none; }
+  .ds-table th[colspan] { text-align: center; }
+  .ds-table th[rowspan] { text-align: left; }
+
+  /* Don’t wrap complexity tokens; allow DS names to wrap */
+  .ds-table td:not(.ds-name) { white-space: nowrap; }
+  .ds-table td.ds-name { white-space: normal; }
+
+  /* Sorting affordance */
+  .sort-click { cursor: pointer; }
+  .sort-click::after { content: " ⇅"; opacity: .5; font-size: .9em; }
+
+  /* Resizer handle (full-height sliver at the right edge of each header cell) */
+  .col-resizer {
+    position: absolute; right: -3px; top: 0; width: 6px; height: 100%;
+    cursor: col-resize; z-index: 1;
+  }
+  .col-resizer:hover { background: rgba(0,0,0,.08); }
+
+  /* While dragging: add a guide line */
+  .resizing .col-guide {
+    position: absolute; top: 0; bottom: 0; width: 0; border-right: 2px dashed rgba(0,0,0,.25);
+    pointer-events: none;
+  }
+</style>
+
+<table class="ds-table" id="ds-table">
+  <!-- IMPORTANT: one <col> per column so every column can be resized -->
+  <colgroup>
+    <col style="width: 22%"><!-- 0: Data Structure -->
+    <col style="width: 9%"><!-- 1: Avg Access -->
+    <col style="width: 9%"><!-- 2: Avg Search -->
+    <col style="width: 9%"><!-- 3: Avg Insert -->
+    <col style="width: 9%"><!-- 4: Avg Delete -->
+    <col style="width: 9%"><!-- 5: Worst Access -->
+    <col style="width: 9%"><!-- 6: Worst Search -->
+    <col style="width: 9%"><!-- 7: Worst Insert -->
+    <col style="width: 9%"><!-- 8: Worst Delete -->
+    <col style="width: 12%"><!-- 9: Space Worst -->
+  </colgroup>
+  <thead>
+    <tr>
+      <th rowspan="3" class="sort-click" data-col="0" data-type="alpha">Data Structure
+        <span class="col-resizer" data-col="0"></span>
+      </th>
+      <th colspan="8">Time Complexity</th>
+      <th rowspan="3" class="sort-click" data-col="9" data-type="alpha">Space Complexity (Worst)
+        <span class="col-resizer" data-col="9"></span>
+      </th>
+    </tr>
+    <tr>
+      <th colspan="4">Average</th>
+      <th colspan="4">Worst</th>
+    </tr>
+    <tr>
+      <th class="sort-click" data-col="1" data-type="alpha">Access <span class="col-resizer" data-col="1"></span></th>
+      <th class="sort-click" data-col="2" data-type="alpha">Search <span class="col-resizer" data-col="2"></span></th>
+      <th class="sort-click" data-col="3" data-type="alpha">Insertion <span class="col-resizer" data-col="3"></span></th>
+      <th class="sort-click" data-col="4" data-type="alpha">Deletion <span class="col-resizer" data-col="4"></span></th>
+      <th class="sort-click" data-col="5" data-type="alpha">Access <span class="col-resizer" data-col="5"></span></th>
+      <th class="sort-click" data-col="6" data-type="alpha">Search <span class="col-resizer" data-col="6"></span></th>
+      <th class="sort-click" data-col="7" data-type="alpha">Insertion <span class="col-resizer" data-col="7"></span></th>
+      <th class="sort-click" data-col="8" data-type="alpha">Deletion <span class="col-resizer" data-col="8"></span></th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Array -->
+    <tr>
+      <td class="ds-name"><a href="http://en.wikipedia.org/wiki/Array_data_structure">Array</a></td>
+      <td><code class="green">&Theta;(1)</code></td>
+      <td><code class="yellow">&Theta;(n)</code></td>
+      <td><code class="yellow">&Theta;(n)</code></td>
+      <td><code class="yellow">&Theta;(n)</code></td>
+      <td><code class="green">O(1)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+    </tr>
+    <!-- Stack -->
+    <tr>
+      <td class="ds-name"><a href="http://en.wikipedia.org/wiki/Stack_(abstract_data_type)">Stack</a></td>
+      <td><code class="yellow">&Theta;(n)</code></td>
+      <td><code class="yellow">&Theta;(n)</code></td>
+      <td><code class="green">&Theta;(1)</code></td>
+      <td><code class="green">&Theta;(1)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+      <td><code class="green">O(1)</code></td>
+      <td><code class="green">O(1)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+    </tr>
+    <!-- Queue -->
+    <tr>
+      <td class="ds-name"><a href="http://en.wikipedia.org/wiki/Queue_(abstract_data_type)">Queue</a></td>
+      <td><code class="yellow">&Theta;(n)</code></td>
+      <td><code class="yellow">&Theta;(n)</code></td>
+      <td><code class="green">&Theta;(1)</code></td>
+      <td><code class="green">&Theta;(1)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+      <td><code class="green">O(1)</code></td>
+      <td><code class="green">O(1)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+    </tr>
+    <!-- Singly Linked List -->
+    <tr>
+      <td class="ds-name"><a href="http://en.wikipedia.org/wiki/Singly_linked_list#Singly_linked_lists">Singly-Linked List</a></td>
+      <td><code class="yellow">&Theta;(n)</code></td>
+      <td><code class="yellow">&Theta;(n)</code></td>
+      <td><code class="green">&Theta;(1)</code></td>
+      <td><code class="green">&Theta;(1)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+      <td><code class="green">O(1)</code></td>
+      <td><code class="green">O(1)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+    </tr>
+    <!-- Doubly Linked List -->
+    <tr>
+      <td class="ds-name"><a href="http://en.wikipedia.org/wiki/Doubly_linked_list">Doubly-Linked List</a></td>
+      <td><code class="yellow">&Theta;(n)</code></td>
+      <td><code class="yellow">&Theta;(n)</code></td>
+      <td><code class="green">&Theta;(1)</code></td>
+      <td><code class="green">&Theta;(1)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+      <td><code class="green">O(1)</code></td>
+      <td><code class="green">O(1)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+    </tr>
+    <!-- Hash Table -->
+    <tr>
+      <td class="ds-name"><a href="http://en.wikipedia.org/wiki/Hash_table">Hash Table</a></td>
+      <td><code class="gray">N/A</code></td>
+      <td><code class="green">&Theta;(1)</code></td>
+      <td><code class="green">&Theta;(1)</code></td>
+      <td><code class="green">&Theta;(1)</code></td>
+      <td><code class="gray">N/A</code></td>
+      <td><code class="yellow">O(n)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+    </tr>
+    <!-- Binary Search Tree -->
+    <tr>
+      <td class="ds-name"><a href="http://en.wikipedia.org/wiki/Binary_search_tree">Binary Search Tree</a></td>
+      <td><code class="yellow-green">&Theta;(log(n))</code></td>
+      <td><code class="yellow-green">&Theta;(log(n))</code></td>
+      <td><code class="yellow-green">&Theta;(log(n))</code></td>
+      <td><code class="yellow-green">&Theta;(log(n))</code></td>
+      <td><code class="yellow">O(n)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+    </tr>
+    <!-- B-Tree -->
+    <tr>
+      <td class="ds-name"><a href="http://en.wikipedia.org/wiki/B_tree">B-Tree</a></td>
+      <td><code class="yellow-green">&Theta;(log(n))</code></td>
+      <td><code class="yellow-green">&Theta;(log(n))</code></td>
+      <td><code class="yellow-green">&Theta;(log(n))</code></td>
+      <td><code class="yellow-green">O(log(n))</code></td>
+      <td><code class="yellow-green">O(log(n))</code></td>
+      <td><code class="yellow-green">O(log(n))</code></td>
+      <td><code class="yellow-green">O(log(n))</code></td>
+      <td><code class="yellow-green">O(log(n))</code></td>
+      <td><code class="yellow">O(n)</code></td>
+    </tr>
+    <!-- Red-Black Tree -->
+    <tr>
+      <td class="ds-name"><a href="http://en.wikipedia.org/wiki/Red-black_tree">Red-Black Tree</a></td>
+      <td><code class="yellow-green">&Theta;(log(n))</code></td>
+      <td><code class="yellow-green">&Theta;(log(n))</code></td>
+      <td><code class="yellow-green">&Theta;(log(n))</code></td>
+      <td><code class="yellow-green">&Theta;(log(n))</code></td>
+      <td><code class="yellow-green">O(log(n))</code></td>
+      <td><code class="yellow-green">O(log(n))</code></td>
+      <td><code class="yellow-green">O(log(n))</code></td>
+      <td><code class="yellow-green">O(log(n))</code></td>
+      <td><code class="yellow">O(n)</code></td>
+    </tr>
+    <!-- AVL Tree -->
+    <tr>
+      <td class="ds-name"><a href="http://en.wikipedia.org/wiki/AVL_tree">AVL Tree</a></td>
+      <td><code class="yellow-green">&Theta;(log(n))</code></td>
+      <td><code class="yellow-green">&Theta;(log(n))</code></td>
+      <td><code class="yellow-green">&Theta;(log(n))</code></td>
+      <td><code class="yellow-green">&Theta;(log(n))</code></td>
+      <td><code class="yellow-green">O(log(n))</code></td>
+      <td><code class="yellow-green">O(log(n))</code></td>
+      <td><code class="yellow-green">O(log(n))</code></td>
+      <td><code class="yellow-green">O(log(n))</code></td>
+      <td><code class="yellow">O(n)</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<script>
+(function () {
+  const table = document.getElementById('ds-table');
+  const tbody = table.tBodies[0];
+  const colgroup = table.querySelector('colgroup');
+  const cols = Array.from(colgroup.children); // one <col> per column (0..9)
+
+  /* ---------- Sorting ---------- */
+  const latexKey = s => (s || "")
+      .replace(/&[A-Za-z]+;|\u03A9|\u0398|\u2130/g, m => m) // keep greek entities if any
+      .replace(/[{}$]/g,'').replace(/\\[a-zA-Z]+/g,'')
+      .replace(/\s+/g,' ').trim().toLowerCase();
+
+  const state = {};
+  function sortBy(col, dir, type='alpha') {
+    const rows = Array.from(tbody.rows);
+    const mul = dir === 'desc' ? -1 : 1;
+    rows.sort((r1, r2) => {
+      let a = r1.cells[col]?.innerText || "";
+      let b = r2.cells[col]?.innerText || "";
+      if (type === 'num') {
+        const na = parseFloat(a.replace(/[^\d.\-eE]/g,'')) || 0;
+        const nb = parseFloat(b.replace(/[^\d.\-eE]/g,'')) || 0;
+        return (na - nb) * mul;
+      }
+      a = latexKey(a); b = latexKey(b);
+      return (a < b ? -1 : a > b ? 1 : 0) * mul;
+    });
+    rows.forEach(r => tbody.appendChild(r));
+  }
+
+  table.querySelectorAll('.sort-click').forEach(th => {
+    th.addEventListener('click', () => {
+      const col = +th.dataset.col;
+      const type = th.dataset.type || 'alpha';
+      const next = state[col] === 'asc' ? 'desc' : 'asc';
+      state[col] = next;
+      sortBy(col, next, type);
+    });
+  });
+
+  /* ---------- Column Resizing (works for ALL columns) ---------- */
+  // Strategy: we place a handle on each header cell that maps to a leaf column index.
+  // Dragging sets that <col>'s width in px. If Shift is held, we also shrink/grow the next column to keep table width steady.
+
+  // Build a map from header resizer to true column index taking colspans into account.
+  // Easiest in our layout: the "leaf" headers are the last THEAD row; prepend Data Structure (0) manually.
+  const leafRow = table.tHead.rows[2];
+  const leafStarts = [0]; // col indices: 0 first, then 1..8 from leafRow
+  {
+    let idx = 1;
+    for (const th of leafRow.cells) {
+      const span = th.colSpan || 1;
+      leafStarts.push(idx);
+      idx += span;
+    }
+    // leafStarts now [0,1,2,3,4,5,6,7,8,9] length 10
+  }
+
+  // Visual guide while dragging
+  let guide = null;
+
+  function px(n) { return Math.max(60, Math.round(n)); } // min width 60px
+
+  function startDrag(e, targetCol) {
+    const startX = e.clientX;
+    const startW = cols[targetCol].offsetWidth || table.tHead.getBoundingClientRect().width / cols.length;
+    const nextCol = (e.shiftKey && targetCol < cols.length - 1) ? targetCol + 1 : null;
+    const startWNext = nextCol != null ? (cols[nextCol].offsetWidth || 0) : 0;
+
+    table.classList.add('resizing');
+    guide = document.createElement('div');
+    guide.className = 'col-guide';
+    // Place guide at current boundary
+    const thCell = getHeaderCellFor(targetCol);
+    const rect = thCell.getBoundingClientRect();
+    guide.style.left = (rect.right - table.getBoundingClientRect().left) + 'px';
+    table.style.position = table.style.position || 'relative';
+    table.appendChild(guide);
+
+    function onMove(ev) {
+      const dx = ev.clientX - startX;
+      const newW = px(startW + dx);
+      cols[targetCol].style.width = newW + 'px';
+
+      if (nextCol != null) {
+        const newNext = px(startWNext - dx);
+        cols[nextCol].style.width = newNext + 'px';
+      }
+      // Move guide to current boundary of target column
+      const thNow = getHeaderCellFor(targetCol);
+      const r = thNow.getBoundingClientRect();
+      guide.style.left = (r.right - table.getBoundingClientRect().left) + 'px';
+    }
+
+    function onUp() {
+      document.removeEventListener('mousemove', onMove);
+      document.removeEventListener('mouseup', onUp);
+      table.classList.remove('resizing');
+      if (guide) { guide.remove(); guide = null; }
+    }
+    document.addEventListener('mousemove', onMove);
+    document.addEventListener('mouseup', onUp);
+  }
+
+  function getHeaderCellFor(colIndex) {
+    // Try last-row leaf header if in 1..8; otherwise the big first/last headers.
+    if (colIndex === 0) return table.tHead.rows[0].cells[0];
+    if (colIndex === 9) return table.tHead.rows[0].cells[table.tHead.rows[0].cells.length - 1];
+    // For 1..8, map to leafRow.cell[colIndex-1]
+    return leafRow.cells[colIndex - 1];
+  }
+
+  // Bind resizers (handles exist on every header cell; their data-col already set for 0..9)
+  table.querySelectorAll('.col-resizer').forEach(handle => {
+    handle.addEventListener('mousedown', e => {
+      const colIdx = +handle.dataset.col;
+      if (Number.isInteger(colIdx) && cols[colIdx]) {
+        startDrag(e, colIdx);
+        e.preventDefault();
+      }
+    });
+  });
+})();
+</script>
+#+end_export
+
+
 ** primitives
 :PROPERTIES:
 :CUSTOM_ID: primitives

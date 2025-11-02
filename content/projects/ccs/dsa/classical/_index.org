@@ -50,12 +50,54 @@ it is often combined with [[/projects/ccs/dsa/structures#hashmaps][hashmaps]] to
 :CUSTOM_ID: binary-search
 :END:
 
+this is technically an expansion of the [[#two-pointers][two pointers]] pattern.
 
+it can be used on any list that has a monotonic function.
+
+privvy to utilise any condition for sorting; e.g. T/F
+
+#+BEGIN_SRC python
+  def binary_search(arr: List[int], target: int) -> int:
+      left, right = 0, len(arr) - 1
+      first_true_index = -1
+      while left <= right:
+	  mid = (left + right) // 2
+	  if feasible(mid):
+	      first_true_index = mid
+	      right = mid -1
+	  else:
+	      left = mid+1
+      return first_true_index
+#+END_SRC
+
+we can apply the above prototype to [[/projects/ccs/dsa/leetcode/solutions#p153][leetcode problem 153]]
 
 ** Breadth First Search
 :PROPERTIES:
 :CUSTOM_ID: bfs
 :END:
+
+this algorithm is good for finding the *shortest path* between two nodes.
+
+it is worth realising that /a tree is just a graph without cycles/.
+
+BFS uses a [[/projects/ccs/dsa/structures#queue][queue]] data-structure. we can implement bfs by using a queue which is built with a deque:
+
+#+BEGIN_SRC python
+  from collections import deque
+
+  def bfs_by_queue(root):
+      queue = deque([root])
+      while len(queue) > 0:
+	  node = queue.popleft()
+	  for child in node.children:
+	      if OK(child):
+		  return FOUND(child)
+	      queue.append(child)
+      return NOT_FOUND
+#+END_SRC
+
+see [[/projects/ccs/dsa/leetcode/solutions#p102][leetcode problem 102]]
 
 
 ** Backtracking
@@ -63,12 +105,27 @@ it is often combined with [[/projects/ccs/dsa/structures#hashmaps][hashmaps]] to
 :CUSTOM_ID: backtracking
 :END:
 
+this is just an extension of DFS (?), with the caveat that there is no longer a pre-built structure (i.e. an underlying tree)
+
+see [[/projects/ccs/dsa/leetcode/solutions#p17][leetcode problem 17]]
+
 
 ** Dynamic Programming
 :PROPERTIES:
 :CUSTOM_ID: dp
 :END:
 
+this is one of the more difficult patterns (allegedly). there are two types:
+
+*** top-down
+
+back-tracking + memoisation
+
+*** bottom-up
+
+solve smallest subproblems first.
+
+fill out a table
 
 
 ** Depth First Search
@@ -76,11 +133,102 @@ it is often combined with [[/projects/ccs/dsa/structures#hashmaps][hashmaps]] to
 :CUSTOM_ID: dfs
 :END:
 
+this algorithm is better for finding a route to a vertex that is deep within the search-tree.
+
+we use an implementation of a "stack" to execute this algorithm, but in practice we can often use recursion paired with a "call-stack"!
+
+DFS is good for:
+- exploring all paths
+- detecting cycles
+- memory efficient searchs
+- deep searching
+
+see [[/projects/ccs/dsa/leetcode/solutions#p200][leetcode problem 200]]
+
 
 ** Heap / Priority Queue
 :PROPERTIES:
 :CUSTOM_ID: heaps
 :END:
+
+heaps are implementations of priority queues (?)
+
+this data structure is used to solve problems of the type: "top K" and is slightly unintuitive, because to find the top K "largest", we require a min-heap, and to find the top K "smallest", we require a max-heap:
+
+#+BEGIN_CENTER
+#+HTML: <div style="display: flex; align-items: center; justify-content: center; gap: 20px;">
+#+HTML:   <div style="text-align: center; display: flex; flex-direction: column; align-items: center;">
+#+CAPTION: min-heap, k-largest
+#+ATTR_HTML: :width 350px :class lateximage
+{{< tikztwo >}}
+\usetikzlibrary{arrows,positioning, calc}
+\tikzstyle{vertex}=[draw,fill=black!15,circle,minimum size=20pt,inner sep=0pt]
+
+\begin{document}
+\begin{tikzpicture}[scale=1.5,transform shape,very thick,level/.style={sibling distance=30mm/#1}]
+\node [vertex] (r){$8$}
+  child {
+    node [vertex] (a) {$7$}
+    child {
+      node [vertex] {$9$}
+    }
+    child {
+      node [vertex] {$13$}
+    }
+  }
+  child {
+    node [vertex] {$4$}
+    child {
+      node [vertex] {$5$}
+    }
+    child {
+      node [vertex] {$76$}
+    }
+  };
+\end{tikzpicture}
+\end{document}
+{{< /tikztwo >}}
+#+HTML:   </div>
+#+HTML:   <div style="text-align: center; display: flex; flex-direction: column; align-items: center;">
+#+CAPTION: max-heap, k-smallest
+#+ATTR_HTML: :width 350px :class lateximage
+{{< tikztwo >}}
+\usetikzlibrary{arrows,positioning, calc}
+\tikzstyle{vertex}=[draw,fill=black!15,circle,minimum size=20pt,inner sep=0pt]
+
+\begin{document}
+\begin{tikzpicture}[scale=1.5,transform shape,very thick,level/.style={sibling distance=30mm/#1}]
+\node [vertex] (r){$20$}
+  child {
+    node [vertex] (a) {$15$}
+    child {
+      node [vertex] {$9$}
+    }
+    child {
+      node [vertex] {$8$}
+    }
+  }
+  child {
+    node [vertex] {$6$}
+    child {
+      node [vertex] {$4$}
+    }
+    child {
+      node [vertex] {$2$}
+    }
+  };
+\end{tikzpicture}
+\end{document}
+{{< /tikztwo >}}
+
+#+HTML:   </div>
+#+HTML:   </div>
+#+END_CENTER
+
+see leetcode problems:
+- [[/projects/ccs/dsa/leetcode/solutions#p45][45]]
+- [[/projects/ccs/dsa/leetcode/solutions#p347][347]]
+- [[/projects/ccs/dsa/leetcode/solutions#p973][973]]
 
 
 ** Divide and Conquer
@@ -191,9 +339,7 @@ we have covered [[/projects/ccs/dsa/classical#binary-search][binary search]], [[
 
 we have not covered sorting at all on this page, it seems to be one of the less examined topics in [[/projects/ccs/dsa/leetcode][leetcode]]. nonetheless, it is an important and interesting application of the data structures and algorithms we know.
 
-*** time complexities
-
-[fn:1]
+*** time complexities[fn:1]
 
 
 #+begin_export html
@@ -457,8 +603,6 @@ worst-case time: O(n^2)
 *** Bubblesort
 
 *** Bogosort
-
-** References
 
 ** Footnotes
 

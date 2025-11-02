@@ -7,6 +7,12 @@ toc = "true"
 date = "2025-10-21T20:42:32+11:00"
 +++
 
+#+OPTIONS: todo:nil
+
+#+BEGIN_EXPORT html
+<img src="https://leetcard.jacoblin.cool/abaj8494?theme=dark&font=Syne" alt="Leetcode Stats" />
+#+END_EXPORT
+
 Here lie my implementations and notes for various [[https://leetcode.com][leetcode]] problems. 
 
 {{< collapse folded="false" >}}
@@ -280,7 +286,7 @@ class Solution:
         return out
 #+END_SRC
 
-** {{< leetcode medium checked >}} 17. 3Sum Closest
+** {{< leetcode medium checked >}} 16. 3Sum Closest
 :PROPERTIES:
 :CUSTOM_ID: p17
 :END:
@@ -317,6 +323,7 @@ class Solution:
         return closest_sum
 #+END_SRC
 
+** TODO {{< leetcode medium checked >}} 17. Letter Combinations of a Phone Number
 ** {{< leetcode medium checked >}} 36. Valid Sudoku
 :PROPERTIES:
 :CUSTOM_ID: p36
@@ -438,6 +445,7 @@ class Solution:
         return summ
 #+END_SRC
 
+** TODO {{< leetcode medium checked >}} 45. Jump Game II
 ** {{< leetcode medium checked >}} 49. Group Anagrams
 :PROPERTIES:
 :CUSTOM_ID: p49
@@ -556,6 +564,7 @@ void merge(int* nums1, int nums1Size, int m, int* nums2, int nums2Size, int n){
 */
 #+END_SRC
 
+** TODO {{< leetcode easy checked >}} 102. Binary Tree Level Order Traversal
 ** {{< leetcode medium checked >}} 128. Longest Consecutive Sequence
 :PROPERTIES:
 :CUSTOM_ID: p128
@@ -589,6 +598,24 @@ class Solution:
         splt = re.split('\\s+',s)
         splt.reverse()
         return " ".join(splt).strip()
+#+END_SRC
+
+** TODO {{< leetcode medium checked >}} 152. Maximum Product Subarray
+:PROPERTIES:
+:CUSTOM_ID: p152
+:END:
+
+#+BEGIN_SRC python
+
+#+END_SRC
+
+** TODO {{< leetcode medium checked >}} 153. Find Minimum in Rotated Sorted Array
+:PROPERTIES:
+:CUSTOM_ID: p153
+:END:
+
+#+BEGIN_SRC python
+
 #+END_SRC
 
 ** {{< leetcode medium checked >}} 167. Two Sum II - Input Array Is Sorted
@@ -653,6 +680,7 @@ class Solution:
         return res
 #+END_SRC
 
+** TODO {{< leetcode medium checked >}} 200. Number of Islands
 ** {{< leetcode easy checked >}} 202. Happy Number
 :PROPERTIES:
 :CUSTOM_ID: p202
@@ -927,9 +955,11 @@ class Solution:
         return ans
 #+END_SRC
 
-** {{< leetcode medium checked >}} 347. Top K Frequent Elements
+** DONE {{< leetcode medium checked >}} 347. Top K Frequent Elements
 :PROPERTIES:
 :CUSTOM_ID: p347
+:CLOSED: [2025-11-02 Sun 17:04]
+:note: - State "DONE" from "" [2025-11-02 Sun 17:04]
 :END:
 
 #+BEGIN_SRC python
@@ -1164,9 +1194,4 @@ class Solution:
         return res
 #+END_SRC
 
-
-
-
-
-
-
+** TODO {{< leetcode medium checked >}} 973. K Closest Points to Origin

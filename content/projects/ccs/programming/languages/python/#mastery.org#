@@ -1,6 +1,5 @@
 +++
 title = "@@html:<input type=\"checkbox\" class=\"done\" checked style=\"transform: scale(1.4); vertical-align: middle; margin-right: 8px;\"/>@@Mastering Python"
-displayTitle = "<input type=\"checkbox\" class=\"done\" style=\"transform: scale(1.4); vertical-align: middle; margin-right: 8px;\"/>Mastering Python"
 tags = ["sharpen"]
 +++
 
