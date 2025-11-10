@@ -83,3 +83,71 @@ aside.custom-toc {
 .tag-cloud__tag--active {
   text-decoration: underline;
 }
+
+/* Scroll to top button */
+.scroll-to-top {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: var(--bg2);
+  border: 2px solid var(--bg3);
+  color: var(--fg);
+  font-size: 1.5rem;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, background 0.2s ease;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+
+  &:hover {
+    background: var(--bg3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  &:active {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  }
+
+  &.visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+}
+
+/* Position the button within the sidebar on desktop */
+@media (min-width: 1024px) {
+  .sidebar-container {
+    position: relative;
+  }
+
+  .scroll-to-top {
+    /* Position relative to sidebar, will be updated by JavaScript */
+    left: 12.5%;
+    transform: translateX(-50%);
+  }
+}
+
+/* Hide on mobile/tablet */
+@media (max-width: 1023px) {
+  .scroll-to-top {
+    display: none;
+  }
+}

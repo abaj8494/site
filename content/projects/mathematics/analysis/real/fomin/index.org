@@ -194,7 +194,7 @@ the key observation is that $[2,1] = \varnothing$ by definition of the interval.
 {{< mprob >}} Let $y = f(x) = \langle x \rangle$ for all real x, where $\langle x \rangle$ is the fractional part of $x$. Prove that every closed interval of length 1 has the same image under $f$. What is this image? Is $f$ one-to-one? What is the preimage of the interval $\frac{1}{4}\leq y\leq\frac{3}{4}$? Partition the real line into classes of points with the same image.
 {{< /mprob >}}
 {{< msketch >}}
-Start with $I=\set{a,a+1}$, i.e. an arbitrary set of length 1. Then notice that you can subtract $a$ wlog @@html:<span class="margin-note" data-note="without loss of generality"> <span class="margin-note-indicator">⊕</span> </span>@@, and now we are tasked to find $\set{\langle x \rangle : x\in [0,1]}$. Furthermore, we know that $\langle x \rangle = x - \lfloor x \rfloor $ with $\langle 0 \rangle = 0 = \langle 1 \rangle$, whereby the image of the the closed interval only sweeps the half-open interval $[0,1)$.
+Start with $I=\set{a,a+1}$, i.e. an arbitrary set of length 1. Then notice that you can subtract $a$ wlog @@html:<span class="margin-note" data-note="without loss of generality"> <span class="margin-note-indicator">𐃏</span> </span>@@, and now we are tasked to find $\set{\langle x \rangle : x\in [0,1]}$. Furthermore, we know that $\langle x \rangle = x - \lfloor x \rfloor $ with $\langle 0 \rangle = 0 = \langle 1 \rangle$, whereby the image of the the closed interval only sweeps the half-open interval $[0,1)$.
 
 $f$ cannot be one-to-one because of the periodicity; many real numbers have the same fractional parts.
 

@@ -142,8 +142,8 @@ Define the *boundary*: \[\mathrm{Bd}(Y) = X \backslash (\mathrm{Int}(Y)\cup \mat
 {{< mthm "Intersections and Unions" >}}
 Let $(X,d)$ be a metric space. The topology has the following properties:
 1. $\varnothing, X \in \mathcal{O}(X)$
-2. If $\set{V_i}_{i\in I} \subseteq \mathcal{O}(X)$, then $\displaystyle \bigcup_{i\in I} V_i \in \mathcal{O}(X)$. @@html:<span class="margin-note" data-note="the union of open sets is open"> <span class="margin-note-indicator">⊕</span> </span>@@
-3. If $V_1, V_2 \in \mathcal{O}(X)$, then $V_1 \cap V_2 \in \mathcal{O}(X)$ @@html: <span class="margin-note" data-note="a <strong>finite</strong> intersection of open sets is open"> <span class="margin-note-indicator">⊕</span> </span>@@
+2. If $\set{V_i}_{i\in I} \subseteq \mathcal{O}(X)$, then $\displaystyle \bigcup_{i\in I} V_i \in \mathcal{O}(X)$. @@html:<span class="margin-note" data-note="the union of open sets is open"> <span class="margin-note-indicator">𐃏</span> </span>@@
+3. If $V_1, V_2 \in \mathcal{O}(X)$, then $V_1 \cap V_2 \in \mathcal{O}(X)$ @@html: <span class="margin-note" data-note="a <strong>finite</strong> intersection of open sets is open"> <span class="margin-note-indicator">𐃏</span> </span>@@
 {{< /mthm >}}
 
 {{< mdef "The pre-image of every open set is open" >}}

@@ -6,8 +6,9 @@ document.addEventListener("DOMContentLoaded", function () {
   // Set global flag to indicate margin notes system is being initialized
   window.marginNotesInitialized = true;
 
-  // Global margin notes state
-  window.marginNotesDisabled = false;
+  // Global margin notes state - check localStorage for saved preference
+  const savedState = localStorage.getItem("marginNotesDisabled");
+  window.marginNotesDisabled = savedState === "true";
 
   // Detect if this is likely a mobile device requesting desktop site
   function detectDesktopModeOnMobile() {
@@ -172,6 +173,25 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  // Apply the disabled state if it was loaded from localStorage
+  if (window.marginNotesDisabled) {
+    // Apply disabled state immediately
+    if (marginNotesContainer) {
+      marginNotesContainer.style.display = "none";
+    }
+    const allMarginNotes = document.querySelectorAll(".margin-note");
+    allMarginNotes.forEach((note) => {
+      note.classList.add("disabled");
+      note.style.borderBottomColor = "#ff6b6b";
+      note.style.color = "#ff6b6b";
+      note.style.backgroundColor = "rgba(255, 107, 107, 0.1)";
+      const indicator = note.querySelector(".margin-note-indicator");
+      if (indicator) {
+        indicator.style.color = "#ff6b6b";
+      }
+    });
+  }
+
   // Ensure the sticky header doesn't affect the margin notes container
   // by adding a class to exempt it from sticky-header effects
   if (marginNotesContainer.parentElement) {
@@ -310,6 +330,9 @@ document.addEventListener("DOMContentLoaded", function () {
       "margin-notes-container",
     );
     const allMarginNotes = document.querySelectorAll(".margin-note");
+
+    // Save state to localStorage
+    localStorage.setItem("marginNotesDisabled", window.marginNotesDisabled);
 
     if (window.marginNotesDisabled) {
       // Disable margin notes
