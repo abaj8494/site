@@ -1,0 +1,17 @@
++++
+title = "Real Analysis"
+tags = ["limits", "continuity", "topology"]
+toc = "true"
+math = "true"
+clocal = "true"
+date = 2025-11-10T02:16:32+11:00
++++
+
+** notes
+
+these are some more informal notes that I have made after having taken the rigorous Analysis course.
+
+- $c_{00}$ can be thought of as 'finite vectors'. all $\mathbb{R}^n$ tuples can be written as elements of $c_{00}$ with infinitely many zeros after the $n$th term.
+- $c_0$ are all sequences that converge to zero. thus they will include all those in $c_00$ and more.
+- $\ell^2$ are the vectors that fade fast enough for their energy {{< mnote "sum of squares" >}} to stay finite
+- $\ell^\infty$ are the infinite vectors that never blow up -- their entries are bounded.
