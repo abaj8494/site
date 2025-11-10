@@ -149,7 +149,7 @@ window.Popups = {
         // Close all non-pinned popups
         this.closeAllNonPinnedPopups();
         this.hoverState.leaveTimer = null;
-      }, 100); // Small delay to account for edge cases and movement between elements
+      }, 300); // Increased from 100ms to 300ms for more forgiving hover behavior
     }
     // If we are over a popup or link and there's a leave timer, cancel it
     else if (isOverPopupOrLink && this.hoverState.leaveTimer) {
@@ -317,7 +317,7 @@ window.Popups = {
     this.hoverState.isLeavingLink = true;
 
     // Only close non-pinned popups
-    // Add a small delay before closing to allow moving to the popup
+    // Add a delay before closing to allow moving to the popup
     setTimeout(() => {
       // If we're now hovering the popup, don't close it
       if (this.isMouseOverPopupOrLink(event)) {
@@ -339,7 +339,7 @@ window.Popups = {
           }
         }, this.config.fadeOutDuration);
       }
-    }, 100); // Short delay to allow moving to popup
+    }, 300); // Increased from 100ms to 300ms for more forgiving hover behavior
   },
 
   // Handle click events on links
@@ -1567,18 +1567,25 @@ window.Popups = {
 
     // If we have event coordinates, use those
     if (event && event.clientX && event.clientY) {
-      posX = event.clientX + 10; // Offset slightly from cursor
-      posY = event.clientY + 10;
+      // Position popup very close to cursor, with slight overlap to create a bridge
+      // Use negative offset to create overlap, eliminating the "no-mans-land" gap
+      posX = event.clientX - 5; // Slight overlap to the left
+      posY = event.clientY - 5; // Slight overlap above
+
+      // Ensure the cursor is over the popup by checking if we need to adjust
+      if (posX < 0) posX = event.clientX + 2;
+      if (posY < 0) posY = event.clientY + 2;
     }
     // If no event, position near the link
     else if (link) {
       const linkRect = link.getBoundingClientRect();
-      posX = linkRect.right + 5;
-      posY = linkRect.top;
+      // Position with slight overlap to create a bridge
+      posX = linkRect.right - 3; // Slight overlap with link
+      posY = linkRect.top - 3; // Slight overlap with link
 
       // If positioning would push off right edge, position to the left of the link
       if (posX + this.config.minWidth > window.innerWidth) {
-        posX = Math.max(0, linkRect.left - this.config.minWidth - 5);
+        posX = Math.max(0, linkRect.left - this.config.minWidth + 3); // Overlap on left side
       }
     }
 
