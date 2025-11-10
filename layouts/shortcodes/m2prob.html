@@ -1,0 +1,72 @@
+<!-- Mathematical Problem shortcode (v2 - Nested support) -->
+{{ $problemName := .Get 0 }}
+<div class="math-problem">
+  <div class="math-problem-header">
+    <strong>Problem</strong>
+    <span class="problem-counter"></span>
+    {{ if $problemName }}
+      <span class="problem-name">({{ $problemName }})</span>
+    {{ end }}
+  </div>
+  <div class="math-problem-content">
+    {{ .Inner }}
+  </div>
+</div>
+
+<style>
+  .math-problem {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    border: 2px solid var(--bg2, #e5e5e5);
+    border-left: 4px solid var(--accent, #dc3545);
+    background: var(--bg1, #f8f9fa);
+    border-radius: 4px;
+  }
+
+  .math-problem-header {
+    font-weight: bold;
+    color: var(--accent, #dc3545);
+    margin-bottom: 0.5rem;
+    font-family: var(--font-serif);
+  }
+
+  .problem-name {
+    color: var(--fg, #333);
+    font-weight: normal;
+    margin-left: 0.25rem;
+  }
+
+  .math-problem-content {
+    color: var(--fg, #333);
+    line-height: 1.6;
+  }
+
+  .math-problem-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Dark theme support */
+  [data-theme="dark"] .math-problem {
+    border-color: var(--bg2, #404040);
+    background: var(--bg1, #2a2a2a);
+  }
+
+  [data-theme="dark"] .problem-name {
+    color: var(--fg, #e5e5e5);
+  }
+
+  [data-theme="dark"] .math-problem-content {
+    color: var(--fg, #e5e5e5);
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Auto-numbering for problems
+    var problems = document.querySelectorAll(".problem-counter");
+    problems.forEach(function (counter, index) {
+      counter.textContent = " " + (index + 1);
+    });
+  });
+</script>
+

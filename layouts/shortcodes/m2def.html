@@ -1,0 +1,72 @@
+<!-- Mathematical Definition shortcode (v2 - Nested support) -->
+{{ $definitionName := .Get 0 }}
+<div class="math-definition">
+  <div class="math-definition-header">
+    <strong>Definition</strong>
+    <span class="definition-counter"></span>
+    {{ if $definitionName }}
+      <span class="definition-name">({{ $definitionName }})</span>
+    {{ end }}
+  </div>
+  <div class="math-definition-content">
+    {{ .Inner }}
+  </div>
+</div>
+
+<style>
+  .math-definition {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    border: 2px solid var(--bg2, #e5e5e5);
+    border-left: 4px solid var(--primary, #007acc);
+    background: var(--bg1, #f8f9fa);
+    border-radius: 4px;
+  }
+
+  .math-definition-header {
+    font-weight: bold;
+    color: var(--primary, #007acc);
+    margin-bottom: 0.5rem;
+    font-family: var(--font-serif);
+  }
+
+  .definition-name {
+    color: var(--fg, #333);
+    font-weight: normal;
+    margin-left: 0.25rem;
+  }
+
+  .math-definition-content {
+    color: var(--fg, #333);
+    line-height: 1.6;
+  }
+
+  .math-definition-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Dark theme support */
+  [data-theme="dark"] .math-definition {
+    border-color: var(--bg2, #404040);
+    background: var(--bg1, #2a2a2a);
+  }
+
+  [data-theme="dark"] .definition-name {
+    color: var(--fg, #e5e5e5);
+  }
+
+  [data-theme="dark"] .math-definition-content {
+    color: var(--fg, #e5e5e5);
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Auto-numbering for definitions
+    var definitions = document.querySelectorAll(".definition-counter");
+    definitions.forEach(function (counter, index) {
+      counter.textContent = " " + (index + 1);
+    });
+  });
+</script>
+

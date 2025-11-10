@@ -1,0 +1,89 @@
+<!-- Mathematical Remark shortcode (v2 - Nested support) -->
+{{ $remarkName := .Get 0 }}
+<div class="math-remark">
+  <div class="math-remark-header">
+    <strong>Remark</strong>
+    <span class="remark-counter"></span>
+    {{ if $remarkName }}
+      <span class="remark-name">({{ $remarkName }})</span>
+    {{ end }}
+  </div>
+  <div class="math-remark-content">
+    {{ .Inner }}
+  </div>
+</div>
+
+<style>
+  .math-remark {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    border: 2px solid var(--bg2, #e5e5e5);
+    border-left: 4px solid #8e44ad; /* Purple highlight */
+    background: var(--bg1, #f8f9fa);
+    border-radius: 4px;
+    position: relative;
+    font-family: var(--font-serif);
+  }
+
+  .math-remark-header {
+    font-weight: bold;
+    color: #8e44ad; /* Purple header text */
+    margin-bottom: 0.75rem;
+    font-family: var(--font-serif);
+    font-size: 1rem;
+  }
+
+  .math-remark-header .remark-counter {
+    margin-left: 0.25rem;
+  }
+
+  .math-remark-header .remark-name {
+    font-weight: normal;
+    font-style: italic;
+    color: var(--fg, #333);
+    margin-left: 0.25rem;
+  }
+
+  .math-remark-content {
+    color: var(--fg, #333);
+    line-height: 1.6;
+  }
+
+  .math-remark-content p:first-child {
+    margin-top: 0;
+  }
+
+  .math-remark-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Dark theme support */
+  [data-theme="dark"] .math-remark {
+    border-color: var(--bg2, #555);
+    background: var(--bg1, #1a1a1a);
+    border-left-color: #9b59b6; /* Slightly lighter purple for dark mode */
+  }
+
+  [data-theme="dark"] .math-remark-header {
+    color: #9b59b6; /* Lighter purple header in dark mode */
+  }
+
+  [data-theme="dark"] .math-remark-header .remark-name {
+    color: var(--fg, #e5e5e5);
+  }
+
+  [data-theme="dark"] .math-remark-content {
+    color: var(--fg, #e5e5e5);
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Auto-numbering for remarks
+    var remarkCounters = document.querySelectorAll(".remark-counter");
+    remarkCounters.forEach(function (counter, index) {
+      counter.textContent = " " + (index + 1);
+    });
+  });
+</script>
+

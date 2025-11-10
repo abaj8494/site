@@ -1,0 +1,89 @@
+<!-- Mathematical Example shortcode (v2 - Nested support) -->
+{{ $exampleName := .Get 0 }}
+<div class="math-example">
+  <div class="math-example-header">
+    <strong>Example</strong>
+    <span class="example-counter"></span>
+    {{ if $exampleName }}
+      <span class="example-name">({{ $exampleName }})</span>
+    {{ end }}
+  </div>
+  <div class="math-example-content">
+    {{ .Inner }}
+  </div>
+</div>
+
+<style>
+  .math-example {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    border: 2px solid var(--bg2, #e5e5e5);
+    border-left: 4px solid #28a745; /* Green highlight */
+    background: var(--bg1, #f8f9fa);
+    border-radius: 4px;
+    position: relative;
+    font-family: var(--font-serif);
+  }
+
+  .math-example-header {
+    font-weight: bold;
+    color: #28a745; /* Green header text */
+    margin-bottom: 0.75rem;
+    font-family: var(--font-serif);
+    font-size: 1rem;
+  }
+
+  .math-example-header .example-counter {
+    margin-left: 0.25rem;
+  }
+
+  .math-example-header .example-name {
+    font-weight: normal;
+    font-style: italic;
+    color: var(--fg, #333);
+    margin-left: 0.25rem;
+  }
+
+  .math-example-content {
+    color: var(--fg, #333);
+    line-height: 1.6;
+  }
+
+  .math-example-content p:first-child {
+    margin-top: 0;
+  }
+
+  .math-example-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Dark theme support */
+  [data-theme="dark"] .math-example {
+    border-color: var(--bg2, #555);
+    background: var(--bg1, #1a1a1a);
+    border-left-color: #34ce57; /* Lighter green for dark mode */
+  }
+
+  [data-theme="dark"] .math-example-header {
+    color: #34ce57; /* Lighter green header in dark mode */
+  }
+
+  [data-theme="dark"] .math-example-header .example-name {
+    color: var(--fg, #e5e5e5);
+  }
+
+  [data-theme="dark"] .math-example-content {
+    color: var(--fg, #e5e5e5);
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Auto-numbering for examples
+    var exampleCounters = document.querySelectorAll(".example-counter");
+    exampleCounters.forEach(function (counter, index) {
+      counter.textContent = " " + (index + 1);
+    });
+  });
+</script>
+
