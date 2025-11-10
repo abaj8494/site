@@ -326,13 +326,14 @@ These methods can be adapted for _regression_, but they are more well suited to 
 - @@html:<input type="checkbox" checked class="done"/>@@ [[/projects/mathematics/statistics][Statistics]] {{< tags-inline "projects/mathematics/statistics" >}}
 - @@html:<input type="checkbox" checked class="done"/>@@ [[/projects/mathematics/analysis/real][Real Analysis]] {{< tags-inline "projects/mathematics/analysis/real" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/mathematics/analysis/complex][Complex Analysis]] {{< tags-inline "projects/mathematics/analysis/complex" >}}
+- @@html:<input type="checkbox" class="edit"/>@@ [[/projects/mathematics/analysis/functional][Functional Analysis]] {{< tags-inline "projects/mathematics/analysis/functional" >}}
 
 ** [[/projects/computer-vision][Computer Vision]]
 :PROPERTIES:
 :CUSTOM_ID: computer-vision
 :END:
 
-- in construction
+- PhD?
 
 ** [[/projects/bday-problems][N-Bday Problems]]
 :PROPERTIES:

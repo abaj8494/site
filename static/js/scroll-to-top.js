@@ -2,6 +2,7 @@
  * Scroll to top button functionality
  * Fades in when user scrolls down more than 25% of the page
  * Floats in the left sidebar and tracks with scrolling
+ * Hides when scrolling up (inverse of header behavior)
  */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -12,7 +13,8 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  // Throttle function to limit how often we update position
+  // Track scroll position and direction
+  let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
   let scrollTimeout;
   const throttleDelay = 16; // ~60fps
 
@@ -27,11 +29,23 @@ document.addEventListener("DOMContentLoaded", () => {
     // Calculate scroll percentage
     const scrollPercentage = (scrollTop / documentHeight) * 100;
 
-    // Show button if scrolled more than 25%
+    // Detect scroll direction
+    const isScrollingUp = scrollTop < lastScrollTop;
+    lastScrollTop = scrollTop;
+
+    // Show button if scrolled more than 25% AND not scrolling up
     if (scrollPercentage > 25) {
       scrollToTopButton.classList.add("visible");
+      
+      // Hide when scrolling up (inverse of header)
+      if (isScrollingUp) {
+        scrollToTopButton.classList.add("hide-on-scroll-up");
+      } else {
+        scrollToTopButton.classList.remove("hide-on-scroll-up");
+      }
     } else {
       scrollToTopButton.classList.remove("visible");
+      scrollToTopButton.classList.remove("hide-on-scroll-up");
     }
 
     // Position the button to float in the visible area of the sidebar

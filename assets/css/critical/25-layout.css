@@ -23,8 +23,8 @@ header {
   background: var(--bg1);
   grid-area: header;
   opacity: 1;
-  transition: opacity 0.3s ease !important; /* Match the sidebar-tree transition */
-  z-index: 100; /* Ensure header is above other elements */
+  transition: opacity 0.8s ease !important; /* Slower fade for smoother appearance */
+  z-index: 200; /* Higher than tree to ensure tree goes behind header */
   transform: none !important; /* Prevent transform animation */
 }
 
@@ -32,13 +32,16 @@ header {
 header.fade-out,
 .sticky-header.fade-out {
   opacity: 0 !important;
-  transition: opacity 0.3s ease !important;
+  transition: opacity 0.3s ease !important; /* Fast fade out */
 }
 
-/* Fade out state for sidebar tree */
+/* Fade out state for sidebar tree - compress padding */
 .sidebar-tree.fade-out {
   opacity: 0 !important;
-  transition: opacity 0.3s ease !important;
+  padding-top: 0 !important;
+  transition:
+    opacity 0.3s ease,
+    padding-top 0.3s ease !important;
 }
 
 /* Remove transform-based animation for consistency */
@@ -91,7 +94,7 @@ footer {
   display: none;
   flex-direction: column;
   grid-area: sidebar;
-  margin-top: 3rem;
+  margin-top: 0.5rem; /* Reduced from 3rem to bring closer to logo */
   position: sticky;
   top: 2rem;
 }
@@ -103,15 +106,15 @@ footer {
   max-width: 400px;
   margin-right: 0;
   padding-left: 0;
-  padding-top: 10rem;
+  padding-top: 0;
   line-height: 1;
-  padding: 0;
   margin: 0;
-  padding: 0;
-  transition: opacity 0.3s ease !important; /* Change to only opacity transition */
-  z-index: 1;
+  transition:
+    opacity 0.8s ease,
+    padding-top 0.3s ease; /* Slower opacity, smooth padding */
+  z-index: 1; /* Lower than header (200) so tree goes behind header */
   position: sticky;
-  top: 60px;
+  top: 60px; /* Positioned close to the logo to appear connected */
 
   & a {
     color: var(--primary-alt);
@@ -119,6 +122,11 @@ footer {
   & a:hover {
     color: var(--primary);
   }
+}
+
+/* Add padding when not faded out to create the compress effect */
+.sidebar-tree:not(.fade-out) {
+  padding-top: 0.5rem; /* Reduced from 2rem to sit closer to logo */
 }
 @media (max-width: 768px) {
   main {
@@ -159,5 +167,8 @@ footer {
 .sidebar-tree.hidden {
   /* Remove transform rules to avoid conflicts */
   opacity: 0;
-  transition: opacity 0.3s ease !important;
+  padding-top: 0;
+  transition:
+    opacity 0.8s ease,
+    padding-top 0.3s ease !important;
 }

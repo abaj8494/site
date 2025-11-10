@@ -110,7 +110,7 @@ from this we have the $x_n$th term to be $\frac{1}{2^{n-1}}$ and can thus check 
 
 {{< /m2exam >}}
 
-{{< m2exam "Kong Kong" >}}
+{{< m2exam "K2" >}}
 an example of a <em>sequence</em> in this space is $\large \sum_{k=1}^{\infty} \frac{1}{k^2} = (1,\frac14, \frac19,\frac1{16},\ldots)$.
 
 {{< m2proof >}}

@@ -106,6 +106,9 @@ aside.custom-toc {
   justify-content: center;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   pointer-events: none;
+  /* Ensure it doesn't affect layout */
+  margin: 0;
+  padding: 0;
 
   &:hover {
     background: var(--bg3);
@@ -122,6 +125,12 @@ aside.custom-toc {
     pointer-events: auto;
   }
 
+  &.hide-on-scroll-up {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
   &:focus {
     outline: none;
   }
@@ -135,11 +144,11 @@ aside.custom-toc {
 /* Position the button within the sidebar on desktop */
 @media (min-width: 1024px) {
   .sidebar-container {
-    position: relative;
+    /* Don't set position relative here - it was causing layout issues */
   }
 
   .scroll-to-top {
-    /* Position relative to sidebar, will be updated by JavaScript */
+    /* Position will be updated by JavaScript */
     left: 12.5%;
     transform: translateX(-50%);
   }

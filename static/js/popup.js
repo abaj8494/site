@@ -212,6 +212,17 @@ window.Popups = {
         return;
       }
 
+      // Skip TOC links
+      if (link.closest(".toc, .custom-toc, nav.TableOfContents")) {
+        return;
+      }
+
+      // Skip footnote links (links to #fn or #fnref)
+      const href = link.getAttribute("href");
+      if (href && (href.match(/^#fn/) || href.match(/^#fnref/))) {
+        return;
+      }
+
       // Register link events
       link.addEventListener("mouseenter", this.handleLinkMouseEnter.bind(this));
       link.addEventListener("mouseleave", this.handleLinkMouseLeave.bind(this));
@@ -238,6 +249,17 @@ window.Popups = {
 
     // Skip if this is a popup link that's already been activated
     if (link.classList.contains("popup-active")) {
+      return;
+    }
+
+    // Skip if this is a TOC link
+    if (link.closest(".toc, .custom-toc, nav.TableOfContents")) {
+      return;
+    }
+
+    // Skip if this is a footnote link (links to #fn or #fnref)
+    const href = link.getAttribute("href");
+    if (href && (href.match(/^#fn/) || href.match(/^#fnref/))) {
       return;
     }
 
@@ -1106,6 +1128,17 @@ window.Popups = {
     links.forEach((link) => {
       // Skip links that already have handlers
       if (this.linkRegistry.has(link)) {
+        return;
+      }
+
+      // Skip TOC links
+      if (link.closest(".toc, .custom-toc, nav.TableOfContents")) {
+        return;
+      }
+
+      // Skip footnote links (links to #fn or #fnref)
+      const href = link.getAttribute("href");
+      if (href && (href.match(/^#fn/) || href.match(/^#fnref/))) {
         return;
       }
 
