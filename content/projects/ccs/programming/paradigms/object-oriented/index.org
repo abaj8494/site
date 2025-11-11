@@ -1,7 +1,7 @@
 +++
 title = "Object-Oriented Programming"
 tags = ["classes", "inheritance"]
-
+toc = "true"
 +++
 
 # comment: I am using the old math-definition boxes on this page. whilst this means I cannot nest shortcodes, I can use the org-markdown freely.
@@ -56,8 +56,8 @@ this page could be a lot more -- largely because of the huge power of Object-Ori
 instead I have chosen to limit the scope of this page to simple definitions.
 
 this page pairs well with:
-- [[/projects/se/architecture-design/design-principles][Design Principles]] {{< tags-inline "projects/se/architecture-design/design-principles" >}}
-- [[/projects/se/architecture-design/design-patterns][Design Patterns]] {{< tags-inline "projects/se/architecture-design/design-patterns" >}}
+- [[/projects/se/architecture-design/design-principles][Design Principles]] {{< tags-inline "projects/se/architecture-design/design-principles" >}} and;
+- [[/projects/se/architecture-design/patterns-smells][Design Patterns and Smells]] {{< tags-inline "projects/se/architecture-design/patterns-smells" >}}
 
 {{< m2def "Data" >}}
 Ultimately, programming is about taking some data and then manipulating it. Either in-place or manipulating other data in another place.
@@ -66,95 +66,35 @@ This is why Object-Oriented-Programming is so powerful: because it encapsulates 
 
 {{< m2exam "Circle Class" >}}
 <pre><code class="language-java">
-   public class Circle extends Object {
-      // data:
-      private static final double PI = 3.14159;
+public class Circle extends Object {
+  // data:
+  private static final double PI = 3.14159;
+  public int x = 0, y = 0;
+  private int r = 6;
+  static int no_circles = 0;
 
-      public int x = 0, y = 0;
-      private int r = 6;
+  // constructors:
+  public Circle() { super(); no_circles++; }
+  public Circle(int x, int y, int r) { this(); this.x=x; this.y=y; this.r=r; }
+  public Circle(int x, int y) { this(x,y,5); }
 
-      static int no_circles = 0;
+  // methods:
+  public double getArea() { return PI * r * r; }
 
-      // constructors:
-      public Circle() {
-	  super();
-	  no_circles++;
-      }
-
-      public Circle(int x, int y, int r) {
-	  this();
-	  this.x = x;
-	  this.y = y;
-	  this.r = r;
-
-      }
-
-
-      public Circle(int x, int y) {
-	  this(x, y, 5);
-      }
-
-      // methods:
-      public double getArea() {
-	  return PI * r * r;
-      }
-
-      @Override
-      public String toString() {
-	  String msg = "[" + x + ", " + y + " sdfsf sdfdsfds ]";
-	  return msg;
-      }
-
-      @Override
-      public boolean equals(Object obj) {
-
-	  if(obj == null) { return false; }
-	  if(obj == this) { return true; }
-
-	  if(this.getClass() != obj.getClass()){
-	      return false;
-	  }
-
-	  // both are of type Circle..
-
-	  Circle other = (Circle) obj;
-	  if(this.x == other.x && this.y == other.y && this.r == other.r){
-	      return true;
-	  }
-	  else {
-	      return false;
-	  }
-
-      }
-
-      // Getter and Setter below ..
-      public int getX() {
-	  return x;
-      }
-
-      public void setX(int x) {
-	  this.x = x;
-      }
-
-      public int getY() {
-	  return y;
-      }
-
-      public void setY(int y) {
-	  this.y = y;
-      }
-
-      public int getR() {
-	  return r;
-      }
-
-      public void setR(int r) {
-	  if ( r > 0 ) {
-	      this.r = r;
-	  }
-
-      }
+  @Override public String toString() {
+    return "[" + x + ", " + y + " r=" + r + "]";
   }
+
+  @Override public boolean equals(Object obj) {
+    if (obj == this) return true;
+    if (!(obj instanceof Circle other)) return false;
+    return x==other.x && y==other.y && r==other.r;
+  }
+
+  // Getters/Setters
+  public int getR(){ return r; }
+  public void setR(int r){ if(r>0) this.r=r; }
+}
 </code></pre>
 {{< /m2exam >}}
 {{< /m2def >}}
@@ -164,59 +104,106 @@ An object is an instance of a class. Something we can create with src_java[:expo
 {{< /mdef >}}
 
 {{< mdef "Class" >}}
-A class is a blueprint for the state (data) and behaviours (methods) of an object. It is reused for the creation of objects and can make use of some clever patterns to improve scalability.
+A class is a blueprint for the state (data/fields) and behaviours (methods) of an object. It is reused for the creation of objects and can make use of some clever patterns to improve scalability.
 
 One thing to remember with OOP is its adjacency with real-world modelling: I, Aayush Bajaj am an object; produced from the class =People=. I have attributes, that can either be =private= or =public=; i.e. I can tell information to members outside of my class / package, or I could not. 
 {{< /mdef >}}
 
-{{< mdef "Sub-classes" >}}
+{{< m2def "Sub-classes" >}}
+A sub-class <strong>extends</strong> a superclass; inheriting accessible fields/methods and possibly overriding behaviour.
 
-{{< /mdef >}}
+This pattern should be used carefully because it results in a tight coupling of code. It is only appropriate for "is-a" relationships.
+{{< m2rem >}}
+be careful to preserve the <a href=/projects/se/architecture-design/design-principles#lsp>Liskov Substitution Principle</a>
+{{< /m2rem >}}
+
+{{< /m2def >}}
 
 
 {{< mdef "Inheritance" >}}
+Inheritance allows subtype polymorphism, but this is not the only way to achieve polymorphism.
 
+Inheritance tightly couples the code. The "is-a" relationship is a necessary, but not sufficient condition for using inheritance.
+
+Many times *composition* is still preferred to /inheritance/ despite the "is-a".
 {{< /mdef >}}
 
 {{< mdef "Composition" >}}
+Embodies the "has-a" relationship. Builds objects from parts, favouring encapsulation and changeability.
 
+#+BEGIN_SRC java
+class Engine { void start(){} }
+class Car { private final Engine e = new Engine(); void start(){ e.start(); } }
+#+END_SRC
 {{< /mdef >}}
-
 
 {{< mdef "Coupling" >}}
-
+Degree of interdependence (between what?). Symptoms of high coupling include:
+- many imports
+- reaching through objects [[/projects/se/architecture-design/patterns-smells#feature-envy][(feature envy)]]
 {{< /mdef >}}
+{{< mrem >}}
+Aim for low coupling and high cohesion
+{{< /mrem >}}
 
-{{< mdef "Design Patterns" >}}
-
-{{< /mdef >}}
-
-{{< mdef "Design Smells" >}}
-
+{{< mdef "Cohesion" >}}
+Is measured by how well-related the functionalities are of a certain class. Unrelated methods imply low cohesion.
 {{< /mdef >}}
 
 {{< mdef "Refactoring" >}}
-
+- Noun: a change made to the internal structure of software to make it easier to understand and cheaper to modify without change its observable behaviour
+- Verb: to restructure software by applying a series of refactorings without changing its observable behaviour.
 {{< /mdef >}}
 
 {{< mdef "Interfaces" >}}
+Pure contracts: types without implementation or state.
 
+#+BEGIN_SRC java
+interface PaymentGateway { boolean charge(long cents); }
+class StripeGateway implements PaymentGateway { public boolean charge(long c){ return true; } }
+#+END_SRC
 {{< /mdef >}}
 
-
 {{< mdef "Abstract Classes" >}}
+Partial implementations with state and constructors; can define template methods and share code among subclasses.
 
+#+BEGIN_SRC java
+abstract class Shape {
+  abstract double area();
+  final double scaleTo(double k){ return k*k*area(); } // template utility
+}
+class Rect extends Shape { double w,h; Rect(double w,double h){this.w=w;this.h=h;} double area(){return w*h;} }
+#+END_SRC
 {{< /mdef >}}
 
 {{< mdef "Polymorphism" >}}
+Translates to mean "many forms". It allows objects of different types to be treated as objects of a common type.
 
+There are two main types:
+1. Compile-time Polymorphism:
+   - method overloading. a class may have many methods with the same name, but chooses the correct one based on the parameters at compile-time.
+2. Run-time Polymorphism:
+   - method overriding. allows the implementation in a subclass to be used instead of the implementation in the superclass. this choice is made at run-time.
+   - subtype polymorphism / LSP. is the replacement of a super-class with an object of its subclass.
 {{< /mdef >}}
 
+*** abstract class vs. interface
+
+this was a point of confusion for me during an interview:
+
+| feature               | abstract class                                 | interface                         |
+|-----------------------+------------------------------------------------+-----------------------------------|
+| method implementation | can have abstract methods and concrete methods | always abstract only              |
+| state (variables)     | all types                                      | only public, static, final        |
+| constructors          | allowed                                        | not allowed                       |
+| inheritance           | can only extend one abstract class             | can implement multiple interfaces |
+| relationship          | "is-a"                                         | "can-do" or "has-a capability"    |
 
 
 ** references
 
 1. https://docs.oracle.com/javase/tutorial/java/concepts/index.html
-2. 
-
+2. [[/words/library/design-patterns][Gamma et al., *Design Patterns*]]
+3. Bloch, *Effective Java (3e)*.  
+4. [[/words/library/refactoring][Fowler, *Refactoring (2e)*.]]  
 

@@ -163,7 +163,7 @@ For the longest time I kept these projects private, but now after a half decade 
 :END:
 
 - @@html:<input type="checkbox" checked class="refactor"/>@@ [[/projects/se/architecture-design/design-principles][Design Principles]] {{< tags-inline "projects/se/architecture-design/design-principles" >}}
-- @@html:<input type="checkbox" checked class="refactor"/>@@ [[/projects/se/architecture-design/design-patterns][Design Patterns]] {{< tags-inline "projects/se/architecture-design/design-patterns" >}}
+- @@html:<input type="checkbox" checked class="refactor"/>@@ [[/projects/se/architecture-design/patterns-smells][Design Patterns & Smells]] {{< tags-inline "projects/se/architecture-design/patterns-smells" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/se/architecture-design/microservices][Microservices]] {{< tags-inline "projects/se/architecture-design/microservices" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/se/architecture-design/event-driven][Event Driven]] {{< tags-inline "projects/se/architecture-design/event-driven" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/se/architecture-design/api][API Design]] {{< tags-inline "projects/se/architecture-design/api" >}}

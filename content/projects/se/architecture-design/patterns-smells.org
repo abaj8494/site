@@ -2,6 +2,7 @@
 title = "Design Patterns & Smells"
 tags = ["gof", "patterns", "algorithms", "oop"]
 tikzajax = "true"
+math = "true"
 +++
 
 ** notes
@@ -9,44 +10,68 @@ tikzajax = "true"
 it seems like "design patterns" are not exclusively restricted to 'object-oriented-programming', but this is the context in which I have learned such design.
 
 there are three main categories of Design Patterns as decreed by the 'Gang of Four'[fn:1] (the authors of a seminal work /Design Patterns | Elements of Reusable Object-Oriented Sofware/.
-A. Creational Patterns
-B. Structural Patterns
-C. Behavioural Patterns
+
+
+#+ATTR_HTML: :class alpha-list
+#+BEGIN_LEFT
+1. Creational Patterns
+2. Structural Patterns
+3. Behavioural Patterns
+#+END_LEFT
 
 in turn, each of these contain more patterns:
 
-A. Creational:
+#+BEGIN_EXPORT html
+<style>
+/* Make the OUTER list display A., B., C. while keeping semantics numeric */
+.alpha-list > ol { list-style-type: lower-alpha; }
+
+/* Ensure nested lists keep regular decimal numbering */
+.alpha-list ol ol { list-style-type: decimal; }
+
+/* (Optional) tidy spacing */
+.alpha-list ol { margin-left: 0rem; }
+</style>
+
+<div class="alpha-list">
+#+END_EXPORT
+1. Creational:
    1. Factory Method
    2. Abstract Factory
    3. Builder
    4. Prototype
    5. Singleton
-B. Structural
-   6. Adapter
-   7. Bridge
-   8. Composite
-   9. Decorator
-  10. Façade
-  11. Flyweight
-  12. Proxy
-C. Behavioural:
-  13. Interpreter
-  14. Template method
-  15. Chain of responsibility
-  16. Command
-  17. Iterator
-  18. Mediator
-  19. Memento
-  20. Observer
-  21. State
-  22. Strategy
-  23. Visitor
+2. Structural
+   1. [@6] Adapter
+   2. Bridge
+   3. Composite
+   4. Decorator
+   5. Façade
+   6. Flyweight
+   7. Proxy
+3. Behavioural:
+   1. [@13] Interpreter
+   2. Template Method
+   3. Chain of Responsibility
+   4. Command
+   5. Iterator
+   6. Mediator
+   7. Memento
+   8. Observer
+   9. State
+   10. Strategy
+   11. Visitor
+#+BEGIN_EXPORT html
+</div>
+#+END_EXPORT
+
 
 because these patterns tend to be solutions to bad *design smells*, I've decided to include all the details on a single page.
 
 *** design smells
 
 **** duplicated code
+
 
 {{< tikztwo >}}
 \usepackage{tikz-uml}
@@ -97,6 +122,10 @@ because these patterns tend to be solutions to bad *design smells*, I've decided
 **** shotgun surgery
 
 **** feature envy
+:PROPERTIES:
+:CUSTOM_ID: feature-envy
+:END:
+
 
 **** data clumps
 
