@@ -1,0 +1,8 @@
++++
+title = "Design Patterns: Elements of Reusable Object-Oriented Software"
+layout = "book"
+author = ["Erich Gamma", "John Vlissides", "Richard Helm", "Ralph Johnson"]
+[params]
+  published = "21 October 1994"
+  edition = "Second"
++++

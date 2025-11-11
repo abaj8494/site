@@ -1,0 +1,8 @@
++++
+title = "Refactoring"
+layout = "book"
+author = "Martin Fowler"
+[params]
+  edition = "Second"
++++
+
