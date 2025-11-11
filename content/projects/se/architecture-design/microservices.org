@@ -1,0 +1,6 @@
++++
+title = "Microservices"
+tags = ["monolithic"]
++++
+
+word

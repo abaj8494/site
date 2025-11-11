@@ -63,7 +63,7 @@ publishDate = ["publishDate", "date", ":default"]
   author = "Aayush Bajaj"
   subtitle = ""
   description = "A full-time tinkerer"
-  mainSections = ['work', 'words', 'blog', 'about', 'resources']
+  mainSections = ['wiki', 'words', 'blog', 'about', 'resources']
   [params.logo]
     text = "ai"
     url = "/"
@@ -132,9 +132,9 @@ publishDate = ["publishDate", "date", ":default"]
 
 [menu]
   [[menu.main]]
-    identifier = "work"
-    name = "work"
-    url = "/work/"
+    identifier = "wiki"
+    name = "wiki"
+    url = "/wiki/"
     weight = 10
   [[menu.main]]
     identifier = "words"

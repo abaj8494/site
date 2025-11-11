@@ -1,0 +1,6 @@
++++
+title = "Design Principles"
+tags = ["SOLID"]
++++
+
+word

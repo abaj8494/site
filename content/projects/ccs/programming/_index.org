@@ -1,3 +1,4 @@
 +++
 title = "Programming"
+layout = "custom-list"
 +++

@@ -1,4 +1,222 @@
 +++
 title = "Object-Oriented Programming"
-tags = ["design-patterns", "agile"]
+tags = ["classes", "inheritance"]
+
 +++
+
+# comment: I am using the old math-definition boxes on this page. whilst this means I cannot nest shortcodes, I can use the org-markdown freely.
+
+#+BEGIN_EXPORT html
+<style>
+/* Scope to any ancestor whose class list has a token starting with "math-" */
+:where([class^="math-"], [class*=" math-"])
+  :is(
+    code.verbatim,
+    code[class^="language-"],
+    code[class*=" language-"],
+    pre[class^="language-"],
+    pre[class*=" language-"]
+  ) {
+  background: var(--bg2) !important;
+}
+
+/* Optional: make inline backgrounds look nicer */
+:where([class^="math-"], [class*=" math-"]) code {
+  padding: .1em .25em;
+  border-radius: .25em;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('div.src-inline').forEach(wrapper => {
+    const code = wrapper.querySelector('code[class*="language-"]');
+    if (!code) return;
+
+    // If the wrapper had the only math-* class, move it up to the parent
+    const mathClasses = [...wrapper.classList].filter(c => c.startsWith('math-'));
+    if (mathClasses.length && wrapper.parentElement) {
+      const parent = wrapper.parentElement;
+      const parentHasMath = [...parent.classList].some(c => c.startsWith('math-'));
+      if (!parentHasMath) parent.classList.add(...mathClasses);
+    }
+
+    // Replace wrapper with the code element
+    wrapper.replaceWith(code);
+  });
+});
+</script>
+
+#+END_EXPORT
+
+** notes
+
+this page could be a lot more -- largely because of the huge power of Object-Oriented-Programming.
+
+instead I have chosen to limit the scope of this page to simple definitions.
+
+this page pairs well with:
+- [[/projects/se/architecture-design/design-principles][Design Principles]] {{< tags-inline "projects/se/architecture-design/design-principles" >}}
+- [[/projects/se/architecture-design/design-patterns][Design Patterns]] {{< tags-inline "projects/se/architecture-design/design-patterns" >}}
+
+{{< m2def "Data" >}}
+Ultimately, programming is about taking some data and then manipulating it. Either in-place or manipulating other data in another place.
+
+This is why Object-Oriented-Programming is so powerful: because it encapsulates the data with the methods which manipulate it:
+
+{{< m2exam "Circle Class" >}}
+<pre><code class="language-java">
+   public class Circle extends Object {
+      // data:
+      private static final double PI = 3.14159;
+
+      public int x = 0, y = 0;
+      private int r = 6;
+
+      static int no_circles = 0;
+
+      // constructors:
+      public Circle() {
+	  super();
+	  no_circles++;
+      }
+
+      public Circle(int x, int y, int r) {
+	  this();
+	  this.x = x;
+	  this.y = y;
+	  this.r = r;
+
+      }
+
+
+      public Circle(int x, int y) {
+	  this(x, y, 5);
+      }
+
+      // methods:
+      public double getArea() {
+	  return PI * r * r;
+      }
+
+      @Override
+      public String toString() {
+	  String msg = "[" + x + ", " + y + " sdfsf sdfdsfds ]";
+	  return msg;
+      }
+
+      @Override
+      public boolean equals(Object obj) {
+
+	  if(obj == null) { return false; }
+	  if(obj == this) { return true; }
+
+	  if(this.getClass() != obj.getClass()){
+	      return false;
+	  }
+
+	  // both are of type Circle..
+
+	  Circle other = (Circle) obj;
+	  if(this.x == other.x && this.y == other.y && this.r == other.r){
+	      return true;
+	  }
+	  else {
+	      return false;
+	  }
+
+      }
+
+      // Getter and Setter below ..
+      public int getX() {
+	  return x;
+      }
+
+      public void setX(int x) {
+	  this.x = x;
+      }
+
+      public int getY() {
+	  return y;
+      }
+
+      public void setY(int y) {
+	  this.y = y;
+      }
+
+      public int getR() {
+	  return r;
+      }
+
+      public void setR(int r) {
+	  if ( r > 0 ) {
+	      this.r = r;
+	  }
+
+      }
+  }
+</code></pre>
+{{< /m2exam >}}
+{{< /m2def >}}
+
+{{< mdef "Object" >}}
+An object is an instance of a class. Something we can create with src_java[:exports code]{Animal lion = new Animal()}, where =lion= is the variable name, =Animal= is the =type=, and =Animal()= calls the /constructor/ of the Animal class to return an object of that type.
+{{< /mdef >}}
+
+{{< mdef "Class" >}}
+A class is a blueprint for the state (data) and behaviours (methods) of an object. It is reused for the creation of objects and can make use of some clever patterns to improve scalability.
+
+One thing to remember with OOP is its adjacency with real-world modelling: I, Aayush Bajaj am an object; produced from the class =People=. I have attributes, that can either be =private= or =public=; i.e. I can tell information to members outside of my class / package, or I could not. 
+{{< /mdef >}}
+
+{{< mdef "Sub-classes" >}}
+
+{{< /mdef >}}
+
+
+{{< mdef "Inheritance" >}}
+
+{{< /mdef >}}
+
+{{< mdef "Composition" >}}
+
+{{< /mdef >}}
+
+
+{{< mdef "Coupling" >}}
+
+{{< /mdef >}}
+
+{{< mdef "Design Patterns" >}}
+
+{{< /mdef >}}
+
+{{< mdef "Design Smells" >}}
+
+{{< /mdef >}}
+
+{{< mdef "Refactoring" >}}
+
+{{< /mdef >}}
+
+{{< mdef "Interfaces" >}}
+
+{{< /mdef >}}
+
+
+{{< mdef "Abstract Classes" >}}
+
+{{< /mdef >}}
+
+{{< mdef "Polymorphism" >}}
+
+{{< /mdef >}}
+
+
+
+** references
+
+1. https://docs.oracle.com/javase/tutorial/java/concepts/index.html
+2. 
+
+

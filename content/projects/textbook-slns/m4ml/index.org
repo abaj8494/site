@@ -1,6 +1,6 @@
 +++
 title = "Mathematics for Machine Learning"
-author = ["Marc Peter Deisenroth", "A. Aldo Faisal", "Cheng Soon Ong"]
+author = ["Marc Peter Deisenroth", "Aldo Faisal", "Cheng Soon Ong"]
 categories = ["machine-learning", "mathematics"]
 tags = ["linear-algebra", "calculus", "probability", "matrix-calculus"]
 +++

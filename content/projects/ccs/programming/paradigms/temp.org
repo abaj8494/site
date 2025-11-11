@@ -1,0 +1,241 @@
++++
+title = "what"
+tags = ["classes", "inheritance"]
+tikzajax = "true"
++++
+
+# comment: I am using the old math-definition boxes on this page. whilst this means I cannot nest shortcodes, I can use the org-markdown freely.
+
+#+BEGIN_EXPORT html
+<style>
+/* Scope to any ancestor whose class list has a token starting with "math-" */
+:where([class^="math-"], [class*=" math-"])
+  :is(
+    code.verbatim,
+    code[class^="language-"],
+    code[class*=" language-"],
+    pre[class^="language-"],
+    pre[class*=" language-"]
+  ) {
+  background: var(--bg2) !important;
+}
+
+/* Optional: make inline backgrounds look nicer */
+:where([class^="math-"], [class*=" math-"]) code {
+  padding: .1em .25em;
+  border-radius: .25em;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('div.src-inline').forEach(wrapper => {
+    const code = wrapper.querySelector('code[class*="language-"]');
+    if (!code) return;
+
+    // If the wrapper had the only math-* class, move it up to the parent
+    const mathClasses = [...wrapper.classList].filter(c => c.startsWith('math-'));
+    if (mathClasses.length && wrapper.parentElement) {
+      const parent = wrapper.parentElement;
+      const parentHasMath = [...parent.classList].some(c => c.startsWith('math-'));
+      if (!parentHasMath) parent.classList.add(...mathClasses);
+    }
+
+    // Replace wrapper with the code element
+    wrapper.replaceWith(code);
+  });
+});
+</script>
+
+#+END_EXPORT
+
+** notes
+
+this page could be a lot more -- largely because of the huge power of Object-Oriented-Programming.
+
+instead I have chosen to limit the scope of this page to simple definitions
+
+{{< mdef "Data" >}}
+Ultimately, programming is about taking some data and then manipulating it. Either in-place or manipulating other data in another place.
+
+This is why Object-Oriented-Programming is so powerful: because it encapsulates the data with the methods which manipulate it:
+
+#+BEGIN_SRC java
+public class Circle extends Object {
+  // data:
+  private static final double PI = 3.14159;
+  public int x = 0, y = 0;
+  private int r = 6;
+  static int no_circles = 0;
+
+  // constructors:
+  public Circle() { super(); no_circles++; }
+  public Circle(int x, int y, int r) { this(); this.x=x; this.y=y; this.r=r; }
+  public Circle(int x, int y) { this(x,y,5); }
+
+  // methods:
+  public double getArea() { return PI * r * r; }
+
+  @Override public String toString() {
+    return "[" + x + ", " + y + " r=" + r + "]";
+  }
+
+  @Override public boolean equals(Object obj) {
+    if (obj == this) return true;
+    if (!(obj instanceof Circle other)) return false;
+    return x==other.x && y==other.y && r==other.r;
+  }
+
+  // Getters/Setters
+  public int getR(){ return r; }
+  public void setR(int r){ if(r>0) this.r=r; }
+}
+#+END_SRC
+{{< /mdef >}}
+
+{{< mdef "Object" >}}
+An object is an instance of a class. Create with src_java[:exports code]{Animal lion = new Animal()}, where =lion= is the variable, =Animal= is the type, and =Animal()= is the constructor.
+{{< /mdef >}}
+
+{{< mdef "Class" >}}
+A blueprint bundling state (fields) and behaviour (methods). Models “types” in your domain and enforces invariants via visibility and constructors.
+{{< /mdef >}}
+
+{{< mdef "Sub-classes" >}}
+A subclass extends a superclass, inheriting accessible fields/methods and possibly overriding behaviour. Use when “is-a” holds and LSP is preserved.
+
+#+BEGIN_SRC java
+class Animal { void speak(){ System.out.println("..."); } }
+class Dog extends Animal { @Override void speak(){ System.out.println("woof"); } }
+#+END_SRC
+{{< /mdef >}}
+
+{{< mdef "Inheritance" >}}
+Code reuse via “is-a”. Pros: shared behaviour, polymorphism. Cons: tight coupling, fragile base-class, awkward evolution. Prefer shallow hierarchies and final where appropriate.
+{{< /mdef >}}
+
+{{< mdef "Composition" >}}
+“Has-a”: build objects from parts, delegate behaviour. Favors encapsulation and changeability.
+
+#+BEGIN_SRC java
+class Engine { void start(){} }
+class Car { private final Engine e = new Engine(); void start(){ e.start(); } }
+#+END_SRC
+{{< /mdef >}}
+
+{{< mdef "Coupling" >}}
+Degree of interdependence. Aim for low coupling & high cohesion. Symptoms of high coupling: many imports, reaching through objects (feature envy), brittle tests.
+{{< /mdef >}}
+
+{{< mdef "Design Patterns" >}}
+Reusable templates for common forces/trade-offs.
+
+- Creational: Factory Method, Abstract Factory, Builder, Prototype, Singleton (use sparingly).
+- Structural: Adapter, Bridge, Composite, Decorator, Facade, Flyweight, Proxy.
+- Behavioral: Strategy, Template Method, Observer, Command, Iterator, State, Visitor, Mediator, Memento, Chain of Responsibility.
+{{< /mdef >}}
+
+{{< mdef "Design Smells" >}}
+Long method, Large/God class, Data clumps, Shotgun surgery, Feature envy, Primitive obsession, Circular deps, Inappropriate intimacy, Refused bequest, Long parameter list.
+{{< /mdef >}}
+
+{{< mdef "Refactoring" >}}
+Small semantics-preserving steps to improve design: Extract Method/Class, Introduce Parameter Object, Replace Conditional with Polymorphism, Move Method/Field, Encapsulate Collection, Decompose Conditional, Inline Temp, Replace Inheritance with Delegation (and vice-versa).
+{{< /mdef >}}
+
+{{< mdef "Interfaces" >}}
+Pure contracts (types without implementation/state). Enable multiple “roles”, test doubles, and interchangeability.
+
+#+BEGIN_SRC java
+interface PaymentGateway { boolean charge(long cents); }
+class StripeGateway implements PaymentGateway { public boolean charge(long c){ return true; } }
+#+END_SRC
+{{< /mdef >}}
+
+{{< mdef "Abstract Classes" >}}
+Partial implementations with state and constructors; can define template methods and share code among subclasses.
+
+#+BEGIN_SRC java
+abstract class Shape {
+  abstract double area();
+  final double scaleTo(double k){ return k*k*area(); } // template utility
+}
+class Rect extends Shape { double w,h; Rect(double w,double h){this.w=w;this.h=h;} double area(){return w*h;} }
+#+END_SRC
+{{< /mdef >}}
+
+{{< mdef "Polymorphism" >}}
+Same message, different behaviour.
+
+- Overloading (compile-time): same name, different signatures.
+- Overriding (run-time): dynamic dispatch via actual type.
+- LSP: Subtypes must be substitutable for their supertypes without breaking correctness.
+
+#+BEGIN_SRC java
+List<Shape> shapes = List.of(new Rect(2,3), new Rect(1,1));
+double total = shapes.stream().mapToDouble(Shape::area).sum();
+#+END_SRC
+{{< /mdef >}}
+
+{{< mdef "Design Heuristics" >}}
+Prefer composition; program to interfaces; keep classes small & cohesive; make illegal states unrepresentable; push side-effects to edges; isolate infrastructure behind ports/adapters.
+{{< /mdef >}}
+
+{{< mdef "SOLID (quick)" >}}
+S: one reason to change. O: open for extension, closed for modification. L: honor contracts. I: small, focused interfaces. D: depend on abstractions, not concretions.
+{{< /mdef >}}
+
+
+# TikZ sketches (kept outside definition boxes)
+
+{{< tikztwo >}}
+\begin{document}
+\begin{tikzpicture}[node distance=28mm, >=stealth]\footnotesize
+  \tikzstyle{cls}=[rectangle, rounded corners, draw, align=center, minimum width=22mm, minimum height=7mm]
+
+  % Inheritance
+  \node[cls] (animal) {Animal\\\tiny speak()};
+  \node[cls, below left=18mm and 10mm of animal] (dog) {Dog\\\tiny speak()};
+  \node[cls, below right=18mm and 10mm of animal] (cat) {Cat\\\tiny speak()};
+
+  \draw[->] (dog.north) -- ($(animal.south)!0.4!(animal.south east)$);
+  \draw[->] (cat.north) -- ($(animal.south)!0.6!(animal.south west)$);
+  \node[above=2mm of animal] {\bf Inheritance (is-a)};
+
+  % Composition
+  \node[cls, right=48mm of animal] (car) {Car\\\tiny start()};
+  \node[cls, below=18mm of car] (engine) {Engine\\\tiny start()};
+
+  \draw[-] (car.south) -- ++(0,-4mm) -| (engine.north);
+  \fill (car.south) circle (1pt); % composition dot
+  \node[above=2mm of car] {\bf Composition (has-a)};
+\end{tikzpicture}
+\end{document}
+{{< /tikztwo >}}
+
+{{< tikztwo >}}
+\begin{document}
+\begin{tikzpicture}[node distance=30mm, >=stealth]\footnotesize
+  \tikzstyle{cls}=[rectangle, rounded corners, draw, align=center, minimum width=26mm, minimum height=8mm]
+  \node[cls] (iface) {PaymentGateway\\\tiny charge(cents): bool};
+  \node[cls, below left=of iface] (stripe) {StripeGateway\\\tiny charge(): bool};
+  \node[cls, below right=of iface] (mock) {MockGateway\\\tiny charge(): bool};
+  \node[cls, below=26mm of iface] (svc) {CheckoutService\\\tiny pay(gw)};
+
+  \draw[->,dashed] (stripe.north) -- (iface.south);
+  \draw[->,dashed] (mock.north) -- (iface.south);
+  \draw[->] (svc.north) -- (iface.south);
+
+  \node[above=2mm of iface] {\bf Interface polymorphism};
+\end{tikzpicture}
+\end{document}
+{{< /tikztwo >}}
+
+
+** references
+
+1. https://docs.oracle.com/javase/tutorial/java/concepts/index.html  
+2. Gamma et al., *Design Patterns*.  
+3. Bloch, *Effective Java (3e)*.  
+4. Fowler, *Refactoring (2e)*.  
+5. Refactoring.Guru (catalog + smells).

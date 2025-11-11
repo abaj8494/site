@@ -1,0 +1,14 @@
++++
+title = "Testing"
+tags = ["unit", "functional"]
++++
+
+** notes
+
+*** unit vs. functional
+
+unit tests are more modular and work within specific packages. they assume everything else is working and only test a small functionality. they are a programmer's friend.
+
+functional tests treat the entire system as a black-box; i.e. if the program manipulates data, the functional tests go check to see if the data has been manipulated correctly.
+
+functional tests are more involved, and trickier to design. you may need to use profiling tools to find them, and the skill of creating them is often best left to a separate team that enjoys finding bugs.

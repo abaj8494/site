@@ -1,0 +1,18 @@
++++
+title = "Software Engineering"
+tags = ["computer-science", "engineering"]
+layout = "custom-list"
++++
+
+Computer Scientists are not the ones that are employable, it is the Software Engineers that are.
+
+It has always been this way, and always will be. Software Engineering is connected to the real-world. It is concerned with practical problems:
+- architecture and design
+- implementation
+- testing
+- security
+
+Computer Scientists live in a more logical and pure bubble; they prefer specificity to scaffolding. But this bit me in the ass during a /Graduate Consultant/ interview.
+
+Engineers are those that make the world spin. Computer Scientists are just those that understand why it /can/ spin.
+

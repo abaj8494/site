@@ -1,0 +1,6 @@
++++
+title = "Event Driven"
+tags = ["messaging"]
++++
+
+word
