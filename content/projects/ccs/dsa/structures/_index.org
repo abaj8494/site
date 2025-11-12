@@ -1113,31 +1113,7 @@ the critical distinguishing property that makes a binary tree a *binary search t
 - the left child of each node must be less than the node, and;
 - the right child of this node must be larger than the node.
 
-
-#+BEGIN_CENTER
-#+CAPTION: pseudocode
-#+ATTR_HTML: :width 350px :class lateximage
-{{< tikztwo >}}
-\usepackage{tikz}
-\usetikzlibrary{positioning,fit}
-\usepackage{amsmath,amssymb}
-\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
-
-% Explicit preview block (more reliable than \PreviewEnvironment in some builds)
-\usepackage[active,tightpage]{preview}
-\pagestyle{empty}
-
-% algorithm2e niceties (optional)
-\DontPrintSemicolon
-\setlength{\algomargin}{1em}
-\let\vec\mathbf
-
-\begin{document}
-\begin{preview}                 % <— explicit preview open
-\begin{tikzpicture}[x=1pt,y=1pt,baseline=(ALG.north)]
-  % Put the algorithm in a minipage; add a top strut so the header isn't clipped
-  \node[anchor=north west, inner sep=0pt, outer sep=0pt] (ALG) at (0,0) {%
-    \begin{minipage}{520pt}\vspace*{1ex}
+{{< tikzalg width="60%">}}
       \begin{algorithm}[H]
 \SetAlgoLined
 \KwData{BST root pointer $T$, key $k$}
@@ -1151,70 +1127,7 @@ $cur \leftarrow T$\;
 \Return \texttt{NIL}\;
 \caption{BST-Search$(T,k)$}
       \end{algorithm}
-    \end{minipage}
-  };
-
-  % Force the page bbox to exactly this rectangle by emitting a real (invisible) path:
-  \path[draw,opacity=0,line width=0pt]
-    (ALG.north west) rectangle (ALG.south east);
-
-\end{tikzpicture}
-\end{preview}                 % <— explicit preview close
-\end{document}
-
-{{< /tikztwo >}}
-#+END_CENTER
-
-
-#+BEGIN_EXPORT html
-<script type="text/tikz" data-show-console="true">
-\usepackage{tikz}
-\usetikzlibrary{positioning,fit}
-\usepackage{amsmath,amssymb}
-\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
-
-% Explicit preview block (more reliable than \PreviewEnvironment in some builds)
-\usepackage[active,tightpage]{preview}
-\pagestyle{empty}
-
-% algorithm2e niceties (optional)
-\DontPrintSemicolon
-\setlength{\algomargin}{1em}
-\let\vec\mathbf
-
-\begin{document}
-\begin{preview}                 % <— explicit preview open
-\begin{tikzpicture}[x=1pt,y=1pt,baseline=(ALG.north)]
-  % Put the algorithm in a minipage; add a top strut so the header isn't clipped
-  \node[anchor=north west, inner sep=0pt, outer sep=0pt] (ALG) at (0,0) {%
-    \begin{minipage}{520pt}\vspace*{1ex}
-      \begin{algorithm}[H]
-\SetAlgoLined
-\KwData{BST root pointer $T$, key $k$}
-\KwResult{Pointer to node with key $k$ if present, else \texttt{NIL}}
-$cur \leftarrow T$\;
-\While{$cur \neq \texttt{NIL}$}{
-    \uIf{$k = cur.key$}{\Return $cur$}
-    \uElseIf{$k < cur.key$}{$cur \leftarrow cur.left$}
-    \Else{$cur \leftarrow cur.right$}
-}
-\Return \texttt{NIL}\;
-\caption{BST-Search$(T,k)$}
-      \end{algorithm}
-    \end{minipage}
-  };
-
-  % Force the page bbox to exactly this rectangle by emitting a real (invisible) path:
-  \path[draw,opacity=0,line width=0pt]
-    (ALG.north west) rectangle (ALG.south east);
-
-\end{tikzpicture}
-\end{preview}                 % <— explicit preview close
-\end{document}
-</script>
-
-#+END_EXPORT
-
+{{< /tikzalg >}}
 
 **** time complexity
 
