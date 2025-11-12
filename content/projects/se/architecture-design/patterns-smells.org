@@ -5,6 +5,29 @@ tikzajax = "true"
 math = "true"
 +++
 
+
+{{< tikzalg >}}
+      \begin{algorithm}[H]
+        \caption{Perceptron Learning Algorithm}
+        \KwData{$D=\{(\vec{x_i},y_i)\}_{i=1}^{|D|}$, $\vec{x_i}\in\mathbb{R}^n$, $y_i\in\{-1,1\}$}
+        \KwResult{$\vec{w}$}
+        $\vec{w}\leftarrow 0$\;
+        $converged\leftarrow \text{false}$\;
+        \While{$\neg\,converged$}{
+          $converged\leftarrow \text{true}$\;
+          \For{$i\leftarrow 1$ \KwTo $|D|$}{
+            \If{$y_i(\vec{w}\!\cdot\!\vec{x_i})\le 0$}{
+              $\vec{w}\leftarrow \vec{w}+\eta\,y_i\,\vec{x_i}$\;
+              $converged\leftarrow \text{false}$\;
+            }
+          }
+        }
+      \end{algorithm}
+{{< /tikzalg >}}
+
+
+
+
 ** notes
 
 it seems like "design patterns" are not exclusively restricted to 'object-oriented-programming', but this is the context in which I have learned such design.

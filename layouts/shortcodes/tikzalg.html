@@ -1,0 +1,74 @@
+<style>
+    .tikz-algo {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      display: inline-block;
+    }
+    script[type="text/tikz"] {
+      display: none;
+    }
+  </style>
+  <h1>Perceptron Pseudocode</h1>
+  <div class="tikz-algo lateximage">
+    <center><script type="text/tikz" id="tikz-source" {{ if hugo.IsProduction }} data-show-console="true"{{ end }}>
+\usepackage{tikz}
+\usetikzlibrary{positioning,fit}
+\usepackage{amsmath,amssymb}
+\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
+
+\DontPrintSemicolon
+\setlength{\algomargin}{1em}
+\let\vec\mathbf
+
+\begin{document}
+\begin{tikzpicture}[x=1pt,y=1pt]
+  \node[anchor=north west, inner sep=0pt, outer sep=0pt] (ALG) at (0,0) {%
+									 {{ .Inner }}
+  };
+\end{tikzpicture}
+\end{document}
+    </script></center>
+  </div>
+
+  <script>
+    // Wait for TikzJax to render, then crop the SVG
+    function cropSVG() {
+      const svg = document.querySelector('svg');
+      if (!svg) {
+        setTimeout(cropSVG, 100);
+        return;
+      }
+
+      try {
+        // Get the bounding box of all actual content (excluding pure white/transparent areas)
+        const bbox = svg.getBBox();
+        
+        // Add small padding (adjust as needed)
+        const padding = 2;
+        
+        // Update viewBox to crop to content
+        svg.setAttribute('viewBox', 
+          `${bbox.x - padding} ${bbox.y - padding} ${bbox.width + 2*padding} ${bbox.height + 2*padding}`
+        );
+        
+        // Update width/height to match (optional - preserves aspect ratio)
+        svg.setAttribute('width', bbox.width + 2*padding);
+        svg.setAttribute('height', bbox.height + 2*padding);
+        
+        console.log('SVG cropped successfully:', {
+          x: bbox.x - padding,
+          y: bbox.y - padding,
+          width: bbox.width + 2*padding,
+          height: bbox.height + 2*padding
+        });
+      } catch (e) {
+        console.error('Error cropping SVG:', e);
+      }
+    }
+
+    // Start checking for SVG after a short delay
+    setTimeout(cropSVG, 500);
+  </script>
+
