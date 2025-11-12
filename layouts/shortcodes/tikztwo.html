@@ -1,3 +1,3 @@
-<center class="lateximage"  >
-<script type="text/tikz">{{ .Inner }}</script>
+<center class="lateximage">
+<script type="text/tikz"{{ if hugo.IsProduction }} data-show-console="true"{{ end }}>{{ .Inner }}</script>
 </center>

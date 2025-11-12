@@ -492,6 +492,34 @@ we have not covered sorting at all on this page, it seems to be one of the less 
 #+end_export
 
 
+*** bubble-sort
+
+{{< tikztwo >}}
+
+\usepackage[ruled,vlined]{algorithm2e} % Include the package with options
+
+\begin{document}
+
+\begin{algorithm}[H] % [H] for "here", trying to place it exactly here
+\SetAlgoLined % Adds lines between instructions
+\KwData{Input list $L$}
+\KwResult{Sorted list $L$}
+\caption{Bubble Sort Algorithm}
+\label{alg:bubble_sort}
+
+\For{$i \gets 1$ \KwTo $length(L)-1$}{
+    \For{$j \gets 1$ \KwTo $length(L)-i$}{
+        \If{$L[j] > L[j+1]$}{
+            Swap $L[j]$ and $L[j+1]$\;
+        }
+    }
+}
+\Return{$L$}\;
+\end{algorithm}
+
+\end{document}
+{{< /tikztwo >}}
+
 ** org table :noexport:
 |           | time                                                                | space                  |
 | algorithm | best               | average             | worst                    | worst                  |

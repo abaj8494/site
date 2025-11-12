@@ -87,7 +87,7 @@ You may view the entire =tag= taxonomy [[/tags][here]], and the =author= taxonom
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/paradigms/quadratic][Quadratic]] {{< tags-inline "projects/ccs/programming/paradigms/quadratic" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/paradigms/integer][Integer]] {{< tags-inline "projects/ccs/programming/paradigms/integer" >}}
 - @@html:<input type="checkbox" checked class="edit"/>@@ [[https://github.com/abaj8494/dynamic-programming][Dynamic]] {{< tags-inline "projects/ccs/programming/paradigms/dynamic" >}}
-- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/paradigms/object-oriented][Object-oriented]] {{< tags-inline "projects/ccs/programming/paradigms/object-oriented" >}}
+- @@html:<input type="checkbox" checked class="done"/>@@ [[/projects/ccs/programming/paradigms/object-oriented][Object-oriented]] {{< tags-inline "projects/ccs/programming/paradigms/object-oriented" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/paradigms/functional][Functional]] {{< tags-inline "projects/ccs/programming/paradigms/functional" >}}
 
 **** [[/projects/ccs/programming/languages][Languages]]
@@ -275,7 +275,7 @@ Furthermore, many of the tags point you to the [[https://github.com/abaj8494/10k
 :CUSTOM_ID: classification
 :END:
 These methods can be adapted for _regression_, but they are more well suited to classification.
-- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ml/supervised/classification/perceptron][Perceptron (Sign Loss)]] {{< tags-inline "projects/ml/supervised/classification/perceptron" >}}
+- @@html:<input type="checkbox" checked class="archived"/>@@ [[/projects/ml/supervised/classification/perceptron][Perceptron (Sign Loss)]] {{< tags-inline "projects/ml/supervised/classification/perceptron" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ml/supervised/classification/svm][Support Vector Machines]] {{< tags-inline "projects/ml/supervised/classification/svm" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ml/supervised/classification/decision-trees][Decision Trees]] {{< tags-inline "projects/ml/supervised/classification/decision-trees" >}}
 - @@html:<input type="checkbox" checked class="refactor"/>@@ [[/projects/ml/supervised/classification/knn][K-Nearest-Neighbours]] {{< tags-inline "projects/ml/supervised/classification/knn" >}}

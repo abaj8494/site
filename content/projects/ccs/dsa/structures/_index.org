@@ -1016,12 +1016,16 @@ child {node {Level 2}
 
 **** schematic
 
+#+BEGIN_CENTER
+#+HTML: <div style="display: flex; align-items: center; justify-content: center; gap: 20px;">
+#+HTML:   <div style="text-align: center; display: flex; flex-direction: column; align-items: center;">
+#+CAPTION: binary-tree, unsorted.
+#+ATTR_HTML: :width 350px :class lateximage
 {{< tikztwo >}}
 \usetikzlibrary{arrows,positioning, calc}
 \tikzstyle{vertex}=[draw,fill=black!15,circle,minimum size=20pt,inner sep=0pt]
-
 \begin{document}
-\begin{tikzpicture}[scale=2,transform shape,very thick,level/.style={sibling distance=60mm/#1}]
+\begin{tikzpicture}[scale=1,transform shape,very thick,level/.style={sibling distance=60mm/#1}]
 \node [vertex] (r){$17$}
   child {
     node [vertex] (a) {$19$}
@@ -1055,10 +1059,166 @@ child {node {Level 2}
 \end{tikzpicture}
 \end{document}
 {{< /tikztwo >}}
+#+HTML:   </div>
+#+HTML:   <div style="text-align: center; display: flex; flex-direction: column; align-items: center;">
+#+CAPTION: binary *search* tree (sorted)
+#+ATTR_HTML: :width 350px :class lateximage
+{{< tikztwo >}}
+\usetikzlibrary{arrows,positioning,calc}
+\tikzstyle{vertex}=[draw,fill=black!15,circle,minimum size=20pt,inner sep=0pt]
+\begin{document}
+\begin{tikzpicture}[scale=1,transform shape,very thick,
+  level/.style={sibling distance=60mm/#1}]
+\node[vertex] {$8$}
+  child { % left of 8
+    node[vertex] {$3$}
+      child { % left of 3
+        node[vertex] {$-3$}
+          child { node[vertex] {$-4$} }
+          child { node[vertex] {$2$}
+            child[missing] {}
+            child { node[vertex] {$2$} }
+          }
+      }
+      child { % right of 3
+        node[vertex] {$6$}
+          child { node[vertex] {$5$} }
+          child { node[vertex] {$7$} }
+      }
+  }
+  child { % right of 8
+    node[vertex] {$17$}
+      child { % left of 17
+        node[vertex] {$9$}
+          child[missing] {}
+          child { node[vertex] {$11$} }
+      }
+      child { % right of 17
+        node[vertex] {$19$}
+          child { node[vertex] {$17$}
+            child[missing] {}
+            child { node[vertex] {$17$} }
+          }
+          child { node[vertex] {$20$} }
+      }
+  };
+\end{tikzpicture}
+\end{document}
+{{< /tikztwo >}}
+#+HTML:   </div>
+#+HTML:   </div>
+#+END_CENTER
+
+the critical distinguishing property that makes a binary tree a *binary search tree* is:
+- the left child of each node must be less than the node, and;
+- the right child of this node must be larger than the node.
+
+
+#+BEGIN_CENTER
+#+CAPTION: pseudocode
+#+ATTR_HTML: :width 350px :class lateximage
+{{< tikztwo >}}
+\usepackage{tikz}
+\usetikzlibrary{positioning,fit}
+\usepackage{amsmath,amssymb}
+\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
+
+% Explicit preview block (more reliable than \PreviewEnvironment in some builds)
+\usepackage[active,tightpage]{preview}
+\pagestyle{empty}
+
+% algorithm2e niceties (optional)
+\DontPrintSemicolon
+\setlength{\algomargin}{1em}
+\let\vec\mathbf
+
+\begin{document}
+\begin{preview}                 % <— explicit preview open
+\begin{tikzpicture}[x=1pt,y=1pt,baseline=(ALG.north)]
+  % Put the algorithm in a minipage; add a top strut so the header isn't clipped
+  \node[anchor=north west, inner sep=0pt, outer sep=0pt] (ALG) at (0,0) {%
+    \begin{minipage}{520pt}\vspace*{1ex}
+      \begin{algorithm}[H]
+\SetAlgoLined
+\KwData{BST root pointer $T$, key $k$}
+\KwResult{Pointer to node with key $k$ if present, else \texttt{NIL}}
+$cur \leftarrow T$\;
+\While{$cur \neq \texttt{NIL}$}{
+    \uIf{$k = cur.key$}{\Return $cur$}
+    \uElseIf{$k < cur.key$}{$cur \leftarrow cur.left$}
+    \Else{$cur \leftarrow cur.right$}
+}
+\Return \texttt{NIL}\;
+\caption{BST-Search$(T,k)$}
+      \end{algorithm}
+    \end{minipage}
+  };
+
+  % Force the page bbox to exactly this rectangle by emitting a real (invisible) path:
+  \path[draw,opacity=0,line width=0pt]
+    (ALG.north west) rectangle (ALG.south east);
+
+\end{tikzpicture}
+\end{preview}                 % <— explicit preview close
+\end{document}
+
+{{< /tikztwo >}}
+#+END_CENTER
+
+
+#+BEGIN_EXPORT html
+<script type="text/tikz" data-show-console="true">
+\usepackage{tikz}
+\usetikzlibrary{positioning,fit}
+\usepackage{amsmath,amssymb}
+\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
+
+% Explicit preview block (more reliable than \PreviewEnvironment in some builds)
+\usepackage[active,tightpage]{preview}
+\pagestyle{empty}
+
+% algorithm2e niceties (optional)
+\DontPrintSemicolon
+\setlength{\algomargin}{1em}
+\let\vec\mathbf
+
+\begin{document}
+\begin{preview}                 % <— explicit preview open
+\begin{tikzpicture}[x=1pt,y=1pt,baseline=(ALG.north)]
+  % Put the algorithm in a minipage; add a top strut so the header isn't clipped
+  \node[anchor=north west, inner sep=0pt, outer sep=0pt] (ALG) at (0,0) {%
+    \begin{minipage}{520pt}\vspace*{1ex}
+      \begin{algorithm}[H]
+\SetAlgoLined
+\KwData{BST root pointer $T$, key $k$}
+\KwResult{Pointer to node with key $k$ if present, else \texttt{NIL}}
+$cur \leftarrow T$\;
+\While{$cur \neq \texttt{NIL}$}{
+    \uIf{$k = cur.key$}{\Return $cur$}
+    \uElseIf{$k < cur.key$}{$cur \leftarrow cur.left$}
+    \Else{$cur \leftarrow cur.right$}
+}
+\Return \texttt{NIL}\;
+\caption{BST-Search$(T,k)$}
+      \end{algorithm}
+    \end{minipage}
+  };
+
+  % Force the page bbox to exactly this rectangle by emitting a real (invisible) path:
+  \path[draw,opacity=0,line width=0pt]
+    (ALG.north west) rectangle (ALG.south east);
+
+\end{tikzpicture}
+\end{preview}                 % <— explicit preview close
+\end{document}
+</script>
+
+#+END_EXPORT
 
 
 **** time complexity
 
+note that the following time complexities are for a *binary search tree*, because there is really no benefit to performing these operations on a regular /binary tree/. the time complexities are all $\mathcal{O}(n)$ for the unsorted tree.
 
 |         | Access                 | Search                 | Insertion              | Deletion               |
 |---------+------------------------+------------------------+------------------------+------------------------|
@@ -1071,6 +1231,120 @@ naturally, this table warrants explanation. though currently I have none.
 I can reconcile average complexity of search to take log n steps, but I wonder why worst case is not the same.
 
 I wonder if insertion causes a total rebalancing to occur. is a Binary Search Tree even balanced?
+
+***** full vs. complete vs. balanced vs. perfect
+
+#+BEGIN_CENTER
+#+HTML: <div style="display:flex; align-items:flex-start; justify-content:center; gap:20px; flex-wrap:wrap;">
+
+#+HTML:   <div style="text-align:center; display:flex; flex-direction:column; align-items:center;">
+#+CAPTION: 1. complete binary tree (not full)
+#+ATTR_HTML: :width 300px :class lateximage
+{{< tikztwo >}}
+\usetikzlibrary{arrows,positioning, calc}
+\tikzstyle{vertex}=[draw,fill=black!15,circle,minimum size=20pt,inner sep=0pt]
+\begin{document}
+\begin{tikzpicture}[scale=2,transform shape,very thick,
+  level/.style={sibling distance=30mm/#1}]
+\node[vertex] {$1$}
+  child {
+    node[vertex] {$2$}
+      child { node[vertex] {$4$} }
+      child { node[vertex] {$5$} }
+  }
+  child {
+    node[vertex] {$3$}
+      child { node[vertex] {$6$} }
+      child[missing] {}
+  };
+\end{tikzpicture}
+\end{document}
+{{< /tikztwo >}}
+#+HTML:   </div>
+
+#+HTML:   <div style="text-align:center; display:flex; flex-direction:column; align-items:center;">
+#+CAPTION: 2. full binary tree (not complete)
+#+ATTR_HTML: :width 300px :class lateximage
+{{< tikztwo >}}
+\usetikzlibrary{arrows,positioning, calc}
+\tikzstyle{vertex}=[draw,fill=black!15,circle,minimum size=20pt,inner sep=0pt]
+\begin{document}
+\begin{tikzpicture}[scale=2,transform shape,very thick,
+  level/.style={sibling distance=30mm/#1}]
+\node[vertex] {$1$}
+  child { node[vertex] {$2$} } % leaf: 0 children
+  child {
+    node[vertex] {$3$}
+      child { node[vertex] {$6$} } % two children → "full"
+      child { node[vertex] {$7$} }
+  };
+\end{tikzpicture}
+\end{document}
+{{< /tikztwo >}}
+#+HTML:   </div>
+
+#+HTML:   <div style="text-align:center; display:flex; flex-direction:column; align-items:center;">
+#+CAPTION: 3. perfect binary tree (full + complete)
+#+ATTR_HTML: :width 300px :class lateximage
+{{< tikztwo >}}
+\usetikzlibrary{arrows,positioning, calc}
+\tikzstyle{vertex}=[draw,fill=black!15,circle,minimum size=20pt,inner sep=0pt]
+\begin{document}
+\begin{tikzpicture}[scale=2,transform shape,very thick,
+  level/.style={sibling distance=30mm/#1}]
+\node[vertex] {$1$}
+  child {
+    node[vertex] {$2$}
+      child { node[vertex] {$4$} }
+      child { node[vertex] {$5$} }
+  }
+  child {
+    node[vertex] {$3$}
+      child { node[vertex] {$6$} }
+      child { node[vertex] {$7$} }
+  };
+\end{tikzpicture}
+\end{document}
+{{< /tikztwo >}}
+#+HTML:   </div>
+
+#+HTML:   <div style="text-align:center; display:flex; flex-direction:column; align-items:center;">
+#+CAPTION: 4. balanced binary tree
+#+ATTR_HTML: :width 300px :class lateximage
+{{< tikztwo >}}
+\usetikzlibrary{arrows,positioning, calc}
+\tikzstyle{vertex}=[draw,fill=black!15,circle,minimum size=20pt,inner sep=0pt]
+\begin{document}
+\begin{tikzpicture}[scale=2,transform shape,very thick,
+  level/.style={sibling distance=30mm/#1}]
+\node[vertex] {$1$}
+  child {
+    node[vertex] {$2$}
+      child[missing] {}
+      child { node[vertex] {$5$} }
+  }
+  child { node[vertex] {$3$} };
+\end{tikzpicture}
+\end{document}
+{{< /tikztwo >}}
+#+HTML:   </div>
+
+#+HTML: </div>
+#+END_CENTER
+
+
+1. *Complete binary tree*
+   - every level is completely filled except possibly the last, and all nodes on the last level appear as far left as possible.
+   - use-cases: binary-heap, array representations
+2. *Full binary tree*
+   - every /node/ has either \(0\) or \(2\) children (no node has exactly one child).
+   - use-cases: huffman-encoding
+3. *Perfect binary tree*
+   - both full *and* complete; equivalently, all internal nodes have \(2\) children and all leaves lie at the same depth.
+4. *Balanced binary tree*
+   - take every node and find the height of its left-subtree and right-subtree. if the difference in heights exceed $k=1$, where $k$ can be any number criterion we choose, then the tree is unbalanced.
+
+
 
 *** Red Black Trees
 
