@@ -19,7 +19,7 @@ script[type="text/tikz"] {
 }
 </style>
 <div id="{{ $id }}" class="tikz-algo lateximage">
-  <script type="text/tikz" {{ if hugo.IsProduction }}data-show-console="true"{{ end }}>
+  <script type="text/tikz" {{ if hugo.IsDevelopment }}data-show-console="true"{{ end }}>
 \usepackage{tikz}
 \usetikzlibrary{positioning,fit}
 \usepackage{amsmath,amssymb}
@@ -40,65 +40,62 @@ script[type="text/tikz"] {
 </div>
 
 <script>
-(function() {
-  // Wait for TikzJax to render, then crop the SVG
-  function cropSVG() {
-    const container = document.getElementById('{{ $id }}');
-    if (!container) {
-      setTimeout(cropSVG, 100);
-      return;
-    }
-    
-    const svg = container.querySelector('svg');
-    if (!svg) {
-      setTimeout(cropSVG, 100);
-      return;
-    }
+  (function() {
+    {{ if hugo.IsDevelopment }}
+    const DEBUG = true;
+    {{ else }}
+    const DEBUG = false;
+    {{ end }}
 
-    try {
-      // Get the bounding box of all actual content
-      const bbox = svg.getBBox();
-      
-      // Add small padding
-      const padding = 2;
-      
-      const naturalWidth = bbox.width + 2*padding;
-      const naturalHeight = bbox.height + 2*padding;
-      
-      // Update viewBox to crop to content
-      svg.setAttribute('viewBox', 
-        `${bbox.x - padding} ${bbox.y - padding} ${naturalWidth} ${naturalHeight}`
-      );
-      
-
-      const containerStyle = window.getComputedStyle(container);
-      const targetWidth = containerStyle.width;
-      
-      // Set explicit dimensions on the SVG based on target width
-      if (targetWidth && targetWidth !== 'auto' && targetWidth !== 'fit-content') {
-        const targetWidthPx = parseFloat(targetWidth);
-        // Force to target width regardless of natural size
-        svg.setAttribute('width', targetWidthPx);
-        svg.setAttribute('height', (naturalHeight * targetWidthPx / naturalWidth));
-      } else {
-        // No width constraint, use natural size
-        svg.setAttribute('width', naturalWidth);
-        svg.setAttribute('height', naturalHeight);
+    function cropSVG() {
+      const container = document.getElementById('{{ $id }}');
+      if (!container) {
+        setTimeout(cropSVG, 100);
+        return;
       }
-      
-      console.log('SVG sized for {{ $id }}:', {
-        naturalWidth,
-        naturalHeight,
-        targetWidth,
-        finalWidth: svg.getAttribute('width'),
-        finalHeight: svg.getAttribute('height')
-      });
-    } catch (e) {
-      console.error('Error cropping SVG for {{ $id }}:', e);
-    }
-  }
 
-  // Start checking for SVG after a short delay
-  setTimeout(cropSVG, 500);
-})();
-</script>
+      const svg = container.querySelector('svg');
+      if (!svg) {
+        setTimeout(cropSVG, 100);
+        return;
+      }
+
+      try {
+        const bbox = svg.getBBox();
+        const padding = 2;
+        const naturalWidth = bbox.width + 2*padding;
+        const naturalHeight = bbox.height + 2*padding;
+
+        svg.setAttribute('viewBox',
+          `${bbox.x - padding} ${bbox.y - padding} ${naturalWidth} ${naturalHeight}`
+        );
+
+        const containerStyle = window.getComputedStyle(container);
+        const targetWidth = containerStyle.width;
+
+        if (targetWidth && targetWidth !== 'auto' && targetWidth !== 'fit-content') {
+          const targetWidthPx = parseFloat(targetWidth);
+          svg.setAttribute('width', targetWidthPx);
+          svg.setAttribute('height', (naturalHeight * targetWidthPx / naturalWidth));
+        } else {
+          svg.setAttribute('width', naturalWidth);
+          svg.setAttribute('height', naturalHeight);
+        }
+
+        if (DEBUG) {
+          console.log('SVG sized for {{ $id }}:', {
+            naturalWidth,
+            naturalHeight,
+            targetWidth,
+            finalWidth: svg.getAttribute('width'),
+            finalHeight: svg.getAttribute('height')
+          });
+        }
+      } catch (e) {
+        console.error('Error cropping SVG for {{ $id }}:', e);
+      }
+    }
+
+    setTimeout(cropSVG, 500);
+  })();
+  </script>

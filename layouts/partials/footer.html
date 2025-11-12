@@ -35,6 +35,10 @@
   <script src="{{ $sticky.RelPermalink }}"></script>
 {{- end }}
 
+{{- $imageModal := resources.Get "js/image-modal.js" | resources.ExecuteAsTemplate "js/image-modal.js" . -}}
+{{- if $imageModal }}
+  <script src="{{ $imageModal.RelPermalink }}"></script>
+{{- end }}
 
 <!-- Extensibility -->
 {{ partial "footer_end.html" . }}

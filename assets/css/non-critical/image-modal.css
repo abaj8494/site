@@ -1,0 +1,204 @@
+/* Image Modal / Lightbox Styles */
+
+.image-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0);
+  backdrop-filter: blur(0px);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, backdrop-filter 0.3s ease, visibility 0.3s ease, background 0.3s ease;
+  cursor: zoom-out;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.image-modal-overlay.active {
+  opacity: 1 !important;
+  visibility: visible !important;
+  background: rgba(0, 0, 0, 0.92) !important;
+  backdrop-filter: blur(0px);
+  pointer-events: all !important;
+}
+
+.image-modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 60px 60px 60px;
+  overflow: visible;
+  perspective: 1500px;
+  perspective-origin: center center;
+  pointer-events: none;
+}
+
+.image-modal-container > * {
+  pointer-events: all;
+}
+
+.image-modal-content {
+  position: relative;
+  max-width: 70vw;
+  max-height: 70vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: zoom-in;
+  user-select: none;
+  -webkit-user-drag: none;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 10px 25px rgba(0, 0, 0, 0.4);
+  border-radius: 6px;
+  background: white;
+  transform: scale(0.9) translateZ(0);
+  transform-origin: center center;
+  opacity: 0;
+  will-change: transform, opacity;
+  margin: auto;
+  padding: 20px;
+  outline: none !important;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* SVG specific styles */
+.image-modal-content svg,
+svg.image-modal-content {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  outline: none !important;
+  shape-rendering: geometricPrecision;
+  text-rendering: geometricPrecision;
+}
+
+.image-modal-overlay.active .image-modal-content {
+  transform: scale(1) translateZ(0);
+  opacity: 1;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+}
+
+.image-modal-content.zoomed {
+  cursor: grab !important;
+}
+
+.image-modal-content.zoomed:active {
+  cursor: grabbing !important;
+}
+
+/* Zoom levels with 3D pop-out effect */
+.image-modal-content.zoom-1x {
+  transform: scale(1) translateZ(0);
+  transform-origin: center center;
+}
+
+.image-modal-content.zoom-2x {
+  transform: scale(2) translateZ(30px);
+  transform-origin: center center;
+  cursor: zoom-out !important;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 20px 45px rgba(0, 0, 0, 0.6);
+}
+
+/* Close button */
+.image-modal-close {
+  position: fixed;
+  top: 20px;
+  right: 30px;
+  width: 45px;
+  height: 45px;
+  background: var(--bg1);
+  border: 2px solid var(--primary-alt);
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 10001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.image-modal-close:hover {
+  background: var(--primary-alt);
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.image-modal-close::before,
+.image-modal-close::after {
+  content: "";
+  position: absolute;
+  width: 24px;
+  height: 3px;
+  background: var(--primary-alt);
+  transition: background 0.2s ease;
+}
+
+.image-modal-close:hover::before,
+.image-modal-close:hover::after {
+  background: var(--bg);
+}
+
+.image-modal-close::before {
+  transform: rotate(45deg);
+}
+
+.image-modal-close::after {
+  transform: rotate(-45deg);
+}
+
+/* Loading state */
+.image-modal-content.loading {
+  opacity: 0.5;
+}
+
+/* Prevent body scroll when modal is open */
+body.image-modal-open {
+  overflow: hidden;
+}
+
+/* Animation for image appearance - now handled by CSS transitions */
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .image-modal-container {
+    padding: 60px 20px 40px 20px;
+  }
+
+  .image-modal-close {
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .image-modal-close::before,
+  .image-modal-close::after {
+    width: 20px;
+    height: 2px;
+  }
+
+  .image-modal-content {
+    max-width: 85vw;
+    max-height: 75vh;
+  }
+}
+
