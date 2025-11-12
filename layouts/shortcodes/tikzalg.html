@@ -1,18 +1,25 @@
+{{- $width := .Get "width" | default "100%" -}}
+{{- $id := printf "tikz-algo-%d" .Ordinal -}}
 <style>
-    .tikz-algo {
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      display: inline-block;
-    }
-    script[type="text/tikz"] {
-      display: none;
-    }
-  </style>
-  <h1>Perceptron Pseudocode</h1>
-  <div class="tikz-algo lateximage">
-    <center><script type="text/tikz" id="tikz-source" {{ if hugo.IsProduction }} data-show-console="true"{{ end }}>
+#{{ $id }} {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  display: block;
+  margin: 0 auto;
+  width: {{ $width }};
+}
+#{{ $id }} svg {
+  max-width: 100%;
+  height: auto;
+}
+script[type="text/tikz"] {
+  display: none;
+}
+</style>
+<div id="{{ $id }}" class="tikz-algo lateximage">
+  <script type="text/tikz" {{ if hugo.IsProduction }}data-show-console="true"{{ end }}>
 \usepackage{tikz}
 \usetikzlibrary{positioning,fit}
 \usepackage{amsmath,amssymb}
@@ -25,50 +32,73 @@
 \begin{document}
 \begin{tikzpicture}[x=1pt,y=1pt]
   \node[anchor=north west, inner sep=0pt, outer sep=0pt] (ALG) at (0,0) {%
-									 {{ .Inner }}
+{{ .Inner }}
   };
 \end{tikzpicture}
 \end{document}
-    </script></center>
-  </div>
+  </script>
+</div>
 
-  <script>
-    // Wait for TikzJax to render, then crop the SVG
-    function cropSVG() {
-      const svg = document.querySelector('svg');
-      if (!svg) {
-        setTimeout(cropSVG, 100);
-        return;
-      }
-
-      try {
-        // Get the bounding box of all actual content (excluding pure white/transparent areas)
-        const bbox = svg.getBBox();
-        
-        // Add small padding (adjust as needed)
-        const padding = 2;
-        
-        // Update viewBox to crop to content
-        svg.setAttribute('viewBox', 
-          `${bbox.x - padding} ${bbox.y - padding} ${bbox.width + 2*padding} ${bbox.height + 2*padding}`
-        );
-        
-        // Update width/height to match (optional - preserves aspect ratio)
-        svg.setAttribute('width', bbox.width + 2*padding);
-        svg.setAttribute('height', bbox.height + 2*padding);
-        
-        console.log('SVG cropped successfully:', {
-          x: bbox.x - padding,
-          y: bbox.y - padding,
-          width: bbox.width + 2*padding,
-          height: bbox.height + 2*padding
-        });
-      } catch (e) {
-        console.error('Error cropping SVG:', e);
-      }
+<script>
+(function() {
+  // Wait for TikzJax to render, then crop the SVG
+  function cropSVG() {
+    const container = document.getElementById('{{ $id }}');
+    if (!container) {
+      setTimeout(cropSVG, 100);
+      return;
+    }
+    
+    const svg = container.querySelector('svg');
+    if (!svg) {
+      setTimeout(cropSVG, 100);
+      return;
     }
 
-    // Start checking for SVG after a short delay
-    setTimeout(cropSVG, 500);
-  </script>
+    try {
+      // Get the bounding box of all actual content
+      const bbox = svg.getBBox();
+      
+      // Add small padding
+      const padding = 2;
+      
+      const naturalWidth = bbox.width + 2*padding;
+      const naturalHeight = bbox.height + 2*padding;
+      
+      // Update viewBox to crop to content
+      svg.setAttribute('viewBox', 
+        `${bbox.x - padding} ${bbox.y - padding} ${naturalWidth} ${naturalHeight}`
+      );
+      
 
+      const containerStyle = window.getComputedStyle(container);
+      const targetWidth = containerStyle.width;
+      
+      // Set explicit dimensions on the SVG based on target width
+      if (targetWidth && targetWidth !== 'auto' && targetWidth !== 'fit-content') {
+        const targetWidthPx = parseFloat(targetWidth);
+        // Force to target width regardless of natural size
+        svg.setAttribute('width', targetWidthPx);
+        svg.setAttribute('height', (naturalHeight * targetWidthPx / naturalWidth));
+      } else {
+        // No width constraint, use natural size
+        svg.setAttribute('width', naturalWidth);
+        svg.setAttribute('height', naturalHeight);
+      }
+      
+      console.log('SVG sized for {{ $id }}:', {
+        naturalWidth,
+        naturalHeight,
+        targetWidth,
+        finalWidth: svg.getAttribute('width'),
+        finalHeight: svg.getAttribute('height')
+      });
+    } catch (e) {
+      console.error('Error cropping SVG for {{ $id }}:', e);
+    }
+  }
+
+  // Start checking for SVG after a short delay
+  setTimeout(cropSVG, 500);
+})();
+</script>

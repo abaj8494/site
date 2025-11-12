@@ -3,10 +3,35 @@ title = "Design Patterns & Smells"
 tags = ["gof", "patterns", "algorithms", "oop"]
 tikzajax = "true"
 math = "true"
+toc = "true"
 +++
 
-
-{{< tikzalg >}}
+#+BEGIN_CENTER
+#+HTML: <div style="display: flex; align-items: center; justify-content: center; gap: 20px;">
+#+HTML:   <div style="text-align: center; display: flex; flex-direction: column; align-items: center;">
+#+CAPTION: min-heap, k-largest
+{{< tikzalg width="400px">}}
+      \begin{algorithm}[H]
+        \caption{Perceptron Learning Algorithm}
+        \KwData{$D=\{(\vec{x_i},y_i)\}_{i=1}^{|D|}$, $\vec{x_i}\in\mathbb{R}^n$, $y_i\in\{-1,1\}$}
+        \KwResult{$\vec{w}$}
+        $\vec{w}\leftarrow 0$\;
+        $converged\leftarrow \text{false}$\;
+        \While{$\neg\,converged$}{
+          $converged\leftarrow \text{true}$\;
+          \For{$i\leftarrow 1$ \KwTo $|D|$}{
+            \If{$y_i(\vec{w}\!\cdot\!\vec{x_i})\le 0$}{
+              $\vec{w}\leftarrow \vec{w}+\eta\,y_i\,\vec{x_i}$\;
+              $converged\leftarrow \text{false}$\;
+            }
+          }
+        }
+      \end{algorithm}
+{{< /tikzalg >}}
+#+HTML:   </div>
+#+HTML:   <div style="text-align: center; display: flex; flex-direction: column; align-items: center;">
+#+CAPTION: max-heap, k-smallest
+{{< tikzalg width="300px" >}}
       \begin{algorithm}[H]
         \caption{Perceptron Learning Algorithm}
         \KwData{$D=\{(\vec{x_i},y_i)\}_{i=1}^{|D|}$, $\vec{x_i}\in\mathbb{R}^n$, $y_i\in\{-1,1\}$}
@@ -25,6 +50,33 @@ math = "true"
       \end{algorithm}
 {{< /tikzalg >}}
 
+#+HTML:   </div>
+#+HTML:   </div>
+#+END_CENTER
+
+
+
+#+BEGIN_CENTER
+#+CAPTION: algo
+{{< tikzalg width="600px" >}}
+      \begin{algorithm}[H]
+        \caption{Perceptron Learning Algorithm}
+        \KwData{$D=\{(\vec{x_i},y_i)\}_{i=1}^{|D|}$, $\vec{x_i}\in\mathbb{R}^n$, $y_i\in\{-1,1\}$}
+        \KwResult{$\vec{w}$}
+        $\vec{w}\leftarrow 0$\;
+        $converged\leftarrow \text{false}$\;
+        \While{$\neg\,converged$}{
+          $converged\leftarrow \text{true}$\;
+          \For{$i\leftarrow 1$ \KwTo $|D|$}{
+            \If{$y_i(\vec{w}\!\cdot\!\vec{x_i})\le 0$}{
+              $\vec{w}\leftarrow \vec{w}+\eta\,y_i\,\vec{x_i}$\;
+              $converged\leftarrow \text{false}$\;
+            }
+          }
+        }
+      \end{algorithm}
+{{< /tikzalg >}}
+#+END_CENTER
 
 
 
