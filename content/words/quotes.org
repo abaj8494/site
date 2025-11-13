@@ -60,4 +60,10 @@ The machine can alter the scanned symbol and its behavior is in part determined 
 A.M.Turing, 1948
 #+END_QUOTE
 
+#+BEGIN_QUOTE
+"God, grant me the serenity to accept the things I cannot change, the courage to change the things I can, and the wisdom to know the difference."
+---Reinhold Niebuhr
+#+END_QUOTE
+
+
 

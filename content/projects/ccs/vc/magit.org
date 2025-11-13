@@ -1,0 +1,6 @@
++++
+title = "Magit"
++++
+
+I am spending so much time in =emacs= these days it is beginning to consume me.
+
