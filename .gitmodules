@@ -73,3 +73,9 @@
 [submodule "static/doc/org"]
 	path = static/doc/org
 	url = https://github.com/abaj8494/org
+[submodule "static/code/static/code/anki-tikz"]
+	path = static/code/static/code/anki-tikz
+	url = https://github.com/abaj8494/anki-tikz
+[submodule "static/code/anki-tikz"]
+	path = static/code/anki-tikz
+	url = https://github.com/abaj8494/anki-tikz
