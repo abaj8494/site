@@ -8,6 +8,11 @@ clocal = "true"
 tags = ["universality", "functions"]
 +++
 
+#+BEGIN_CENTER
+#+CAPTION: [[https://en.wikipedia.org/wiki/Universal_approximation_theorem][The Universal Approximation Theorem]]
+[[{{< cwd >}}/universal.gif]]
+#+END_CENTER
+
 - one of the most striking facts about neural networks is that they can compute *any* function.{{< mnote "quite like the universality of NAND gates!" >}}
 - we will always be able to do better than some given error \(\epsilon\)
 - what's even crazier is that this /universality/ holds even if we restrict our networks to just have a single layer intermediate between the input and output neurons:
@@ -61,12 +66,12 @@ tags = ["universality", "functions"]
   - in practice though, we can circumvent this.
 
 
-* one input, one output
+** one input, one output
 
 - this means 2-space, an input (x-axis), and one output (y-axis).
 - for universality to hold, this would mean that we can plot any arbitrarily complex function:
 
-{{ <tikz> }}
+{{< tikz >}}
 \begin{tikzpicture}
 \begin{axis}[
     width=12cm, height=8cm,
@@ -89,39 +94,39 @@ tags = ["universality", "functions"]
 
 with a series of hidden neurons.
 
-{{ <img "one-bump.png" >}}
+{{< img "one-bump.png" >}}
 
-{{ <img "two-bump.png" >}}
+{{< img "two-bump.png" >}}
 
 Now clearly the degrees of freedom is increasing with an increase of hidden nodes.
 
 Ultimately, we can produce:
 
-{{ <img "imitated.png" >}}
+{{< img "imitated.png" >}}
 
-* 2 inputs, one output
+** 2 inputs, one output
 
 - this would be 3D, and clearly increasing the number of inputs can be matched by increasing the degrees of variability with the hidden neuron connections:
 
-{{ <img "3d-universality" >}}
+{{< img "3d-universality.png" >}}
 
-* n inputs, n outputs
+** n inputs, n outputs
 
 - these would be your "vector-valued functions" and are clearly just \(n\) separate real-valued functions.
   - thus we could just create a network approximating \(f^1\), \(f^2\), etc.
 
 - it's just that for visualisation purposes, one output with one and two inputs is easier.
 
-* choice of activation function
+** choice of activation function
 
 - note that this proof uses the *sigmoid function*. it is also true for a specific class of functions, but you should understand that the activation function requires special properties before it can allow universal computation.
   - linear activation functions cannot be used for universal computation.
 
-* patching up the discontinuity.
+** patching up the discontinuity.
 
 because we have been using the step function for our (visual) proofs above, the sigmoid will fail in the green region:
 
-{{ <tikz> }}
+{{< tikz >}}
 \begin{tikzpicture}
 \begin{axis}[
     width=10cm, height=7cm,
@@ -145,7 +150,7 @@ because we have been using the step function for our (visual) proofs above, the 
     
 \end{axis}
 \end{tikzpicture}
-{{ </tikz> }}
+{{< /tikz >}}
 
 
 to "patch" this up we just superimpose 2 or more bumps and average them out to "white-wash" this discontinuity.
