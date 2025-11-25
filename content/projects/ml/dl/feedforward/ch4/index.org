@@ -1,7 +1,7 @@
 +++
 title = "chapter 4: a visual proof that neural nets can compute any function"
 mathjax = "true"
-tikzjax = "true"
+tikzajax = "true"
 date = "2025-04-15"
 toc = "true"
 clocal = "true"
@@ -17,8 +17,10 @@ tags = ["universality", "functions"]
 - we will always be able to do better than some given error \(\epsilon\)
 - what's even crazier is that this /universality/ holds even if we restrict our networks to just have a single layer intermediate between the input and output neurons:
 
-{{< tikz >}}
+{{< tikztwo >}}
+\begin{document}
 \begin{tikzpicture}[
+    scale=2,transform shape,
     shorten >=1pt,
     neuron/.style={circle, draw, minimum size=0.5cm},
     layer/.style={text width=1.5cm, text centered}
@@ -53,7 +55,8 @@ tags = ["universality", "functions"]
     }
 }
 \end{tikzpicture}
-{{< /tikz >}}
+\end{document}
+{{< /tikztwo >}}
 
 - one of the original papers publishing this result leveraged the Hahn-Banach Theorem, the Riesz Representation theorem and some Fourier Analysis!
 - realise that really complicated things are actually just functions:
@@ -71,8 +74,11 @@ tags = ["universality", "functions"]
 - this means 2-space, an input (x-axis), and one output (y-axis).
 - for universality to hold, this would mean that we can plot any arbitrarily complex function:
 
-{{< tikz >}}
-\begin{tikzpicture}
+{{< tikztwo >}}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.16} 
+\begin{document}
+\begin{tikzpicture}[scale=2,transform shape]
 \begin{axis}[
     width=12cm, height=8cm,
     xlabel=$x$,
@@ -90,7 +96,8 @@ tags = ["universality", "functions"]
     \addplot[thick, blue] {0.2+0.4*x^2+0.3*x*sin(15*x*180/pi)+0.05*cos(50*x*180/pi)};
 \end{axis}
 \end{tikzpicture}
-{{ </tikz> }}
+\end{document}
+{{< /tikztwo >}}
 
 with a series of hidden neurons.
 
@@ -126,8 +133,11 @@ Ultimately, we can produce:
 
 because we have been using the step function for our (visual) proofs above, the sigmoid will fail in the green region:
 
-{{< tikz >}}
-\begin{tikzpicture}
+{{< tikztwo >}}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.16}
+\begin{document}
+\begin{tikzpicture}[scale=2]
 \begin{axis}[
     width=10cm, height=7cm,
     xlabel=$x$,
@@ -150,7 +160,8 @@ because we have been using the step function for our (visual) proofs above, the 
     
 \end{axis}
 \end{tikzpicture}
-{{< /tikz >}}
+\end{document}
+{{< /tikztwo >}}
 
 
 to "patch" this up we just superimpose 2 or more bumps and average them out to "white-wash" this discontinuity.

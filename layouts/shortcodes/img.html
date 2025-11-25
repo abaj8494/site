@@ -2,9 +2,11 @@
 {{ $filename := (printf "%s" $name) }}
 {{ $caption := replace $filename ".svg" "" }}
 
+<center>
 <figure class="lateximage" id="{{ $caption }}">
   <div style="text-align: center;">
-    <img src="{{ $filename }}" width="700px" alt="{{ $caption }}">
+    <img src="{{ $filename }}" width="600px" alt="{{ $caption }}">
     <figcaption>{{ $caption }}</figcaption>
   </div>
 </figure>
+</center>
