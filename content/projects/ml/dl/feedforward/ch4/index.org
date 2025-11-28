@@ -10,7 +10,7 @@ tags = ["universality", "functions"]
 
 #+BEGIN_CENTER
 #+CAPTION: [[https://en.wikipedia.org/wiki/Universal_approximation_theorem][The Universal Approximation Theorem]]
-[[{{< cwd >}}/universal.gif]]
+[[{{< cwd >}}universal.gif]]
 #+END_CENTER
 
 - one of the most striking facts about neural networks is that they can compute *any* function.{{< mnote "quite like the universality of NAND gates!" >}}
