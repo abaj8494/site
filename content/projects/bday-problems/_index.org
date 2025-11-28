@@ -7,7 +7,7 @@ layout: single
 {{< collapse folded="true">}}
 Each year I release a set of problems to celebrate yet another year of life and study. On this page you will find the embedded Problem Sets, a submission [[/projects/bday-problems#link][link]] and the [[/projects/bday-problems#winners][List of Past Winners]].
 
-* [[/projects/bday-problems/23rd][23rd]]
+** [[/projects/bday-problems/23rd][23rd]]
 :PROPERTIES:
 :CUSTOM_ID: 23rd
 :END:
@@ -20,36 +20,36 @@ Here is the problem set:
 
 {{< embed-pdf url="/bday-problems/23q.pdf" hidePaginator="true">}}
 
-** Source Code
+*** Source Code
 #+INCLUDE: "/code/latex/bday-problems/23/main.tex" src latex
 
-* [[/projects/bday-problems/22nd][22nd]]
+** [[/projects/bday-problems/22nd][22nd]]
 :PROPERTIES:
 :CUSTOM_ID: 22nd
 :END:
 
 {{< embed-pdf url="/bday-problems/22q.pdf" hidePaginator="true">}}
 
-** Source Code
+*** Source Code
 #+INCLUDE: "/code/latex/bday-problems/22/main.tex" src latex
 
-* [[/projects/bday-problems/21st][21st]]
+** [[/projects/bday-problems/21st][21st]]
 :PROPERTIES:
 :CUSTOM_ID: 21st
 :END:
 
 {{< embed-pdf url="/bday-problems/21q.pdf" hidePaginator="true">}}
 
-** Source Code
+*** Source Code
 #+INCLUDE: "/code/latex/bday-problems/21/main.tex" src latex
 
-* [[/projects/bday-problems/upload][Submission Link]]
+** [[/projects/bday-problems/upload][Submission Link]]
 :PROPERTIES:
 :CUSTOM_ID: link
 :END:
 The heading /is/ the link :p
 
-* List of Winners
+** List of Winners
 :PROPERTIES:
 :CUSTOM_ID: winners
 :END:

@@ -53,6 +53,9 @@ publishDate = ["publishDate", "date", ":default"]
     isPlainText = true
     notAlternative = true
 
+[params.flexsearch]
+  maxResultsCount = 15
+
 [params]
   # dark or light, defaults to light
   defaultTheme = "dark"

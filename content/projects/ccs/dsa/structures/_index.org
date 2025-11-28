@@ -6,12 +6,9 @@ toc = "true"
 math = "true"
 +++
 
-okay
 {{< collapse id="data-structures" folded="false" >}}
 
-I am actually thinking of collapsing all of the nested files / folders that each represent a data structure into this one huge document. This way I can see everything all at once laid out in front of me and make use of the **toggling** feature of this site along with the floating /table of contents/ and margin-notes!
-
-The inspiration is my computer vision [[/projects/computer-vision][notes]].
+An inspiration for the structure of these notes is my computer vision [[/projects/computer-vision][notes]].
 
 ** at a glance:
 

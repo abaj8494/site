@@ -78,7 +78,7 @@ tags = ["universality", "functions"]
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.16} 
 \begin{document}
-\begin{tikzpicture}[scale=2,transform shape]
+\begin{tikzpicture}[scale=1.5,transform shape]
 \begin{axis}[
     width=12cm, height=8cm,
     xlabel=$x$,

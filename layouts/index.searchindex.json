@@ -1,0 +1,78 @@
+{{- $searchIndex := slice -}}
+{{- /* Include both regular pages AND section pages (_index pages) */ -}}
+{{- $regularPages := where .Site.RegularPages "Draft" false -}}
+{{- $sectionPages := where .Site.Pages "Kind" "section" -}}
+{{- $allPages := union $regularPages $sectionPages -}}
+{{- range $index, $page := $allPages -}}
+  {{- /* Skip 404 and other special pages */ -}}
+  {{- if and (ne $page.Kind "404") (ne $page.Type "json") -}}
+    {{- /* Clean content but preserve meaningful text */ -}}
+    {{- $cleanContent := $page.Plain -}}
+    {{- /* Remove LaTeX equations */ -}}
+    {{- $cleanContent = $cleanContent | replaceRE `\\\([^)]*\\\)` " " -}}
+    {{- $cleanContent = $cleanContent | replaceRE `\\\[[^\]]*\\\]` " " -}}
+    {{- $cleanContent = $cleanContent | replaceRE `\\begin\{[^}]*\}[^\\]*\\end\{[^}]*\}` " " -}}
+    {{- $cleanContent = $cleanContent | replaceRE `\$\$[^$]*\$\$` " " -}}
+    {{- $cleanContent = $cleanContent | replaceRE `\$[^$]*\$` " " -}}
+    {{- /* Clean up LaTeX commands */ -}}
+    {{- $cleanContent = $cleanContent | replaceRE `\\[a-zA-Z]+(\{[^}]*\})?` " " -}}
+    {{- /* Remove excessive whitespace */ -}}
+    {{- $cleanContent = $cleanContent | replaceRE `\s+` " " | strings.TrimSpace -}}
+    
+    {{- /* Create summary */ -}}
+    {{- $cleanSummary := $page.Summary | plainify -}}
+    {{- $cleanSummary = $cleanSummary | replaceRE `\\\([^)]*\\\)` "" -}}
+    {{- $cleanSummary = $cleanSummary | replaceRE `\\\[[^\]]*\\\]` "" -}}
+    {{- $cleanSummary = $cleanSummary | replaceRE `\$[^$]*\$` "" -}}
+    {{- $cleanSummary = $cleanSummary | replaceRE `\s+` " " | strings.TrimSpace -}}
+    {{- if gt (len $cleanSummary) 200 -}}
+      {{- $cleanSummary = printf "%s..." (substr $cleanSummary 0 197) -}}
+    {{- end -}}
+    
+    {{- /* Get filename */ -}}
+    {{- $filename := "" -}}
+    {{- with $page.File -}}
+      {{- $filename = .Path -}}
+    {{- end -}}
+    
+    {{- /* Collect all tags */ -}}
+    {{- $tags := slice -}}
+    {{- with $page.Params.tags -}}
+      {{- $tags = . -}}
+    {{- end -}}
+    
+    {{- /* Add category and section as searchable tags */ -}}
+    {{- with $page.Params.category -}}
+      {{- $tags = $tags | append . -}}
+    {{- end -}}
+    {{- with $page.Section -}}
+      {{- $tags = $tags | append . -}}
+    {{- end -}}
+    
+    {{- /* Clean title - remove checkbox HTML for search */ -}}
+    {{- $cleanTitle := $page.Title -}}
+    {{- /* Remove @@html:<input.../>@@ patterns */ -}}
+    {{- $cleanTitle = $cleanTitle | replaceRE `@@html:<input[^>]*/>@@` "" -}}
+    {{- /* Remove any remaining HTML tags */ -}}
+    {{- $cleanTitle = $cleanTitle | replaceRE `<[^>]*>` "" -}}
+    {{- /* Clean up whitespace */ -}}
+    {{- $cleanTitle = $cleanTitle | replaceRE `\s+` " " | strings.TrimSpace -}}
+    
+    {{- /* Build search entry */ -}}
+    {{- $searchIndex = $searchIndex | append 
+      (dict 
+        "id" $index
+        "title" $cleanTitle
+        "date" ($page.Date.Format "2006-01-02")
+        "permalink" $page.RelPermalink
+        "tags" $tags
+        "content" $cleanContent
+        "summary" $cleanSummary
+        "filename" $filename
+        "section" $page.Section
+      )
+    -}}
+  {{- end -}}
+{{- end -}}
+{{- $searchIndex | jsonify -}}
+
