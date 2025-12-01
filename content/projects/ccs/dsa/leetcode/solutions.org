@@ -765,10 +765,12 @@ struct ListNode* reverseList(struct ListNode* head){
 :END:
 
 #+BEGIN_SRC python
-class Solution:
-    def containsDuplicate(self, nums: List[int]) -> bool:
-        return True if len(set(nums)) != len(nums) else False
+  class Solution:
+      def containsDuplicate(self, nums: List[int]) -> bool:
+	  #return True if len(set(nums)) != len(nums) else False
+	  return len(set(nums)) != len(nums)
 #+END_SRC
+
 
 ** {{< leetcode medium checked >}} 238. Product of Array Except Self
 :PROPERTIES:
@@ -1195,3 +1197,34 @@ class Solution:
 #+END_SRC
 
 ** TODO {{< leetcode medium checked >}} 973. K Closest Points to Origin
+
+** {{< leetcode easy checked >}} 1365. How Many Numbers Are Smaller Than the Current Number
+:PROPERTIES:
+:CUSTOM_ID: p1365
+:END:
+
+#+begin_src python
+class Solution:
+    def smallerNumbersThanCurrent(self, nums: List[int]) -> List[int]:
+        """
+        counts = []
+        for a in nums:
+            count = 0
+            for b in nums:
+                if a != b and b < a:
+                    count += 1
+            counts.append(count)
+        return counts
+        """
+
+        mynums = sorted(nums)
+        iteration = -1
+        hashMap = {}
+        for item in mynums:
+            iteration += 1
+            if item in hashMap:
+                continue
+            hashMap[item] = iteration
+        return [hashMap[item] for item in nums]
+            
+#+end_src

@@ -1,0 +1,224 @@
++++
+title = "Tutorial"
+tags = "notes"
+date = "2025-12-01T20:42:32+11:00"
++++
+
+
+** setting the stage
+1. Mental Focus
+2. Learn a programming language
+3. Learn Data structures and algorithms
+4. Complete Leetcode / programming practice
+5. Software Engineering Concepts
+6. Behavioural Practice
+7. Best Methods of Applying
+8. Interview Process & Internal Guidelines.
+
+
+** process for problem solving
+
+- always read the problem statement twice.
+  - ask clarifying questions
+- try think of different ways to solve the problem
+- think end-to-end of the best solutions based on complexity
+- write the algorithm from patterns in drawing
+- code it out
+- try and improve it once you think you're finished.
+- go through other solutions (even if you answered correctly)
+
+** problems
+
+*** 217. duplicate values | easy
+
+Given an integer array =nums=, return =true= if any value appears at least twice in the array, and return =false= if every element is distinct.
+
+#+BEGIN_SRC python
+return len(set(nums)) != len(nums)
+#+END_SRC
+
+*** 268. missing number | easy
+
+Array =nums=, containing =n= distinct numbers from =[0,n]=, return the only number in the range missing from the array.
+
+#+BEGIN_SRC
+input [3,0,1]
+output 2
+#+END_SRC
+
+note that there is room for arbitrage here. the instinctive solution is a nested for loop $O(n^2)$, but using a =sum()= call, we can complete this in $O(n)$.
+
+the trick is to realise the structure of the problem only asking for the *single missing number*.
+
+#+BEGIN_SRC python
+  nums = [3,1,0]
+  return sum(range(len(nums)+1)) - sum(nums)
+#+END_SRC
+
+#+RESULTS:
+: 2
+
+profiling: 0ms runtime, 18.5MB
+
+
+but I think a hashmap solution might be equally possible too.
+
+#+begin_src python
+  from collections import defaultdict
+  hashmap = defaultdict(int)
+  nums = [3,1,0]
+  for item in nums:
+      hashmap[item] += 1 
+  for i in range(len(nums) + 1):
+      if i not in hashmap:
+	  return i
+#+end_src
+
+#+RESULTS:
+: 2
+
+profiling: 11ms runtime, 18.8MB
+
+*** 448. find all numbers disappeared in an array | easy
+
+seems like a continuation of the previous question
+
+#+begin_src jupyter-python :session leet
+  nums = [4,3,2,7,8,2,3,1]
+  missing = []
+  uniques = set(nums)
+  for i in range(1,len(nums)+1):
+      if i not in uniques:
+          missing.append(i)
+
+  missing
+
+#+end_src
+
+#+RESULTS:
+| 5 | 6 |
+
+profiling: 27ms runtime, 31.2MB space.
+
+#+begin_src jupyter-python :session leet
+    from collections import defaultdict
+
+    missing = []
+    hashmap = defaultdict(int)
+    for item in nums:
+        hashmap[item] += 1
+    for i in range(1,len(nums) + 1):
+        if i not in hashmap:
+            missing.append(i)
+
+    missing
+#+end_src
+
+#+RESULTS:
+| 5 | 6 |
+
+
+profiling: 53ms, 31.5MB
+
+a constant space solution:
+
+#+begin_src python
+  for i in range(len(nums)):
+    temp = abs(nums[i]) - 1
+    if nums[temp] > 0:
+      nums[temp] *= -1
+
+    res = []
+    for i, n in enumerate(nums):
+      if n > 0:
+        res.append(i+1)
+
+    return res
+#+end_src
+
+*** 1. two sum
+
+#+begin_src jupyter-python :session leet
+  from collections import defaultdict
+
+
+  def myfunc(nums, target):
+      hashmap = defaultdict(int)
+      for item in nums:
+          if target - item in hashmap:
+              return (item, target - item)
+          hashmap[item] += 1
+          
+  myfunc([2,7,11,15], 9)
+
+#+end_src
+
+#+RESULTS:
+| 7 | 2 |
+
+*** 1365. how many numbers are smaller than the current number | easy
+
+#+begin_src jupyter-python :session leet
+  def myfunc():
+      nums = [8,1,2,2,3]
+
+      counts = []
+      for a in nums:
+          count = 0
+          for b in nums:
+              if a != b and b<a:
+                  count += 1
+          counts.append(count)
+
+      return counts
+  myfunc()
+#+end_src
+
+#+RESULTS:
+| 4 | 0 | 1 | 1 | 3 |
+
+this problem took a reasonable amount of time to solve, but I did manage to do it with a runtime of 1ms eventually.
+
+the above solution I could produce within 5 minutes: $O(n^2)$; 111ms runtime with 17.7MB space.
+
+eventually I eeked out this:
+
+#+begin_src python
+class Solution:
+    def smallerNumbersThanCurrent(self, nums: List[int]) -> List[int]:
+        """
+        counts = []
+        for a in nums:
+            count = 0
+            for b in nums:
+                if a != b and b < a:
+                    count += 1
+            counts.append(count)
+        return counts
+        """
+
+        mynums = sorted(nums)
+        iteration = -1
+        hashMap = {}
+        for item in mynums:
+            iteration += 1
+            if item in hashMap:
+                continue
+            hashMap[item] = iteration
+        return [hashMap[item] for item in nums]
+            
+#+end_src
+
+
+
+
+(with-eval-after-load 'ob-jupyter
+  (defun aj/org-babel-jupyter-python-clean-tabs (args)
+    "Replace TABs with 4 spaces in jupyter-python bodies before execution."
+    (let ((body   (nth 0 args))
+          (params (nth 1 args)))
+      (list (replace-regexp-in-string "\t" "    " body)
+            params)))
+
+  (advice-add 'org-babel-execute:jupyter-python
+              :filter-args #'aj/org-babel-jupyter-python-clean-tabs))
