@@ -646,4 +646,25 @@ but stoney codes provided this cool solution, though it does not work :(; it fai
                 
 #+end_src
 
-we also fashioned
+we also fashioned a while solution:
+
+#+begin_src python
+  class Solution:
+    def sortedSquares(self, nums: List[int]) -> List[int]:
+        answer = collections.deque()
+        l, r = 0, len(nums) - 1
+    
+        while l <= r:#O(n)
+            left, right = abs(nums[l]), abs(nums[r])
+            if left > right:
+                answer.appendleft(left * left)
+                l += 1
+            else:
+                answer.appendleft(right * right)
+                r -= 1
+        return list(answer)
+            
+#+end_src
+
+the absolute squared value of a negative and positive number are the same!
+

@@ -7,7 +7,9 @@ I am spending so much time in =emacs= these days it is beginning to consume me.
 
 =C-x g= is magit-status
 
-** Repository Status
+** sections
+
+*** Repository Status
 
 top of window:
 
@@ -24,7 +26,7 @@ also gives info on *tags* and the number of commits between that and =HEAD=
 
 something about =$= for more info.
 
-** Untracked Files
+*** Untracked Files
 
 this is a section!
 
@@ -38,7 +40,7 @@ helps us understand which files should be added to the =.gitignore=.
 
 note that if you modify the =.gitignore= file, use =g= on the magit buffer to refresh.
 
-** Unstaged Changes
+*** Unstaged Changes
 
 tracked by git, but changes have occurred within these files.
 
@@ -73,22 +75,42 @@ modified   content/projects/_index.org
 
 these are the "hunks": =@@ -94,11 +94,11 @@=. you can hit tab on them too, to collapse / expand.
 
-** Staged Changes
+*** Staged Changes
 
 you can press =s= on unstaged 
 
-** Stashes
+*** Stashes
 
 no diff to be seen like with commits above, but still shows the files affected which is nice.
 
-** Unpushed Changes
+*** Unpushed Changes
 
 commits done locally, but not pushed to the remote
 
-** Unmerged Changes
+*** Unmerged Changes
 
 when you've done a =fetch=, but not merged the new code in
 
-** Unpulled Changes
+*** Unpulled Changes
 
-** Other Sections
+indicates there can be new commits that can be pulled cleanly into the local branch without merging.
+
+*** Other Sections
+
+this depends on packages. forge, magit todos.
+
+** navigation
+
+=n=, =p=. move forward, backwards by visible section
+
+=C-n=, =C-p=. forward, backward by line
+
+=M-n=, =M-p=. forward, backward by sibling
+
+=^=. parent
+
+** arguments
+
+when you press =c= and more options appear for what kind of commit action, you can toggle arguments and they will light up!
+
+
