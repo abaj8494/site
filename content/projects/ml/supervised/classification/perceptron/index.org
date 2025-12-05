@@ -4,6 +4,7 @@ categories = ["supervised-learning"]
 tags = ["classification", "neurons", "linear", "binary"]
 toc = "true"
 math = "true"
+tikzajax = "true"
 +++
 
 ** Origins
@@ -577,6 +578,8 @@ Clearly this is an entertaining and simple binary classifier that just works. Bu
 (message "%s" org-latex-classes)
 
 ** Neuron
+
+{{< tikztwo >}}
 \begin{tikzpicture}[basic/.style={draw,fill=blue!20,text width=1em,text badly centered},
 		    input/.style={basic,circle},
 		    weights/.style={basic,rectangle},
@@ -606,9 +609,10 @@ Clearly this is an entertaining and simple binary classifier that just works. Bu
     \node[below of=ln,font=\scriptsize] {inputs};
     \node[below of=n,font=\scriptsize] {weights};
 \end{tikzpicture}
-
+{{< /tikztwo >}}
 
 ** Perceptron Algorithm
+{{< tikztwo >}}
 \begin{algorithm}[H]
 \let\vec\mathbf
 \SetAlgoLined
@@ -627,6 +631,7 @@ $converged \leftarrow \text{false}$\;
 }
 \caption{Perceptron Learning Algorithm}
 \end{algorithm}
+{{< /tikztwo }}
 
 ** Footnotes
 

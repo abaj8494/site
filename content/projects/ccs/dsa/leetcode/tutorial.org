@@ -588,7 +588,7 @@ class Solution:
 
 unfortunately, I still only pass 198/212 tests with this approach.
 
-**** 977. Squares of a sorted array
+**** 977. Squares of a sorted array | easy
 
 Naturally, my solution looked like:
 #+begin_src python
@@ -667,4 +667,126 @@ we also fashioned a while solution:
 #+end_src
 
 the absolute squared value of a negative and positive number are the same!
+
+**** 15. 3Sum | medium
+
+"medium questions tend to merge concepts from 2 easy questions"
+
+#+begin_src python
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+
+        """since the array is sorted, we're better off using two pointers which has a better space complexity
+        def twoSum(target: int,nums: List[int]) -> List[List[int]]:
+            hashMap = defaultdict(int)
+            combos = []
+
+            for num in nums:
+                if target - num not in hashMap:
+                    hashMap[num] += 1
+                else:
+                    candidate = [num, target -num]
+                    if candidate not in combos:
+                        combos.append(candidate)
+            return combos
+        """
+            
+        combo3 = []
+        uniques = set()
+        nums.sort()
+        visited = defaultdict(int)
+        for i in range(len(nums)):
+            if visited[nums[i]] > 0:
+                continue
+            visited[nums[i]] +=1
+            # we will never make 0
+            if nums[i] > 0:
+                break
+            
+            nums2 = nums[:i] + nums[i+1:]
+            target = -nums[i]
+            # recall the array is sorted
+            l = 0
+            r = len(nums2) -1
+            combos = []
+            while l < r:
+                sum2 = nums2[l] + nums2[r]
+                if sum2 > target:
+                    # reduce right pointer
+                    r -= 1
+                elif sum2 < target:
+                    # accrue larger sum
+                    l += 1
+                else: #when equal
+                    candidate = [nums2[l], nums2[r]]
+                    #if candidate not in combos:
+                    # i don't think it's possible to find repeats!
+                    r -= 1
+                    l += 1
+                    combos.append(candidate)
+            twoS = combos
+
+            if len(twoS) > 0:
+                # success
+                for lst in twoS:
+                    triplet = sorted([nums[i], lst[0], lst[1]])
+                    trip_val = "".join(str(n) for n in sorted([nums[i],lst[0],lst[1]])) 
+                    if trip_val not in uniques:
+                        combo3.append(triplet)
+                        uniques.add(trip_val)
+
+        return combo3
+#+end_src
+
+this took me multiple hours to big brain through.
+
+**** 167. 2Sum Part II | Medium
+
+this was piss:
+#+begin_src python
+class Solution:
+    def twoSum(self, numbers: List[int], target: int) -> List[int]:
+        l = 0
+        r = len(numbers) - 1
+        while l <= r:
+            left = numbers[l]
+            right = numbers[r]
+            if left + right > target:
+                # reduce sum
+                r -= 1
+            elif left + right < target:
+                # increase sum (contigent on increasing sort)
+                l += 1
+            else:
+                return [l+1, r+1]
+        return [0,0]        
+            
+        
+#+end_src
+
+**** 845. Longest Mountain in Array | medium
+
+damn, their solution was much better than whatever junk was floating around in my brain.
+
+I was thinking of starting from the left and iterating towards the right, but wasn't sure how to reset the counter or deal with the overlapping tectonic plates :(
+
+#+begin_src python
+  class Solution:
+      def longestMountain(self, arr: List[int]) -> int:
+          max_length = 0
+
+          for i in range(1, len(arr) - 1):
+              if arr[i-1] < arr[i] > arr[i+1]:
+                  l = r = i
+                  while l > 0 and arr[l] > arr[l-1]:
+                      l -= 1
+                  while r < len(arr)-1 and arr[r] > arr[r+1]:
+                      r += 1 # keep climbing up
+                  
+                  max_length = max(max_length, r - l + 1)
+
+          return max_length
+                  
+          
+#+end_src
 
