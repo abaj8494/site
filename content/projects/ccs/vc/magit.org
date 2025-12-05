@@ -4,3 +4,91 @@ title = "Magit"
 
 I am spending so much time in =emacs= these days it is beginning to consume me.
 
+
+=C-x g= is magit-status
+
+** Repository Status
+
+top of window:
+
+#+begin_src
+Head:     main enh: week49, day1 tutorial, 5 problems
+Merge:    origin/main enh: week49, day1 tutorial, 5 problems
+
+#+end_src
+
+Head: current local branch
+Merge / Rebase: depends what has been done thus far.
+
+also gives info on *tags* and the number of commits between that and =HEAD=
+
+something about =$= for more info.
+
+** Untracked Files
+
+this is a section!
+
+#+begin_src
+Untracked files (2)
+content/projects/ccs/dsa/leetcode/#tutorial.org#
+content/projects/ccs/dsa/leetcode/some-lisp
+#+end_src
+
+helps us understand which files should be added to the =.gitignore=.
+
+note that if you modify the =.gitignore= file, use =g= on the magit buffer to refresh.
+
+** Unstaged Changes
+
+tracked by git, but changes have occurred within these files.
+
+hitting =TAB= gives a diff
+
+#+begin_src 
+modified   content/projects/_index.org
+@@ -62,7 +62,7 @@ You may view the entire =tag= taxonomy [[/tags][here]], and the =author= taxonom
+   - @@html:<input type="checkbox" checked class="done"/>@@ [[/projects/ccs/linux/gdb][GDB]] {{< tags-inline "projects/ccs/linux/gdb" >}}
+   - @@html:<input type="checkbox" checked class="done"/>@@ [[/projects/ccs/linux/emacs][Emacs]] {{< tags-inline "projects/ccs/linux/emacs" >}}
+   - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/linux/regex][RegEx]] {{< tags-inline "projects/ccs/linux/regex" >}}
+-- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/vc][Version Control]] {{< tags-inline "projects/ccs/vc" >}}
++- @@html:<input type="checkbox" checked class="done"/>@@ [[/projects/ccs/vc][Version Control]] {{< tags-inline "projects/ccs/vc" >}}
+ 
+ *** [[/projects/ccs/dsa][Data Structures & Algorithms]]
+ :PROPERTIES:
+@@ -94,11 +94,11 @@ You may view the entire =tag= taxonomy [[/tags][here]], and the =author= taxonom
+ :PROPERTIES:
+ :CUSTOM_ID: languages
+ :END:
+-- @@html:<input type="checkbox" class="done"/>@@ [[/projects/ccs/programming/languages/python][Python]] {{< tags-inline "projects/ccs/programming/languages/python" >}}
++- @@html:<input type="checkbox" checked class="done"/>@@ [[/projects/ccs/programming/languages/python][Python]] {{< tags-inline "projects/ccs/programming/languages/python" >}}
+ - @@html:<input type="checkbox" class="edit"/>@@ [[/projects/ccs/programming/languages/java][Java]] {{< tags-inline "projects/ccs/programming/languages/java" >}}
+ - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/languages/lua][Lua]] {{< tags-inline "projects/ccs/programming/languages/lua" >}}
+ - @@html:<input type="checkbox" class="edit"/>@@ [[https://github.com/abaj8494/100-days-go][Go]] {{< tags-inline "projects/ccs/programming/languages/go" >}}
+-- @@html:<input type="checkbox" class="done"/>@@ [[/projects/ccs/programming/languages/c][C]] {{< tags-inline "projects/ccs/programming/languages/c" >}}
++- @@html:<input type="checkbox" checked class="done"/>@@ [[/projects/ccs/programming/languages/c][C]] {{< tags-inline "projects/ccs/programming/languages/c" >}}
+ - @@html:<input type="checkbox" class="refactor"/>@@ [[https://github.com/abaj8494/100-days-js][Javascript]] {{< tags-inline "projects/ccs/programming/languages/javascript" >}}
+ - @@html:<input type="checkbox" class="edit"/>@@ [[/projects/ccs/programming/languages/elisp][Elisp]] {{< tags-inline "projects/ccs/programming/languages/elisp" >}}
+ 
+#+end_src
+
+these are the "hunks": =@@ -94,11 +94,11 @@=. you can hit tab on them too, to collapse / expand.
+
+** Staged Changes
+
+you can press =s= on unstaged 
+
+** Stashes
+
+no diff to be seen like with commits above, but still shows the files affected which is nice.
+
+** Unpushed Changes
+
+commits done locally, but not pushed to the remote
+
+** Unmerged Changes
+
+when you've done a =fetch=, but not merged the new code in
+
+** Unpulled Changes
+
+** Other Sections

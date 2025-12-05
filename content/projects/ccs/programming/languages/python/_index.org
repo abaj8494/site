@@ -49,18 +49,25 @@ math = "true"
 *** double-ended queue (deque)
 
 
-
-| *operation*                 | *time complexity*  |
-|-----------------------------+--------------------|
-| =queue.append(item)=        | $\mathcal{O}(1)$   |
-| =queue.pop(item)=           | $\mathcal{O}(1)$   |
-| =queue.appendleft(item)=    | $\mathcal{O}(1)$   |
-| =queue.popleft(item)=       | $\mathcal{O}(1)$   |
-| =item in queue=             | $\mathcal{O}(n)$   |
-| =queue[0]= or =queue[-1]=   | $\mathcal{O}(1)$   |
-| =queue[i]=                  | $\mathcal{O}(n)$   |
-| =for item in queue=         | $\mathcal{O}(n)$   |
-|-----------------------------+--------------------|
+| *operation*                  | *description*                                     | *time complexity* |
+|------------------------------+---------------------------------------------------+-------------------|
+| =queue.append(item)=         | Add item to right end                             | $\mathcal{O}(1)$  |
+| =queue.appendleft(item)=     | Add item to left end                              | $\mathcal{O}(1)$  |
+| =queue.pop()=                | Remove and return item from right end             | $\mathcal{O}(1)$  |
+| =queue.popleft()=            | Remove and return item from left end              | $\mathcal{O}(1)$  |
+| =queue.extend(iterable)=     | Add all elements from iterable to right end       | $\mathcal{O}(k)$  |
+| =queue.extendleft(iterable)= | Add all elements from iterable to left (reversed) | $\mathcal{O}(k)$  |
+| =queue.remove(value)=        | Remove first occurrence of value                  | $\mathcal{O}(n)$  |
+| =queue.rotate(n)=            | Rotate n steps right (negative for left)          | $\mathcal{O}(k)$  |
+| =queue.clear()=              | Remove all elements                               | $\mathcal{O}(n)$  |
+| =queue.count(value)=         | Count occurrences of value                        | $\mathcal{O}(n)$  |
+| =queue.index(value)=         | Find index of first occurrence of value           | $\mathcal{O}(n)$  |
+| =queue.reverse()=            | Reverse elements in place                         | $\mathcal{O}(n)$  |
+| =item in queue=              | Check if item exists in queue                     | $\mathcal{O}(n)$  |
+| =queue[0]= or =queue[-1]=    | Access first or last element                      | $\mathcal{O}(1)$  |
+| =queue[i]=                   | Access element at index i                         | $\mathcal{O}(n)$  |
+| =for item in queue=          | Iterate through all elements                      | $\mathcal{O}(n)$  |
+|------------------------------+---------------------------------------------------+-------------------|
 
 
 *** dictionary

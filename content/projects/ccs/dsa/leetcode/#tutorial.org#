@@ -590,15 +590,15 @@ unfortunately, I still only pass 198/212 tests with this approach.
 
 **** 977. Squares of a sorted array
 
-Naturally, my solution looked like:
+
+naturally, my code looked like:
 #+begin_src python
 class Solution:
     def sortedSquares(self, nums: List[int]) -> List[int]:
         return sorted([x**2 for x in nums])
 #+end_src
 
-but stoney codes provided this cool solution, though it does not work :(; it fails on =[-5,-4,-3,-2,-1]= producing =[25,9,4,1]= where it should instead make =[1,4,9,25]=.
-
+stoney codes shows this solution, which is pretty cool but doesn't work on the =[-5,-3,-2,-1]= case
 #+begin_src python
   def sortedSquares(nums):
       if not nums:
@@ -643,7 +643,21 @@ but stoney codes provided this cool solution, though it does not work :(; it fai
           return [n**2 for n in ret]
 
       return merge(A,B)
-                
+
 #+end_src
 
-we also fashioned
+there is also a =deque= solution, which I had a feeling might help solve this problem:
+#+begin_src python
+  def sortedSquares(self, A):
+      answer = collections.deque()
+      l, r = 0, len(A) - 1
+      while l <= r:
+          left, right = abs(A[l]), abs(A[r])
+          if left > right:
+              answer.appendleft(left * left)
+              l += 1
+          else:
+              answer.appendleft(right * right)
+              r -= 1
+      return list(answer)
+#+end_src

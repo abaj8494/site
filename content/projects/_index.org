@@ -62,7 +62,7 @@ You may view the entire =tag= taxonomy [[/tags][here]], and the =author= taxonom
   - @@html:<input type="checkbox" checked class="done"/>@@ [[/projects/ccs/linux/gdb][GDB]] {{< tags-inline "projects/ccs/linux/gdb" >}}
   - @@html:<input type="checkbox" checked class="done"/>@@ [[/projects/ccs/linux/emacs][Emacs]] {{< tags-inline "projects/ccs/linux/emacs" >}}
   - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/linux/regex][RegEx]] {{< tags-inline "projects/ccs/linux/regex" >}}
-- @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/vc][Version Control]] {{< tags-inline "projects/ccs/vc" >}}
+- @@html:<input type="checkbox" checked class="done"/>@@ [[/projects/ccs/vc][Version Control]] {{< tags-inline "projects/ccs/vc" >}}
 
 *** [[/projects/ccs/dsa][Data Structures & Algorithms]]
 :PROPERTIES:
@@ -94,11 +94,11 @@ You may view the entire =tag= taxonomy [[/tags][here]], and the =author= taxonom
 :PROPERTIES:
 :CUSTOM_ID: languages
 :END:
-- @@html:<input type="checkbox" class="done"/>@@ [[/projects/ccs/programming/languages/python][Python]] {{< tags-inline "projects/ccs/programming/languages/python" >}}
+- @@html:<input type="checkbox" checked class="done"/>@@ [[/projects/ccs/programming/languages/python][Python]] {{< tags-inline "projects/ccs/programming/languages/python" >}}
 - @@html:<input type="checkbox" class="edit"/>@@ [[/projects/ccs/programming/languages/java][Java]] {{< tags-inline "projects/ccs/programming/languages/java" >}}
 - @@html:<input type="checkbox" class="nothing"/>@@ [[/projects/ccs/programming/languages/lua][Lua]] {{< tags-inline "projects/ccs/programming/languages/lua" >}}
 - @@html:<input type="checkbox" class="edit"/>@@ [[https://github.com/abaj8494/100-days-go][Go]] {{< tags-inline "projects/ccs/programming/languages/go" >}}
-- @@html:<input type="checkbox" class="done"/>@@ [[/projects/ccs/programming/languages/c][C]] {{< tags-inline "projects/ccs/programming/languages/c" >}}
+- @@html:<input type="checkbox" checked class="done"/>@@ [[/projects/ccs/programming/languages/c][C]] {{< tags-inline "projects/ccs/programming/languages/c" >}}
 - @@html:<input type="checkbox" class="refactor"/>@@ [[https://github.com/abaj8494/100-days-js][Javascript]] {{< tags-inline "projects/ccs/programming/languages/javascript" >}}
 - @@html:<input type="checkbox" class="edit"/>@@ [[/projects/ccs/programming/languages/elisp][Elisp]] {{< tags-inline "projects/ccs/programming/languages/elisp" >}}
 

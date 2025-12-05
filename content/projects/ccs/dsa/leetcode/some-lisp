@@ -1,0 +1,12 @@
+
+
+(with-eval-after-load 'ob-jupyter
+  (defun aj/org-babel-jupyter-python-clean-tabs (args)
+    "Replace TABs with 4 spaces in jupyter-python bodies before execution."
+    (let ((body   (nth 0 args))
+          (params (nth 1 args)))
+      (list (replace-regexp-in-string "\t" "    " body)
+            params)))
+
+  (advice-add 'org-babel-execute:jupyter-python
+              :filter-args #'aj/org-babel-jupyter-python-clean-tabs))

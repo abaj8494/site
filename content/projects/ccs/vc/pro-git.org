@@ -5,60 +5,22 @@ author = ["Scott Chacon", "Ben Straub"]
 toc = "true"
 +++
 
+A revisitation of a good book.
 
-I am working through the second edition of this book by *Scott Chacon* and *Ben Straub*.
+I made a couple naïve attempts at trying to master git circa 2024.
 
-I have printed out the first 100 pages of the book[fn:1], and conducted an /inspectional reading/ (in Mortimer J. Adler's sense of the word).
+After obtaining the UGrad, I have had a couple months of unemployment to improve my Software Engineering skills.
 
-** Deep Work 1: Git Basics, Git Branching.
+As such I read more than a small selection of this book and produced the following flashcards[fn:1]:
 
-*** getting started
+#+INCLUDE: "/doc/org/flashcards/soft-eng/git.org" :lines "2-"
+
 
 #+BEGIN_QUOTE
 "Deep Work: Professional activity performed in a state of distraction-free concentration that pushes your cognitive capabilities to their limit."
 ---Cal Newport
 #+END_QUOTE
 
-- you can either have config details at the /system/ scope, /global/ scope or /local/ scope:
-  - =/etc/gitconfig=
-  - =~/.config/git/config= or =~/.gitconfig=
-  - =./.git/config=
-
-#+BEGIN_SRC sh
-git config --list --show-origin
-#+END_SRC
-
-#+RESULTS:
-| file:/home/alex/.gitconfig | user.email=aayushbajaj7@gmail.com                       |
-| file:/home/alex/.gitconfig | user.name=Aayush Bajaj                                  |
-| file:.git/config           | core.repositoryformatversion=0                          |
-| file:.git/config           | core.filemode=true                                      |
-| file:.git/config           | core.bare=false                                         |
-| file:.git/config           | core.logallrefupdates=true                              |
-| file:.git/config           | remote.origin.url=git@github.com:abaj8494/site          |
-| file:.git/config           | remote.origin.fetch=+refs/heads/*:refs/remotes/origin/* |
-| file:.git/config           | branch.main.remote=origin                               |
-| file:.git/config           | branch.main.merge=refs/heads/main                       |
-
-- we can check what =git= thinks a particular value is with =git config user.name=.
-- also you can view everything with =git config --list=.
-  - a useful tag with this one though is =git config --show-origin user.name=. because multiple config files can be read!
-
-*** git basics
-
-
-
-*** git branching
-
-
-** DW 2: Distributed Git, Github, Advanced Git Commands
-
-
-
-** DW 3: Git internals
-
-
-
 ** Footnotes
 
-[fn:1] it turns out that obtaining the physical copy is hardly worth it. ~$75 AUD for a Black and White potentially out-dated copy. meanwhile the authors appear to maintain something more current [[https://git-scm.com/book/en/v2][here]].
+[fn:1] note that the formatting of these cards is not guaranteed; they are the [[https://abaj.ai/doc/org/flashcards/soft-eng/git.org][source files]] for my [[https://github.com/anki-editor/anki-editor?tab=readme-ov-file][anki-editor]] workflow.
