@@ -1,0 +1,106 @@
++++
+title = "Plato's Dialgoues"
+layout = "book"
+author = ["Plato", "Socrates", "Euripides", "Meno"]
+[params]
+  published = "380BC"
++++
+
+Plato was born in 428 BC (or 427 BC).
+
+** Charmides
+- Theme :: Temperance (self-control) and whether knowing oneself is the core of virtue.
+- Notable :: Socrates questions Charmides and Critias; every definition of temperance collapses into confusion, and no final answer is reached.
+
+** Lysis
+- Theme :: What friendship is, and why we love some people rather than others.
+- Notable :: Socrates talks with two boys, Lysis and Menexenus; he shows that simple ideas of “like loves like” or “opposites attract” don’t quite work.
+
+** Laches
+- Theme :: The nature of courage.
+- Notable :: Two generals (Laches and Nicias) try to define courage; Socrates shows that “standing firm in battle” and “wise endurance” are both too narrow.
+
+** Protagoras
+- Theme :: Whether virtue can be taught, and whether the virtues are one.
+- Notable :: Socrates debates the celebrity sophist Protagoras; they tangle over a long poem and end up with the idea that all virtues might really be one kind of knowledge.
+
+** Euthydemus
+- Theme :: The difference between real philosophy and eristic word-games.
+- Notable :: Two sophists, Euthydemus and Dionysodorus, bombard a youth with absurd tricks; Socrates quietly models a more serious way of caring for the soul.
+
+** Cratylus
+- Theme :: Whether names are “naturally right” or just conventions.
+- Notable :: Socrates playfully analyzes Greek words as if their syllables reveal truths, then pulls back and hints that reality outruns language altogether.
+
+** Phaedrus
+- Theme :: Love, rhetoric, and the soul.
+- Notable :: Socrates gives two speeches on love, then a great “palinode” with the chariot-soul myth; he contrasts manipulative rhetoric with a true art that cares for souls.
+
+** Ion
+- Theme :: Poetic inspiration versus technical knowledge.
+- Notable :: The rhapsode Ion can brilliantly recite Homer yet cannot explain his own skill; Socrates compares poets and performers to a magnetized chain moved by the gods.
+
+** Symposium
+- Theme :: The nature and purpose of love (Eros).
+- Notable :: A drinking party produces a series of speeches on love, culminating in Diotima’s “ladder of love,” where the lover climbs from bodies to souls to Beauty itself.
+
+** Meno
+- Theme :: Can virtue be taught, and how can we learn anything at all?
+- Notable :: Meno’s paradox (“How do you look for what you don’t know?”) leads to the slave-boy geometry demonstration and the theory of recollection; the dialogue ends in aporia about virtue’s teachability.
+
+** Euthyphro
+- Theme :: What piety is.
+- Notable :: Euthyphro is prosecuting his own father; Socrates’ questioning produces the “Euthyphro dilemma” — is the pious loved by the gods because it’s pious, or pious because they love it?
+
+** Apology
+- Theme :: Socrates’ defense of his life and mission.
+- Notable :: Socrates answers charges of impiety and corrupting the youth, invokes the Delphic oracle, calls himself a “gadfly” to Athens, and calmly accepts the death sentence.
+
+** Crito
+- Theme :: Justice, law, and obedience to the city.
+- Notable :: Crito urges Socrates to escape from prison; Socrates imagines the Laws of Athens speaking and concludes it would be unjust to flee.
+
+** Phaedo
+- Theme :: The immortality of the soul and the philosopher’s attitude toward death.
+- Notable :: Socrates offers several arguments for the soul’s immortality, speaks of the Forms, and drinks the hemlock while calmly discussing philosophy with his friends.
+
+** Gorgias
+- Theme :: Rhetoric, power, and justice.
+- Notable :: Socrates questions Gorgias, Polus, and Callicles; he argues that doing injustice harms the soul more than suffering it, and that rhetoric without justice is a kind of flattery.
+
+** The Republic
+- Theme :: Justice in the soul and in the city; the ideal state.
+- Notable :: Socrates designs a “just city,” introduces philosopher-kings, the tripartite soul, the allegory of the cave, and the Form of the Good, and ends with the myth of Er.
+
+** Timaeus
+- Theme :: A cosmic creation story and the structure of the physical world.
+- Notable :: Timaeus describes a divine Craftsman (Demiurge) shaping the cosmos, the World Soul, mathematical elements, and the embedding of human souls in bodies.
+
+** Critias
+- Theme :: An unfinished story about ancient Athens and Atlantis.
+- Notable :: Critias recounts how a virtuous prehistoric Athens once fought decadent Atlantis; the dialogue breaks off before the story is completed.
+
+** Parmenides
+- Theme :: A searching critique of the theory of Forms and a training in dialectic.
+- Notable :: The elder Parmenides challenges the young Socrates’ account of Forms, then runs through a series of dense exercises on “the One” and “the many.”
+
+** Theaetetus
+- Theme :: What knowledge is.
+- Notable :: Socrates and the young mathematician Theaetetus examine three candidates — knowledge as perception, as true belief, and as true belief with an account — and end in honest puzzlement.
+
+** Sophist
+- Theme :: What a sophist really is, and how “non-being” can be thought.
+- Notable :: The “Eleatic Stranger” uses methodical divisions to define the sophist and explains non-being as “difference,” allowing falsehood and appearance to make sense.
+
+** Statesman
+- Theme :: The nature of the true political expert.
+- Notable :: The Stranger distinguishes the genuine statesman from mere office-holders, compares ruling to weaving together different character types, and criticizes rule by rigid law.
+
+** Philebus
+- Theme :: Whether pleasure or knowledge is the highest good.
+- Notable :: Socrates argues that the good life is a measured mixture, with intellect and order ranking above raw pleasures, though some purified pleasures are also honored.
+
+** Laws
+- Theme :: A practical lawcode for a “second-best” city when philosopher-kings are not available.
+- Notable :: An unnamed Athenian and two companions design detailed laws for the city of Magnesia, mixing strict regulation with moral “preludes,” and doing without Socrates altogether.
+

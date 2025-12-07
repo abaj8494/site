@@ -1,0 +1,8 @@
++++
+title = "Qur'an"
+layout = "book"
+author = ["God"]
+[params]
+  published = "610AD"
++++
+

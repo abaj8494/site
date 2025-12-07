@@ -14,17 +14,12 @@ During this adventure I learned about =maketitle=, References, Glossaries, Figur
 *** PDF
 {{< embed-pdf url="/code/latex/treatises/snails/gastropods.pdf" >}}
 
-*** Source
-#+INCLUDE: "/code/latex/treatises/snails/gastropods.tex" src latex
-
 ** Catus Felis
 *** PDF
 {{< embed-pdf url="/code/latex/treatises/cats/felis.pdf" >}}
 
-
-*** Source
-#+INCLUDE: "/code/latex/treatises/cats/felis.tex" src latex
-
 * Footnotes
 
 [fn:2] see the [[/projects/latex/poems][poems]] page
+
+[fn:1] house cat

@@ -1,0 +1,46 @@
++++
+title = "The Odyssey"
+layout = "book"
+author = "Homer"
+published = 2025-12-07T00:00:00+11:00
+composed = "8th century BC"
++++
+
+The poem follows *Odysseus*, king of Ithaca, struggling to return home after the Trojan War, and the parallel coming-of-age of his son /Telemachus/. It moves between gods, monsters, and human households, exploring cunning, hospitality, loyalty, and the fragility of order.
+
+** Telemachus and the Gods
+
+In Ithaca, Odysseus has been missing for years. His wife /Penelope/ is besieged by arrogant *suitors* who feast on his wealth and pressure her to remarry. Their son *Telemachus* is young, uncertain, and overshadowed by their power.
+
+- *Athena* champions Odysseus, appearing in disguise to guide Telemachus.
+- Telemachus calls an assembly (asserting his role as prince) and then sails to *Pylos* and *Sparta*.
+- He meets *Nestor* and *Menelaus*, who recount Troy’s aftermath and hint that Odysseus is still alive.
+
+Meanwhile, the gods debate Odysseus’ fate:
+- *Poseidon*, angered by Odysseus’ blinding of his son *Polyphemus*, blocks his return.
+- *Zeus* eventually allows Athena to act more openly on Odysseus’ behalf.
+
+** Odysseus’ Wanderings
+
+We first meet Odysseus on the island of *Calypso*, a nymph who loves him and keeps him captive. Ordered by the gods, she lets him go; after a storm, he lands among the *Phaeacians*, who offer ideal hospitality. There, Odysseus narrates his long journey:
+
+- The *Cicones* and the *Lotus-Eaters* show the chaos of war and the danger of forgetting home.
+- The cave of *Polyphemus the Cyclops*, where Odysseus’ clever trick (“Nobody”) saves his men but earns Poseidon’s hatred.
+- The gift of winds from *Aeolus*, ruined by foolish crewmen.
+- The man-eating *Laestrygonians*, who destroy most of his fleet.
+- *Circe* the enchantress, who turns men into swine; with Hermes’ help, Odysseus overcomes her and stays a year.
+- A descent to the *Underworld*, where he speaks with *Tiresias*, his mother, and fallen heroes.
+- Encounters with *Sirens*, *Scylla* and *Charybdis*, and the fatal slaughter of *Helios’ cattle*, which leads to the loss of all his remaining companions.
+
+Finally shipwrecked again, Odysseus reaches the Phaeacians, who ferry him secretly back to Ithaca.
+
+** Return, Recognition, and Revenge
+
+Disguised as a beggar by Athena, Odysseus tests the moral state of his household and allies:
+
+- He meets loyal swineherd *Eumaeus* and eventually reveals himself to Telemachus, plotting revenge.
+- Penelope, still faithful, sets the *bow contest*: whoever can string Odysseus’ bow and shoot an arrow through twelve axe heads shall marry her.
+
+Only the “beggar” can string it. Odysseus reveals his identity and, with Telemachus and a few loyal servants, kills the suitors and punishes the disloyal. Penelope tests him with a secret about their immovable marriage bed, confirming his identity.
+
+The poem ends with fragile reconciliation and the restoration of order in Ithaca, as Odysseus’ long-delayed *nostos* (homecoming) is finally complete.

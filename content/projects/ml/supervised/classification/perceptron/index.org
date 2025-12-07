@@ -580,6 +580,7 @@ Clearly this is an entertaining and simple binary classifier that just works. Bu
 ** Neuron
 
 {{< tikztwo >}}
+\begin{document}
 \begin{tikzpicture}[basic/.style={draw,fill=blue!20,text width=1em,text badly centered},
 		    input/.style={basic,circle},
 		    weights/.style={basic,rectangle},
@@ -609,10 +610,11 @@ Clearly this is an entertaining and simple binary classifier that just works. Bu
     \node[below of=ln,font=\scriptsize] {inputs};
     \node[below of=n,font=\scriptsize] {weights};
 \end{tikzpicture}
+\end{document}
 {{< /tikztwo >}}
 
 ** Perceptron Algorithm
-{{< tikztwo >}}
+{{< tikzalg width="60%" >}}
 \begin{algorithm}[H]
 \let\vec\mathbf
 \SetAlgoLined
@@ -631,7 +633,7 @@ $converged \leftarrow \text{false}$\;
 }
 \caption{Perceptron Learning Algorithm}
 \end{algorithm}
-{{< /tikztwo }}
+{{< /tikzalg >}}
 
 ** Footnotes
 

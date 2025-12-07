@@ -13,9 +13,6 @@ After obtaining the UGrad, I have had a couple months of unemployment to improve
 
 As such I read more than a small selection of this book and produced the following flashcards[fn:1]:
 
-#+INCLUDE: "/doc/org/flashcards/soft-eng/git.org" :lines "2-"
-
-
 #+BEGIN_QUOTE
 "Deep Work: Professional activity performed in a state of distraction-free concentration that pushes your cognitive capabilities to their limit."
 ---Cal Newport

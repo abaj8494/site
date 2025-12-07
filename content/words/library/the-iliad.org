@@ -2,5 +2,40 @@
 title = "The Iliad"
 layout = "book"
 author = "Homer"
+published = "800BC"
 +++
+
+The poem recounts a few weeks in the *tenth year* of the Trojan War, focusing on the /wrath of Achilles/ and the cost of honor, glory, and mortality for Greeks and Trojans alike. It does *not* narrate the whole war or the fall of Troy, but ends with the funeral of Hector.
+
+** Wrath and Withdrawal of Achilles
+
+The Greek army (the *Achaeans*) besieges Troy, ruled by *King Priam*, to reclaim *Helen*, taken by *Paris* from her husband *Menelaus*. Their commander, *Agamemnon*, angers Apollo by refusing to return a captive, bringing plague on the army. When forced to give her back, he seizes *Briseis* from *Achilles*, the greatest warrior.
+
+Humiliated, Achilles withdraws from battle and asks his mother, the sea-goddess *Thetis*, to persuade *Zeus* to make the Achaeans suffer. Without Achilles:
+
+- *Hector*, prince of Troy, leads successful assaults.
+- Heroes like *Ajax*, *Odysseus*, and *Diomedes* struggle to hold the line.
+- *Nestor* urges diplomacy; an embassy to Achilles fails when he refuses Agamemnon’s gifts.
+
+The gods constantly intervene:
+- *Athena* aids Greek heroes,
+- *Apollo* champions the Trojans,
+- *Hera* and *Athena* plot against Troy,
+creating a war fought on both human and divine fronts.
+
+** Battles, Heroes, and the Death of Patroclus
+
+As Trojan forces push the Greeks back to their ships, Hector nearly burns the fleet. Desperate, *Patroclus*, Achilles’ dearest companion, begs to fight wearing Achilles’ armor. Achilles agrees but forbids him to pursue the Trojans to the city walls.
+
+Patroclus drives the Trojans back, kills many (including Sarpedon, son of Zeus), and forgets Achilles’ warning. Hector, aided by Apollo, kills Patroclus and takes Achilles’ armor. This loss breaks Achilles’ pride and turns his wounded honor into consuming grief.
+
+Achilles reconciles with Agamemnon, receives magnificent new armor forged by *Hephaestus*, and returns to the battlefield with a single aim: to destroy Hector and exact brutal revenge.
+
+** Fall of Hector and the Human Cost of War
+
+Achilles slaughters Trojans mercilessly, even desecrating the river *Scamander* with corpses. In a climactic duel, he kills Hector outside Troy’s walls. Hector’s parents, *Priam* and *Hecuba*, and his wife *Andromache* watch in horror as Achilles lashes Hector’s body to his chariot and drags it around the city.
+
+The poem’s final movement shifts from heroic rage to fragile humanity. Guided by Hermes, old King Priam secretly enters the Greek camp, kneels before Achilles, and begs for his son’s body. Achilles is moved by shared mortality—seeing in Priam his own father—and returns Hector’s corpse.
+
+The Iliad closes not with triumph, but with mourning: Hector’s body is honored, Troy laments its greatest defender, and the war’s glory is overshadowed by the inevitability of suffering and death.
 

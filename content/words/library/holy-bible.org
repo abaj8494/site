@@ -1,0 +1,405 @@
++++
+title = "Holy Bible"
+layout = "book"
+author = ["God"] 
+[params]
+  published = "100AD"
++++
+
+These are my notes on the Holy Bible. Much of the initial platforming was done by an LLM, but over the years this document will continue to develop.
+
+It is written in the almighty-Org.
+
+#+begin_src jupyter-python
+  def fib(n: int) -> int:
+      if n == 0:
+          return 0
+      elif n == 1:
+          return 1
+      else:
+          return fib(n-1) + fib(n-2)
+  fib(7)
+#+end_src
+
+#+RESULTS:
+: 13
+
+** Notable Stories
+- Creation of the World (Genesis 1–3) ::
+  God creates the universe, forms Adam and Eve, and their disobedience introduces sin, death, and exile from Eden.
+
+- Cain and Abel (Genesis 4) ::
+  The first brothers bring offerings to God; jealousy leads Cain to murder Abel, showing how sin spreads through human relationships.
+
+- Noah’s Ark (Genesis 6–9) ::
+  In response to widespread corruption, God sends a flood but saves Noah, his family, and the animals in an ark, then makes a covenant marked by the rainbow.
+
+- Tower of Babel (Genesis 11) ::
+  Humanity unites to build a tower “to the heavens”; God confuses their language and scatters them, limiting human pride.
+
+- Abraham and Isaac (Genesis 22) ::
+  God tests Abraham by asking him to sacrifice Isaac, the promised son; a ram is provided in Isaac’s place, highlighting faith and substitution.
+
+- Moses and the Exodus / Red Sea (Exodus 3–14) ::
+  God calls Moses to confront Pharaoh, sends plagues, leads Israel out of Egypt, and parts the Red Sea so they can escape slavery.
+
+- David and Goliath (1 Samuel 17) ::
+  Young David defeats the giant warrior Goliath with a sling and a stone, embodying trust in God over visible strength.
+
+- Daniel in the Lions’ Den (Daniel 6) ::
+  Daniel continues to pray to God despite a royal ban and is thrown to lions, but God shuts their mouths and he survives.
+
+- The Nativity / Birth of Jesus (Matthew 1–2; Luke 1–2) ::
+  Jesus is born in humble circumstances in Bethlehem, with shepherds, angels, and later wise men recognizing him as Messiah.
+
+- The Crucifixion and Resurrection of Jesus (Gospels) ::
+  Jesus is executed on a cross, bearing sin and shame, then rises on the third day, forming the core Christian claim of victory over death.
+
+- Joseph and His Brothers (Genesis 37–50) ::
+  Joseph is sold into slavery by jealous brothers, rises to power in Egypt through God-given dreams, and eventually forgives and saves his family during famine.
+
+- The Burning Bush (Exodus 3) ::
+  Moses encounters God in a bush that burns but is not consumed, receives God’s name (“I AM”), and is commissioned to rescue Israel from Egypt.
+
+- The Ten Commandments at Sinai (Exodus 19–20; 32) ::
+  God gives Israel the core covenant commands on Mount Sinai, while below the people quickly turn to the golden calf, dramatizing law and rebellion side by side.
+
+- The Fall of Jericho (Joshua 6) ::
+  Israel marches around Jericho for seven days as instructed; the city walls collapse, marking God’s unusual victory strategy in the conquest.
+
+- Samson and Delilah (Judges 13–16) ::
+  A super-strong judge with a Nazirite vow is undone by his weakness for Delilah, yet in his final act he pulls down a Philistine temple, defeating many enemies.
+
+- Elijah on Mount Carmel (1 Kings 18) ::
+  Elijah challenges the prophets of Baal; their god is silent, but the LORD answers with fire from heaven, exposing false worship.
+
+- The Fiery Furnace (Daniel 3) ::
+  Three Hebrews refuse to worship a golden statue and are thrown into a blazing furnace, yet a mysterious fourth figure appears with them and they emerge unharmed.
+
+- Jonah and the Great Fish (Jonah 1–4) ::
+  Jonah flees God’s command to preach to Nineveh, is swallowed by a great fish, and later sulks when God shows mercy to the repentant city.
+
+- The Good Samaritan (Luke 10:25–37) ::
+  Jesus tells a story where a despised Samaritan, not the religious insiders, cares for a beaten man, redefining “neighbor” as whoever shows mercy.
+
+- The Prodigal Son (Luke 15:11–32) ::
+  A younger son wastes his inheritance and returns expecting rejection, but is welcomed by his father, while the embittered older brother resents the grace shown.
+
+
+
+- Israelites :: The people of ancient Israel, descended from Abraham, Isaac, and Jacob; their story is the main human thread of the Old Testament.
+
+** Old Testament
+- Thread :: Creation $\rightarrow$ patriarchs $\rightarrow$ Israel rescued from Egypt $\rightarrow$ given the Law $\rightarrow$ settled in the land $\rightarrow$ kings and kingdoms $\rightarrow$ exile $\rightarrow$ partial return.
+- Shape :: Mostly historical narrative, framed and interpreted by law, poetry, and prophetic commentary.
+
+*** The Law
+- Thread :: How Israel’s story begins and how this people is formed into a covenant nation under God.
+- Shape :: Narrative (Genesis–Numbers) moving into speeches and legal code (Deuteronomy).
+
+**** Genesis
+- Focus :: Creation, the fall, flood, and the calling of Abraham’s family (Abraham, Isaac, Jacob, Joseph).
+- Thread :: Explains how the world and the Israelites begin, ending with Israel’s ancestors living in Egypt.
+
+**** Exodus
+- Focus :: God rescues Israel from slavery in Egypt through Moses and gives them the covenant at Sinai.
+- Thread :: Plagues, Red Sea, Ten Commandments, and the building of the tabernacle show Israel becoming God’s “set-apart” people.
+
+**** Leviticus
+- Focus :: Detailed laws about sacrifices, purity, and holiness for priests and people.
+- Thread :: Explains how sinful people can live near a holy God through structured worship and ethical commands.
+
+**** Numbers
+- Focus :: Israel’s wandering in the wilderness and repeated failures to trust God.
+- Thread :: Census lists, rebellions, and travel stories explain why a whole generation dies before entering the land.
+
+**** Deuteronomy
+- Focus :: Moses’ final speeches, retelling the Law to a new generation on the edge of the promised land.
+- Thread :: Covenant blessings and curses are laid out as a choice: life and obedience, or death and exile.
+
+*** History
+- Thread :: How Israel enters, lives in, loses, and partly regains the land God promised.
+- Shape :: Cycles of faithfulness and unfaithfulness, with God responding through judges, kings, prophets, and foreign powers.
+
+**** Joshua
+- Focus :: Israel’s entry into Canaan under Joshua and the initial conquest and division of the land.
+- Thread :: Emphasizes God keeping his promises and calls the people to wholehearted loyalty.
+
+**** Judges
+- Focus :: A recurring cycle: Israel sins, is oppressed, cries out, and is rescued by “judges” (charismatic leaders).
+- Thread :: The famous stories (Deborah, Gideon, Samson) show growing chaos: “everyone did what was right in his own eyes.”
+
+**** Ruth
+- Focus :: A Moabite woman’s loyalty to her Israelite mother-in-law and her place in David’s family line.
+- Thread :: A small, quiet story of faithfulness during the dark time of the judges, leading toward the future king.
+
+**** 1 Samuel
+- Focus :: Transition from judges to monarchy: Samuel, Saul’s rise and fall, and David’s anointing.
+- Thread :: Shows the tension between asking for a king “like the nations” and God’s own choice of David.
+
+**** 2 Samuel
+- Focus :: David’s reign, with both his successes and major failures (Bathsheba, family turmoil).
+- Thread :: God promises David an enduring dynasty even as David’s sins bring severe consequences.
+
+**** 1 Kings
+- Focus :: Solomon’s reign (wisdom, temple) and then the division of the kingdom into north (Israel) and south (Judah).
+- Thread :: Alternates between kings, evaluating them by their faithfulness or idolatry.
+
+**** 2 Kings
+- Focus :: Continued decline of both kingdoms, culminating in Assyria’s conquest of Israel and Babylon’s of Judah.
+- Thread :: Shows prophetic warnings ignored, leading to exile and the apparent collapse of God’s promises.
+
+**** 1 Chronicles
+- Focus :: Genealogies and a retelling of David’s reign, with a strong focus on worship and the temple.
+- Thread :: Written from a later perspective, highlighting the “ideal” aspects of David’s rule and preparation for the temple.
+
+**** 2 Chronicles
+- Focus :: A retelling of the kings of Judah (mostly) with emphasis on faithfulness, reform, and temple worship.
+- Thread :: Ends with exile but also with a hint of hope in the decree allowing return.
+
+**** Ezra
+- Focus :: Return from exile under Zerubbabel and later Ezra; rebuilding the temple and reestablishing the Law.
+- Thread :: Shows a fragile community trying to restore worship and identity under Persian rule.
+
+**** Nehemiah
+- Focus :: Rebuilding Jerusalem’s walls and reforming community life under Nehemiah’s leadership.
+- Thread :: Physical restoration (walls) and spiritual renewal (public reading of the Law) go together.
+
+**** Esther
+- Focus :: A Jewish woman becomes queen of Persia and helps save her people from genocide.
+- Thread :: God is never named, but providence is implied as events line up to protect the Jewish people.
+
+*** Poetry & Wisdom
+- Thread :: How individuals wrestle with suffering, sing, think, and love in light of God and covenant history.
+- Shape :: Less chronological; more about the inner life and universal questions.
+
+**** Job
+- Focus :: A righteous man suffers intensely and debates with friends about the reason why.
+- Thread :: Challenges simple “suffer = you sinned” logic and ends with God’s speech about the vastness of creation.
+
+**** Psalms
+- Focus :: A collection of songs and prayers: praise, lament, thanksgiving, and wisdom.
+- Thread :: Gives voice to Israel’s emotional and spiritual life across many generations.
+
+**** Proverbs
+- Focus :: Short, memorable sayings about wise and foolish living.
+- Thread :: Portrays wisdom as aligning daily life with God’s order in family, work, speech, and money.
+
+**** Ecclesiastes
+- Focus :: A reflective “teacher” explores the apparent futility of life “under the sun.”
+- Thread :: Circles around questions of meaning, satisfaction, and mortality, ending with a call to fear God.
+
+**** Song of Songs
+- Focus :: Intense love poetry between a bride and groom.
+- Thread :: Celebrates romantic and physical love as something powerful and good, yet needing wisdom.
+
+*** Major Prophets
+- Thread :: Long prophetic books addressing sin, judgment, and hope for Israel and the nations.
+- Shape :: Oracles, symbolic actions, and visions set mainly during the time of kings and exile.
+
+**** Isaiah
+- Focus :: Warnings against Judah’s sin and idolatry, mixed with promises of a coming servant and future restoration.
+- Thread :: Moves from imminent judgment to global hope, including visions of peace and a renewed creation.
+
+**** Jeremiah
+- Focus :: The “weeping prophet” warns Judah about impending Babylonian judgment and pleads for repentance.
+- Thread :: Includes confessions, symbolic acts, and a promise of a “new covenant” written on hearts.
+
+**** Lamentations
+- Focus :: Poetic laments over the destruction of Jerusalem.
+- Thread :: Gives structured grief a voice, yet holds on to a small core of hope in God’s faithfulness.
+
+**** Ezekiel
+- Focus :: Visions and symbolic acts by a prophet among the exiles in Babylon.
+- Thread :: Explains Jerusalem’s fall, portrays God’s glory leaving and then returning, and pictures a renewed temple and land.
+
+**** Daniel
+- Focus :: Stories of faithful Jews in foreign courts and apocalyptic visions about future kingdoms.
+- Thread :: Lion’s den, fiery furnace, and symbolic beasts all underline God’s rule over human empires.
+
+*** Minor Prophets
+- Thread :: Twelve shorter prophetic books, spanning different periods, all confronting sin and pointing to judgment and restoration.
+- Shape :: Snaps of Israel’s history seen through the eyes and words of different prophets.
+
+**** Hosea
+- Focus :: Hosea’s troubled marriage is used as a living picture of Israel’s unfaithfulness to God.
+- Thread :: Judgment is severe, yet God’s persistent love and future restoration are emphasized.
+
+**** Joel
+- Focus :: A locust plague and talk of the “day of the LORD.”
+- Thread :: Calls for repentance and promises God’s Spirit poured out on all people in the future.
+
+**** Amos
+- Focus :: Denounces social injustice and religious hypocrisy, especially in the northern kingdom.
+- Thread :: Warns that ritual worship without justice will bring God’s judgment.
+
+**** Obadiah
+- Focus :: A short oracle against Edom for gloating over Judah’s downfall.
+- Thread :: Affirms that God will judge nations and restore his people.
+
+**** Jonah
+- Focus :: A reluctant prophet sent to Nineveh, who runs away and is swallowed by a great fish.
+- Thread :: Nineveh repents, and the book exposes Jonah’s anger at God’s mercy.
+
+**** Micah
+- Focus :: Judgment on both Samaria and Jerusalem, with famous promises of a future ruler from Bethlehem.
+- Thread :: Combines sharp critique (“do justice, love mercy, walk humbly”) with hope for restoration.
+
+**** Nahum
+- Focus :: A poetic judgment against Nineveh (Assyria’s capital).
+- Thread :: Shows that even once-repentant nations can fall back into violence and face God’s justice.
+
+**** Habakkuk
+- Focus :: A dialogue between the prophet and God about evil and injustice.
+- Thread :: Ends with a call to live by faith and a song of trust even when circumstances are bleak.
+
+**** Zephaniah
+- Focus :: The coming “day of the LORD” against Judah and the nations.
+- Thread :: Judgment is universal, but it leads to a purified, humble remnant.
+
+**** Haggai
+- Focus :: Encourages the returned exiles to rebuild the temple after delay.
+- Thread :: Promises that the new temple’s glory will surpass the former as God shakes the nations.
+
+**** Zechariah
+- Focus :: Night visions and messages to the returned community about temple rebuilding and future hope.
+- Thread :: Mixes immediate encouragement with far-reaching messianic and apocalyptic themes.
+
+**** Haggai
+- Note :: Duplicate listing; see Haggai above.
+
+**** Zechariah
+- Note :: Duplicate listing; see Zechariah above.
+
+**** Malachi
+- Focus :: Addresses a post-exilic community grown cynical and lax in worship and ethics.
+- Thread :: Calls for renewed faithfulness and speaks of a coming messenger before “the great and terrible day of the LORD.”
+
+** New Testament
+- Thread :: Jesus’ life, death, and resurrection; the spread of the message; letters to early churches; a final vision of ultimate renewal.
+- Shape :: Gospels (Jesus), Acts (early church), Letters (teaching and correction), Revelation (apocalyptic vision).
+
+*** The Gospels
+- Thread :: Four overlapping portraits of Jesus — his identity, teachings, miracles, death, and resurrection — from different angles and audiences.
+
+**** Matthew
+- Focus :: Presents Jesus as the promised Messiah and new Moses, fulfilling Old Testament Scriptures.
+- Thread :: Structured around major teaching blocks (like the Sermon on the Mount) and emphasizes the kingdom of heaven.
+
+**** Mark
+- Focus :: A fast-paced account of Jesus’ actions and sufferings, likely the earliest Gospel.
+- Thread :: Highlights misunderstanding and secrecy, moving quickly toward the cross.
+
+**** Luke
+- Focus :: A carefully ordered narrative emphasizing Jesus’ concern for outsiders, the poor, and women.
+- Thread :: Links Jesus to world history and sets up a sequel in Acts.
+
+**** John
+- Focus :: A more reflective Gospel centered on signs and extended dialogues, stressing Jesus’ divine identity.
+- Thread :: Uses symbolic language (“light,” “bread,” “vine”) and focuses on belief and eternal life.
+
+*** History
+- Thread :: How the message about Jesus spreads from Jerusalem to the wider Roman world.
+
+**** Acts
+- Focus :: The coming of the Holy Spirit and the expansion of the early church through apostles like Peter and Paul.
+- Thread :: Follows the movement of the gospel from Jerusalem to Judea, Samaria, and finally to Rome.
+
+*** Paul's Letters
+- Thread :: Letters from the apostle Paul to various churches and individuals, explaining the meaning of Jesus’ death and resurrection and how believers should live.
+- Shape :: Mix theology with practical instruction for real communities.
+
+**** Romans
+- Focus :: A sweeping explanation of sin, grace, faith, and God’s plan for Jews and Gentiles.
+- Thread :: Presents the “good news” as God’s power to save all who believe.
+
+**** 1 Corinthians
+- Focus :: Corrects a troubled church with divisions, moral problems, and worship issues.
+- Thread :: Covers everything from sexual ethics to spiritual gifts and climaxes with teaching on the resurrection.
+
+**** 2 Corinthians
+- Focus :: Paul defends his ministry and shares deeply about weakness and comfort in God.
+- Thread :: Shows that true apostleship looks like suffering, not flashy power.
+
+**** Galatians
+- Focus :: Argues fiercely that people are justified by faith in Christ, not by law-keeping.
+- Thread :: Opposes adding extra requirements (like circumcision) to the gospel.
+
+**** Ephesians
+- Focus :: The cosmic scope of God’s plan in Christ and the unity of Jews and Gentiles in the church.
+- Thread :: Moves from grand theology to practical instructions for church and household life.
+
+**** Philippians
+- Focus :: A warm letter of thanks and encouragement from prison.
+- Thread :: Holds up Christ’s humility and joy in all circumstances as the pattern for believers.
+
+**** Colossians
+- Focus :: Emphasizes Christ’s supremacy over all powers and philosophies.
+- Thread :: Warns against teaching that diminishes Christ or adds unnecessary rules.
+
+**** 1 Thessalonians
+- Focus :: Encourages a young church facing persecution.
+- Thread :: Clarifies issues about Jesus’ return and calls for holy living.
+
+**** 2 Thessalonians
+- Focus :: Further teaching about the “day of the Lord” and dealing with disorderly members.
+- Thread :: Corrects confusion and urges steadfastness.
+
+**** 1 Timothy
+- Focus :: Instructions to Timothy on organizing and guarding the church in Ephesus.
+- Thread :: Addresses leadership, false teaching, worship, and community care.
+
+**** 2 Timothy
+- Focus :: Paul’s final letter, written from prison, urging Timothy to remain faithful.
+- Thread :: Combines personal farewell with a call to endure and keep preaching.
+
+**** Titus
+- Focus :: Guidance for Titus in setting up church leadership in Crete.
+- Thread :: Emphasizes good works flowing from sound doctrine.
+
+**** Philemon
+- Focus :: A personal appeal regarding a runaway slave, Onesimus.
+- Thread :: Models how the gospel reshapes social relationships, urging mercy and brotherhood.
+
+*** General Letters
+- Thread :: Letters from various leaders (not just Paul) addressing faith, suffering, false teaching, and everyday practice.
+- Shape :: Complement Paul’s letters with different voices and emphases.
+
+**** Hebrews
+- Focus :: Presents Jesus as the ultimate high priest and final sacrifice, fulfilling the Old Testament.
+- Thread :: Urges wavering believers not to drift away but to hold fast.
+
+**** James
+- Focus :: Practical wisdom about living out faith in deeds.
+- Thread :: Stresses that real faith shows itself in works, speech, and care for the vulnerable.
+
+**** 1 Peter
+- Focus :: Encouragement to scattered believers suffering for their faith.
+- Thread :: Calls them to live as holy “exiles” with hope in Christ.
+
+**** 2 Peter
+- Focus :: Warns against false teachers and reminds believers of God’s promises.
+- Thread :: Looks ahead to the new heavens and new earth.
+
+**** 1 John
+- Focus :: Tests of true faith: right belief about Jesus, obedience, and love.
+- Thread :: Confronts false teachings and reassures believers of God’s love.
+
+**** 2 John
+- Focus :: A short note about walking in truth and love.
+- Thread :: Warns against welcoming teachers who deny Christ.
+
+**** 3 John
+- Focus :: A short note about hospitality and church leadership conflict.
+- Thread :: Commends one believer and rebukes another for domineering behavior.
+
+**** Jude
+- Focus :: A sharp warning against corrupt, deceptive teachers.
+- Thread :: Uses vivid images to call for perseverance in the faith.
+
+*** Prophecy
+- Thread :: A symbolic, visionary conclusion about the ultimate triumph of God and the renewal of creation.
+
+**** Revelation
+- Focus :: Visions given to John about churches, cosmic conflict, judgment, and a new heaven and new earth.
+- Thread :: Uses rich imagery to show that despite persecution and chaos, God and the Lamb finally win, and creation is made new.

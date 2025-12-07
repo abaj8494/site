@@ -1,9 +1,11 @@
 +++
 title = "Magit"
+tags = ["notes"]
 +++
 
-I am spending so much time in =emacs= these days it is beginning to consume me.
+It feels a little weird presenting my notes to the world.
 
+Alas, =emacs= has begun to consume me.
 
 =C-x g= is magit-status
 
@@ -97,7 +99,7 @@ indicates there can be new commits that can be pulled cleanly into the local bra
 
 *** Other Sections
 
-this depends on packages. forge, magit todos.
+this depends on packages. *forge*, *magit* todos.
 
 ** navigation
 
@@ -113,4 +115,38 @@ this depends on packages. forge, magit todos.
 
 when you press =c= and more options appear for what kind of commit action, you can toggle arguments and they will light up!
 
+** second video:
 
+- `l l`: log view current branch
+- `l o`: log view other branch
+- tab on any commit gives diff
+- you can stage hunks with =s=. you can also select lines! select those lines and stage
+- you can write =git commit= messages and descriptions below that too. (max char limit for message)
+- =c e= merges committed content with new changes into a new commit
+- if you use =c= with /extend/, /amend/ or /reword/ you may have to do a force-push (if that commit is already in the remote)
+- /extend/ doesn't pop up with what the new commit message should be, /amend/ does.
+- /reword/ only rewords the commit message
+- you can also rebase very conveniently with =c F=. it applies the unstaged changes to a commit of your choosing
+- naturally, we often have changes in one branch that really should have been made on another branch.
+  - use /spinoff/: =b s=, then give it the name of the branch
+  - note: this only works if the starting branch has been pushed to the remote. slightly weird.
+- recall that any time you modify a commit that has been pushed to the remote, pushing a modified version will need to be /force pushed/:
+  - =P p= is what we usually do, but it will fail
+  - =P -f p= will "force with lease" (and highlight when the argument is active)
+- stash changes with =z z=
+  - the second =z= says both for "stashing staged and unstaged changes"
+  - you even get the option to specify a "stash message"
+  - you can actually see the diff in the menu (thought you couldn't).
+  - =z a= applies the changes (recall that this still keeps the stash around)
+  - as such use =z p= "pop" instead
+    - if you have cursor on a particular stash in the menu pane, it will pop that one, else it asks
+-=F= opens up the pull panel:
+  - in that you use =P p= to push changes to origin, we can do =F p= to pull changes from origin
+  - usually your upstream is the branch that you are on, but we can set this to be origin with =F u= (which adjusts the upstream)
+  - you can also use =F e= with "elsewhere" which allows us to pull changes from any branch (i don't understand why you would do this)
+-=f= is the "fetch" panel
+-=F= with =r= configures rebasing.
+  - to continue with a rebase, press the =r= key and then =r= again to continue.
+- we can unstage the changes from a hunk of from a whole file with =k=
+- pressing =i= key brings up ~.gitignore~ panel
+  - 

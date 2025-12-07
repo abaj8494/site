@@ -1,0 +1,67 @@
++++
+title = "The Divine Comedy"
+layout = "book"
+author = "Dante Alighieri"
++++
+
+Dante, lost in a *dark wood* at midlife, is led by the poet /Virgil/ and then by /Beatrice/ through *Inferno*, *Purgatorio* and *Paradiso*, tracing the soul’s journey from sin to beatitude.
+
+** Inferno
+
+Dante meets Virgil at the edge of Hell and passes the gate:
+
+#+BEGIN_QUOTE
+Lasciate ogne speranza, voi ch' intrate.
+#+END_QUOTE
+
+They descend the nine circles, seeing sin in its fixed, final form.
+
+- The *lustful* (e.g. Francesca da Rimini) swept forever by storm.
+- The *gluttonous*, *misers* and *wasters*, trapped in grotesque parodies of their desires.
+- The *wrathful* choking in the Styx.
+- The *heretics* (like Farinata) in burning tombs.
+- The *violent* in boiling blood or transformed into thorny trees.
+- The *fraudulent* (e.g. Ulysses, flatterers, hypocrites, thieves) punished with fitting counter-images of their deceit.
+- Traitors such as *Count Ugolino* gnawing the skull of his betrayer.
+
+At the frozen pit, *Lucifer* is locked in ice, chewing the worst traitors. Dante and Virgil climb past Satan’s body and emerge under the stars:
+
+#+BEGIN_QUOTE
+E quindi uscimmo a riveder le stelle.
+#+END_QUOTE
+
+** Purgatorio
+
+On the island-mountain of Purgatory, Dante meets the guardian *Cato* and a crowd of souls singing the *Te Deum*. Here, unlike Hell, souls *change*.
+
+Structure of the ascent:
+
+- *Ante-Purgatory*: the late-repentant, including the negligent and the excommunicated.
+- Seven terraces, each purifying a *capital sin*:
+  - Pride (bent under stones, meditating on humility)
+  - Envy (eyes sewn shut)
+  - Wrath (souls in blinding smoke)
+  - Sloth, Avarice, Gluttony, Lust (each with a fitting, healing discipline)
+
+Dante meets *Statius* the poet, who joins them. Everywhere, souls long for freedom:
+
+#+BEGIN_QUOTE
+Libertà va cercando, ch’è sì cara…
+#+END_QUOTE
+
+At the summit, in the Earthly Paradise, Virgil vanishes; *Beatrice* appears, reproves Dante, and then leads him, now purified, toward the heavens.
+
+** Paradiso
+
+Led by Beatrice through the celestial spheres, Dante sees blessed souls ordered by love and intellect.
+
+- *Moon*, *Mercury*, *Venus*: souls marked by inconstancy, active life and love (e.g. Piccarda, Justinian).
+- *Sun*: theologians and sages (Thomas Aquinas, Bonaventure) in radiant circles.
+- *Mars*, *Jupiter*, *Saturn*: martyrs, just rulers, contemplatives.
+- The *Fixed Stars* and *Primum Mobile*: the Virgin, apostles, angels.
+
+Finally, in the *Empyrean*, Beatrice cedes to *St Bernard*, who prays that Dante may behold God. Dante perceives the Trinity as three interreflecting circles and glimpses the mystery of the Incarnation, ending with the vision of the love that orders all:
+
+#+BEGIN_QUOTE
+L’amor che move il sole e l’altre stelle.
+#+END_QUOTE

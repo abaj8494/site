@@ -5,7 +5,13 @@ description = "This knowledge garden is my Augmenting Infrastructure. It is the 
 pagination.pagerSize = 10
 enableRobotsTXT = true
 enableGitInfo = true
-ignoreFiles = ["/code/bookshelf/doc/fontsel/.*"]
+ignoreFiles = [
+  "/code/bookshelf/doc/fontsel/.*",
+  "#.*#$",           # Emacs auto-save files
+  "\\.org_archive$", # Org-mode archive files
+  "^#.*$",           # Emacs backup files
+  "\\.#.*",          # Emacs lock files
+]
 
 [frontmatter]
 date      = ["date", "publishDate", ":git", ":filename", ":default"]

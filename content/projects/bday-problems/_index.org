@@ -20,9 +20,6 @@ Here is the problem set:
 
 {{< embed-pdf url="/bday-problems/23q.pdf" hidePaginator="true">}}
 
-*** Source Code
-#+INCLUDE: "/code/latex/bday-problems/23/main.tex" src latex
-
 ** [[/projects/bday-problems/22nd][22nd]]
 :PROPERTIES:
 :CUSTOM_ID: 22nd
@@ -30,18 +27,12 @@ Here is the problem set:
 
 {{< embed-pdf url="/bday-problems/22q.pdf" hidePaginator="true">}}
 
-*** Source Code
-#+INCLUDE: "/code/latex/bday-problems/22/main.tex" src latex
-
 ** [[/projects/bday-problems/21st][21st]]
 :PROPERTIES:
 :CUSTOM_ID: 21st
 :END:
 
 {{< embed-pdf url="/bday-problems/21q.pdf" hidePaginator="true">}}
-
-*** Source Code
-#+INCLUDE: "/code/latex/bday-problems/21/main.tex" src latex
 
 ** [[/projects/bday-problems/upload][Submission Link]]
 :PROPERTIES:
@@ -57,8 +48,4 @@ The heading /is/ the link :p
 - Aarav Bajaj
 - Jisu Song
 - Sarro Aghrel
-- Erick Rajan
-
-* Footnotes
-
-[fn:1] achieve a score of over 50%. 
+- Erick Rajan 
