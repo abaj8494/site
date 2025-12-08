@@ -4,7 +4,10 @@ layout = "book"
 author = "Homer"
 published = 2025-12-07T00:00:00+11:00
 composed = "8th century BC"
+toc = "true"
 +++
+
+{{< collapse folded="true" >}}
 
 The poem follows *Odysseus*, king of Ithaca, struggling to return home after the Trojan War, and the parallel coming-of-age of his son /Telemachus/. It moves between gods, monsters, and human households, exploring cunning, hospitality, loyalty, and the fragility of order.
 

@@ -4,7 +4,10 @@ layout = "book"
 author = ["God"] 
 [params]
   published = "100AD"
+toc = "true"
 +++
+
+{{< collapse folded="true">}}
 
 These are my notes on the Holy Bible. Much of the initial platforming was done by an LLM, but over the years this document will continue to develop.
 

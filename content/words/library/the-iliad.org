@@ -2,8 +2,11 @@
 title = "The Iliad"
 layout = "book"
 author = "Homer"
-published = "800BC"
+composed = "800BC"
+toc = "true"
 +++
+
+{{< collapse folded="true" >}}
 
 The poem recounts a few weeks in the *tenth year* of the Trojan War, focusing on the /wrath of Achilles/ and the cost of honor, glory, and mortality for Greeks and Trojans alike. It does *not* narrate the whole war or the fall of Troy, but ends with the funeral of Hector.
 

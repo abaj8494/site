@@ -4,7 +4,10 @@ layout = "book"
 author = ["Plato", "Socrates", "Euripides", "Meno"]
 [params]
   published = "380BC"
+toc = "true"
 +++
+
+{{< collapse folded="true" >}}
 
 Plato was born in 428 BC (or 427 BC).
 
