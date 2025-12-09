@@ -2,7 +2,11 @@
 title = "Tutorial"
 tags = ["notes"]
 date = "2025-12-01T20:42:32+11:00"
+math = "true"
+toc = "true"
 +++
+
+{{< collapse folded="false" >}}
 
 
 ** setting the stage
@@ -857,3 +861,82 @@ apparently we can solve it using sets and dictionaries. I'll spend another 5 min
 30ms but with more memory; 36.59MB
 
 
+**** 1200. Minimum absolute difference | easy
+
+#+begin_src python
+class Solution:
+    def minimumAbsDifference(self, arr: List[int]) -> List[List[int]]:
+        mins = []
+        arr.sort() # O(n log n)
+        l, r = 0, 1
+        dif = max(arr) - min(arr)
+        while r < len(arr):
+            a, b = arr[l], arr[r]
+            cur_dif = b - a
+            if cur_dif < dif:
+                mins = []
+                mins.append((a, b))
+            elif cur_dif == dif:
+                mins.append((a, b))
+            dif = min(dif, cur_dif)
+            r += 1
+            l += 1
+        return mins
+#+end_src
+
+[4,2,1,3]
+
+sort:
+[1,2,3,4] #O(n log n)
+
+
+[(1,2), (2,3), (3,4)]
+
+**** 209. Minimum Size Subarray Sum | medium
+
+#+begin_src python
+class Solution:
+    def minSubArrayLen(self, target: int, nums: List[int]) -> int:
+        l, r = 0, 0
+        N = len(nums)
+        minimal_subarray_length = N + 1
+        while r <= len(nums):
+            sub_arr = nums[l:r]
+            if len(sub_arr) >= minimal_subarray_length:
+                l += 1
+                r = l
+                break
+            sub_sum = sum(sub_arr)
+            if sub_sum >= target:
+                minimal_subarray_length = min(minimal_subarray_length, len(sub_arr))
+                l += 1
+                r = l
+            r += 1
+            print(sub_arr)
+
+        return minimal_subarray_length if minimal_subarray_length <= N else 0
+        
+#+end_src
+
+wrong!
+
+#+begin_src python
+  def mindiff(arr, t):
+      l = 0
+      total = 0
+      res = float('inf')
+
+      for r in range(len(nums)):
+          total += nums[r]
+
+          while total >= t:
+              res = min(res, r-l+1)
+
+              total -= nums[l]
+
+              l+=1
+      if res == float('inf'):
+          return 0
+      else:
+          return res
+#+end_src
