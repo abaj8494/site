@@ -1,4 +1,0 @@
-+++
-title = "Go"
-tags = ["compiled", "statically-typed", "fast", "testing"]
-+++

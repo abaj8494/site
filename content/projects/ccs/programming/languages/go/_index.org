@@ -1,0 +1,135 @@
++++
+title = "Go"
+layout = "custom-list"
+tags = ["compiled", "statically-typed", "fast", "testing"]
++++
+
+{{< collapse folded="true" >}}
+
+** Data Types
+
+
+| category       | types                                                                                 |
+|----------------+---------------------------------------------------------------------------------------|
+| boolean        | =bool=                                                                                |
+| integer        | =int=, =int8=, =int16=, =int32=, =int64=                                              |
+| unsigned       | =uint=, =uint8= (=byte=), =uint16=, =uint32=, =uint64=, =uintptr=                     |
+| floating-point | =float32=, =float64=                                                                  |
+| complex        | =complex64=, =complex128=                                                             |
+| text / rune    | =string=, =rune= (=int32= Unicode code point)                                         |
+| aggregates     | =array=, =struct=                                                                     |
+| reference      | =slice=, =map=, =chan=, pointers (e.g. =*T=), =func=, =interface=                     |
+| error / misc   | =error=, user-defined named types (e.g. =type ID int=)                                |
+|----------------+---------------------------------------------------------------------------------------|
+
+** Time Complexities [fn:1]
+
+*** slices
+
+Let =n= be =len(s)= and =k= the number of elements being appended or copied.
+
+| *operation*                                        | *time complexity*                            |
+|----------------------------------------------------+----------------------------------------------|
+| =len(s)=, =cap(s)=                                 | $\mathcal{O}(1)$                             |
+| =s[i]=, =s[i] = v=                                 | $\mathcal{O}(1)$                             |
+| =append(s, x)=                                     | amortized $\mathcal{O}(1)$ (worst-case $\mathcal{O}(n)$ when capacity grows) |
+| =append(s, other...)=                              | $\mathcal{O}(k)$ (plus possible reallocation) |
+| =copy(dst, src)=                                   | $\mathcal{O}(k)$                             |
+| reslice =s[a:b]=                                   | $\mathcal{O}(1)$ (new slice header only)     |
+| insert/delete in middle (shift elements)           | $\mathcal{O}(n)$                             |
+| =for _, v := range s=                              | $\mathcal{O}(n)$                             |
+|----------------------------------------------------+----------------------------------------------|
+
+*** arrays
+
+Let =n= be the array length.
+
+| *operation*                                    | *time complexity* |
+|------------------------------------------------+-------------------|
+| =a[i]=, =a[i] = v=                             | $\mathcal{O}(1)$  |
+| =len(a)=                                       | $\mathcal{O}(1)$  |
+| assign/copy whole array (=b = a=)              | $\mathcal{O}(n)$  |
+| =for i, v := range a=                          | $\mathcal{O}(n)$  |
+|------------------------------------------------+-------------------|
+
+*** maps
+
+Let =n= be the number of entries in the map.
+
+| *operation*                                        | *time complexity (average case)* |
+|----------------------------------------------------+----------------------------------|
+| =m[key] = value= (insert / update)                 | $\mathcal{O}(1)$                 |
+| =v := m[key]= (lookup)                             | $\mathcal{O}(1)$                 |
+| =v, ok := m[key]= (lookup + presence check)        | $\mathcal{O}(1)$                 |
+| =delete(m, key)=                                   | $\mathcal{O}(1)$                 |
+| =len(m)=                                           | $\mathcal{O}(1)$                 |
+| =for k, v := range m=                              | $\mathcal{O}(n)$                 |
+| clear map (e.g. =maps.Clear(m)= or =range+delete=) | $\mathcal{O}(n)$                 |
+|----------------------------------------------------+----------------------------------|
+
+*** strings and bytes
+
+Let =n= be the length in bytes and =r= the number of runes.
+
+| *operation*                              | *time complexity*                             |
+|------------------------------------------+-----------------------------------------------|
+| =len(s)= (bytes)                         | $\mathcal{O}(1)$                              |
+| index byte (=b := s[i]=)                 | $\mathcal{O}(1)$                              |
+| concatenate (=s + t=)                    | $\mathcal{O}(\lvert s\rvert + \lvert t\rvert)$ |
+| =for i := 0; i < len(b); i++ { ... }=    | $\mathcal{O}(n)$                              |
+| =for _, r := range s= (iterate runes)    | $\mathcal{O}(r)$                              |
+| =bytes.Equal(b1, b2)=                    | $\mathcal{O}(n)$                              |
+|------------------------------------------+-----------------------------------------------|
+
+*** channels
+
+Let =n= be the number of values received in a loop. Ignoring scheduling / blocking costs, each send / receive is constant-time at the data-structure level.
+
+| *operation*                         | *time complexity* |
+|-------------------------------------+-------------------|
+| =ch <- v= (send)                    | $\mathcal{O}(1)$  |
+| =v := <-ch= (receive)               | $\mathcal{O}(1)$  |
+| =close(ch)=                         | $\mathcal{O}(1)$  |
+| =for v := range ch=                 | $\mathcal{O}(n)$  |
+|-------------------------------------+-------------------|
+
+*** heap / priority queue (=container/heap=)
+
+Let =n= be the number of elements in the heap.
+
+| *operation*                   | *time complexity*        |
+|-------------------------------+--------------------------|
+| =heap.Init(h)=                | $\mathcal{O}(n)$         |
+| =heap.Push(h, x)=             | $\mathcal{O}(\log(n))$   |
+| =heap.Pop(h)=                 | $\mathcal{O}(\log(n))$   |
+| =heap.Fix(h, i)=              | $\mathcal{O}(\log(n))$   |
+| =heap.Remove(h, i)=           | $\mathcal{O}(\log(n))$   |
+| inspect min/max (e.g. =h[0]=) | $\mathcal{O}(1)$         |
+|-------------------------------+--------------------------|
+
+*** general traversals & algorithms
+
+| *operation*                                      | *time complexity*       |
+|--------------------------------------------------+-------------------------|
+| =for i := range s= (array / slice)               | $\mathcal{O}(n)$        |
+| =for k := range m=                               | $\mathcal{O}(n)$        |
+| =for v := range ch=                              | $\mathcal{O}(n)$        |
+| =sort.Ints(s)=, =sort.Slice(s, less)=            | $\mathcal{O}(n\log(n))$ |
+| =sort.Search(n, f)=                              | $\mathcal{O}(\log(n))$  |
+| manual min/max scan over slice                   | $\mathcal{O}(n)$        |
+|--------------------------------------------------+-------------------------|
+
+** Footnotes
+
+[fn:1] Rough, implementation-aware complexities for core Go types (slices, maps, channels, heaps, etc.). Based on the Go specification, standard library documentation, and community writeups on amortized slice append complexity, map performance, and =container/heap= usage, such as:
+
+- [[https://yourbasic.org/golang/append-explained/][yourbasic.org: append explained (amortized $\mathcal{O}(1)$ for =append=)]]
+- [[https://glucn.com/posts/2019-07-04-golang-the-time-complexity-of-append][glucn.com: Golang – the time complexity of append]]
+- [[https://medium.com/@quicktechlearn/how-slices-affect-the-performance-of-your-code-in-go-how-can-they-be-mitigated-9e6f3d90e2e6][Medium: how slices affect Go code performance]]
+- [[https://labex.io/tutorials/go-how-to-clear-map-contents-golang-427295][LabEx: map time complexity in Go]]
+- [[https://leapcell.io/blog/go-s-map-creation-usage-and-iteration-demystified][Leapcell: Go's map creation, usage and iteration]]
+- [[https://pkg.go.dev/container/heap][Go pkg docs: =container/heap=]]
+- [[https://codesignal.com/learn/courses/interview-prep-the-last-mile-in-go/lessons/heaps-and-priority-queues-in-go][CodeSignal: heaps and priority queues in Go]]
+- [[https://bhandarenakul.medium.com/optimizing-time-and-space-complexity-in-golang-for-efficient-code-b66316932a4b][Optimising time and space complexity in Golang]]
+
+

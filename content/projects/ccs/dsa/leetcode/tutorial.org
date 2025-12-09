@@ -790,3 +790,70 @@ I was thinking of starting from the left and iterating towards the right, but wa
           
 #+end_src
 
+**** 219. Contains Duplicate II | easy
+
+gosh it is nice to be back in emacs haha src_emacs-lsip{(+ 2 2)}
+
+src_python{length*width}
+
+yikes, that was kind of embarassing. I couldn't solve it fast enough.
+
+#+begin_src python
+  class Solution:
+      def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:
+          """
+          # O(n^2)
+          N = len(nums)
+          for i in range(N):
+              for j in range(i+1, N):
+                  if abs(i - j) <= k and nums[i] == nums[j]:
+                      return True
+          return False
+          """
+          """
+          l, r = 0, 1
+          if k == 0:
+              return False
+
+          while l < len(nums):
+              while r < len(nums) and abs(l - r) <= k:
+                  if nums[l] == nums[r]:
+                      return True
+                  r += 1
+              l += 1
+              r = l + 1
+          return False
+          """
+#+end_src
+
+apparently we can solve it using sets and dictionaries. I'll spend another 5 minutes thinking about this:
+
+#+begin_src python
+  class Solution:
+      def containsNearbyDuplicate(self, nums: int) -> bool:
+          seen = set()
+          for i, num in enumerate(nums):
+              if num in seen:
+                  return True
+              seen.add(num)
+              if len(seen) > k:
+                  seen.remove(nums[i-k])
+          return False
+#+end_src
+
+35 ms with 30.72MB memory
+
+
+#+begin_src python
+  def containsNearbyDuplicate(self, nums, k):
+      dic = {}
+      for i, v in enumerate(nums):
+          if v in dic and i - dic[v] <= k:
+              return True
+          dic[v] = i
+      return False
+#+end_src
+
+30ms but with more memory; 36.59MB
+
+
