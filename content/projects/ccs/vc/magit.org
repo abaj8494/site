@@ -150,3 +150,43 @@ when you press =c= and more options appear for what kind of commit action, you c
 - we can unstage the changes from a hunk of from a whole file with =k=
 - pressing =i= key brings up ~.gitignore~ panel
   - 
+
+** third video; rebasing
+
+- if you have changes to tracked files in your repo you will need to stash them before *rebasing*
+- backup your branch because we might lose access to commits on the current branch! in magit you can do it with =b n=
+
+
+*** rewording commits
+
+- the view that comes up with =r i= is not actually strictly an editor. there are shortcut keys that change 'pick' to 'reword', etc.
+- =C-c C-c= will apply the rebase, whilst =C-c C-k= will cancel it
+- after doing any rebase changes the commit history has officially changed and we would have to do a force push
+
+*** reordering commits
+
+- might be useful to adjust the /narrative/ of the history
+- can be done by using =alt-p= and =alt-n= to move the commits around in the rebasing panel
+
+**** conflicts
+
+- once you fix the conflicts, *do not* press commit, instead just continue the rebase.
+
+*** editing a commit
+
+- =r i= as usual to start an interactive rebase on a particular commit
+- then =e= will make the working directory such that you can go and edit your file. stage the changes and continue the rebase =r r=
+
+*** combining commits
+
+- you can either "squash" or "fixup" with =s= and =f= respectively
+- squashing creates a new message, whilst fixup does not.
+- place the fixup below the commit you want to combine the commit into.
+
+*** deleting a commit
+
+- quite simple, just hit =d= for drop in the interactive rebase panel.
+
+*** doing it all at once
+
+note that all the above can be done all at once in one fell sweep! =X= is for reset and we can reset to the =backup= branch to try apply all rebases in one go.
