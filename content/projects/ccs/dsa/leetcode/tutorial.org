@@ -941,7 +941,7 @@ wrong!
           return res
 #+end_src
 
-**** 136. Single Number
+**** 136. Single Number | easy
 
 
 naturally this can be done in $O(n)$ time in a number of ways:
@@ -969,4 +969,81 @@ class Solution:
 
 lowkey bonkers, but it does work.
 
-**** 
+**** 322. Coin Change | medium
+
+it is a dynamic programming problem. I do not know how to immediately solve it:
+
+#+begin_src python
+  def coinChange(coins, amount):
+      dp = [amount +1] * (amount+1)
+      dp[0] = 0
+
+      for i in range(1, amount+1):
+          for c in coins:
+              if (i-c) >= 0:
+                  dp[i] = min(dp[i], 1 + dp[i-c])
+      return dp[amount] if (dp[amount] != amount + 1) else -1
+#+end_src
+
+time: O(amount * len(coins))
+space: O(amount)
+
+**** 70. Climbing Stairs | easy
+
+#+begin_src python
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        if n == 1:
+            return 1
+        dp = [0] * (n+1)
+        dp[0] = 0
+        dp[1] = 1
+        dp[2] = 2
+
+        for i in range(3, n+1):
+            dp[i] = dp[i-1] + dp[i-2]
+        return dp[n]
+#+end_src
+
+this one was actually quite doable. it is even moreso doable in that the array can be shortened down to just maintaining 2 constants
+
+time: O(n)
+space: O(n)
+
+**** 53. Maximum Subarray | medium
+
+you should understand the design of this algorithm. especially for an input such as =[-2,1,-3,4,-1,2,1,-5,4]=.
+
+we consider the problem of keeping =n= if and only if =dp[i-1]= added to this =n= is larger than just =n=. if it is, then it means this previous item is worth keeping, but if not, then we can just take =n=.
+
+this pattern continues to produce =[-2,1,-2,4,3,5,6,1,5]= of which whose max is just =6=.
+
+#+begin_src python
+  def msub(arr):
+      dp = [0] * len(arr)
+      for i, n in enumerate(arr):
+          dp[i] = max(n,dp[i-1]+n)
+
+      return max(dp)
+#+end_src
+
+time: O(n)
+space: O(n)
+
+but once again there is not much reason why we need to keep the =n= length array. we can just keep 2 variables:
+
+#+begin_src python
+  def maxSubArr(arr):
+      maxSum = arr[0]
+      currentSum = 0
+
+      for n in arr:
+          if currentSum = 0:
+              currentSum = 0
+
+          currentSum += n
+          maxSum = max(maxSum, currentSum)
+      return maxSum
+      
+#+end_src
+
