@@ -10,6 +10,28 @@ tikzajax = "true"
 
 {{< collapse id="classical-algorithms" folded="false" >}}
 
+
+#+BEGIN_QUOTE
+Try to not to use Machine Learning
+---Rule #1 in [[https://developers.google.com/machine-learning/guides/rules-of-ml][Google's Machine Learning Handbook]]
+#+END_QUOTE
+
+if the problem can be solved in an analysed time and space complexity we should do it classically. Machine Learning requires *data*.
+
+| algorithm      | time-complexity             | function                                          | style     |
+|----------------+-----------------------------+---------------------------------------------------+-----------|
+| BFS            | $\mathcal{O}(V+E)$          | Shortest Path                                     | Traversal |
+| DFS            | $\mathcal{O}(V+E)$          | Topo-sorting, Cycle testing, connected components | Traversal |
+| Kruskal        | $\mathcal{O}(E\log(V))$     | MST                                               | Greedy    |
+| Prim           | $\mathcal{O}((E+V)\log(V))}$ | MST                                               | Greedy    |
+| Dijkstra       | $\mathcal{O}((E+V)\log(V))}$ | Shortest Path, non-unit weights                   | Greedy    |
+| Bellman-Ford   | $\mathcal{O}(VE)$           | Negative Weight SP                                | DP        |
+| Floyd-Warshall | $\mathcal{O}(V^3)$          | All Pairs SP.                                     | DP        |
+| Ford-Fulkerson | $\mathcal{O}(Ef)$           | Max flow / min-cut with untethered implementation | Greedy    |
+| Edmond-Karp    | $\mathcal{O}(VE^2)$         | Max flow with BFS.                                | Greedy    |
+
+
+
 ** 2 Pointers
 :PROPERTIES:
 :CUSTOM_ID: two-pointers
