@@ -1047,3 +1047,73 @@ but once again there is not much reason why we need to keep the =n= length array
       
 #+end_src
 
+**** 338. Counting Bits | easy
+
+I did this naïvely with a string manipulation:
+#+begin_src python
+  def countBits(self, n: int) -> List[int]:
+      ans = []
+      for i in range(n+1):
+          temp = bin(i)
+          ans.append(temp[2:].count('1'))
+      return ans
+#+end_src
+
+which ran in 15ms with 18.5MB of memory
+
+there is also this dp solution:
+#+begin_src python
+  def countBits(self, n: int) -> List[int]:
+      dp = [0] * (n + 1)
+      offset = 1
+
+      for i in range(1, n+1):
+          if offset * 2 == i:
+              offset = i
+          dp[i] = 1 + dp[i-offset]
+
+      return dp
+#+end_src
+
+^5ms runtime; 18.55MB memory. not bad at all
+
+**** 303. Range Sum Query - Immutable
+
+this question was cute
+#+begin_src python
+class NumArray:
+
+    def __init__(self, nums: List[int]):
+        self.nums = nums
+        
+
+    def sumRange(self, left: int, right: int) -> int:
+        return sum(self.nums[left:right+1])
+        
+#+end_src
+
+I choked on the initialisation, but beyond that, we can also use prefix-sums to pay a cost once and then have quick summing thereafter:
+
+#+begin_src python
+class NumArray:
+
+    def __init__(self, nums: List[int]):
+        """
+        prefix_sum = [0] * (len(nums) + 1)
+        prefix_sum[0] = 0
+        for i, num in enumerate(nums):
+            prefix_sum[i+1] += prefix_sum[i] + num
+
+        self.prefix_sum = prefix_sum
+        """
+        self.acc_nums = [0]
+        for num in nums:
+            self.acc_nums.append(self.acc_nums[-1] + num)
+
+    def sumRange(self, left: int, right: int) -> int:
+        return self.acc_nums[right+1] - self.acc_nums[left]
+#+end_src
+
+and then 7ms thereafter.
+
+technically some leetcode solutions mark this as "dp" on account of the sub-problem repetition. 
