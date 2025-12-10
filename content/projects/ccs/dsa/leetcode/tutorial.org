@@ -940,3 +940,33 @@ wrong!
       else:
           return res
 #+end_src
+
+**** 136. Single Number
+
+
+naturally this can be done in $O(n)$ time in a number of ways:
+#+begin_src python
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        hashMap = defaultdict(int)
+        for num in nums:
+            hashMap[num] += 1
+        return [key for key, value in hashMap.items() if value == 1][0]
+#+end_src        
+
+still $O(n)$ space complexity.
+
+we can do it with XOR:
+
+#+begin_src python
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        xor = 0
+        for num in nums:
+            xor^=num
+        return xor
+#+end_src
+
+lowkey bonkers, but it does work.
+
+**** 
