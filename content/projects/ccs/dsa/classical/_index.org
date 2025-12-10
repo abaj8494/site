@@ -3,7 +3,7 @@ title = "Classical Algorithms"
 categories = ["computer-science", "notes"]
 tags = ["bit-manipulation", "2-pointer", "prefix-sum", "backtracking", "greedy", "memoisation"]
 layout = "custom-list"
-math = "true"
+mathjax = "true"
 tikzajax = "true"
 +++
 
@@ -30,7 +30,7 @@ if the problem can be solved in an analysed time and space complexity we should 
 | Ford-Fulkerson | $\mathcal{O}(Ef)$           | Max flow / min-cut with untethered implementation | Greedy    |
 | Edmond-Karp    | $\mathcal{O}(VE^2)$         | Max flow with BFS.                                | Greedy    |
 
-
+testing mathjax: $\abs{5}$ (mathtools)
 
 ** 2 Pointers
 :PROPERTIES:

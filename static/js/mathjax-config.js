@@ -1,6 +1,6 @@
 window.MathJax = {
   tex: {
     tags: "ams",
-    packages: { "[+]": ["cases", "numcases"] },
+    packages: { "[+]": ["cases", "numcases", "mathtools"] },
   },
 };
