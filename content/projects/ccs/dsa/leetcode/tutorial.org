@@ -33,7 +33,9 @@ toc = "true"
 
 ** problems
 
-*** 217. duplicate values | easy
+*** arrays
+
+**** 217. duplicate values | easy
 
 Given an integer array =nums=, return =true= if any value appears at least twice in the array, and return =false= if every element is distinct.
 
@@ -41,7 +43,7 @@ Given an integer array =nums=, return =true= if any value appears at least twice
 return len(set(nums)) != len(nums)
 #+END_SRC
 
-*** 268. missing number | easy
+**** 268. missing number | easy
 
 Array =nums=, containing =n= distinct numbers from =[0,n]=, return the only number in the range missing from the array.
 
@@ -83,7 +85,7 @@ but I think a hashmap solution might be equally possible too.
 
 profiling: 11ms runtime, 18.8MB
 
-*** 448. find all numbers disappeared in an array | easy
+**** 448. find all numbers disappeared in an array | easy
 
 seems like a continuation of the previous question
 
@@ -140,7 +142,7 @@ a constant space solution:
     return res
 #+end_src
 
-*** 1. two sum
+**** 1. two sum | easy
 
 #+begin_src jupyter-python :session leet
   from collections import defaultdict
@@ -160,7 +162,7 @@ a constant space solution:
 #+RESULTS:
 | 7 | 2 |
 
-*** 1365. how many numbers are smaller than the current number | easy
+**** 1365. how many numbers are smaller than the current number | easy
 
 #+begin_src jupyter-python :session leet
   def myfunc():
@@ -213,7 +215,7 @@ class Solution:
             
 #+end_src
 
-**** 1266. Minimum Time Visiting All Points
+**** 1266. Minimum Time Visiting All Points | easy
 
 I gave myself a 10 minute hard cap on this problem and managed to come up with the following solution:
 #+begin_src python
@@ -292,7 +294,7 @@ but cleverly, we can also use a for loop to the same effect:
 
 profiling: the above solution was 1ms, compared to the =for= loop version which was 0ms.
 
-**** 54. Spiral Matrix
+**** 54. Spiral Matrix | medium
 
 to begin, I gave myself 25 minutes to at least solve the first couple of cases
 #+begin_src python
@@ -525,6 +527,9 @@ class Solution:
 #+end_src
 
 
+
+*** arrays - two pointers
+
 **** 121. Best time to buy and sell stock | easy
 
 #+begin_src python
@@ -744,7 +749,7 @@ class Solution:
 
 this took me multiple hours to big brain through.
 
-**** 167. 2Sum Part II | Medium
+**** 167. 2Sum Part II | medium
 
 this was piss:
 #+begin_src python
@@ -793,6 +798,9 @@ I was thinking of starting from the left and iterating towards the right, but wa
                   
           
 #+end_src
+
+
+*** arrays - sliding window
 
 **** 219. Contains Duplicate II | easy
 
@@ -941,6 +949,9 @@ wrong!
           return res
 #+end_src
 
+
+*** bit manipulation
+
 **** 136. Single Number | easy
 
 
@@ -967,7 +978,10 @@ class Solution:
         return xor
 #+end_src
 
-lowkey bonkers, but it does work.
+lowkey bonkers, but it does work. down from 11ms to 3ms.
+
+
+*** dynamic programming
 
 **** 322. Coin Change | medium
 
@@ -1077,7 +1091,7 @@ there is also this dp solution:
 
 ^5ms runtime; 18.55MB memory. not bad at all
 
-**** 303. Range Sum Query - Immutable
+**** 303. Range Sum Query - Immutable | easy
 
 this question was cute
 #+begin_src python
@@ -1117,3 +1131,30 @@ class NumArray:
 and then 7ms thereafter.
 
 technically some leetcode solutions mark this as "dp" on account of the sub-problem repetition. 
+
+
+*** backtracking
+
+at least this way, I can add some notes at the top of the sections!
+
+**** 784. Letter Case Permutation | medium
+
+permutations 
+
+
+
+*** linked lists
+
+*** stacks
+
+*** queues
+
+*** binary trees
+
+*** binary search trees
+
+*** graphs
+
+
+
+
