@@ -1137,11 +1137,92 @@ technically some leetcode solutions mark this as "dp" on account of the sub-prob
 
 at least this way, I can add some notes at the top of the sections!
 
+permutations and combinations both refer to selecting items from some set of data:
+permutation refers to the ordering or arranging the data in a different type of way
+combinations is referring to the different selections of data from that dataset.
+
+order of items is important for *permutations* but not for *combinations*
+
 **** 784. Letter Case Permutation | medium
 
-permutations 
+#+begin_src python
+  class Solution:
+      def letterCasePermutation(self, s: str) -> List[str]:
+          output = [""]
+          
+          for c in s:
+              tmp = []
+              if c.isalpha():
+                  for o in output:
+                      tmp.append(o+c.lower())
+                      tmp.append(o+c.upper())
+              else:
+                  for o in output:
+                      tmp.append(o+c)
+              output = tmp
+          return output
+#+end_src
+
+time: O(2^n)
+space: O(2^n)
+
+**** 78. Subsets | medium
+
+#+begin_src python
+  def subsets(nums):
+      def backtrack(start, path):
+          result.append(path[:]) # append copy of path snapshot
+          for i in range(start, len(nums)):
+              path.append(nums[i])
+              backtrack(i+1, path)
+              path.pop()
+
+      result = []
+      backtrack(0,[])
+      return result
+#+end_src
+
+we use shallow copies in backtracking because they efficiently capture the
+current state of the path when dealing with simple immutable elements like ints
+could have used deep copy, but that would make this solution less efficient.
+deep copies are only necessary when dealing with nested or mutable data
 
 
+**** 77. Combinations | medium
+
+#+begin_src python
+  def combine(n, k):
+       def backtrack(start, path):
+          if len(path) == k:
+              result.append(path[:]) # shallow copy
+              return
+          for i in range(start, n+1):
+              path.append(i)
+              backtrack(i+1,paath)
+              path.pop()
+      result = []
+      backtrack(1, [])
+      return result
+#+end_src
+
+
+
+**** 46. Permutations | medium
+
+#+begin_src python
+  def permute(nums):
+      def backtrack(start, end):
+          if start == end:
+              result.append(nums[:]) # shallow copy
+              return
+          for i in range(start, end):
+              nums[start], nums[i] = nums[i], nums[start]
+              backtrack(start+1, end)
+              nums[start], nums[i] = nums[i], nums[start]
+      result = 0
+      backtrack(0, len(nums))
+      return result
+#+end_src
 
 *** linked lists
 
