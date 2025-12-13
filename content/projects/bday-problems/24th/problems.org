@@ -17,6 +17,7 @@ math = "true"
 </nav></aside>
 #+end_export
 
+{{< collapse folded="false" >}}
 
 ** Q1
 :PROPERTIES:
@@ -73,6 +74,9 @@ Given that $A$ and $B$ are sets like so:
 
 Give an expression for the conditional probability $P(A|B)$
 
+{{< m2sol >}}
+{{< /m2sol >}}
+
 {{< /m2prob >}}
 
 
@@ -87,6 +91,9 @@ Give an expression for the conditional probability $P(A|B)$
 Hence or otherwise derive Bayes' (first) rule for conditional probability:
 
 \[P(A|B) = P(B|A) \times \frac{P(A)}{P(B)}\]
+
+{{< m2sol >}}
+{{< /m2sol >}}
 
 {{< /m2prob >}}
 
@@ -143,6 +150,9 @@ Monty Hall Problem:
 
 {{< m2prob >}}
 normal version
+{{< m2sol >}}
+{{< /m2sol >}}
+
 {{< /m2prob >}}
 
 *** b
@@ -153,6 +163,9 @@ normal version
 
 {{< m2prob >}}
 hard version
+{{< m2sol >}}
+{{< /m2sol >}}
+
 {{< /m2prob >}}
 
 
@@ -170,6 +183,9 @@ hard version
 
 {{< m2prob >}}
 Prove that there are equally as many *natural numbers* as there are *integers*, i.e. that \(|\mathbb{Z}| = |\mathbb{N}|\).
+{{< m2sol >}}
+{{< /m2sol >}}
+
 {{< /m2prob >}}
 
 *** b
@@ -180,6 +196,9 @@ Prove that there are equally as many *natural numbers* as there are *integers*, 
 
 {{< m2prob >}}
 Prove that there are equally as many *integers* as there are *rational numbers*, i.e. that \(|\mathbb{Q}| = |\mathbb{R}|\).
+{{< m2sol >}}
+{{< /m2sol >}}
+
 {{< /m2prob >}}
 
 *** c
@@ -190,6 +209,9 @@ Prove that there are equally as many *integers* as there are *rational numbers*,
 
 {{< m2prob >}}
 Prove that the _real numbers_ are /uncountable/; i.e. that \(|\mathbb{R}| \neq |\mathbb{N}|\).
+{{< m2sol >}}
+{{< /m2sol >}}
+
 {{< /m2prob >}}
 
 ** Q4
@@ -205,6 +227,9 @@ Prove that the _real numbers_ are /uncountable/; i.e. that \(|\mathbb{R}| \neq |
 
 {{< m2prob >}}
 What does the sequence \(1,\tfrac14,\tfrac19,\tfrac1{16},\ldots\) converge to? (If at all)
+{{< m2sol >}}
+{{< /m2sol >}}
+
 {{< /m2prob >}}
 
 *** b
@@ -215,6 +240,9 @@ What does the sequence \(1,\tfrac14,\tfrac19,\tfrac1{16},\ldots\) converge to? (
 
 {{< m2prob >}}
 What does the sequence \(1,\tfrac12,\tfrac13,\tfrac1{14},\ldots\) converge to? (If at all)
+{{< m2sol >}}
+{{< /m2sol >}}
+
 {{< /m2prob >}}
 
 ** Q5
@@ -224,6 +252,9 @@ What does the sequence \(1,\tfrac12,\tfrac13,\tfrac1{14},\ldots\) converge to? (
 
 {{< m2prob >}}
 Which is larger asymptotically as $n \rightarrow \infty$? \(2^n\) or \(n!\)? Give a proof by induction.
+{{< m2sol >}}
+{{< /m2sol >}}
+
 {{< /m2prob >}}
 
 ** Q6
@@ -233,6 +264,9 @@ Which is larger asymptotically as $n \rightarrow \infty$? \(2^n\) or \(n!\)? Giv
 
 {{< m2prob >}}
 Rewrite this problem in terms of the Wolfe dual. Hence solve it.
+{{< m2sol >}}
+{{< /m2sol >}}
+
 {{< /m2prob >}}
 
 ** Q7
@@ -242,6 +276,9 @@ Rewrite this problem in terms of the Wolfe dual. Hence solve it.
 
 {{< m2prob >}}
 pick a function spaces. use norms on it. see your analysis assignments.
+{{< m2sol >}}
+{{< /m2sol >}}
+
 {{< /m2prob >}}
 
 ** Q8
@@ -257,6 +294,9 @@ pick a function spaces. use norms on it. see your analysis assignments.
 
 {{< m2prob >}}
 4.3b, 4.4 find the eigenspaces
+{{< m2sol >}}
+{{< /m2sol >}}
+
 {{< /m2prob >}}
 
 *** b
@@ -267,6 +307,9 @@ pick a function spaces. use norms on it. see your analysis assignments.
 
 {{< m2prob >}}
 4.5, 4.6, determine diagonalisability.
+{{< m2sol >}}
+{{< /m2sol >}}
+
 {{< /m2prob >}}
 
 ** Q9
@@ -276,6 +319,9 @@ pick a function spaces. use norms on it. see your analysis assignments.
 
 {{< m2prob >}}
 MML: 6.1
+{{< m2sol >}}
+{{< /m2sol >}}
+
 {{< /m2prob >}}
 
 ** Q10
@@ -285,6 +331,9 @@ MML: 6.1
 
 {{< m2prob >}}
 MML: 6.11
+{{< m2sol >}}
+{{< /m2sol >}}
+
 {{< /m2prob >}}
 
 ** Q11
@@ -298,6 +347,9 @@ State the Moment Generating Function (or pdf, not sure which is required for thi
 a. Poisson
 b. Bernoulli
 c. Normal
+{{< m2sol >}}
+{{< /m2sol >}}
+
 {{< /m2prob >}}
 
 ** Q12
@@ -311,6 +363,9 @@ a. Poisson
 b. Bernoulli
 
 You may find the result from Q11 helpful.
+{{< m2sol >}}
+{{< /m2sol >}}
+
 {{< /m2prob >}}
 
 
@@ -321,6 +376,9 @@ You may find the result from Q11 helpful.
 
 {{< m2prob >}}
 Distance between an arbitrary point and hyperplane given by $wx + b = 0$
+{{< m2sol >}}
+{{< /m2sol >}}
+
 {{< /m2prob >}}
 
 ** Q14
@@ -330,6 +388,9 @@ Distance between an arbitrary point and hyperplane given by $wx + b = 0$
 
 {{< m2prob >}}
 Optimisation steepest descent method. ask about the number of iterations.
+{{< m2sol >}}
+{{< /m2sol >}}
+
 {{< /m2prob >}}
 
 ** Q15
@@ -345,11 +406,10 @@ Optimisation steepest descent method. ask about the number of iterations.
 
 {{< m2prob >}}
 Prove that \[|a| \leq b \iff -b \leq a \leq b\]
-{{< /m2prob >}}
-
 {{< m2sol >}}
 proof book (white rhodia)
 {{< /m2sol >}}
+{{< /m2prob >}}
 
 *** b
 :PROPERTIES:
@@ -359,11 +419,10 @@ proof book (white rhodia)
 
 {{< m2prob >}}
 Prove that \[\forall a, b \in \mathbb{R}, \quad |a|\cdot |b| = |a\cdot b |\]
-{{< /m2prob >}}
-
 {{< m2sol >}}
 proof book (white rhodia)
 {{< /m2sol >}}
+{{< /m2prob >}}
 
 *** c
 :PROPERTIES:
@@ -371,15 +430,19 @@ proof book (white rhodia)
 :MARK: 2
 :END:
 
+{{< m2prob >}}
 Complete the following
 
 {{< m2prop >}}
 Two real numbers, $a$ and $b$ are equal if and only if, for every $\epsilon > 0$, $|a-b| <\epsilon$.
-{{< /m2prop >}}
-
 {{< m2proof >}}
+{{< m2sol >}}
 proof book (white rhodia)
+{{< /m2sol >}}
 {{< /m2proof >}}
+{{< /m2prop >}}
+{{< /m2prob >}}
+
 
 ** Q16
 :PROPERTIES:
@@ -387,15 +450,19 @@ proof book (white rhodia)
 :MARK: 2
 :END:
 
+{{< m2prob >}}
 Complete the following
 
 {{< m2prop >}}
 Let $\mathcal{A}\subseteq \mathbb{R}$ and $m\in \mathcal{A}$ be the minimum of $\mathcal{A}$, then $\inf \mathcal{A} = m$.
-{{< /m2prop >}}
-
 {{< m2proof >}}
+{{< m2sol >}}
 proof book (white rhodia)
+{{< /m2sol >}}
 {{< /m2proof >}}
+
+{{< /m2prop >}}
+{{< /m2prob >}}
 
 ** Q17
 :PROPERTIES:
@@ -410,11 +477,16 @@ proof book (white rhodia)
 
 {{< m2prob >}}
 State and prove the Triangle Inequality
+{{< m2sol >}}
+{{< m2prop >}}
+proof book (white rhodia)
+{{< /m2prop >}}
+{{< m2proof >}}
+{{< /m2proof >}}
+{{< /m2sol >}}
+
 {{< /m2prob >}}
 
-{{< m2sol >}}
-proof book (white rhodia)
-{{< /m2sol >}}
 
 *** b
 :PROPERTIES:
@@ -424,13 +496,16 @@ proof book (white rhodia)
 
 Complete the following
 
-{{< m2prop >}}
+{{< m2prob >}}
 Hence, or otherwise, state and prove Cauchy-Schwarz inequality.
+{{< m2sol >}}
+{{< m2prop >}}
 {{< /m2prop >}}
-
 {{< m2proof >}}
 proof book (white rhodia)
 {{< /m2proof >}}
+{{< /m2sol >}}
+{{< /m2prob >}}
 
 ** Q18
 :PROPERTIES:
@@ -438,15 +513,19 @@ proof book (white rhodia)
 :MARK: 2
 :END:
 
+{{< m2prob >}}
 Complete the following
 
 {{< m2prop >}}
 Every $\epsilon$-ball in a metric space is open.
 {{< /m2prop >}}
-
 {{< m2proof >}}
+{{< m2sol >}}
 proof book (white rhodia)
+{{< /m2sol >}}
 {{< /m2proof >}}
+{{< /m2prob >}}
+
 
 ** Q19
 :PROPERTIES:
@@ -461,11 +540,11 @@ proof book (white rhodia)
 
 {{< m2prob >}}
 Define mathematically what it means for a set to be convex.
-{{< /m2prob >}}
-
 {{< m2sol >}}
 check optimisation workbook and corresponding typst sheet.
 {{< /m2sol >}}
+{{< /m2prob >}}
+
 
 *** b
 :PROPERTIES:
@@ -475,13 +554,14 @@ check optimisation workbook and corresponding typst sheet.
 
 Complete the following
 
-{{< m2prop >}}
+{{< m2prob >}}
 Determine if the following set is convex: 
-{{< /m2prop >}}
-
-{{< m2proof >}}
+{{< m2sol >}}
 as part a
-{{< /m2proof >}}
+{{< /m2sol >}}
+{{< /m2prob >}}
+
+
 
 *** c
 :PROPERTIES:
@@ -491,13 +571,14 @@ as part a
 
 Complete the following
 
-{{< m2prop >}}
+{{< m2prob >}}
 Hence, or otherwise, find the maxima of this function.
-{{< /m2prop >}}
-
-{{< m2proof >}}
+{{< m2sol >}}
 check q
-{{< /m2proof >}}
+{{< /m2sol >}}
+{{< /m2prob >}}
+
+
 
 ** Q20
 :PROPERTIES:
@@ -512,15 +593,16 @@ check q
 
 {{< m2prob >}}
 Give the definition of a Hilbert space
-{{< /m2prob >}}
-
-{{< m2def >}}
+{{< m2def "Hilbert Space" >}}
 
 {{< m2sol >}}
 a complete, normed vector space
 {{< /m2sol >}}
 
 {{< /m2def >}}
+{{< /m2prob >}}
+
+
 
 *** b
 :PROPERTIES:
@@ -530,11 +612,12 @@ a complete, normed vector space
 
 {{< m2prob >}}
 not sure which problem to ask here
-{{< /m2prob >}}
-
 {{< m2sol >}}
 maybe something about $l^\infty$?
 {{< /m2sol >}}
+{{< /m2prob >}}
+
+
 
 
 ** Q21
@@ -544,6 +627,8 @@ maybe something about $l^\infty$?
 
 {{< m2prob >}}
 topology question. discrete, coarse, fine, etc.
+{{< m2sol >}}
+{{< /m2sol >}}
 {{< /m2prob >}}
 
 ** Q22
@@ -553,6 +638,8 @@ topology question. discrete, coarse, fine, etc.
 
 {{< m2prob >}}
 convergence of a function
+{{< m2sol >}}
+{{< /m2sol >}}
 {{< /m2prob >}}
 
 ** Q23
@@ -562,6 +649,8 @@ convergence of a function
 
 {{< m2prob >}}
 convergence of the central limit theorem.
+{{< m2sol >}}
+{{< /m2sol >}}
 {{< /m2prob >}}
 
 ** Q24
