@@ -1,0 +1,583 @@
++++
+title = "Problems"
+displayTitle = "24th Birthday Problems"
+tikzajax = "true"
+math = "true"
++++
+
+#+begin_export html
+<aside class="custom-toc">
+<nav>
+<p class="sidebar__heading">Table Of Contents</p>
+#+end_export
+
+#+toc: headlines 2
+
+#+begin_export html
+</nav></aside>
+#+end_export
+
+
+** Q1
+:PROPERTIES:
+:CUSTOM_ID: q1
+:END:
+
+Given that $A$ and $B$ are sets like so:
+
+{{< tikztwo >}}
+\begin{document}
+\begin{tikzpicture}[scale=1.5, transform shape]
+  % Define natural colors
+  \definecolor{AColor}{RGB}{120, 180, 140}
+  \definecolor{BColor}{RGB}{200, 160, 120}
+  
+  % Draw rectangle border
+  \draw[thick, rounded corners=8pt] (-3.2,-2.2) rectangle (3.2,2.2);
+  
+  % Draw A - B (left crescent)
+  \begin{scope}
+    \clip (-1,0) circle (1.6cm);
+    \fill[AColor] (-1,0) circle (1.6cm);
+    \fill[white] (1,0) circle (1.6cm);
+  \end{scope}
+  
+  % Draw B - A (right crescent)
+  \begin{scope}
+    \clip (1,0) circle (1.6cm);
+    \fill[BColor] (1,0) circle (1.6cm);
+    \fill[white] (-1,0) circle (1.6cm);
+  \end{scope}
+  
+  % Draw circle borders
+  \draw[thick] (-1,0) circle (1.6cm);
+  \draw[thick] (1,0) circle (1.6cm);
+  
+  % Labels
+  \node at (-1,0) {\(A\)};
+  \node at (1,0) {\(B\)};
+  
+\end{tikzpicture}
+\end{document}
+{{< /tikztwo >}}
+
+
+
+*** a)
+:PROPERTIES:
+:MARK: 1
+:CUSTOM_ID: 1a
+:END:
+
+{{< m2prob >}}
+
+Give an expression for the conditional probability $P(A|B)$
+
+{{< /m2prob >}}
+
+
+*** b)
+:PROPERTIES:
+:CUSTOM_ID: 1b
+:MARK: 1
+:END:
+
+{{< m2prob >}}
+
+Hence or otherwise derive Bayes' (first) rule for conditional probability:
+
+\[P(A|B) = P(B|A) \times \frac{P(A)}{P(B)}\]
+
+{{< /m2prob >}}
+
+*** c)
+:PROPERTIES:
+:CUSTOM_ID: 1c
+:MARK: 2
+:END:
+
+{{< m2prob >}}
+
+Prove that the symmetric difference $A\Delta B = (A - B) \cup (B - A)$ is the same as $(A\cup B) - (A\cap B)$.
+
+{{< m2sol >}}
+
+Let $x\in A \Delta B$.
+
+Then:
+<ul>
+<li>$x\in A-B \implies x\in A$ and $x\not\in B$</li>
+</ul>
+
+OR:
+<ul>
+<li>$x\in B-A \implies x\in B$ and $x\not\in A$</li>
+</ul>
+
+So:
+<ul>
+<li>$x\in A$ or $x \in B \implies x\in (A\cup B)$</li>
+<li>$x \not \in (A\cap B) \implies x\in (A\cap B)^c$</li>
+</ul>
+
+Therefore:
+\[x\in(A\cup B) \cap (A\cap B)^c
+=(A\cup B)- (A\cap B)\]
+
+{{< /m2sol >}}
+
+{{< /m2prob >}}
+
+** Q2
+:PROPERTIES:
+:CUSTOM_ID: q2
+:END:
+
+Monty Hall Problem:
+
+*** a
+:PROPERTIES:
+:CUSTOM_ID: q2a
+:MARK: 2
+:END:
+
+{{< m2prob >}}
+normal version
+{{< /m2prob >}}
+
+*** b
+:PROPERTIES:
+:CUSTOM_ID: q2b
+:MARK: 3
+:END:
+
+{{< m2prob >}}
+hard version
+{{< /m2prob >}}
+
+
+** Q3
+:PROPERTIES:
+:CUSTOM_ID: q2
+:MARK: 2
+:END:
+
+*** a
+:PROPERTIES:
+:CUSTOM_ID: q3a
+:MARK: 2
+:END:
+
+{{< m2prob >}}
+Prove that there are equally as many *natural numbers* as there are *integers*, i.e. that \(|\mathbb{Z}| = |\mathbb{N}|\).
+{{< /m2prob >}}
+
+*** b
+:PROPERTIES:
+:CUSTOM_ID: q3b
+:MARK: 2
+:END:
+
+{{< m2prob >}}
+Prove that there are equally as many *integers* as there are *rational numbers*, i.e. that \(|\mathbb{Q}| = |\mathbb{R}|\).
+{{< /m2prob >}}
+
+*** c
+:PROPERTIES:
+:CUSTOM_ID: q3b
+:MARK: 3
+:END:
+
+{{< m2prob >}}
+Prove that the _real numbers_ are /uncountable/; i.e. that \(|\mathbb{R}| \neq |\mathbb{N}|\).
+{{< /m2prob >}}
+
+** Q4
+:PROPERTIES:
+:CUSTOM_ID: q4
+:END:
+
+*** a
+:PROPERTIES:
+:CUSTOM_ID: q4a
+:MARK: 2
+:END:
+
+{{< m2prob >}}
+What does the sequence \(1,\tfrac14,\tfrac19,\tfrac1{16},\ldots\) converge to? (If at all)
+{{< /m2prob >}}
+
+*** b
+:PROPERTIES:
+:CUSTOM_ID: q4b
+:MARK: 2
+:END:
+
+{{< m2prob >}}
+What does the sequence \(1,\tfrac12,\tfrac13,\tfrac1{14},\ldots\) converge to? (If at all)
+{{< /m2prob >}}
+
+** Q5
+:PROPERTIES:
+:CUSTOM_ID: q5
+:END:
+
+{{< m2prob >}}
+Which is larger asymptotically as $n \rightarrow \infty$? \(2^n\) or \(n!\)? Give a proof by induction.
+{{< /m2prob >}}
+
+** Q6
+:PROPERTIES:
+:CUSTOM_ID: q6
+:END:
+
+{{< m2prob >}}
+Rewrite this problem in terms of the Wolfe dual. Hence solve it.
+{{< /m2prob >}}
+
+** Q7
+:PROPERTIES:
+:CUSTOM_ID: q7
+:END:
+
+{{< m2prob >}}
+pick a function spaces. use norms on it. see your analysis assignments.
+{{< /m2prob >}}
+
+** Q8
+:PROPERTIES:
+:CUSTOM_ID: q8
+:END:
+
+*** a
+:PROPERTIES:
+:CUSTOM_ID: q8a
+:MARK: 2
+:END:
+
+{{< m2prob >}}
+4.3b, 4.4 find the eigenspaces
+{{< /m2prob >}}
+
+*** b
+:PROPERTIES:
+:CUSTOM_ID: q8b
+:MARK: 2
+:END:
+
+{{< m2prob >}}
+4.5, 4.6, determine diagonalisability.
+{{< /m2prob >}}
+
+** Q9
+:PROPERTIES:
+:CUSTOM_ID: q9
+:END:
+
+{{< m2prob >}}
+MML: 6.1
+{{< /m2prob >}}
+
+** Q10
+:PROPERTIES:
+:CUSTOM_ID: q10
+:END:
+
+{{< m2prob >}}
+MML: 6.11
+{{< /m2prob >}}
+
+** Q11
+:PROPERTIES:
+:CUSTOM_ID: q11
+:END:
+
+{{< m2prob >}}
+State the Moment Generating Function (or pdf, not sure which is required for this) for the following distributions:
+
+a. Poisson
+b. Bernoulli
+c. Normal
+{{< /m2prob >}}
+
+** Q12
+:PROPERTIES:
+:CUSTOM_ID: q12
+:END:
+
+{{< m2prob >}}
+Derive the mean and variance of the following distributions.
+a. Poisson
+b. Bernoulli
+
+You may find the result from Q11 helpful.
+{{< /m2prob >}}
+
+
+** Q13
+:PROPERTIES:
+:CUSTOM_ID: q13
+:END:
+
+{{< m2prob >}}
+Distance between an arbitrary point and hyperplane given by $wx + b = 0$
+{{< /m2prob >}}
+
+** Q14
+:PROPERTIES:
+:CUSTOM_ID: q14
+:END:
+
+{{< m2prob >}}
+Optimisation steepest descent method. ask about the number of iterations.
+{{< /m2prob >}}
+
+** Q15
+:PROPERTIES:
+:CUSTOM_ID: q15
+:END:
+
+*** a
+:PROPERTIES:
+:CUSTOM_ID: q15a
+:MARK: 2
+:END:
+
+{{< m2prob >}}
+Prove that \[|a| \leq b \iff -b \leq a \leq b\]
+{{< /m2prob >}}
+
+{{< m2sol >}}
+proof book (white rhodia)
+{{< /m2sol >}}
+
+*** b
+:PROPERTIES:
+:CUSTOM_ID: q15b
+:MARK: 2
+:END:
+
+{{< m2prob >}}
+Prove that \[\forall a, b \in \mathbb{R}, \quad |a|\cdot |b| = |a\cdot b |\]
+{{< /m2prob >}}
+
+{{< m2sol >}}
+proof book (white rhodia)
+{{< /m2sol >}}
+
+*** c
+:PROPERTIES:
+:CUSTOM_ID: q15c
+:MARK: 2
+:END:
+
+Complete the following
+
+{{< m2prop >}}
+Two real numbers, $a$ and $b$ are equal if and only if, for every $\epsilon > 0$, $|a-b| <\epsilon$.
+{{< /m2prop >}}
+
+{{< m2proof >}}
+proof book (white rhodia)
+{{< /m2proof >}}
+
+** Q16
+:PROPERTIES:
+:CUSTOM_ID: q16
+:MARK: 2
+:END:
+
+Complete the following
+
+{{< m2prop >}}
+Let $\mathcal{A}\subseteq \mathbb{R}$ and $m\in \mathcal{A}$ be the minimum of $\mathcal{A}$, then $\inf \mathcal{A} = m$.
+{{< /m2prop >}}
+
+{{< m2proof >}}
+proof book (white rhodia)
+{{< /m2proof >}}
+
+** Q17
+:PROPERTIES:
+:CUSTOM_ID: q17
+:END:
+
+*** a
+:PROPERTIES:
+:CUSTOM_ID: q17a
+:MARK: 2
+:END:
+
+{{< m2prob >}}
+State and prove the Triangle Inequality
+{{< /m2prob >}}
+
+{{< m2sol >}}
+proof book (white rhodia)
+{{< /m2sol >}}
+
+*** b
+:PROPERTIES:
+:CUSTOM_ID: q17b
+:MARK: 2
+:END:
+
+Complete the following
+
+{{< m2prop >}}
+Hence, or otherwise, state and prove Cauchy-Schwarz inequality.
+{{< /m2prop >}}
+
+{{< m2proof >}}
+proof book (white rhodia)
+{{< /m2proof >}}
+
+** Q18
+:PROPERTIES:
+:CUSTOM_ID: q18
+:MARK: 2
+:END:
+
+Complete the following
+
+{{< m2prop >}}
+Every $\epsilon$-ball in a metric space is open.
+{{< /m2prop >}}
+
+{{< m2proof >}}
+proof book (white rhodia)
+{{< /m2proof >}}
+
+** Q19
+:PROPERTIES:
+:CUSTOM_ID: q19
+:END:
+
+*** a
+:PROPERTIES:
+:CUSTOM_ID: q19a
+:MARK: 2
+:END:
+
+{{< m2prob >}}
+Define mathematically what it means for a set to be convex.
+{{< /m2prob >}}
+
+{{< m2sol >}}
+check optimisation workbook and corresponding typst sheet.
+{{< /m2sol >}}
+
+*** b
+:PROPERTIES:
+:CUSTOM_ID: q19b
+:MARK: 2
+:END:
+
+Complete the following
+
+{{< m2prop >}}
+Determine if the following set is convex: 
+{{< /m2prop >}}
+
+{{< m2proof >}}
+as part a
+{{< /m2proof >}}
+
+*** c
+:PROPERTIES:
+:CUSTOM_ID: q19c
+:MARK: 2
+:END:
+
+Complete the following
+
+{{< m2prop >}}
+Hence, or otherwise, find the maxima of this function.
+{{< /m2prop >}}
+
+{{< m2proof >}}
+check q
+{{< /m2proof >}}
+
+** Q20
+:PROPERTIES:
+:CUSTOM_ID: q20
+:END:
+
+*** a
+:PROPERTIES:
+:CUSTOM_ID: q20a
+:MARK: 1
+:END:
+
+{{< m2prob >}}
+Give the definition of a Hilbert space
+{{< /m2prob >}}
+
+{{< m2def >}}
+
+{{< m2sol >}}
+a complete, normed vector space
+{{< /m2sol >}}
+
+{{< /m2def >}}
+
+*** b
+:PROPERTIES:
+:CUSTOM_ID: q20b
+:MARK: 2
+:END:
+
+{{< m2prob >}}
+not sure which problem to ask here
+{{< /m2prob >}}
+
+{{< m2sol >}}
+maybe something about $l^\infty$?
+{{< /m2sol >}}
+
+
+** Q21
+:PROPERTIES:
+:CUSTOM_ID: q21
+:END:
+
+{{< m2prob >}}
+topology question. discrete, coarse, fine, etc.
+{{< /m2prob >}}
+
+** Q22
+:PROPERTIES:
+:CUSTOM_ID: q22
+:END:
+
+{{< m2prob >}}
+convergence of a function
+{{< /m2prob >}}
+
+** Q23
+:PROPERTIES:
+:CUSTOM_ID: q23
+:END:
+
+{{< m2prob >}}
+convergence of the central limit theorem.
+{{< /m2prob >}}
+
+** Q24
+:PROPERTIES:
+:CUSTOM_ID: q24
+:END:
+
+{{< m2prob >}}
+What is the maximum straight-line distance in an N-dimensional hyper-cube?
+
+{{< m2sol >}}
+\[\Large \sqrt{N}\]
+{{< /m2sol >}}
+
+{{< /m2prob >}}
+
+
+
+
