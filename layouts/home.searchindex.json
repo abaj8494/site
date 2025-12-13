@@ -10,10 +10,14 @@
   {{- with .File -}}
     {{- $filename = .Path -}}
   {{- end -}}
+  {{- $searchTitle := .Title -}}
+  {{- with .Params.displayTitle -}}
+    {{- $searchTitle = . -}}
+  {{- end -}}
   {{- $searchIndex = $searchIndex | append 
     (dict 
       "id" $index
-      "title" .Title
+      "title" $searchTitle
       "date" (.Date.Format "2006-01-02")
       "permalink" .RelPermalink
       "tags" (.Params.tags | default slice)

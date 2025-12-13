@@ -10,7 +10,7 @@ layout: single
 {{< collapse folded="true">}}
 Each year I release a set of problems to celebrate yet another year of life and study. On this page you will find the embedded Problem Sets, a submission [[/projects/bday-problems#link][link]] and the [[/projects/bday-problems#winners][List of Past Winners]].
 
-** [[/projects/bday-problems/24th/problems][24th]]
+** [[/projects/bday-problems/24th][24th]]
 :PROPERTIES:
 :CUSTOM_ID: 24th
 :END:

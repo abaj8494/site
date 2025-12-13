@@ -58,11 +58,17 @@
     {{- /* Clean up whitespace */ -}}
     {{- $cleanTitle = $cleanTitle | replaceRE `\s+` " " | strings.TrimSpace -}}
     
+    {{- /* Use displayTitle for search if available, otherwise use cleanTitle */ -}}
+    {{- $searchTitle := $cleanTitle -}}
+    {{- with $page.Params.displayTitle -}}
+      {{- $searchTitle = . -}}
+    {{- end -}}
+    
     {{- /* Build search entry */ -}}
     {{- $searchIndex = $searchIndex | append 
       (dict 
         "id" $index
-        "title" $cleanTitle
+        "title" $searchTitle
         "date" ($page.Date.Format "2006-01-02")
         "permalink" $page.RelPermalink
         "tags" $tags
