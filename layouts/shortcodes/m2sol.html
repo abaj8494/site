@@ -1,4 +1,14 @@
 <!-- Mathematical Solution shortcode (v2 - Nested support) -->
+{{- $releaseDate := .Page.Params.releaseDate -}}
+{{- $now := now -}}
+{{- $shouldShow := true -}}
+
+{{- if $releaseDate -}}
+  {{- $releaseDateTime := time $releaseDate -}}
+  {{- $shouldShow = $now.After $releaseDateTime -}}
+{{- end -}}
+
+{{- if $shouldShow -}}
 <div class="math-solution">
   <div class="math-solution-header">
     <strong>Solution</strong>
@@ -60,4 +70,5 @@
     color: var(--info, #9ca3af);
   }
 </style>
+{{- end -}}
 

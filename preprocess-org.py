@@ -11,56 +11,146 @@ from pathlib import Path
 # Shortcodes to preprocess
 SHORTCODES = ['m2prob', 'm2sol', 'm2def', 'm2prop', 'm2proof', 'm2lemm', 'm2rem', 'm2exam']
 
-def convert_org_list_to_html(content):
-    """Convert org-mode bullet lists to HTML, but stop at shortcode boundaries."""
+def convert_org_to_html(content):
+    """Convert org-mode syntax to HTML, but stop at shortcode boundaries."""
     lines = content.split('\n')
     result = []
-    in_list = False
+    in_unordered_list = False
+    in_ordered_list = False
     list_items = []
     
     for line in lines:
         stripped = line.strip()
         
-        # Check if this line contains a shortcode
-        if '{{<' in line or '{{%' in line:
+        # Skip lines that already contain HTML tags (already processed)
+        if '<li>' in line or '<ul>' in line or '<ol>' in line or '<strong>' in line or '<em>' in line or '<code>' in line:
             # Close any open list
-            if in_list:
+            if in_unordered_list:
                 result.append('<ul>')
                 result.extend(list_items)
                 result.append('</ul>')
-                in_list = False
+                in_unordered_list = False
+                list_items = []
+            elif in_ordered_list:
+                result.append('<ol>')
+                result.extend(list_items)
+                result.append('</ol>')
+                in_ordered_list = False
+                list_items = []
+            result.append(line)
+            continue
+        
+        # Check if this line contains a shortcode - preserve as-is
+        if '{{<' in line or '{{%' in line:
+            # Close any open list
+            if in_unordered_list:
+                result.append('<ul>')
+                result.extend(list_items)
+                result.append('</ul>')
+                in_unordered_list = False
+                list_items = []
+            elif in_ordered_list:
+                result.append('<ol>')
+                result.extend(list_items)
+                result.append('</ol>')
+                in_ordered_list = False
                 list_items = []
             # Add the shortcode line as-is
             result.append(line)
             continue
         
-        # Check if this is a list item (starts with "- ")
+        # Check for unordered list (starts with "- ")
         if stripped.startswith('- '):
-            if not in_list:
-                in_list = True
+            # Close ordered list if open
+            if in_ordered_list:
+                result.append('<ol>')
+                result.extend(list_items)
+                result.append('</ol>')
+                in_ordered_list = False
+                list_items = []
+            
+            if not in_unordered_list:
+                in_unordered_list = True
                 list_items = []
             # Extract content after "- "
             item_content = stripped[2:]
             list_items.append(f'<li>{item_content}</li>')
-        else:
-            # Not a list item - close any open list
-            if in_list:
+            continue
+        
+        # Check for ordered lists: "a. ", "a) ", "1. ", "1) "
+        ordered_match = re.match(r'^([a-z0-9]+)[\.\)]\s+(.+)$', stripped)
+        if ordered_match:
+            # Close unordered list if open
+            if in_unordered_list:
                 result.append('<ul>')
                 result.extend(list_items)
                 result.append('</ul>')
-                in_list = False
+                in_unordered_list = False
                 list_items = []
-            # Add the line as-is
-            if line or not in_list:  # Preserve empty lines outside lists
-                result.append(line)
+            
+            if not in_ordered_list:
+                in_ordered_list = True
+                list_items = []
+            item_content = ordered_match.group(2)
+            list_items.append(f'<li>{item_content}</li>')
+            continue
+        
+        # Not a list item - close any open list
+        if in_unordered_list:
+            result.append('<ul>')
+            result.extend(list_items)
+            result.append('</ul>')
+            in_unordered_list = False
+            list_items = []
+        elif in_ordered_list:
+            result.append('<ol>')
+            result.extend(list_items)
+            result.append('</ol>')
+            in_ordered_list = False
+            list_items = []
+        
+        # Add the line as-is (preserving all whitespace)
+        result.append(line)
     
     # Close any remaining open list
-    if in_list:
+    if in_unordered_list:
         result.append('<ul>')
         result.extend(list_items)
         result.append('</ul>')
+    elif in_ordered_list:
+        result.append('<ol>')
+        result.extend(list_items)
+        result.append('</ol>')
     
-    return '\n'.join(result)
+    # Join back, then apply inline formatting ONLY if not already processed
+    text = '\n'.join(result)
+    
+    # Don't apply inline formatting if HTML tags already present
+    if '<strong>' in text or '<em>' in text or '<code>' in text:
+        return text
+    
+    # Convert org-mode bold: *text* -> <strong>text</strong>
+    # Match *text with spaces* but not math operators or asterisks in other contexts
+    # Requires word boundary before * and after *, doesn't cross lines
+    text = re.sub(r'\B\*([^\*\n]+?)\*\B', r'<strong>\1</strong>', text)
+    
+    # Convert org-mode italic: _text_ -> <em>text</em>
+    # Match _text with spaces_
+    text = re.sub(r'\b_([^_\n]+?)_\b', r'<em>\1</em>', text)
+    
+    # Convert org-mode italic: /text/ -> <em>text</em>
+    # Match /text with spaces/, not preceded/followed by word chars
+    text = re.sub(r'(?<!\w)/([^/\n]+?)/(?!\w)', r'<em>\1</em>', text)
+    
+    # Convert org-mode code: =text= -> <code>text</code>
+    # ONLY if not inside math (no dollar signs nearby)
+    # Org-mode code typically doesn't contain spaces
+    text = re.sub(r'(?<!\$)=([^=\s\n]+)=(?!\$)', r'<code>\1</code>', text)
+    
+    # Convert org-mode code: ~text~ -> <code>text</code>
+    text = re.sub(r'~([^~\s\n]+)~', r'<code>\1</code>', text)
+    
+    return text
 
 def preprocess_shortcode_content(match):
     """Process the content inside a matched shortcode."""
@@ -69,10 +159,10 @@ def preprocess_shortcode_content(match):
     content = match.group(3)
     
     # Convert org-mode syntax to HTML in the content
-    processed_content = convert_org_list_to_html(content)
+    processed_content = convert_org_to_html(content)
     
     # Reconstruct the shortcode with processed content
-    return f'{{{{< {shortcode_name}{params} >}}}}\n{processed_content}\n{{{{< /{shortcode_name} >}}}}'
+    return f'{{{{< {shortcode_name}{params} >}}}}{processed_content}{{{{< /{shortcode_name} >}}}}'
 
 def preprocess_file(content):
     """Preprocess a single file's content."""
