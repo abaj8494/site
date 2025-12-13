@@ -1188,6 +1188,10 @@ could have used deep copy, but that would make this solution less efficient.
 deep copies are only necessary when dealing with nested or mutable data
 
 
+time: O(N*2^n)
+space: O(N*2^n)
+
+
 **** 77. Combinations | medium
 
 #+begin_src python
@@ -1198,14 +1202,15 @@ deep copies are only necessary when dealing with nested or mutable data
               return
           for i in range(start, n+1):
               path.append(i)
-              backtrack(i+1,paath)
+              backtrack(i+1,path)
               path.pop()
       result = []
       backtrack(1, [])
       return result
 #+end_src
 
-
+time: $O(k \cdot {n\choose k})$
+space: $O(k)$
 
 **** 46. Permutations | medium
 
@@ -1219,9 +1224,288 @@ deep copies are only necessary when dealing with nested or mutable data
               nums[start], nums[i] = nums[i], nums[start]
               backtrack(start+1, end)
               nums[start], nums[i] = nums[i], nums[start]
-      result = 0
+      result = []
       backtrack(0, len(nums))
       return result
+#+end_src
+
+**** 37. Sudoku Solver | Hard
+
+inspired by lazily copying the above (somewhat) boring backtrackings, I decided to apply what I learned to solve Sudokus:
+
+#+begin_src python
+from typing import List
+
+class Solution:
+    def solveSudoku(self, board: List[List[str]]) -> None:
+        N = len(board)
+        visited = set()
+        empties = []
+
+        def hashBoard():
+            """
+            total = 0
+            for row in range(N):
+                for col in range(N):
+                    total += board[row][col]
+            visited.add(total)
+            """
+            # again, a garbage hash.
+            hashed_board = "".join("".join(i for i in row) for row in board)
+
+            print("hashed board:", hashed_board)
+            return hashed_board
+
+        def fullGroup(group: List[str]) -> bool:
+            uniques = list(set(group))
+            if len(uniques) != N:
+                return False
+            return True
+
+        def checkGroup(group: List[str]) -> bool:
+            uniques = list(set(group))
+            counts = {s: group.count(s) for s in uniques}
+            #del counts['.']  # we don't care about how many empties
+            counts.pop('.', None)
+            if any(value > 1 for value in counts.values()):
+                return False
+            if any(int(key) > 9 or int(key) < 1 for key in counts.keys()):
+                return False
+            return True
+
+        def isSolved():
+            """
+            rowSum = 0
+            for row in board:
+                if sum(row) != WIN_SUM:
+                    return False
+            """
+            # this is a stupid way to check! you can literally do 9 5's
+            ###########################################################
+            # check rows:
+            for row in board:
+                if not (checkGroup(row) and fullGroup(row)):
+                    return False
+
+            # check columns:
+            for i in range(N):
+                col = [row[i] for row in board]
+                if not (checkGroup(col) and fullGroup(col)):
+                    return False
+
+            # check grids:
+            for row_offset in range(0, N, 3):
+                for col_offset in range(0, N, 3):
+                    subgrid = []
+                    for r in range(row_offset, row_offset + 3):
+                        for c in range(col_offset, col_offset + 3):
+                            subgrid.append(board[r][c])
+                    if not (checkGroup(subgrid) and fullGroup(subgrid)):
+                        return False
+            return True
+
+        def validMove(board_state: List[List[str]], pos: tuple) -> List[int]:
+            curr_num = board_state[pos[0]][pos[1]]
+            valid_moves = []
+            for i in range(1, N+1):  # checking candidates
+                board_state[pos[0]][pos[1]] = str(i) # set the candidate in board
+                row = board_state[pos[0]] # save row as var, with new candidate
+                col = [r[pos[1]] for r in board_state] # set col with candidate
+                subgrid = []
+                row_offset = (pos[0] // 3) * 3
+                col_offset = (pos[1] // 3) * 3
+                for r in range(row_offset, row_offset + 3):
+                    for c in range(col_offset, col_offset + 3):
+                        subgrid.append(board_state[r][c])
+
+                if not checkGroup(row):
+                    board_state[pos[0]][pos[1]] = curr_num # reset the board_state
+                    continue  # the i value does not work.
+                # check col
+                if not checkGroup(col):
+                    board_state[pos[0]][pos[1]] = curr_num # reset the board_state
+                    continue  # the i value does not work.
+                # check containing subgrid
+                if not checkGroup(subgrid):
+                    board_state[pos[0]][pos[1]] = curr_num # reset the board_state
+                    continue  # the i value does not work.
+                # position is valid
+                board_state[pos[0]][pos[1]] = curr_num # reset the board_state
+                valid_moves.append(str(i))
+            return valid_moves
+
+        def find_empties():
+            for i, row in enumerate(board):
+                for j, col in enumerate(row):
+                    if col == '.':
+                        empties.append((i, j))
+
+        def dfs():
+            dfs_rec(board, empties.pop(0))
+
+        def dfs_rec(board_state: List[List[str]], pos: tuple):
+            print(board)
+            if isSolved():
+                return True
+            hashed_board = hashBoard()
+            if hashed_board in visited:
+                return False
+            visited.add(hashed_board)
+            valid_moves = validMove(board_state, pos) # list of strings
+
+            for move in valid_moves:
+                original = board_state[pos[0]][pos[1]]
+                board_state[pos[0]][pos[1]] = move
+                dot = empties.pop(0)
+                if dfs_rec(board_state, dot):
+                    return True
+                else:
+                    # undo move
+                    empties.append(dot)
+                    board_state[pos[0]][pos[1]] = original
+            #return True
+
+
+        find_empties()
+        while not isSolved():
+            dfs()
+            break
+
+if __name__ == "__main__":
+    S = Solution()
+    board = [["5","3",".",".","7",".",".",".","."],
+             ["6",".",".","1","9","5",".",".","."],
+             [".","9","8",".",".",".",".","6","."],
+             ["8",".",".",".","6",".",".",".","3"],
+             ["4",".",".","8",".","3",".",".","1"],
+             ["7",".",".",".","2",".",".",".","6"],
+             [".","6",".",".",".",".","2","8","."],
+             [".",".",".","4","1","9",".",".","5"],
+             [".",".",".",".","8",".",".","7","9"]]
+    print(board)
+    S.solveSudoku(board)
+
+#+end_src
+
+it took me about 4 hours to come up with this, and still the solution is highly unoptimised.
+
+it turns out that my =isSolved()= calls are very expensive and poor design. also, the =empties.pop(0)= is a bottle-neck.
+
+so is the =checkGroup= function.
+
+instead a better solution looks like:
+
+#+begin_src python
+from typing import List
+
+class Solution:
+    def solveSudoku(self, board: List[List[str]]) -> None:
+        N = len(board)
+        empties = []
+
+        # ------------------------------------------------------------------
+        # (Kept from your code, but no longer used in the main DFS)
+        # ------------------------------------------------------------------
+        def fullGroup(group: List[str]) -> bool:
+            uniques = list(set(group))
+            if len(uniques) != N:
+                return False
+            return True
+
+        def checkGroup(group: List[str]) -> bool:
+            seen = set()
+            for ch in group:
+                if ch == '.':
+                    continue
+                if ch in seen:
+                    return False
+                seen.add(ch)
+            return True
+
+        def isSolved() -> bool:
+            # Full-board validator, not used inside DFS now
+            # check rows:
+            for row in board:
+                if not (checkGroup(row) and fullGroup(row)):
+                    return False
+
+            # check columns:
+            for i in range(N):
+                col = [row[i] for row in board]
+                if not (checkGroup(col) and fullGroup(col)):
+                    return False
+
+            # check grids:
+            for row_offset in range(0, N, 3):
+                for col_offset in range(0, N, 3):
+                    subgrid = []
+                    for r in range(row_offset, row_offset + 3):
+                        for c in range(col_offset, col_offset + 3):
+                            subgrid.append(board[r][c])
+                    if not (checkGroup(subgrid) and fullGroup(subgrid)):
+                        return False
+            return True
+
+        # ------------------------------------------------------------------
+        # NEW: O(1) constraint tracking with minimal changes to structure
+        # ------------------------------------------------------------------
+        rows  = [set() for _ in range(N)]
+        cols  = [set() for _ in range(N)]
+        boxes = [set() for _ in range(N)]  # index = (r//3)*3 + c//3
+
+        def find_empties():
+            for i, row in enumerate(board):
+                for j, val in enumerate(row):
+                    if val == '.':
+                        empties.append((i, j))
+                    else:
+                        rows[i].add(val)
+                        cols[j].add(val)
+                        boxes[(i // 3) * 3 + (j // 3)].add(val)
+
+        # reuse your validMove name/signature, but now use the row/col/box sets
+        def validMove(board_state: List[List[str]], pos: tuple) -> List[str]:
+            r, c = pos
+            b = (r // 3) * 3 + (c // 3)
+            valid_moves = []
+            for d in "123456789":
+                if d not in rows[r] and d not in cols[c] and d not in boxes[b]:
+                    valid_moves.append(d)
+            return valid_moves
+
+        # ------------------------------------------------------------------
+        # DFS using index into `empties` (no pop/append, no full-board checks)
+        # ------------------------------------------------------------------
+        def dfs_rec(idx: int) -> bool:
+            if idx == len(empties):
+                return True  # all empties filled legally
+
+            r, c = empties[idx]
+            if board[r][c] != '.':
+                return dfs_rec(idx + 1)
+
+            b = (r // 3) * 3 + (c // 3)
+            for move in validMove(board, (r, c)):
+                # place
+                board[r][c] = move
+                rows[r].add(move)
+                cols[c].add(move)
+                boxes[b].add(move)
+
+                if dfs_rec(idx + 1):
+                    return True
+
+                # undo
+                board[r][c] = '.'
+                rows[r].remove(move)
+                cols[c].remove(move)
+                boxes[b].remove(move)
+
+            return False
+
+        find_empties()
+        dfs_rec(0)
+
 #+end_src
 
 *** linked lists

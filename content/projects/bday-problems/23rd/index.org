@@ -197,31 +197,33 @@ Solving for the particular and homogenous solutions and combining them:
 :CUSTOM_ID: q8
 :END:
 
+The power series:
+
 *** a)
 
-\[\sum_{n=0}^\infty \frac{z^n}{z!} = z + \frac{z^2}{2!} + \frac{z^3}{3!} + \ldots \]
+\[\Large\begin{align*}\exp(z) &= \sum_{n=0}^\infty \frac{z^n}{z!}\\ &= z + \frac{z^2}{2!} + \frac{z^3}{3!} + \ldots\end{align*} \]
 
 *** b)
 
-\[\sin(x) = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + \ldots\]
+\[\Large\sin(x) = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + \ldots\]
 
 *** c)
 
-\[\cos(x) = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \frac{x^6}{6!} + \ldots\]
+\[\Large\cos(x) = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \frac{x^6}{6!} + \ldots\]
 
 *** d)
 
-\[\sinh(x) = x + \frac{x^3}{3!} + \frac{x^5}{5!} + \frac{x^7}{7!} + \ldots \]
+\[\Large\sinh(x) = x + \frac{x^3}{3!} + \frac{x^5}{5!} + \frac{x^7}{7!} + \ldots \]
 
 *** e)
 
-\[\cosh(x) = 1 + \frac{x^2}{2!} + \frac{x^4}{4!} + \frac{x^6}{6!} + \ldots\]
+\[\Large\cosh(x) = 1 + \frac{x^2}{2!} + \frac{x^4}{4!} + \frac{x^6}{6!} + \ldots\]
 
 *** f)
-\[\frac{1}{1-x} = 1 + x + x^2 + x^3 + \ldots\]
+\[\Large\frac{1}{1-x} = 1 + x + x^2 + x^3 + \ldots\]
 
 *** g)
-\[\frac{1}{1-x} = 1 - x + x^2 - x^3 + \ldots\]
+\[\Large\frac{1}{1-x} = 1 - x + x^2 - x^3 + \ldots\]
 
 ** Q9
 :PROPERTIES:
