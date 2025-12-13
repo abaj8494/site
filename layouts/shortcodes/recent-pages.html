@@ -1,0 +1,81 @@
+{{- $allPages := where .Site.RegularPages "Type" "in" (slice "blog" "projects" "words") -}}
+{{- $recentPages := first 10 ($allPages.ByLastmod.Reverse) -}}
+
+<style>
+  .recent-pages-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  
+  @media (max-width: 768px) {
+    .recent-pages-container {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+  
+  .recent-page-card {
+    background: var(--bg1);
+    border: 1px solid var(--bg1);
+    border-radius: 0.2rem;
+    padding: 1rem 1.25rem;
+    margin-bottom: 0.85rem;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .recent-page-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary);
+    background: var(--bg2);
+  }
+  
+  .recent-page-card a {
+    text-decoration: none;
+    color: var(--fg);
+    font-size: 1.1rem;
+    font-weight: 400;
+    display: block;
+    line-height: 1.4;
+  }
+  
+  .recent-page-card:hover a {
+    color: var(--primary-alt);
+  }
+</style>
+
+<div class="recent-pages-container">
+  <div class="recent-pages-column">
+    {{- range $index, $page := $recentPages -}}
+      {{- if lt $index 5 -}}
+        <div class="recent-page-card">
+          <a href="{{ $page.RelPermalink }}">
+            {{- if $page.Params.displaytitle -}}
+              {{ $page.Params.displaytitle | markdownify }}
+            {{- else -}}
+              {{ $page.Title | markdownify }}
+            {{- end -}}
+          </a>
+        </div>
+      {{- end -}}
+    {{- end -}}
+  </div>
+  <div class="recent-pages-column">
+    {{- range $index, $page := $recentPages -}}
+      {{- if and (ge $index 5) (lt $index 10) -}}
+        <div class="recent-page-card">
+          <a href="{{ $page.RelPermalink }}">
+            {{- if $page.Params.displaytitle -}}
+              {{ $page.Params.displaytitle | markdownify }}
+            {{- else -}}
+              {{ $page.Title | markdownify }}
+            {{- end -}}
+          </a>
+        </div>
+      {{- end -}}
+    {{- end -}}
+  </div>
+</div>
+

@@ -104,9 +104,11 @@
       if (
         img.classList.contains("no-modal") ||
         img.closest(".no-modal") ||
-        img.closest(".image-modal-overlay") // Don't attach to modal images
+        img.closest(".image-modal-overlay") || // Don't attach to modal images
+        img.closest(".pdf-download-button") || // Don't attach to PDF download buttons
+        img.closest("a[download]") // Don't attach to any download links
       ) {
-        if (DEBUG) console.log("Skipping element with no-modal class:", img);
+        if (DEBUG) console.log("Skipping element with no-modal class or download link:", img);
         return;
       }
 

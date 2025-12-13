@@ -1,8 +1,7 @@
 +++
 title = "Problems"
-displayTitle = "24 Birthday Problems"
+displayTitle = "24th Birthday Problems"
 tikzajax = "true"
-releaseDate = "2026-01-01T00:00:00"
 math = "true"
 +++
 
@@ -152,7 +151,7 @@ Monty Hall Problem:
 {{< m2prob >}}
 normal version
 {{< m2sol >}}
-this is an <strong>empty</strong> solution environment
+this is an *empty* solution environment
 {{< /m2sol >}}
 
 {{< /m2prob >}}
@@ -166,7 +165,7 @@ this is an <strong>empty</strong> solution environment
 {{< m2prob >}}
 hard version
 {{< m2sol >}}
-I am <em>testing</em> a large amount of the functionality
+I am _testing_ a large amount of the functionality
 {{< /m2sol >}}
 
 {{< /m2prob >}}
@@ -185,14 +184,12 @@ I am <em>testing</em> a large amount of the functionality
 :END:
 
 {{< m2prob >}}
-Prove that there are equally as many <strong>natural numbers</strong> as there are <strong>integers</strong>, i.e. that \(|\mathbb{Z}| = |\mathbb{N}|\).
+Prove that there are equally as many *natural numbers* as there are *integers*, i.e. that \(|\mathbb{Z}| = |\mathbb{N}|\).
 {{< m2sol >}}
 including, but not limited to:
-<ul>
-<li>lists</li>
-<li>stuff</li>
-<li>other stuff</li>
-</ul>
+- lists
+- stuff
+- other stuff
   
 {{< /m2sol >}}
 
@@ -205,15 +202,13 @@ including, but not limited to:
 :END:
 
 {{< m2prob >}}
-Prove that there are equally as many <strong>integers</strong> as there are <strong>rational numbers</strong>, i.e. that \(|\mathbb{Q}| = |\mathbb{R}|\).
+Prove that there are equally as many *integers* as there are *rational numbers*, i.e. that \(|\mathbb{Q}| = |\mathbb{R}|\).
 {{< m2sol >}}
 {{< /m2sol >}}
 maybe alpha lists:
-<ol>
-<li>stuff</li>
-<li>more stuff</li>
-<li>trying stuff</li>
-</ol>
+a. stuff
+b. more stuff
+c. trying stuff
 
 {{< /m2prob >}}
 
@@ -224,14 +219,12 @@ maybe alpha lists:
 :END:
 
 {{< m2prob >}}
-Prove that the <em>real numbers</em> are <em>uncountable</em>; i.e. that \(|\mathbb{R}| \neq |\mathbb{N}|\).
+Prove that the _real numbers_ are /uncountable/; i.e. that \(|\mathbb{R}| \neq |\mathbb{N}|\).
 {{< m2sol >}}
 i wonder about the brackets:
-<ol>
-<li>like</li>
-<li>these</li>
-<li>and this</li>
-</ol>
+a) like
+b) these
+c) and this
 {{< /m2sol >}}
 
 {{< /m2prob >}}
@@ -366,11 +359,9 @@ MML: 6.11
 {{< m2prob >}}
 State the Moment Generating Function (or pdf, not sure which is required for this) for the following distributions:
 
-<ol>
-<li>Poisson</li>
-<li>Bernoulli</li>
-<li>Normal</li>
-</ol>
+a. Poisson
+b. Bernoulli
+c. Normal
 {{< m2sol >}}
 {{< /m2sol >}}
 
@@ -383,10 +374,8 @@ State the Moment Generating Function (or pdf, not sure which is required for thi
 
 {{< m2prob >}}
 Derive the mean and variance of the following distributions.
-<ol>
-<li>Poisson</li>
-<li>Bernoulli</li>
-</ol>
+a. Poisson
+b. Bernoulli
 
 You may find the result from Q11 helpful.
 {{< m2sol >}}
@@ -431,15 +420,10 @@ Optimisation steepest descent method. ask about the number of iterations.
 :END:
 
 {{< m2prob >}}
-Prove that 
-{{< m2prop >}}
-\[|a| \leq b \iff -b \leq a \leq b\]
-{{< /m2prop >}}
-{{< m2proof >}}
+Prove that \[|a| \leq b \iff -b \leq a \leq b\]
 {{< m2sol >}}
 proof book (white rhodia)
 {{< /m2sol >}}
-{{< /m2proof >}}
 {{< /m2prob >}}
 
 *** b
@@ -449,15 +433,10 @@ proof book (white rhodia)
 :END:
 
 {{< m2prob >}}
-Prove that 
-{{< m2prop >}}
-\[\forall a, b \in \mathbb{R}, \quad |a|\cdot |b| = |a\cdot b |\]
-{{< /m2prop >}}
-{{< m2proof >}}
+Prove that \[\forall a, b \in \mathbb{R}, \quad |a|\cdot |b| = |a\cdot b |\]
 {{< m2sol >}}
 proof book (white rhodia)
 {{< /m2sol >}}
-{{< /m2proof >}}
 {{< /m2prob >}}
 
 *** c
@@ -513,15 +492,14 @@ proof book (white rhodia)
 
 {{< m2prob >}}
 State and prove the Triangle Inequality
-{{< m2prop >}}
 {{< m2sol >}}
-{{< /m2sol >}}
+{{< m2prop >}}
+proof book (white rhodia)
 {{< /m2prop >}}
 {{< m2proof >}}
-{{< m2sol >}}
-proof book (white rhodia)
-{{< /m2sol >}}
 {{< /m2proof >}}
+{{< /m2sol >}}
+
 {{< /m2prob >}}
 
 
@@ -531,17 +509,17 @@ proof book (white rhodia)
 :MARK: 2
 :END:
 
+Complete the following
+
 {{< m2prob >}}
 Hence, or otherwise, state and prove Cauchy-Schwarz inequality.
-{{< m2prop >}}
 {{< m2sol >}}
-{{< /m2sol >}}
+{{< m2prop >}}
 {{< /m2prop >}}
 {{< m2proof >}}
-{{< m2sol >}}
 proof book (white rhodia)
-{{< /m2sol >}}
 {{< /m2proof >}}
+{{< /m2sol >}}
 {{< /m2prob >}}
 
 ** Q18
@@ -589,6 +567,8 @@ check optimisation workbook and corresponding typst sheet.
 :MARK: 2
 :END:
 
+Complete the following
+
 {{< m2prob >}}
 Determine if the following set is convex: 
 {{< m2sol >}}
@@ -603,6 +583,8 @@ as part a
 :CUSTOM_ID: q19c
 :MARK: 2
 :END:
+
+Complete the following
 
 {{< m2prob >}}
 Hence, or otherwise, find the maxima of this function.

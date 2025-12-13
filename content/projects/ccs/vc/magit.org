@@ -1,6 +1,7 @@
 +++
 title = "Magit"
 tags = ["notes"]
+toc = "true"
 +++
 
 It feels a little weird presenting my notes to the world.

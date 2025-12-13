@@ -23,7 +23,7 @@ Furthermore, there are additional changes to the structure of this Game:
 1. you must now *pass* the problem set to be awarded the prize money
 2. you may submit your solutions to the problem set at any point in the future -- hopefully your children are smart enough to solve these problems
 3. if you plagiarise work, I reserve the right to ban you from all subsequent competitions --- /[[https://en.wikipedia.org/wiki/Grim_trigger][grim trigger]]/
-4. the problem set will now be courteously supported by my JavaScript $\LaTeX$ engine and a PDF will be generated as an artifact of the site;
+4. the problem set will now be courteously supported by my JavaScript \(\LaTeX\) engine and a PDF will be generated as an artifact of the site;
    - the problems can be found [[/projects/bday-problems/24th/problems][here]] or as a [[/doc/bday-problems/24th.pdf][PDF]] [[/projects/bday-problems/24th/problems][here]]
    - my solutions will be available from the start of 2026; by viewing them you *forfeit the prize money* (obviously)
 5. Good luck!
@@ -33,7 +33,7 @@ Furthermore, there are additional changes to the structure of this Game:
 :CUSTOM_ID: 23rd
 :END:
 
-The prize money shall be \$150 for first place and \$100 for second.
+The prize money shall be $150 for first place and $100 for second.
 
 *ERRATA:*
 - The matrix A in question 15b /is/ symmetric.

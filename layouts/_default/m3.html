@@ -1,0 +1,34 @@
+{{ define "main" }}
+<article class="post">
+  <header>
+    <h1>{{ .Title }}</h1>
+    {{ if .Params.displayTitle }}
+      <p class="display-title">{{ .Params.displayTitle }}</p>
+    {{ end }}
+  </header>
+
+  <div class="content">
+    {{- /* Get raw content and preprocess it */ -}}
+    {{- $content := .RawContent -}}
+    
+    {{- /* Define the shortcodes we want to preprocess */ -}}
+    {{- $shortcodes := slice "m2prob" "m2sol" "m2def" "m2prop" "m2proof" "m2lemm" "m2rem" "m2exam" -}}
+    
+    {{- /* Process each shortcode type */ -}}
+    {{- range $shortcodes -}}
+      {{- $shortcodeName := . -}}
+      
+      {{- /* Find all instances of this shortcode using regex */ -}}
+      {{- /* Pattern: {{< shortcodeName >}}...content...{{< /shortcodeName >}} */ -}}
+      {{- $pattern := printf `(?s)\{\{< %s(.*?) >\}\}(.*?)\{\{< /%s >\}\}` $shortcodeName $shortcodeName -}}
+      
+      {{- /* We need to process each match */ -}}
+      {{- /* This is tricky in Hugo templates, so let's use a different approach */ -}}
+    {{- end -}}
+    
+    {{- /* For now, render the content normally and we'll refine this */ -}}
+    {{ $content | .RenderString }}
+  </div>
+</article>
+{{ end }}
+

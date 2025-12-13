@@ -11,7 +11,7 @@ clocal = "true"
 
 Originally the *AI* suffix stood for @@html:<span style="font-variant: small-caps;">archived intellect</span>@@, however these days it has concretised to becoming an *Augmenting Infrastructure* --- a place from which to branch out in many directions.
 
-Within this site you will find self-contained material in the form of [[{{< ref "projects/csp/peg-solitaire" >}}][project posts]] and [[{{< ref "blog/beyond-code" >}}][blog posts]], but also external links [fn:7] to other work I have done on the Internet; GitHub, ArXiV, YouTube, etc.
+Within this site you will find self-contained material in the form of [[{{< ref "projects/csp/peg-solitaire" >}}][project posts]] and [[{{< ref "blog/beyond-code" >}}][blog posts]], but also external links [fn:7] to other work  -- my own as well as not.
 
 * Scope
 
@@ -45,6 +45,10 @@ This site is the spine of my intellect, and is powered by Emacs @@html:<img src=
 You may also be interested in the [[{{< ref "projects" >}}][projects]] section of this site which tracks my Quest of Conquering Mathematics and Computer Science.
 
 A web CV can be found [[/about/cv][here]].[fn:5]
+
+* Recent Work
+
+{{< recent-pages >}}
 
 * Footnotes
 [fn:7] any links leading [[https://www.youtube.com/watch?v=dQw4w9WgXcQ][out]] of this site are proceeded with a =↗=, whilst those [[{{< ref "words#the-shelf" >}}][within]] are not.
